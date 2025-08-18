@@ -1,0 +1,227 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "g) externally accessible physical ports including debug ports;"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): g) externally accessible physical
+            +b ports including debug ports;"
+        requirement_id "IEC 62443-4-1_SR-2_g"
+        title "Threat Model - Externally Accessible Physical Ports"
+        description "This requirement focuses on identifying and evaluating threats associated with
+            +b externally accessible physical ports, including debug ports, within the context
+            +b of an industrial control system's security. It is essential to understand the
+            +b potential vulnerabilities that these ports may introduce and how they can be
+            +b exploited by malicious actors."
+        [ key_aspects
+            "Identification of all externally accessible physical ports, including those intended for debugging and maintenance purposes."
+            "Assessment of potential threats that could exploit these ports, considering both physical and remote access scenarios."
+            "Evaluation of the risk associated with unauthorized access to these ports, which may lead to data theft, system manipulation, or unauthorized control."
+            "Implementation of security controls to mitigate identified risks, such as physical security measures, port disablement, and authentication mechanisms."
+            "Regular review and update of threat models to ensure they reflect the current state of the system and emerging threats."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.4 - Wireless Access Management"
+                description "Addresses security controls for managing wireless access, which can include
+                    +b considerations for physical port security, especially when wireless
+                    +b communication interfaces are involved."
+            {
+                standard "NIST SP 800-53"
+                reference "CM-11 - User-Installed Software"
+                description "Focuses on controlling and monitoring user-installed software, which can relate
+                    +b to physical ports used for software loading and debugging."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.11.2.1 - Equipment Siting and Protection"
+                description "Covers the physical protection of equipment to prevent unauthorized access,
+                    +b which includes securing physical ports."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                description "Provides comprehensive guidance on securing ICS, including considerations for
+                    +b physical and logical port protection."
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "h) circuit board connections such as Joint Test Action Group (JTAG) connections
+            +b or debug headers which might be used to attack the hardware;"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): h) circuit board connections such
+            +b as Joint Test Action Group (JTAG) connections or debug headers which might be
+            +b used to attack the hardware;"
+        requirement_id "IEC 62443-4-1_SR-2_h"
+        title "Threat Model - Circuit Board Connections"
+        description "This requirement addresses the need to consider and mitigate security risks
+            +b associated with circuit board connections, such as Joint Test Action Group
+            +b (JTAG) connections or debug headers, which could be exploited for hardware
+            +b attacks. These connections, often used for testing and debugging during
+            +b development, can be vulnerable entry points for malicious actors if not
+            +b properly secured or disabled in production environments."
+        [ key_aspects
+            "Identify potential vulnerabilities associated with JTAG and debug headers on circuit boards."
+            "Implement measures to secure or disable these connections when not in use."
+            "Consider the implications of leaving such connections enabled in production environments, which could lead to unauthorized access or extraction of sensitive information from the hardware."
+            "Incorporate these considerations into the overall threat model for the system, ensuring comprehensive security coverage."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "CM-5: Access Restrictions for Change"
+                description "This control addresses the need to manage access to system components,
+                    +b including hardware interfaces like JTAG, to prevent unauthorized changes or
+                    +b access."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.2: Technical Vulnerability Management"
+                description "This section deals with the management of technical vulnerabilities, including
+                    +b those associated with hardware interfaces, ensuring that risks are evaluated
+                    +b and mitigated appropriately."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4: Use of Cryptography"
+                description "While not directly related to hardware interfaces, this requirement emphasizes
+                    +b the importance of cryptographic controls that can also help protect data at
+                    +b rest or in transit from being accessed through insecure hardware connections."
+            {
+                standard "IEEE 1687"
+                reference "Access and Control of Instrumentation Embedded within a Semiconductor Device"
+                description "This IEEE standard provides guidelines for controlling access to embedded
+                    +b instrumentation, which can include JTAG interfaces, ensuring secure access and
+                    +b control."
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "i) potential attack vectors including attacks on the hardware, if applicable;"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): i) potential attack vectors
+            +b including attacks on the hardware, if applicable;"
+        requirement_id "IEC 62443-4-1_SR-2_i"
+        title "Threat Model - Potential Attack Vectors"
+        description "This requirement focuses on identifying potential attack vectors in the threat
+            +b model, with a specific emphasis on attacks targeting hardware components, if
+            +b applicable. It mandates the consideration of various ways an adversary might
+            +b exploit vulnerabilities in hardware to compromise the security of industrial
+            +b automation and control systems (IACS)."
+        [ key_aspects
+            "Identification of potential attack vectors that can be leveraged by adversaries to exploit hardware vulnerabilities."
+            "Analysis of hardware components that may be targeted, including embedded systems, processors, and communication interfaces."
+            "Consideration of both direct and indirect attacks on hardware, such as physical tampering, side-channel attacks, and firmware manipulation."
+            "Incorporation of hardware-specific threat scenarios in the overall threat model of the IACS."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.6.1 - Management of technical vulnerabilities"
+                description "This control emphasizes the need for identifying, assessing, and mitigating
+                    +b technical vulnerabilities, which aligns with identifying hardware attack
+                    +b vectors in IEC 62443-4-1."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                description "This control highlights the importance of protecting the integrity of software
+                    +b and firmware, relevant to firmware manipulation attacks on hardware."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.2 - Malicious code protection"
+                description "Addresses the protection against malicious code which can be introduced via
+                    +b hardware vulnerabilities or firmware manipulation."
+            {
+                standard "ISO/SAE 21434:2021"
+                reference "7.4 - Threat Analysis and Risk Assessment"
+                description "Focuses on assessing threats including those to hardware components in
+                    +b automotive systems, providing insights relevant to IEC 62443-4-1's hardware
+                    +b attack vector requirement."
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "j) potential threats and their severity as defined by a vulnerability scoring
+            +b system (for example, CVSS);"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): j) potential threats and their
+            +b severity as defined by a vulnerability scoring system (for example, CVSS);"
+        requirement_id "IEC 62443-4-1:SR-2:j"
+        title "Threat Model - Potential Threats and Severity Assessment"
+        description "This requirement pertains to the identification and evaluation of potential
+            +b threats to a system's cybersecurity. It emphasizes the necessity to assess the
+            +b severity of these threats using a standardized vulnerability scoring system,
+            +b such as the Common Vulnerability Scoring System (CVSS). The goal is to ensure a
+            +b structured and quantifiable approach to threat assessment, enabling effective
+            +b prioritization and mitigation strategies."
+        { key_aspects
+            threat_identification "Comprehensive identification of potential threats that could impact the
+                +b system's security posture."
+            vulnerability_scoring "Utilization of a standardized system, like CVSS, to evaluate and score the
+                +b severity of identified vulnerabilities."
+            severity_assessment "Assessment of the impact and exploitability of vulnerabilities to prioritize
+                +b mitigation actions based on their severity scores."
+            prioritization "Structured prioritization of cybersecurity efforts based on the severity of
+                +b threats, enabling efficient allocation of resources."
+        { related_standards
+            { "IEC 62443-3-2"
+                title "Security Risk Assessment and System Design"
+                description "Provides guidance on conducting a comprehensive risk assessment to identify and
+                    +b evaluate security risks, including threats and vulnerabilities, to industrial
+                    +b systems."
+            { "NIST SP 800-30"
+                title "Guide for Conducting Risk Assessments"
+                description "Offers a detailed process for assessing risks, including threat identification
+                    +b and severity analysis, to support risk management decisions."
+            { "ISO/IEC 27005"
+                title "Information Security Risk Management"
+                description "Focuses on managing information security risks, with an emphasis on threat
+                    +b identification and risk evaluation techniques."
+            { "CVSS ${'('}Common Vulnerability Scoring System)"
+                title "CVSS v3.1 Specification Document"
+                description "Defines a standardized framework for evaluating the severity of software
+                    +b vulnerabilities, facilitating consistent vulnerability scoring and assessment."
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "k) mitigations and/or dispositions for each threat;"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): k) mitigations and/or
+            +b dispositions for each threat;"
+        requirement_id "IEC 62443-4-1 SR-2"
+        title "Threat Model - Mitigations and Dispositions for Each Threat"
+        description "This requirement focuses on the identification and documentation of mitigations
+            +b and/or dispositions for each identified threat within a system. It is part of
+            +b the broader practice of specifying security requirements to ensure that
+            +b potential security vulnerabilities are addressed effectively. The goal is to
+            +b specify how each threat can be mitigated or managed to reduce risk to an
+            +b acceptable level."
+        [ key_aspects
+            "Identification of potential threats to the system."
+            "Assessment of the impact and likelihood of each threat."
+            "Development of strategies to mitigate or manage threats."
+            "Documenting the chosen mitigations or dispositions for each threat."
+            "Ensuring that the mitigation strategies are in line with overall security objectives and risk management processes."
+        { related_standards
+            { "ISO/IEC 27001"
+                reference "Annex A.12.6.1"
+                description "This section addresses the management of technical vulnerabilities, emphasizing
+                    +b the need for a process to identify and assess vulnerabilities and implement
+                    +b mitigations."
+            { "NIST SP 800-30"
+                reference "Guide for Conducting Risk Assessments"
+                description "Provides a comprehensive approach to risk assessment, including threat
+                    +b identification, vulnerability assessment, and risk mitigation strategies, which
+                    +b align with the requirements of threat modeling in IEC 62443-4-1."
+            { "ISO/IEC 31000"
+                reference "Risk Management - Guidelines"
+                description "Focuses on the principles and guidelines of risk management, assisting
+                    +b organizations in developing a structured approach to identifying and mitigating
+                    +b threats."
+            { "NIST SP 800-53"
+                reference "Security and Privacy Controls for Federal Information Systems and Organizations"
+                description "Offers a catalog of security and privacy controls that can be used to mitigate
+                    +b identified threats, similar to the requirements outlined in IEC 62443-4-1 for
+                    +b threat mitigation and disposition."

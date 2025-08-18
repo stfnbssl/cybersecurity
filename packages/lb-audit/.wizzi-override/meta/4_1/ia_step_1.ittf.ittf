@@ -1,0 +1,49 @@
+ittf
+
+    $*
+        AI extension of std_62443_4_1_extra_ex_json
+        model std_62443_4_1_extra_ex_json in /docs/4_1/clist_ex.json
+        Adds 'original_sentences' and 'italian_question'
+    *$
+
+    $
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $foreach cl in std_62443_4_1_extra_ex_json.items
+        $if count > 4
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [cl]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(cl);
+                count++;
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/4_1/ai_step_1_in/batch-${batch.id}.ai.ittf
+            ai lab
+                api-url http://localhost:3000
+
+                $foreach item in batch.items
+                    $
+                        var options = {
+                            practice: item.practice,
+                            code: item.code,
+                            name: item.name,
+                            sub: item.sub,
+                            gpt_requirement_id: item.gpt_requirement_id,
+                            carel_description: item.carel_description,
+                            gpt_title: item.gpt_title,
+                            gpt_description: item.gpt_description,                            
+                        }
+                    ia_step_2_item(&options)

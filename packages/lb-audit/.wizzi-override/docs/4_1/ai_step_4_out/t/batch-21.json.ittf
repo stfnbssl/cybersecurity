@@ -1,0 +1,323 @@
+$group
+    {
+        practice "4"
+        code "SI-2"
+        subCode "d) secure coding practices;"
+        [ policies
+            {
+                code "SI-2"
+                subCode "d.1"
+                title "Static Code Analysis Policy"
+                description "Mandates the use of static code analysis tools during the development lifecycle
+                    +b to identify and mitigate vulnerabilities early. Aligns with IEC 62443-4-1
+                    +b requirements for secure coding practices, ensuring compliance with CR3 (System
+                    +b Integrity) and CR6 (Timely Response to Events). Tools like Coverity or
+                    +b SonarQube must be integrated into CI/CD pipelines."
+                enforcement "Automated scans in CI/CD pipelines; audit logs reviewed quarterly by the
+                    +b security team."
+            {
+                code "SI-2"
+                subCode "d.2"
+                title "Secure Coding Standards Adoption"
+                description "Requires adherence to industry-standard secure coding guidelines (e.g., MISRA C
+                    +b for embedded systems) for all ICS firmware and custom software. Supports IEC
+                    +b 62443-4-1’s focus on preventing memory corruption and injection attacks (KA1,
+                    +b KA3)."
+                enforcement "Code reviews with checklists; non-compliant code blocks deployment."
+            {
+                code "SI-2"
+                subCode "d.3"
+                title "Third-Party Component Security"
+                description "Governs the use of third-party libraries/software, requiring vulnerability
+                    +b assessments and patching before integration. Addresses IEC 62443-4-1’s emphasis
+                    +b on supply chain risks (CR3) and cryptographic implementations (KA4)."
+                enforcement "Dependency scans using OWASP Dependency-Check; manual approval by the security
+                    +b team for critical components."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "d.1"
+                title "Static Code Analysis Execution"
+                description "Procedure to integrate static analysis tools into the development workflow for
+                    +b Breton Spa’s CNC firmware, ensuring compliance with IEC 62443-4-1 CR3."
+                [ steps
+                    {
+                        step 1
+                        action "Configure static analysis tool (e.g., SonarQube) with ICS-specific rulesets."
+                        tools "SonarQube, Coverity"
+                        expected_outcome "Tool configured to flag buffer overflows, injection patterns, and unsafe
+                            +b functions."
+                    {
+                        step 2
+                        action "Run automated scans on all code commits to the firmware repository."
+                        tools "GitLab CI/CD, Jenkins"
+                        expected_outcome "Vulnerabilities logged in the issue tracker with severity ratings."
+                    {
+                        step 3
+                        action "Review and remediate critical findings within 48 hours."
+                        tools "Jira, Confluence"
+                        expected_outcome "Zero critical vulnerabilities in production code."
+            {
+                code "SI-2"
+                subCode "d.2"
+                title "Secure Code Review Process"
+                description "Cross-functional review of high-risk code (e.g., OPC UA protocol handlers) per
+                    +b IEC 62443-4-1 KA1 and KA2."
+                [ steps
+                    {
+                        step 1
+                        action "Select code modules handling sensitive inputs (e.g., HMI commands, network
+                            +b protocols)."
+                        tools "Git, IDE (VS Code)"
+                        expected_outcome "List of critical modules prioritized for review."
+                    {
+                        step 2
+                        action "Conduct line-by-line reviews using OWASP checklists."
+                        tools "OWASP Code Review Guide, Checkmarx"
+                        expected_outcome "Documented vulnerabilities (e.g., missing input validation)."
+                    {
+                        step 3
+                        action "Update coding standards based on findings."
+                        tools "Confluence, MISRA C guidelines"
+                        expected_outcome "Revised standards preventing recurrence of identified issues."
+            {
+                code "SI-2"
+                subCode "d.3"
+                title "Third-Party Component Vetting"
+                description "Procedure to assess and mitigate risks from external libraries (e.g.,
+                    +b cryptographic modules) as per IEC 62443-4-1 KA4."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all third-party components in use (e.g., OpenSSL for TLS)."
+                        tools "OWASP Dependency-Track, SBoM tools"
+                        expected_outcome "Complete software bill of materials (SBOM)."
+                    {
+                        step 2
+                        action "Scan components for known CVEs using NVD databases."
+                        tools "NVD API, Trivy"
+                        expected_outcome "List of vulnerable components with risk scores."
+                    {
+                        step 3
+                        action "Replace or patch components with high-risk vulnerabilities."
+                        tools "Package managers (npm, pip), internal patching tools"
+                        expected_outcome "All components meet SL-3 security requirements."
+        last_updated "2023-10-15"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "e) validation of all inputs that cross trust boundary."
+        [ policies
+            {
+                code "SI-2"
+                subCode "e)"
+                title "Input Validation Policy for Trust Boundary Crossings"
+                description "This policy mandates the validation of all inputs that cross trust boundaries
+                    +b (e.g., IT to OT networks) to prevent injection attacks and data corruption. It
+                    +b aligns with IEC 62443-4-1 requirements for protocol-aware validation and
+                    +b real-time constraints. The policy applies to all Breton Spa CNC and stone
+                    +b cutting machines, ensuring secure data flow across segmented networks."
+                enforcement "Enforced via automated static code analysis (SonarQube), dynamic testing (OWASP
+                    +b ZAP), and quarterly audits of validation rules against CISA ICS advisories."
+            {
+                code "SI-2"
+                subCode "e)"
+                title "Protocol-Specific Validation Requirements"
+                description "Defines whitelisting rules for industrial protocols (OPC UA, PROFINET, Modbus
+                    +b TCP) used in Breton Spa equipment. Requires protocol libraries to validate
+                    +b function codes (e.g., Modbus 0x01-0x06), object headers (DNP3), and payload
+                    +b structure (OPC UA Binary Schema). Referenced in IEC 62443-4-1 KA1
+                    +b (Protocol-Specific Validation)."
+                enforcement "Validated through unit tests in CI/CD pipelines using protocol fuzzing tools
+                    +b (Peach Fuzzer) and manual code reviews for edge cases."
+            {
+                code "SI-2"
+                subCode "e)"
+                title "Third-Party Device Validation Compliance"
+                description "Requires vendors of Breton Spa-connected devices (e.g., HMIs, RTUs) to
+                    +b implement IEC 62443-4-1 compliant input validation. Includes contractual
+                    +b clauses for firmware signing (CR3) and boundary sanitization (KA2). Covers all
+                    +b machines from CNC centers to polishing systems."
+                enforcement "Enforced through procurement checklists (aligned with ISA Secure Device
+                    +b Requirements) and pre-deployment penetration testing of vendor devices."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "e)"
+                title "OPC UA Input Validation for CNC Machines"
+                description "Procedure to validate OPC UA messages at IT/OT boundary in Breton Spa CNC
+                    +b machining centers. Ensures Basic256Sha256 encrypted messages contain authorized
+                    +b node IDs and data ranges per IEC 62443-4-1 CR4 (Data Confidentiality)."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy OPC UA Gateway with schema validation"
+                        tools "UA Gateway (Unified Automation) with custom XSD schemas"
+                        expected_outcome "Rejects messages with invalid node IDs (e.g., unauthorized write to
+                            +b /Machine/SpindleSpeed)"
+                    {
+                        step 2
+                        action "Implement whitelist for numeric ranges"
+                        tools "OPC UA Stack (open62541) with range-check plugin"
+                        expected_outcome "Blocks out-of-range values (e.g., spindle speed >10,000 RPM)"
+                    {
+                        step 3
+                        action "Log validation failures for audit"
+                        tools "Siemens MindSphere ICS-SEC-01 logging profile"
+                        expected_outcome "Generates SIEM alerts (CR6) for repeated validation failures"
+            {
+                code "SI-2"
+                subCode "e)"
+                title "PROFINET PN Security Input Sanitization"
+                description "Process to validate PROFINET frames in stone cutting machines' real-time
+                    +b networks. Implements KA3 (Real-Time Constraints) using hardware-accelerated
+                    +b checks for cycle time <1ms."
+                [ steps
+                    {
+                        step 1
+                        action "Configure PROFINET IRT switches for frame validation"
+                        tools "Siemens SCALANCE X switches with DPI rules"
+                        expected_outcome "Drops frames with invalid IOPS (Input Output Data Submodule Parameter Server)"
+                    {
+                        step 2
+                        action "Validate cyclic data payloads against machine state"
+                        tools "Breton proprietary PLC validator (C++ RT library)"
+                        expected_outcome "Rejects anomalous tool pressure values (>500 bar during idle)"
+                    {
+                        step 3
+                        action "Enforce PN Security session authentication"
+                        tools "TIA Portal with 'Strict Security' profile"
+                        expected_outcome "Prevents MitM attacks (CR4) via 256-bit session keys"
+            {
+                code "SI-2"
+                subCode "e)"
+                title "Legacy Modbus TCP Validation Gateway Deployment"
+                description "Procedure to retrofit input validation for legacy polishing machines using
+                    +b Modbus TCP. Implements KA2 (Boundary Sanitization) via protocol gateways per
+                    +b IEC 62443-4-1 handling legacy systems requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Install Modbus-to-OPC UA translation gateway"
+                        tools "Kepware EX1250 with custom LUA scripts"
+                        expected_outcome "Converts Modbus to validated OPC UA messages"
+                    {
+                        step 2
+                        action "Implement function code whitelisting (1,3,5,6 only)"
+                        tools "MBTGET tool with signature database"
+                        expected_outcome "Blocks unauthorized codes (e.g., 0x10 Write Multiple Registers)"
+                    {
+                        step 3
+                        action "Deploy TLS termination for legacy devices"
+                        tools "Moxa TLS Gateway with pre-shared keys"
+                        expected_outcome "Encrypts Modbus TCP flows (CR4) without device upgrades"
+        last_updated "2023-11-15"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "f) error handling"
+        [ policies
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Structured Exception Handling Policy"
+                description "This policy mandates the use of structured exception handling in all ICS
+                    +b software development to prevent system crashes and information leaks. It aligns
+                    +b with IEC 62443-4-1 by ensuring errors are caught and managed consistently,
+                    +b maintaining operational continuity and security. Applicable to all Breton Spa
+                    +b CNC and stone cutting machines where real-time error handling is critical."
+                enforcement "Enforced through static code analysis tools (e.g., SonarQube) during CI/CD
+                    +b pipelines and quarterly secure code reviews by the ICS security team."
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Error Logging Security Policy"
+                description "Defines requirements for secure error logging in ICS components to balance
+                    +b troubleshooting needs with data confidentiality. Complies with IEC 62443-4-1
+                    +b CR4 (Data Confidentiality) by restricting log access and sanitizing sensitive
+                    +b data. Specifically implemented for Breton Spa's OPC UA and PROFINET-enabled
+                    +b devices."
+                enforcement "Audited via SIEM system configurations and access control reviews biannually.
+                    +b Non-compliant systems are isolated until remediation."
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Third-Party Error Handling Compliance Policy"
+                description "Requires third-party ICS components (e.g., HMI modules) to adhere to Breton
+                    +b Spa's error handling standards per IEC 62443-4-1 KA4. Includes vendor code
+                    +b vetting and secure configuration checks for all stone polishing and composite
+                    +b material processing lines."
+                enforcement "Enforced through contractual SLAs and pre-deployment component testing using
+                    +b Checkmarx. Annual vendor security assessments validate ongoing compliance."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Secure Error Message Implementation Procedure"
+                description "Step-by-step process for implementing sanitized error messages in HMI
+                    +b applications per IEC 62443-4-1 KA3. Covers CNC machining centers and stone
+                    +b cutting machines' operator interfaces."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all error message sources in HMI codebase"
+                        tools "IDE with code search functionality (e.g., VS Code)"
+                        expected_outcome "Inventory of error generation points documented"
+                    {
+                        step 2
+                        action "Replace technical details with generic messages using predefined templates"
+                        tools "Secure coding library (e.g., Siemens Industrial Security SDK)"
+                        expected_outcome "All user-facing errors show only system-approved messages"
+                    {
+                        step 3
+                        action "Configure logging system to store detailed errors in protected SIEM"
+                        tools "Splunk Enterprise with ICS-specific add-ons"
+                        expected_outcome "Detailed errors accessible only to authorized maintenance personnel"
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Real-Time Error Handling Validation Procedure"
+                description "Validates error handling robustness in PLCs for high-criticality applications
+                    +b (metalworking, stone processing) as per IEC 62443-4-1 KA1. Simulates fault
+                    +b conditions to verify system stability."
+                [ steps
+                    {
+                        step 1
+                        action "Inject communication faults via protocol fuzzer (PROFINET, EtherNet/IP)"
+                        tools "Peach Fuzzer with ICS protocols module"
+                        expected_outcome "PLC maintains operation with graceful degradation"
+                    {
+                        step 2
+                        action "Verify error logs contain sufficient forensic data without sensitive
+                            +b information"
+                        tools "Log analysis scripts with regex filters"
+                        expected_outcome "Logs pass automated sanitization checks"
+                    {
+                        step 3
+                        action "Stress-test error recovery mechanisms under production load"
+                        tools "ICS-specific load testing framework"
+                        expected_outcome "System recovers within defined MTTR thresholds"
+            {
+                code "SI-2"
+                subCode "f) error handling"
+                title "Legacy System Error Handling Wrapper Implementation"
+                description "Procedure to secure error handling in legacy Breton Spa RTUs and polishing
+                    +b machines that cannot support modern practices, complying with IEC 62443-4-1
+                    +b legacy system requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Analyze legacy error handling routines using disassemblers/decompilers"
+                        tools "Ghidra with PLC-specific plugins"
+                        expected_outcome "Mapping of existing error handling flows"
+                    {
+                        step 2
+                        action "Develop secure wrapper functions in C++/Python for error interception"
+                        tools "IEC 61131-3 compliant development environment"
+                        expected_outcome "Wrapper binaries pass static analysis checks"
+                    {
+                        step 3
+                        action "Deploy wrappers via secure update mechanism with rollback capability"
+                        tools "Breton Spa Secure OTA Update System"
+                        expected_outcome "Legacy systems show improved error handling in penetration tests"
+        last_updated "2023-10-15"

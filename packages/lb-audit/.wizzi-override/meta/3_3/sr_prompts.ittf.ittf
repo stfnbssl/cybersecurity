@@ -1,0 +1,72 @@
+ittf
+    $*
+        source
+            model std_62443_3_3_json
+            filepath docs/3_3/sources/62443-3-3.json 
+    *$
+
+    $
+        var product_supplier = wzCtx.Config.ai.product_supplier.name;
+        var product_supplier_JSON = _.stringify(wzCtx.product_supplier.instances[product_supplier], null, null);
+        var options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_1, null, null),
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_2, null, null),
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_3, null, null),
+        }        
+
+    $file .wizzi-override/docs/3_3/from_meta/sr_prompts.txt.ittf
+
+        txt 
+            $foreach fr in std_62443_3_3_json.foundational_requirements
+                $foreach sr in fr.srs
+                    $ 
+                        options.inputJSONString = _.stringify(sr, null, null)
+
+                    =====
+                    sr ${sr.id} ${sr.name}
+                    -----
+                    Popola un database JSON con dati utili per approfondire i system requirement dello IEC 62443-3-3.
+                    ai/explanations_guideline( prompt )
+                        $append base_guide
+                            ${'\\'}n Usa il JSON fornito con dati di input per popolare i campi `id` 
+                            ${'\\'}b `description`, `rationale`, `page`, `enhancements`, `security levels`, and `notes`. 
+                            ${'\\'}n Aggiungi dati coerenti per le proprietà `explanation`, `context`, `challenges`, 
+                            ${'\\'}b `best_practices` e `key_aspects`. 
+                    $ 
+                        options.product_supplier_JSON = null
+                        options.JSONSchema = options.step_1_JSONSchema                        
+                    ai/schema_data_return( &options, prompt )                    
+                    $*
+                    I need a JSON database populated with data for IEC 62443-3-3 
+                    to support secure product and system development. 
+                    Below are the JSON schema for the database and the JSON data of a system requirement. 
+                    Populate the schema with the details for the SR, including its description, rationale, 
+                    page number, enhancements, security levels, and notes as provided in the original JSON. 
+                    Add explanation, context, challenges, best practices for the requirement.
+                    Use the following metadata: version "1.0.0", set to the current 
+                    timestamp, and author "Security Team". Here is the schema:
+                    $ options.JSONSchema = options.step_1_JSONSchema
+                    ai/schema_data_return( &options, prompt )                  
+                    *$
+                    -----
+                    Popola un database JSON con dati utili per approfondire i system requirement dello IEC 62443-3-3.
+                    Usa il JSON fornito con dati di input per popolare il campo `id`.
+                    Aggiungi tre esempi di implementazione per il system requirement e due esempi per ogni
+                    requirement enhancements (se presenti).
+                    Ogni implementazione deve includere `context`, `description`, `tools` usati, `challenges` da affrontare,
+                    e specificare a quale requirement o enhancement si applica.
+                    $ 
+                        options.product_supplier_JSON = product_supplier_JSON
+                        options.JSONSchema = options.step_2_JSONSchema
+                    ai/schema_data_return( &options, prompt )                  
+                    -----
+                    Popola un database JSON generando dei template per policy e procedure per la compliance con IEC 62443-3-3. 
+                    Usa il JSON fornito con dati di input per popolare il campo `id`.
+                    I template devono includere `purpose`, `scope`, dettagliati policy statements e procedure steps, 
+                    `tools`, `challenges` addressed, e verification checklists, con placeholders per gli input degli ingegneri. 
+                    Verifica l'allineamento del system requirement e del contesto del Product supplier. 
+                    $ 
+                        options.product_supplier_JSON = product_supplier_JSON
+                        options.JSONSchema = options.step_3_JSONSchema
+                    ai/schema_data_return( &options, prompt )
+

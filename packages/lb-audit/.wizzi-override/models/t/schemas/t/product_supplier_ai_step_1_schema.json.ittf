@@ -1,0 +1,39 @@
+$group
+    { product_supplier_ai_step_1
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "array"
+        description "JSON schema for List of Product Suppliers of a certail location extracted with ai search"
+        { items
+            type "object"
+            { properties
+                string( name ) 
+                string( sales_eur ) 
+                string( description ) 
+                array_of_strings( machine_types ) 
+                object( iec_62443 ) 
+                    $append properties
+                        string( relevance ) 
+                        array_of_strings( requirements ) 
+                    [ required
+                        "relevance"
+                        "requirements"
+                object( contact_details )
+                    $append properties
+                        string( address ) 
+                        string( phone ) 
+                        string( email ) 
+                        string( website ) 
+                    [ required
+                        "address"
+                        "phone"
+                        "email"
+                        "website"
+                string( source ) 
+            [ required
+                "name"
+                "machine_types"
+                "iec_62443_relevance"
+                "contact_details"                             
+        note_su_json_risultante()
+        [ required
+            "items"                 

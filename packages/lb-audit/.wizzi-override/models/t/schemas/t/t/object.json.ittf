@@ -1,0 +1,9 @@
+$group
+    $params name, description|@@null
+    { ${name}
+        type "object"
+        $if description != null
+            description "${description}"
+        { properties
+            $hook properties
+        $hook

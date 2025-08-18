@@ -1,0 +1,276 @@
+$group
+    {
+        { policy_template
+            title "Audit Log Accessibility Security Policy"
+            purpose "To define the requirements for ensuring authorized access to audit logs on a
+                +b read-only basis within Breton Spa's industrial control systems, aligning with
+                +b IEC 62443-3-3 SR 6.1 requirements for audit and accountability."
+            scope "Applies to all control systems of Breton Spa products, including CNC machining
+                +b centers, stone cutting machines, polishing machines, and composite material
+                +b processing lines, deployed in industrial manufacturing facilities for stone,
+                +b composite materials, and metalworking."
+            [ policy_statements
+                {
+                    id "PS1"
+                    name "Read-Only Access to Audit Logs"
+                    [ description
+                        "All control systems shall provide read-only access to audit logs for authorized personnel and tools to prevent tampering or modification."
+                        "Access mechanisms must ensure that original audit records remain unaltered during viewing or transfer [Engineering Team to specify: e.g., specific file system permissions or restricted interfaces]."
+                {
+                    id "PS2"
+                    name "Role-Based Access Control (RBAC)"
+                    [ description
+                        "Access to audit logs shall be restricted using role-based access control (RBAC), ensuring only authorized users or tools with appropriate permissions can view logs."
+                        "RBAC roles and permissions must be documented and reviewed regularly [Engineering Team to specify: e.g., specific roles such as Security Analyst, System Administrator]."
+                {
+                    id "PS3"
+                    name "Secure Programmatic Access for Higher Security Levels"
+                    [ description
+                        "For systems targeting SL-C 3 and 4, programmatic access to audit logs shall be provided via secure APIs (e.g., RESTful or gRPC) with strong authentication and encryption."
+                        "API access must be protected against unauthorized data exfiltration or manipulation [Engineering Team to specify: e.g., OAuth 2.0, mutual TLS configurations]."
+                {
+                    id "PS4"
+                    name "Separation of Log Access and Generation"
+                    [ description
+                        "Audit log access and generation roles shall be separated to prevent tampering by assigning different teams or systems for each function."
+                        "Separation mechanisms must be documented [Engineering Team to specify: e.g., dedicated log servers or distinct user accounts]."
+                {
+                    id "PS5"
+                    name "Protection of Sensitive Data in Logs"
+                    [ description
+                        "Audit logs containing sensitive data shall be protected during access to prevent unauthorized disclosure."
+                        "Mechanisms such as data masking or encryption in transit must be applied [Engineering Team to specify: e.g., TLS versions, specific data fields to mask]."
+            { approval
+                policy_owner "[Engineering Team to specify: e.g., Head of Engineering]"
+                review_frequency "[Engineering Team to specify: e.g., annually or upon system updates]"
+                last_reviewed "[Engineering Team to insert: date]"
+            [ verification_checklist
+                "Confirm that audit log access is restricted to read-only mode across all Breton Spa machine types."
+                "Verify that RBAC is implemented and roles are documented for log access."
+                "Test secure programmatic access (API) for systems at SL-C 3 and 4, ensuring proper authentication and encryption."
+                "Ensure separation of duties between log access and generation roles."
+                "Validate that sensitive data in logs is protected during access (e.g., via encryption or masking)."
+                "Document and review access logs for any unauthorized access attempts [Engineering Team to specify: review frequency]."
+        { procedure_template
+            title "Audit Log Accessibility Implementation and Testing Procedure"
+            purpose "To provide a step-by-step process for implementing and testing read-only access
+                +b to audit logs in Breton Spa control systems, ensuring compliance with IEC
+                +b 62443-3-3 SR 6.1 and its enhancements."
+            scope "Applies to the control systems of Breton Spa products, including CNC machining
+                +b centers, stone cutting machines, polishing machines, and composite material
+                +b processing lines, within industrial manufacturing environments."
+            [ prerequisites
+                "Control system firmware updated to [Engineering Team to specify: e.g., latest version]."
+                "Audit log generation mechanisms are operational as per SR 2.8 requirements [Engineering Team to confirm]."
+                "Network infrastructure supports secure communication protocols [Engineering Team to specify: e.g., TLS, SFTP]."
+                "Authorized personnel and tools for log access are identified and documented [Engineering Team to provide list]."
+            [ procedure_steps
+                {
+                    step_id "S1"
+                    name "Define Access Requirements and Roles"
+                    [ description
+                        "Identify the personnel and tools requiring access to audit logs for each machine type (e.g., CNC machining centers, stone cutting machines)."
+                        "Define RBAC roles with read-only permissions for log access [Engineering Team to specify: e.g., role names, associated permissions]."
+                        "Document access requirements and roles in the system security plan."
+                {
+                    step_id "S2"
+                    name "Implement Read-Only Access Mechanisms"
+                    [ description
+                        "Configure control systems to provide read-only access to audit logs via interfaces such as web-based dashboards, terminal environments, or file transfer mechanisms."
+                        "Ensure mechanisms prevent modification of logs [Engineering Team to specify: e.g., restricted shell settings, file permissions]."
+                        "Test read-only access on a representative sample of systems to confirm functionality."
+                {
+                    step_id "S3"
+                    name "Set Up Secure Programmatic Access (SL-C 3 and 4)"
+                    [ description
+                        "Develop and deploy secure APIs (e.g., RESTful, gRPC) for programmatic access to audit logs on systems targeting higher security levels."
+                        "Implement strong authentication and encryption for API access [Engineering Team to specify: e.g., OAuth 2.0 tokens, mutual TLS]."
+                        "Validate API integration with external tools such as SIEM systems for automated log retrieval."
+                {
+                    step_id "S4"
+                    name "Establish Separation of Duties"
+                    [ description
+                        "Assign distinct teams or systems for audit log generation and access to prevent tampering."
+                        "Document separation mechanisms and ensure they are enforced [Engineering Team to specify: e.g., separate user accounts, dedicated log servers]."
+                        "Review separation policies during security audits."
+                {
+                    step_id "S5"
+                    name "Test and Validate Access Mechanisms"
+                    [ description
+                        "Conduct testing to ensure only authorized users/tools can access audit logs in read-only mode."
+                        "Perform penetration testing to identify potential unauthorized access paths [Engineering Team to specify: testing frequency and scope]."
+                        "Verify that log access does not impact control system performance or availability [Engineering Team to document performance metrics]."
+                {
+                    step_id "S6"
+                    name "Document and Monitor Access Activities"
+                    [ description
+                        "Record all audit log access activities to create a secondary record for accountability."
+                        "Integrate access monitoring with a centralized system for real-time alerting on suspicious patterns [Engineering Team to specify: e.g., SIEM integration details]."
+                        "Review access logs periodically to ensure compliance with policy [Engineering Team to specify: review schedule]."
+            [ tools_required
+                {
+                    name "Web Server Software"
+                    description "[Engineering Team to specify: e.g., Apache HTTP Server for hosting secure
+                        +b dashboards]"
+                {
+                    name "Encryption Tools"
+                    description "[Engineering Team to specify: e.g., OpenSSL for securing communication
+                        +b channels]"
+                {
+                    name "Secure File Transfer Software"
+                    description "[Engineering Team to specify: e.g., OpenSSH for SFTP log transfers]"
+                {
+                    name "API Development Frameworks"
+                    description "[Engineering Team to specify: e.g., Node.js for RESTful APIs, gRPC Framework
+                        +b for high-performance access]"
+                {
+                    name "Terminal Access Tools"
+                    description "[Engineering Team to specify: e.g., Bash Restricted Shell for read-only
+                        +b terminal environments]"
+                {
+                    name "SIEM Integration Tools"
+                    description "[Engineering Team to specify: e.g., specific SIEM platform for log analysis and
+                        +b monitoring]"
+            [ challenges_addressed
+                "Ensuring read-only access to audit logs without compromising system performance or introducing vulnerabilities."
+                "Implementing secure programmatic access (APIs) for higher security levels to prevent unauthorized data exfiltration."
+                "Balancing log accessibility with the protection of sensitive data in multi-tenant or shared systems."
+                "Managing large volumes of audit data in resource-constrained ICS environments."
+                "Ensuring compatibility of log formats and access methods with external analysis tools like SIEM systems."
+            [ verification_checklist
+                "Document RBAC roles and permissions for audit log access across all machine types."
+                "Confirm read-only access mechanisms are implemented and functional for each system."
+                "Validate secure API access for programmatic log retrieval at SL-C 3 and 4."
+                "Ensure separation of duties is enforced and documented for log access and generation."
+                "Test and document that log access does not degrade control system performance."
+                "Verify integration with SIEM or other analysis tools for automated monitoring [Engineering Team to confirm]."
+                "Review access logs for unauthorized attempts and document findings [Engineering Team to specify review frequency]."
+    {
+        { policy_template
+            title "Continuous Monitoring Security Policy for SR 6.2"
+            purpose "To establish requirements for continuous monitoring of security mechanisms
+                +b within Breton Spa's control systems to detect, characterize, and report
+                +b security breaches in a timely manner, ensuring the integrity and safety of
+                +b industrial operations."
+            scope "Applies to all Breton Spa machine types including CNC machining centers, stone
+                +b cutting machines, polishing machines, and composite material processing lines,
+                +b operating within industrial manufacturing facilities for stone, composite
+                +b materials, and metalworking with networked control interfaces and real-time
+                +b monitoring systems."
+            [ policy_statements
+                {
+                    id "PS1"
+                    name "Deployment of Monitoring Tools"
+                    [ description
+                        "All control systems shall have continuous monitoring tools such as Intrusion Detection Systems (IDS), Intrusion Prevention Systems (IPS), and Security Information and Event Management (SIEM) systems deployed at critical network perimeters and near key assets."
+                        "Monitoring tools must be strategically placed to cover high-precision CNC control systems, automated tool changers, and integrated sensor systems for real-time monitoring."
+                        "[Engineering Team to specify: Define specific network segments and assets requiring mandatory monitoring coverage.]"
+                {
+                    id "PS2"
+                    name "Real-Time Detection and Reporting"
+                    [ description
+                        "Monitoring systems shall provide real-time detection of security breaches, including unauthorized access, anomalous data patterns, and deviations from normal operational behavior."
+                        "Alerts and reports must be generated and disseminated to relevant personnel within [Engineering Team to specify: e.g., defined response time in minutes]."
+                        "[Engineering Team to specify: Define escalation paths and notification protocols for critical alerts.]"
+                {
+                    id "PS3"
+                    name "Event Correlation and Data Management"
+                    [ description
+                        "A SIEM system or equivalent shall be implemented to aggregate and correlate security event data from all machine types to reduce noise and provide actionable insights."
+                        "Data retention policies must ensure that logs are stored for forensic analysis for a minimum of [Engineering Team to specify: e.g., 6 months]."
+                        "[Engineering Team to specify: Define thresholds for event correlation and data filtering to manage volume.]"
+                {
+                    id "PS4"
+                    name "Adaptation to Evolving Threats"
+                    [ description
+                        "Monitoring tools and threat intelligence feeds shall be updated regularly to address evolving cyber threats, including Advanced Persistent Threats (APTs) targeting Industry 4.0 environments."
+                        "Behavior-based monitoring shall be implemented to detect zero-day attacks and insider threats."
+                        "[Engineering Team to specify: Schedule for updates and reviews of monitoring tool configurations.]"
+            { approval
+                policy_owner "[Engineering Team to specify: e.g., Head of Cybersecurity]"
+                review_frequency "[Engineering Team to specify: e.g., annually or upon significant system
+                    +b updates]"
+                last_reviewed "[Engineering Team to insert: date]"
+            [ verification_checklist
+                "Confirm deployment of IDS/IPS at critical network perimeters and near key assets for all Breton Spa machine types."
+                "Verify real-time alert generation and reporting capabilities meet defined response times."
+                "Ensure SIEM integration for event correlation across CNC machining centers, stone cutting machines, and polishing machines."
+                "Validate regular updates to monitoring tools and threat intelligence feeds."
+                "Document incident response protocols linked to monitoring alerts for timely mitigation."
+        { procedure_template
+            title "Continuous Monitoring Implementation and Testing Procedure for SR 6.2"
+            purpose "To provide a step-by-step process for implementing and testing continuous
+                +b monitoring capabilities in Breton Spa's control systems to ensure timely
+                +b detection and reporting of security breaches as per SR 6.2 requirements."
+            scope "Applies to the deployment and operation of monitoring tools across Breton Spa's
+                +b CNC machining centers, stone cutting machines, polishing machines, and
+                +b composite material processing lines within industrial manufacturing facilities."
+            [ prerequisites
+                "Control system firmware updated to [Engineering Team to specify: e.g., latest version]."
+                "Network architecture diagrams and asset inventory available for [Engineering Team to specify: e.g., all machine types]."
+                "Access to administrative credentials for monitoring tool configurations [Engineering Team to provide: e.g., specific roles or teams]."
+                "Incident response plan documented and accessible to relevant personnel [Engineering Team to confirm: e.g., location of documentation]."
+            [ procedure_steps
+                {
+                    step_id "S1"
+                    name "Identify Critical Assets and Network Segments"
+                    [ description
+                        "Review network architecture and asset inventory to identify critical assets such as high-precision CNC control systems, automated tool changers, and integrated sensor systems."
+                        "Determine key network perimeters and server locations requiring monitoring coverage for each machine type."
+                        "[Engineering Team to specify: List specific assets and segments for monitoring deployment.]"
+                {
+                    step_id "S2"
+                    name "Deploy Monitoring Tools"
+                    [ description
+                        "Install and configure IDS/IPS tools at identified network perimeters and near critical assets to monitor traffic for anomalous activities."
+                        "Set up a SIEM system to aggregate and correlate logs from all security mechanisms across distributed machines."
+                        "Implement behavior-based monitoring tools to detect deviations in operational patterns, especially for real-time sensor data."
+                        "[Engineering Team to specify: Configuration parameters and thresholds for each tool.]"
+                {
+                    step_id "S3"
+                    name "Configure Alerts and Reporting"
+                    [ description
+                        "Define alert thresholds and rules for detecting security breaches, including unauthorized access attempts and unusual data patterns."
+                        "Set up real-time notifications to relevant personnel with escalation paths for critical incidents."
+                        "[Engineering Team to specify: Define response times and notification recipients.]"
+                {
+                    step_id "S4"
+                    name "Test Monitoring Effectiveness"
+                    [ description
+                        "Conduct simulated attacks (e.g., unauthorized access, data exfiltration) to test the detection and reporting capabilities of deployed monitoring tools."
+                        "Validate SIEM event correlation by reviewing aggregated reports for accuracy and context."
+                        "[Engineering Team to specify: Test scenarios and expected outcomes for each machine type.]"
+                {
+                    step_id "S5"
+                    name "Update and Maintain Monitoring Systems"
+                    [ description
+                        "Schedule regular updates to monitoring tools and threat intelligence feeds to address new attack vectors."
+                        "Review monitoring logs periodically to identify gaps in coverage or performance issues."
+                        "[Engineering Team to specify: Update frequency and log review schedule.]"
+            [ tools_required
+                {
+                    name "Intrusion Detection/Prevention System (IDS/IPS)"
+                    description "[Engineering Team to specify: e.g., Snort for real-time traffic analysis and
+                        +b packet logging]"
+                {
+                    name "Security Information and Event Management (SIEM)"
+                    description "[Engineering Team to specify: e.g., Splunk for log aggregation and real-time
+                        +b alerting]"
+                {
+                    name "Behavior-Based Monitoring Tool"
+                    description "[Engineering Team to specify: e.g., Darktrace for AI-based threat detection]"
+                {
+                    name "Network Analysis Tool"
+                    description "[Engineering Team to specify: e.g., Wireshark for detailed packet inspection]"
+            [ challenges_addressed
+                "Integrating monitoring tools into legacy control systems not designed for cybersecurity."
+                "Managing large volumes of security event data generated by continuous monitoring across distributed machines."
+                "Ensuring timely detection and response to security breaches in remote operation interfaces."
+                "Detecting sophisticated attacks like APTs and insider threats in Industry 4.0 environments."
+                "Balancing monitoring needs with system performance to avoid latency in resource-limited devices."
+            [ verification_checklist
+                "Document critical assets and network segments requiring monitoring for each Breton Spa machine type."
+                "Confirm successful deployment and configuration of IDS/IPS, SIEM, and behavior-based tools."
+                "Verify real-time alert generation and escalation paths during simulated attack scenarios."
+                "Validate event correlation and data retention in the SIEM system for forensic analysis."
+                "Ensure monitoring tools are updated regularly and logs are reviewed for coverage gaps."

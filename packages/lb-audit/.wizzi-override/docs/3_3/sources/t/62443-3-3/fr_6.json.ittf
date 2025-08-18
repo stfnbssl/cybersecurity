@@ -1,0 +1,82 @@
+$group
+    {
+        id "FR-6"
+        key "TRE"
+        name "Timely response to events"
+        page 59
+        purpose "Respond to security violations by notifying the proper authority, reporting needed evidence of 
+            +b the violation and taking timely corrective action when incidents are discovered."
+        rationale "Using their risk assessment methodology, asset owners should establish security policies and procedures 
+            +b and proper lines of communication and control needed to respond to security violations. 
+            +b Derived prescriptive recommendations and guidelines should include mechanisms that collect, report, 
+            +b preserve and automatically correlate the forensic evidence to ensure timely corrective action. 
+            +b The use of monitoring tools and techniques should not adversely affect the operational performance 
+            +b of the control system."
+        [ security_levels_descriptions
+            "SL 1 – Monitor the operation of the IACS and respond to incidents when they are discovered by collecting and providing the forensic evidence when queried."
+            "SL 2 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and periodically reporting forensic evidence."
+            "SL 3 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and pushing forensic evidence to the proper authority."
+            "SL 4 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and pushing forensic evidence to the proper authority in near real-time."
+        [ srs
+            {
+                id "SR 6.1"
+                page 60
+                name "Audit log accessibility"
+                description "The control system shall provide the capability for authorized humans and/or tools 
+                    +b to access audit logs on a read-only basis."
+                rationale "The control system generates audit records about events occurring in the system 
+                    +b (see 6.10, SR 2.8 – Auditable events). 
+                    +b Access to these audit logs is necessary to support filtering audit logs, 
+                    +b identifying and removing information that is redundant, reviewing and reporting 
+                    +b activity during after-the-fact investigations of security incidents. 
+                    +b This access should not alter the original audit records. 
+                    +b In general, audit reduction and report generation should be performed on a separate information system. 
+                    +b Manual access to the audit records (such as screen views or printouts) is sufficient 
+                    +b for meeting the base requirement, but is insufficient for higher SLs. 
+                    +b Programmatic access is commonly used to provide the audit log information to analysis mechanisms 
+                    +b such as SIEM. 
+                    +b See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, 
+                    +b protection of and access to audit logs."
+                [ rhs
+                    {
+                        id "SR 6.1 RE 1"
+                        name "Programmatic access to audit logs"
+                        description "The control system shall provide programmatic access to audit records 
+                            +b using an application programming interface (API)."
+                [ security_levels    
+                    "SL-C (TRE, control system) 1: SR 6.1"
+                    "SL-C (TRE, control system) 2: SR 6.1"
+                    "SL-C (TRE, control system) 3: SR 6.1 (1)"
+                    "SL-C (TRE, control system) 4: SR 6.1 (1)"
+            {
+                id "SR 6.2"
+                page 60
+                name "Continuous monitoring"
+                description "The control system shall provide the capability to continuously monitor all security mechanism 
+                    +b performance using commonly accepted security industry practices and recommendations to detect, 
+                    +b characterize and report security breaches in a timely manner."
+                [ notes
+                    "Response time is a local matter outside the scope of this standard."
+                rationale "Control system monitoring capability can be achieved through a variety of tools and techniques 
+                    +b (for example, IDS, IPS, malicious code protection mechanisms and network monitoring mechanisms). 
+                    +b As attacks become more sophisticated, these monitoring tools and techniques will need to 
+                    +b become more sophisticated as well, including for example behavior-based IDS/IPS.
+                    +b Monitoring devices should be strategically deployed within the control system 
+                    +b (for example, at selected perimeter locations and near server farms supporting critical applications) 
+                    +b to collect essential information. 
+                    +b Monitoring mechanisms may also be deployed at ad hoc locations within the control system 
+                    +b to track specific transactions.
+                    +b Monitoring should include appropriate reporting mechanisms to allow for a timely response to events. 
+                    +b To keep the reporting focused and the amount of reported information to a level that 
+                    +b can be processed by the recipients, mechanisms such as SIEM are commonly applied to 
+                    +b correlate individual events into aggregate reports which establish a larger context 
+                    +b in which the raw events occurred.
+                    +b Additionally, these mechanisms can be used to track the effect of security changes to the control system 
+                    +b (see 6.10, SR 2.8 – Auditable events). 
+                    +b Having forensic tools pre-installed can facilitate incident analysis."
+                [ rhs
+                [ security_levels    
+                    "SL-C (TRE, control system) 1: Not Selected"
+                    "SL-C (TRE, control system) 2: SR 6.2"
+                    "SL-C (TRE, control system) 3: SR 6.2"
+                    "SL-C (TRE, control system) 4: SR 6.2"

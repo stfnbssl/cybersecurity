@@ -1,0 +1,363 @@
+$group
+    {
+        practice "1"
+        code "SM-1"
+        subCode "e) review and approval of all development process records;"
+        [ policies
+            {
+                code "SM-1"
+                subCode "e"
+                title "Automated Review and Approval Policy"
+                description "This policy mandates the integration of automated review checklists within
+                    +b CI/CD pipelines to ensure all development process records are consistently
+                    +b evaluated before approval. It aligns with IEC 62443-4-1's requirement for
+                    +b repeatable and traceable processes in ICS environments. Automated tools such as
+                    +b static code analyzers and policy enforcement gates are required to validate
+                    +b security compliance."
+                enforcement "Regular audits of CI/CD pipelines to verify the presence and effectiveness of
+                    +b automated review gates. Use of cryptographic signatures for approvals to ensure
+                    +b non-repudiation."
+            {
+                code "SM-1"
+                subCode "e"
+                title "Immutable Record Storage Policy"
+                description "This policy requires all development process records to be stored in
+                    +b tamper-evident systems, such as blockchain or write-once storage, to prevent
+                    +b unauthorized modifications post-approval. It supports IEC 62443-4-1's integrity
+                    +b requirements by ensuring that records remain unaltered and traceable throughout
+                    +b their lifecycle."
+                enforcement "Periodic integrity checks of stored records using cryptographic hashing. Audit
+                    +b logs must be maintained to track access and modifications to the record storage
+                    +b system."
+            {
+                code "SM-1"
+                subCode "e"
+                title "Role-Based Approval Workflow Policy"
+                description "This policy enforces role-based access control (RBAC) for the review and
+                    +b approval of development process records, ensuring segregation of duties (e.g.,
+                    +b developers cannot approve their own changes). It aligns with IEC 62443-4-1's
+                    +b access control requirements and mitigates risks of insider threats."
+                enforcement "Regular reviews of RBAC configurations to ensure compliance with the four-eye
+                    +b principle. Automated workflows in tools like GitLab or JIRA to enforce
+                    +b role-based approvals."
+        [ procedures
+            {
+                code "SM-1"
+                subCode "e"
+                title "Development Record Review Procedure"
+                description "This procedure outlines the steps for reviewing development process records to
+                    +b ensure compliance with security policies and IEC 62443-4-1 requirements. It
+                    +b includes automated and manual review stages to validate code, configurations,
+                    +b and documentation."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate automated review using static code analysis tools (e.g., SonarQube,
+                            +b Checkmarx) integrated into the CI/CD pipeline."
+                        tools "SonarQube, Checkmarx, Azure DevOps"
+                        expected_outcome "Identification of security vulnerabilities and policy violations in the
+                            +b development records."
+                    {
+                        step 2
+                        action "Manual review by designated security personnel to validate findings from
+                            +b automated tools and assess contextual risks."
+                        tools "JIRA, Confluence"
+                        expected_outcome "Documented review comments and approval/rejection decisions with justification."
+                    {
+                        step 3
+                        action "Final approval by authorized personnel using cryptographic signatures to ensure
+                            +b non-repudiation."
+                        tools "PKI, Git signing"
+                        expected_outcome "Digitally signed approval records stored in an immutable repository."
+            {
+                code "SM-1"
+                subCode "e"
+                title "Vendor Record Alignment Procedure"
+                description "This procedure ensures that third-party vendors provide development process
+                    +b records in a structured and reviewable format, aligning with IEC 62443-4-1
+                    +b supply chain security requirements. It includes steps for validating
+                    +b vendor-submitted artifacts such as SBOMs (Software Bill of Materials) and
+                    +b configuration files."
+                [ steps
+                    {
+                        step 1
+                        action "Request and collect vendor-submitted records, including SBOMs, configuration
+                            +b files, and security attestations."
+                        tools "Vendor portal, email"
+                        expected_outcome "Complete set of vendor records for review."
+                    {
+                        step 2
+                        action "Validate vendor records using automated tools (e.g., Dependency-Track for SBOM
+                            +b analysis) and manual checks."
+                        tools "Dependency-Track, OWASP tools"
+                        expected_outcome "Identification of vulnerabilities or non-compliant components in vendor
+                            +b records."
+                    {
+                        step 3
+                        action "Approve or reject vendor records based on validation results, with documented
+                            +b justification."
+                        tools "JIRA, Confluence"
+                        expected_outcome "Approved vendor records stored in the central repository; rejected records
+                            +b returned for remediation."
+            {
+                code "SM-1"
+                subCode "e"
+                title "Legacy System Record Review Procedure"
+                description "This procedure addresses the challenges of reviewing and approving development
+                    +b process records for legacy systems that may not meet modern security standards.
+                    +b It includes compensating controls and risk mitigation strategies to ensure
+                    +b compliance with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory and categorize legacy system records, identifying gaps in
+                            +b documentation or security controls."
+                        tools "CMDB, spreadsheets"
+                        expected_outcome "Comprehensive inventory of legacy records with identified risks."
+                    {
+                        step 2
+                        action "Implement compensating controls (e.g., network segmentation, additional
+                            +b monitoring) to mitigate identified risks."
+                        tools "Firewalls, SIEM systems"
+                        expected_outcome "Reduced risk exposure for legacy systems."
+                    {
+                        step 3
+                        action "Approve legacy records with documented justification for any deviations from
+                            +b modern standards."
+                        tools "JIRA, Confluence"
+                        expected_outcome "Approved legacy records with risk mitigation plans in place."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "f) life-cycle support."
+        [ policies
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "Vendor Support Agreement Policy"
+                description "This policy mandates formal agreements with vendors to ensure long-term
+                    +b security support for all components, including firmware updates and patches, as
+                    +b per IEC 62443-4-1 requirements. It specifies minimum support durations (e.g.,
+                    +b 10 years for critical control systems) and update delivery mechanisms (e.g.,
+                    +b signed firmware packages via secure channels)."
+                enforcement "Annual vendor audits using checklists aligned with IEC 62443-4-1 KA1 (Vendor
+                    +b Support Documentation). Automated tracking of support expiration dates in CMDB
+                    +b with alerts at 6/3/1 month intervals before contract renewal."
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "Patch Management Protocol"
+                description "Defines a risk-based approach for ICS patch deployment in Breton Spa equipment,
+                    +b incorporating IEC 62443-4-1 KA2 (Patch Compatibility Testing). Requires staged
+                    +b deployment (Test > Shadow > Production) with rollback procedures, specifically
+                    +b addressing OPC UA and PROFINET security updates."
+                enforcement "Automated patch compliance scanning using ICS-specific tools (e.g., Claroty
+                    +b Continuous Threat Detection). Quarterly penetration tests validating patch
+                    +b effectiveness against CR3 (System Integrity) threats."
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "Obsolescence Mitigation Strategy"
+                description "Implements IEC 62443-4-1 KA3 (Component Obsolescence Planning) through
+                    +b proactive replacement schedules for end-of-life components in CNC and stone
+                    +b cutting machines. Includes cryptographic agility planning for protocol security
+                    +b (e.g., transitioning from Basic256Sha256 to quantum-resistant algorithms)."
+                enforcement "Automated inventory checks against CPE database. Mandatory technology refresh
+                    +b cycles (5 years for SL3 systems) enforced through procurement controls and
+                    +b budget allocation processes."
+        [ procedures
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "Secure Firmware Update Procedure"
+                description "Step-by-step process for applying signed firmware updates to Breton Spa
+                    +b machines while maintaining CR3 (System Integrity) per IEC 62443-4-1. Covers
+                    +b pre-update integrity checks, secure transfer methods (e.g., TLS 1.3 for OPC UA
+                    +b updates), and post-update validation."
+                [ steps
+                    {
+                        step 1
+                        action "Verify firmware package using vendor-supplied PGP keys stored in HSM"
+                        tools "GnuPG with ICS-specific keyring, Thales HSM"
+                        expected_outcome "Cryptographic signature validation report showing 0xFFFF confirmation code"
+                    {
+                        step 2
+                        action "Deploy to isolated test network mimicking production topology"
+                        tools "VMware vSphere with ICS network emulation plugins"
+                        expected_outcome "72-hour burn-in test with 0 critical faults in system logs"
+                    {
+                        step 3
+                        action "Execute rollback procedure validation"
+                        tools "Schneider Electric EcoStruxure Rollback Tester"
+                        expected_outcome "Successful reversion to previous firmware within 15-minute maintenance window"
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "End-of-Life Component Decommissioning"
+                description "Implements IEC 62443-4-1 KA3 requirements for secure retirement of obsolete
+                    +b devices in stone processing lines. Includes data sanitization, cryptographic
+                    +b material revocation, and physical destruction protocols."
+                [ steps
+                    {
+                        step 1
+                        action "Extract and archive configuration parameters for migration"
+                        tools "Rockwell Automation FactoryTalk AssetCentre"
+                        expected_outcome "Encrypted .L5K configuration archive with SHA-3 checksum"
+                    {
+                        step 2
+                        action "Revoke device certificates in PKI infrastructure"
+                        tools "Microsoft AD CS with ICS certificate templates"
+                        expected_outcome "OCSP responder shows 'REVOKED' status for device serial number"
+                    {
+                        step 3
+                        action "Perform NIST SP 800-88r1 sanitization on persistent storage"
+                        tools "Blancco Industrial Edition degausser"
+                        expected_outcome "Verification report showing 3-pass overwrite completion"
+            {
+                code "SM-1"
+                subCode "f) life-cycle support."
+                title "ICS Patch Compatibility Testing"
+                description "Detailed workflow for validating Windows and PLC updates in Breton Spa's
+                    +b multi-vendor environment, addressing CR1 (Identification and Authentication
+                    +b Control) and CR6 (Timely Response to Events) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Create digital twin of production network in test environment"
+                        tools "Siemens Process Simulation Suite, OPC UA test servers"
+                        expected_outcome "1:1 network topology replica with simulated stone cutting cycles"
+                    {
+                        step 2
+                        action "Inject patch while monitoring PROFINET cycle times"
+                        tools "Wireshark with ICS dissectors, PROFINET IRT analyzer"
+                        expected_outcome "Jitter < 1μs deviation from baseline during critical operations"
+                    {
+                        step 3
+                        action "Validate security event logging functionality"
+                        tools "Splunk Industrial Security Appliance"
+                        expected_outcome "CEF-formatted logs showing successful CR6 event capture"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-2"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "Role Definition and Assignment Policy"
+                description "This policy mandates the explicit definition and assignment of security roles
+                    +b within the organization, ensuring accountability and clear ownership of
+                    +b security tasks as per IEC 62443-4-1 SM-2. It applies to all personnel involved
+                    +b in the security lifecycle of industrial control systems (ICS), including IT,
+                    +b OT, and vendor teams. The policy requires the use of RACI matrices to document
+                    +b roles and responsibilities, with regular reviews to reflect organizational
+                    +b changes."
+                enforcement "Enforcement mechanisms include quarterly audits of role documentation,
+                    +b automated tracking via GRC platforms (e.g., RSA Archer), and role-specific KPIs
+                    +b (e.g., patch deployment time) to measure compliance. Non-compliance triggers
+                    +b escalation to the governance committee."
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "Role-Based Training Policy"
+                description "This policy ensures all personnel receive role-specific training aligned with
+                    +b their security responsibilities, as required by IEC 62443-4-1 SM-2. Training
+                    +b programs (e.g., ISA/IEC 62443 Cybersecurity Fundamentals Specialist) must cover
+                    +b threat modeling, incident response, and access control. Applicable to
+                    +b high-criticality roles like Security Officers and Patch Administrators in CNC
+                    +b Machining Centers and Stone Cutting Machines."
+                enforcement "Enforced through annual competency assessments (interviews and performance
+                    +b evaluations) and automated training records in HR systems. Missing training
+                    +b flags access revocation until completion."
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "Accountability and Audit Policy"
+                description "This policy establishes mechanisms (e.g., audit logs, approval workflows) to
+                    +b enforce accountability for security actions (e.g., firewall changes, access
+                    +b grants) per IEC 62443-4-1 SM-2. It integrates with ICS protocols (OPC UA,
+                    +b PROFINET) to log role-based actions in segmented industrial networks, ensuring
+                    +b traceability for SL 2-3 systems."
+                enforcement "Automated logging via Siemens Audit Trail tools and Yokogawa Security Logging.
+                    +b Monthly reviews by Internal Audit (Third Line of Defense) with findings
+                    +b reported to the governance committee."
+        [ procedures
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "RACI Matrix Development Procedure"
+                description "Step-by-step process to create and maintain a RACI matrix for ICS security
+                    +b roles, ensuring compliance with IEC 62443-4-1 SM-2. Covers role definition,
+                    +b stakeholder collaboration, and documentation updates."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all security processes (e.g., patch management, incident response) and
+                            +b list them in the matrix rows."
+                        tools "Microsoft Excel, Rockwell Automation Role Templates"
+                        expected_outcome "Comprehensive list of security processes requiring role assignments."
+                    {
+                        step 2
+                        action "Engage IT, OT, and vendor stakeholders to assign Responsible (R), Accountable
+                            +b (A), Consulted (C), and Informed (I) roles for each process."
+                        tools "Honeywell RACI Template, GE Cross-Team Playbook"
+                        expected_outcome "Completed RACI matrix with no overlapping responsibilities."
+                    {
+                        step 3
+                        action "Publish the matrix in the GRC platform and conduct role-awareness training."
+                        tools "RSA Archer, ISA/IEC 62443 Training Program"
+                        expected_outcome "100% personnel awareness of assigned roles within 30 days."
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "Role Transition Handover Procedure"
+                description "Procedure to ensure seamless transfer of security responsibilities during staff
+                    +b changes, mitigating risks from unclear ownership (e.g., unpatched
+                    +b vulnerabilities). Aligns with SM-2's accountability requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Document outgoing personnel's responsibilities, including pending tasks (e.g.,
+                            +b firewall rule reviews) and access privileges."
+                        tools "Schneider Electric Role Handover Checklist, Active Directory"
+                        expected_outcome "Detailed handover report with task status and access maps."
+                    {
+                        step 2
+                        action "Conduct joint training sessions between outgoing and incoming personnel,
+                            +b covering role-specific tools (e.g., Siemens Audit Trail)."
+                        tools "ABB ICS Security Metrics, Dragos Role Performance Guide"
+                        expected_outcome "Incoming personnel demonstrate competency in role tasks."
+                    {
+                        step 3
+                        action "Update the RACI matrix and access controls within 24 hours of transition."
+                        tools "ServiceNow GRC, Yokogawa Security Logging"
+                        expected_outcome "Real-time role updates in all systems with audit trail."
+            {
+                code "SM-2"
+                subCode "undefined"
+                title "Incident Response Role Activation Procedure"
+                description "Procedure to activate and coordinate role-specific actions during security
+                    +b incidents (e.g., ransomware attacks on CNC machines), per SM-2's accountability
+                    +b mechanisms."
+                [ steps
+                    {
+                        step 1
+                        action "Identify incident type (e.g., protocol manipulation) and escalate to the
+                            +b Responsible role (Security Officer) via the SIEM system."
+                        tools "Siemens ICS Security Roles Guide, Splunk"
+                        expected_outcome "Incident logged with assigned owner within 15 minutes."
+                    {
+                        step 2
+                        action "Mobilize Consulted roles (e.g., OT engineers) to analyze impacted protocols
+                            +b (OPC UA, PROFINET) and isolate affected machines."
+                        tools "Wireshark with ICS plugins, GE Cross-Team Playbook"
+                        expected_outcome "Containment of incident to a single network segment."
+                    {
+                        step 3
+                        action "Inform Accountable role (CISO) to approve remediation steps (e.g., firmware
+                            +b rollback) and update the RACI matrix with lessons learned."
+                        tools "Microsoft Excel, NIST IR 8183 Vol.2"
+                        expected_outcome "Post-incident report with updated roles and procedures."
+        last_updated "2023-11-15"

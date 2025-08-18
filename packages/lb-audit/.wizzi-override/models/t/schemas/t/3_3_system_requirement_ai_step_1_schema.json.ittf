@@ -1,0 +1,162 @@
+$group
+    { x_3_3_system_requirement_ai_step_1
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        description "JSON schema for IEC 62443-3-3 System Requirements - Base plus ia extensions explanation, context, challenges, ecc.."
+        { properties
+            { requirements
+                type "array"
+                { items
+                    type "object"
+                    { properties
+                        { id
+                            type "string"
+                            description "Unique identifier for the requirement (e.g., SR 3.8)"
+                            example "SR 3.8"
+                        { name
+                            type "string"
+                            description "Human-readable name of the requirement"
+                            example "Session Integrity"
+                        { description
+                            type "string"
+                            description "Detailed description of the requirement"
+                            example "The control system shall provide the capability to protect the integrity of sessions..."
+                        { rationale
+                            type "string"
+                            description "Purpose and security context of the requirement"
+                            example "This control focuses on communications protection at the session level..."
+                        { page
+                            type "integer"
+                            description "Page number in the IEC 62443-3-3 standard"
+                            example 51
+                        $*
+                        { standard
+                            type "string"
+                            description "Standard the requirement belongs to"
+                            example "IEC 62443-3-3"
+                        { category
+                            type "string"
+                            description "Category of the requirement (e.g., System Integrity)"
+                            example "System Integrity"
+                        *$
+                        { enhancements
+                            type "array"
+                            description "List of requirement enhancements"
+                            { items
+                                type "object"
+                                { properties
+                                    { id
+                                        type "string"
+                                        description "Unique identifier for the enhancement"
+                                        example "SR 3.8 RE 1"
+                                    { name
+                                        type "string"
+                                        description "Name of the enhancement"
+                                        example "Invalidation of session IDs after session termination"
+                                    { description
+                                        type "string"
+                                        description "Description of the enhancement"
+                                        example "The control system shall provide the capability to invalidate session IDs upon user logout..."
+                                    { notes
+                                        type "array"
+                                        description "Additional notes or considerations"
+                                        { items
+                                            type "string"
+                                            example "Session hijacking and other man-in-the-middle attacks..."
+                                [ required
+                                    "id" 
+                                    "name" 
+                                    "description" 
+                        explanations( requirement )
+                        best_practices( requirement )
+                        key_aspects( requirement )
+                        $*
+                        { best_practices
+                            type "array"
+                            description "Best practices for the requirement"
+                            { items
+                                type "string"
+                                example "..."
+                        *$
+                        { security_levels
+                            type "array"
+                            description "Mapping of security levels to requirement and enhancements"
+                            { items
+                                type "object"
+                                { properties
+                                    { level
+                                        type "string"
+                                        description "Security level (e.g., SL-C 1)"
+                                        example "SL-C 1"
+                                    { applicability
+                                        type "string"
+                                        description "Requirement or enhancements applicable at this level"
+                                        example "Not Selected"
+                                [ required
+                                    "level" 
+                                    "applicability" 
+                        { compliance
+                            type "object"
+                            description "Compliance and testing details"
+                            { properties
+                                { status
+                                    type "string"
+                                    description "Compliance status (e.g., Implemented, In Progress, Not Started)"
+                                    example "Not Started"
+                                { last_audit
+                                    type "string"
+                                    format "date-time"
+                                    description "Timestamp of the last compliance audit"
+                                    example "2025-08-04T09:49:00Z"
+                                { testing_requirements
+                                    type "array"
+                                    description "Required tests to verify compliance"
+                                    { items
+                                        type "string"
+                                        example "Penetration testing for session hijacking"
+                                { responsible_team
+                                    type "string"
+                                    description "Team responsible for implementation and compliance"
+                                    example "Security Engineering"
+                        { metadata
+                            type "object"
+                            description "Metadata for versioning and auditing"
+                            { properties
+                                { version
+                                    type "string"
+                                    description "Version of the requirement entry"
+                                    example "1.0.0"
+                                { created_at
+                                    type "string"
+                                    format "date-time"
+                                    description "Timestamp of entry creation"
+                                    example "2025-08-04T09:49:00Z"
+                                { updated_at
+                                    type "string"
+                                    format "date-time"
+                                    description "Timestamp of last update"
+                                    example "2025-08-04T09:49:00Z"
+                                { author
+                                    type "string"
+                                    description "Person or team who created/updated the entry"
+                                    example "Security Team"
+                            [ required
+                                "version" 
+                                "created_at" 
+                                "updated_at" 
+                    [ required
+                        "id" 
+                        "name" 
+                        "description" 
+                        "rationale" 
+                        "page" 
+                        "standard" 
+                        "explanation" 
+                        "context" 
+                        "challenges" 
+                        "best_practices" 
+                        "security_levels" 
+                        "compliance" 
+        note_su_json_risultante()
+        [ required
+            "requirements" 

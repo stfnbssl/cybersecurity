@@ -1,0 +1,238 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "l) security-related issues identified; and"
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): l) security-related issues
+            +b identified; and"
+        requirement_id "IEC 62443-4-1_SR-2_l"
+        title "Threat Model - Security-Related Issues Identified"
+        description "This requirement pertains to the identification and documentation of
+            +b security-related issues during the threat modeling process within the practice
+            +b of specifying security requirements. It emphasizes the necessity to proactively
+            +b identify and address potential security risks that could impact the industrial
+            +b system."
+        [ key_aspects
+            "Identification of potential security vulnerabilities and risks within the system architecture."
+            "Documentation of security-related issues that could arise due to identified threats."
+            "Assessment of the impact of these security-related issues on the overall system security posture."
+            "Inclusion of security-related issues in the threat model to ensure they are addressed in subsequent security requirement specifications."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001:2013"
+                title "Information Security Management Systems"
+                relevance "ISO/IEC 27001 provides a systematic approach to managing sensitive company
+                    +b information, ensuring it remains secure. The standard emphasizes risk
+                    +b assessment and management, which is closely related to identifying
+                    +b security-related issues in threat modeling."
+            {
+                standard_id "NIST SP 800-30"
+                title "Guide for Conducting Risk Assessments"
+                relevance "This NIST publication offers guidelines for conducting risk assessments, a
+                    +b critical process in identifying and documenting security-related issues. It
+                    +b aligns with the threat modeling approach by evaluating threats and
+                    +b vulnerabilities."
+            {
+                standard_id "OWASP ASVS"
+                title "Application Security Verification Standard"
+                relevance "OWASP ASVS provides a framework for assessing the security of applications,
+                    +b focusing on identifying security-related issues and vulnerabilities, which is a
+                    +b key aspect of threat modeling in IEC 62443-4-1."
+            {
+                standard_id "ISO/IEC 15408"
+                title "Common Criteria for Information Technology Security Evaluation"
+                relevance "Also known as the Common Criteria, this standard provides a framework for
+                    +b evaluating the security properties of IT products, including the identification
+                    +b of vulnerabilities and security-related issues."
+    {
+        practice "2"
+        code "SR-2"
+        name "Threat model"
+        sub "m) external dependencies in the form of drivers or third-party applications
+            +b (code that is not developed by the supplier) that are linked into the
+            +b application."
+        check_description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): m) external dependencies in the
+            +b form of drivers or third-party applications (code that is not developed by the
+            +b supplier) that are linked into the application."
+        requirement_id "IEC 62443-4-1_SR-2_m"
+        title "Threat Model - External Dependencies"
+        description "This requirement focuses on identifying and analyzing threats associated with
+            +b external dependencies in the form of drivers or third-party applications that
+            +b are linked into the application. These components are not developed by the
+            +b supplier, which necessitates careful consideration of their security
+            +b implications."
+        { key_aspects
+            identification "Identify all external dependencies used within the application, including
+                +b specific drivers and third-party libraries."
+            analysis "Conduct a thorough analysis of potential threats associated with these
+                +b dependencies, such as security vulnerabilities, lack of updates, or
+                +b non-compliance with security policies."
+            mitigation "Develop mitigation strategies to address identified threats, which may include
+                +b updating to newer versions, applying patches, or replacing problematic
+                +b components."
+            documentation "Maintain comprehensive documentation of all external dependencies, their
+                +b versions, and the associated threat analysis results."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.12.6.1"
+                description "This section covers the management of technical vulnerabilities, which includes
+                    +b processes to identify, assess, and mitigate vulnerabilities in third-party
+                    +b software."
+            { "NIST SP 800-53"
+                control "SA-9"
+                description "External Information System Services - Addresses requirements for assessing and
+                    +b managing risks associated with external systems and services, including
+                    +b third-party software."
+            { "OWASP Software Component Verification Standard ${'('}SCVS)"
+                section "1.0"
+                description "Focuses on establishing and maintaining a security baseline for third-party
+                    +b software components, offering guidance on proper assessment and management
+                    +b techniques."
+    {
+        practice "2"
+        code "SR-3"
+        name "Product security requirements"
+        check_description "A process shall be employed for ensuring that security requirements are
+            +b documented for the product/feature under development including requirements for
+            +b security capabilities related to installation, operation, maintenance and
+            +b decommissioning."
+        requirement_id "IEC 62443-4-1_SR-3"
+        title "Product Security Requirements"
+        description "This requirement pertains to the specification of security requirements for
+            +b products, ensuring that security is integrated into the product from the
+            +b initial stages of development. It emphasizes the importance of defining
+            +b security requirements that are aligned with the intended use and environment of
+            +b the product, considering potential threats and vulnerabilities."
+        [ key_aspects
+            "Identification of security requirements based on risk assessment and threat analysis."
+            "Alignment of product security specifications with organizational security policies and industry best practices."
+            "Documentation and communication of security requirements to relevant stakeholders."
+            "Inclusion of security requirements in product design and development processes."
+            "Continuous review and update of security requirements to address emerging threats and vulnerabilities."
+        { related_standards
+            { "ISO/IEC 27001"
+                title "Information Security Management System"
+                reference "Focuses on establishing, implementing, maintaining, and continually improving
+                    +b an information security management system, providing a framework for managing
+                    +b security risks."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                reference "Provides a catalog of security and privacy controls for federal information
+                    +b systems and organizations, emphasizing the importance of comprehensive security
+                    +b requirement specifications."
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                reference "Outlines system-level security requirements and security levels, which inform
+                    +b the specification of product-level security requirements."
+            { "ISO/IEC 27002"
+                title "Code of Practice for Information Security Controls"
+                reference "Offers guidelines for organizational information security standards and
+                    +b information security management practices, serving as a basis for defining
+                    +b product security requirements."
+    {
+        practice "2"
+        code "SR-4"
+        name "Product security requirements content"
+        sub "a) the scope and boundaries of the component or system, in general terms in
+            +b both a physical and a logical way; and"
+        check_description "A process shall be employed for ensuring that security requirements include the
+            +b following information: a) the scope and boundaries of the component or system,
+            +b in general terms in both a physical and a logical way; and"
+        requirement_id "IEC 62443-4-1_SR-4_a"
+        title "Scope and Boundaries of the Component or System"
+        description "This requirement focuses on defining the scope and boundaries of the component
+            +b or system in both physical and logical terms. It is essential for establishing
+            +b a clear understanding of what is included within the security requirements and
+            +b what is outside its scope, ensuring all stakeholders are aligned."
+        [ key_aspects
+            {
+                aspect "Physical Scope"
+                details "Defining the physical boundaries involves identifying all the hardware
+                    +b components, interfaces, and environmental constraints. This includes the
+                    +b physical location, networking infrastructure, and any other tangible elements
+                    +b that impact the security of the system."
+            {
+                aspect "Logical Scope"
+                details "Defining the logical boundaries involves specifying the software components,
+                    +b data flows, and logical interfaces. It includes understanding the interactions
+                    +b between different software modules, data processing, and the access control
+                    +b mechanisms that govern the operations within the system."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "Clause 4.3 - Determining the scope of the information security management
+                    +b system"
+                details "ISO/IEC 27001 provides a framework for setting the scope of an information
+                    +b security management system, which aligns with identifying the boundaries in
+                    +b both physical and logical terms for system components."
+            {
+                standard "NIST SP 800-53 Revision 5"
+                reference "Control PL-7 - Baseline Selection"
+                details "NIST SP 800-53 emphasizes the importance of defining boundaries for systems to
+                    +b ensure proper security controls are applied. This includes understanding the
+                    +b logical and physical attributes of the system."
+            {
+                standard "IEC 61508"
+                reference "Part 1 - Clause 5.2.2 - Definition of the system scope"
+                details "IEC 61508 focuses on functional safety and includes guidelines for defining the
+                    +b scope of systems, which supports the establishment of boundaries in a
+                    +b structured manner."
+    {
+        practice "2"
+        code "SR-4"
+        name "Product security requirements content"
+        sub "b) the required capability security level (SL-C) of the product."
+        check_description "A process shall be employed for ensuring that security requirements include the
+            +b following information: b) the required capability security level (SL-C) of the
+            +b product."
+        requirement_id "IEC 62443-4-1_SR-4_b"
+        title "Product Security Requirements: Capability Security Level (SL-C)"
+        description "This requirement pertains to specifying the necessary security level
+            +b capabilities (SL-C) that a product must achieve to ensure adequate protection
+            +b against cybersecurity threats. It focuses on defining the security level that a
+            +b product should be capable of achieving to meet the needs of a specific
+            +b application or environment, based on risk assessment and threat analysis."
+        [ key_aspects
+            {
+                aspect "Capability Security Level (SL-C)"
+                details "The SL-C defines the inherent security features and capabilities that a product
+                    +b must possess. This is determined by evaluating the potential risks and the
+                    +b required security measures to mitigate those risks in the environment where the
+                    +b product will be deployed."
+            {
+                aspect "Risk Assessment"
+                details "A thorough risk assessment is needed to determine the appropriate SL-C. This
+                    +b involves identifying potential threats, vulnerabilities, and the impact of
+                    +b security breaches on the system."
+            {
+                aspect "Security Level Specification"
+                details "The SL-C should be clearly documented, specifying the security controls and
+                    +b measures that are necessary for compliance with the desired security level.
+                    +b This includes technical, operational, and procedural controls."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference_details "Provides a detailed framework for defining the security levels within
+                    +b industrial automation and control systems, specifying the requirements for
+                    +b achieving different security levels (SL 1 to SL 4) and how these relate to the
+                    +b SL-C of products."
+            {
+                standard "IEC 62443-2-1"
+                reference_details "Covers the foundational requirements for establishing and maintaining an
+                    +b effective cybersecurity management system, which includes assessing and
+                    +b specifying security levels appropriate to the system's operational context."
+            {
+                standard "NIST SP 800-53"
+                reference_details "Offers guidelines on security and privacy controls for federal information
+                    +b systems and organizations, which can be used to inform the development of
+                    +b security capabilities aligning with specified SL-C."
+            {
+                standard "ISO/IEC 27001"
+                reference_details "Outlines the requirements for an information security management system (ISMS)
+                    +b and can provide guidance on aligning product security levels within the broader
+                    +b context of organizational security practices."

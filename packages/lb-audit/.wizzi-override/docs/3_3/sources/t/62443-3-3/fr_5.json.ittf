@@ -1,0 +1,192 @@
+$group
+    {
+        id "FR-5"
+        key "RDF"
+        name "Restricted data flow"
+        page 55
+        purpose "Segment the control system via zones and conduits to limit the unnecessary flow of data."
+        rationale "Using their risk assessment methodology, asset owners need to determine necessary 
+            +b information flow restrictions and thus, by extension, determine the configuration of the conduits 
+            +b used to deliver this information. 
+            +b Derived prescriptive recommendations and guidelines should include mechanisms that range 
+            +b from disconnecting control system networks from business or public networks 
+            +b to using unidirectional gateways, stateful firewalls and DMZs to manage the flow of information."
+        [ security_levels_descriptions
+            "SL 1 – Prevent the casual or coincidental circumvention of zone and conduit segmentation."
+            "SL 2 – Prevent the intended circumvention of zone and conduit segmentation by entities using simple means with low resources, generic skills and low motivation."
+            "SL 3 – Prevent the intended circumvention of zone and conduit segmentation by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation."
+            "SL 4 – Prevent the intended circumvention of zone and conduit segmentation by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+        [ srs
+            {
+                id "SR 5.1"
+                page 56
+                name "Network segmentation"
+                description "The control system shall provide the capability to logically segment control system networks 
+                    +b from non-control system networks and to logically segment critical control system networks 
+                    +b from other control system networks."
+                rationale "Network segmentation is used by organizations for a variety of purposes, including cyber security. 
+                    +b The main reasons for segmenting networks are to reduce the exposure, or ingress, 
+                    +b of network traffic into a control system and reduce the spread, or egress, of network traffic 
+                    +b from a control system. 
+                    +b This improves overall system response and reliability as well as provides a measure 
+                    +b of cyber security protection. 
+                    +b It also allows different network segments within the control system, including critical 
+                    +b control systems and safety-related systems, to be segmented from other systems for 
+                    +b an additional level of protection.
+                    +b Access from the control system to the World Wide Web should be clearly justified based on 
+                    +b control system operational requirements.
+                    +b Network segmentation and the level of protection it provides will vary greatly 
+                    +b depending on the overall network architecture used by an asset owner in their facility and 
+                    +b even system integrators within their control systems. 
+                    +b Logically segmenting networks based on their functionality provides some measure of protection, 
+                    +b but may still lead to single-points-of-failure if a network device is compromised. 
+                    +b Physically segmenting networks provides another level of protection by removing 
+                    +b that single-point-of-failure case, but will lead to a more complex and costly network design. 
+                    +b These trade-offs will need to be evaluated during the network design process (see IEC 62443‑2‑1).
+                    +b In response to an incident, it may be necessary to break the connections between 
+                    +b different network segments. 
+                    +b In that event, the services necessary to support essential operations should be maintained 
+                    +b in such a way that the devices can continue to operate properly and/or shutdown in an orderly manner. 
+                    +b This may require that some servers may need to be duplicated on the control system network 
+                    +b to support normal network features, for example dynamic host configuration protocol (DHCP), 
+                    +b domain name service (DNS) or local CAs. 
+                    +b It may also mean that some critical control systems and safety-related systems be designed 
+                    +b from the beginning to be completely isolated from other networks."
+                [ rhs
+                    {
+                        id "SR 5.1 RE 1"
+                        name "Physical network segmentation"
+                        description "The control system shall provide the capability to physically segment 
+                            +b control system networks from non-control system networks and to physically segment 
+                            +b critical control system networks from non-critical control system networks."
+                    {
+                        id "SR 5.1 RE 2"
+                        name "Independence from non-control system networks"
+                        description "The control system shall have the capability to provide network services 
+                            +b to control system networks, critical or otherwise, without a connection to 
+                            +b non-control system networks."
+                    {
+                        id "SR 5.1 RE 3"
+                        name "Logical and physical isolation of critical networks"
+                        description "The control system shall provide the capability to logically and physically 
+                            +b isolate critical control system networks from non-critical control system networks."
+                [ security_levels                        
+                    "SL-C (RDF, control system) 1: SR 5.1"
+                    "SL-C (RDF, control system) 2: SR 5.1 (1)"
+                    "SL-C (RDF, control system) 3: SR 5.1 (1) (2)"
+                    "SL-C (RDF, control system) 4: SR 5.1 (1) (2) (3)"
+            {
+                id "SR 5.2"
+                page 57
+                name "Zone boundary protection"
+                description "The control system shall provide the capability to monitor and control 
+                    +b communications at zone boundaries to enforce the compartmentalization defined in 
+                    +b the risk-based zones and conduits model."
+                rationale "Any connections to external networks or other control systems should occur 
+                    +b through managed interfaces consisting of appropriate boundary protection devices 
+                    +b (for example, proxies, gateways, routers, firewalls, unidirectional gateways, 
+                    +b guards and encrypted tunnels) arranged in an effective architecture 
+                    +b (for example, firewalls protecting application gateways residing in a DMZ). 
+                    +b Control system boundary protections at any designated alternate processing sites 
+                    +b should provide the same levels of protection as that of the primary site.
+                    +b As part of a defense-in-depth protection strategy, higher impact control systems 
+                    +b should be partitioned into separate zones utilizing conduits to restrict or prohibit 
+                    +b network access in accordance with security policies and procedures and an assessment of risk. 
+                    +b SL-T(system) categorization guides the selection of appropriate candidates for zone partitioning 
+                    +b (see IEC 62443‑3‑2 [8])."
+                [ rhs
+                    {
+                        id "SR 5.2 RE 1"
+                        name "Deny by default, allow by exception"
+                        description "The control system shall provide the capability to deny network traffic by default 
+                            +b and allow network traffic by exception (also termed deny all, permit by exception)."
+                    {
+                        id "SR 5.2 RE 2"
+                        name "Island mode"
+                        description "The control system shall provide the capability to prevent any communication 
+                            +b through the control system boundary (also termed island mode)."
+                        [ notes
+                            "Examples of when this capability may be used include where a security violation and/or breach 
+                                +b has been detected within the control system, or an attack is occurring at 
+                                +b the enterprise level (see also 4.2, Support of essential functions)."
+                    {
+                        id "SR 5.2 RE 3"
+                        name "Fail close"
+                        description "The control system shall provide the capability to prevent any communication 
+                            +b through the control system boundary when there is an operational failure of 
+                            +b the boundary protection mechanisms (also termed fail close). 
+                            +b This ‘fail close’ functionality shall be designed such that it does not interfere 
+                            +b with the operation of a SIS or other safety-related functions."
+                        [ notes
+                            "Examples of when this capability may be used include scenarios where a hardware failure or 
+                                +b power failure causes boundary protection devices to function in a degraded mode or 
+                                +b fail entirely (see also 4.2, Support of essential functions)."
+                [ security_levels                        
+                    "SL-C (RDF, control system) 1: SR 5.2"
+                    "SL-C (RDF, control system) 2: SR 5.2 (1)"
+                    "SL-C (RDF, control system) 3: SR 5.2 (1) (2) (3)"
+                    "SL-C (RDF, control system) 4: SR 5.2 (1) (2) (3)"
+            {
+                id "SR 5.3"
+                page 58
+                name "General purpose person-to-person communication restrictions"
+                description "The control system shall provide the capability to prevent general purpose 
+                    +b person-to-person messages from being received from users or systems external to the control system."
+                rationale "General purpose person-to-person communications systems include but are not limited to: 
+                    +b email systems, forms of social media (Twitter, Facebook, picture galleries, etc.) or 
+                    +b any message systems that permit the transmission of any type of executable file. 
+                    +b These systems are usually utilized for private purposes which are not related 
+                    +b to control system operations, and therefore the risks imposed by these systems 
+                    +b normally outweigh any perceived benefit.
+                    +b These types of general purpose communications systems are commonly used attack vectors 
+                    +b to introduce malware to the control system, pass information for which read authorization exists 
+                    +b to locations external to the control system, and introduce excessive network loading 
+                    +b that can be used to create security problems or launch attacks on the control system. 
+                    +b Application of a broad range of other system requirements covering, for example, 
+                    +b usage restrictions and limiting data flow as described elsewhere in this standard 
+                    +b to general purpose person-to-person communication systems can provide adequate 
+                    +b compensating countermeasures to meet this requirement.
+                    +b The control system may provide the capability to utilize these types of two-way communication systems, 
+                    +b but only between servers and/or workstations within the control system. 
+                    +b Note that this SR needs to support the requirements associated with 8.3, 
+                    +b SR 5.1 – Information confidentiality.
+                    +b The control system may also restrict email or other messaging solutions that provide 
+                    +b internal computer-to-external computer communications using outbound messages. 
+                    +b These internal-to-external communications may be limited to the purpose of 
+                    +b sending system alerts or other computer generated information messages to users or systems 
+                    +b external to the control system. 
+                    +b To prevent the passing of information for which explicit read authorization is supported, 
+                    +b pre-configured messages (perhaps with the ability to include some limited text) 
+                    +b should be used to transmit the alerts or status information. 
+                    +b Users may not be given the ability to attach files or other information to 
+                    +b these outbound-only messages at the time the messages are created by the system."
+                [ rhs
+                    {
+                        id "SR 5.3 RE 1"
+                        name "Prohibit all general purpose person-to-person communications"
+                        description "The control system shall provide the capability to prevent both transmission 
+                            +b and receipt of general purpose person-to-person messages."
+                [ security_levels                        
+                    "SL-C (RDF, control system) 1: SR 5.3"
+                    "SL-C (RDF, control system) 2: SR 5.3"
+                    "SL-C (RDF, control system) 3: SR 5.3 (1)"
+                    "SL-C (RDF, control system) 4: SR 5.3 (1)"
+            {
+                id "SR 5.4"
+                page 59
+                name "Application partitioning"
+                description "The control system shall provide the capability to support partitioning of data, 
+                    +b applications and services based on criticality to facilitate implementing a zoning model."
+                rationale "Partitioning may be accomplished via physical or logical means through 
+                    +b the use of different computers, different central processing units, 
+                    +b different instances of the operating system, different network addresses 
+                    +b and combinations of these methods or other methods as appropriate. 
+                    +b Examples of applications and services that could be considered for different partitions include, 
+                    +b but are not limited to, emergency and/or safety systems, 
+                    +b closed-loop control applications, operator workstations and engineering workstations."
+                [ rhs
+                [ security_levels                        
+                    "SL-C (RDF, control system) 1: SR 5.4"
+                    "SL-C (RDF, control system) 2: SR 5.4"
+                    "SL-C (RDF, control system) 3: SR 5.4"
+                    "SL-C (RDF, control system) 4: SR 5.4"

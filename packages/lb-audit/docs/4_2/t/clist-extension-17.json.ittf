@@ -1,0 +1,239 @@
+$group
+    {
+        id "FSA-HDR 2.13 RE(1)"
+        check_description "Host devices shall provide active monitoring of the device’s diagnostic and
+            +b test interface(s) and generate an audit log entry when attempts to access these
+            +b interface(s) are detected."
+        requirement_id "HDR 2.13 RE(1)"
+        title "Active Monitoring"
+        description "This requirement focuses on the implementation of mechanisms to actively
+            +b monitor the industrial control system (ICS) environment. It ensures that
+            +b anomalies, intrusions, and other security-related events are detected in a
+            +b timely manner to enable a quick response and mitigation."
+        [ key_aspects
+            "Continuous Monitoring: Implement systems that continuously monitor network traffic, device activities, and system logs for signs of suspicious behavior or security breaches."
+            "Anomaly Detection: Use advanced analytical tools and techniques to identify deviations from normal operations that may indicate potential security threats."
+            "Incident Response: Establish procedures for responding to detected security incidents, including notification, analysis, and remediation measures."
+            "Integration with Security Information and Event Management (SIEM): Leverage SIEM solutions to aggregate and analyze data from various sources, providing a centralized view of security events."
+        [ related_standards
+            {
+                standard "NIST SP 800-82"
+                title "Guide to Industrial Control Systems (ICS) Security"
+                reference "Section 6.2.3 - Monitoring and Logging"
+                description "Provides guidelines on monitoring and logging activities within ICS to detect
+                    +b unauthorized access or abnormal activities."
+            {
+                standard "ISO/IEC 27002"
+                title "Information Security Controls"
+                reference "Section 12.4 - Logging and Monitoring"
+                description "Describes the importance of logging and monitoring systems and networks to
+                    +b detect security incidents."
+            {
+                standard "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                reference "SR 7.2 - Continuous Monitoring"
+                description "Outlines requirements for continuous monitoring of ICS environments to maintain
+                    +b security posture."
+            {
+                standard "NIST SP 800-137"
+                title "Information Security Continuous Monitoring (ISCM) for Federal Information
+                    +b Systems and Organizations"
+                reference "Appendix D - Continuous Monitoring Strategy"
+                description "Provides a framework for developing a continuous monitoring strategy to
+                    +b maintain an ongoing awareness of information security."
+    {
+        id "FSA-NDR 2.13"
+        check_description "Network devices shall protect against unauthorized use of the physical factory
+            +b diagnostic and test interface(s) (e.g. JTAG debugging)."
+        requirement_id "NDR 2.13"
+        title "Use of Physical Diagnostic and Test Interfaces"
+        description "This requirement specifies that any physical diagnostic and test interfaces
+            +b used in industrial automation and control systems (IACS) should be controlled
+            +b and monitored to prevent unauthorized access and misuse. These interfaces are
+            +b critical for maintenance and troubleshooting but can pose security threats if
+            +b not properly secured."
+        [ key_aspects
+            {
+                aspect "Access Control"
+                details "Ensure that only authorized personnel have physical access to diagnostic and
+                    +b test interfaces. Implement mechanisms such as locks, access cards, or
+                    +b biometrics to control physical access."
+            {
+                aspect "Monitoring"
+                details "Continuously monitor the use of diagnostic and test interfaces to detect any
+                    +b unauthorized access or anomalies. Logging and alerting mechanisms should be in
+                    +b place to track activities."
+            {
+                aspect "Interface Security"
+                details "Consider disabling unused interfaces and applying security controls such as
+                    +b authentication and encryption for interfaces that must remain active."
+            {
+                aspect "Policy and Procedure"
+                details "Establish clear policies and procedures for the use of diagnostic and test
+                    +b interfaces, including guidelines for who can use them and under what
+                    +b circumstances."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1 - Use control of portable and mobile devices"
+                details "This requirement is related in that it addresses the control of devices which
+                    +b might connect to physical interfaces, ensuring that only authorized devices
+                    +b with proper security controls can interface with the IACS."
+            {
+                standard "IEC 62443-2-1"
+                reference "Establishing an IACS security program"
+                details "Provides guidelines for developing a security program that includes policies
+                    +b for managing physical access to interfaces and devices."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "Offers guidance on securing physical access points in control systems, which is
+                    +b relevant to the management of diagnostic and test interfaces."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.11 - Physical and environmental security"
+                details "Covers the establishment of secure areas and the protection of equipment within
+                    +b those areas, which includes physical interfaces."
+    {
+        id "FSA-NDR 2.13 RE(1)"
+        check_description "Network devices shall provide active monitoring of the device’s diagnostic and
+            +b test interface(s) and generate an audit log entry when attempts to access these
+            +b interface(s) are detected."
+        requirement_id "NDR 2.13 RE(1)"
+        title "Active Monitoring"
+        description "The requirement mandates the implementation of mechanisms to actively monitor
+            +b network traffic and system behavior to detect suspicious activities or security
+            +b breaches. This involves using tools and processes to ensure continuous
+            +b observation and analysis of network data to identify potential threats or
+            +b anomalies in real-time."
+        [ key_aspects
+            {
+                aspect "Real-Time Monitoring"
+                detail "Implement solutions that provide continuous surveillance of network activities,
+                    +b allowing for immediate detection and response to threats."
+            {
+                aspect "Anomaly Detection"
+                detail "Utilize advanced analytics to identify deviations from normal behavior that
+                    +b could indicate malicious activities."
+            {
+                aspect "Alerting and Reporting"
+                detail "Establish mechanisms for generating alerts and comprehensive reports when
+                    +b potential security incidents are detected."
+            {
+                aspect "Integration with Security Tools"
+                detail "Ensure active monitoring solutions can integrate with other security tools for
+                    +b a comprehensive security posture."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.4.1 - Event Logging"
+                detail "Focuses on logging events to ensure that network activities are recorded for
+                    +b analysis and response."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-4 - System Monitoring"
+                detail "Emphasizes continuous monitoring of systems and networks to detect potential
+                    +b security incidents."
+            {
+                standard "NIST Cybersecurity Framework"
+                reference "DE.CM - Detect: Continuous Monitoring"
+                detail "Highlights the importance of maintaining ongoing awareness of information
+                    +b security, vulnerabilities, and threats to support risk management decisions."
+            {
+                standard "IEC 62443-3-3:2013"
+                reference "SR 3.2 - Security Monitoring"
+                detail "Addresses requirements for monitoring security-related events within industrial
+                    +b control systems."
+    {
+        id "FSA-CR 3.1"
+        check_description "Components shall provide the capability to protect integrity of transmitted
+            +b information."
+        requirement_id "IEC 62443-4-2:CR 3.1"
+        title "Communication Integrity"
+        description "The requirement focuses on ensuring that communication between devices,
+            +b components, and systems in an industrial control system (ICS) is protected
+            +b against unauthorized access or changes. This involves measures to verify that
+            +b the data being communicated is not altered, intercepted, or fabricated during
+            +b transmission, ensuring that the integrity of the communication is maintained."
+        [ key_aspects
+            "Data Integrity: Protecting data from being altered during transmission."
+            "Authentication: Verifying the identities of the communicating entities."
+            "Encryption: Use of cryptographic methods to protect communication from eavesdropping and tampering."
+            "Message Authentication Codes (MACs): Ensuring that messages have not been altered by using cryptographic checksums."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                section "A.10.1 Cryptographic Controls"
+                description "ISO/IEC 27001 outlines controls for ensuring the confidentiality, integrity,
+                    +b and availability of information, including the use of cryptographic techniques
+                    +b to protect communication channels."
+            {
+                standard "NIST SP 800-82"
+                section "3.2 Security Architecture"
+                description "NIST SP 800-82 provides guidelines for securing Industrial Control Systems,
+                    +b including communication integrity through secure protocols and network
+                    +b segmentation."
+            {
+                standard "NIST SP 800-53"
+                section "SC-8 Transmission Confidentiality and Integrity"
+                description "This standard discusses securing information systems and the communication
+                    +b paths that transmit information, focusing on protecting integrity and
+                    +b confidentiality during transmission."
+            {
+                standard "IEC 62351"
+                section "Part 3: Security for profiles including TCP/IP"
+                description "IEC 62351 addresses the security of communication protocols used in power
+                    +b system operations, ensuring the integrity and confidentiality of data
+                    +b transmitted over TCP/IP networks."
+    {
+        id "FSA-CR 3.1 RE(1)"
+        check_description "Components shall provide the capability to verify the authenticity of received
+            +b information during communication."
+        requirement_id "IEC 62443-4-2: CR 3.1 RE(1)"
+        title "Communication Authentication"
+        description "This requirement focuses on ensuring the authenticity of communications in an
+            +b industrial control system (ICS) environment. It mandates the use of mechanisms
+            +b to verify the identity of entities involved in communication, thereby
+            +b protecting against unauthorized access and ensuring that data is exchanged
+            +b between trusted parties."
+        [ key_aspects
+            {
+                aspect "Authentication Mechanisms"
+                details "Implementation of robust authentication protocols to verify the identities of
+                    +b communicating entities. This includes the use of cryptographic methods to
+                    +b ensure the integrity and authenticity of communication sessions."
+            {
+                aspect "Mutual Authentication"
+                details "Both parties involved in a communication should authenticate each other to
+                    +b prevent man-in-the-middle attacks. This may involve the use of digital
+                    +b certificates or pre-shared keys."
+            {
+                aspect "Secure Credential Management"
+                details "Proper management of authentication credentials, such as keys and certificates,
+                    +b to prevent unauthorized access and spoofing of identities."
+            {
+                aspect "Session Integrity"
+                details "Ensuring that the established session remains secure and that no unauthorized
+                    +b entities can intercept or alter the communication."
+        [ related_standards
+            {
+                standard "NIST SP 800-52"
+                reference "Guidelines for the Selection, Configuration, and Use of Transport Layer
+                    +b Security (TLS) Implementations. This standard provides detailed guidance on
+                    +b using TLS to secure communications, which is directly applicable in ensuring
+                    +b authenticated sessions."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information security management systems requirements. This standard emphasizes
+                    +b the importance of controls for communication security, including authentication
+                    +b mechanisms."
+            {
+                standard "ISO/IEC 27033-3"
+                reference "Network security - Part 3: Reference networking scenarios - Threats, design
+                    +b techniques and control issues. It covers network security controls, including
+                    +b authentication, to secure communications."
+            {
+                standard "RFC 5246"
+                reference "The Transport Layer Security (TLS) Protocol Version 1.2. It details the
+                    +b protocol used for secure communications over a computer network, which includes
+                    +b mechanisms for communication authentication."

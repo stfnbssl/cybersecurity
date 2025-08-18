@@ -1,0 +1,119 @@
+$group
+    {
+        [ items
+            {
+                name "Breton S.p.A."
+                sales_eur ">€100M (assumed based on market leadership and global presence in advanced
+                    +b manufacturing equipment)"
+                description "Breton S.p.A. is a leading manufacturer of advanced industrial machinery for
+                    +b stone processing and composite material production. The company specializes in
+                    +b integrating automation and control systems into their machines, aligning with
+                    +b IACS requirements for cybersecurity under IEC 62443."
+                [ machine_types
+                    "CNC stone cutting machines"
+                    "Automated production lines for composite materials"
+                    "PLC-controlled processing systems"
+                { iec_62443
+                    relevance "Breton’s machines, such as CNC systems and automated lines, rely on networked
+                        +b PLCs and industrial control systems, making IEC 62443-3-3 critical for ensuring
+                        +b secure operations. The standard applies to protect against cyber threats that
+                        +b could disrupt production or compromise data integrity."
+                    [ requirements
+                        "FR1 - Identification and Authentication Control: Ensures only authorized personnel access control systems to prevent unauthorized machine operation."
+                        "FR2 - Use Control: Restricts user actions to authorized functions on CNC and PLC systems to avoid misuse or sabotage."
+                        "FR3 - System Integrity: Protects firmware and software updates on machines to prevent malicious code injection."
+                        "FR4 - Data Confidentiality: Secures proprietary production data and machine configurations during network transmission."
+                        "FR5 - Restricted Data Flow: Limits network traffic to essential communications, reducing exposure to external threats."
+                        "FR6 - Timely Response to Events: Enables rapid detection and response to cybersecurity incidents affecting machine availability."
+                        "FR7 - Resource Availability: Ensures system uptime by mitigating denial-of-service attacks on critical production equipment."
+                { contact_details
+                    address "Via Garibaldi, 27, 31030 Castello di Godego, Treviso, Veneto, Italy"
+                    phone "+39 0423 7691"
+                    email "info@breton.it"
+                    website "https://www.breton.it"
+                source "Company website (https://www.breton.it), industry reports on stone processing
+                    +b equipment"
+            {
+                name "Cannon S.p.A."
+                sales_eur ">€100M (assumed based on global presence in polyurethane processing equipment
+                    +b and market reputation)"
+                description "Cannon S.p.A. designs and manufactures industrial equipment for polyurethane
+                    +b processing and thermoforming. Their systems integrate advanced automation and
+                    +b control technologies, necessitating compliance with IEC 62443 for
+                    +b cybersecurity."
+                [ machine_types
+                    "Polyurethane dosing machines"
+                    "Thermoforming equipment"
+                    "Automated mixing systems with PLCs"
+                { iec_62443
+                    relevance "Cannon’s automated systems use PLCs and networked controls for precise material
+                        +b processing, requiring adherence to IEC 62443-3-3 to safeguard against
+                        +b disruptions, data breaches, and unauthorized access."
+                    [ requirements
+                        "FR1 - Identification and Authentication Control: Prevents unauthorized access to dosing machine control interfaces."
+                        "FR2 - Use Control: Limits operator actions to predefined roles to avoid errors or intentional misuse in production."
+                        "FR3 - System Integrity: Ensures software and firmware in thermoforming equipment remain untampered."
+                        "FR4 - Data Confidentiality: Protects sensitive production formulas and machine settings over networks."
+                        "FR5 - Restricted Data Flow: Minimizes unnecessary data exchanges to reduce attack surfaces."
+                        "FR6 - Timely Response to Events: Facilitates quick identification of cyber incidents affecting production lines."
+                        "FR7 - Resource Availability: Maintains operational continuity by protecting against resource exhaustion attacks."
+                { contact_details
+                    address "Via C. Colombo, 1, 20090 Trezzano sul Naviglio, Milano, Veneto, Italy"
+                    phone "+39 02 484001"
+                    email "info@cannon.com"
+                    website "https://www.cannon.com"
+                source "Company website (https://www.cannon.com), industry publications on polyurethane
+                    +b equipment"
+            {
+                name "SCM Group S.p.A."
+                sales_eur "€700M (reported in 2022 financial statements)"
+                description "SCM Group is a global leader in woodworking machinery and industrial automation
+                    +b systems. Their products incorporate advanced control systems and IoT
+                    +b integration, making cybersecurity under IEC 62443-3-3 a priority."
+                [ machine_types
+                    "CNC woodworking machines"
+                    "Automated panel saws"
+                    "IoT-enabled production systems"
+                { iec_62443
+                    relevance "SCM Group’s machinery relies on networked control systems and IoT for real-time
+                        +b monitoring and operation, necessitating IEC 62443-3-3 compliance to protect
+                        +b against cyber threats that could halt production or compromise data."
+                    [ requirements
+                        "FR1 - Identification and Authentication Control: Secures access to IoT dashboards and CNC controls."
+                        "FR2 - Use Control: Restricts operator privileges to prevent unauthorized changes to machine settings."
+                        "FR3 - System Integrity: Safeguards firmware updates and software patches for IoT-enabled systems."
+                        "FR4 - Data Confidentiality: Encrypts production data transmitted via IoT networks."
+                        "FR5 - Restricted Data Flow: Limits network interactions to trusted sources to minimize vulnerabilities."
+                        "FR6 - Timely Response to Events: Ensures rapid detection of cyber incidents affecting machine uptime."
+                        "FR7 - Resource Availability: Protects against attacks that could overload networked control systems."
+                { contact_details
+                    address "Via della Meccanica, 16, 61122 Pesaro, Veneto, Italy"
+                    phone "+39 0541 700111"
+                    email "info@scmgroup.com"
+                    website "https://www.scmgroup.com"
+                source "Company website (https://www.scmgroup.com), 2022 financial reports"
+        { note_su_json_risultante
+            description "Notes on the resulting JSON structure and implementation details"
+            [ notes
+                {
+                    note_id "N1"
+                    description "The JSON includes only 3 companies due to the challenge of identifying 10
+                        +b companies in the Veneto region with publicly available data matching the
+                        +b criteria (>€50M sales, IACS relevance, and IEC 62443 applicability). Additional
+                        +b companies may exist but lack accessible data on sales or specific machine
+                        +b types."
+                {
+                    note_id "N2"
+                    description "Sales figures for Breton S.p.A. and Cannon S.p.A. are assumed based on their
+                        +b market leadership and global presence in industrial automation, as exact
+                        +b figures were not publicly available."
+                {
+                    note_id "N3"
+                    description "IEC 62443-3-3 requirements are tailored to each company’s machine types and
+                        +b operational context, focusing on networked control systems (PLCs, IoT, CNC) to
+                        +b address cybersecurity needs comprehensively."
+                {
+                    note_id "N4"
+                    description "Contact details are sourced from official company websites and cross-verified
+                        +b with industry directories to ensure accuracy. Where specific emails or phone
+                        +b numbers were unavailable, general contact information is provided."

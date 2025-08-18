@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Normative e Standard - Data Viewer</title>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            color: #2c3e50;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        
+        .subtitle {
+            font-size: 1.1rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+        
+        .input-section {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .textarea {
+            width: 100%;
+            min-height: 200px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            transition: all 0.3s ease;
+            background: #fafbfc;
+        }
+        
+        .textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            background: white;
+        }
+        
+        .controls {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        .filter-input {
+            width: 100%;
+            max-width: 400px;
+            padding: 12px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .filter-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .metadata-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+        }
+        
+        .metadata-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+        
+        .metadata-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .metadata-item {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 16px;
+        }
+        
+        .metadata-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 4px;
+        }
+        
+        .metadata-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .items-grid {
+            display: grid;
+            gap: 24px;
+        }
+        
+        .item-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            transition: all 0.3s ease;
+        }
+        
+        .item-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
+        }
+        
+        .item-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+        
+        .item-description {
+            font-size: 1rem;
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .info-section {
+            background: #f8fafc;
+            border-radius: 12px;
+            padding: 20px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-section h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 12px;
+        }
+        
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .activities-section {
+            margin-top: 24px;
+        }
+        
+        .activity-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .activity-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .activity-code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background: #f1f5f9;
+            color: #667eea;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+        
+        .links-section {
+            margin-top: 24px;
+        }
+        
+        .link-item {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+        }
+        
+        .link-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+        
+        .link-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            word-break: break-all;
+        }
+        
+        .link-item a:hover {
+            text-decoration: underline;
+        }
+        
+        .error {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            padding: 16px 24px;
+            border-radius: 12px;
+            margin: 16px 0;
+            font-weight: 500;
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #64748b;
+        }
+        
+        .empty-state h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        
+        .results-count {
+            font-size: 1rem;
+            color: #64748b;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        // Reusable Components
+        const MetadataSection = ({ metadata }) => (
+            <div className="metadata-section">
+                <div className="metadata-title">Metadati</div>
+                <div className="metadata-grid">
+                    <div className="metadata-item">
+                        <div className="metadata-label">Data Estrazione Scadenze</div>
+                        <div className="metadata-value">{metadata.data_estrazione_scadenze || 'N/A'}</div>
+                    </div>
+                    <div className="metadata-item">
+                        <div className="metadata-label">Data Integrazione</div>
+                        <div className="metadata-value">{metadata.data_integrazione || 'N/A'}</div>
+                    </div>
+                </div>
+            </div>
+        );
+
+        const TagList = ({ items, className = "tag" }) => (
+            <div className="tag-list">
+                {items.map((item, index) => (
+                    <span key={index} className={className}>{item}</span>
+                ))}
+            </div>
+        );
+
+        const ActivityCard = ({ activity }) => (
+            <div className="activity-card">
+                <div className="activity-code">{activity.codice_attivita}</div>
+                <h5 style={{ marginBottom: '8px', fontWeight: '600' }}>{activity.nome_attivita}</h5>
+                <p style={{ color: '#64748b', fontSize: '0.9rem' }}>{activity.descrizione_collegamento}</p>
+            </div>
+        );
+
+        const LinkItem = ({ link }) => (
+            <div className="link-item">
+                <p style={{ marginBottom: '8px', color: '#334155' }}>{link.descrizione}</p>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">{link.url}</a>
+            </div>
+        );
+
+        const ItemCard = ({ item }) => (
+            <div className="item-card">
+                <div className="item-name">{item.nome}</div>
+                <div className="item-description">{item.descrizione}</div>
+                
+                <div className="info-grid">
+                    <div className="info-section">
+                        <h4>Rilevanza per Logbot</h4>
+                        <p style={{ marginBottom: '12px', color: '#64748b' }}>{item.rilevanza_per_logbot.contesto}</p>
+                        
+                        <h5 style={{ marginBottom: '8px', fontSize: '0.9rem', fontWeight: '600' }}>Applicazioni:</h5>
+                        <TagList items={item.rilevanza_per_logbot.applicazioni} />
+                        
+                        <h5 style={{ marginBottom: '8px', fontSize: '0.9rem', fontWeight: '600', marginTop: '16px' }}>Allineamento Temi:</h5>
+                        <TagList items={item.rilevanza_per_logbot.allineamento_temi_logbot} />
+                    </div>
+                    
+                    <div className="info-section">
+                        <h4>Mercato Nordamericano</h4>
+                        <p style={{ marginBottom: '12px', color: '#64748b' }}>{item.mercato_nordamericano.rilevanza}</p>
+                        
+                        <h5 style={{ marginBottom: '8px', fontSize: '0.9rem', fontWeight: '600' }}>Opportunità:</h5>
+                        <TagList items={item.mercato_nordamericano.opportunita} />
+                        
+                        <h5 style={{ marginBottom: '8px', fontSize: '0.9rem', fontWeight: '600', marginTop: '16px' }}>Clienti Target:</h5>
+                        <TagList items={item.mercato_nordamericano.clienti_target} />
+                        
+                        <h5 style={{ marginBottom: '8px', fontSize: '0.9rem', fontWeight: '600', marginTop: '16px' }}>Tecnologie Rilevanti:</h5>
+                        <TagList items={item.mercato_nordamericano.tecnologie_rilevanti} />
+                    </div>
+                </div>
+                
+                {item.collegamento_attivita && item.collegamento_attivita.length > 0 && (
+                    <div className="activities-section">
+                        <div className="section-title">Collegamento Attività</div>
+                        {item.collegamento_attivita.map((activity, index) => (
+                            <ActivityCard key={index} activity={activity} />
+                        ))}
+                    </div>
+                )}
+                
+                {item.link_significativi && item.link_significativi.length > 0 && (
+                    <div className="links-section">
+                        <div className="section-title">Link Significativi</div>
+                        {item.link_significativi.map((link, index) => (
+                            <LinkItem key={index} link={link} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        );
+
+        const FilterInput = ({ value, onChange, placeholder }) => (
+            <input
+                type="text"
+                className="filter-input"
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
+                placeholder={placeholder}
+            />
+        );
+
+        const App = () => {
+            const [jsonInput, setJsonInput] = useState('');
+            const [data, setData] = useState(null);
+            const [error, setError] = useState('');
+            const [filter, setFilter] = useState('');
+
+            useEffect(() => {
+                if (jsonInput.trim()) {
+                    try {
+                        const parsedData = JSON.parse(jsonInput);
+                        setData(parsedData);
+                        setError('');
+                    } catch (err) {
+                        setError('Errore nel parsing JSON: ' + err.message);
+                        setData(null);
+                    }
+                } else {
+                    setData(null);
+                    setError('');
+                }
+            }, [jsonInput]);
+
+            const filteredItems = useMemo(() => {
+                if (!data || !data.items) return [];
+                
+                if (!filter.trim()) return data.items;
+                
+                const filterLower = filter.toLowerCase();
+                return data.items.filter(item => {
+                    const searchableText = [
+                        item.nome,
+                        item.descrizione,
+                        item.rilevanza_per_logbot?.contesto,
+                        ...(item.rilevanza_per_logbot?.applicazioni || []),
+                        ...(item.rilevanza_per_logbot?.allineamento_temi_logbot || []),
+                        item.mercato_nordamericano?.rilevanza,
+                        ...(item.mercato_nordamericano?.opportunita || []),
+                        ...(item.mercato_nordamericano?.clienti_target || []),
+                        ...(item.mercato_nordamericano?.tecnologie_rilevanti || []),
+                        ...(item.collegamento_attivita?.map(a => `${a.codice_attivita} ${a.nome_attivita} ${a.descrizione_collegamento}`) || [])
+                    ].join(' ').toLowerCase();
+                    
+                    return searchableText.includes(filterLower);
+                });
+            }, [data, filter]);
+
+            const sampleJson = `{
+  "metadati": {
+    "data_estrazione_scadenze": "2024-08-16",
+    "data_integrazione": "2024-08-16"
+  },
+  "items": [
+    {
+      "nome": "ISO 27001",
+      "descrizione": "Standard internazionale per la gestione della sicurezza delle informazioni",
+      "rilevanza_per_logbot": {
+        "contesto": "Sicurezza dei dati e conformità normativa per sistemi di intelligenza artificiale",
+        "applicazioni": ["Protezione dati", "Audit sicurezza", "Compliance"],
+        "allineamento_temi_logbot": ["Data Security", "Privacy", "Compliance"]
+      },
+      "collegamento_attivita": [
+        {
+          "codice_attivita": "SEC001",
+          "nome_attivita": "Implementazione sicurezza",
+          "descrizione_collegamento": "Standard di riferimento per implementazione protocolli sicurezza"
+        }
+      ],
+      "mercato_nordamericano": {
+        "rilevanza": "Alta - richiesto da molte aziende enterprise",
+        "opportunita": ["Certificazioni", "Consulenza", "Audit"],
+        "clienti_target": ["Fortune 500", "Aziende tecnologiche", "Istituzioni finanziarie"],
+        "tecnologie_rilevanti": ["Cloud Security", "AI Security", "Data Encryption"]
+      },
+      "link_significativi": [
+        {
+          "descrizione": "Sito ufficiale ISO 27001",
+          "url": "https://www.iso.org/standard/27001"
+        }
+      ]
+    }
+  ]
+}`;
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <h1 className="title">Normative e Standard</h1>
+                        <p className="subtitle">Visualizzatore dati per normative e standard con filtri avanzati</p>
+                    </div>
+
+                    <div className="input-section">
+                        <h3 style={{ marginBottom: '16px', color: '#334155' }}>Inserisci dati JSON</h3>
+                        <textarea
+                            className="textarea"
+                            value={jsonInput}
+                            onChange={(e) => setJsonInput(e.target.value)}
+                            placeholder={`Inserisci i tuoi dati JSON qui, ad esempio:\n\n${sampleJson}`}
+                        />
+                    </div>
+
+                    {error && <div className="error">{error}</div>}
+
+                    {data && (
+                        <>
+                            <MetadataSection metadata={data.metadati} />
+                            
+                            <div className="controls">
+                                <FilterInput
+                                    value={filter}
+                                    onChange={setFilter}
+                                    placeholder="Filtra per nome, descrizione, applicazioni, tecnologie..."
+                                />
+                                <div className="results-count">
+                                    Visualizzati {filteredItems.length} di {data.items?.length || 0} elementi
+                                </div>
+                            </div>
+
+                            <div className="items-grid">
+                                {filteredItems.length > 0 ? (
+                                    filteredItems.map((item, index) => (
+                                        <ItemCard key={index} item={item} />
+                                    ))
+                                ) : (
+                                    <div className="empty-state">
+                                        <h3>Nessun risultato trovato</h3>
+                                        <p>Prova a modificare i criteri di ricerca</p>
+                                    </div>
+                                )}
+                            </div>
+                        </>
+                    )}
+
+                    {!data && !error && (
+                        <div className="empty-state">
+                            <h3>Inserisci i dati JSON per iniziare</h3>
+                            <p>Copia e incolla i tuoi dati JSON nell'area di testo sopra</p>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+</html>

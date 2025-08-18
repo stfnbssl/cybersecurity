@@ -1,0 +1,264 @@
+$group
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "a) avoidance of potentially exploitable implementation constructs –
+            +b implementation design patterns that are known to have security weaknesses;"
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: a) avoidance of
+            +b potentially exploitable implementation constructs – implementation design
+            +b patterns that are known to have security weaknesses;"
+        requirement_id "IEC 62443-4-1:SI-2-a"
+        title "Avoidance of Potentially Exploitable Implementation Constructs"
+        description "This requirement mandates the avoidance of implementation design patterns that
+            +b are known to have inherent security weaknesses. By identifying and steering
+            +b clear of such patterns, vulnerabilities can be minimized during the software
+            +b development lifecycle, ultimately enhancing the security posture of the system."
+        [ key_aspects
+            {
+                aspect "Identification of Weak Patterns"
+                details "Developers should be well-versed in common insecure design patterns and
+                    +b constructs that have been historically exploited. This includes patterns like
+                    +b buffer overflows, improper input validation, and race conditions."
+            {
+                aspect "Use of Secure Design Patterns"
+                details "Emphasize the application of secure design patterns that inherently reduce
+                    +b vulnerability risks. Examples include using functions that automatically handle
+                    +b buffer sizes or adopting multi-threading models that mitigate race conditions."
+            {
+                aspect "Continuous Education"
+                details "Developers should receive ongoing training to stay updated on the latest secure
+                    +b coding practices and evolving threat landscapes. This may involve formal
+                    +b training, workshops, and participation in security seminars."
+            {
+                aspect "Code Reviews and Audits"
+                details "Implement regular code reviews and security audits to detect and address
+                    +b potential security weaknesses early in the development process. Peer reviews
+                    +b and automated tools can be beneficial in identifying insecure patterns."
+            {
+                aspect "Security Testing"
+                details "Conduct rigorous security testing, such as static and dynamic analysis, to
+                    +b identify insecure patterns that might have been inadvertently introduced during
+                    +b development."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27034"
+                title "Information technology — Security techniques — Application security"
+                relevance "Provides guidelines for securing software applications and highlights best
+                    +b practices for avoiding insecure design patterns."
+            {
+                standard_id "OWASP Top Ten"
+                title "OWASP Top Ten Web Application Security Risks"
+                relevance "Lists the most critical security risks to web applications, many of which are
+                    +b linked to insecure design patterns and coding practices."
+            {
+                standard_id "CERT Secure Coding Standards"
+                title "CERT C Coding Standard: Rules for Developing Safe, Reliable, and Secure Systems"
+                relevance "Offers a set of coding rules and recommendations to help developers avoid
+                    +b common programming errors that lead to software vulnerabilities."
+            {
+                standard_id "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                relevance "Provides a catalog of security and privacy controls for federal information
+                    +b systems and organizations, including controls related to software development
+                    +b processes."
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "b) avoidance of banned functions and coding constructs/design patterns –
+            +b software functions and design patterns that should not be used because they
+            +b have known security weaknesses;"
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: b) avoidance of
+            +b banned functions and coding constructs/design patterns – software functions and
+            +b design patterns that should not be used because they have known security
+            +b weaknesses;"
+        requirement_id "IEC 62443-4-1:SI-2:b"
+        title "Avoidance of Banned Functions and Coding Constructs/Design Patterns"
+        description "This requirement emphasizes the importance of avoiding the use of software
+            +b functions and design patterns that are identified as having known security
+            +b weaknesses. By doing so, the implementation phase of software development is
+            +b safeguarded against common vulnerabilities that can be exploited by attackers."
+        { key_aspects
+            identification_of_weaknesses "Developers should be equipped with knowledge about functions and patterns that
+                +b are considered unsafe. This includes functions that are prone to buffer
+                +b overflows, improper memory management, and other vulnerabilities."
+            secure_coding_guidelines "Organizations should establish and enforce secure coding guidelines that
+                +b explicitly list banned functions and unsafe design patterns."
+            code_review_and_analysis "Regular code reviews and static analysis should be conducted to ensure
+                +b compliance with secure coding standards and to identify any banned functions or
+                +b patterns in the codebase."
+            training_and_awareness "Continuous training and awareness programs should be provided to developers to
+                +b keep them informed about the latest secure coding practices and known
+                +b vulnerabilities."
+        { related_standards
+            "ISO/IEC 27001" "Annex A.14.2.5 - Secure development environment, which emphasizes the
+                +b importance of security in the development process, including the avoidance of
+                +b known insecure coding practices."
+            "CWE ${'('}Common Weakness Enumeration)" "CWE-676: Use of Potentially Dangerous Function, which lists functions that are
+                +b dangerous and should be avoided in secure software development."
+            "OWASP Top Ten" "A9:2021 - Using Components with Known Vulnerabilities, which highlights the
+                +b risks of using insecure components and the importance of avoiding insecure
+                +b functions."
+            "MISRA C" "Guidelines for the use of the C language in critical systems, which provide
+                +b rules and directives for secure coding, including the avoidance of unsafe
+                +b functions."
+            "CERT C Coding Standard" "FIO30-C - Exclude user input from format strings, and other rules that prohibit
+                +b the use of insecure functions and coding constructs."
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "c) automated tool use and settings (for example, for static analysis tools);"
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: c) automated
+            +b tool use and settings (for example, for static analysis tools);"
+        requirement_id "IEC 62443-4-1:SI-2-c"
+        title "Secure Coding Standards - Automated Tool Use and Settings"
+        description "This requirement emphasizes the importance of using automated tools, such as
+            +b static analysis tools, to enforce secure coding standards. It aims to enhance
+            +b the security of software by identifying vulnerabilities and ensuring compliance
+            +b with coding practices."
+        { key_aspects
+            objective "To ensure that automated tools are utilized effectively to detect code
+                +b vulnerabilities and enforce secure coding practices."
+            tool_selection "Organizations should select appropriate automated tools that support the
+                +b programming languages and frameworks used in their projects."
+            configuration "Tools should be configured to align with the organization's secure coding
+                +b standards and to maximize their effectiveness in identifying security issues."
+            integration "Automated tools should be integrated into the development lifecycle, allowing
+                +b for continuous feedback and improvement."
+            reporting "Tools should generate actionable reports that prioritize issues based on their
+                +b potential impact on security."
+            training "Developers should be trained on how to interpret and act on the results
+                +b produced by automated tools."
+        { related_standards
+            { "ISO/IEC 27034"
+                title "Application Security"
+                description "Provides guidelines to ensure that applications are developed and maintained
+                    +b with security in mind, and includes the use of automated tools."
+                relevance "Supports the use of automated tools to detect vulnerabilities in application
+                    +b software."
+            { "OWASP SAMM"
+                title "Software Assurance Maturity Model"
+                description "A framework to help organizations assess, formulate, and implement a strategy
+                    +b for software security that is tailored to the specific risks facing the
+                    +b organization."
+                relevance "Encourages the use of automated tools for static analysis as part of a mature
+                    +b software assurance strategy."
+            { "CWE ${'('}Common Weakness Enumeration)"
+                title "A Community-Developed List of Software Weakness Types"
+                description "Provides a comprehensive list of software weaknesses that can be used to
+                    +b identify weaknesses during automated tool analysis."
+                relevance "Helps organizations configure automated tools to detect specific types of
+                    +b weaknesses relevant to their software."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                description "Provides a catalog of security and privacy controls for federal information
+                    +b systems and organizations, including guidance on the use of automated tools."
+                relevance "Includes controls related to the use of automated tools for vulnerability
+                    +b analysis and secure coding practices."
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "d) secure coding practices;"
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: d) secure
+            +b coding practices;"
+        requirement_id "IEC 62443-4-1:SI-2-d"
+        title "Secure Coding Practices"
+        description "This requirement emphasizes the importance of adopting secure coding practices
+            +b as part of the secure implementation process within the development lifecycle
+            +b of industrial automation and control systems (IACS). Secure coding practices
+            +b are essential to mitigate vulnerabilities that could be exploited by malicious
+            +b actors, thereby enhancing the cybersecurity posture of the software."
+        { key_aspects
+            [ secure_coding_principles
+                "Input validation to prevent injection attacks and buffer overflows."
+                "Output encoding to prevent cross-site scripting (XSS) and other output-related vulnerabilities."
+                "Authentication and password management to ensure robust user identification processes."
+                "Access control to enforce principle of least privilege and separation of duties."
+                "Error handling and logging to prevent leakage of sensitive information and ensure effective incident response."
+                "Cryptographic practices to ensure data confidentiality and integrity."
+            code_review "Conduct regular code reviews to identify and address security vulnerabilities
+                +b early in the development process."
+            static_analysis "Utilize static analysis tools to automatically detect security issues in the
+                +b codebase."
+            developer_training "Provide ongoing training for developers on secure coding techniques and
+                +b emerging threats."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.14.2.5"
+                topic "Secure system engineering principles"
+                description "ISO/IEC 27001 emphasizes incorporating secure engineering principles into the
+                    +b system development lifecycle to mitigate risks associated with software
+                    +b vulnerabilities."
+            { "OWASP Top Ten"
+                focus "Application Security Risks"
+                description "The OWASP Top Ten provides a list of the most critical web application security
+                    +b risks, which secure coding practices aim to address."
+            { "NIST SP 800-53"
+                section "SA-11"
+                topic "Developer Security Testing and Evaluation"
+                description "This standard highlights the need for security testing and evaluation
+                    +b throughout the software development lifecycle to identify and mitigate
+                    +b vulnerabilities."
+            { "CERT Secure Coding Standards"
+                focus "Coding Guidelines"
+                description "CERT provides comprehensive guidelines for secure coding practices that help
+                    +b developers prevent vulnerabilities in software applications."
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "e) validation of all inputs that cross trust boundary."
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: e) validation
+            +b of all inputs that cross trust boundary."
+        requirement_id "IEC 62443-4-1:SI-2:e"
+        title "Validation of All Inputs that Cross Trust Boundary"
+        description "This requirement emphasizes the importance of validating all inputs that cross
+            +b a trust boundary to ensure that they are safe and conform to expected formats
+            +b and behaviors. This is crucial to prevent malicious inputs that can lead to
+            +b vulnerabilities such as injection attacks or buffer overflows."
+        [ key_aspects
+            {
+                aspect "Trust Boundary Definition"
+                detail "Identify and define trust boundaries within the system to understand where
+                    +b potential input validation is necessary."
+            {
+                aspect "Input Validation Techniques"
+                detail "Implement comprehensive input validation techniques such as whitelisting,
+                    +b blacklisting, and regular expressions to verify input integrity."
+            {
+                aspect "Error Handling"
+                detail "Ensure robust error handling mechanisms are in place to handle invalid inputs
+                    +b gracefully and securely without exposing system details."
+            {
+                aspect "Testing and Verification"
+                detail "Continuously test input validation mechanisms through fuzz testing, penetration
+                    +b testing, and code reviews to ensure effectiveness."
+        [ related_standards
+            {
+                standard "OWASP"
+                reference "OWASP Top Ten 2021 - A01:2021 Broken Access Control"
+                description "This reference provides guidance on preventing unauthorized access through
+                    +b input validation and control mechanisms."
+            {
+                standard "NIST SP 800-53"
+                reference "NIST SP 800-53 Rev. 5 - SI-10: Information Input Validation"
+                description "This standard outlines input validation controls necessary to protect systems
+                    +b from unauthorized or malicious input."
+            {
+                standard "ISO/IEC 27001"
+                reference "ISO/IEC 27001 - A.14.2.5 Secure System Engineering Principles"
+                description "This standard includes principles for secure system design and engineering,
+                    +b emphasizing input validation across trust boundaries."
+            {
+                standard "CWE"
+                reference "CWE-20: Improper Input Validation"
+                description "The Common Weakness Enumeration provides a detailed taxonomy of security
+                    +b weaknesses related to improper input validation."

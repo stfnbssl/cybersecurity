@@ -1,0 +1,377 @@
+$group
+    {
+        practice "3"
+        code "SD-3"
+        subCode "b) threats and their ability to exploit product interfaces, trust boundaries,
+            +b and assets ( see 7.2, SD-1: Secure design principles); and"
+        [ policies
+            {
+                code "SD-3"
+                subCode "b"
+                title "Interface Threat Modeling Policy"
+                description "This policy mandates the systematic identification and documentation of threats
+                    +b targeting all product interfaces (e.g., OPC UA, PROFINET) as per IEC 62443-4-1
+                    +b SD-3. It requires the use of ICS-specific threat modeling tools (e.g.,
+                    +b Microsoft Threat Modeling Tool with industrial templates) to map attack vectors
+                    +b across trust boundaries. The policy applies to all design revisions of Breton
+                    +b Spa's CNC and stone cutting machines, ensuring vulnerabilities in protocols
+                    +b like Modbus TCP or EtherNet/IP are addressed before deployment."
+                enforcement "Compliance is verified through quarterly design review audits by the security
+                    +b team, with findings documented in a traceability matrix. Automated checks via
+                    +b integrated DevSecOps tools (e.g., ThreatModeler) flag unmodeled interfaces
+                    +b during CI/CD pipelines."
+            {
+                code "SD-3"
+                subCode "b"
+                title "Trust Boundary Validation Policy"
+                description "Enforces hardware-verified segmentation between safety-critical and
+                    +b non-critical components in Breton's machines, aligning with IEC 62443-4-1
+                    +b SD-3's requirements for exploitation resistance. Requires TPM/HSM-based
+                    +b integrity checks for all firmware updates and runtime communications across
+                    +b boundaries (e.g., between CNC control systems and HMIs). Specifically addresses
+                    +b threats like MitM attacks on PROFINET or OPC UA interfaces."
+                enforcement "Annual red-team exercises simulate boundary breaches (e.g., attacking
+                    +b TPM-secured boot processes). Network traffic across boundaries is continuously
+                    +b monitored via industrial IDS (e.g., Siemens Ruggedcom) with alerts escalated to
+                    +b SOC."
+            {
+                code "SD-3"
+                subCode "b"
+                title "Asset Criticality Classification Policy"
+                description "Implements ISA/IEC 62443-3-2 asset scoring to prioritize protections for
+                    +b high-value ICS components in Breton's product lines (e.g., CNC motion
+                    +b controllers rated higher than polishing sensors). Directly supports SD-3's
+                    +b mandate to assess threats based on asset value. Criticality scores determine
+                    +b the depth of threat modeling and frequency of design reviews for each machine
+                    +b type."
+                enforcement "Asset classifications are audited biannually against production incident data.
+                    +b Non-compliance triggers mandatory threat model updates. Integrated with
+                    +b Breton's PLM system to enforce security controls during machine design phases."
+        [ procedures
+            {
+                code "SD-3"
+                subCode "b"
+                title "ICS Interface Threat Modeling Procedure"
+                description "Step-by-step process for conducting STRIDE-based threat modeling on Breton's
+                    +b industrial machines, focusing on interfaces like OPC UA servers and PROFINET
+                    +b controllers. Aligns with IEC 62443-4-1 SD-3 requirements for systematic threat
+                    +b identification."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all machine interfaces using protocol analyzers (e.g., Wireshark with
+                            +b ICS dissectors) and vendor documentation."
+                        tools "Wireshark, OPC UA SDK, PROFINET Configurator"
+                        expected_outcome "Complete interface matrix documenting protocols, ports, and authentication
+                            +b mechanisms for each Breton machine type."
+                    {
+                        step 2
+                        action "Model attack vectors using Microsoft Threat Modeling Tool with ICS-specific
+                            +b templates (e.g., 'OPC UA Server Spoofing')."
+                        tools "Microsoft Threat Modeling Tool, MITRE ICS ATT&CK database"
+                        expected_outcome "Threat diagrams showing exploit paths across trust boundaries (e.g., from
+                            +b Ethernet/IP to CNC controller)."
+                    {
+                        step 3
+                        action "Validate models via penetration testing of representative interfaces (e.g.,
+                            +b Modbus TCP gateway fuzzing)."
+                        tools "ICS-specific pentest tools (e.g., Modbuspal, PROFINET-Probe)"
+                        expected_outcome "Verified threat report with CVSS scores for each identified vulnerability,
+                            +b prioritized by asset criticality."
+            {
+                code "SD-3"
+                subCode "b"
+                title "Trust Boundary Enforcement Procedure"
+                description "Defines how Breton implements and verifies hardware-enforced segmentation
+                    +b between control system components, per SD-3's focus on boundary exploitation
+                    +b risks."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy TPM 2.0 modules on all HMIs and configure secure boot with measured
+                            +b launch for Breton's CNC systems."
+                        tools "Infineon TPM modules, Siemens Secure Boot Configurator"
+                        expected_outcome "TPM attestation reports confirming integrity of boot process across all field
+                            +b devices."
+                    {
+                        step 2
+                        action "Implement VLAN segmentation between safety-critical (e.g., emergency stop
+                            +b circuits) and standard control networks."
+                        tools "Cisco Industrial Ethernet switches, PROFINET MRP"
+                        expected_outcome "Network diagrams showing isolated zones with firewall rules blocking
+                            +b cross-boundary traffic except via approved proxies."
+                    {
+                        step 3
+                        action "Conduct boundary penetration tests simulating compromised devices (e.g.,
+                            +b malicious PLC attempting lateral movement)."
+                        tools "ICS attack frameworks (e.g., GRFICS), Hardware-in-the-loop testbeds"
+                        expected_outcome "Test report confirming containment of simulated breaches within designated
+                            +b zones."
+            {
+                code "SD-3"
+                subCode "b"
+                title "Asset Criticality Assessment Procedure"
+                description "Standardized method for classifying and protecting high-value assets in
+                    +b Breton's industrial machines, supporting SD-3's threat prioritization
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Apply ISA/IEC 62443-3-2 scoring to all machine components (e.g., CNC
+                            +b controllers = Critical, water cooling sensors = Low)."
+                        tools "Honeywell Industrial Cyber Risk Calculator, ISA-62443-3-2 guidelines"
+                        expected_outcome "Asset registry with criticality scores (1-5) and justification for each Breton
+                            +b product line."
+                    {
+                        step 2
+                        action "Map threats from modeling exercises to critical assets (e.g., ransomware impact
+                            +b on SL-3 vs SL-1 components)."
+                        tools "Threat traceability matrix, NIST SP 800-30 risk formulas"
+                        expected_outcome "Risk heat map showing high-priority threats to critical assets (e.g., HMIs,
+                            +b historians)."
+                    {
+                        step 3
+                        action "Implement compensating controls for legacy assets unable to meet target SL
+                            +b (e.g., out-of-band monitoring for unpatched PLCs)."
+                        tools "Industrial IDS (e.g., Nozomi Networks), Network taps"
+                        expected_outcome "Control implementation records showing risk reduction for each critical asset
+                            +b below acceptable thresholds."
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-3"
+        subCode "c)"
+        [ policies
+            {
+                code "SD-3"
+                subCode "c)"
+                title "Secure Design Review Policy"
+                description "This policy mandates systematic security design reviews for all ICS product
+                    +b developments to ensure compliance with IEC 62443-4-1 secure design practices,
+                    +b particularly focusing on deviations from the principle of least privilege.
+                    +b Reviews must be conducted at each significant design revision and documented
+                    +b with identified issues tracked to closure."
+                enforcement "Automated static code analysis tools integrated into CI/CD pipelines; Quarterly
+                    +b audits of design review documentation by the security team; Mandatory threat
+                    +b modeling sessions for all new ICS component designs."
+            {
+                code "SD-3"
+                subCode "c)"
+                title "Least Privilege Enforcement Policy"
+                description "All ICS designs must implement role-based access control (RBAC) aligned with
+                    +b operational requirements, with no excessive permissions granted. This directly
+                    +b addresses SD-3(c) requirements by ensuring access control mechanisms are
+                    +b verified during design reviews."
+                enforcement "Predefined RBAC templates for common ICS roles (e.g., HMI operator, maintenance
+                    +b technician); Automated permission validation tools; Annual access control
+                    +b audits comparing implemented permissions against design documentation."
+            {
+                code "SD-3"
+                subCode "c)"
+                title "Third-party Component Security Assessment Policy"
+                description "All COTS ICS components integrated into Breton Spa systems must undergo
+                    +b security assessment to verify compliance with IEC 62443-4-1 design practices.
+                    +b Assessments must identify potential deviations from secure design principles
+                    +b (e.g., unsigned firmware updates)."
+                enforcement "Mandatory supplier security questionnaires based on IEC 62443-4-1 requirements;
+                    +b Binary analysis of firmware for cryptographic signatures; Network segmentation
+                    +b of non-compliant legacy components with compensating controls."
+        [ procedures
+            {
+                code "SD-3"
+                subCode "c)"
+                title "Security Design Review Process"
+                description "Structured procedure for conducting IEC 62443-4-1 compliant design reviews,
+                    +b focusing on identification and remediation of deviations from secure design
+                    +b practices. Applies to all CNC machining centers and stone cutting machines with
+                    +b networked control systems."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate review by creating a threat model using STRIDE methodology for the
+                            +b design"
+                        tools "Microsoft Threat Modeling Tool; ICS-specific STRIDE templates"
+                        expected_outcome "Documented threat model identifying potential privilege escalation paths in
+                            +b control system architecture"
+                    {
+                        step 2
+                        action "Conduct static analysis of PLC code using SAST tools to detect least privilege
+                            +b violations"
+                        tools "Siemens TIA Portal with SAST plugins; OPC UA protocol analyzers"
+                        expected_outcome "Report of excessive permissions in function blocks and undocumented access
+                            +b paths"
+                    {
+                        step 3
+                        action "Verify RBAC implementation against operational requirements using predefined
+                            +b role templates"
+                        tools "Rockwell Automation RBAC validation tools; HMI permission matrices"
+                        expected_outcome "Signed compliance statement confirming access controls match minimum
+                            +b operational requirements"
+            {
+                code "SD-3"
+                subCode "c)"
+                title "Secure Design Deviation Tracking"
+                description "Procedure for documenting and resolving identified deviations from IEC
+                    +b 62443-4-1 secure design practices during product development cycles."
+                [ steps
+                    {
+                        step 1
+                        action "Log deviations in the secure design tracking system with severity
+                            +b classification"
+                        tools "JIRA with ICS security templates; ISA-62443 compliance checklists"
+                        expected_outcome "Centralized registry of all design practice deviations with traceability to
+                            +b specific components"
+                    {
+                        step 2
+                        action "Assign risk owners for each deviation and document compensating controls where
+                            +b remediation isn't feasible"
+                        tools "Risk assessment matrices; Emerson Security Trade-off Framework templates"
+                        expected_outcome "Approved risk acceptance forms for deviations with documented operational
+                            +b constraints"
+                    {
+                        step 3
+                        action "Verify closure of critical deviations through automated testing before
+                            +b production release"
+                        tools "OPC UA test harnesses; PROFINET security validation tools"
+                        expected_outcome "Zero open critical deviations in the final design review report"
+            {
+                code "SD-3"
+                subCode "c)"
+                title "ICS Component Security Assessment"
+                description "Procedure for evaluating third-party ICS components against IEC 62443-4-1
+                    +b secure design requirements prior to integration into Breton Spa equipment."
+                [ steps
+                    {
+                        step 1
+                        action "Verify firmware signing mechanisms and update authentication processes"
+                        tools "Binary analysis tools (e.g., Binwalk); Digital signature validation utilities"
+                        expected_outcome "Validation report confirming cryptographic integrity of all executable
+                            +b components"
+                    {
+                        step 2
+                        action "Test protocol implementations for secure defaults (e.g., TLS 1.2+ enforcement
+                            +b in OPC UA)"
+                        tools "Wireshark with ICS protocol dissectors; PROFINET security test suites"
+                        expected_outcome "Protocol compliance matrix showing adherence to secure communication standards"
+                    {
+                        step 3
+                        action "Assess physical security features against intended deployment environment
+                            +b (e.g., dust-resistant enclosures)"
+                        tools "IP rating verification checklists; Environmental stress testing procedures"
+                        expected_outcome "Component certification document matching operational environment requirements"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "a) least privilege (granting only the privileges to users/software necessary to
+            +b perform intended operations)"
+        [ policies
+            {
+                code "SD-4"
+                subCode "a"
+                title "Role-Based Access Control (RBAC) Implementation"
+                description "Implement RBAC to ensure users and software have only the minimum access rights
+                    +b necessary for their roles, as per IEC 62443-4-1 SD-4a. This policy applies to
+                    +b all Breton Spa CNC Machining Centers and Stone Cutting Machines, ensuring
+                    +b operators, engineers, and maintenance personnel have distinct privilege levels.
+                    +b Reference: IEC 62443-4-1 SD-4a and ISA/IEC 62443 RBAC guidelines."
+                enforcement "Regular audits using SIEM tools (e.g., Splunk for OT) and automated access
+                    +b control reviews via Active Directory Group Policy. Non-compliance triggers
+                    +b remediation workflows."
+            {
+                code "SD-4"
+                subCode "a"
+                title "Just-in-Time (JIT) Privilege Escalation"
+                description "Enforce time-bound privilege escalation for maintenance tasks, aligning with
+                    +b IEC 62443-4-1 SD-4a's least privilege principle. Applies to third-party vendor
+                    +b access for firmware updates on Polishing Machines and Composite Material
+                    +b Processing Lines. Requires ticketing system approval (e.g., ServiceNow) and
+                    +b integrates with PAM solutions like CyberArk."
+                enforcement "Automated revocation via PAM tools after predefined intervals (max 4 hours).
+                    +b Logs reviewed monthly by security team."
+            {
+                code "SD-4"
+                subCode "a"
+                title "Default Credential Hardening"
+                description "Mandate modification of default credentials on all ICS devices (PLCs, HMIs) to
+                    +b enforce least privilege, per IEC 62443-4-1 SD-4a. Covers Breton Spa machines
+                    +b using PROFINET and OPC UA protocols. References MITRE ICS Default Credentials
+                    +b Database for baseline configurations."
+                enforcement "Pre-deployment checks via Yokogawa Secure Deployment Guide templates. Quarterly
+                    +b vulnerability scans using Tenable.ot."
+        [ procedures
+            {
+                code "SD-4"
+                subCode "a"
+                title "RBAC Role Definition for CNC Operators"
+                description "Procedure to define and assign least privilege roles for CNC Machining Center
+                    +b operators, ensuring compliance with IEC 62443-4-1 SD-4a."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct task analysis to identify required permissions (e.g., program load but
+                            +b not delete)."
+                        tools "Rockwell Automation ICS Role Templates"
+                        expected_outcome "Documented list of operator tasks mapped to minimal privileges."
+                    {
+                        step 2
+                        action "Create role in Active Directory with granular GPOs (e.g., 'CNC_Operator_RW' for
+                            +b read/write to specific OPC UA nodes)."
+                        tools "Microsoft Active Directory, Breton Spa HMI configuration guides"
+                        expected_outcome "AD role with precisely scoped permissions."
+                    {
+                        step 3
+                        action "Validate role in test environment using Nozomi Networks monitoring to detect
+                            +b over-privileged actions."
+                        tools "Nozomi Networks Vantage, Test CNC machine"
+                        expected_outcome "Zero privilege violation alerts during test operations."
+            {
+                code "SD-4"
+                subCode "a"
+                title "Emergency Access Request Workflow"
+                description "Procedure for temporary privilege escalation during equipment failures,
+                    +b adhering to IEC 62443-4-1 SD-4a's least privilege requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Submit request via Breton Spa's OT ticketing system with justification (e.g.,
+                            +b 'Emergency valve calibration required')."
+                        tools "ServiceNow OT Module"
+                        expected_outcome "Ticket with timestamped approval from shift supervisor."
+                    {
+                        step 2
+                        action "Automated provisioning of 2-hour admin access to specified EtherNet/IP devices
+                            +b via CyberArk PAM."
+                        tools "CyberArk for OT, ABB Access Control"
+                        expected_outcome "Temporary credentials issued with exact scope (device/IP/protocol)."
+                    {
+                        step 3
+                        action "Post-access review: Compare used privileges against request justification. Log
+                            +b anomalies."
+                        tools "Splunk OT logs, Schneider Electric EcoStruxure Audit"
+                        expected_outcome "Audit report showing ≤5% deviation from requested privileges."
+            {
+                code "SD-4"
+                subCode "a"
+                title "Legacy PLC Privilege Mediation"
+                description "Procedure to enforce least privilege on legacy Breton Spa Stone Cutting
+                    +b Machines with hardcoded credentials, per IEC 62443-4-1 SD-4a."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy secure gateway (e.g., Siemens SCALANCE) between HMIs and legacy PLCs."
+                        tools "Siemens SCALANCE S615, Network segmentation diagrams"
+                        expected_outcome "All PLC access routed through gateway with TLS encryption."
+                    {
+                        step 2
+                        action "Configure gateway RBAC to map modern AD accounts to legacy roles (e.g.,
+                            +b 'Saw_Technician' → Modbus TCP read-only)."
+                        tools "Cisco Identity Services Engine (ISE)"
+                        expected_outcome "Granular privilege translation without modifying PLC firmware."
+                    {
+                        step 3
+                        action "Implement quarterly credential rotation for gateway service accounts using
+                            +b HashiCorp Vault."
+                        tools "HashiCorp Vault, Yokogawa Secure Deployment Guide"
+                        expected_outcome "Automated rotation logs showing zero failed authentications."
+        last_updated "2023-10-15"

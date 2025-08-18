@@ -1,0 +1,74 @@
+ittf
+    $
+        var ctx = {
+            ambiti: {},
+            categorie: {},
+        };
+        function add(type, key, value) {
+            var x = ctx[type];
+            if (!_.isObject(x)) {
+                ctx[type] = {}
+                x = ctx[type];
+            }
+            var y = x[key];
+            if (!_.isObject(y)) {
+                x[key] = { items: [] }
+                y = x[key];
+            }
+            // _.log('type', type, key);
+            y.items.push(value);
+        }
+
+    $foreach item in lbvsa
+        $
+            add('ambiti', item.Ambito, item);
+            add('categorie', item.Categoria, item);
+            add('perimetri', item.Perimetro, item);
+            add('maturità', item.Maturità, item);
+            add('nis2', item.NIS2, item);
+            add('ISA_62443', item['ISA_n_62443_n_(2-4)'], item);
+            add('RegMacchine', item['REG. MACCHINE'], item);
+            add('ISO22301', item.ISO22301, item);
+            add('GDPR', item.GDPR, item);
+            add('EN_303_645', item['EN 303 645'], item);
+
+
+    $file .wizzi-override/docs/meta_example.html.ittf
+        html
+            head
+                @title meta example
+            body
+                h2 Ambiti
+                $foreach type in Object.keys(ctx.ambiti)
+                    h4 ${type}
+                h2 Categorie
+                $foreach type in Object.keys(ctx.categorie)
+                    h4 ${type}
+                h2 Perimetri
+                $foreach type in Object.keys(ctx.perimetri)
+                    h4 ${type}
+                h2 Maturità
+                $foreach type in Object.keys(ctx.maturità)
+                    h4 ${type}
+                h2 NIS2
+                $foreach type in Object.keys(ctx.nis2)
+                    h4 ${type}
+                h2 Registro macchine
+                $foreach type in Object.keys(ctx.RegMacchine)
+                    h4 ${type}
+                h2 ISA 62443 (2-4)
+                $foreach type in Object.keys(ctx.ISA_62443)
+                    h4 ${type}
+
+                $foreach type in Object.keys(ctx.ambiti)
+                    h4 ${type}
+                    $if true
+                        $foreach item in ctx.ambiti[type].items
+                            p ${item['Descrizione requisito']}
+                
+                $*
+                $foreach item in lbvsa
+                    h4 ${item.Ambito}
+                        id ${item.IDD}
+                        p ${item['Descrizione requisito']}
+                *$

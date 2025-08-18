@@ -1,0 +1,108 @@
+ittf
+
+    $*
+        var maps = [
+            { name: "bsimm_14_xref_samm"; path: "maps/bsimm_14_xref_samm.json" },
+            { name: "bsimm_14"; path: "maps/bsimm_14.json" },
+            { name: "iec_62443_4_1_xref_samm"; path: "maps/iec_62443_4_1_xref_samm.json" },
+            { name: "iec_62443_4_1"; path: "maps/iec_62443_4_1.json" },
+            { name: "microsoft_sdl_xref_samm"; path: "maps/microsoft_sdl_xref_samm.json" },
+            { name: "microsoft_sdl"; path: "maps/microsoft_sdl.json" },
+            { name: "nist_csf_2_0_xref_samm"; path: "maps/nist_csf_2_0_xref_samm.json" },
+            { name: "nist_csf_2_0"; path: "maps/nist_csf_2_0.json" },
+            { name: "nist_ssdf_xref_samm"; path: "maps/nist_ssdf_xref_samm.json" },
+            { name: "nist_ssdf"; path: "maps/nist_ssdf.json" },
+            { name: "samm_xref_samm"; path: "maps/samm_xref_samm.json" },
+            { name: "samm"; path: "maps/samm.json" },
+            { name: "tmc_xref_samm"; path: "maps/tmc_xref_samm.json" },
+            { name: "tmc"; path: "maps/tmc.json" },
+        ];
+    *$
+
+    $file .wizzi-override/docs/maps/frameworks.json.ittf
+        {
+            [ samms
+                $foreach sammItem in samm
+                    item "${_.stringify(sammItem)}"
+            [ samm_streams
+                $foreach samm_streamsItem in samm_streams
+                    $
+                        var ss = samm_streamsItem.OWASP_SAMM_ID.split('-');  
+                        samm_streamsItem.xid = ss[0] + '-' + ss[1] + '-' + ss[3]
+                        samm_streamsItem.xfunction = ss[0]
+                        samm_streamsItem.xpractice = ss[0] + '-' + ss[1]
+                        samm_streamsItem.xlevel = ss[2]
+                        samm_streamsItem.xstream = ss[3]
+                    item "${_.stringify(samm_streamsItem)}"
+            [ nist_csf_2_0s
+                $foreach nist_csf_2_0Item in nist_csf_2_0
+                    item "${_.stringify(nist_csf_2_0Item)}"                                        
+            [ nist_csf_2_0_xref_samms
+                $foreach nist_csf_2_0_xref_sammItem in nist_csf_2_0_xref_samm
+                    item "${_.stringify(nist_csf_2_0_xref_sammItem)}"                                        
+            [ nist_ssdfs
+                $foreach nist_ssdfItem in nist_ssdf
+                    item "${_.stringify(nist_ssdfItem)}"                                        
+            [ nist_ssdf_xref_samms
+                $foreach nist_ssdf_xref_sammItem in nist_ssdf_xref_samm
+                    item "${_.stringify(nist_ssdf_xref_sammItem)}"                                        
+            [ bsimm_14s
+                $foreach bsimm_14Item in bsimm_14
+                    item "${_.stringify(bsimm_14Item)}"                                        
+            [ bsimm_14_xref_samms
+                $foreach bsimm_14_xref_sammItem in bsimm_14_xref_samm
+                    item "${_.stringify(bsimm_14_xref_sammItem)}"                                        
+            [ microsoft_sdls
+                $foreach microsoft_sdlItem in microsoft_sdl
+                    item "${_.stringify(microsoft_sdlItem)}"                                        
+            [ microsoft_sdl_xref_samms
+                $foreach microsoft_sdl_xref_sammItem in microsoft_sdl_xref_samm
+                    item "${_.stringify(microsoft_sdl_xref_sammItem)}"                                        
+            [ tmcs
+                $foreach tmcItem in tmc
+                    item "${_.stringify(tmcItem)}"                                        
+            [ tmc_xref_samms
+                $foreach tmc_xref_sammItem in tmc_xref_samm
+                    item "${_.stringify(tmc_xref_sammItem)}"                                        
+            [ iec_62443_4_1s
+                $foreach iec_62443_4_1Item in iec_62443_4_1
+                    $$ item "${_.stringify(iec_62443_4_1Item)}"                    
+                    $
+                        var sammsObj = {};
+
+                    {
+                        IEC_62443_4_1_ID "${iec_62443_4_1Item.IEC_62443_4_1_ID}"
+                        Practice "${iec_62443_4_1Item.Practice}"
+                        Area "${iec_62443_4_1Item.Area}"
+                        [ Description
+                            $foreach line in iec_62443_4_1Item.Description.split('\n')
+                                "${line}"
+                        [ samms
+                            $foreach iec_62443_4_1_xref_sammItem in iec_62443_4_1_xref_samm
+                                $if iec_62443_4_1_xref_sammItem.IEC_62443_4_1_ID == iec_62443_4_1Item.IEC_62443_4_1_ID
+                                    $foreach samm_streamsItem in samm_streams
+                                        $if samm_streamsItem.xid == iec_62443_4_1_xref_sammItem.OWASP_SAMM_ID
+                                            $
+                                                sammsObj[samm_streamsItem.xid] = true;
+
+                                            {
+                                                id "${samm_streamsItem.OWASP_SAMM_ID}"
+                                                function "${samm_streamsItem.Function}"
+                                                practice "${samm_streamsItem.Practice}"
+                                                streamName "${samm_streamsItem["Stream Name"]}"
+                                                xid "${samm_streamsItem.xid}"                    
+                                                xlevel "${samm_streamsItem.xlevel}"                    
+                                                xstream "${samm_streamsItem.xstream}"                    
+                        [ nist_csf_2_0s
+                            $foreach nist_csf_2_0_xref_sammItem in nist_csf_2_0_xref_samm
+                                $if sammsObj[nist_csf_2_0_xref_sammItem.OWASP_SAMM_ID]
+                                    {
+                                        id "${nist_csf_2_0_xref_sammItem.NIST_CSF_2_0_ID}"
+                        [ nist_ssdfs
+                            $foreach nist_ssdf_xref_sammItem in nist_ssdf_xref_samm
+                                $if sammsObj[nist_ssdf_xref_sammItem.OWASP_SAMM_ID]
+                                    {
+                                        id "${nist_ssdf_xref_sammItem.SSDF_ID}"
+            [ iec_62443_4_1_xref_samms
+                $foreach iec_62443_4_1_xref_sammItem in iec_62443_4_1_xref_samm
+                    item "${_.stringify(iec_62443_4_1_xref_sammItem)}"                                        

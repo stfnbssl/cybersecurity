@@ -1,0 +1,52 @@
+ai product_supplier.step_1
+    api-url http://localhost:3000
+    call step_1_Veneto region, Italy
+        description Base ai expansion of 62443-3-3 SR requirement Veneto region, Italy
+        llm_service grok
+        llm_model grok-3
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \e conosci le aziende delle varie regioni italiane.
+                \Sei anche esperto dello standard IEC 62443 e in particolare del volume 62443-3-3.
+        message 
+            role user
+            content Popola un database JSON con dati di aziende che producono systemi ICS.
+                \n Find a list of  firms with location and annual sales specified in a JSON input data below.
+                \n Firms must be product suppliers or system integrators involved in manufacturing or
+                \n integrating machines with industrial automation and control systems (IACS)
+                \n where IEC 62443-3-3 cybersecurity requirements could apply.
+                \n The response must be in JSON format, adhering to the schema below, and include:
+                \n name: The company’s full name.
+                \n sales_eur: Annual sales in euros (specify exact figures if available; if unavailable, note “Unknown” and justify assumption of >€100M based on industry prominence or scale).
+                \n description: A brief description of the company’s activities, focusing on their role in manufacturing or integrating machines with automation systems.
+                \n machine_types: A list of machine types produced or integrated, relevant to IACS (e.g., CNC machines, PLC-controlled systems, IoT-enabled equipment).
+                \n iec_62443_relevance: A detailed analysis of how IEC 62443-3-3 applies to the company’s machines or systems, referencing the seven foundational requirements (FR1–FR7) and explaining cybersecurity needs (e.g., securing networked controls, protecting data integrity, ensuring system availability).
+                \n contact_details: An object containing:
+                \n address: Full physical address.
+                \n phone: Primary contact phone number.
+                \n email: Primary contact email (if unavailable, note “Not available”).
+                \n website: Company website URL (if unavailable, note “Not available”).
+                \n source: The source(s) of the data (e.g., company website, financial reports, business directories).
+                \n Follow these guidelines:
+                \n Strictly include only firms headquartered in the specified location.
+                \n If exact sales figures are unavailable, justify the assumption based on market leadership, global presence, or industry scale.
+                \n Ensure machine types are specific to the company’s portfolio and relevant to IACS requiring IEC 62443-3-3 compliance (e.g., systems with PLCs, SCADA, or IoT integration).
+                \n Provide a detailed IEC 62443-3-3 analysis, explaining how the standard’s requirements (e.g., identification and authentication control, system integrity, restricted data flow) apply to the company’s operations.
+                \n Source contact details from credible sources (e.g., company websites, Italian Business Register, Crunchbase, or business directories like Listcompany.org). If specific contacts are unavailable, provide registered office details or note “Not available.”
+                \n Critically evaluate sources for accuracy and avoid speculative data.
+                \n If fewer than 10 firms meet the criteria, explain the limitation and include as many qualifying firms as possible.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","description":"JSON schema for IEC 62443-3-3 System Requirements - Base plus ia extensions explanation, context, challenges, ecc..","properties":{"requirements":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the requirement (e.g., SR 3.8)","example":"SR 3.8"},"name":{"type":"string","description":"Human-readable name of the requirement","example":"Session Integrity"},"description":{"type":"string","description":"Detailed description of the requirement","example":"The control system shall provide the capability to protect the integrity of sessions..."},"rationale":{"type":"string","description":"Purpose and security context of the requirement","example":"This control focuses on communications protection at the session level..."},"page":{"type":"integer","description":"Page number in the IEC 62443-3-3 standard","example":51},"enhancements":{"type":"array","description":"List of requirement enhancements","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the enhancement","example":"SR 3.8 RE 1"},"name":{"type":"string","description":"Name of the enhancement","example":"Invalidation of session IDs after session termination"},"description":{"type":"string","description":"Description of the enhancement","example":"The control system shall provide the capability to invalidate session IDs upon user logout..."},"notes":{"type":"array","description":"Additional notes or considerations","items":{"type":"string","example":"Session hijacking and other man-in-the-middle attacks..."}}},"required":["id","name","description"]}},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"object","properties":{"description":{"type":"string","example":"..."},"url":{"type":"string","example":"https://example.com"},"url_description":{"type":"string","example":"Description of the resource"}},"required":["description"],"additionalProperties":false}},"key_aspects":{"type":"array","description":"Key aspects for the requirement","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"description":{"type":"string"}},"required":["title","url","description"],"additionalProperties":false}}},"required":["id","title","description","related_links"],"additionalProperties":false}},"security_levels":{"type":"array","description":"Mapping of security levels to requirement and enhancements","items":{"type":"object","properties":{"level":{"type":"string","description":"Security level (e.g., SL-C 1)","example":"SL-C 1"},"applicability":{"type":"string","description":"Requirement or enhancements applicable at this level","example":"Not Selected"}},"required":["level","applicability"]}},"compliance":{"type":"object","description":"Compliance and testing details","properties":{"status":{"type":"string","description":"Compliance status (e.g., Implemented, In Progress, Not Started)","example":"Not Started"},"last_audit":{"type":"string","format":"date-time","description":"Timestamp of the last compliance audit","example":"2025-08-04T09:49:00Z"},"testing_requirements":{"type":"array","description":"Required tests to verify compliance","items":{"type":"string","example":"Penetration testing for session hijacking"}},"responsible_team":{"type":"string","description":"Team responsible for implementation and compliance","example":"Security Engineering"}}},"metadata":{"type":"object","description":"Metadata for versioning and auditing","properties":{"version":{"type":"string","description":"Version of the requirement entry","example":"1.0.0"},"created_at":{"type":"string","format":"date-time","description":"Timestamp of entry creation","example":"2025-08-04T09:49:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Timestamp of last update","example":"2025-08-04T09:49:00Z"},"author":{"type":"string","description":"Person or team who created/updated the entry","example":"Security Team"}},"required":["version","created_at","updated_at"]}},"required":["id","name","description","rationale","page","standard","explanation","context","challenges","best_practices","security_levels","compliance"]}}},"note_su_json_risultante":{"type":"object","description":"Notes on the resulting JSON structure and implementation details","properties":{"description":{"type":"string","description":"General description of the notes section","example":"Notes on the resulting JSON structure and implementation details"},"notes":{"type":"array","description":"List of specific notes on the JSON and implementations","items":{"type":"object","properties":{"note_id":{"type":"string","description":"Unique identifier for the note","example":"N1"},"description":{"type":"string","description":"Detailed description of the note","example":"The implementations were tailored to Breton Spa’s machine types..."}},"required":["note_id","description"]}}},"required":["description","notes"]},"required":["requirements"]} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"location":"Veneto region, Italy","sales":">50 million euros","number_of_firms_to_extract":10} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.

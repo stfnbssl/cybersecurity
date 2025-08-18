@@ -1,0 +1,180 @@
+$group
+    {
+        IDD "1.1.1"
+        area "Governance"
+        category "Policy e procedure"
+        description "Esiste un framework di policy, procedure e istruzioni operative definito,
+            +b formalizzato ed approvato?"
+        { asset_owner
+            isRelevant true
+            motivation "Un framework di policy formalizzato è essenziale per l'asset owner per
+                +b garantire la conformità normativa, la gestione del rischio e la responsabilità
+                +b nella gestione dell'IACS."
+        { ssdl
+            isRelevant true
+            motivation "Policy e procedure definite sono fondamentali nel SSDL per garantire standard
+                +b di sicurezza durante tutto il ciclo di vita dello sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "Un framework di policy è cruciale per l'integrazione di sistema per garantire
+                +b coerenza e sicurezza nell'implementazione dell'IACS o macchina."
+        { component_production
+            isRelevant true
+            motivation "Policy formalizzate sono rilevanti nella produzione di componenti per garantire
+                +b qualità e sicurezza del prodotto finito."
+        note_su_json_risultante "Tutte le valutazioni sono state impostate come rilevanti (true) poiché un
+            +b framework di policy è un requisito trasversale a tutti i contesti IACS. Le
+            +b motivazioni specificano l'applicabilità in ciascun dominio."
+    {
+        IDD "1.1.2"
+        area "Governance"
+        category "Policy e procedure"
+        description "Esiste un framework di governance rivisto annualmente in relazione agli
+            +b obiettivi di business ed agli aggiornamenti del landscape di minacce?"
+        { asset_owner
+            isRelevant true
+            motivation "Un framework di governance aggiornato è essenziale per l'asset owner per
+                +b garantire che gli obiettivi di business e la sicurezza dell'IACS siano
+                +b allineati con il panorama delle minacce attuale."
+        { ssdl
+            isRelevant true
+            motivation "Un framework di governance aggiornato è fondamentale per garantire che il
+                +b Secure Software Development Lifecycle sia allineato con gli obiettivi di
+                +b business e con le minacce attuali, promuovendo lo sviluppo sicuro del software."
+        { system_integration
+            isRelevant true
+            motivation "Un framework di governance aggiornato supporta la verifica di un IACS o
+                +b macchina, assicurando che i sistemi integrati siano sviluppati e mantenuti in
+                +b linea con gli obiettivi di business e le minacce attuali."
+        { component_production
+            isRelevant true
+            motivation "Un framework di governance aggiornato è rilevante per la produzione di
+                +b componenti, in quanto garantisce che i processi di produzione siano allineati
+                +b con gli obiettivi di business e con le minacce attuali, migliorando la
+                +b sicurezza dei componenti prodotti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono state dedotte considerando l'importanza di un
+            +b framework di governance aggiornato in diversi contesti, come specificato nelle
+            +b motivazioni. La proprietà 'system_integration' è stata corretta da
+            +b 'system_integration' a 'system_integration' per conformità con lo schema."
+    {
+        IDD "1.2.1"
+        area "Governance"
+        category "Ruoli e responsabilità"
+        description "Sono identificati e formalizzati appositi ruoli nell'ambito della
+            +b cybersecurity, le responsabilità sono assegnate?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire una chiara definizione dei ruoli e delle
+                +b responsabilità per la cybersecurity, in quanto è responsabile della gestione
+                +b complessiva del sistema IACS e della conformità alle normative."
+        { ssdl
+            isRelevant true
+            motivation "Un Secure Software Development Lifecycle richiede una chiara definizione dei
+                +b ruoli e delle responsabilità per garantire che tutte le fasi dello sviluppo
+                +b siano condotte in modo sicuro e conforme agli standard."
+        { system_integration
+            isRelevant true
+            motivation "L'integrazione di un sistema IACS o macchina richiede una chiara definizione
+                +b dei ruoli e delle responsabilità per garantire che tutti i componenti siano
+                +b integrati in modo sicuro e che le responsabilità siano ben definite."
+        { component_production
+            isRelevant true
+            motivation "La produzione di componenti per IACS richiede una chiara definizione dei ruoli
+                +b e delle responsabilità per garantire che tutti i processi di produzione siano
+                +b condotti in modo sicuro e che le responsabilità siano ben definite."
+        note_su_json_risultante "Tutte le valutazioni sono state effettuate considerando la rilevanza del
+            +b controllo 'Ruoli e responsabilità' nei diversi contesti. La proprietà
+            +b 'component_production' è stata corretta da 'component_production' a
+            +b 'component_production' per conformità allo schema."
+    {
+        IDD "1.2.2"
+        area "Governance"
+        category "Ruoli e responsabilità"
+        description "E' definito un modello organizzativo di cybersecurity strutturato che prevede
+            +b il coinvolgimento del top management (p.e. Comitato controllo rischi)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner ha la responsabilità ultima della sicurezza degli asset IACS. Un
+                +b modello organizzativo strutturato con coinvolgimento del top management è
+                +b fondamentale per garantire allocazione di risorse e priorità strategiche."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la governance sia importante, questo controllo è più focalizzato
+                +b sull'organizzazione aziendale che su specifici processi di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "Un chiaro modello organizzativo di cybersecurity è essenziale per garantire che
+                +b i sistemi integrati siano sviluppati e mantenuti secondo adeguati standard di
+                +b sicurezza."
+        { component_production
+            isRelevant true
+            motivation "Anche nella produzione di componenti, è necessaria una governance chiara per
+                +b garantire che i requisiti di sicurezza siano implementati coerentemente in
+                +b tutto il ciclo di vita del prodotto."
+        note_su_json_risultante "La valutazione per 'ssdl' è stata impostata come false poiché il controllo è
+            +b più orientato alla governance aziendale che a specifiche attività di sviluppo
+            +b software. Le altre valutazioni sono state impostate come true data l'importanza
+            +b trasversale della governance in cybersecurity."
+    {
+        IDD "1.3.1"
+        area "Governance"
+        category "Gestione dei rischi"
+        description "Viene svolto periodicamente (almeno annualmente) un'analisi dei rischi cyber in
+            +b accordo con un processo definito e formalizzato?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la sicurezza complessiva dell'IACS. Un'analisi
+                +b periodica dei rischi cyber è fondamentale per identificare minacce e
+                +b vulnerabilità, allineare le contromisure e rispettare normative come IEC 62443."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione del rischio sia importante nello sviluppo software, questa
+                +b specifica domanda si riferisce a un processo organizzativo generale piuttosto
+                +b che a fasi specifiche del SDLC."
+        { system_integration
+            isRelevant true
+            motivation "L'integrazione di sistemi IACS richiede una comprensione dei rischi cyber.
+                +b L'analisi periodica è cruciale per valutare l'impatto di nuove integrazioni e
+                +b mantenere la sicurezza complessiva del sistema."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware/software tipicamente non richiede analisi
+                +b di rischio periodiche a livello organizzativo (se non come parte di
+                +b certificazioni iniziali). Il focus è su requisiti di sicurezza specifici del
+                +b prodotto."
+        note_su_json_risultante "La valutazione SSDL è stata impostata come non rilevante poiché l'item riguarda
+            +b un processo governance più che attività di sviluppo software. Per componenti
+            +b prodotti, si è considerato che la domanda si riferisce a processi organizzativi
+            +b anziché a requisiti di prodotto."
+    {
+        IDD "1.3.2"
+        area "Governance"
+        category "Gestione dei rischi"
+        description "Viene mantenuta traccia in modo strutturato di un registro dei rischi cyber con
+            +b evidenza della strategia di risposta?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve mantenere un registro dei rischi cyber per garantire la
+                +b sicurezza complessiva dell'IACS e dimostrare la conformità alle normative. La
+                +b traccia strutturata dei rischi è fondamentale per la gestione proattiva della
+                +b sicurezza."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione del rischio sia importante nello sviluppo software, questo
+                +b controllo è più focalizzato sulla governance operativa che sul processo di
+                +b sviluppo. Il registro dei rischi cyber è tipicamente gestito a livello
+                +b organizzativo piuttosto che nel SDLC."
+        { system_integration
+            isRelevant true
+            motivation "Un registro strutturato dei rischi cyber è essenziale per garantire che i
+                +b rischi specifici del sistema integrato o della macchina siano identificati e
+                +b gestiti durante l'integrazione e l'operatività."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo è più rilevante per la gestione operativa che per la
+                +b produzione di componenti. I produttori di componenti tipicamente non gestiscono
+                +b registri dei rischi cyber a livello di singolo componente."
+        note_su_json_risultante "Le valutazioni di rilevanza sono state effettuate considerando che il controllo
+            +b riguarda principalmente la governance del rischio a livello organizzativo. La
+            +b rilevanza per system_integration è stata valutata positiva in quanto
+            +b l'integrazione di sistemi richiede una gestione strutturata dei rischi."

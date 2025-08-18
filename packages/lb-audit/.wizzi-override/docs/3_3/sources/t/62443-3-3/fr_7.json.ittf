@@ -1,0 +1,225 @@
+$group
+    {
+        id "FR-7"
+        key "RA"
+        name "Resource availability"
+        page 61
+        purpose "Ensure the availability of the control system against the degradation or denial of essential services."
+        rationale "The aim of this series of SRs is to ensure that the control system is resilient against 
+            +b various types of DoS events. 
+            +b This includes the partial or total unavailability of system functionality at various levels. 
+            +b In particular, security incidents in the control system should not affect SIS or 
+            +b other safety-related functions."
+        [ security_levels_descriptions
+            "SL 1 – Ensure that the control system operates reliably under normal production conditions and prevents DoS situations caused by the casual or coincidental actions of an entity."
+            "SL 2 – Ensure that the control system operates reliably under normal and abnormal production conditions and prevents DoS situations by entities using simple means with low resources, generic skills and low motivation."
+            "SL 3 – Ensure that the control system operates reliably under normal, abnormal, and extreme production conditions and prevents DoS situations by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation."
+            "SL 4 – Ensure that the control system operates reliably under normal, abnormal, and extreme production conditions and prevents DoS situations by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+        [ srs
+            {
+                id "SR 7.1"
+                page 60
+                name "Audit log accessibility"
+                description "The control system shall provide the capability for authorized humans and/or tools 
+                    +b to access audit logs on a read-only basis."
+                rationale "The control system generates audit records about events occurring in the system 
+                    +b (see 6.10, SR 2.8 – Auditable events). 
+                    +b Access to these audit logs is necessary to support filtering audit logs, 
+                    +b identifying and removing information that is redundant, reviewing and reporting 
+                    +b activity during after-the-fact investigations of security incidents. 
+                    +b This access should not alter the original audit records. 
+                    +b In general, audit reduction and report generation should be performed on a separate information system. 
+                    +b Manual access to the audit records (such as screen views or printouts) is sufficient 
+                    +b for meeting the base requirement, but is insufficient for higher SLs. 
+                    +b Programmatic access is commonly used to provide the audit log information to analysis mechanisms 
+                    +b such as SIEM. 
+                    +b See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, 
+                    +b protection of and access to audit logs."
+                [ rhs
+                    {
+                        id "SR 7.1 RE 1"
+                        name "Programmatic access to audit logs"
+                        description "The control system shall provide programmatic access to audit records 
+                            +b using an application programming interface (API)."
+                [ security_levels    
+                    "SL-C (TRE, control system) 1: SR 7.1"
+                    "SL-C (TRE, control system) 2: SR 7.1"
+                    "SL-C (TRE, control system) 3: SR 7.1 (1)"
+                    "SL-C (TRE, control system) 4: SR 7.1 (1)"
+            {
+                id "SR 7.1"
+                page 62
+                name "Denial of service protection"
+                description "The control system shall provide the capability to operate in a degraded mode during a DoS event."
+                rationale "A variety of technologies exist to limit, or in some cases, eliminate the effects of DoS situations. 
+                    +b For example, boundary protection devices can filter certain types of packets to protect 
+                    +b devices on an internal, trusted network from being directly affected by DoS events or 
+                    +b restricting the information flow to be unidirectional outbound. 
+                    +b Specifically, as noted in Clause 4, a DoS event on the control system should not adversely impact 
+                    +b any safety-related systems."
+                [ rhs
+                    {
+                        id "SR 7.1 RE 1"
+                        name "Manage communication loads"
+                        description "The control system shall provide the capability to manage communication loads 
+                            +b (such as using rate limiting) to mitigate the effects of 
+                            +b information flooding types of DoS events."
+                    {
+                        id "SR 7.1 RE 2"
+                        name "Limit DoS effects to other systems or networks"
+                        description "The control system shall provide the capability to restrict the ability of all users 
+                            +b (humans, software processes and devices) to cause DoS events which affect 
+                            +b other control systems or networks."
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.1"
+                    "SL-C (RA, control system) 2: SR 7.1 (1)"
+                    "SL-C (RA, control system) 3: SR 7.1 (1) (2)"
+                    "SL-C (RA, control system) 4: SR 7.1 (1) (2)"
+            {
+                id "SR 7.2"
+                page 62
+                name "Resource management"
+                description "The control system shall provide the capability to limit the use of resources 
+                    +b by security functions to prevent resource exhaustion."
+                rationale "Resource management (for example, network segmentation or priority schemes) 
+                    +b prevents a lower-priority software process from delaying or interfering with 
+                    +b the control system servicing any higher-priority software process. 
+                    +b For example, initiating network scans, patching and/or antivirus checks on an operating system 
+                    +b can cause severe disruption to normal operations. 
+                    +b Traffic rate limiting schemes should be considered as a mitigation technique."
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.2"
+                    "SL-C (RA, control system) 2: SR 7.2"
+                    "SL-C (RA, control system) 3: SR 7.2"
+                    "SL-C (RA, control system) 4: SR 7.2"
+            {
+                id "SR 7.3"
+                page 63
+                name "Control system backup"
+                description "The identity and location of critical files and the ability to conduct backups of 
+                    +b user-level and system-level information (including system state information) shall be supported 
+                    +b by the control system without affecting normal plant operations."
+                rationale "The availability of up-to-date backups is essential for recovery from a control system failure 
+                    +b and/or mis-configuration. 
+                    +b Automating this function ensures that all required files are captured, reducing operator overhead. 
+                    +b Although not usually required for control system recovery, information required for 
+                    +b post-incident forensic activity (for example, audit logs) should be specifically included 
+                    +b in the backup (see 10.4, SR 6.2 – Continuous monitoring). 
+                    +b If the resulting backups contain confidential information, encryption should be considered 
+                    +b (see 8.5, SR 4.3 – Use of cryptography)."
+                [ rhs
+                    {
+                        id "SR 7.3 RE 1"
+                        name "Backup verification"
+                        description "The control system shall provide the capability to verify the reliability of 
+                            +b backup mechanisms."
+                    {
+                        id "SR 7.3 RE 2"
+                        name "Backup automation"
+                        description "The control system shall provide the capability to automate the backup function 
+                            +b based on a configurable frequency."
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.3"
+                    "SL-C (RA, control system) 2: SR 7.3 (1)"
+                    "SL-C (RA, control system) 3: SR 7.3 (1) (2)"
+                    "SL-C (RA, control system) 4: SR 7.3 (1) (2)"
+            {
+                id "SR 7.4"
+                page 63
+                name "Control system recovery and reconstitution"
+                description "The control system shall provide the capability to recover and reconstitute 
+                    +b to a known secure state after a disruption or failure."
+                rationale "Control system recovery and reconstitution to a known secure state means that 
+                    +b all system parameters (either default or configurable) are set to secure values, 
+                    +b security-critical patches are reinstalled, security-related configuration settings are reestablished, 
+                    +b system documentation and operating procedures are available, application and system software 
+                    +b is reinstalled and configured with secure settings, information from the most recent, 
+                    +b known secure backups is loaded and the system is fully tested and functional."
+                [ rhs
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.4"
+                    "SL-C (RA, control system) 2: SR 7.4"
+                    "SL-C (RA, control system) 3: SR 7.4"
+                    "SL-C (RA, control system) 4: SR 7.4"
+            {
+                id "SR 7.5"
+                page 64
+                name "Emergency power"
+                description "The control system shall provide the capability to switch to and from an emergency power supply 
+                    +b without affecting the existing security state or a documented degraded mode."
+                rationale "There may be instances where compensating countermeasures such as physical door access control 
+                    +b may be affected by loss of base power supply, in which case the emergency power supply 
+                    +b should cover those associated systems. 
+                    +b If this is not possible, other compensating countermeasures may be needed during such 
+                    +b an emergency situation."
+                [ rhs
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.5"
+                    "SL-C (RA, control system) 2: SR 7.5"
+                    "SL-C (RA, control system) 3: SR 7.5"
+                    "SL-C (RA, control system) 4: SR 7.5"
+            {
+                id "SR 7.6"
+                page 64
+                name "Network and security configuration settings"
+                description "The control system shall provide the capability to be configured according to 
+                    +b recommended network and security configurations as described in guidelines provided 
+                    +b by the control system supplier. 
+                    +b The control system shall provide an interface to the currently deployed network and 
+                    +b security configuration settings."
+                rationale "These configuration settings are the adjustable parameters of the control system components. 
+                    +b In order to be able to detect and correct any deviations from the approved and/or 
+                    +b recommended configuration settings, the control system needs to support monitoring and
+                    +b control of changes to the configuration settings in accordance with security policies and procedures. 
+                    +b For enhanced security, an automated check may be performed where the current settings 
+                    +b are automatically collected by an agent and compared to approved settings."
+                [ rhs
+                    {
+                        id "SR 7.6 RE 1"
+                        name "Machine-readable reporting of current security settings"
+                        description "The control system shall provide the capability to generate a report 
+                            +b listing the currently deployed security settings in a machine-readable format."
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.6"
+                    "SL-C (RA, control system) 2: SR 7.6"
+                    "SL-C (RA, control system) 3: SR 7.6 (1)"
+                    "SL-C (RA, control system) 4: SR 7.6 (1)"
+            {
+                id "SR 7.7"
+                page 65
+                name "Least functionality"
+                description "The control system shall provide the capability to specifically prohibit and/or restrict 
+                    +b the use of unnecessary functions, ports, protocols and/or services."
+                rationale "Control systems are capable of providing a wide variety of functions and services. 
+                    +b Some of the functions and services provided may not be necessary to support essential functions. 
+                    +b Therefore, by default, functions beyond a baseline configuration should be disabled. 
+                    +b Additionally, it is sometimes convenient to provide multiple services from a single component 
+                    +b of a control system, but doing so increases risk over limiting the services 
+                    +b provided by any one component. 
+                    +b Many functions and services commonly provided by commercial-off-the-shelf (COTS) equipment 
+                    +b may be candidates for elimination, for example, email, voice over internet protocol (VoIP), 
+                    +b instant messaging (IM), file transfer protocol (FTP), hypertext transfer protocol (HTTP) 
+                    +b and file sharing."
+                [ rhs
+                [ security_levels    
+                    "SL-C (RA, control system) 1: SR 7.7"
+                    "SL-C (RA, control system) 2: SR 7.7"
+                    "SL-C (RA, control system) 3: SR 7.7"
+                    "SL-C (RA, control system) 4: SR 7.7"
+            {
+                id "SR 7.8"
+                page 66
+                name "Control system component inventory"
+                description "The control system shall provide the capability to report the current list of 
+                    +b installed components and their associated properties."
+                rationale "A control system component inventory may include but is not limited to component ID, 
+                    +b capability and revision level. 
+                    +b The component inventory should be consistent with the SuC. 
+                    +b A formal process of configuration management should be deployed to keep control of the changes 
+                    +b in the component inventory baseline (see IEC 62443‑2‑1)."
+                [ rhs
+                [ security_levels    
+                    "SL-C (RA, control system) 1: Not Selected"
+                    "SL-C (RA, control system) 2: SR 7.8"
+                    "SL-C (RA, control system) 3: SR 7.8"
+                    "SL-C (RA, control system) 4: SR 7.8"

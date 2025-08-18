@@ -1,0 +1,262 @@
+$group
+    {
+        practice "4"
+        code "SI-2"
+        name "Secure coding standards"
+        sub "f) error handling"
+        check_description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: f) error
+            +b handling"
+        requirement_id "IEC 62443-4-1:SI-2:f"
+        title "Secure Coding Standards - Error Handling"
+        description "This requirement emphasizes the importance of implementing secure error
+            +b handling practices in the software development process. The goal is to ensure
+            +b that errors are managed in a way that does not expose sensitive information or
+            +b create security vulnerabilities."
+        [ key_aspects
+            {
+                aspect "Error Identification"
+                details "Ensure that errors are properly identified and classified. This includes
+                    +b distinguishing between recoverable and non-recoverable errors and handling them
+                    +b accordingly."
+            {
+                aspect "Error Logging"
+                details "Implement a secure error logging mechanism that does not expose sensitive
+                    +b information. Logs should be protected against unauthorized access and
+                    +b modifications."
+            {
+                aspect "User Feedback"
+                details "Provide users with minimal and non-technical error messages to prevent
+                    +b information leakage. Ensure that detailed error information is available only
+                    +b to authorized personnel."
+            {
+                aspect "Exception Management"
+                details "Use structured exception handling practices to ensure that all exceptions are
+                    +b caught and managed appropriately. Avoid exposing stack traces or system
+                    +b internals to users."
+            {
+                aspect "Fail-Secure"
+                details "Design systems to fail in a secure manner. This means ensuring that in the
+                    +b event of an error, the system maintains its security posture and does not
+                    +b expose vulnerabilities."
+        [ related_standards
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 12.4 - Logging and Monitoring"
+                description "This section provides guidelines for logging and monitoring activities to
+                    +b detect unauthorized information processing activities."
+            {
+                standard "OWASP Top Ten"
+                reference "A6:2021 - Vulnerable and Outdated Components"
+                description "This category highlights the risks associated with using components with known
+                    +b vulnerabilities, which can include improper error handling."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-11 - Error Handling"
+                description "This control focuses on ensuring that the information system handles error
+                    +b conditions in a manner that does not compromise security."
+            {
+                standard "CERT Secure Coding Standards"
+                reference "ERR - Error Handling"
+                description "This guideline provides best practices for error handling to prevent
+                    +b vulnerabilities and ensure software reliability and security."
+    {
+        practice "5"
+        code "SVV-1"
+        name "Security requirements testing"
+        sub "a) functional testing of security requirements;"
+        check_description "A process shall be employed for verifying the product security functions meet
+            +b the security requirements and that the product handles error scenarios and
+            +b invalid input correctly. Types of testing shall include: a) functional testing
+            +b of security requirements;"
+        requirement_id "SVV-1-a"
+        title "Functional Testing of Security Requirements"
+        description "This requirement mandates the functional testing of security requirements to
+            +b ensure that all specified security controls are implemented effectively. It
+            +b involves verifying that the system behaves as expected under various conditions
+            +b and that all security features are operational and meet the intended security
+            +b objectives."
+        [ key_aspects
+            "Verification of system behavior against specified security controls."
+            "Testing under various conditions to ensure robustness and reliability."
+            "Ensuring that security features operate as intended and fulfill security objectives."
+            "Identification and remediation of discrepancies between expected and actual outcomes."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.12.6 - Technical Vulnerability Management"
+                description "This section emphasizes the need for testing and managing vulnerabilities,
+                    +b which aligns with functional testing to ensure security controls are effective."
+            { "NIST SP 800-53"
+                [ controls
+                    "CA-7 - Continuous Monitoring"
+                    "RA-5 - Vulnerability Scanning"
+                description "These controls highlight the importance of ongoing testing and assessment of
+                    +b security controls to identify vulnerabilities and ensure effective
+                    +b implementation."
+            { "ISO/IEC 29119"
+                part "Software Testing - Part 1, 2, and 3"
+                description "These parts provide comprehensive guidelines for software testing, including
+                    +b test processes and documentation, which support the systematic approach
+                    +b required for functional testing of security requirements."
+    {
+        practice "5"
+        code "SVV-1"
+        name "Security requirements testing"
+        sub "b) performance and scalability testing;"
+        check_description "A process shall be employed for verifying the product security functions meet
+            +b the security requirements and that the product handles error scenarios and
+            +b invalid input correctly. Types of testing shall include: b) performance and
+            +b scalability testing;"
+        requirement_id "SVV-1-b"
+        title "Performance and Scalability Testing"
+        description "This requirement focuses on ensuring that the security controls implemented
+            +b within an industrial automation and control system (IACS) can perform
+            +b efficiently under expected operational conditions and can scale appropriately
+            +b with the system's growth. The testing should evaluate the system's ability to
+            +b maintain security posture while accommodating increased loads or expanded
+            +b configurations."
+        [ key_aspects
+            {
+                aspect "Performance Testing"
+                details "Assess the ability of security mechanisms to function effectively under normal
+                    +b and peak load conditions. This includes evaluating the latency introduced by
+                    +b security controls and ensuring that they do not degrade system performance
+                    +b beyond acceptable limits."
+            {
+                aspect "Scalability Testing"
+                details "Evaluate the system's ability to scale security controls in response to
+                    +b increased demand or growth in system size. This involves testing the system's
+                    +b capability to handle additional nodes, connections, or data throughput while
+                    +b maintaining security integrity."
+            {
+                aspect "Load Testing"
+                details "Conduct tests to simulate high-load conditions to determine the maximum
+                    +b operational capacity of security features. This helps in understanding how the
+                    +b system behaves under stress and identifies potential bottlenecks."
+            {
+                aspect "Stress Testing"
+                details "Test the system's robustness by pushing it beyond its normal operational
+                    +b capacity to ensure that security controls can withstand extreme conditions
+                    +b without failure."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.14.2 - Security in Development and Support Processes"
+                details "Emphasizes the importance of testing information systems to ensure security
+                    +b requirements are met, which aligns with performance and scalability testing in
+                    +b maintaining system integrity under different conditions."
+            {
+                standard "NIST SP 800-53"
+                reference "CA-2 - Security Assessments"
+                details "Focuses on assessing the security controls, including performance and
+                    +b scalability aspects, to ensure they are effective and operate as intended."
+            {
+                standard "OWASP Testing Guide"
+                reference "OTG-BUSLOG-001 - Testing for Business Logic"
+                details "Although primarily focused on web applications, it provides insights into
+                    +b testing the logic that could affect performance and scalability of security
+                    +b measures."
+            {
+                standard "IEEE 829"
+                reference "Standard for Software and System Test Documentation"
+                details "Provides a framework for documenting test cases, including those for
+                    +b performance and scalability, ensuring comprehensive coverage of security
+                    +b requirements."
+    {
+        practice "5"
+        code "SVV-1"
+        name "Security requirements testing"
+        sub "c) boundary/edge condition, stress and malformed or unexpected input tests not
+            +b specifically targeted at security."
+        check_description "A process shall be employed for verifying the product security functions meet
+            +b the security requirements and that the product handles error scenarios and
+            +b invalid input correctly. Types of testing shall include: c) boundary/edge
+            +b condition, stress and malformed or unexpected input tests not specifically
+            +b targeted at security."
+        requirement_id "SVV-1-c"
+        title "Boundary/Edge Condition, Stress and Malformed or Unexpected Input Tests"
+        description "This requirement under IEC 62443-4-1 focuses on testing security requirements
+            +b by evaluating boundary/edge conditions, stress, and handling of malformed or
+            +b unexpected inputs. Although these tests are not specifically targeted at
+            +b security, they are crucial for ensuring the robustness of a system and its
+            +b resilience against potential security threats that exploit these conditions."
+        [ key_aspects
+            "Boundary/Edge Condition Testing: Verifying system behavior at the limits of input ranges to ensure it handles extreme cases gracefully."
+            "Stress Testing: Evaluating system performance and stability under peak load conditions to identify potential weaknesses that could be exploited in security scenarios."
+            "Malformed or Unexpected Input Testing: Assessing the system's ability to handle unexpected or incorrect inputs without crashing or exposing vulnerabilities."
+        [ related_standards
+            {
+                standard "ISO/IEC 27034-1"
+                reference "This standard provides guidelines for application security, including ensuring
+                    +b that applications can withstand unexpected input and stress conditions."
+            {
+                standard "NIST SP 800-53"
+                reference "Control SI-10 (Information Input Validation) emphasizes the importance of
+                    +b validating input data to prevent malicious data from exploiting system
+                    +b vulnerabilities."
+            {
+                standard "OWASP Testing Guide"
+                reference "The OWASP Testing Guide includes specific sections on input validation and
+                    +b boundary testing, highlighting the importance of these tests in identifying
+                    +b security vulnerabilities."
+            {
+                standard "ISO/IEC 25010"
+                reference "This standard on system and software quality models includes aspects of
+                    +b reliability and robustness, which are relevant to stress and boundary testing."
+    {
+        practice "5"
+        code "SVV-2"
+        name "Threat mitigation testing"
+        sub "a) creating and executing plans to ensure that each mitigation implemented to
+            +b address a specific threat has been adequately tested to ensure the mitigation
+            +b works as designed and"
+        check_description "A process shall be employed for testing the effectiveness of the mitigation for
+            +b the threats identified and validated in the threat model. Activities shall
+            +b include: a) creating and executing plans to ensure that each mitigation
+            +b implemented to address a specific threat has been adequately tested to ensure
+            +b the mitigation works as designed and"
+        requirement_id "IEC 62443-4-1:2018 SVV-2 a"
+        title "Threat Mitigation Testing - Plan Creation and Execution"
+        description "This requirement focuses on the creation and execution of plans to ensure that
+            +b each mitigation implemented to address a specific threat has been adequately
+            +b tested. The goal is to confirm that the mitigation functions as designed. This
+            +b involves designing comprehensive testing plans that are tailored to the
+            +b specific threats and the corresponding mitigations."
+        [ key_aspects
+            {
+                aspect "Plan Creation"
+                details "Develop detailed testing plans that outline the objectives, scope, methods, and
+                    +b criteria for testing each threat mitigation. These plans should be based on a
+                    +b thorough understanding of the threat landscape and the mitigations in place."
+            {
+                aspect "Execution of Testing"
+                details "Carry out the testing as per the developed plans, ensuring that the execution
+                    +b is meticulous and adheres to defined procedures. Testing should simulate
+                    +b real-world scenarios to validate the effectiveness of the threat mitigation
+                    +b measures."
+            {
+                aspect "Verification of Mitigation"
+                details "Verify that the mitigations operate correctly under the conditions they are
+                    +b expected to protect against. The testing should demonstrate that the mitigation
+                    +b effectively neutralizes or mitigates the identified threats."
+            {
+                aspect "Documentation"
+                details "Document the testing procedures, results, and any discrepancies found. This
+                    +b documentation serves as evidence of compliance and aids in future audits or
+                    +b assessments."
+        [ related_standards
+            {
+                standard "ISO/IEC 27034-1:2011"
+                reference "This standard focuses on the application security framework and includes
+                    +b elements related to secure design and threat mitigation, which are relevant to
+                    +b developing test plans for threat mitigations."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "The NIST Special Publication provides guidelines for security and privacy
+                    +b controls, including assessment and testing of security controls, which align
+                    +b with the need for thorough threat mitigation testing."
+            {
+                standard "ISO/IEC 15408-3:2008"
+                reference "Common Criteria for Information Technology Security Evaluation, Part 3, which
+                    +b includes security assurance requirements that cover testing and evaluation of
+                    +b security functions, relevant for verifying threat mitigations."

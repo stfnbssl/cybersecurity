@@ -1,0 +1,380 @@
+$group
+    {
+        practice "1"
+        code "SM-3"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "Asset Classification and Scoping Policy"
+                description "This policy defines the process for classifying and scoping industrial assets
+                    +b to determine applicability under IEC 62443-4-1. It requires all Breton Spa CNC
+                    +b machines and associated control systems to be evaluated based on criticality,
+                    +b supported protocols, and security features. The policy aligns with IEC
+                    +b 62443-4-1 SM-3 requirements for systematic applicability identification."
+                enforcement "Quarterly audits using Claroty for asset discovery and manual reviews of vendor
+                    +b documentation. Non-compliant assets are isolated in a quarantined network zone
+                    +b until remediation."
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "Vendor Security Documentation Requirement"
+                description "Mandates that all suppliers of Breton Spa's stone cutting machines provide IEC
+                    +b 62443-4-1 conformance statements and security capability matrices prior to
+                    +b procurement. Specifically requires documentation for OPC UA and PROFINET
+                    +b implementations as per SM-3's vendor analysis requirements."
+                enforcement "Contractual clauses with financial penalties for non-compliance. Automated
+                    +b validation checks in the procurement system against a standardized security
+                    +b attributes checklist."
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "Dynamic Scope Maintenance Procedure"
+                description "Establishes protocols for updating applicability determinations when new
+                    +b firmware (e.g., 2025.1 updates) or components are introduced to Breton's
+                    +b polishing machines. Incorporates IEC 62443-4-1's requirement for continuous
+                    +b scope evaluation through change management integration."
+                enforcement "Automated change detection via SIEM tools triggers scope review workflows.
+                    +b Monthly reconciliation between CMDB records and actual network scans."
+        [ procedures
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "ICS Asset Inventory Creation"
+                description "Procedure for building and maintaining an accurate inventory of all Breton Spa
+                    +b composite material processing equipment, including security attributes relevant
+                    +b for IEC 62443-4-1 applicability determination."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy passive monitoring sensors (e.g., Nozomi Networks) on all OT network
+                            +b segments containing Breton machines"
+                        tools "Nozomi Networks Guardian, Wireshark with ICS dissectors"
+                        expected_outcome "Complete list of MAC/IP addresses, protocols (OPC UA, PROFINET), and device
+                            +b fingerprints"
+                    {
+                        step 2
+                        action "Cross-reference discovered assets with vendor documentation (security manuals,
+                            +b conformance statements)"
+                        tools "Vendor portal access, Document management system"
+                        expected_outcome "Validated security capabilities matrix per device type (CNC vs polishing
+                            +b machines)"
+                    {
+                        step 3
+                        action "Classify assets using Rockwell Automation framework (Critical/Non-Critical)
+                            +b based on application criticality from product context"
+                        tools "Asset management database, Risk assessment worksheets"
+                        expected_outcome "Tagged inventory with IEC 62443-4-1 applicability flags and justification notes"
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "Legacy System Evaluation Process"
+                description "Methodology for assessing older Breton stone cutting machines without native
+                    +b security features against IEC 62443-4-1 requirements, including compensating
+                    +b controls implementation."
+                [ steps
+                    {
+                        step 1
+                        action "Perform protocol analysis to identify unsupported security features (e.g.,
+                            +b plaintext Modbus TCP)"
+                        tools "Tenable.ot, Wireshark with ICS plugins"
+                        expected_outcome "Gap analysis report showing missing security controls per IEC 62443-4-1"
+                    {
+                        step 2
+                        action "Design network segmentation strategy using Purdue Model zones for legacy
+                            +b equipment"
+                        tools "Network diagramming tools, Firewall rule templates"
+                        expected_outcome "Approved network segmentation plan with ACL definitions"
+                    {
+                        step 3
+                        action "Implement protocol gateways with TLS termination for legacy devices requiring
+                            +b external connectivity"
+                        tools "Honeywell Secure Gateway, Moxa protocol converters"
+                        expected_outcome "Operational security proxies enabling encrypted communications for legacy
+                            +b systems"
+            {
+                code "SM-3"
+                subCode "undefined"
+                title "Vendor Security Assessment"
+                description "Standardized process for evaluating third-party component suppliers against IEC
+                    +b 62443-4-1 SM-3 requirements, particularly for CNC machine subsystems."
+                [ steps
+                    {
+                        step 1
+                        action "Issue security declaration forms (Yokogawa template) to all vendors of PLCs,
+                            +b HMIs, and drives"
+                        tools "Vendor management portal, Standardized templates"
+                        expected_outcome "Completed forms documenting security capabilities and certifications"
+                    {
+                        step 2
+                        action "Conduct on-site assessment for critical components (e.g., multi-axis
+                            +b controllers)"
+                        tools "ICS-specific checklist, Portable testing equipment"
+                        expected_outcome "Validation report confirming vendor claims of OPC UA Basic256Sha256
+                            +b implementation"
+                    {
+                        step 3
+                        action "Maintain approved vendor list with expiration dates for certifications"
+                        tools "GRC platform, Automated alert system"
+                        expected_outcome "Updated procurement system with current compliance status for all suppliers"
+        last_updated "2023-11-20"
+    {
+        practice "1"
+        code "SM-4"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Role-Specific Security Training Policy"
+                description "This policy mandates the development and implementation of role-specific
+                    +b security training programs for all personnel involved in ICS operations,
+                    +b ensuring alignment with IEC 62443-4-1 SM-4 requirements. Training must cover
+                    +b both IT and OT security aspects, with a focus on practical skills relevant to
+                    +b the specific industrial environment (e.g., CNC machining centers, stone cutting
+                    +b machines)."
+                enforcement "Annual audits of training records and competency assessments by the internal
+                    +b security team, with verification against role-specific security requirements
+                    +b documented in SM-2. Non-compliance triggers mandatory retraining and HR
+                    +b escalation."
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Continuous Skills Refresh Policy"
+                description "Requires quarterly updates to training content based on the latest ICS threat
+                    +b intelligence (e.g., CISA advisories) and annual re-assessment of personnel
+                    +b competency. Aligns with IEC 62443-4-1 SM-4's dynamic expertise requirements,
+                    +b particularly for high-criticality applications like metalworking precision
+                    +b parts."
+                enforcement "Automated tracking via integrated LMS (Learning Management System) alerts for
+                    +b overdue training updates. Random practical testing (e.g., simulated PLC
+                    +b attacks) conducted by the security team to validate retained skills."
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Training Documentation and Audit Policy"
+                description "Specifies standardized documentation for all security training activities,
+                    +b including syllabi, attendance records, and assessment results, per IEC
+                    +b 62443-4-1 SM-4's auditable records requirement. Applies to all Breton Spa
+                    +b manufacturing personnel interacting with OPC UA, PROFINET, or other supported
+                    +b industrial protocols."
+                enforcement "Centralized storage of records in a tamper-evident system (e.g.,
+                    +b blockchain-based HR module). Monthly sampling by quality assurance teams to
+                    +b verify record completeness against training schedules."
+        [ procedures
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Role-Security Competency Mapping Procedure"
+                description "Defines the process to establish and maintain security skill requirements for
+                    +b each ICS role (e.g., CNC machine operators, PLC programmers), as mandated by
+                    +b IEC 62443-4-1 SM-4. Incorporates vendor-specific knowledge (e.g., Siemens
+                    +b PROFINET security) for Breton Spa's equipment."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct job task analysis (JTA) for each role to identify security-critical
+                            +b responsibilities (e.g., configuring OPC UA encryption)."
+                        tools "NIST SP 800-82 Rev.3 workforce development framework, vendor documentation
+                            +b (e.g., Rockwell Automation security guides)."
+                        expected_outcome "Documented list of security tasks per role, mapped to IEC 62443-4-1 CR1-CR7
+                            +b requirements."
+                    {
+                        step 2
+                        action "Define measurable competency levels (e.g., 'Can detect Modbus TCP/TLS
+                            +b configuration errors') for each task."
+                        tools "Bloom's Taxonomy for skill categorization, ISA/IEC 62443-2-1 training
+                            +b templates."
+                        expected_outcome "Standardized competency matrix with evaluation criteria for all
+                            +b security-relevant roles."
+                    {
+                        step 3
+                        action "Validate mappings with operational teams and update annually or after
+                            +b significant system changes (e.g., new machine types)."
+                        tools "Stakeholder workshops, change management system (e.g., ServiceNow)."
+                        expected_outcome "Approved role-security matrix integrated into HR performance evaluation
+                            +b systems."
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Hands-On ICS Security Assessment Procedure"
+                description "Details the execution of practical competency evaluations for personnel
+                    +b handling high-criticality systems (e.g., composite material processing lines),
+                    +b per IEC 62443-4-1 SM-4's emphasis on applied skills. Uses Breton Spa's testbed
+                    +b environment with actual machine controllers."
+                [ steps
+                    {
+                        step 1
+                        action "Prepare isolated test environment with representative equipment (e.g., CNC
+                            +b machining center running actual G-code)."
+                        tools "Breton Spa's OT test lab, vulnerability injection tools (e.g., ICS-SPLIT for
+                            +b protocol fuzzing)."
+                        expected_outcome "Controlled environment replicating production systems but with safety
+                            +b mechanisms to prevent real damage."
+                    {
+                        step 2
+                        action "Administer scenario-based assessments (e.g., 'Detect and mitigate a ransomware
+                            +b attack on the HMI')."
+                        tools "MITRE ATT&CK for ICS evaluation templates, time-tracking system."
+                        expected_outcome "Quantified performance metrics (e.g., time to detect, correctness of response
+                            +b actions)."
+                    {
+                        step 3
+                        action "Debrief participants with detailed feedback and document gaps for targeted
+                            +b training."
+                        tools "Assessment scoring rubrics, training needs analysis (TNA) reports."
+                        expected_outcome "Individual improvement plans and updates to organization-wide training
+                            +b programs."
+            {
+                code "SM-4"
+                subCode "undefined"
+                title "Vendor-Specific Training Integration Procedure"
+                description "Outlines steps to incorporate equipment manufacturer training (e.g., Siemens
+                    +b ICS Security) into Breton Spa's compliance with IEC 62443-4-1 SM-4, ensuring
+                    +b alignment with actual deployed systems (e.g., PROFINET-enabled polishing
+                    +b machines)."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all vendor-provided training resources (e.g., Honeywell Industrial
+                            +b Cybersecurity Labs) relevant to installed systems."
+                        tools "CMDB (Configuration Management Database), vendor support portals."
+                        expected_outcome "Catalog of available training mapped to machine types and protocols in use
+                            +b (e.g., EtherNet/IP with CIP Security)."
+                    {
+                        step 2
+                        action "Assess vendor content against role-security matrices and fill identified gaps
+                            +b with custom modules."
+                        tools "Gap analysis templates, SCADAhacker ICS training framework."
+                        expected_outcome "Blended training curriculum combining vendor materials with
+                            +b organization-specific content."
+                    {
+                        step 3
+                        action "Establish feedback loop with vendors to address emerging threats (e.g., new
+                            +b S7comm exploits)."
+                        tools "Vendor security bulletins, Breton Spa's threat intelligence platform."
+                        expected_outcome "Quarterly updates to vendor training content, documented in the change control
+                            +b system."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-5"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Asset Inventory and Scoping Policy"
+                description "This policy mandates the creation and maintenance of a comprehensive asset
+                    +b inventory for all components within the industrial control system (ICS)
+                    +b environment. It requires documented security analysis to justify the scope of
+                    +b IEC 62443-4-1 compliance, ensuring alignment with actual risks. The policy
+                    +b references IEC 62443-4-1 SM-5 for process scoping and risk-based justification."
+                enforcement "Regular audits using automated asset discovery tools (e.g., Rockwell Automation
+                    +b Asset Identification tools) and review of security analysis documentation by
+                    +b certified ICS security experts (SM-4 compliance)."
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Scope Change Management Policy"
+                description "Defines procedures for modifying the security scope when new components are
+                    +b added or operational requirements change. Requires impact assessments for all
+                    +b changes, documented in accordance with IEC 62443-4-1 SM-5's scope change
+                    +b management aspects. Applies particularly to dynamic ICS environments with
+                    +b frequent updates."
+                enforcement "Change tracking via configuration management databases (CMDB) and mandatory
+                    +b reviews by the cross-functional security team before implementation. Automated
+                    +b alerts for unauthorized changes via SIEM tools."
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Legacy System Integration Policy"
+                description "Governs the inclusion of legacy systems that cannot fully comply with modern
+                    +b security standards. Requires compensating controls (e.g., network segmentation,
+                    +b enhanced monitoring) to be documented as part of the scoping justification per
+                    +b IEC 62443-4-1 SM-5's handling of constraints."
+                enforcement "Periodic vulnerability assessments of legacy systems using ICS-specific tools
+                    +b (e.g., Tenable.ot) and verification of compensating control effectiveness
+                    +b through penetration testing."
+        [ procedures
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Initial Security Scoping Procedure"
+                description "Step-by-step process for conducting the initial scoping exercise during product
+                    +b development, aligning with IEC 62443-4-1 SM-5 requirements. Includes threat
+                    +b modeling and risk assessment to determine applicable standard parts."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct asset inventory using ICS-aware discovery tools (e.g., Claroty, Nozomi
+                            +b Networks)."
+                        tools "Network scanners with ICS protocol support, CMDB software"
+                        expected_outcome "Complete list of all hardware/software components with network mappings"
+                    {
+                        step 2
+                        action "Perform risk assessment using NIST SP 800-82 adapted methodology for identified
+                            +b assets."
+                        tools "Risk assessment templates, threat modeling tools (e.g., Microsoft Threat
+                            +b Modeling Tool)"
+                        expected_outcome "Documented risk analysis with justification for scope inclusions/exclusions"
+                    {
+                        step 3
+                        action "Present scope proposal to cross-functional review team (security, engineering,
+                            +b operations) for approval."
+                        tools "Collaboration platforms (e.g., Confluence), digital signature systems"
+                        expected_outcome "Signed scope document with traceability to risk analysis"
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Scope Review and Update Procedure"
+                description "Process for periodic re-evaluation of security scope as per IEC 62443-4-1
+                    +b SM-5's continuous improvement requirements. Triggered by system changes or new
+                    +b threat intelligence."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor CISA ICS-CERT alerts and internal security logs for changes requiring
+                            +b scope reassessment."
+                        tools "SIEM systems (e.g., Splunk ES), threat intelligence platforms"
+                        expected_outcome "Identified triggers for scope review"
+                    {
+                        step 2
+                        action "Conduct gap analysis between current scope and new requirements using updated
+                            +b threat models."
+                        tools "STRIDE methodology templates, ICS risk assessment tools"
+                        expected_outcome "Documented analysis of scope modification needs"
+                    {
+                        step 3
+                        action "Implement approved scope changes through formal change management process with
+                            +b version control."
+                        tools "ITSM platforms (e.g., ServiceNow), document management systems"
+                        expected_outcome "Updated scope documentation with audit trail of changes"
+            {
+                code "SM-5"
+                subCode "undefined"
+                title "Legacy System Scoping Procedure"
+                description "Specialized process for incorporating legacy ICS components into the security
+                    +b scope when full compliance isn't feasible, following IEC 62443-4-1 SM-5's
+                    +b guidance on constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Document legacy system limitations through vulnerability assessment and
+                            +b architecture review."
+                        tools "ICS vulnerability scanners (e.g., Dragos), network diagramming tools"
+                        expected_outcome "Detailed constraints report with security impact analysis"
+                    {
+                        step 2
+                        action "Design compensating controls (e.g., protocol gateways, anomaly detection) to
+                            +b mitigate identified risks."
+                        tools "Network segmentation tools (e.g., Tofino firewalls), IDS/IPS systems"
+                        expected_outcome "Approved control design with risk reduction metrics"
+                    {
+                        step 3
+                        action "Validate control effectiveness through penetration testing specific to legacy
+                            +b protocols (e.g., Modbus TCP)."
+                        tools "ICS-aware pentesting tools (e.g., Metasploit Industrial Edition)"
+                        expected_outcome "Test report proving risk reduction to acceptable levels"
+        last_updated "2023-10-15"

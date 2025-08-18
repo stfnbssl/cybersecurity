@@ -1,0 +1,338 @@
+$group
+    {
+        practice "6"
+        code "DM-3"
+        subCode "a) assessing their impact with respect to:"
+        [ policies
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Security Impact Assessment Policy"
+                description "This policy mandates a structured process for evaluating the impact of
+                    +b security-related issues on system integrity, availability, and confidentiality.
+                    +b It aligns with IEC 62443-4-1 DM-3(a) by ensuring vulnerabilities are
+                    +b prioritized based on risk. The policy applies to all Breton Spa CNC and stone
+                    +b cutting machines, focusing on high-precision control systems and secure remote
+                    +b access features."
+                enforcement "Compliance is enforced through quarterly audits using Siemens' SICAM TOOLBOX
+                    +b for impact scoring, and automated vulnerability scans with Tenable.sc
+                    +b integrated into the DevSecOps pipeline. Non-compliance triggers mandatory
+                    +b remediation within 7 days for critical issues."
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Legacy System Impact Mitigation Policy"
+                description "Addresses DM-3(a) requirements for assessing security issues in legacy
+                    +b components (e.g., PROFINET-enabled polishing machines). Requires network
+                    +b segmentation and compensating controls when patches cannot be applied,
+                    +b documented via ABB System 800xA dependency maps. Specifically covers stone
+                    +b processing environments with high dust levels."
+                enforcement "Enforced through physical network topology reviews during annual
+                    +b safety-certification audits (IEC 62443-4-2). Uses Honeywell's Cyber Risk
+                    +b Dashboard to verify isolation effectiveness, with manual checks for
+                    +b protocol-level segmentation (e.g., EtherCAT Secure Profile implementations)."
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Safety-Cyber Correlation Policy"
+                description "Implements DM-3(a)'s cross-domain impact assessment by requiring Exida
+                    +b Safety-Cyber Handbook methodologies for all Breton composite material lines.
+                    +b Mandates HIL testing for security events that could trigger SIL responses in
+                    +b aerospace applications, referencing NIST IR 8179 impact rating techniques."
+                enforcement "Validated through witnessed HIL tests during factory acceptance testing (FAT),
+                    +b with results logged in Siemens Process Impact Calculator. Non-conformities
+                    +b block machine shipment until safety-cyber linkage documentation is updated."
+        [ procedures
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Operational Impact Modeling Procedure"
+                description "Detailed process for simulating production losses from security incidents in
+                    +b CNC machining centers, fulfilling DM-3(a)'s business continuity assessment
+                    +b requirement. Incorporates Rockwell Automation's FactoryTalk metrics and ICSA
+                    +b Industrial Impact Framework for metalworking scenarios."
+                [ steps
+                    {
+                        step 1
+                        action "Map machine dependencies using Yokogawa System Integration Guide methods"
+                        tools "ABB System 800xA Documentation (Chapter 5)"
+                        expected_outcome "Validated dependency diagram showing all CNC control system interactions"
+                    {
+                        step 2
+                        action "Input process parameters into Siemens Process Impact Calculator"
+                        tools "Machine production logs (OPC UA historical data)"
+                        expected_outcome "Quantified downtime cost projections per failure scenario"
+                    {
+                        step 3
+                        action "Verify results against ICSA framework thresholds"
+                        tools "ICSA Industrial Impact Framework spreadsheet"
+                        expected_outcome "Signed impact classification report (Critical/High/Medium/Low)"
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Threat Modeling Execution Procedure"
+                description "Step-by-step implementation of STRIDE methodology for stone cutting machines as
+                    +b required by DM-3(a). Focuses on MQTT/TLS and EtherCAT Secure Profile attack
+                    +b surfaces, with outputs feeding into the security impact assessment policy."
+                [ steps
+                    {
+                        step 1
+                        action "Create data flow diagrams for all supported protocols"
+                        tools "Microsoft Threat Modeling Tool"
+                        expected_outcome "DFD files showing trust boundaries in water-cooled blade control systems"
+                    {
+                        step 2
+                        action "Apply STRIDE per protocol (e.g., spoofing in PROFINET PN Security)"
+                        tools "Siemens SICAM TOOLBOX threat libraries"
+                        expected_outcome "Threat catalog with 100% coverage of IEC 62443-3-2 attack vectors"
+                    {
+                        step 3
+                        action "Validate physical impacts via HIL test rigs"
+                        tools "Schneider Electric HIL test benches"
+                        expected_outcome "Signed test reports correlating cyber events to saw blade safety stops"
+            {
+                code "DM-3"
+                subCode "a)"
+                title "Vulnerability Scoring Procedure"
+                description "Standardized process for rating security issues in polishing machines according
+                    +b to DM-3(a) impact criteria. Combines NIST IR 8179 ICS adaptations with DREAD
+                    +b model for OPC UA Basic256Sha256 vulnerabilities."
+                [ steps
+                    {
+                        step 1
+                        action "Extract CVSS base scores from Tenable.sc scans"
+                        tools "Tenable.sc with ICS plugins"
+                        expected_outcome "Initial severity ratings for all surface finishing control vulnerabilities"
+                    {
+                        step 2
+                        action "Apply OT-specific adjustments using Rockwell metrics"
+                        tools "FactoryTalk Impact Scoring Guide"
+                        expected_outcome "Adjusted scores reflecting polishing precision degradation risks"
+                    {
+                        step 3
+                        action "Finalize with DREAD evaluation panel"
+                        tools "Cross-functional team (security, OT, quality)"
+                        expected_outcome "Approved impact classification matching SL 2-3 requirements"
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-3"
+        subCode "b) severity as defined by a vulnerability scoring system (for example, CVSS);"
+        [ policies
+            {
+                code "DM-3"
+                subCode "b)"
+                title "CVSS-Based Vulnerability Severity Assessment Policy"
+                description "This policy mandates the use of the Common Vulnerability Scoring System (CVSS)
+                    +b to assess and prioritize vulnerabilities in Breton Spa's industrial control
+                    +b systems (ICS). Aligned with IEC 62443-4-1 DM-3, it requires environmental
+                    +b metric adjustments for ICS contexts (e.g., operational impact on CNC machining
+                    +b centers). Scores must be documented in the vulnerability management system and
+                    +b reviewed quarterly."
+                enforcement "Automated CVSS scoring via Tenable Nessus integrated with Breton's SIEM.
+                    +b Monthly audits by the ICS Security Team verify compliance, with
+                    +b non-conformances reported to the Product Security Office."
+            {
+                code "DM-3"
+                subCode "b)"
+                title "Critical Vulnerability Remediation Policy"
+                description "Defines SL-dependent response timelines for vulnerabilities with CVSS ≥7.0 in
+                    +b Breton's stone cutting machines and other ICS products. Requires immediate
+                    +b mitigation planning for Critical (CVSS 9.0-10.0) vulnerabilities affecting
+                    +b safety functions, per IEC 62443-4-1 CR3 (System Integrity). Includes vendor
+                    +b coordination procedures when third-party components are involved."
+                enforcement "Enforced through Jira workflows with SL-based SLA timers. Weekly dashboards
+                    +b track open high-severity vulnerabilities. Annual penetration tests validate
+                    +b remediation effectiveness."
+            {
+                code "DM-3"
+                subCode "b)"
+                title "ICS-Specific CVSS Environmental Metrics Policy"
+                description "Requires modification of standard CVSS environmental metrics (e.g.,
+                    +b Confidentiality Impact, Availability Requirement) to reflect ICS operational
+                    +b realities in Breton's polishing machines. Metrics must account for dust levels,
+                    +b network segmentation, and safety implications as per SIG-ICS guidelines
+                    +b referenced in IEC 62443-4-1."
+                enforcement "Checklist-based reviews during threat modeling sessions. ICS Security Architect
+                    +b must approve all environmental metric adjustments. Documented in Polarion
+                    +b requirements management system."
+        [ procedures
+            {
+                code "DM-3"
+                subCode "b)"
+                title "CVSS Scoring for CNC Machine Vulnerabilities"
+                description "Procedure for assessing vulnerabilities in Breton's CNC Machining Centers using
+                    +b CVSS v3.1, incorporating ICS-specific adjustments for PROFINET and EtherNet/IP
+                    +b protocol risks."
+                [ steps
+                    {
+                        step 1
+                        action "Identify vulnerability characteristics using NVD or vendor advisories"
+                        tools "NIST NVD API, Siemens ProductCERT Portal"
+                        expected_outcome "Base score calculated with all vector components (Attack Vector, Complexity,
+                            +b Privileges Required, etc.)"
+                    {
+                        step 2
+                        action "Adjust environmental metrics for CNC operational context"
+                        tools "Breton ICS Risk Matrix (v2.3), SIG-ICS Template"
+                        expected_outcome "Modified score reflecting actual impact on multi-axis positioning accuracy"
+                    {
+                        step 3
+                        action "Document scoring rationale in vulnerability management system"
+                        tools "Tenable.io, Jira Service Management"
+                        expected_outcome "Audit-ready record with CVSS vector string and ICS impact notes"
+            {
+                code "DM-3"
+                subCode "b)"
+                title "Vendor Vulnerability Scoring Reconciliation"
+                description "Process to align Breton's internal CVSS assessments with vendor-provided scores
+                    +b for composite material processing line components."
+                [ steps
+                    {
+                        step 1
+                        action "Extract vendor CVSS data from security bulletins"
+                        tools "Rockwell Automation Security Advisory RSS Feed"
+                        expected_outcome "Structured vendor score data in CSV format"
+                    {
+                        step 2
+                        action "Compare vendor/base scores with Breton's environmental scores"
+                        tools "Custom Python reconciliation script"
+                        expected_outcome "Discrepancy report highlighting >1.5 score differences"
+                    {
+                        step 3
+                        action "Escalate material discrepancies to Vendor Security Council"
+                        tools "Microsoft Teams ICS Security Channel"
+                        expected_outcome "Joint resolution documented in Product Security Database"
+            {
+                code "DM-3"
+                subCode "b)"
+                title "Temporal Score Update for Stone Cutting Machines"
+                description "Quarterly review procedure to update CVSS temporal scores (e.g., Exploit Code
+                    +b Maturity) for vulnerabilities affecting water-cooled blade control systems."
+                [ steps
+                    {
+                        step 1
+                        action "Query ICS-CERT for exploit availability updates"
+                        tools "CISA ICS Advisory API, Shodan"
+                        expected_outcome "List of vulnerabilities with changed exploit status"
+                    {
+                        step 2
+                        action "Re-calculate temporal scores for affected CVEs"
+                        tools "FIRST CVSS Calculator, Breton Temporal Score Adjuster"
+                        expected_outcome "Updated scores reflecting current exploit likelihood"
+                    {
+                        step 3
+                        action "Trigger re-prioritization in patch management system"
+                        tools "Ivanti Neurons for Patch Management"
+                        expected_outcome "Automated work orders for vulnerabilities upgraded to Critical"
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-3"
+        subCode "c)"
+        [ policies
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Cross-Product Vulnerability Identification Policy"
+                description "This policy mandates the systematic identification of all affected products and
+                    +b versions when a security-related issue is discovered, ensuring comprehensive
+                    +b vulnerability management across interconnected ICS environments. It aligns with
+                    +b IEC 62443-4-1 requirements for maintaining a secure development lifecycle by
+                    +b addressing shared vulnerabilities in product lines."
+                enforcement "Automated SBOM analysis integrated into CI/CD pipelines, quarterly audits by
+                    +b the Product Security Office, and automated alerts when vulnerabilities affect
+                    +b multiple products via SCA tools."
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Legacy System Vulnerability Mitigation Policy"
+                description "Defines procedures for handling vulnerabilities in legacy systems that cannot
+                    +b be patched, including network segmentation and risk acceptance documentation.
+                    +b Supports IEC 62443-4-1's requirement for addressing all affected products, even
+                    +b those with operational constraints."
+                enforcement "Annual legacy system reviews by the Security Steering Committee, firewall rule
+                    +b audits, and mandatory compensating control documentation for unpatched systems."
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Vendor Component Vulnerability Disclosure Policy"
+                description "Establishes SLAs with third-party vendors for rapid notification of security
+                    +b issues in shared components, enabling timely cross-product impact assessments
+                    +b as required by IEC 62443-4-1 DM-3(c)."
+                enforcement "Contractual penalties for non-compliance, automated monitoring of vendor
+                    +b security advisories, and quarterly supplier reviews by the Procurement Security
+                    +b Team."
+        [ procedures
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Multi-Product Vulnerability Assessment Procedure"
+                description "Step-by-step process for identifying all affected products and versions when a
+                    +b security issue is discovered, utilizing SBOM analysis and version control
+                    +b systems to meet IEC 62443-4-1 DM-3(c) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate vulnerability ticket in the ICS Security Incident System with CVE
+                            +b reference"
+                        tools "Jira ICS Security Plugin, CVE Database API"
+                        expected_outcome "Standardized vulnerability record created with all known identifiers"
+                    {
+                        step 2
+                        action "Execute automated SBOM cross-reference against product repository"
+                        tools "Black Duck, CycloneDX SBOM Generator"
+                        expected_outcome "List of affected products/versions generated with component-level mapping"
+                    {
+                        step 3
+                        action "Verify results through manual code review of shared modules"
+                        tools "GitLab Version Control, IDA Pro for firmware analysis"
+                        expected_outcome "Validated list of impacted products with justification for
+                            +b inclusions/exclusions"
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Legacy System Impact Analysis Procedure"
+                description "Methodology for assessing vulnerability impact on unsupported product versions,
+                    +b implementing compensating controls where necessary to comply with IEC
+                    +b 62443-4-1's comprehensive coverage requirement."
+                [ steps
+                    {
+                        step 1
+                        action "Query legacy inventory database for matching component fingerprints"
+                        tools "Claroty Continuous Threat Detection, Tenable.ot"
+                        expected_outcome "List of fielded legacy systems with vulnerable components"
+                    {
+                        step 2
+                        action "Conduct STRIDE analysis for operational impact assessment"
+                        tools "Microsoft Threat Modeling Tool (ICS Template)"
+                        expected_outcome "Risk scoring matrix for each legacy system/vulnerability combination"
+                    {
+                        step 3
+                        action "Document compensating controls or risk acceptance forms"
+                        tools "GRC Platform (e.g., ServiceNow Governance Module)"
+                        expected_outcome "Audit-ready justification for unresolved legacy vulnerabilities"
+            {
+                code "DM-3"
+                subCode "c)"
+                title "Vendor Component Alert Propagation Procedure"
+                description "Process for disseminating third-party component vulnerabilities across affected
+                    +b product teams, ensuring timely response as mandated by IEC 62443-4-1 DM-3(c)'s
+                    +b identification requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Ingest vendor security bulletin into Component Watch System"
+                        tools "Vendor RSS Feeds, Email Parsing Bot"
+                        expected_outcome "Structured advisory record in component database"
+                    {
+                        step 2
+                        action "Trigger automated dependency graph analysis"
+                        tools "Dependabot for ICS, Internal Dependency Mapper"
+                        expected_outcome "Impact report showing product/version relationships"
+                    {
+                        step 3
+                        action "Distribute customized alerts to relevant product security officers"
+                        tools "ServiceNow Security Operations Module"
+                        expected_outcome "Targeted notifications with remediation timelines to all stakeholders"
+        last_updated "2023-11-20"

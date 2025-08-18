@@ -1,0 +1,114 @@
+$group
+    {
+        name "Specification of security requirements"
+        purpose "The processes specified by this practice are used to document the security capabilities that are required for a product 
+            +b along with the expected product security context. Security capabilities can include such items as authentication, 
+            +b authorization, encryption, auditing and other security capabilities a product needs to include. The product security context 
+            +b can include items such as physical security level, protection of external interfaces via a firewall, etc. 
+            +b See [10] for more information on security capability requirements.
+            +b These security requirements can be defined at the product-level or they may supplement product-level requirements."
+        page 26
+        [ requirements
+            {
+                clause "6.2"
+                code "SR-1"
+                name "Product security context"
+                page 24
+                requirement "A process shall be employed to ensure that the intended product security context is documented."
+                rationale "This process is required to ensure that the minimum requirements of the environment and the assumptions about that environment are documented in order to ach ieve the security level for which the product was designed. The purpose of defin ing this in formation is so that both the developers of the product and the product users have the same understand ing about how the product is intended to be used. this will he lp the developers make appropriate design decis ions and the users to use the product as it was intended. security context could include:
+                    +b a) l ocation in the network;
+                    +b b) physical or cyber security provided by the environment where the product will be deployed;
+                    +b c) isolation (from a network perspective); and
+                    +b d) if known, potential impact to the environment (for example, loss of life, injury, loss of production, etc.).
+                    +b For example, it is important to document whether physical security is required. If no physical security is expected to be present, then that 
+                    +b may add a number of related requirements such as not allowing push button configuration on the product. 
+                    +b Another example is if the product is expected to be protected by a user supplied firewall that connects it to the plant network, 
+                    +b the product would typically not require a firewall of its own. Documenting these external security features for the product (its security context) 
+                    +b allows developers to design a defense in depth strategy that complements this security context and testers to validate and verify 
+                    +b the security of a product in an environment similar to how it shou ld be deployed.
+                    +b Having this process means that the deployment environment in which the product is intended to be used is correctly represented 
+                    +b in all processes involved in the development and testing of this product and are documented."
+            {
+                clause "6.3"
+                code "SR-2"
+                name "Threat model"
+                page 24
+                requirement "A process shall be employed to ensure that all products shall have a threat model specific to the current development scope of the product 
+                    +b with the following characteristics (where applicable):
+                    +b a) correct flow of categorized information throughout the system;
+                    +b b) trust boundaries;
+                    +b c) processes;
+                    +b d) data stores;
+                    +b e) interacting external entities;
+                    +b f) internal and external communication protocols implemented in the product;
+                    +b g) externally accessible physical ports including debug ports;
+                    +b h) circuit board connections such as Joint Test Action Group (JTAG) connections or debug headers which might be used to attack the hardware;
+                    +b i) potential attack vectors including attacks on the hardware, if applicable;
+                    +b j) potential threats and their severity as defined by a vulnerability scoring system (for example, CVSS);
+                    +b k) mitigations and/or dispositions for each threat;
+                    +b l) security-related issues identified; and
+                    +b m) external dependencies in the form of d rivers or third-party applications (code that is not developed by the supplier) that are linked in to the application.
+                    +b The threat model shall be reviewed and verified by the development team to ensure that it is correct and understood.
+                    +b The threat model shall be reviewed periodically (at least once a year) for released products and updated if required in response to 
+                    +b the emergence of new threats to the product even if the design does not change.
+                    +b Any issues identified in the threat model shall be addressed as defined in 10.4 and 10.5."
+                rationale "This process is required to ensure that security threats for the product are identified, validated, documented, 
+                    +b addressed and tested by the product's project team according to the defense in depth strategy.
+                    +b Having this process means that a threat model for the product is defined and maintained throughout the product life-cycle (for example, 
+                    +b as a result of changing threats or updates to the defense in depth strategy) that identifies and describes threats that can occur within 
+                    +b the product security context, and against which product is expected to defend itself.
+                    +b External dependencies are external components or systems that the product depends upon for security. As an example, a product 
+                    +b could depend on power for physical security. Or a product could depend on the session management of a web server to be secure. In these examples, 
+                    +b failure of the external dependency could lead to a security vulnerability in the product, so mitigations need to be put in place to minimize 
+                    +b the chances of such failures. So for the power example, the mitigation could be the installation of an un interruptable power supply (UPS). 
+                    +b In the example of a web server, security should be considered when choosing a web server, and if a secure web server cannot be found, 
+                    +b then other compensating measures need to be considered.
+                    +b Third-party code is an external dependency that can present significant challenges in determining where the threats can occur. 
+                    +b If deeply embedded there might not be access to/from this code that crosses a trust boundary. If there is access to the 
+                    +b trust boundary, a deeper inspection of the third-party code can be needed."
+            {
+                clause "6.4"
+                code "SR-3"
+                name "Product security requirements"
+                page 28
+                requirement "A process shall be employed for ensuring that security requirements are documented for the product/feature under development 
+                    +b including requirements for security capabilities related to installation, operation, maintenance and decommissioning."
+                rationale "This process is required to ensure that security requirements specific to the product are defined. This includes 
+                    +b both technical security requirements (for example, password complexity) and business-oriented security requirements (for example, 
+                    +b sensitive data, user authorizations and separation of duties).
+                    +b Having this process means that the product supplier defines and documents all product security requirements that apply to the 
+                    +b life-cycle of the product, including:
+                    +b a) security privileges required to install, operate, and maintain the product;
+                    +b b) security options, including removal of default passwords, used to install, configure, operate and mainta in the product; and
+                    +b c) security considerations/actions associated with removing the product from use (for example, removing sensi ti ve data)."
+                [ notes
+                    "For different capability security levels (SL-C 1 through SL-C 4), IEC 62443-3-3 and IEC 62443-4-2 [11] define the security capability 
+                        +b requirements for control systems and components, respectively. These security capabilities are then included as product security 
+                        +b requirements for products that are to include these capabilities."
+            {
+                clause "6.5"
+                code "SR-4"
+                name "Product security requirements content"
+                page 29
+                requirement "A process shall be employed for ensuring that security requirements include the following in formation:
+                    +b a) the scope and boundaries of the component or system, in general terms in both a physical and a log ical way; and
+                    +b b) the required capability security level (SL-C) of the product."
+                rationale "If the product is targeted to meet a certain security capability level, it is important to document this as 
+                    +b a requirement because it implies that certain security capabilities need to be included in the product. Note that capability 
+                    +b security levels and required security capabilities for products are defined in IEC 62443-4-2 [11] and IEC 62443-3-3 [10]."
+            {
+                clause "6.6"
+                code "SR-5"
+                name "Security requirements review"
+                page 29
+                requirement "A process shall be employed to ensure that security requirements are reviewed, updated as necessary and approved 
+                    +b to ensure clarity, validity, alignment with the threat model (discussed in 6.3), and their ability to be verified. Each of the 
+                    +b following representative disciplines shall participate in this process. Personnel may be assigned to more than one discipline 
+                    +b except for testers, who shall remain independent:
+                    +b a) architects/developers (those who will implement the requirements);
+                    +b b) testers (those who will validate that the requirements have been met);
+                    +b c) customer advocate (such as sales, marketing, product management or customer support); and
+                    +b d) security advisor."
+                rationale "This process is required to ensure that security requirements are valid, understood and testable (or otherwise verifiable).
+                    +b Having this process means that the product supplier conducts reviews of all security requirements and revises/deletes those 
+                    +b that are invalid or that are untestable/unverifiable."

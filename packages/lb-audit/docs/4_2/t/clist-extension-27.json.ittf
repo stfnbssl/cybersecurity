@@ -1,0 +1,240 @@
+$group
+    {
+        id "FSA-NDR 3.14"
+        check_description "Network devices shall verify the integrity of the firmware, software, and
+            +b configuration data needed for component’s boot process prior to it being used
+            +b in the boot process."
+        requirement_id "IEC 62443-4-2: NDR 3.14"
+        title "Integrity of the Boot Process"
+        description "This requirement underlines the necessity to ensure the integrity of the boot
+            +b process in Industrial Automation and Control Systems (IACS). It ensures that
+            +b the system starts up in a secure state and has not been tampered with during
+            +b startup."
+        [ key_aspects
+            {
+                aspect "Secure Boot"
+                description "Implement mechanisms such as cryptographic signatures to verify the
+                    +b authenticity and integrity of the bootloader and operating system components
+                    +b before execution."
+            {
+                aspect "Trusted Execution Environment"
+                description "Leverage hardware-based security features to create a trusted execution
+                    +b environment that ensures only verified code runs during the boot process."
+            {
+                aspect "Firmware Integrity"
+                description "Ensure that firmware updates are signed and verified to prevent unauthorized
+                    +b modifications."
+            {
+                aspect "Chain of Trust"
+                description "Establish a chain of trust starting from a hardware root of trust, ensuring
+                    +b that each subsequent component in the boot process is verified before
+                    +b execution."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "Provides guidelines for protecting the BIOS to ensure integrity throughout the
+                    +b boot process."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "While broader in scope, it includes principles that support maintaining system
+                    +b integrity, including during boot."
+            {
+                standard "IEEE 802.1AR"
+                title "Secure Device Identity"
+                description "Defines mechanisms for device identity and secure operations, aligning with
+                    +b secure boot principles."
+            {
+                standard "Trusted Computing Group (TCG)"
+                title "Trusted Platform Module (TPM)"
+                description "Specifies hardware-based security functions that support secure boot and
+                    +b integrity measurement."
+    {
+        id "FSA-NDR 3.14"
+        check_description "Network devices shall verify the integrity of the firmware, software, and
+            +b configuration data needed for component’s boot process prior to it being used
+            +b in the boot process."
+        requirement_id "IEC 62443-4-2: NDR 3.14"
+        title "Integrity of the Boot Process"
+        description "This requirement underlines the necessity to ensure the integrity of the boot
+            +b process in Industrial Automation and Control Systems (IACS). It ensures that
+            +b the system starts up in a secure state and has not been tampered with during
+            +b startup."
+        [ key_aspects
+            {
+                aspect "Secure Boot"
+                description "Implement mechanisms such as cryptographic signatures to verify the
+                    +b authenticity and integrity of the bootloader and operating system components
+                    +b before execution."
+            {
+                aspect "Trusted Execution Environment"
+                description "Leverage hardware-based security features to create a trusted execution
+                    +b environment that ensures only verified code runs during the boot process."
+            {
+                aspect "Firmware Integrity"
+                description "Ensure that firmware updates are signed and verified to prevent unauthorized
+                    +b modifications."
+            {
+                aspect "Chain of Trust"
+                description "Establish a chain of trust starting from a hardware root of trust, ensuring
+                    +b that each subsequent component in the boot process is verified before
+                    +b execution."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "Provides guidelines for protecting the BIOS to ensure integrity throughout the
+                    +b boot process."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "While broader in scope, it includes principles that support maintaining system
+                    +b integrity, including during boot."
+            {
+                standard "IEEE 802.1AR"
+                title "Secure Device Identity"
+                description "Defines mechanisms for device identity and secure operations, aligning with
+                    +b secure boot principles."
+            {
+                standard "Trusted Computing Group (TCG)"
+                title "Trusted Platform Module (TPM)"
+                description "Specifies hardware-based security functions that support secure boot and
+                    +b integrity measurement."
+    {
+        id "FSA-NDR 3.14 RE(1)"
+        check_description "Network devices shall use the component’s product supplier roots of trust to
+            +b verity the authenticity of the firmware, software, and configuration data
+            +b needed for component’s boot process prior to it being used in the boot process."
+        requirement_id "IEC 62443-4-2: NDR 3.14 RE(1)"
+        title "Authenticity of the Boot Process"
+        description "This requirement mandates that embedded devices must ensure the authenticity of
+            +b the boot process. The boot process should be protected to prevent unauthorized
+            +b modifications and ensure that only verified and trusted code is executed during
+            +b system startup."
+        { key_aspects
+            verification_mechanisms "Implementation of cryptographic techniques, such as digital signatures, to
+                +b verify the integrity and authenticity of boot code."
+            "secure boot" "Utilization of secure boot processes that only allow execution of code that is
+                +b signed and verified as legitimate."
+            "trusted computing base" "Establishment of a trusted computing base (TCB) to maintain a secure state and
+                +b prevent unauthorized code execution."
+            "protection against tampering" "Measures to protect boot firmware and related components from being tampered
+                +b with, ensuring that only authorized updates are applied."
+        { related_standards
+            { "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "Provides guidelines for ensuring the integrity of the BIOS, which is a critical
+                    +b component of the boot process."
+                relevance "Offers guidance on implementing protections for BIOS integrity, which aligns
+                    +b with ensuring authenticity in the boot process."
+            { "ISO/IEC 19790:2012"
+                title "Security requirements for cryptographic modules"
+                description "Specifies security requirements for cryptographic modules that can be used to
+                    +b secure the boot process."
+                relevance "Cryptographic modules play a crucial role in verifying boot code authenticity
+                    +b and integrity, supporting secure boot implementations."
+            { "TPM 2.0 Specification"
+                title "Trusted Platform Module Library"
+                description "Defines the specifications for TPM, a hardware-based security component that
+                    +b can be used to ensure secure boot processes."
+                relevance "TPM provides hardware-based security features that support the verification of
+                    +b boot code integrity and authenticity."
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                description "Part of the IEC 62443 series, focusing on system-level security requirements
+                    +b including secure boot processes."
+                relevance "Offers broader system-level security requirements that complement device-level
+                    +b measures in IEC 62443-4-2, including secure boot."
+    {
+        id "FSA-CR 4.1A"
+        check_description "Components shall provide the capability to protect the confidentiality of
+            +b information at rest for which explicit read authorization is supported."
+        requirement_id "IEC 62443-4-2: CR 4.1(a)"
+        title "Information Confidentiality - At Rest"
+        description "This requirement mandates the protection of information confidentiality when
+            +b data is stored, ensuring unauthorized entities cannot access or compromise
+            +b sensitive information."
+        [ key_aspects
+            "Encryption of data at rest to prevent unauthorized access."
+            "Implementation of access controls to restrict data access to authorized users only."
+            "Usage of secure storage solutions that comply with industry standards for data protection."
+            "Regular audits and assessments to ensure compliance with confidentiality requirements."
+        [ related_standards
+            {
+                standard "NIST SP 800-111"
+                title "Guide to Storage Encryption Technologies for End User Devices"
+                description "This standard provides guidelines for encrypting data at rest, detailing
+                    +b various encryption technologies and methodologies."
+            {
+                standard "ISO/IEC 27002:2013"
+                title "Information technology - Security techniques - Code of practice for information
+                    +b security controls"
+                description "Offers best practices and guidelines for implementing information security
+                    +b controls, including data at rest protection."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                description "Contains comprehensive security and privacy controls, including those for the
+                    +b protection of data at rest, such as AC-17 (Remote Access) and SC-28 (Protection
+                    +b of Information at Rest)."
+            {
+                standard "FIPS 140-2"
+                title "Security Requirements for Cryptographic Modules"
+                description "Specifies the security requirements for cryptographic modules that protect
+                    +b data, including data at rest, ensuring the use of certified and validated
+                    +b cryptographic methods."
+    {
+        id "FSA-CR 4.1B"
+        check_description "Components shall support the protection of the confidentiality of information
+            +b in transit as defined in IEC 62443?3?3 [11] SR 4.1."
+        requirement_id "IEC 62443-4-2: CR 4.1(b)"
+        title "Information Confidentiality - In Transit"
+        description "This requirement ensures that information being transmitted over a network is
+            +b protected against unauthorized access and disclosure. It involves implementing
+            +b measures to secure data as it travels between devices within an industrial
+            +b control system (ICS) environment."
+        [ key_aspects
+            {
+                aspect_id "KA1"
+                name "Encryption"
+                details "Utilizing encryption protocols to secure data in transit, ensuring that only
+                    +b authorized parties can access the information."
+            {
+                aspect_id "KA2"
+                name "Secure Protocols"
+                details "Implementing secure communication protocols such as TLS/SSL or IPSec to protect
+                    +b data integrity and confidentiality during transmission."
+            {
+                aspect_id "KA3"
+                name "Authentication and Authorization"
+                details "Ensuring that only authenticated and authorized entities can access and
+                    +b transmit data across the network."
+            {
+                aspect_id "KA4"
+                name "Network Segmentation"
+                details "Using network segmentation to limit the potential exposure of sensitive
+                    +b information during transit and reduce the attack surface."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001:2013"
+                title "Information Security Management Systems"
+                relevance "Provides a framework for establishing, implementing, maintaining, and
+                    +b continually improving an information security management system, which includes
+                    +b securing data in transit."
+            {
+                standard_id "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                relevance "Offers guidelines on selecting and implementing security controls, including
+                    +b those for protecting data during transmission."
+            {
+                standard_id "ISO/IEC 27033-3:2010"
+                title "Network Security - Reference Networking Scenarios - Threats, Design Techniques
+                    +b and Control Issues"
+                relevance "Focuses on network security, providing guidance on securing data in transit
+                    +b through various network scenarios."
+            {
+                standard_id "RFC 5246"
+                title "The Transport Layer Security (TLS) Protocol Version 1.2"
+                relevance "Defines TLS protocol, which is widely used to secure data in transit over
+                    +b networks, ensuring data confidentiality and integrity."

@@ -1,0 +1,33 @@
+$group
+    { lbvsa_checklist_explanation
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Schema per check list Carel Logbot Vendor Assessment"
+        description "Schema JSON per raccogliere spiegazioni sugli item della checklist."
+        type "object"
+        { properties
+            string( detailed_explanation )
+            array_of_objects( glossary )
+                $append properties
+                    string( term )
+                    string( definition )
+                    string( link )
+                $append object
+                    [ required
+                        "term" 
+                        "definition" 
+                        "link" 
+                additionalProperties false
+            array_of_objects( related_links )
+                $append properties
+                    string( title )
+                    string( url )
+                    $append object
+                        [ required
+                            "title" 
+                            "url" 
+                    additionalProperties false
+        [ required
+            "detailed_explanation" 
+            "glossary" 
+            "related_links" 
+        additionalProperties false

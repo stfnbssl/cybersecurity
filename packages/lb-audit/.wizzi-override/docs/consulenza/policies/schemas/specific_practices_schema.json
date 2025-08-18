@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "NIST SP 800-160 Practices for IEC 62443",
+  "description": "Schema per descrivere le pratiche specifiche di NIST SP 800-160 che supportano l'implementazione dello standard IEC 62443.",
+  "type": "object",
+  "properties": {
+    "Practices": {
+      "type": "array",
+      "description": "Elenco delle pratiche specifiche di riferimento.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "PracticeName": {
+            "type": "string",
+            "description": "Nome della pratica specifica.",
+            "minLength": 1
+          },
+          "Description": {
+            "type": "string",
+            "description": "Descrizione dettagliata della pratica e del suo scopo.",
+            "minLength": 1
+          },
+          "Objective": {
+            "type": "string",
+            "description": "Obiettivo principale della pratica.",
+            "minLength": 1
+          },
+          "IEC62443Reference": {
+            "type": "array",
+            "description": "Riferimenti alle parti specifiche dello standard IEC 62443 supportate dalla pratica.",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "KeyActivities": {
+            "type": "array",
+            "description": "Elenco delle attività chiave associate alla pratica.",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "Benefits": {
+            "type": "array",
+            "description": "Elenco dei benefici derivanti dall'applicazione della pratica.",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "minItems": 1
+          },
+          "LifecyclePhases": {
+            "type": "array",
+            "description": "Fasi del ciclo di vita del sistema in cui la pratica è applicabile.",
+            "items": {
+              "type": "string",
+              "enum": [
+                "Concept",
+                "Design",
+                "Development",
+                "Implementation",
+                "Validation",
+                "Operation",
+                "Decommissioning"
+              ]
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "PracticeName",
+          "Description",
+          "Objective",
+          "IEC62443Reference",
+          "KeyActivities",
+          "Benefits",
+          "LifecyclePhases"
+        ],
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "required": ["Practices"],
+  "additionalProperties": false
+}

@@ -1,0 +1,124 @@
+$group
+    {
+        name "Practice 5 – Security verification and validation testing"
+        purpose "The processes specified by this practice are used to document the security testing required to ensure that all 
+            +b the security requirements have been met for the product and that security of the product is maintained when it is used 
+            +b in its product security context and configured to employ its defense in depth strategy.
+            +b Security testing can be performed at various times by various personnel during the SDL based on the type of testing and 
+            +b the development model used by the vendor. For example, fuzz testing could be performed during software development by 
+            +b the software development team and later in the cycle by a test team.
+            +b Issues uncovered by testing will be addressed as per “Practice 6 – Security defect management”."
+        [ requirements
+            {
+                clause "9.1"
+                code "SVV-1"
+                name "Security requirements testing"
+                page 32
+                requirement "A process shall be employed for verifying that the product security functions meet the security requirements and 
+                    +b that the product handles error scenarios and invalid input correctly. Types of testing shall include:
+                    +b a) functional testing of security requirements;
+                    +b b) performance and scalability testing; and
+                    +b c) boundary/edge condition, stress and malformed or unexpected input tests not specifically targeted at security."
+                rationale "This process is required to ensure that the product meets the security requirements defined for it (see Clause 6).
+                    +b Having this process means that the product supplier verifies through testing that the product meets its 
+                    +b documented security requirements.
+                    +b Examples of the types of functionality in scope for security requirements include:
+                    +b a) general security capabilities (features);
+                    +b b) API (application programming interface);
+                    +b c) permission delegation;
+                    +b d) anti-tampering and integrity functionality;
+                    +b e) signed image verification; and
+                    +b f) secure storage of secrets."
+            {
+                clause "9.3"
+                code "SVV-2"
+                name "Threat mitigation testing"
+                page 32
+                requirement "A process shall be employed for testing the effectiveness of the mitigation for the threats identified and validated in 
+                    +b the threat model. Activities shall include:
+                    +b a) creating and executing plans to ensure that each mitigation implemented to address a specific threat has been adequately 
+                    +b tested to ensure that the mitigation works as designed; and
+                    +b b) creating and executing plans for attempting to thwart each mitigation."
+                rationale "The effectiveness of mitigations to threats identified by the threat model are tested as part of this practice. 
+                    +b Examples of threat mitigation testing include attempts to thwart mitigations identified using the spoofing, tampering, 
+                    +b repudiation, information disclosure, denial of service and e levation of privilege (STRIDE). 
+                    +b For example, if STRIDE identified authentication as a mitigation for spoofing threat mitigation tests would focus on 
+                    +b bypassing authentication.
+                    +b If a layered defense strategy is used as a mitigation, then the effectiveness of each layer would be tested. For example, 
+                    +b if the product employs the combination of authentication, authorization and audit logs as a layered defense strategy to 
+                    +b thwart tampering, then each layer will be tested for its contribution to this mitigation strategy.
+                    +b this process is required to ensure that the product’s defense in depth and threat mitigation strategies and capabilities are effecti ve."
+            {
+                clause "9.4"
+                code "SVV-3"
+                name "Vulnerability testing"
+                page 32
+                requirement "A process shall be employed for performing tests that focus on identifying and characterizing potential 
+                    +b security vulnerabilities in the product. Known vulnerability testing shall be based upon, at a minimum, recent contents 
+                    +b of an established, industry-recognized, public source for known vulnerabilities. Testing shall include:
+                    +b a) abuse case or mal formed or unexpected input testing focused on uncovering security issues. This shall include manual or automated abuse case 
+                    +b testing and specialized types of abuse case testing on all external interfaces and protocols for which tools exist. 
+                    +b Examples include fuzz testing and network traffic load testing and capacity testing;
+                    +b b) attack surface analysis to determine all avenues of ingress and egress to and from the system, common vulnerabilities including but not limited to 
+                    +b weak ACLs, exposed ports and services running with elevated privileges;
+                    +b c) black box known vulnerability scanning focused on detecting known vulnerabilities in the product hardware, host or software components. 
+                    +b For example, this could be a network based known vulnerability scan;
+                    +b d) for compiled software, software composition analysis on all binary executable files, including embedded firmware, delivered by the supplier 
+                    +b to be installed for a product. this analysis shall detect the following types of problems at a minimum:
+                    +b 1) known vulnerabilities in the product software components;
+                    +b 2) linking to vulnerable libraries;
+                    +b 3) security ru le violations; and
+                    +b 4) compiler settings that can lead to vulnerabilities;
+                    +b e) dynamic runtime resource management testing that detects flaws not visible under static code analysis, including but not limited to 
+                    +b denial of service conditions due to failing to release run time handles, memory leaks and accesses made to shared memory without authentication. 
+                    +b This testing shall be applied if such tools are available."
+                rationale "Void."
+            {
+                clause "9.5"
+                code "SVV-4"
+                name "Penetration testing"
+                page 32
+                requirement "A process shall be employed to identify and characterize security-related issues via tests that focus on discovering 
+                    +b and exploiting security vulnerabilities in the product."
+                rationale "Penetration testing focuses specifically on compromising the confidentiality, integrity or availability of the product. 
+                    +b It can involve defeating multiple aspects of the defense in depth design. For example, 
+                    +b bypassing authentication to access the product, 
+                    +b using elevation of privilege to gain administrative access and then compromising confidentiality by breaking encryption. 
+                    +b As this example shows, penetration testing involves approaching testing like an attacker and often involves 
+                    +b exploiting chained vulnerabilities in a product.
+                    +b This process is required to ensure that efforts have been taken to discover security-related issues in the product or 
+                    +b product documentation that could allow the product to be exploited.
+                    +b Having this process means that the product supplier attempts to breach the security of the product through penetration testing. 
+                    +b Penetration testing consists of confirm ing that vulnerabilities in any product capability or the defense in depth strategy 
+                    +b can be exploited and used to compromise security of the product. It requires in depth knowledge of the type of product being tested 
+                    +b along with security testing tools and techniques. Penetration testing can involve the use of manual techniques, test tools or 
+                    +b combinations of the two."
+            {
+                clause "9.6"
+                code "SVV-5"
+                name "Independence of testers"
+                page 32
+                requirement "A process shall be employed to ensure that individuals performing testing are independent from the developers 
+                    +b who designed and implemented the product according to Table 3.
+                    +b Table 3 – Required level of independence of testers from developers
+                    +b Test type | Reference | Level of independence
+                    +b Security requirements testing | SVV-1 – security requirements testing | Independent department
+                    +b Threat mitigation testing | SVV-2 – Threat mitigation testing | Independent department
+                    +b Abuse case testing | SVV-3 – vulnerability testing | Independent person
+                    +b Static code analysis | SI-1 – Security implementation review | None
+                    +b Attack surface analysis | SVV-3 – vulnerability testing | Independent person
+                    +b Known vulnerability scanning | SVV-3 – vulnerability testing | Independent person
+                    +b Software composition analysis | SVV-3 – vulnerability testing | None
+                    +b Penetration testing | SVV-4 – Penetration testing | Independent department or organization
+                    +b The levels of independence are defined as follows:
+                    +b None – no independence required. Developer can perform the testing.
+                    +b Independent person – the person who performs the testing cannot be one of the developers of the product.
+                    +b Independent department – the person who performs the testing cannot report to the same fi rst line manager as any developers of the product. Al ternatively, they could be a member of a qua l ity assurance (QA) department.
+                    +b Independent organization – the person who performs the testing cannot be part of the same organization as any developers of the product. An organization can be a separate l egal en ti ty, a d i vi s ion of a company or a departmen t of a company that reports to a different executive such as a vice president or s im i lar level."
+                rationale "An independent tester can often find out more, other and different defects than a tester working within 
+                    +b a programming team – or a tester who is by profession a programmer. Such a tester brings a different set of assumptions 
+                    +b to testing and to reviews, which often helps in exposing the hidden defects and problems. In addition, an independent tester 
+                    +b who reports to senior management can report his results honestly and without any concern for reprisal that might result from 
+                    +b pointing out problems in co-workers’ or, worse yet, the manager’s work.
+                    +b Add itional security defects can often be found when a tester’s black-box level knowledge of the product is 
+                    +b supplemented with whi te-box level knowledge of a developer acting as an advisor to the tester."

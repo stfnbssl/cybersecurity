@@ -1,0 +1,356 @@
+$group
+    {
+        practice "7"
+        code "SUM-1"
+        subCode "b) suppliers of components used in the product; and"
+        [ policies
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Supplier Security Agreement (SSA) Policy"
+                description "This policy mandates the establishment of formal agreements with component
+                    +b suppliers to ensure timely and secure updates. The SSA must include clauses for
+                    +b advance patch notifications, security testing requirements, and disclosure of
+                    +b vulnerabilities, aligning with IEC 62443-4-1's emphasis on supplier
+                    +b accountability."
+                enforcement "Compliance is enforced through quarterly audits of supplier contracts and
+                    +b automated tracking of patch delivery timelines via a Supplier Relationship
+                    +b Management (SRM) system."
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Patch Verification and Testing Policy"
+                description "Requires all supplier-provided updates to undergo functional, regression, and
+                    +b vulnerability testing in an isolated sandbox environment before deployment.
+                    +b This policy directly supports IEC 62443-4-1's requirement for update
+                    +b qualification to prevent operational disruptions."
+                enforcement "Enforced through automated testing pipelines (e.g., Jenkins with SAST tools)
+                    +b and mandatory sign-off from the security team before production deployment."
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Component Lifecycle Tracking Policy"
+                description "Mandates maintaining a centralized inventory of all components with their
+                    +b End-of-Life (EOL) dates and supported versions. This policy ensures proactive
+                    +b replacement of unsupported components, addressing IEC 62443-4-1's lifecycle
+                    +b management requirements."
+                enforcement "Enforced via integration with IT asset management tools (e.g., ServiceNow) and
+                    +b annual reviews with suppliers to validate lifecycle data."
+        [ procedures
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Supplier Update Qualification Procedure"
+                description "Defines the end-to-end process for qualifying security updates from suppliers,
+                    +b including risk assessment, testing, and deployment approval. Aligns with IEC
+                    +b 62443-4-1's KA2 (Patch Verification Protocol)."
+                [ steps
+                    {
+                        step 1
+                        action "Receive and log the supplier update in the Patch Management System (e.g.,
+                            +b Qualys)."
+                        tools "Qualys Patch Management, Jira"
+                        expected_outcome "Update ticket created with metadata (supplier, component, CVE references)."
+                    {
+                        step 2
+                        action "Perform static analysis of update binaries using SAST tools (e.g., Checkmarx)."
+                        tools "Checkmarx, OWASP Dependency-Check"
+                        expected_outcome "Report identifying potential vulnerabilities or unauthorized code changes."
+                    {
+                        step 3
+                        action "Test update in a sandbox environment replicating production (e.g., Siemens
+                            +b SIMATIC PCS 7 testbed)."
+                        tools "VMware ESXi, Wireshark for protocol analysis"
+                        expected_outcome "Validation report confirming no functional regressions or security degradation."
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Supplier Security Assessment Procedure"
+                description "Outlines the process for evaluating suppliers' security practices against IEC
+                    +b 62443-4-1 requirements, including onsite audits and document reviews."
+                [ steps
+                    {
+                        step 1
+                        action "Request and review supplier's security certifications (e.g., IEC 62443-4-2
+                            +b compliance evidence)."
+                        tools "ISO 27001 checklist, NIST SP 800-161"
+                        expected_outcome "Gap analysis report comparing supplier practices to IEC 62443-4-1."
+                    {
+                        step 2
+                        action "Conduct onsite audit of supplier's Secure Development Lifecycle (SDL)
+                            +b processes."
+                        tools "ISA 62443-3-3 checklist, interview questionnaires"
+                        expected_outcome "Audit report with findings and corrective action plan."
+                    {
+                        step 3
+                        action "Validate supplier's incident response capabilities through tabletop exercises."
+                        tools "ICS-specific scenarios (e.g., ransomware on PLC firmware)"
+                        expected_outcome "Documented response times and effectiveness metrics."
+            {
+                code "SUM-1"
+                subCode "b)"
+                title "Legacy Component Update Handling Procedure"
+                description "Specifies compensatory measures for qualifying updates to legacy components
+                    +b that lack modern security features, per IEC 62443-4-1's handling of
+                    +b constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy component in a separate network zone (e.g., VLAN with strict
+                            +b ACLs)."
+                        tools "Cisco Firepower, Tofino industrial firewall"
+                        expected_outcome "Network segmentation diagram showing reduced attack surface."
+                    {
+                        step 2
+                        action "Deploy additional monitoring (e.g., anomaly detection for Modbus traffic)."
+                        tools "Darktrace Industrial, Nozomi Networks"
+                        expected_outcome "Baseline established for legacy component behavior monitoring."
+                    {
+                        step 3
+                        action "Document risk acceptance and compensating controls in the Risk Register."
+                        tools "GRC platforms (e.g., RSA Archer), IEC 62443-3-2 templates"
+                        expected_outcome "Approved risk exception with mitigation plan."
+        last_updated "2023-11-15"
+    {
+        practice "7"
+        code "SUM-2"
+        subCode "a) the product version number(s) to which the security patch applies;"
+        [ policies
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Version-Specific Patch Documentation Policy"
+                description "This policy mandates that all security patches must include explicit
+                    +b documentation of the product version numbers to which they apply, as per IEC
+                    +b 62443-4-1 SUM-2a. Documentation must be generated prior to patch release and
+                    +b verified for accuracy. This ensures compatibility and prevents misapplication
+                    +b in industrial control systems (ICS)."
+                enforcement "Automated version validation during patch deployment; Quarterly audits of patch
+                    +b documentation; Non-compliance triggers remediation workflows."
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Legacy Version Support Policy"
+                description "Requires maintaining a registry of security patches for legacy product versions
+                    +b (≥5 years old) with alternative mitigation strategies when patches are
+                    +b unavailable. Aligns with IEC 62443-4-1 SUM-2a's emphasis on comprehensive
+                    +b version coverage."
+                enforcement "Annual review of legacy version registry; Manual verification for systems
+                    +b lacking automated version detection; Isolation protocols for unpatchable legacy
+                    +b systems."
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Multi-Vendor Version Coordination Policy"
+                description "For systems integrating components from multiple vendors (e.g., Breton's CNC
+                    +b machines with third-party PLCs), this policy ensures cross-referenced version
+                    +b compatibility data is included in patch documentation per IEC 62443-4-1 SUM-2a
+                    +b requirements."
+                enforcement "Vendor collaboration agreements; Pre-deployment validation in test
+                    +b environments; Digital signatures for multi-vendor patch bundles."
+        [ procedures
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Version Impact Analysis Procedure"
+                description "Systematic process to validate patch applicability across product versions,
+                    +b including dependency checks for ICS components like Breton's CNC control
+                    +b systems. Complies with IEC 62443-4-1 SUM-2a's requirement for version-specific
+                    +b documentation."
+                [ steps
+                    {
+                        step 1
+                        action "Extract version metadata from target systems using asset management tools
+                            +b (e.g., Siemens SIMATIC Update Manager)."
+                        tools "Siemens SIMATIC Update Manager, Rockwell FactoryTalk AssetCentre"
+                        expected_outcome "Comprehensive inventory of installed versions across all ICS components."
+                    {
+                        step 2
+                        action "Map vulnerabilities to affected versions using CVE databases and vendor
+                            +b advisories."
+                        tools "NIST NVD, ICS-CERT advisories, Vendor security bulletins"
+                        expected_outcome "Version-specific vulnerability matrix identifying all impacted systems."
+                    {
+                        step 3
+                        action "Generate compatibility report with patch recommendations and potential
+                            +b conflicts."
+                        tools "Custom scripts integrating with CMDB, PDF documentation generators"
+                        expected_outcome "IEC 62443-4-1 compliant documentation package for distribution."
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Patch Documentation Release Procedure"
+                description "Standardized workflow for creating and distributing version-specific patch
+                    +b documentation in accordance with IEC 62443-4-1 SUM-2a. Includes validation
+                    +b gates for industrial environments like Breton's stone cutting facilities."
+                [ steps
+                    {
+                        step 1
+                        action "Draft release notes with mandatory version fields using template aligned with
+                            +b ISA/IEC 62443 standards."
+                        tools "XML-based documentation templates, Git version control"
+                        expected_outcome "Structured draft documentation with all required version data fields."
+                    {
+                        step 2
+                        action "Verify technical accuracy through automated version testing in isolated ICS
+                            +b testbed."
+                        tools "Virtualized test environment (e.g., VMware vSphere), Protocol analyzers
+                            +b (Wireshark ICS plugins)"
+                        expected_outcome "Validation report confirming patch behavior across documented versions."
+                    {
+                        step 3
+                        action "Distribute through secured channels with cryptographic integrity checks (e.g.,
+                            +b signed PDFs)."
+                        tools "PGP/GPG for email distribution, Secure portal with client certificates"
+                        expected_outcome "Tamper-evident documentation received by all authorized stakeholders."
+            {
+                code "SUM-2"
+                subCode "a"
+                title "Legacy Version Documentation Procedure"
+                description "Specialized process for documenting security updates for obsolete product
+                    +b versions (e.g., Breton's 2018-era polishing machines) when standard patching
+                    +b isn't feasible, fulfilling IEC 62443-4-1 SUM-2a requirements through
+                    +b compensatory controls."
+                [ steps
+                    {
+                        step 1
+                        action "Identify legacy versions through manual asset registers and historical build
+                            +b records."
+                        tools "Spreadsheet-based legacy registers, Paper documentation scanners"
+                        expected_outcome "Complete inventory of unsupported but operational versions."
+                    {
+                        step 2
+                        action "Develop compensatory controls (e.g., network segmentation rules) with
+                            +b version-specific implementation guides."
+                        tools "Network segmentation design tools (Cisco ISE), Industrial firewall rule
+                            +b generators"
+                        expected_outcome "Alternative mitigation documentation for each legacy version."
+                    {
+                        step 3
+                        action "Archive legacy version documentation in tamper-proof storage with periodic
+                            +b review triggers."
+                        tools "Write-once storage media, Blockchain-based documentation ledgers"
+                        expected_outcome "Immutable records available for audit and incident response."
+        last_updated "2023-11-20"
+    {
+        practice "7"
+        code "SUM-2"
+        subCode "b) instructions on how to apply approved patches manually and via an automated
+            +b process;"
+        [ policies
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Patch Deployment Policy for ICS Environments"
+                description "This policy mandates the documentation and implementation of both manual and
+                    +b automated patch deployment processes for industrial control systems (ICS) to
+                    +b ensure compliance with IEC 62443-4-1 SUM-2 requirements. It includes guidelines
+                    +b for patch validation, rollback procedures, and vendor coordination to mitigate
+                    +b risks associated with patch incompatibility and operational downtime."
+                enforcement "Regular audits of patch deployment logs and documentation reviews. Automated
+                    +b tools like WSUS and Ansible are used to enforce patch deployment schedules,
+                    +b with manual verification by OT engineers."
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Patch Documentation and Compliance Policy"
+                description "This policy ensures that all security patches for ICS components are
+                    +b accompanied by detailed documentation, including manual and automated
+                    +b deployment instructions, vulnerability-patch mapping, and ICS-specific
+                    +b considerations. Compliance with IEC 62443-4-1 SUM-2 is verified through
+                    +b quarterly audits and adherence to documented procedures."
+                enforcement "Documentation audits and patch deployment records are reviewed quarterly.
+                    +b Non-compliance triggers corrective actions, including retraining and process
+                    +b updates."
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Legacy System Patch Management Policy"
+                description "This policy addresses the challenges of patching legacy ICS components that may
+                    +b not support automated processes. It includes strategies such as network
+                    +b segmentation and virtual patching to mitigate vulnerabilities until manual
+                    +b patches can be applied, ensuring compliance with IEC 62443-4-1 SUM-2."
+                enforcement "Legacy systems are documented in a registry, and compensating controls are
+                    +b audited annually. Manual patch deployment is verified through signed-off
+                    +b records."
+        [ procedures
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Manual Patch Deployment Procedure"
+                description "This procedure outlines the steps for manually applying security patches to ICS
+                    +b components, ensuring minimal disruption to operational processes. It includes
+                    +b validation, testing, and rollback steps to comply with IEC 62443-4-1 SUM-2
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Download the patch from the vendor's secure repository and verify its integrity
+                            +b using checksums."
+                        tools "Checksum verification tools (e.g., SHA-256), secure download portal."
+                        expected_outcome "Patch file is verified and free from tampering."
+                    {
+                        step 2
+                        action "Deploy the patch in a test environment that mirrors the production ICS setup,
+                            +b focusing on real-time communication protocols."
+                        tools "Test PLCs, HMIs, and network equipment."
+                        expected_outcome "Patch is validated without disrupting test environment operations."
+                    {
+                        step 3
+                        action "Schedule and apply the patch during a maintenance window, documenting each step
+                            +b and verifying system stability post-deployment."
+                        tools "Maintenance logs, system monitoring tools."
+                        expected_outcome "Patch is successfully applied with no adverse effects on ICS operations."
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Automated Patch Deployment Procedure"
+                description "This procedure details the automated deployment of security patches to ICS
+                    +b components, including configuration of automation tools and validation steps to
+                    +b ensure compliance with IEC 62443-4-1 SUM-2."
+                [ steps
+                    {
+                        step 1
+                        action "Configure the automated patch deployment tool (e.g., WSUS, Ansible) to target
+                            +b ICS components, ensuring compatibility with industrial protocols."
+                        tools "WSUS, Ansible, ICS network inventory."
+                        expected_outcome "Automation tool is configured and ready for patch deployment."
+                    {
+                        step 2
+                        action "Validate the patch in a staging environment that replicates the production ICS
+                            +b network, focusing on real-time control processes."
+                        tools "Staging PLCs, HMIs, and network equipment."
+                        expected_outcome "Patch is validated without disrupting staging environment operations."
+                    {
+                        step 3
+                        action "Deploy the patch during a scheduled maintenance window, monitor deployment
+                            +b status, and verify system stability post-deployment."
+                        tools "Automation tool dashboard, system monitoring tools."
+                        expected_outcome "Patch is successfully deployed with no adverse effects on ICS operations."
+            {
+                code "SUM-2"
+                subCode "b)"
+                title "Patch Rollback Procedure"
+                description "This procedure provides steps to revert a patch if it causes system instability
+                    +b or operational issues in the ICS environment, ensuring compliance with IEC
+                    +b 62443-4-1 SUM-2 requirements for maintaining operational continuity."
+                [ steps
+                    {
+                        step 1
+                        action "Identify the patch causing the issue and verify the availability of the
+                            +b previous system state or backup."
+                        tools "Patch deployment logs, system backup tools."
+                        expected_outcome "Problematic patch is identified, and rollback resources are available."
+                    {
+                        step 2
+                        action "Execute the rollback process during a maintenance window, following
+                            +b vendor-specific instructions for ICS components."
+                        tools "Vendor documentation, rollback scripts."
+                        expected_outcome "Patch is successfully reverted to the previous stable state."
+                    {
+                        step 3
+                        action "Monitor system stability post-rollback and document the incident for future
+                            +b reference and process improvement."
+                        tools "System monitoring tools, incident logs."
+                        expected_outcome "System operations are restored to normal, and lessons learned are documented."
+        last_updated "2023-11-20"

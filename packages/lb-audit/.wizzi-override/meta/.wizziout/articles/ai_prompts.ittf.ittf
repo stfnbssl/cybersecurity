@@ -1,0 +1,39 @@
+ittf 
+    $ 
+        var x_options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.article_themes, null, null),
+        } 
+    $file .wizzi-override/docs/articles/from_meta/ia_prompts.txt.ittf
+        txt 
+            ========== 
+            step 1
+            $foreach aiItem in wzCtx.root_prompts.article_idea.items
+                $ 
+                    var filterOk = true;
+                $if filterOk
+                    $ _.log('----> ', '1', 'aiItem.title', aiItem.title);
+                    $ 
+                        var options = {
+                            inputJSON: aiItem,
+                            inputJSONString: _.stringify(aiItem, null, null),
+                            JSONSchema: x_options.step_1_JSONSchema,
+                        } 
+                    ---------- 
+                    SYSTEM 
+                    Sei un esperto di cybersecurity in contesto OT/ICS 
+                    Riconosci la grande importanza della digitalizzazione nelle imprese 
+                    e quanto la cybersecurity è fondamentale per una digitalizzazione affidabile 
+                    Sei consapevole dei costi della applicazione di standardi di sicurezza come IEC 62443, 
+                    IEC 2700, Nis2, CRA e Registro Macchine e di quanto è importante 
+                    per le imprese trovare soluzioni efficaci e anche economiche 
+                    Hai una grande fiducia che il lavoro concettuale e di analisi svolto da chi ha redatto 
+                    standard e norme è di grande valore e sia la strada giusta da seguire, 
+                    il problema è come rendere economiche le realizzazioni 
+                    Sei impegnato con una attività di pubblicista ad elaborare e proporre idee 
+                    e possibili soluzioni documentandoti, anche on line, e pubblicando articoli 
+                    su blog e riviste 
+                    USER 
+                    In base al titolo e alle poche righe che descrivono il concept dell'articolo 
+                    che ti fornisco nel tag <input_json_data> proponi temi di approfondimento 
+                    popolando in risposta lo schema JSON fornito 
+                    ai/schema_data_return( &options, prompt )

@@ -1,0 +1,230 @@
+$group
+    {
+        id "FSA-EDR 2.4B"
+        check_description "In the event that an embedded device utilizes mobile code technologies, the
+            +b embedded device shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the embedded device, action to
+            +b control which users (human, software process, or device) are allowed to upload
+            +b mobile code to the device."
+        requirement_id "IEC 62443-4-2: EDR 2.4(b)"
+        title "Mobile Code - Control Upload by User"
+        description "This requirement mandates that industrial control system (ICS) components must
+            +b have mechanisms in place to control the upload of mobile code by users. Mobile
+            +b code refers to any software obtained from external sources that can be executed
+            +b on a host system, which may include scripts, applets, or other code types that
+            +b are not part of the original system configuration."
+        [ key_aspects
+            "Ensure that user-uploaded mobile code is subject to strict controls to prevent unauthorized or malicious code execution."
+            "Implement access controls and authentication measures to verify user permissions before allowing code uploads."
+            "Use code signing and integrity checks to verify the authenticity and integrity of mobile code before execution."
+            "Establish monitoring and logging to detect and respond to unauthorized mobile code uploads in real-time."
+            "Conduct regular audits and reviews of mobile code policies and enforcement mechanisms to ensure ongoing compliance and security."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3:2013"
+                reference "SR 2.7 - Software and Information Integrity"
+                description "This requirement involves ensuring the integrity of software and information,
+                    +b which aligns with controlling and verifying the integrity of mobile code before
+                    +b execution."
+            {
+                standard "NIST SP 800-53 Revision 5"
+                reference "SI-8 - Spam Protection"
+                description "While focused on spam, the principles of monitoring and filtering unwanted or
+                    +b malicious content can be applied to mobile code controls."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.5.1 - Installation of Software on Operational Systems"
+                description "This control ensures that changes to operational systems, including software
+                    +b installations, are controlled and authorized, relevant to managing mobile code
+                    +b uploads."
+            {
+                standard "OWASP Top Ten"
+                reference "A8:2013 - Cross-Site Request Forgery (CSRF)"
+                description "CSRF vulnerabilities highlight the importance of validating user actions,
+                    +b similar to ensuring authorized uploads of mobile code."
+    {
+        id "FSA-EDR 2.4C"
+        check_description "In the event that an embedded device utilizes mobile code technologies, the
+            +b embedded device shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the embedded device, action to
+            +b control the execution of mobile code based on the results of an integrity check
+            +b prior to the code being executed."
+        requirement_id "IEC 62443-4-2:EDR 2.4(c)"
+        title "Mobile Code - Integrity Check"
+        description "This requirement mandates the implementation of mechanisms to ensure the
+            +b integrity of mobile code used within an industrial automation and control
+            +b system (IACS). The objective is to prevent unauthorized modifications and
+            +b ensure the security and reliability of the system."
+        { key_aspects
+            integrity_check "The system must verify the integrity of mobile code before execution, ensuring
+                +b that the code has not been tampered with."
+            authentication "Mechanisms such as digital signatures or cryptographic hashes should be used to
+                +b authenticate the source and integrity of the mobile code."
+            "real-time verification" "The integrity of the mobile code should be verified in real time to ensure
+                +b security during execution."
+            logging "Any events related to integrity checks, including failures or anomalies, should
+                +b be logged for auditing and forensic purposes."
+        [ related_standards
+            {
+                standard_id "IEC 62443-3-3:SR 3.4"
+                title "Use of Cryptographic Protection"
+                description "This requirement involves using cryptographic methods to protect the integrity
+                    +b and confidentiality of data, including mobile code. The use of digital
+                    +b signatures is recommended for code integrity."
+            {
+                standard_id "ISO/IEC 27002:2013 - 12.5.1"
+                title "Installation of Software on Operational Systems"
+                description "This control requires policies and procedures to ensure the integrity of
+                    +b software installations, which aligns with ensuring the integrity of mobile code
+                    +b within a system."
+            {
+                standard_id "NIST SP 800-53 Rev. 5 - SI-7"
+                title "Software, Firmware, and Information Integrity"
+                description "This control emphasizes the need for integrity verification mechanisms,
+                    +b including digital signatures and checksums, to protect against unauthorized
+                    +b code modifications."
+            {
+                standard_id "ISO/IEC 27034-1:2011"
+                title "Application Security"
+                description "This standard provides guidelines for integrating security into the software
+                    +b development lifecycle, including ensuring the integrity of mobile code."
+    {
+        id "FSA-EDR 2.4 RE(1)"
+        check_description "The embedded device shall provide the capability to enforce a security policy
+            +b that allows the device to control execution of mobile code based on the results
+            +b of an authenticity check prior to the code being executed."
+        requirement_id "IEC 62443-4-2:EDR 2.4 RE(1)"
+        title "Mobile Code Authenticity Check"
+        description "This requirement mandates that the authenticity of mobile code must be verified
+            +b before execution. This is crucial for ensuring that the code has not been
+            +b tampered with and is from a trusted source. The goal is to prevent malicious
+            +b code from being executed within the industrial control system (ICS)
+            +b environment."
+        [ key_aspects
+            "Verification of Code Source: Ensure that the code is from a trusted and verified source to prevent unauthorized code execution."
+            "Integrity Checks: Implement integrity checks to confirm that the code has not been modified or tampered with since it was signed or approved."
+            "Execution Control: Establish mechanisms to control the execution of mobile code, allowing only authenticated and verified code to run."
+            "Security Policies: Develop and enforce security policies that dictate how mobile code is managed and executed within the system."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7"
+                description "NIST SP 800-53 provides guidelines on software, firmware, and information
+                    +b integrity, emphasizing the need for verifying the integrity and authenticity of
+                    +b software and firmware."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.5.1"
+                description "This standard addresses the need for security in software development and the
+                    +b protection of software from unauthorized changes, correlating with the
+                    +b requirement to check code authenticity."
+            {
+                standard "OWASP Mobile Security Testing Guide"
+                reference "MSTG-CODE-1"
+                description "The OWASP guide outlines methods for verifying and securing mobile code,
+                    +b ensuring that mobile applications are protected against code tampering and
+                    +b unauthorized execution."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4"
+                description "This standard focuses on system security requirements and includes provisions
+                    +b for ensuring the authenticity and integrity of software components within
+                    +b industrial systems."
+    {
+        id "FSA-HDR 2.4A"
+        check_description "In the event that a host device utilizes mobile code technologies, the host
+            +b device shall provide the capability to enforce a security policy for the usage
+            +b of mobile code technologies. The security policy shall allow, at a minimum, for
+            +b each mobile code technology used on the host device, action to control
+            +b execution of mobile code."
+        requirement_id "IEC 62443-4-2: HDR 2.4(a)"
+        title "Mobile Code - Control Execution"
+        description "This requirement focuses on controlling the execution of mobile code within
+            +b industrial automation and control systems (IACS). Mobile code, which is
+            +b software obtained from remote systems and executed on a local system, poses
+            +b significant security risks. The control of mobile code execution is critical to
+            +b mitigate potential threats such as unauthorized access, execution of malicious
+            +b code, and data exfiltration."
+        [ key_aspects
+            "Identification of mobile code types and their potential risks to the system."
+            "Implementation of policies and mechanisms to control the execution of mobile code."
+            "Verification and validation of mobile code before execution to ensure it meets security requirements."
+            "Monitoring and logging of mobile code execution to detect and respond to suspicious activities."
+            "Ensuring that only authorized mobile code is allowed to execute within the system."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7(8) - Software, Firmware, and Information Integrity"
+                description "Addresses the integrity of software, which includes mobile code, by
+                    +b implementing mechanisms to confirm that code is from a trusted source and has
+                    +b not been altered."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.2.1 - Controls against malware"
+                description "Requires measures to detect and prevent malware, which includes unauthorized or
+                    +b malicious mobile code, from entering and affecting the system."
+            {
+                standard "OWASP Mobile Security Testing Guide"
+                reference "MSTG-CODE-1 - Code Quality and Build Setting"
+                description "Focuses on ensuring that mobile code is built and configured securely to
+                    +b prevent vulnerabilities."
+            {
+                standard "IEC 61508"
+                reference "Part 3 - Software Requirements"
+                description "Covers the software lifecycle and includes guidance on ensuring the safety and
+                    +b integrity of software, which can be applied to mobile code."
+    {
+        id "FSA-HDR 2.4B"
+        check_description "In the event that a host device utilizes mobile code technologies, the host
+            +b device shall provide the capability to enforce a security policy for the usage
+            +b of mobile code technologies. The security policy shall allow, at a minimum, for
+            +b each mobile code technology used on the host device, action to control which
+            +b users (human, software process, or device) are allowed to upload mobile code to
+            +b the host device."
+        requirement_id "IEC 62443-4-2: HDR 2.4(b)"
+        title "Mobile Code - Control Upload by User"
+        description "This requirement focuses on the control mechanisms for mobile code uploaded by
+            +b users within an Industrial Automation and Control System (IACS) environment. It
+            +b aims to manage and mitigate the risks associated with the execution of mobile
+            +b code, which can potentially introduce vulnerabilities or malicious activities
+            +b if not properly controlled."
+        [ key_aspects
+            {
+                aspect "User Authentication"
+                detail "Ensure that only authenticated and authorized users have the capability to
+                    +b upload mobile code."
+            {
+                aspect "Code Verification"
+                detail "Implement mechanisms to verify the integrity and authenticity of mobile code
+                    +b prior to execution, such as digital signatures or checksums."
+            {
+                aspect "Execution Control"
+                detail "Restrict execution of mobile code to predefined environments or sandboxes to
+                    +b prevent unauthorized access to system resources."
+            {
+                aspect "Audit and Monitoring"
+                detail "Maintain logs and monitoring systems to track mobile code uploads and
+                    +b executions for forensic and compliance purposes."
+        [ related_standards
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 12.2.1 - Controls against malware"
+                description "Recommends measures to detect and prevent malware, which is relevant to
+                    +b controlling mobile code risks."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                description "Addresses requirements for ensuring the integrity of software and firmware,
+                    +b aligning with verifying mobile code integrity."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.2 - Malicious Code Protection"
+                description "Focuses on protecting IACS from malicious code, which is pertinent to
+                    +b controlling mobile code uploads."
+            {
+                standard "OWASP Mobile Security Testing Guide"
+                reference "Testing for Code Tampering"
+                description "Offers guidance on testing mobile applications for code tampering, which is
+                    +b applicable in verifying mobile code integrity."

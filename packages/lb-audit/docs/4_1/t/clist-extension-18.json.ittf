@@ -1,0 +1,257 @@
+$group
+    {
+        practice "5"
+        code "SVV-3"
+        name "Vulnerability testing"
+        sub "e) dynamic runtime resource management testing that detects flaws not visible
+            +b under static code analysis, including but not limited to denial of service
+            +b conditions (e.g., memory leaks)."
+        check_description "A process shall be employed for performing tests that focus on identifying and
+            +b characterizing potential security vulnerabilities in the product. Known
+            +b vulnerability testing shall be based upon, at a minimum, recent contents of an
+            +b established, industry-recognized, public source for known vulnerabilities.
+            +b Testing shall include: e) dynamic runtime resource management testing that
+            +b detects flaws not visible under static code analysis, including but not limited
+            +b to denial of service conditions (e.g., memory leaks)."
+        requirement_id "SVV-3"
+        title "Vulnerability Testing - Dynamic Runtime Resource Management"
+        description "This requirement focuses on dynamic runtime resource management testing to
+            +b identify vulnerabilities that are not detectable through static code analysis.
+            +b It emphasizes the detection of issues such as memory leaks and other conditions
+            +b that can lead to denial of service (DoS) attacks."
+        [ key_aspects
+            {
+                aspect "Dynamic Analysis"
+                details "Involves testing the application during execution to monitor resource usage,
+                    +b detect memory leaks, and identify potential DoS conditions."
+            {
+                aspect "Memory Leak Detection"
+                details "Specific focus on identifying memory leaks which can degrade system performance
+                    +b or lead to system crashes."
+            {
+                aspect "Denial of Service (DoS) Conditions"
+                details "Testing to ensure that the system can handle resource exhaustion scenarios that
+                    +b could be exploited for DoS attacks."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.14.2.8 - System Security Testing"
+                details "Addresses the need for security testing throughout the development lifecycle,
+                    +b including dynamic testing methodologies."
+            {
+                standard "NIST SP 800-53"
+                reference "RA-5 - Vulnerability Scanning"
+                details "Recommends regular vulnerability assessments including dynamic testing to
+                    +b identify weaknesses in systems."
+            {
+                standard "OWASP Testing Guide"
+                reference "4.2.3 - Testing for Resource Exhaustion"
+                details "Provides methodologies for testing systems against resource exhaustion
+                    +b vulnerabilities, including memory leaks."
+            {
+                standard "CWE"
+                reference "CWE-401 - Improper Release of Memory Before Removing Last Reference ('Memory
+                    +b Leak')"
+                details "Offers a detailed explanation of memory leaks and testing approaches to
+                    +b identify and mitigate them."
+    {
+        practice "5"
+        code "SVV-4"
+        name "Penetration testing"
+        check_description "A process shall be employed to identify and characterize security-related
+            +b issues via tests that focus on discovering and exploiting security
+            +b vulnerabilities in the product."
+        requirement_id "IEC 62443-4-1:2018 - SVV-4"
+        title "Penetration Testing"
+        description "Penetration testing is an essential component of the security verification and
+            +b validation practice within the IEC 62443-4-1 standard. It involves a systematic
+            +b process of testing the security robustness of a product by simulating
+            +b real-world attack scenarios. The objective is to identify and mitigate
+            +b vulnerabilities that could be exploited by malicious actors."
+        [ key_aspects
+            {
+                aspect "Objective"
+                details "The primary goal of penetration testing is to uncover vulnerabilities that
+                    +b could be exploited by attackers to compromise the integrity, availability, or
+                    +b confidentiality of the system."
+            {
+                aspect "Scope"
+                details "Testing should encompass all components of the system, including hardware,
+                    +b software, and network interfaces, to ensure comprehensive security coverage."
+            {
+                aspect "Methodology"
+                details "A structured approach should be employed, following recognized methodologies
+                    +b such as OSSTMM (Open Source Security Testing Methodology Manual) or OWASP
+                    +b Testing Guide, to ensure thorough and consistent testing."
+            {
+                aspect "Frequency"
+                details "Penetration tests should be conducted regularly and whenever significant
+                    +b changes are made to the system or after major security incidents."
+            {
+                aspect "Reporting"
+                details "Findings from penetration tests should be documented in a detailed report,
+                    +b highlighting vulnerabilities, potential impacts, and recommended remediation
+                    +b strategies."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.12.6.1 - Control of technical vulnerabilities"
+                details "Focuses on the identification of technical vulnerabilities in information
+                    +b systems and the assessment of risk associated with them, aligning with the
+                    +b objectives of penetration testing."
+            {
+                standard "NIST SP 800-115"
+                reference "Technical Guide to Information Security Testing and Assessment"
+                details "Provides guidance on conducting security testing and assessments, including
+                    +b penetration testing, to identify vulnerabilities and measure the effectiveness
+                    +b of security measures."
+            {
+                standard "OWASP"
+                reference "OWASP Testing Guide"
+                details "A widely recognized methodology for web application security testing, which can
+                    +b also be applied to penetration testing in industrial control systems."
+            {
+                standard "OSSTMM"
+                reference "Open Source Security Testing Methodology Manual"
+                details "Provides a comprehensive framework for conducting penetration tests,
+                    +b emphasizing a thorough and unbiased testing approach."
+    {
+        practice "5"
+        code "SVV-5"
+        name "Independence of testers"
+        check_description "TABLE C.2 – REQUIRED LEVEL OF INDEPENDENCE OF TESTERS FROM DEVELOPERS"
+        requirement_id "SVV-5"
+        title "Independence of Testers"
+        description "This requirement emphasizes the need for independence in the testing process to
+            +b ensure objectivity and unbiased security verification and validation of the
+            +b components. It mandates that the individuals or teams responsible for testing
+            +b should not be the same as those who developed the component, thereby reducing
+            +b the risk of oversight or bias."
+        { key_aspects
+            independence "Testers should be independent from the development team to ensure unbiased
+                +b evaluation."
+            objectivity "Testing procedures should aim to objectively assess the security features and
+                +b vulnerabilities of the component."
+            accountability "Establish clear roles and responsibilities to ensure no conflict of interest
+                +b during testing."
+            "quality assurance" "Independent testing acts as a layer of quality assurance, verifying that the
+                +b security measures meet the intended security requirements."
+        { related_standards
+            "ISO/IEC 27034-1" "This standard provides guidelines for ensuring security in software development
+                +b and emphasizes the importance of having independent assessments to maintain
+                +b objectivity in security evaluations."
+            "ISO/IEC 17025" "This standard specifies the general requirements for the competence of testing
+                +b and calibration laboratories, highlighting the importance of impartiality and
+                +b consistent operation, which aligns with the need for independent testing."
+            "ISO/IEC 29119" "A standard for software testing, which includes practices for test independence
+                +b to ensure unbiased testing outcomes."
+            "NIST SP 800-53" "This publication provides a catalog of security and privacy controls, which
+                +b includes the recommendation for separation of duties to minimize conflicts of
+                +b interest, aligning with the idea of independent testing."
+    {
+        practice "6"
+        code "DM-1"
+        name "Receiving notifications of security-related issues"
+        sub "a) security verification and validation testers;"
+        check_description "A process shall exist for receiving and tracking to closure security-related
+            +b issues in the product reported by internal and external sources including at a
+            +b minimum: a) security verification and validation testers;"
+        requirement_id "IEC 62443-4-1_DM-1_a"
+        title "Receiving Notifications of Security-Related Issues for Security Verification
+            +b and Validation Testers"
+        description "This requirement addresses the need for security verification and validation
+            +b testers to be informed about new or emerging security-related issues. It
+            +b ensures that these testers are kept up-to-date with relevant security
+            +b notifications to maintain the integrity and security posture of the systems
+            +b they are testing."
+        { key_aspects
+            notification_process "Establish a process for receiving timely notifications of security-related
+                +b issues that may impact the systems under test."
+            roles_and_responsibilities "Define clear roles and responsibilities for security verification and
+                +b validation testers in receiving and acting upon security notifications."
+            integration_with_testing "Ensure that the received security notifications are integrated into the testing
+                +b processes to validate the security posture of the system effectively."
+            continuous_update "Maintain an updated knowledge base for testers that includes recent
+                +b vulnerabilities, threats, and security patches."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Management of Technical Vulnerabilities"
+                description "This control requires organizations to obtain timely information about
+                    +b technical vulnerabilities and to assess and take appropriate action to address
+                    +b the associated risk."
+            {
+                standard "NIST SP 800-53"
+                reference "RA-5 - Vulnerability Scanning"
+                description "This control emphasizes the importance of scanning information systems to
+                    +b identify and mitigate vulnerabilities, which should be informed by current
+                    +b threat intelligence."
+            {
+                standard "ISO/IEC 29147"
+                reference "Vulnerability Disclosure"
+                description "This standard provides guidelines for vendors on how to receive, review, and
+                    +b respond to vulnerability reports, which is relevant to keeping testers informed
+                    +b about potential security issues."
+    {
+        practice "6"
+        code "DM-1"
+        name "Receiving notifications of security-related issues"
+        sub "b) suppliers of third-party components used in the product;"
+        check_description "A process shall exist for receiving and tracking to closure security-related
+            +b issues in the product reported by internal and external sources including at a
+            +b minimum: b) suppliers of third-party components used in the product;"
+        requirement_id "IEC 62443-4-1_DM-1_b"
+        title "Receiving Notifications of Security-Related Issues from Suppliers of
+            +b Third-Party Components"
+        description "This requirement mandates that the organization must establish processes to
+            +b receive timely and accurate notifications of security-related issues from
+            +b suppliers of third-party components used within their products. This is crucial
+            +b for maintaining the security and integrity of the overall product and ensuring
+            +b swift response to any vulnerabilities that may arise from these components."
+        [ key_aspects
+            {
+                aspect "Communication Channels"
+                details "Organizations need to establish reliable and effective communication channels
+                    +b with third-party component suppliers to ensure prompt receipt of security
+                    +b notifications."
+            {
+                aspect "Supplier Agreements"
+                details "Contracts or agreements with suppliers should include clauses that obligate
+                    +b them to notify the organization of any discovered security vulnerabilities in a
+                    +b timely manner."
+            {
+                aspect "Monitoring and Tracking"
+                details "Organizations should implement mechanisms to monitor and track notifications
+                    +b received from suppliers to ensure they are acted upon promptly."
+            {
+                aspect "Integration with Security Management"
+                details "Notifications received should be integrated into the organization's broader
+                    +b security management system for analysis and action, ensuring any necessary
+                    +b patches or mitigations are applied."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.15.1.1 - Information Security in Supplier Relationships"
+                details "This control addresses the need to protect the organization's information and
+                    +b processes that are accessible to suppliers, including implementing agreements
+                    +b to ensure suppliers notify the organization of any security incidents."
+            {
+                standard "ISO/IEC 27002"
+                reference "16.1.2 - Reporting Information Security Events"
+                details "This guideline emphasizes the importance of timely reporting of information
+                    +b security events, which can be extended to receiving reports from third-party
+                    +b suppliers."
+            {
+                standard "NIST SP 800-161"
+                reference "Supply Chain Risk Management Practices for Federal Information Systems and
+                    +b Organizations"
+                details "Provides guidance on managing risks associated with the supply chain, including
+                    +b establishing communication protocols with suppliers for security incident
+                    +b notifications."
+            {
+                standard "ISO/IEC 20243"
+                reference "Open Trusted Technology Provider Standard (O-TTPS) - Mitigating Maliciously
+                    +b Tainted and Counterfeit Products"
+                details "Emphasizes the need for trusted relationships with suppliers, including the
+                    +b timely notification of vulnerabilities and potential security issues in
+                    +b supplied components."

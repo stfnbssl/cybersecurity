@@ -1,0 +1,489 @@
+audit
+    context Secure Build
+        c6 SM-7
+            name Development environment security
+        d Si concentra sulla creazione di un processo di compilazione e integrazione del software che riduca
+            \b i rischi di sicurezza, garantendo che il codice sia costruito in modo controllato, verificabile e 
+            \b privo di vulnerabilità introdotte durante questa fase.
+        d6 Richiede che l’implementazione del software sia eseguita seguendo pratiche sicure, come l’uso di strumenti affidabili, 
+            \b la gestione delle dipendenze e il controllo della qualità del codice.
+        o Assicurare che il prodotto finale (es. il tuo software SCADA) non contenga debolezze sfruttabili a causa di errori nel processo di build.
+        e Ambiente di build controllato
+            rs L’ambiente di compilazione è isolato e configurato per prevenire accessi non autorizzati o modifiche?
+            ls 1
+            r6 SI-1: Ambiente sicuro
+            er Configurazione del server di build (es. CI/CD)
+            Descrizione: Garantire che il sistema di build (es. un server CI/CD come Jenkins o GitLab) sia protetto da accessi non autorizzati e configurato correttamente.
+            Esempio SCADA: Per il tuo software SCADA, il server di build dovrebbe essere su una rete segregata per evitare interferenze o attacchi durante la compilazione.
+            Azione: Configura autenticazione forte (es. MFA) e firewall sul server.
+
+        e Strumenti di build sicuri
+            rs Gli strumenti di compilazione (es. compilatori, linker) sono aggiornati e privi di vulnerabilità note?
+            ls 1 
+            r6 SI-2: Strumenti affidabili
+            er Lista degli strumenti conversioni e patch
+            Descrizione: Usa versioni aggiornate di compilatori (es. GCC, MSBuild) e verifica che non abbiano vulnerabilità note (es. CVE).
+            Esempio SCADA: Se usi un compilatore obsoleto, potrebbe introdurre bug sfruttabili nei protocolli SCADA.
+            Azione: Tieni un inventario degli strumenti con aggiornamenti regolari.
+
+        e Automazione del processo
+            rs Il processo di build è automatizzato per ridurre errori umani e garantire ripetibilità?
+            ls 2
+            r6 SI-3: Ripetibilità
+            er Script di build (es. Jenkins pipeline)
+            Descrizione: Automatizza il build per evitare interventi manuali rischiosi e garantire che ogni compilazione sia identica.
+            Esempio SCADA: Uno script automatizzato che compila il codice per il controllo PLC riduce il rischio di errori.
+            Azione: Implementa un pipeline CI/CD con script documentati.
+
+        e Gestione delle dipendenze
+            rs Le librerie e dipendenze esterne sono verificate per sicurezza (es. assenza di vulnerabilità note)?
+            ls 2
+            r6 SI-4: Dipendenze sicure
+            er Report di scansione (es. Dependabot, OWASP Dependency-Check)
+            Descrizione: Controlla che le librerie (es. per protocolli come Modbus o OPC UA) non abbiano vulnerabilità note.
+            Esempio SCADA: Una dipendenza obsoleta potrebbe esporre il sistema a exploit noti.
+            Azione: Usa strumenti come OWASP Dependency-Check per scansionare le librerie.
+
+        e Controllo del codice sorgente
+            rs Il codice integrato nel build proviene da un repository controllato con versioning?
+            ls 1
+            r6 SI-5: Integrità del codice
+            er Log del sistema di controllo versione (es. Git)
+            Descrizione: Assicurati che solo il codice approvato e versionato entri nel build.
+            Esempio SCADA: Un commit non autorizzato potrebbe introdurre backdoor.
+            Azione: Usa Git con controlli di accesso e revisione del codice.
+
+        e Scansione del codice
+            rs Il codice è analizzato con strumenti di scansione statica (SAST) prima o durante il build?
+            ls 2
+            r6 SI-6: Qualità del codice
+            er Report di scansione (es. SonarQube, Checkmarx)
+            Descrizione: Integra strumenti SAST (Static Application Security Testing) nel processo di build.
+            Esempio SCADA: Una scansione potrebbe rilevare buffer overflow in un modulo di comunicazione.
+            Azione: Configura SonarQube o simile nella pipeline CI/CD.
+
+        e Firma e verifica dell’output
+            rs L’output del build (binari, pacchetti) è firmato digitalmente per garantirne l’integrità?
+            ls 3
+            r6 SI-7: Verifica integrità
+            er Certificato digitale o hash dell’output
+            Descrizione: Firma digitalmente i file generati (es. eseguibili SCADA) per garantirne l’autenticità.
+            Esempio SCADA: Un cliente può verificare che il software non sia stato manomesso.
+            Azione: Usa strumenti come GPG o Signtool per firmare i binari.
+
+        e Documentazione del processo
+            rs Il processo di build è documentato, includendo configurazioni, strumenti e passaggi?
+            ls 2
+            r6 SI-8: Documentazione
+            er Manuale del processo di build
+            Descrizione: Descrivi come il build è configurato e eseguito.
+            Esempio SCADA: Un manuale che spiega come compilare il software per un HMI.
+            Azione: Crea un documento con istruzioni passo-passo.
+
+        e Gestione degli errori di build
+            rs Gli errori o le anomalie durante il build sono registrati e analizzati per problemi di sicurezza?
+            ls 3
+            r6 SI-9: Monitoraggio
+            er Log di build con analisi degli errori
+            Descrizione: Descrivi come il build è configurato e eseguito.
+            Esempio SCADA: Un manuale che spiega come compilare il software per un HMI.
+            Azione: Crea un documento con istruzioni passo-passo.
+
+        e Test di sicurezza post-build
+            rs L’output del build è sottoposto a test di sicurezza (es. fuzzing, scansione binaria) prima del rilascio?
+            ls 3
+            r6 SI-6: Qualità del codice
+            er Report di test di sicurezza post-build
+            Descrizione: Verifica l’output con test dinamici o scansioni binarie.
+            Esempio SCADA: Fuzzing per testare la robustezza di un parser di protocolli.
+            Azione: Integra strumenti come AFL (American Fuzzy Lop) o BinScope.
+
+        nota Applicazione pratica per SCADA
+            + Immagina che il tuo software SCADA gestisca comandi per valvole industriali. Durante l’audit:
+            + Verifichi che il server di build sia isolato (SI-1).
+            + Controlli che le librerie per il protocollo DNP3 siano aggiornate (SI-4).
+            + Confermi che il binario generato sia firmato (SI-7).
+            + Se trovi una lacuna (es. "Nessuna scansione SAST"), aggiungi un’azione correttiva (es. "Integrare Checkmarx nella pipeline entro Q2 2025").
+
+    context Secure Deployment
+        c6 -
+        d Si concentra sulla distribuzione del software in modo sicuro, assicurando che il prodotto venga installato e configurato senza introdurre vulnerabilità o comprometterne l’integrità. Include la protezione dell’output del build, la gestione delle configurazioni e la preparazione per gli ambienti operativi.
+        d6 Anche se non ha una sezione dedicata esclusivamente al "deployment", i requisiti di SI (Secure Implementation) e SUM (Security Update Management) coprono aspetti come l’integrità del software rilasciato e la gestione sicura degli aggiornamenti, che sono strettamente legati alla fase di deployment.
+        o Garantire che il software SCADA sia distribuito ai clienti (o installato in produzione) mantenendo la sicurezza e riducendo i rischi di compromissione durante o dopo il rilascio.
+
+        e Protezione dell’output
+            rs L’output del build (es. binari, installer) è protetto da modifiche non autorizzate prima del deployment?
+            ls 1
+            r6 SI-7: Integrità
+            er Hash o firma digitale dell’output
+            Descrizione: Assicurati che i file generati dal build (es. eseguibili SCADA) non vengano alterati prima della distribuzione.
+            Esempio SCADA: Un file .exe per il controllo HMI è firmato con un certificato per verificarne l’autenticità.
+            Azione: Usa strumenti come GPG o Signtool per firmare i binari.
+
+        e Canale di distribuzione sicuro
+            rs Il software è distribuito tramite canali sicuri (es. HTTPS, VPN) per evitare manomissioni?
+            ls 1
+            r6 SI-7: Integrità
+            er Configurazione del canale (es. certificato SSL)
+            Descrizione: Proteggi il trasferimento del software al cliente o all’ambiente operativo.
+            Esempio SCADA: Carichi il software su un portale HTTPS o lo consegni tramite una VPN aziendale.
+            Azione: Configura un server di distribuzione con SSL/TLS.
+
+        e Configurazione sicura di default
+            rs Il software è distribuito con configurazioni predefinite sicure (es. password forti, porte chiuse)?
+            ls 2
+            r6 SI-10: Configurazione
+            er Documentazione della configurazione di default
+            Descrizione: Il software deve avviarsi in uno stato sicuro senza richiedere interventi manuali.
+            Esempio SCADA: Il tuo sistema SCADA ha password di default complesse e disabilita porte inutilizzate.
+            Azione: Documenta e testa la configurazione iniziale.
+
+        e Guida all’installazione sicura
+            rs È fornita una guida per installare e configurare il software in modo sicuro?
+            ls 2
+            r6 SUM-3: Documentazione
+            er Manuale di installazione con sez. sicurezza
+            Descrizione: Fornisci istruzioni chiare per installare il software senza introdurre vulnerabilità.
+            Esempio SCADA: Un manuale che spiega come configurare il firewall per il tuo software di controllo PLC.
+            Azione: Crea un PDF o una sezione nel readme con best practice.
+
+        e Verifica post-deployment
+            rs Esiste un processo per verificare che il software sia installato correttamente e sicuro?
+            ls 2
+            r6 SI-11: Validazione
+            er Checklist o script di verifica post-installazione
+            Descrizione: Controlla che il software funzioni come previsto dopo l’installazione.
+            Esempio SCADA: Uno script verifica che i moduli di comunicazione siano attivi e sicuri.
+            Azione: Sviluppa una checklist di verifica per i clienti.
+
+        e Gestione delle chiavi/segreti
+            rs Le chiavi crittografiche o i segreti (es. certificati) sono distribuiti e gestiti in modo sicuro?
+            ls 2
+            r6 SI-12: Gestione chiavi
+            er Procedura per la distribuzione dei segreti
+            Descrizione: Distribuisci certificati o chiavi in modo sicuro (es. non hardcoded nel codice).
+            Esempio SCADA: Un certificato per autenticare il server OPC UA è fornito separatamente.
+            Azione: Usa un vault (es. HashiCorp Vault) per gestire i segreti.
+
+        e Meccanismo di aggiornamento sicuro
+            rs Il software include un meccanismo sicuro per gli aggiornamenti (es. firme digitali, server autenticati)?
+            ls 3
+            r6 SUM-1: Aggiornamenti sicuri
+            er Documentazione del processo di aggiornamento
+            Descrizione: Integra un sistema per aggiornamenti futuri che sia sicuro e verificabile.
+            Esempio SCADA: Gli aggiornamenti sono scaricati da un server autenticato e firmati.
+            Azione: Implementa un updater con verifica della firma.
+
+        e Monitoraggio del deployment
+            rs Sono raccolti feedback o log per identificare problemi di sicurezza post-deployment?
+            ls 3
+            r6 SUM-4: Monitoraggio
+            er Report o log di installazioni
+            Descrizione: Raccogli dati per rilevare problemi post-installazione.
+            Esempio SCADA: Un cliente segnala un crash che rivela una configurazione insicura.
+            Azione: Configura un sistema di logging o feedback.
+
+        e Rollback sicuro
+            rs È previsto un processo per reverting a una versione precedente in caso di deployment fallito?
+            ls 3
+            r6 SUM-5: Gestione errori
+            er Procedura di rollback con test
+            Descrizione: Prevedi un piano per ripristinare una versione stabile se il deployment fallisce.
+            Esempio SCADA: Un aggiornamento corrotto viene sostituito con la versione precedente.
+            Azione: Testa e documenta una procedura di rollback.
+
+        e Formazione per il deployment
+            rs Il personale o i clienti sono formati sulle best practice di deployment sicuro?
+            ls 2
+            r6 SUM-3: Documentazione
+            er Materiale di formazione o registri
+            Descrizione: Assicurati che chi installa il software sappia come farlo in sicurezza.
+            Esempio SCADA: Un webinar per i clienti su come deployare il tuo software.
+            Azione: Prepara materiali formativi o video.
+
+        nota Applicazione pratica per SCADA
+            + Immagina di distribuire un software SCADA per il monitoraggio di una rete idrica:
+            + Firma il file di installazione (Protezione dell’output).
+            + Lo carichi su un portale HTTPS (Canale sicuro).
+            + Fornisci un manuale che dice “Disabilita il debug mode” (Guida sicura).
+            + Dopo l’installazione, un cliente esegue uno script per verificare che i protocolli siano attivi (Verifica post-deployment).
+            + Durante l’audit, controlli questi elementi e, se manca qualcosa (es. “Non abbiamo un rollback”), pianifichi un’azione (es. “Documentare rollback entro Q3 2025”).
+
+
+    context Gestione delle chiavi/segreti
+        c6 -
+        d La gestione delle chiavi è un aspetto fondamentale per assicurare che il software distribuito sia protetto da accessi non autorizzati e che le comunicazioni o i dati sensibili siano crittografati correttamente. Riguarda la generazione, distribuzione, utilizzo, rotazione e revoca di chiavi e segreti.
+        d6 Anche se non c’è una sezione dedicata esclusivamente alla gestione delle chiavi, i requisiti di sicurezza per l’implementazione (SI) e gli aggiornamenti (SUM) implicano che i segreti (es. chiavi crittografiche, certificati) siano protetti durante tutto il ciclo di vita del software, specialmente nella fase di deployment.
+        o per SCADA: Garantire che il tuo software SCADA (es. per controllo PLC o HMI) utilizzi chiavi sicure per autenticazione, crittografia e firma, evitando vulnerabilità come chiavi hardcoded o distribuzione insicura.
+
+        { 
+            Elemento "Distribuzione sicura delle chiavi"
+            "Requisito SAMM/IEC" "Le chiavi crittografiche o i segreti sono distribuiti in modo sicuro ai sistemi o agli utenti?"
+            "Livello SAMM" 2
+            "Conformità IEC 62443-4-1" "SI-12: Gestione chiavi"
+            "Evidenze richieste" "Procedura documentata per la distribuzione dei segreti (es. file separato, canale criptato)"
+            Risultato ""
+            { Dettagli
+                Descrizione "Garantire che le chiavi crittografiche (es. per autenticazione o crittografia) non siano esposte durante il deployment, evitando di includerle direttamente nel codice o nei file di configurazione non protetti."
+                Esempio "Per un sistema SCADA, un certificato per il protocollo OPC UA viene fornito tramite un file separato criptato, trasferito via SFTP al cliente."
+                Azione "Implementa una procedura che usa un canale sicuro (es. SFTP, HTTPS) per inviare le chiavi ai clienti, evitando email non criptate."
+        { 
+            Elemento "Protezione dei segreti nel software"
+            "Requisito SAMM/IEC" "I segreti (es. chiavi API, password) sono protetti nel software distribuito e non hardcoded?"
+            "Livello SAMM" 2
+            "Conformità IEC 62443-4-1" "SI-12: Gestione chiavi"
+            "Evidenze richieste" "Codice sorgente verificato (es. assenza di chiavi in chiaro) o configurazione di un vault"
+            Risultato ""
+            { Dettagli
+                Descrizione "Evitare che i segreti siano incorporati nel codice o nei file di configurazione in chiaro, utilizzando meccanismi come variabili d’ambiente o vault esterni."
+                Esempio "Il tuo software SCADA usa un file di configurazione che richiama una chiave da un vault (es. HashiCorp Vault) invece di scriverla in chiaro."
+                Azione "Sostituisci eventuali chiavi hardcoded con un sistema di gestione dei segreti (es. Vault, AWS Secrets Manager) e verifica con una scansione SAST."
+        { 
+            Elemento "Rotazione delle chiavi"
+            "Requisito SAMM/IEC" "Esiste un processo per la rotazione periodica o in caso di compromissione delle chiavi?"
+            "Livello SAMM" 3
+            "Conformità IEC 62443-4-1" "SI-12: Gestione chiavi / SUM-1: Aggiornamenti sicuri"
+            "Evidenze richieste" "Procedura di rotazione delle chiavi e log delle rotazioni eseguite"
+            Risultato ""
+            { Dettagli
+                Descrizione "Definire un processo per aggiornare le chiavi regolarmente o dopo un incidente, garantendo che i sistemi SCADA restino sicuri nel tempo."
+                Esempio "Dopo una violazione potenziale, il tuo software SCADA richiede la sostituzione di un certificato TLS con una nuova chiave, distribuita tramite un updater sicuro."
+                Azione "Documenta una politica di rotazione (es. ogni 6 mesi o dopo incidenti) e testa il processo con un deployment simulato."
+        { 
+            Elemento "Revoca delle chiavi"
+            "Requisito SAMM/IEC" "È previsto un meccanismo per revocare chiavi compromesse e informare i sistemi interessati?"
+            "Livello SAMM" 3
+            "Conformità IEC 62443-4-1" "SI-12: Gestione chiavi"
+            "Evidenze richieste" "Procedura di revoca e lista di revoca (CRL) o log di comunicazione"
+            Risultato ""
+            { Dettagli
+                Descrizione "Assicurare che chiavi compromesse possano essere invalidate rapidamente, prevenendo abusi e mantenendo l’integrità del sistema."
+                Esempio "Se una chiave privata per un HMI SCADA è esposta, la revochi tramite una CRL e aggiorni i client con una nuova chiave."
+                Azione "Integra un sistema di revoca (es. CRL o OCSP) e definisci una procedura per notificare i clienti."
+        { 
+            Elemento "Monitoraggio dell’uso delle chiavi"
+            "Requisito SAMM/IEC" "L’uso delle chiavi è monitorato per rilevare accessi non autorizzati o anomalie?"
+            "Livello SAMM" 3
+            "Conformità IEC 62443-4-1" "SUM-4: Monitoraggio"
+            "Evidenze richieste" "Log di accesso o report di monitoraggio delle chiavi"
+            Risultato ""
+            { Dettagli
+                Descrizione "Tracciare l’utilizzo delle chiavi per identificare comportamenti sospetti, come tentativi di accesso da fonti non autorizzate."
+                Esempio "Un sistema SCADA registra ogni uso di una chiave API per il controllo remoto e segnala accessi anomali."
+                Azione "Configura un sistema di logging centralizzato (es. ELK Stack) per monitorare l’uso delle chiavi e definire soglie di allerta."
+
+        e Generazione sicura delle chiavi
+            rs Le chiavi crittografiche sono generate con algoritmi robusti e lunghezze adeguate (es. RSA 2048, AES 256)?
+            ls 1
+            r6 SI-12: Chiavi sicure
+            er Configurazione del generatore di chiavi (es. OpenSSL log)
+            Descrizione: Usa algoritmi standard (es. AES, RSA) con lunghezze adeguate per generare chiavi robuste.
+            Esempio SCADA: Una chiave AES-256 per crittografare la comunicazione tra un HMI e un PLC.
+            Azione: Usa OpenSSL o una libreria certificata FIPS per generare chiavi.
+
+        e Protezione delle chiavi nel codice
+            rs Le chiavi o i segreti non sono hardcoded nel codice sorgente o nei file di configurazione?
+            ls 1
+            r6 SI-12: Integrità
+            er Report di scansione SAST o revisione codice
+            Descrizione: Evita di includere chiavi o segreti direttamente nel codice o nei file di configurazione leggibili.
+            Esempio SCADA: Una chiave hardcoded in un modulo OPC UA potrebbe essere estratta da un attaccante.
+            Azione: Esegui una scansione SAST (es. con SonarQube) per rilevare segreti nel codice.
+        
+        e Distribuzione sicura delle chiavi
+            rs Le chiavi sono distribuite ai clienti o ai sistemi operativi tramite canali sicuri (es. crittografati)?
+            ls 2
+            r6 SI-7: Integrità
+            er Procedura di distribuzione (es. USB crittografata, HSM)
+            Descrizione: Trasferisci le chiavi ai clienti o ai sistemi in modo sicuro.
+            Esempio SCADA: Consegni un certificato per autenticare il server SCADA su una chiavetta USB crittografata.
+            Azione: Usa canali sicuri (es. SFTP, USB con AES) o un HSM (Hardware Security Module).
+
+        e Archiviazione sicura
+            rs Le chiavi sono archiviate in un sistema sicuro (es. HSM, vault) e non in chiaro su disco?
+            ls 2
+            r6 SI-12: Protezione
+            er Configurazione del vault (es. HashiCorp Vault)
+            Descrizione: Conserva le chiavi in un luogo protetto, non in chiaro su disco o in database non sicuri.
+            Esempio SCADA: Le chiavi per firmare gli aggiornamenti sono in un vault come HashiCorp Vault.
+            Azione: Implementa un sistema di gestione dei segreti (es. AWS Secrets Manager, Vault).
+
+        e Rotazione periodica delle chiavi
+            rs Esiste un processo per aggiornare o ruotare le chiavi a intervalli regolari o dopo un compromesso?
+            ls 3
+            r6 SUM-1: Aggiornamenti
+            er Policy di rotazione con registro delle modifiche
+            Descrizione: Cambia le chiavi regolarmente o dopo un evento critico per ridurre il rischio di compromissione.
+            Esempio SCADA: Ruoti la chiave di firma ogni 12 mesi o dopo un incidente.
+            Azione: Definisci una policy (es. “Rotazione annuale”) e automatizzala dove possibile.
+
+        e Revoca delle chiavi
+            rs È previsto un meccanismo per revocare chiavi compromesse o obsolete (es. CRL, OCSP)?
+            ls 3 
+            r6 SUM-5: Gestione errori
+            er Lista di revoca o procedura di revoca
+            Descrizione: Revoca chiavi compromesse o obsolete e comunica la revoca ai sistemi.
+            Esempio SCADA: Dopo un attacco, revochi un certificato tramite una CRL (Certificate Revocation List).
+            Azione: Configura un sistema di revoca (es. OCSP o CRL) e testalo.
+
+        e Accesso controllato alle chiavi
+            rs Solo personale autorizzato può accedere alle chiavi, con autenticazione forte (es. MFA)?
+            ls 2
+            r6 SI-12: Controllo accessi
+            er Registro degli accessi o configurazione IAM
+            Descrizione: Limita l’accesso alle chiavi a poche persone autorizzate.
+            Esempio SCADA: Solo il team di sicurezza può accedere al vault delle chiavi.
+            Azione: Usa IAM (Identity Access Management) con autenticazione multifattore.
+
+        e Monitoraggio utilizzo chiavi
+            rs L’uso delle chiavi è monitorato per rilevare abusi o anomalie (es. tentativi di accesso non autorizzati)?
+            ls 3
+            r6 SUM-4: Monitoraggio
+            er Log di utilizzo delle chiavi
+            Descrizione: Tieni traccia di chi usa le chiavi e per cosa, per rilevare anomalie.
+            Esempio SCADA: Un log rivela un tentativo di usare una chiave revocata.
+            Azione: Configura un sistema di logging (es. Splunk) per monitorare l’accesso.
+
+        e Documentazione gestione chiavi
+            rs Esiste una documentazione che descrive il processo di gestione delle chiavi (generazione, distribuzione, ecc.)?
+            ls 2
+            r6 SUM-3: Documentazione
+            er Manuale o policy di gestione chiavi
+            Descrizione: Descrivi come generi, distribuisci e gestisci le chiavi.
+            Esempio SCADA: Un documento che spiega come generare una chiave per il protocollo DNP3.
+            Azione: Scrivi una policy dettagliata e aggiornala regolarmente.
+
+        e Supporto ai clienti
+            rs I clienti ricevono istruzioni su come gestire le chiavi nel loro ambiente operativo?
+            ls 2
+            r6 SUM-3: Documentazione
+            er Guida per l’utente su gestione chiavi
+            Descrizione: Fornisci ai clienti istruzioni su come usare e proteggere le chiavi.
+            Esempio SCADA: Una guida che dice “Non salvare il certificato sul desktop”.
+            Azione: Crea una sezione nel manuale utente dedicata alla gestione dei segreti.
+
+        nota Applicazione pratica per SCADA
+            + Immagina di deployare un software SCADA per una centrale elettrica:
+            + Generi una chiave AES-256 con OpenSSL (Generazione sicura).
+            + La distribuisci al cliente tramite una chiavetta USB crittografata (Distribuzione sicura).
+            + La archivi in un HSM sul tuo server (Archiviazione sicura).
+            + Fornisci al cliente una guida su come caricarla nel sistema senza esporla (Supporto ai clienti).
+            + Durante l’audit, trovi che non hai una policy di rotazione: aggiungi un’azione (es. “Definire rotazione semestrale entro Q4 2025”).
+
+        nota Strumenti suggeriti
+            + Generazione: OpenSSL, Keytool (Java).
+            + Archiviazione: HashiCorp Vault, AWS KMS, HSM (es. Thales).
+            + Scansione: TruffleHog, GitGuardian (per segreti nel codice).
+            + Monitoraggio: Splunk, ELK Stack.
+
+
+    context Rotazione periodica delle chiavi
+        c6 -
+        d La rotazione delle chiavi è il processo di sostituzione di chiavi crittografiche esistenti con nuove chiavi, eseguito a intervalli regolari o in risposta a eventi specifici (es. compromissioni). È una best practice per limitare l’esposizione di una chiave e mitigare i rischi derivanti da un suo uso prolungato.
+        d6 In SUM-1, la norma richiede che i processi di aggiornamento della sicurezza siano gestiti in modo sicuro, il che include la rotazione delle chiavi per proteggere gli aggiornamenti e mantenere l’integrità del software.
+        o Assicurare che le chiavi usate nel tuo software SCADA (es. per autenticazione, crittografia o firma) siano regolarmente aggiornate senza interrompere il funzionamento del sistema.
+
+        e Policy di rotazione definita
+            rs Esiste una policy documentata che specifica quando e come ruotare le chiavi (es. ogni 6 mesi)?
+            ls 3
+            r6 SUM-1: Processo gestito
+            er Policy di rotazione delle chiavi
+            Descrizione: Stabilisci regole chiare su quando e perché ruotare le chiavi.
+            Esempio SCADA: “Tutte le chiavi di firma degli aggiornamenti vengono ruotate ogni 12 mesi.”
+            Azione: Scrivi una policy (es. “Rotazione annuale o dopo un incidente di sicurezza”).
+
+        e Trigger per la rotazione
+            rs Sono definiti eventi che attivano la rotazione (es. compromissione, scadenza, cambio personale)?
+            ls 3
+            r6 SUM-5: Gestione errori
+            er Elenco dei trigger nella policy
+            Descrizione: Identifica eventi che richiedono una rotazione immediata.
+            Esempio SCADA: Un dipendente lascia l’azienda o un attacco compromette un server.
+            Azione: Elenca trigger specifici nella policy (es. “Compromissione rilevata”).
+
+        e Generazione nuove chiavi
+            rs Le nuove chiavi sono generate con algoritmi sicuri e conformi agli standard attuali?
+            ls 3
+            r6 SUM-1: Sicurezza aggiornata
+            er Log o configurazione del generatore (es. OpenSSL)
+            Descrizione: Usa strumenti aggiornati per creare chiavi robuste.
+            Esempio SCADA: Generi una nuova chiave RSA-2048 per autenticare un PLC.
+            Azione: Usa OpenSSL o un HSM con algoritmi conformi (es. NIST SP 800-57).
+
+        e Distribuzione nuove chiavi
+            rs Le nuove chiavi sono distribuite in modo sicuro senza esporre quelle vecchie o nuove?
+            ls 3
+            r6 SUM-1: Canale sicuro
+            er Procedura di distribuzione (es. HSM, canale crittografato)
+            Descrizione: Trasferisci le nuove chiavi senza esporle.
+            Esempio SCADA: Invii una chiave al cliente tramite un canale TLS o un dispositivo HSM.
+            Azione: Definisci una procedura (es. “Distribuire tramite USB crittografato”).
+
+        e Aggiornamento sistemi
+            rs Il software SCADA è aggiornato per usare le nuove chiavi senza downtime o vulnerabilità temporanee?
+            ls 3
+            r6 SUM-1: Continuità
+            er Piano di aggiornamento o test di transizione
+            Descrizione: Sostituisci le chiavi nei sistemi operativi senza interrompere il servizio.
+            Esempio SCADA: Aggiorni la chiave di un server OPC UA senza fermare la comunicazione.
+            Azione: Pianifica una transizione (es. “Usa chiavi doppie durante il passaggio”).
+
+        e Revoca chiavi vecchie
+            rs Le chiavi sostituite sono revocate formalmente per impedirne l’uso (es. CRL, lista interna)?
+            ls 3
+            r6 SUM-5: Gestione errori
+            er Lista di revoca o log di revoca
+            Descrizione: Impedisci l’uso delle chiavi obsolete.
+            Esempio SCADA: Revochi una chiave di firma aggiungendola a una CRL.
+            Azione: Configura un sistema di revoca (es. Certificate Revocation List).
+
+        e Automazione della rotazione
+            rs Il processo di rotazione è automatizzato per ridurre errori umani e garantire consistenza?
+            ls 3
+            r6 SUM-1: Ripetibilità
+            er Script o configurazione di automazione (es. Vault API)
+            Descrizione: Automatizza il processo per ridurre errori e garantire regolarità.
+            Esempio SCADA: Un script in HashiCorp Vault ruota le chiavi ogni 6 mesi.
+            Azione: Implementa un workflow automatizzato (es. con API di un vault).
+
+        e Test post-rotazione
+            rs Dopo la rotazione, viene verificato che il sistema funzioni correttamente con le nuove chiavi?
+            ls 3
+            r6 SUM-1: Validazione
+            er Report di test post-rotazione
+            Descrizione: Verifica che il sistema funzioni con le nuove chiavi.
+            Esempio SCADA: Testi che un HMI si connetta correttamente dopo la rotazione.
+            Azione: Esegui test funzionali e di sicurezza post-rotazione.
+
+        e Monitoraggio della rotazione
+            rs La rotazione è registrata e monitorata per rilevare problemi o anomalie?
+            ls 3
+            r6 SUM-4: Monitoraggio
+            er Log delle rotazioni con timestamp
+            Descrizione: Tieni traccia delle rotazioni per auditing e troubleshooting.
+            Esempio SCADA: Un log mostra che la chiave è stata ruotata il 01/03/2025.
+            Azione: Usa un sistema di logging (es. Splunk) per registrare ogni evento.
+
+        e Supporto ai clienti
+            rs I clienti sono informati e supportati per aggiornare le loro chiavi in modo sicuro?
+            ls 3
+            r6 SUM-3: Documentazione
+            er Guida o notifica per la rotazione
+            Descrizione: Aiuta i clienti a gestire la rotazione nel loro ambiente.
+            Esempio SCADA: Invii una notifica: “Aggiorna la chiave entro il 30/06/2025.”
+            Azione: Fornisci una guida (es. “Come caricare la nuova chiave nel PLC”).
+
+        nota Applicazione pratica per SCADA
+            + Immagina che il tuo software SCADA usi una chiave AES per crittografare i comandi tra un HMI e un PLC:
+            + Definisci una policy: “Rotazione ogni 12 mesi” (Policy).
+            + Generi una nuova chiave con OpenSSL (Generazione).
+            + La distribuisci tramite un portale HTTPS (Distribuzione).
+            + Aggiorni il software senza interrompere il servizio (Aggiornamento).
+            + Revochi la vecchia chiave con una lista interna (Revoca).
+            + Durante l’audit, trovi che non hai test post-rotazione: aggiungi un’azione (es. “Sviluppare test entro Q3 2025”).
+
+        nota Strumenti suggeriti
+            + Generazione: OpenSSL, Keytool.
+            + Automazione: HashiCorp Vault, AWS KMS (con rotazione automatica).
+            + Revoca: OpenSSL CRL, OCSP Responder.
+            + Monitoraggio: Splunk, ELK Stack.

@@ -1,0 +1,222 @@
+$group
+    {
+        id "FSA-CR 3.5"
+        check_description "Components shall validate the syntax, length and content of any input data that
+            +b is used as an industrial process control input or input via external interfaces
+            +b that directly impacts the action of the component."
+        requirement_id "IEC 62443-4-2: CR 3.5"
+        title "Input Validation"
+        description "This requirement focuses on the necessity for components within an Industrial
+            +b Automation and Control System (IACS) to validate all input data to ensure it is
+            +b within the expected parameters. Proper input validation helps in mitigating
+            +b risks related to malformed input which can lead to unauthorized access or
+            +b actions within the system."
+        [ key_aspects
+            {
+                aspect "Input Sanitization"
+                details "Ensures that data received from users or other systems is clean and free from
+                    +b potentially harmful content such as SQL injection, cross-site scripting, etc."
+            {
+                aspect "Boundary Checking"
+                details "Verifies that input values fall within the defined range or set of acceptable
+                    +b values to prevent buffer overflow or out-of-bounds errors."
+            {
+                aspect "Format Verification"
+                details "Checks that input conforms to expected formats (e.g., date, email, numerical)
+                    +b to prevent malformed data processing."
+            {
+                aspect "Encoding"
+                details "Ensures proper encoding of input to avoid unexpected behavior during data
+                    +b handling processes."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.9.4.1 - Information Access Restriction"
+                details "Focuses on the control of access to information, closely tied to ensuring that
+                    +b inputs do not allow unauthorized data access or modification."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-10 - Information Input Validation"
+                details "Emphasizes mechanisms for validating inputs to prevent injection and other
+                    +b vulnerabilities within systems."
+            {
+                standard "OWASP Top Ten"
+                reference "A01:2021 - Broken Access Control"
+                details "Highlights the importance of properly validating inputs to prevent unauthorized
+                    +b access through improper input handling."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "14.2.5 - Secure System Engineering Principles"
+                details "Recommends principles for secure system design, including input validation as a
+                    +b fundamental security engineering practice."
+    {
+        id "FSA-CR 3.6"
+        check_description "Components that physically or logically connect to an automation process shall
+            +b provide the capability to set outputs to a predetermined state if normal
+            +b operation as defined by the component supplier cannot be maintained."
+        requirement_id "IEC 62443-4-2:CR 3.6"
+        title "Deterministic Output"
+        description "This requirement focuses on ensuring that components in an industrial
+            +b automation and control system (IACS) provide predictable and consistent
+            +b responses to given inputs. Deterministic output is critical for maintaining the
+            +b integrity and reliability of control systems, especially in environments where
+            +b safety and precision are paramount."
+        [ key_aspects
+            {
+                aspect "Predictability"
+                description "The component must provide consistent outputs for the same inputs under the
+                    +b same conditions. This helps in maintaining the reliability of the control
+                    +b processes."
+            {
+                aspect "Consistency"
+                description "Outputs should not vary unexpectedly in the absence of changes in input or
+                    +b environmental conditions, ensuring that system behavior is predictable."
+            {
+                aspect "Testing and Verification"
+                description "Systems should be thoroughly tested to verify that they meet deterministic
+                    +b output criteria under expected operational conditions."
+            {
+                aspect "Error Handling"
+                description "In the event of an error, the system should handle it in a manner that
+                    +b maintains deterministic behavior, such as failing safely or providing
+                    +b consistent error notifications."
+        [ related_standards
+            {
+                standard "IEC 61508"
+                description "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems. IEC 61508 emphasizes the importance of predictable
+                    +b behavior in safety systems and provides a framework for ensuring that systems
+                    +b meet safety integrity levels (SILs)."
+            {
+                standard "IEC 61131-3"
+                description "Programmable Controllers - Part 3: Programming Languages. This standard
+                    +b includes guidelines for implementing control algorithms in a way that ensures
+                    +b deterministic behavior, particularly in automation systems."
+            {
+                standard "IEEE 802.1 TSN"
+                description "Time-Sensitive Networking. TSN standards specify mechanisms for ensuring
+                    +b deterministic communication in networks, which is crucial for maintaining
+                    +b deterministic outputs in distributed control systems."
+            {
+                standard "ISO/IEC 27001"
+                description "Information Security Management. While primarily focused on information
+                    +b security, ISO/IEC 27001 includes principles that support maintaining system
+                    +b integrity, which is essential for ensuring deterministic outputs in secure
+                    +b environments."
+    {
+        id "FSA-CR 3.7"
+        check_description "Components shall identify and handle error conditions in a manner that does not
+            +b provide information that could be exploited by adversaries to attack the IACS."
+        requirement_id "IEC 62443-4-2: CR 3.7"
+        title "Error Handling"
+        description "This requirement focuses on the ability of a component to handle errors
+            +b effectively to maintain security and operational integrity. Proper error
+            +b handling ensures that errors do not lead to system vulnerabilities,
+            +b unauthorized access, or data leakage."
+        { key_aspects
+            robust_error_management "Implement mechanisms to handle errors without exposing sensitive information or
+                +b becoming vulnerable to attacks."
+            "error logging" "Log errors in a manner that is secure and does not disclose sensitive data,
+                +b while being accessible for audit and monitoring purposes."
+            "user feedback" "Provide meaningful and non-technical feedback to users when errors occur,
+                +b avoiding exposure of system details."
+            "fault tolerance" "Ensure the system continues to operate or fails gracefully under error
+                +b conditions without compromising security."
+            "input validation" "Validate inputs to prevent injection attacks and other input-related
+                +b vulnerabilities."
+            "resource management" "Prevent resource leaks and exhaustion through careful error handling and
+                +b resource release."
+        { related_standards
+            "ISO/IEC 27002:2013 - Section 12.4" "Addresses logging and monitoring, emphasizing the importance of secure error
+                +b logging to detect unauthorized activities."
+            "NIST SP 800-53 Rev. 5 - SI-11" "Focuses on error handling and ensuring that error messages do not provide
+                +b information that can be exploited by attackers."
+            "OWASP Top Ten 2021 - A9:2021" "Highlights security misconfiguration and emphasizes the importance of handling
+                +b errors securely to avoid information leakage."
+            "ISO/IEC 15408-2:2008 - Security Functional Requirements" "Includes requirements for error handling as part of the security functionality
+                +b of systems."
+    {
+        id "FSA-CR 3.8A"
+        check_description "Components shall provide mechanisms to protect the integrity of communications
+            +b sessions including the capability to invalidate session identifiers upon user
+            +b logout or other session termination (including browser sessions)."
+        requirement_id "IEC 62443-4-2: CR 3.8(a)"
+        title "Session Integrity - Invalidate Session Identifiers"
+        description "This requirement addresses the need to ensure the integrity of session
+            +b identifiers in order to protect against unauthorized access and session
+            +b hijacking. It mandates that session identifiers be invalidated when they are no
+            +b longer in use, thereby reducing the risk of exposure to attacks that exploit
+            +b session vulnerabilities."
+        [ key_aspects
+            "Session Identifier Management: Implement mechanisms to manage session identifiers, ensuring they are unique, unpredictable, and securely generated."
+            "Session Termination: Ensure that session identifiers are invalidated promptly upon session termination or after a predefined period of inactivity."
+            "Security Controls: Deploy security measures such as encryption and secure transmission protocols to protect session identifiers from interception and unauthorized access."
+            "Attack Mitigation: Address common session-based attacks such as session fixation, session hijacking, and replay attacks by implementing appropriate controls."
+        [ related_standards
+            {
+                standard "OWASP ASVS"
+                reference "V2.2 - Authentication General Requirements"
+                details "OWASP Application Security Verification Standard (ASVS) provides guidelines on
+                    +b session management, including invalidating session identifiers after logout and
+                    +b ensuring session identifiers are not exposed in URLs."
+            {
+                standard "NIST SP 800-63B"
+                reference "Section 7 - Session Management"
+                details "NIST Special Publication 800-63B offers guidance on session management,
+                    +b emphasizing the importance of ending sessions after a defined period of
+                    +b inactivity and ensuring session identifiers are securely handled."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.4.2 - Secure Log-on Procedures"
+                details "ISO/IEC 27001 establishes requirements for secure log-on procedures, which
+                    +b include the management of session identifiers and the protection of session
+                    +b tokens against unauthorized use."
+    {
+        id "FSA-CR 3.8B"
+        check_description "Components shall provide mechanisms to protect the integrity of communications
+            +b sessions including the capability to generate a unique session identifier for
+            +b each session and recognize only session identifiers that are system-generated."
+        requirement_id "IEC 62443-4-2: CR 3.8(b)"
+        title "Session Integrity - Generate and Recognize Session Identifiers"
+        description "This requirement ensures that components within an industrial control system
+            +b (ICS) can generate and recognize session identifiers to maintain the integrity
+            +b of communication sessions. Proper session management is crucial to prevent
+            +b unauthorized access and session hijacking, thereby protecting the
+            +b confidentiality and integrity of data transmitted between components."
+        [ key_aspects
+            {
+                aspect "Session Identifier Generation"
+                details "Components must be capable of generating unique session identifiers that are
+                    +b unpredictable and sufficiently complex to resist guessing or brute-force
+                    +b attacks."
+            {
+                aspect "Session Identifier Recognition"
+                details "Components must be able to recognize valid session identifiers to ensure that
+                    +b only authorized sessions are maintained, preventing unauthorized access."
+            {
+                aspect "Session Management"
+                details "Proper mechanisms should be implemented to manage session lifecycles, including
+                    +b the initiation, maintenance, and termination of sessions."
+        [ related_standards
+            {
+                standard "NIST SP 800-63B"
+                reference "Digital Identity Guidelines - Authentication and Lifecycle Management"
+                relevance "Guidelines on session management, including session duration, renewal, and
+                    +b protection against session hijacking."
+            {
+                standard "OWASP Application Security Verification Standard (ASVS) 4.0"
+                reference "5.3 Session Management"
+                relevance "Provides verification requirements for session management, including secure
+                    +b session identifier generation and handling."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.9.4.3 Password Management System"
+                relevance "While primarily focused on password management, this standard emphasizes the
+                    +b importance of secure authentication mechanisms, which are closely related to
+                    +b session management."
+            {
+                standard "RFC 3551"
+                reference "Secure Real-time Transport Protocol (SRTP)"
+                relevance "Describes protocols for secure session establishment and management in
+                    +b real-time applications, relevant for ensuring session integrity in ICS
+                    +b environments."

@@ -1,0 +1,632 @@
+$group
+    {
+        practice "1"
+        code "SM-1"
+        subCode "a) configuration management with change controls and audit logging;"
+        name "Development process"
+        description "A general product development/maintenance/support process shall be documented
+            +b and enforced that is consistent and integrated with commonly accepted product
+            +b development processes that include, but are not limited to: a) configuration
+            +b management with change controls and audit logging;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential security risks in the development process,
+                    +b ensuring secure configuration management and audit logging."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) risks."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To conduct risk assessments specific to ICS environments."
+                { case_study
+                    example "A power plant implemented STRIDE-based threat modeling for their DCS
+                        +b (Distributed Control System) to identify vulnerabilities in configuration
+                        +b management, leading to enhanced audit logging controls."
+            { audit_and_compliance_verification
+                why "To ensure adherence to documented development processes and configuration
+                    +b management practices."
+                [ audit_checklist
+                    "Verify that all changes to the configuration are logged and audited."
+                    "Check that change control procedures are followed for all modifications."
+                    "Ensure that audit logs are tamper-evident and securely stored."
+                [ metrics
+                    {
+                        kpi "Percentage of changes with proper audit logs"
+                        target "100%"
+                    {
+                        kpi "Number of unauthorized changes detected"
+                        target "0"
+                compliance_procedure "Conduct quarterly audits of configuration management processes, review audit
+                    +b logs, and verify that all changes follow documented procedures."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the development process are competent in
+                    +b secure configuration management and audit logging."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering secure development practices for ICS."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Training program focusing on ICS security, including secure development and
+                            +b configuration management."
+                competency_assessment "Annual competency reviews to ensure personnel are up-to-date with secure
+                    +b development practices and configuration management requirements."
+            { tooling_and_automation_support
+                why "To automate and streamline secure configuration management and audit logging
+                    +b processes."
+                [ tools
+                    {
+                        name "Git"
+                        purpose "Version control system for managing code and configuration changes."
+                    {
+                        name "Jenkins"
+                        purpose "CI/CD tool to automate build and deployment processes with audit logging."
+                automation_strategy "Integrate version control and CI/CD pipelines with automated audit logging to
+                    +b ensure all changes are tracked and reviewed."
+            { handling_legacy_systems_and_constraints
+                why "To address challenges in applying modern configuration management practices to
+                    +b legacy ICS components."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure and reduce risk."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional logging and monitoring for legacy systems."
+                example_policy "Legacy systems must be documented, and compensating controls (e.g., enhanced
+                    +b logging) must be implemented if modern configuration management tools cannot be
+                    +b applied."
+            { stakeholder_collaboration_and_governance
+                why "To ensure alignment between engineering, security, and management teams on
+                    +b configuration management practices."
+                { governance_model
+                    name "RACI Matrix for SM-1"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement and follow configuration management procedures."
+                        {
+                            role "Security Team"
+                            responsibility "Review and approve configuration changes."
+                        {
+                            role "Management"
+                            responsibility "Oversee compliance with configuration management policies."
+                conflict_resolution "Establish a governance committee to resolve conflicts between engineering and
+                    +b security priorities, ensuring compliance without compromising functionality."
+            { continuous_improvement_and_updates
+                why "To adapt configuration management practices based on new threats and lessons
+                    +b learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other ICS vulnerability reports."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate insights from audits and incidents into policy updates."
+                lessons_learned "After a configuration change led to a system outage, the policy was updated to
+                    +b require peer review for all critical changes."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "b) product description and requirements definition with requirements
+            +b traceability;"
+        name "Development process"
+        description "A general product development/maintenance/support process shall be documented
+            +b and enforced that is consistent and integrated with commonly accepted product
+            +b development processes that include, but are not limited to: b) product
+            +b description and requirements definition with requirements traceability;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure security requirements are identified and traced throughout the
+                    +b development lifecycle."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) during
+                            +b requirements definition."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems to address unique
+                            +b operational and environmental risks."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation and analysis of threat models based on STRIDE."
+                    {
+                        name "NIST 800-30 adapted for SCADA"
+                        purpose "Provides a structured approach for risk assessment in ICS environments."
+                { case_study
+                    example "A power plant's DCS underwent a risk assessment using NIST 800-30, identifying
+                        +b critical vulnerabilities in communication protocols, leading to enhanced
+                        +b encryption requirements."
+            { audit_and_compliance_verification
+                why "To verify that security requirements are properly defined, documented, and
+                    +b traceable."
+                [ audit_checklist
+                    "Verify existence of a documented product description."
+                    "Check for traceability matrix linking requirements to design and test cases."
+                    "Review evidence of security requirements validation."
+                [ metrics
+                    {
+                        kpi "Percentage of security requirements with traceability evidence"
+                        target "100%"
+                    {
+                        kpi "Number of untraced requirements identified in audits"
+                        target "0"
+                compliance_procedure "Documentation review and interviews with development team to verify
+                    +b requirements traceability process."
+            { training_and_competency_requirements
+                why "To ensure personnel involved in requirements definition have necessary security
+                    +b expertise."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers fundamental concepts of ICS security, including secure development
+                            +b practices."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides comprehensive knowledge of ICS security, including secure requirements
+                            +b engineering."
+                competency_assessment "Annual review of team members' qualifications and training records against role
+                    +b requirements."
+            { tooling_and_automation_support
+                why "To automate and streamline requirements management and traceability."
+                [ tools
+                    {
+                        name "JIRA with Requirements and Test Management Plugins"
+                        purpose "Enables linking requirements to user stories and test cases for traceability."
+                    {
+                        name "IBM Rational DOORS"
+                        purpose "Requirements management tool supporting end-to-end traceability."
+                automation_strategy "Integration of requirements management tools with CI/CD pipeline to
+                    +b automatically verify traceability during builds."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack formal requirements documentation, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Retroactive documentation"
+                        description "Create requirements documentation for legacy systems based on reverse
+                            +b engineering and operational knowledge."
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to reduce attack surface when modern security
+                            +b requirements cannot be met."
+                example_policy "Legacy Integration Policy: All legacy systems must have at least basic
+                    +b functional documentation created, and be placed in a dedicated network zone
+                    +b with strict access controls."
+            { stakeholder_collaboration_and_governance
+                why "Effective requirements definition requires collaboration between engineering,
+                    +b security, and business teams."
+                { governance_model
+                    name "RACI Matrix for Requirements Definition"
+                    [ roles
+                        {
+                            role "Product Owner"
+                            responsibility "Accountable for final requirements approval"
+                        {
+                            role "Security Architect"
+                            responsibility "Responsible for defining security requirements"
+                        {
+                            role "Systems Engineer"
+                            responsibility "Responsible for technical requirements definition"
+                conflict_resolution "Monthly cross-functional review meetings to align on requirements priorities,
+                    +b with escalation to CISO for unresolved conflicts."
+            { continuous_improvement_and_updates
+                why "Security requirements must evolve with changing threat landscape."
+                [ update_process
+                    {
+                        step "Threat intelligence monitoring"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new vulnerabilities
+                            +b affecting similar systems."
+                    {
+                        step "Annual requirements review"
+                        description "Formal review of all security requirements against current threats and
+                            +b standards."
+                lessons_learned "After a PLC firmware vulnerability was exploited, all requirements now mandate
+                    +b cryptographic signature verification for firmware updates."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "c)"
+        name "Development process"
+        description "A general product development/maintenance/support process shall be documented
+            +b and enforced that is consistent and integrated with commonly accepted product
+            +b development processes that include, but are not limited to: c) software or
+            +b hardware design and implementation practices, such as modular design;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential security risks early in the development
+                    +b lifecycle."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A framework for conducting risk assessments specifically for SCADA and ICS
+                            +b environments."
+                { case_study
+                    example "A risk assessment for a Distributed Control System (DCS) in a power plant
+                        +b identified vulnerabilities in communication protocols, leading to the
+                        +b implementation of encrypted channels and network segmentation."
+            { audit_and_compliance_verification
+                why "To ensure adherence to documented development processes and security practices."
+                [ audit_checklist
+                    "Verify that modular design principles are applied in the software/hardware architecture."
+                    "Check for documented evidence of threat modeling and risk assessments."
+                    "Review compliance with secure coding standards and practices."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of identified vulnerabilities mitigated"
+                        target "All critical and high-severity vulnerabilities"
+                compliance_procedure "Documentation review and interviews with development teams to verify the
+                    +b implementation of modular design and other secure practices."
+            { training_and_competency_requirements
+                why "To ensure that development teams have the necessary skills to implement secure
+                    +b design and development practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 certifications"
+                        description "Certifications that provide knowledge on securing Industrial Automation and
+                            +b Control Systems (IACS)."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification focused on securing critical infrastructure and industrial
+                            +b control systems."
+                competency_assessment "Annual competency reviews to ensure that development teams maintain up-to-date
+                    +b knowledge and skills in secure design and implementation practices."
+            { tooling_and_automation_support
+                why "To integrate security into the development lifecycle efficiently and
+                    +b consistently."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities during development."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                automation_strategy "Integration of SAST and DAST tools into the CI/CD pipeline to automate security
+                    +b testing and ensure continuous compliance with secure development practices."
+            { handling_legacy_systems_and_constraints
+                why "To address security challenges posed by legacy systems that cannot meet modern
+                    +b security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolating legacy systems in separate network zones to limit exposure to
+                            +b potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implementing additional security measures, such as intrusion detection systems,
+                            +b to mitigate risks associated with legacy systems."
+                example_policy "A policy for integrating legacy PLCs into a modern ICS environment includes
+                    +b network segmentation, regular vulnerability assessments, and the use of
+                    +b compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "To ensure alignment and effective collaboration between engineering, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design and development practices."
+                        {
+                            role "Security Team"
+                            responsibility "Provide guidance and oversight on security requirements."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources and support for security initiatives."
+                conflict_resolution "A formal process for resolving conflicts between engineering and security
+                    +b priorities, including escalation to a governance committee if necessary."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned from incidents and
+                    +b audits."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Analyze audit results to identify areas for improvement in the development
+                            +b process."
+                    {
+                        step "Update policies and practices"
+                        description "Revise development practices and policies based on new threat intelligence and
+                            +b audit findings."
+                lessons_learned "Incorporating findings from past security incidents, such as the need for
+                    +b stricter input validation in ICS software, into updated development practices."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "d) repeatable testing verification and validation process;"
+        name "Development process"
+        description "A general product development/maintenance/support process shall be documented
+            +b and enforced that is consistent and integrated with commonly accepted product
+            +b development processes that include, but are not limited to: d) repeatable
+            +b testing verification and validation process;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security risks are systematically identified and mitigated
+                    +b during the development process."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage,
+                            +b Reproducibility, Exploitability, Affected Users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A framework for conducting risk assessments in ICS environments."
+                { case_study
+                    example "A risk assessment for a Distributed Control System (DCS) in a power plant
+                        +b identified vulnerabilities in communication protocols, leading to the
+                        +b implementation of encryption and network segmentation."
+            { audit_and_compliance_verification
+                why "To verify that the development process adheres to IEC 62443-4-1 requirements
+                    +b and industry best practices."
+                [ audit_checklist
+                    "Verify that a documented development process exists and is followed."
+                    "Check that security requirements are integrated into the development lifecycle."
+                    "Ensure that verification and validation processes are repeatable and documented."
+                    "Review evidence of security testing and risk assessments."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of security vulnerabilities identified during testing"
+                        target "Reduction over time"
+                compliance_procedure "Documentation of the development process, security requirements, and test
+                    +b results must be reviewed and approved by the security team. Regular audits
+                    +b should be conducted to ensure ongoing compliance."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the development process have the necessary
+                    +b skills and knowledge to implement secure practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications that provide training on the IEC 62443 standards and their
+                            +b application in ICS environments."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification focused on industrial control system security."
+                competency_assessment "Annual competency reviews should be conducted to assess the skills and
+                    +b knowledge of development and security personnel. Training plans should be
+                    +b updated based on assessment results."
+            { tooling_and_automation_support
+                why "To enhance the efficiency and effectiveness of the development process through
+                    +b automation and tooling."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities during development."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                    {
+                        name "Continuous Integration/Continuous Deployment (CI/CD) pipelines"
+                        purpose "To automate the build, test, and deployment processes."
+                automation_strategy "Integrate security tools into the CI/CD pipeline to automate security testing
+                    +b and compliance checks. Use DevSecOps practices to ensure security is embedded
+                    +b throughout the development lifecycle."
+            { handling_legacy_systems_and_constraints
+                why "To address security challenges posed by legacy ICS components that cannot meet
+                    +b modern security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network zones to limit exposure to potential
+                            +b threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b mitigate risks associated with legacy systems."
+                example_policy "A policy for integrating legacy systems into a 62443-4-1 compliant environment
+                    +b might include requirements for network segmentation, regular vulnerability
+                    +b assessments, and the use of compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "To ensure effective collaboration between engineering, security, and management
+                    +b teams in implementing the development process."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement the development process and security requirements."
+                        {
+                            role "Security Team"
+                            responsibility "Define security requirements and verify compliance."
+                        {
+                            role "Management"
+                            responsibility "Oversee the development process and allocate resources."
+                conflict_resolution "Establish a governance committee to resolve conflicts between engineering and
+                    +b security priorities. Use a structured decision-making process to balance
+                    +b security and functionality requirements."
+            { continuous_improvement_and_updates
+                why "To ensure that the development process evolves in response to new threats and
+                    +b lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities and
+                            +b threats."
+                    {
+                        step "Conduct post-incident reviews"
+                        description "Analyze security incidents to identify gaps in the development process."
+                    {
+                        step "Update policies and procedures"
+                        description "Revise the development process and security requirements based on new threats
+                            +b and lessons learned."
+                lessons_learned "Incorporate findings from security incidents and audits into the development
+                    +b process to improve security. Establish feedback loops to ensure continuous
+                    +b improvement."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "e) review and approval of all development process records;"
+        name "Development process"
+        description "A general product development/maintenance/support process shall be documented
+            +b and enforced that is consistent and integrated with commonly accepted product
+            +b development processes that include, but are not limited to: e) review and
+            +b approval of all development process records;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that all development process records are reviewed and approved in a
+                    +b manner that mitigates security risks."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies potential security threats in six
+                            +b categories: Spoofing, Tampering, Repudiation, Information Disclosure, Denial of
+                            +b Service, and Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To conduct risk assessments tailored for Industrial Control Systems (ICS)."
+                { case_study
+                    example "A case study of a Distributed Control System (DCS) in a power plant where
+                        +b threat modeling was used to identify and mitigate risks in the development
+                        +b process records."
+            { audit_and_compliance_verification
+                why "To verify that the development process records are reviewed and approved in
+                    +b compliance with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that all development process records have been reviewed and approved by authorized personnel."
+                    "Check that the review and approval process is documented and followed consistently."
+                    "Ensure that any deviations from the process are recorded and addressed."
+                [ metrics
+                    {
+                        kpi "Percentage of development process records reviewed and approved"
+                        target "100%"
+                    {
+                        kpi "Number of deviations from the review and approval process"
+                        target "0"
+                compliance_procedure "Document the review and approval process, including roles and responsibilities,
+                    +b and maintain records of all reviews and approvals for audit purposes."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the development process are competent in
+                    +b reviewing and approving development process records."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "A certification program that provides foundational knowledge of IEC 62443
+                            +b standards."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification that focuses on securing Industrial Control Systems."
+                competency_assessment "Annual competency reviews to ensure personnel maintain the necessary skills and
+                    +b knowledge for reviewing and approving development process records."
+            { tooling_and_automation_support
+                why "To automate and streamline the review and approval of development process
+                    +b records."
+                [ tools
+                    {
+                        name "GitLab"
+                        purpose "To manage and automate the review and approval of code changes and development
+                            +b records."
+                    {
+                        name "JIRA"
+                        purpose "To track and manage development process records and approvals."
+                automation_strategy "Integrate tools like GitLab and JIRA into the DevSecOps pipeline to automate
+                    +b the review and approval of development process records."
+            { handling_legacy_systems_and_constraints
+                why "To address challenges in reviewing and approving development process records
+                    +b for legacy systems that may not meet modern security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to reduce the risk of security breaches."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate risks associated with legacy
+                            +b systems."
+                example_policy "A policy that outlines the process for reviewing and approving development
+                    +b process records for legacy systems, including the use of compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "To ensure effective collaboration and governance in the review and approval of
+                    +b development process records."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Development Team"
+                            responsibility "Create and maintain development process records."
+                        {
+                            role "Security Team"
+                            responsibility "Review and approve development process records for security compliance."
+                        {
+                            role "Management"
+                            responsibility "Oversee the review and approval process and resolve conflicts."
+                conflict_resolution "A documented procedure for resolving conflicts between engineering and security
+                    +b priorities during the review and approval process."
+            { continuous_improvement_and_updates
+                why "To ensure that the review and approval process remains effective in the face of
+                    +b evolving threats and requirements."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Update policies and procedures"
+                        description "Revise the review and approval process based on new threat intelligence and
+                            +b lessons learned."
+                lessons_learned "Incorporate insights from security incidents and audits to improve the review
+                    +b and approval process."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

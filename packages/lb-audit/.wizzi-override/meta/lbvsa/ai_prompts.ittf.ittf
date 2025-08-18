@@ -1,0 +1,40 @@
+ittf 
+    $ 
+        var x_options = {
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.lbvsa_checklist_classification, null, null),
+        } 
+
+    $file .wizzi-override/docs/lbvsa/from_meta/ai_prompts.txt.ittf
+        txt 
+            ========== 
+            step 3
+            
+            
+            $foreach aiItem in lbvsa
+                $ 
+                    $ _.log('----> ', '1', 'aiItem.IDD', aiItem.IDD);
+                    var batchItemJSON = {
+                        idd: aiItem.IDD,
+                        area: aiItem.Ambito,
+                        category: aiItem.Categoria,
+                        description: aiItem['Descrizione requisito'],
+                        note: aiItem['Ulteriori note']
+                    };
+                    var options = {
+                        inputJSON: batchItemJSON,
+                        inputJSONString: _.stringify(batchItemJSON, null, null),
+                        JSONSchema: x_options.step_3_JSONSchema,
+                    } 
+                ---------- 
+                SYSTEM 
+                Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ed assisti gli auditor nel produrre checklist.
+                USER 
+                content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                Sotto riporto il JSON schema del database e il JSON di un item della check list. 
+                Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle 
+                3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina 
+                4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                ai/schema_data_return( &options, prompt )

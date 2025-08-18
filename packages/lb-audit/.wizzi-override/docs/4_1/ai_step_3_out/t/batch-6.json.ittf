@@ -1,0 +1,615 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        subCode "b) trust boundaries;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): b) trust boundaries;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Identifying trust boundaries is critical to understanding where security
+                    +b controls must be enforced to prevent unauthorized access or data leakage."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) risks such as process disruption and safety
+                            +b impacts."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation of threat models using STRIDE and helps identify trust
+                            +b boundaries."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a framework for risk assessment in ICS environments, including trust
+                            +b boundary analysis."
+                { case_study
+                    example "A power plant's Distributed Control System (DCS) was assessed using STRIDE to
+                        +b identify trust boundaries between the control network and corporate IT network,
+                        +b leading to improved segmentation and access controls."
+            { audit_and_compliance_verification
+                why "Ensuring that trust boundaries are correctly identified and enforced is
+                    +b essential for compliance with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that all trust boundaries are documented in the threat model."
+                    "Check that security controls are implemented at each trust boundary."
+                    "Confirm that the threat model is reviewed and updated regularly."
+                [ metrics
+                    {
+                        kpi "Percentage of trust boundaries with documented security controls"
+                        target "100%"
+                    {
+                        kpi "Frequency of threat model reviews"
+                        target "Annually or after significant changes"
+                compliance_procedure "Document the threat model, including trust boundaries, and review it during
+                    +b security audits. Maintain evidence of reviews and updates."
+            { training_and_competency_requirements
+                why "Proper training ensures that engineers can effectively identify and model trust
+                    +b boundaries in ICS environments."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers foundational knowledge of ICS security, including threat modeling and
+                            +b trust boundaries."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on securing ICS, including threat modeling techniques."
+                competency_assessment "Annual competency reviews to ensure engineers are proficient in threat modeling
+                    +b and trust boundary analysis."
+            { tooling_and_automation_support
+                why "Automation can streamline the threat modeling process and ensure consistency in
+                    +b identifying trust boundaries."
+                [ tools
+                    {
+                        name "Threat Dragon"
+                        purpose "An open-source threat modeling tool that supports STRIDE and trust boundary
+                            +b analysis."
+                    {
+                        name "OWASP Threat Modeling Toolkit"
+                        purpose "Provides guidelines and tools for effective threat modeling, including trust
+                            +b boundaries."
+                automation_strategy "Integrate threat modeling tools into the DevSecOps pipeline to automatically
+                    +b generate and update threat models during development."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security controls, requiring alternative
+                    +b strategies to enforce trust boundaries."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network zones to enforce trust boundaries."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and access controls to protect legacy systems."
+                example_policy "Legacy systems must be placed in a demilitarized zone (DMZ) with strict access
+                    +b controls to enforce trust boundaries."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for identifying and enforcing trust boundaries."
+                { governance_model
+                    name "RACI matrix for trust boundary management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and document trust boundaries."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement security controls at trust boundaries."
+                        {
+                            role "Management"
+                            responsibility "Approve and enforce trust boundary policies."
+                conflict_resolution "Resolve conflicts through a structured review process involving all
+                    +b stakeholders, prioritizing security requirements."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, requiring regular updates to trust boundary models."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Stay informed about new ICS vulnerabilities and threats."
+                    {
+                        step "Review and update threat models"
+                        description "Incorporate new threats and adjust trust boundaries as needed."
+                    {
+                        step "Validate controls"
+                        description "Test security controls at trust boundaries to ensure effectiveness."
+                lessons_learned "Incorporate insights from security incidents and audits to refine trust
+                    +b boundary models and controls."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "c) processes;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): c) processes;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Threat modeling is essential to identify and mitigate potential security risks
+                    +b early in the development lifecycle, ensuring that security is built into the
+                    +b product from the ground up."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored to Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments and unique ICS vulnerabilities."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "A tool to create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant underwent a threat modeling
+                        +b exercise using STRIDE, identifying critical vulnerabilities in communication
+                        +b protocols that were subsequently mitigated."
+            { audit_and_compliance_verification
+                why "Regular audits ensure that threat modeling processes are consistently applied
+                    +b and effective in identifying and mitigating risks."
+                [ audit_checklist
+                    "Verify that a threat model exists for each product in scope."
+                    "Check that the threat model is updated with each major release or significant change."
+                    "Ensure that identified threats have corresponding mitigation strategies."
+                    "Confirm that threat modeling methodologies are documented and followed."
+                [ metrics
+                    {
+                        kpi "Percentage of products with up-to-date threat models"
+                        target "100%"
+                    {
+                        kpi "Number of identified threats mitigated"
+                        target "90% or higher"
+                compliance_procedure "Documentation of threat models, mitigation strategies, and review logs must be
+                    +b maintained and available for audit. Regular reviews should be conducted to
+                    +b ensure compliance with IEC 62443-4-1 requirements."
+            { training_and_competency_requirements
+                why "Ensuring that personnel are trained in threat modeling methodologies and tools
+                    +b is critical for effective implementation."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering ICS security standards, including threat modeling."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification focused on ICS security, including threat modeling and risk
+                            +b assessment."
+                competency_assessment "Annual competency reviews should be conducted to ensure that personnel maintain
+                    +b up-to-date knowledge and skills in threat modeling and ICS security."
+            { tooling_and_automation_support
+                why "Automation and tooling can streamline the threat modeling process, ensuring
+                    +b consistency and reducing manual effort."
+                [ tools
+                    {
+                        name "Threat Dragon"
+                        purpose "An open-source threat modeling tool that integrates with development workflows."
+                    {
+                        name "OWASP Threat Modeling Toolkit"
+                        purpose "A toolkit for identifying and mitigating security threats in applications."
+                automation_strategy "Integrate threat modeling tools into the DevSecOps pipeline to automatically
+                    +b generate and update threat models as part of the CI/CD process."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components often lack modern security features, requiring
+                    +b alternative strategies to mitigate risks."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems in separate network zones to limit exposure to threats."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b protect legacy components."
+                example_policy "A policy for legacy system integration may include mandatory network
+                    +b segmentation and regular vulnerability assessments for legacy components."
+            { stakeholder_collaboration_and_governance
+                why "Effective threat modeling requires collaboration between engineering, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define threat modeling methodologies and review models."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement threat models and mitigation strategies."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources and support for threat modeling activities."
+                conflict_resolution "A formal process should be established to resolve conflicts, such as
+                    +b prioritizing security requirements over engineering constraints, through
+                    +b documented escalation paths."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, requiring regular updates to threat models and
+                    +b mitigation strategies."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review CISA alerts and other ICS vulnerability reports."
+                    {
+                        step "Review and Update Threat Models"
+                        description "Update threat models based on new intelligence and feedback from incidents."
+                    {
+                        step "Conduct Post-Incident Reviews"
+                        description "Incorporate lessons learned from security incidents into threat modeling
+                            +b processes."
+                lessons_learned "Feedback loops should be established to refine threat modeling policies based
+                    +b on audit findings, incident reports, and emerging threats."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "d) data stores;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): d) data stores;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Threat modeling for data stores is essential to identify potential security
+                    +b vulnerabilities and ensure data integrity, confidentiality, and availability in
+                    +b ICS products."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments and legacy protocols."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation of threat models using STRIDE methodology, with
+                            +b templates for ICS components."
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a framework for risk assessment, adapted for SCADA and other ICS
+                            +b environments."
+                { case_study
+                    example "A power plant's Distributed Control System (DCS) underwent threat modeling for
+                        +b its data stores, identifying vulnerabilities in historian databases and leading
+                        +b to the implementation of encryption and access controls."
+            { audit_and_compliance_verification
+                why "Regular audits ensure that threat models for data stores remain up-to-date and
+                    +b effective against evolving threats."
+                [ audit_checklist
+                    "Verify that threat models for data stores are documented and reviewed annually."
+                    "Check if identified threats have corresponding mitigations implemented."
+                    "Ensure that threat models cover all data stores within the product scope."
+                [ metrics
+                    {
+                        kpi "Percentage of data stores with documented threat models"
+                        target "100%"
+                    {
+                        kpi "Number of high-risk threats mitigated"
+                        target "All high-risk threats addressed"
+                compliance_procedure "Documentation of threat models must be reviewed and approved by the security
+                    +b team, with evidence stored in a centralized repository for audit purposes."
+            { training_and_competency_requirements
+                why "Ensuring that engineers and security personnel are proficient in threat
+                    +b modeling methodologies is critical for effective implementation."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering threat modeling and risk assessment for ICS, aligned
+                            +b with IEC 62443 standards."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Training program focusing on ICS security, including threat modeling for data
+                            +b stores."
+                competency_assessment "Annual competency reviews for engineers and security personnel, including
+                    +b practical exercises in threat modeling for ICS data stores."
+            { tooling_and_automation_support
+                why "Automation and tooling can streamline threat modeling processes and integrate
+                    +b them into DevSecOps pipelines."
+                [ tools
+                    {
+                        name "OWASP Threat Dragon"
+                        purpose "An open-source tool for creating and managing threat models, with support for
+                            +b data flow diagrams."
+                    {
+                        name "Azure DevOps Threat Modeling Extension"
+                        purpose "Integrates threat modeling into CI/CD pipelines for automated security checks."
+                automation_strategy "Incorporate threat modeling tools into the DevSecOps pipeline to automatically
+                    +b generate and update threat models during development phases."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components often lack modern security features, requiring tailored
+                    +b strategies for threat modeling."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy data stores in segmented networks to limit exposure to threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and logging for legacy data stores to detect
+                            +b and respond to threats."
+                example_policy "A policy for legacy PLCs mandates that all data stores must be included in
+                    +b threat models, with compensating controls documented and reviewed quarterly."
+            { stakeholder_collaboration_and_governance
+                why "Effective threat modeling requires collaboration between engineering, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI Matrix for Threat Modeling"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Responsible for creating and reviewing threat models."
+                        {
+                            role "Engineering Team"
+                            responsibility "Accountable for implementing mitigations identified in threat models."
+                        {
+                            role "Management"
+                            responsibility "Consulted for resource allocation and informed of risks."
+                conflict_resolution "A cross-functional committee resolves conflicts, prioritizing security risks
+                    +b while considering operational constraints."
+            { continuous_improvement_and_updates
+                why "Threat models must evolve to address new vulnerabilities and changes in the
+                    +b product scope."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for updates on new threats."
+                    {
+                        step "Review and update"
+                        description "Conduct bi-annual reviews of threat models to incorporate new findings and
+                            +b changes in the product."
+                lessons_learned "After a ransomware attack on an ICS data store, the threat model was updated to
+                    +b include offline backups and stricter access controls."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "e) interacting external entities;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): e) interacting external entities;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To systematically identify and mitigate threats from external entities
+                    +b interacting with the ICS product."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat models focusing on industrial control systems, considering
+                            +b operational technology (OT) environments and legacy constraints."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To conduct risk assessments specific to ICS environments."
+                { case_study
+                    example "A DCS in a power plant was assessed using STRIDE to identify threats from
+                        +b external entities like vendors and maintenance teams, leading to enhanced
+                        +b authentication and logging mechanisms."
+            { audit_and_compliance_verification
+                why "To ensure the threat model is comprehensive and aligns with IEC 62443-4-1
+                    +b requirements."
+                [ audit_checklist
+                    "Verify that all external entities interacting with the product are documented in the threat model."
+                    "Check if threat mitigation strategies are implemented for identified threats."
+                    "Review evidence of threat model reviews and updates."
+                [ metrics
+                    {
+                        kpi "Percentage of external entities covered in the threat model"
+                        target "100%"
+                    {
+                        kpi "Number of identified threats mitigated"
+                        target "90% or higher"
+                compliance_procedure "Document the threat model, including all external entities and mitigation
+                    +b strategies, and review it quarterly or after significant changes."
+            { training_and_competency_requirements
+                why "To ensure personnel are capable of creating and maintaining effective threat
+                    +b models."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering ICS security fundamentals, including threat modeling."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Training focused on securing industrial control systems, including threat
+                            +b modeling techniques."
+                competency_assessment "Annual reviews of personnel competency in threat modeling, including practical
+                    +b assessments of creating and updating threat models."
+            { tooling_and_automation_support
+                why "To streamline the threat modeling process and integrate it into the development
+                    +b lifecycle."
+                [ tools
+                    {
+                        name "OWASP Threat Dragon"
+                        purpose "An open-source tool for creating threat models and integrating them into
+                            +b DevSecOps pipelines."
+                    {
+                        name "IriusRisk"
+                        purpose "A threat modeling and risk management platform supporting automation and
+                            +b integration."
+                automation_strategy "Integrate threat modeling tools into CI/CD pipelines to automatically generate
+                    +b and update threat models during development phases."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may not support modern security standards, requiring
+                    +b alternative approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to external entities."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and logging for legacy systems interacting with
+                            +b external entities."
+                example_policy "A policy mandating network segmentation for all legacy PLCs interacting with
+                    +b external vendors, coupled with enhanced logging."
+            { stakeholder_collaboration_and_governance
+                why "Effective threat modeling requires collaboration between security, engineering,
+                    +b and management teams."
+                { governance_model
+                    name "RACI Matrix for Threat Modeling"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Lead threat modeling efforts and validate threats."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement mitigation strategies and provide technical input."
+                        {
+                            role "Management"
+                            responsibility "Approve resources and prioritize threats based on risk."
+                conflict_resolution "A documented process for resolving conflicts between engineering and security
+                    +b priorities, including escalation paths."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, requiring regular updates to threat models."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and ICS-specific threat feeds."
+                    {
+                        step "Review threat model"
+                        description "Update the threat model quarterly or after significant changes to the system or
+                            +b threat landscape."
+                lessons_learned "Incorporate findings from security incidents and audits into the threat model
+                    +b to improve future iterations."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "f) internal and external communication protocols implemented in the product;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): f) internal and external
+            +b communication protocols implemented in the product;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Threat modeling is essential to identify and mitigate potential security risks
+                    +b in communication protocols, ensuring secure product development."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b protocols like Modbus, DNP3, and OPC UA."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation of threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a framework for risk assessment tailored to ICS environments."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant underwent threat modeling
+                        +b to identify vulnerabilities in its Modbus TCP communication, leading to the
+                        +b implementation of encryption and access controls."
+            { audit_and_compliance_verification
+                why "Ensures that threat modeling practices are consistently applied and documented."
+                [ audit_checklist
+                    "Verify that threat models are documented for all communication protocols."
+                    "Check that threat models are updated with each product release."
+                    "Ensure that identified threats have corresponding mitigation strategies."
+                [ metrics
+                    {
+                        kpi "Percentage of communication protocols with documented threat models"
+                        target "100%"
+                    {
+                        kpi "Number of identified threats mitigated"
+                        target "90% or higher"
+                compliance_procedure "Documentation of threat models must be reviewed and approved by the security
+                    +b team before product release. Evidence includes threat model reports and
+                    +b mitigation plans."
+            { training_and_competency_requirements
+                why "Ensures that personnel are capable of performing effective threat modeling."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides training on ICS security standards, including threat modeling."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Covers ICS security practices, including threat modeling for communication
+                            +b protocols."
+                competency_assessment "Annual reviews of personnel competency in threat modeling methodologies and
+                    +b tools, including practical assessments."
+            { tooling_and_automation_support
+                why "Automation enhances the efficiency and consistency of threat modeling
+                    +b processes."
+                [ tools
+                    {
+                        name "OWASP Threat Dragon"
+                        purpose "An open-source tool for creating and managing threat models."
+                    {
+                        name "IriusRisk"
+                        purpose "Automates threat modeling and risk assessment for secure product development."
+                automation_strategy "Integrate threat modeling tools into the DevSecOps pipeline to automatically
+                    +b generate and update threat models during the development lifecycle."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security standards, requiring alternative
+                    +b approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to potential threats."
+                    {
+                        approach "Protocol gateways"
+                        description "Use gateways to translate legacy protocols to secure modern protocols."
+                example_policy "Legacy systems must be documented with their threat models, and compensating
+                    +b controls must be implemented to mitigate identified risks."
+            { stakeholder_collaboration_and_governance
+                why "Effective threat modeling requires collaboration across engineering, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define threat modeling requirements and review models."
+                        {
+                            role "Engineering Team"
+                            responsibility "Develop and document threat models."
+                        {
+                            role "Management"
+                            responsibility "Approve resources and timelines for threat modeling activities."
+                conflict_resolution "A cross-functional committee meets quarterly to address conflicts, prioritizing
+                    +b security requirements while considering engineering constraints."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, requiring updates to threat models and practices."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review sources like CISA alerts for new ICS vulnerabilities."
+                    {
+                        step "Update threat models"
+                        description "Revise threat models based on new intelligence and incident learnings."
+                lessons_learned "Incorporate findings from security incidents into threat models to prevent
+                    +b recurrence, documented in an annual review report."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

@@ -1,0 +1,22 @@
+$group
+    $
+        function setCtxScript(__wz__name, __wz__value) {
+            $.setCtx ('package.scripts.' + __wz__name + '.name', __wz__name);
+            $.setCtx ('package.scripts.' + __wz__name + '.value', __wz__value);
+        }
+        function setCtxDep(__wz__name, __wz__version) {
+            $.setCtx ('package.dependencies.' + __wz__name + '.name', __wz__name);
+            $.setCtx ('package.dependencies.' + __wz__name + '.version', __wz__version);
+        }
+        function setCtxDevDep(__wz__name, __wz__version) {
+            $.setCtx ('package.devDependencies.' + __wz__name + '.name', __wz__name);
+            $.setCtx ('package.devDependencies.' + __wz__name + '.version', __wz__version);
+        }
+        function setCtxEnvValues(__wz__name, __wz__property, __wz__checker) {
+            $.setCtx ('env.values.' + __wz__name + '.name', __wz__name);
+            $.setCtx ('env.values.' + __wz__name + '.property', __wz__property);
+            $.setCtx ('env.values.' + __wz__name + '.checker', __wz__checker);
+        }
+        function setCtxRequire(__wz__name) {
+            $.setCtx ('require.' + __wz__name);
+        }

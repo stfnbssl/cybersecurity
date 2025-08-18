@@ -1,0 +1,69 @@
+$group
+    $params &options
+
+    call ${options.name}
+        description ${options.requirement}
+        $if options.provider == 'deepSeek'
+            llm_service deepSeek
+            llm_model deepseek-chat
+            max_tokens 8192 $$ max for DeepSeek
+        $elif options.provider == 'grok'
+            llm_service grok
+            llm_model grok-3
+            max_tokens 8192 $$ to equal DeepSeek
+        temperature 0.7
+        message
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+                ${'\\'}n Sei specializzato sullo standard IEC 62443-4-2.
+        message 
+            role user
+            $if false
+                content Ho necessità di popolare un database JSON con dati utili per analizzare 
+                    ${'\\'}n i component requirements dello IEC 62443-4-2.
+                    ${'\\'}n Sotto riporto il JSON schema del database e il JSON di un component requirement. 
+                    ${'\\'}n Popola lo schema con l'id fornito nel JSON originale e aggiungi con dati tuoi le proprietà
+                    ${'\\'}n explanation, context, challenges, best practices, key_aspects and related_links for the requirement.
+                    ${'\\'}n Usa il seguente JSON schema.
+                    ${'\\'}n <database_json_schema>
+                    ${'\\'}n ${options.cr_base_json_schema}
+                    ${'\\'}n </database_json_schema>
+                    ${'\\'}n Popola lo schema con i dati del seguente requirement e ritorna il JSON risultante.
+                    ${'\\'}n <sr_json>
+                    ${'\\'}n ${options.cr_defJSONString}
+                    ${'\\'}n </sr_json>
+
+            $if true
+                content Popola un database JSON con dati utili per analizzare i component requirements dello IEC 62443-4-2, 
+                    ${'\\'}n seguendo il JSON schema fornito. 
+                    ${'\\'}n Usa il JSON del requirement fornito per popolare il campo `id` e aggiungi dati coerenti per le 
+                    ${'\\'}n proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`. 
+                    ${'\\'}n Segui queste linee guida:
+                    ${'\\'}n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in 
+                    ${'\\'}n sistemi di controllo industriale (ICS).
+                    ${'\\'}n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                    ${'\\'}n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico 
+                    ${'\\'}n o scenario reale per ciascun elemento.
+                    ${'\\'}n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico 
+                    ${'\\'}n per ogni aspetto.
+                    ${'\\'}n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA) 
+                    ${'\\'}n con una breve descrizione del contenuto.
+                    ${'\\'}n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-2, 
+                    ${'\\'}n in particolare con i livelli di sicurezza (SL) indicati.
+                    ${'\\'}n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                    ${'\\'}n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                    ${'\\'}n Nel creare i template di policy e procedure considera il seguente contesto 
+                    ${'\\'}n per il prodotto da verificare.
+                    ${'\\'}n <product_system_context> 
+                    ${'\\'}n ${options.product_context}
+                    ${'\\'}n </product_system_context> 
+                    ${'\\'}n Usa il seguente JSON schema.
+                    ${'\\'}n <database_json_schema>
+                    ${'\\'}n ${options.cr_base_json_schema}
+                    ${'\\'}n </database_json_schema>
+                    ${'\\'}n Popola lo schema con i dati del seguente requirement e ritorna il JSON risultante.
+                    ${'\\'}n <sr_json>
+                    ${'\\'}n ${options.cr_defJSONString}
+                    ${'\\'}n </sr_json>
+                    ${'\\'}n Ritorna il JSON risultante.
+

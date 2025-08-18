@@ -1,0 +1,25 @@
+$group
+    $params &options, kind|step
+    $
+        var prefix = kind == 'step' ? '\\n ' : ''
+
+    $if _.isNotEmpty(options.product_supplier_JSON)
+        ${prefix}Nel popolare il JSON schema considera il seguente contesto del Product Supplier
+        ${prefix}<product_supplier_context>
+        ${prefix}${options.product_supplier_JSON}
+        ${prefix}</product_supplier_context>
+    $if _.isNotEmpty(options.JSONSchema)
+        ${prefix}- Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+        ${prefix}- Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+        ${prefix}- Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+        ${prefix}Popola questo JSON schema:
+        ${prefix}<database_json_schema>
+        ${prefix}${options.JSONSchema}
+        ${prefix}</database_json_schema>
+        ${prefix}Popola lo schema con i seguenti dati di input
+    $else
+        ${prefix}Crea uno schema e popolalo con i seguenti dati di input
+    ${prefix}<input_json_data>
+    ${prefix}${options.inputJSONString}
+    ${prefix}</input_json_data>
+    ${prefix}Ritorna il JSON risultante.

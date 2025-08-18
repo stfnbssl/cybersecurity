@@ -1,0 +1,7 @@
+$group
+    $params name, description|@@null
+    { ${name}
+        type "number"
+        $if description != null
+            description "${description}"
+        $hook

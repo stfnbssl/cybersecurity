@@ -1,0 +1,174 @@
+$group
+    {
+        IDD "2.3.2"
+        area "Continuità operativa"
+        category "Information and data"
+        description "È presente una procedura documentata per l'archiviazione sicura delle
+            +b informazioni critiche di natura elettronica e per il ripristino delle
+            +b informazioni non salvate?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del sistema IACS.
+                +b Procedure documentate per l'archiviazione e il ripristino delle informazioni
+                +b critiche sono essenziali per ridurre i tempi di fermo e prevenire perdite dati."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione dei dati sia importante, questa specifica procedura
+                +b riguarda più l'operatività che lo sviluppo software. Potrebbe essere
+                +b indirettamente rilevante solo se applicata a dati di configurazione del
+                +b software stesso."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati richiedono procedure robuste per l'archiviazione e il
+                +b ripristino dei dati critici (es. configurazioni, parametri) per garantire la
+                +b continuità operativa dopo guasti o incidenti."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware generalmente non richiede procedure
+                +b avanzate di archiviazione/ripristino dati elettronici, a meno che il componente
+                +b non includa firmware/configurazioni critiche."
+        note_su_json_risultante "Le valutazioni si basano sull'ipotesi che 'informazioni critiche' si
+            +b riferiscano principalmente a dati operativi/configurazioni del sistema. Se
+            +b includessero anche dati di sviluppo software, la rilevanza per SSDL potrebbe
+            +b aumentare."
+    {
+        IDD "2.4.1"
+        area "Continuità operativa"
+        category "Partners and suppliers"
+        description "Sono state individuate alternative per ciascun fornitore considerato come
+            +b critico per l'erogazione dei servizi di fornitura verso il Cliente?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del proprio IACS, pertanto
+                +b la presenza di fornitori alternativi per componenti critici è essenziale per
+                +b mitigare rischi di interruzione della supply chain."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la gestione della supply chain e non direttamente i
+                +b processi di sviluppo software sicuro."
+        { system_integration
+            isRelevant true
+            motivation "Un system integrator deve assicurarsi che i componenti critici siano
+                +b disponibili da più fonti per evitare ritardi nella consegna del sistema
+                +b integrato."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono valutare fornitori alternativi per materie
+                +b prime critiche per garantire la continuità produttiva."
+        note_su_json_risultante "La valutazione di rilevanza per SSDL è stata impostata su 'false' in quanto il
+            +b controllo non è direttamente correlato al ciclo di vita dello sviluppo
+            +b software."
+    {
+        IDD "2.5.1"
+        area "Continuità operativa"
+        category "Finance"
+        description "È stabilito un processo per l'approvazione e la registrazione delle spese
+            +b straordinarie durante un incidente con impatti sulla continuità operativa
+            +b presso la vostra organizzazione?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa durante un incidente,
+                +b inclusa la gestione delle spese straordinarie necessarie per il ripristino."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda processi finanziari e gestionali durante incidenti, non
+                +b aspetti legati allo sviluppo sicuro del software."
+        { system_integration
+            isRelevant true
+            motivation "Un sistema IACS integrato deve prevedere processi per gestire spese
+                +b straordinarie durante incidenti che ne compromettono la continuità operativa."
+        { component_production
+            isRelevant false
+            motivation "Il controllo è focalizzato su processi gestionali dell'organizzazione, non su
+                +b aspetti specifici della produzione di componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sulla natura del controllo (gestione
+            +b finanziaria durante incidenti) e sul contesto tipico di un IACS. La rilevanza
+            +b per l'asset owner e system integration deriva dalla necessità di garantire
+            +b continuità operativa, mentre SSDL e component production non sono direttamente
+            +b coinvolti."
+    {
+        IDD "2.6.1"
+        area "Continuità operativa"
+        category "Transportation"
+        description "Sono stati identificati fornitori di servizi trasporto alternativi per le
+            +b attività che supportano l'erogazione dei servizi di fornitura? in caso di
+            +b indisponibilità dei trasporti sono previste soluzioni alternative per l'accesso
+            +b alle risorse?"
+        { asset_owner
+            isRelevant true
+            motivation "La continuità operativa nella catena di fornitura è critica per un asset owner,
+                +b poiché interruzioni nei trasporti potrebbero compromettere la disponibilità
+                +b dell'IACS. La presenza di fornitori alternativi garantisce resilienza."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la supply chain fisica e non ha diretta rilevanza
+                +b nello sviluppo software. Il Secure SDL si focalizza su processi di codifica,
+                +b testing e distribuzione del software."
+        { system_integration
+            isRelevant true
+            motivation "Un system integrator deve garantire la continuità delle consegne dei
+                +b componenti. Interruzioni nei trasporti potrebbero ritardare l'integrazione di
+                +b sistemi/macchine, rendendo il controllo rilevante."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti IACS devono assicurare la consegna dei prodotti
+                +b finiti. Piani alternativi di trasporto prevengono interruzioni nella catena di
+                +b fornitura verso clienti finali."
+        note_su_json_risultante "La valutazione di rilevanza per SSDL è negativa poiché il controllo riguarda la
+            +b logistica fisica. Per asset owner e produttori, la resilienza della supply
+            +b chain è prioritaria secondo standard IEC 62443-4-1."
+    {
+        IDD "2.7.1"
+        area "Continuità operativa"
+        category "Equipment and consumables"
+        description "È presente un inventario delle forniture principali che supportano l'erogazione
+            +b dei servizi di fornitura?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del sistema IACS. Un
+                +b inventario delle forniture principali è essenziale per pianificare
+                +b manutenzioni, sostituzioni e gestire eventuali guasti."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la gestione operativa delle forniture e non è
+                +b direttamente correlato alle fasi di sviluppo del software."
+        { system_integration
+            isRelevant true
+            motivation "Un sistema integrato IACS o una macchina richiede forniture affidabili per
+                +b operare correttamente. L'inventario aiuta a prevenire interruzioni dovute a
+                +b mancanza di risorse."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti non è direttamente influenzata dalla gestione delle
+                +b forniture principali del sistema operativo."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'ipotesi che l'inventario si
+            +b riferisca a forniture fisiche (es. hardware, consumabili) necessarie per
+            +b l'operatività del sistema IACS."
+    {
+        IDD "2.7.2"
+        area "Continuità operativa"
+        category "Equipment and consumables"
+        description "Gli asset critici che supportano l'erogazione dei servizi di fornitura sono
+            +b ridondati (e.g. stoccaggio di forniture aggiuntive in un altro luogo,
+            +b stoccaggio di materiali presso magazzini)?"
+        { asset_owner
+            isRelevant true
+            motivation "La ridondanza degli asset critici è fondamentale per garantire la continuità
+                +b operativa di un IACS gestito da un asset owner, riducendo il rischio di
+                +b interruzioni del servizio."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda la gestione operativa degli asset fisici e non è
+                +b direttamente correlato al Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La ridondanza degli asset critici è rilevante per garantire la continuità
+                +b operativa di un sistema IACS o macchina integrata, specialmente in contesti
+                +b industriali dove i tempi di fermo sono critici."
+        { component_production
+            isRelevant false
+            motivation "Il controllo si focalizza sulla gestione degli asset operativi e non è
+                +b direttamente applicabile alla produzione di singoli componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono state effettuate considerando la natura del
+            +b controllo (ridondanza fisica) e i diversi contesti applicativi (IACS, sviluppo
+            +b software, produzione componenti)."

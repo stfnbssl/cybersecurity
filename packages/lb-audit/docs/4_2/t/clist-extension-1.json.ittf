@@ -1,0 +1,240 @@
+$group
+    {
+        id "FSA-CR 1.1"
+        check_description "Components shall provide the capability to identify and authenticate all human
+            +b users according to IEC 62443?3?3 [11] SR 1.1 on all interfaces capable of human
+            +b user access. This capability shall enforce such identification and
+            +b authentication on all interfaces that provide human user access to the
+            +b component to support segregation of duties and least privilege in accordance
+            +b with applicable security policies and procedures.  This capability may be
+            +b provided locally by the component or by integration into a system level
+            +b identification and authentication system."
+        requirement_id "CR 1.1"
+        title "Human User Identification and Authentication"
+        description "This requirement mandates that all human users must be identified and
+            +b authenticated before being granted access to any component within an industrial
+            +b automation and control system (IACS). The objective is to ensure that access is
+            +b restricted to authorized personnel, providing a first line of defense against
+            +b unauthorized access."
+        { key_aspects
+            Identification "The process of recognizing a user's identity. Involves using unique identifiers
+                +b such as usernames."
+            Authentication "The process of verifying the claimed identity of a user. May involve passwords,
+                +b biometrics, or multi-factor authentication."
+            "Access Control" "Integration with access control mechanisms to ensure that authenticated
+                +b identities are granted correct permissions."
+            Auditability "The ability to log and monitor authentication attempts, successful or
+                +b unsuccessful, for security auditing purposes."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.9.2"
+                title "User Access Management"
+                description "Focuses on ensuring that access to information and information processing
+                    +b facilities is restricted to authorized users."
+            { "NIST SP 800-63"
+                section "Digital Identity Guidelines"
+                title "Digital Identity"
+                description "Provides guidelines on identity proofing and authentication of users
+                    +b interacting with government IT systems."
+            { "NIST SP 800-53"
+                control "IA-2"
+                title "Identification and Authentication (Organizational Users)"
+                description "Outlines requirements for identifying and authenticating organizational users
+                    +b (or processes acting on behalf of organizational users)."
+            { "IEC 62443-3-3"
+                requirement "SR 1.1"
+                title "Identification and Authentication Control"
+                description "Specifies the need for identification and authentication controls at the system
+                    +b level, aligning with the requirements at the component level."
+    {
+        id "FSA-CR 1.1 RE(1)"
+        check_description "Components shall provide the capability to uniquely identify and authenticate
+            +b all human users."
+        requirement_id "CR 1.1 RE(1)"
+        title "Unique Identification and Authentication"
+        description "This requirement mandates that all users, processes, and devices interacting
+            +b with a control system must be uniquely identified and authenticated. This
+            +b ensures that access control is maintained and that each entity can be held
+            +b accountable for its actions."
+        [ key_aspects
+            "Unique Identification: Implement systems that ensure each user, device, or process has a distinct identifier."
+            "Authentication Mechanisms: Utilize robust authentication methods, such as passwords, biometrics, or digital certificates, to verify the identity of entities."
+            "Access Control: Ensure that only authenticated and authorized entities can access system resources."
+            "Accountability: Maintain logs and records of actions taken by identified entities for auditing and forensic purposes."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                [ relevant_sections
+                    {
+                        section "A.9.2.1"
+                        description "User registration and de-registration process for ensuring unique
+                            +b identification and controlling access to the system."
+                    {
+                        section "A.9.4.2"
+                        description "Secure log-on procedures to ensure that user access is authenticated."
+            {
+                standard_id "NIST SP 800-63B"
+                title "Digital Identity Guidelines"
+                [ relevant_sections
+                    {
+                        section "Section 5"
+                        description "Authentication and Lifecycle Management, which provides guidelines on
+                            +b implementing secure authentication mechanisms."
+            {
+                standard_id "IEC 61508"
+                title "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems"
+                [ relevant_sections
+                    {
+                        section "Part 1, Clause 7.4.3.1"
+                        description "Identification and realization of safety-related systems, emphasizing the
+                            +b importance of unique identification for system components."
+    {
+        id "FSA-CR 1.1 RE(2)"
+        check_description "Components shall provide the capability to employ multifactor authentication
+            +b for all human user access to the component."
+        requirement_id "IEC 62443-4-2: CR 1.1 RE(2)"
+        title "Multifactor Authentication for All Interfaces"
+        description "This requirement mandates the implementation of multifactor authentication
+            +b (MFA) for access to all interfaces of a component within an industrial
+            +b automation and control system (IACS). Multifactor authentication enhances
+            +b security by requiring more than one method of authentication, thereby reducing
+            +b the risk of unauthorized access."
+        [ key_aspects
+            {
+                aspect "Authentication Factors"
+                details "MFA incorporates at least two of the following: something you know (password),
+                    +b something you have (security token), and something you are (biometric
+                    +b verification)."
+            {
+                aspect "Interface Coverage"
+                details "All interfaces, including both physical and logical interfaces, must be
+                    +b protected by MFA to ensure comprehensive security."
+            {
+                aspect "Security Enhancement"
+                details "MFA significantly increases the difficulty for adversaries attempting to gain
+                    +b unauthorized access, as they must compromise multiple authentication factors."
+            {
+                aspect "User and System Roles"
+                details "The requirement applies to all users and system roles that have access to
+                    +b critical functions or data, ensuring that both human and machine accounts are
+                    +b secured."
+        [ related_standards
+            {
+                standard "NIST SP 800-63B"
+                title "Digital Identity Guidelines - Authentication and Lifecycle Management"
+                reference "Provides guidelines on implementing MFA, including the use of various factors
+                    +b and the importance of securing digital identities."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems - Requirements"
+                reference "Outlines the need for access control measures, including the implementation of
+                    +b MFA as part of an overall information security management system."
+            {
+                standard "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                reference "Recommends various access control mechanisms, including MFA, to protect
+                    +b sensitive data and systems."
+            {
+                standard "CIS Controls v8"
+                title "Control 6: Access Control Management"
+                reference "Emphasizes the use of MFA to secure access to critical systems and data within
+                    +b an organization's IT and operational infrastructure."
+    {
+        id "FSA-CR 1.2"
+        check_description "Components shall provide the capability to identify itself and authenticate to
+            +b any other component (software application, embedded devices, host devices and
+            +b network devices), according to IEC 62443?3?3 [11] SR1.2.\nIf the component, as
+            +b in the case of an application, is running in the context of a human user, in
+            +b addition, the identification and authentication of the human user according to
+            +b IEC 62443?3?3 [11] SR1.1 may be part of the component identification and
+            +b authentication process towards the other components."
+        requirement_id "IEC 62443-4-2: CR 1.2"
+        title "Software Process and Device Identification and Authentication"
+        description "This requirement mandates that the component must support the identification
+            +b and authentication of software processes and devices attempting to access the
+            +b component. The purpose is to ensure that only authorized software and devices
+            +b can interact with the system, thereby preventing unauthorized access and
+            +b potential malicious activities."
+        [ key_aspects
+            {
+                aspect "Identification"
+                description "The ability to uniquely identify software processes and devices attempting to
+                    +b access the component. Each entity must present a unique identifier to be
+                    +b recognized by the system."
+            {
+                aspect "Authentication"
+                description "The process of verifying the identity of the software processes and devices.
+                    +b Authentication mechanisms must be robust to ensure that only legitimate
+                    +b entities can gain access."
+            {
+                aspect "Access Control"
+                description "Integration with access control mechanisms to ensure that once identified and
+                    +b authenticated, entities are granted access based on predefined permissions."
+            {
+                aspect "Security Protocols"
+                description "Utilization of secure communication protocols to protect the identification and
+                    +b authentication processes from being compromised."
+        [ related_standards
+            {
+                standard "NIST SP 800-63"
+                reference "Digital Identity Guidelines"
+                details "Provides guidelines for digital identity services, focusing on identity
+                    +b proofing, registration, and authentication of users interacting with government
+                    +b IT systems over open networks."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information Security Management"
+                details "Specifies the requirements for establishing, implementing, maintaining, and
+                    +b continually improving an information security management system. Relevant for
+                    +b understanding the broader context of security controls, including
+                    +b identification and authentication."
+            {
+                standard "ISO/IEC 29115"
+                reference "Entity Authentication Assurance Framework"
+                details "Provides a framework for managing entity authentication assurance in a way that
+                    +b is consistent, repeatable, and measurable."
+            {
+                standard "IEC 62443-3-3"
+                reference "System Security Requirements and Security Levels"
+                details "Specifies system security requirements and security levels, providing a broader
+                    +b context for implementing identification and authentication controls in
+                    +b industrial automation and control systems."
+    {
+        id "FSA-CR 1.2 RE(1)"
+        check_description "Components shall provide the capability to uniquely identify and authenticate
+            +b itself to any other component."
+        requirement_id "IEC 62443-4-2: CR 1.2 RE(1)"
+        title "Unique Identification and Authentication"
+        description "This requirement emphasizes the necessity for systems to uniquely identify and
+            +b authenticate all users and devices seeking access to the system. This ensures
+            +b that only authorized entities can interact with the system, thereby maintaining
+            +b security and integrity."
+        [ key_aspects
+            "Unique Identification: Each user or device must have a unique identifier that distinguishes it from others, ensuring traceability and accountability."
+            "Authentication Mechanisms: The system must implement robust authentication mechanisms to verify the identity of users and devices before granting access."
+            "Access Control: Once authenticated, users and devices should be granted access only to the resources they are authorized to use."
+            "Auditability: The system should maintain logs of identification and authentication events for auditing and monitoring purposes."
+        [ related_standards
+            {
+                standard "NIST SP 800-63"
+                title "Digital Identity Guidelines"
+                description "Provides a framework for digital identity management, including guidelines for
+                    +b identity proofing and authentication mechanisms."
+                relevance "Supports the implementation of unique identification and robust authentication
+                    +b processes as required by IEC 62443-4-2: CR 1.2 RE(1)."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "Specifies the requirements for establishing, implementing, maintaining, and
+                    +b improving an information security management system."
+                relevance "Includes controls related to access management and authentication, aligning
+                    +b with the requirements for unique identification and authentication."
+            {
+                standard "ISO/IEC 29115"
+                title "Entity Authentication Assurance Framework"
+                description "Provides a framework for entity authentication assurance, offering a model to
+                    +b assess the assurance level of authentication mechanisms."
+                relevance "Supports the assurance of authentication processes and mechanisms aligned with
+                    +b the IEC 62443-4-2 requirement."

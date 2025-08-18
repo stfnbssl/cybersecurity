@@ -1,0 +1,363 @@
+$group
+    {
+        practice "1"
+        code "SM-10"
+        subCode "a) the components are developed specifically for a single supplier for a
+            +b specific purpose; and"
+        [ policies
+            {
+                code "SM-10"
+                subCode "a"
+                title "Third-Party Component Security Requirements Policy"
+                description "This policy mandates that all third-party components developed for Breton Spa's
+                    +b CNC and stone cutting machines must adhere to IEC 62443-4-1 security
+                    +b requirements. It includes clauses for secure coding standards, vulnerability
+                    +b assessments, and lifecycle documentation. Reference: IEC 62443-4-1 SM-10(a)."
+                enforcement "Enforced through contractual agreements, regular security audits, and automated
+                    +b vulnerability scanning tools integrated into the CI/CD pipeline."
+            {
+                code "SM-10"
+                subCode "a"
+                title "Vendor Risk Assessment Policy"
+                description "This policy requires a systematic evaluation of third-party developers to
+                    +b ensure alignment with Breton Spa's security policies. It includes standardized
+                    +b questionnaires and on-site audits. Reference: IEC 62443-4-1 SM-10(a) and KA2
+                    +b (Vendor Risk Management)."
+                enforcement "Enforced through vendor onboarding processes, annual security audits, and
+                    +b compliance reviews by the security team."
+            {
+                code "SM-10"
+                subCode "a"
+                title "Component Integration Testing Policy"
+                description "This policy ensures that all third-party components undergo rigorous
+                    +b integration testing within Breton Spa's ICS environment. It validates
+                    +b functionality, security, and compliance with IEC 62443-4-1. Reference: IEC
+                    +b 62443-4-1 SM-10(a) and KA3 (Component Integration Testing)."
+                enforcement "Enforced through automated testing frameworks, manual security reviews, and
+                    +b documented test results."
+        [ procedures
+            {
+                code "SM-10"
+                subCode "a"
+                title "Third-Party Component Security Assessment Procedure"
+                description "This procedure outlines the steps for assessing the security of third-party
+                    +b components developed for Breton Spa's industrial machines. It ensures
+                    +b compliance with IEC 62443-4-1 SM-10(a)."
+                [ steps
+                    {
+                        step 1
+                        action "Define security requirements in the contract with the third-party developer,
+                            +b including secure coding standards and testing protocols."
+                        tools "Contract templates, IEC 62443-4-1 checklist"
+                        expected_outcome "A signed contract with explicit security requirements aligned with IEC
+                            +b 62443-4-1."
+                    {
+                        step 2
+                        action "Conduct an initial security audit of the developer's processes, including code
+                            +b repositories and testing logs."
+                        tools "Rockwell Automation Security Audit Checklist, OWASP Dependency-Check"
+                        expected_outcome "A security audit report identifying any gaps in the developer's processes."
+                    {
+                        step 3
+                        action "Require the developer to provide a Software Bill of Materials (SBOM) for the
+                            +b component."
+                        tools "ISA SBOM Guidance for ICS, SonarQube"
+                        expected_outcome "A complete SBOM documenting all libraries and dependencies used in the
+                            +b component."
+            {
+                code "SM-10"
+                subCode "a"
+                title "Vendor Risk Assessment Procedure"
+                description "This procedure details the steps for evaluating third-party developers to
+                    +b ensure they meet Breton Spa's security standards. It aligns with IEC 62443-4-1
+                    +b SM-10(a) and KA2."
+                [ steps
+                    {
+                        step 1
+                        action "Distribute a standardized security questionnaire to the third-party developer."
+                        tools "Honeywell ICS Vendor Risk Assessment Template"
+                        expected_outcome "Completed questionnaire providing insights into the developer's security
+                            +b practices."
+                    {
+                        step 2
+                        action "Conduct an on-site audit of the developer's facilities, focusing on secure
+                            +b development lifecycle processes."
+                        tools "NIST SP 800-82 Rev.3 ICS Security Guide"
+                        expected_outcome "An audit report highlighting compliance or gaps in the developer's security
+                            +b practices."
+                    {
+                        step 3
+                        action "Review the developer's incident response and vulnerability management
+                            +b processes."
+                        tools "Cisco ICS Vendor Security Checklist"
+                        expected_outcome "Documentation of the developer's ability to respond to and mitigate security
+                            +b incidents."
+            {
+                code "SM-10"
+                subCode "a"
+                title "Component Integration Testing Procedure"
+                description "This procedure ensures that third-party components are securely integrated into
+                    +b Breton Spa's ICS environment, complying with IEC 62443-4-1 SM-10(a) and KA3."
+                [ steps
+                    {
+                        step 1
+                        action "Perform static code analysis on the third-party component to identify potential
+                            +b security issues."
+                        tools "SonarQube, OWASP Dependency-Check"
+                        expected_outcome "A report detailing any security vulnerabilities found in the component's code."
+                    {
+                        step 2
+                        action "Test the component in a controlled ICS environment to validate functionality
+                            +b and security."
+                        tools "Rockwell Automation ICS Integration Guide, ABB Secure Integration Whitepaper"
+                        expected_outcome "Test results confirming the component's secure operation within the target
+                            +b environment."
+                    {
+                        step 3
+                        action "Document all integration test results and security assessments for audit
+                            +b purposes."
+                        tools "Siemens ICS Lifecycle Management, GE Digital Traceability Framework"
+                        expected_outcome "Comprehensive documentation providing an audit trail for the component's
+                            +b integration."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-10"
+        subCode "b) the components can have an impact on security."
+        [ policies
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Third-Party Component Security Assessment Policy"
+                description "This policy mandates a formal security assessment for all third-party
+                    +b components integrated into Breton Spa's industrial control systems (ICS). The
+                    +b assessment must align with IEC 62443-4-1 requirements, including static and
+                    +b dynamic analysis, SBOM review, and vulnerability scanning. Components must meet
+                    +b SL 2 or higher security levels for critical applications like CNC Machining
+                    +b Centers and Stone Cutting Machines."
+                enforcement "Enforced through automated SBOM validation in CI/CD pipelines, quarterly
+                    +b supplier audits, and mandatory security clauses in procurement contracts.
+                    +b Non-compliant components are flagged by Black Duck and OWASP Dependency-Check
+                    +b tools before deployment."
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Supplier Security Compliance Policy"
+                description "Requires third-party suppliers to demonstrate IEC 62443-4-1 compliance through
+                    +b ISASecure certifications or equivalent evidence. Applies specifically to
+                    +b components supporting secure protocols (e.g., OPC UA with Basic256Sha256,
+                    +b PROFINET with PN Security) in high-criticality applications such as Natural
+                    +b Stone Processing and Metalworking for Precision Parts."
+                enforcement "Verified via annual on-site audits using Honeywell's Supplier Security Audit
+                    +b Checklist, with findings documented in a centralized GRC platform.
+                    +b Non-compliant suppliers face contractual penalties and are excluded from future
+                    +b procurements."
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Third-Party Patch Management Policy"
+                description "Establishes SL 3 requirements for critical vulnerabilities in third-party
+                    +b components, mandating patches within 14 days of CISA advisory publication.
+                    +b Covers all firmware and libraries in Breton Spa's product lines, prioritizing
+                    +b components with network segmentation support features."
+                enforcement "Automated patch validation through Schneider Electric's Vulnerability
+                    +b Disclosure Program integration, with compliance tracked via Jira Service
+                    +b Management. Unpatched components are automatically isolated in DMZ networks."
+        [ procedures
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Third-Party Component Integration Testing"
+                description "Procedure for validating third-party components in a sandboxed ICS environment
+                    +b before production deployment, ensuring compatibility with Breton Spa's security
+                    +b architecture and protocols."
+                [ steps
+                    {
+                        step 1
+                        action "Create test environment mirroring production ICS network segmentation,
+                            +b including isolated zones for OPC UA and PROFINET traffic."
+                        tools "VMware NSX for network virtualization, Wireshark with ICS protocol dissectors"
+                        expected_outcome "Test environment accurately replicates production network topology and security
+                            +b controls."
+                    {
+                        step 2
+                        action "Execute STRIDE threat modeling on component interfaces, focusing on attack
+                            +b vectors via supported protocols (e.g., MQTT TLS handshake vulnerabilities)."
+                        tools "Microsoft Threat Modeling Tool 2016 with ICS templates, NIST SP 800-30 risk
+                            +b assessment guide"
+                        expected_outcome "Documented threat matrix identifying critical risks requiring mitigation before
+                            +b integration."
+                    {
+                        step 3
+                        action "Perform fuzz testing on protocol implementations using mutation-based test
+                            +b cases for OPC UA Binary and PROFINET Context Management."
+                        tools "Peach Fuzzer with ICS protocol packs, PROFINET Conformance Test Tool"
+                        expected_outcome "Verification of component resilience against malformed packets and protocol
+                            +b exploits."
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Supplier Security Audit Execution"
+                description "Standardized process for conducting on-site and remote audits of third-party
+                    +b component suppliers to verify IEC 62443-4-1 compliance."
+                [ steps
+                    {
+                        step 1
+                        action "Review supplier's SDLC documentation for evidence of secure coding practices
+                            +b (CR1, CR3) and static analysis tool usage."
+                        tools "ISA 62443-2-4 checklist, SAST tool reports (Coverity, Klocwork)"
+                        expected_outcome "Validated proof of static code analysis covering ≥90% of codebase with <10
+                            +b critical findings."
+                    {
+                        step 2
+                        action "Inspect firmware signing infrastructure, including HSM usage and key rotation
+                            +b procedures for components supporting secure boot."
+                        tools "Yubico HSM audit tools, NIST SP 800-131A compliance checklist"
+                        expected_outcome "Confirmed use of FIPS 140-2 Level 2 validated HSMs with quarterly key rotation."
+                    {
+                        step 3
+                        action "Verify vulnerability management process, including CVE monitoring and patch
+                            +b development timelines for critical ICS components."
+                        tools "MITRE CVE database cross-check, supplier's vulnerability disclosure policy"
+                        expected_outcome "Documented mean time-to-patch of ≤30 days for CVSS ≥7.0 vulnerabilities."
+            {
+                code "SM-10"
+                subCode "b)"
+                title "Legacy Third-Party Component Risk Mitigation"
+                description "Procedure for managing security risks associated with legacy third-party
+                    +b components that cannot meet current IEC 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy components in dedicated VLANs with firewall rules restricting
+                            +b communication to only essential ICS protocols."
+                        tools "Cisco Industrial Ethernet switches, Tofino Xenon firewall"
+                        expected_outcome "Network segmentation reducing attack surface by ≥80% as measured by Nessus
+                            +b scans."
+                    {
+                        step 2
+                        action "Deploy compensating controls including protocol-aware IDS (e.g., for Modbus
+                            +b TCP) and anomaly detection on HMI traffic."
+                        tools "Darktrace Industrial, Claroty Continuous Threat Detection"
+                        expected_outcome "Detection of ≥95% of known attack patterns against legacy protocols."
+                    {
+                        step 3
+                        action "Implement virtual patching via WAF rules for vulnerable web interfaces on
+                            +b legacy HMIs and engineering workstations."
+                        tools "Imperva SecureSphere, ModSecurity CRS rules"
+                        expected_outcome "Blocking of exploit attempts against unpatched CVEs in legacy components."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-11"
+        subCode "b) secure by design (see Clause 7, Practice 3 – Secure by design);"
+        [ policies
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Secure-by-Design Threat Modeling Policy"
+                description "Mandates the integration of threat modeling (e.g., STRIDE methodology) during
+                    +b the design phase of ICS products to systematically identify and mitigate
+                    +b security risks. Aligns with IEC 62443-4-1 Clause 7, ensuring security
+                    +b requirements are traceable to design artifacts. Applies to all Breton Spa CNC
+                    +b and stone cutting machines."
+                enforcement "Audits via design documentation reviews and automated threat modeling tool logs
+                    +b (e.g., Microsoft Threat Modeling Tool). Non-compliant designs are blocked from
+                    +b proceeding to development."
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Third-Party Component Security Validation Policy"
+                description "Requires cryptographic verification and compliance certification (IEC
+                    +b 62443-4-1) for all third-party components (e.g., PLC firmware, HMI modules)
+                    +b used in Breton Spa machines. Ensures no undocumented backdoors or
+                    +b vulnerabilities are introduced."
+                enforcement "Automated checks via software bill of materials (SBOM) tools and manual audits
+                    +b of vendor certifications. Components failing validation are excluded from the
+                    +b supply chain."
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Vulnerability Closure Policy"
+                description "Enforces 100% resolution of critical security issues (CR1-CR3 per IEC
+                    +b 62443-3-3) before product release. Includes firmware patches for Breton Spa
+                    +b machines, with cryptographic signing as a compensating control for legacy
+                    +b systems."
+                enforcement "Gated releases in CI/CD pipelines using SAST tools (e.g., Checkmarx) and
+                    +b vulnerability tracking systems (e.g., Jira). Releases are blocked if open
+                    +b critical issues exist."
+        [ procedures
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Threat Modeling Execution for CNC Machine Firmware"
+                description "Procedure to conduct STRIDE-based threat modeling for Breton Spa CNC control
+                    +b systems, focusing on OPC UA and PROFINET protocol implementations."
+                [ steps
+                    {
+                        step 1
+                        action "Define trust boundaries for CNC machine components (e.g., PLC, HMI, OPC UA
+                            +b server)."
+                        tools "Microsoft Threat Modeling Tool, Breton Spa architecture diagrams"
+                        expected_outcome "Documented data flow diagrams (DFDs) with identified trust boundaries."
+                    {
+                        step 2
+                        action "Identify threats using STRIDE categories (e.g., Tampering for PROFINET
+                            +b configuration files)."
+                        tools "STRIDE checklist adapted for ICS, CISA ICS threat database"
+                        expected_outcome "Threat catalog with severity ratings (High/Medium/Low) per IEC 62443-3-3."
+                    {
+                        step 3
+                        action "Implement mitigations (e.g., cryptographic signing for firmware updates) and
+                            +b validate via test cases."
+                        tools "Cryptographic module (HSM), ICS penetration testing tools (e.g., Wireshark ICS
+                            +b plugins)"
+                        expected_outcome "Mitigations integrated into design documents and verified through test reports."
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Third-Party RTOS Security Assessment"
+                description "Procedure to evaluate real-time operating systems (RTOS) used in Breton Spa
+                    +b polishing machines against IEC 62443-4-1 secure-by-design criteria."
+                [ steps
+                    {
+                        step 1
+                        action "Request vendor's IEC 62443-4-1 certification or equivalent security
+                            +b documentation."
+                        tools "ISA Secure Component Certification Database, Vendor questionnaires"
+                        expected_outcome "Certification evidence or gap analysis report."
+                    {
+                        step 2
+                        action "Conduct static code analysis on RTOS kernel modules using ICS-specific
+                            +b rulesets."
+                        tools "Klocwork with MISRA C rules, Coverity Static Analysis"
+                        expected_outcome "Report of critical vulnerabilities (e.g., buffer overflows) with remediation
+                            +b plans."
+                    {
+                        step 3
+                        action "Verify secure boot and memory protection features through hardware testing."
+                        tools "JTAG debuggers, oscilloscopes for power glitch testing"
+                        expected_outcome "Test report confirming resistance to physical tampering (CR3 compliance)."
+            {
+                code "SM-11"
+                subCode "b)"
+                title "Secure Patch Release for Stone Cutting Machines"
+                description "Procedure to ensure cryptographic signing and vulnerability closure for
+                    +b firmware patches on Breton Spa stone cutting machines."
+                [ steps
+                    {
+                        step 1
+                        action "Scan patch binaries for known vulnerabilities using ICS-specific scanners."
+                        tools "ClamAV with ICS signatures, Nessus ICS plugins"
+                        expected_outcome "Vulnerability report with CVE references and severity scores."
+                    {
+                        step 2
+                        action "Sign patches using Breton Spa's HSM-based code signing infrastructure."
+                        tools "YubiHSM 2, PKI key management system"
+                        expected_outcome "Cryptographically signed patch file with verifiable certificate chain."
+                    {
+                        step 3
+                        action "Deploy to testbed stone cutting machine and validate operational integrity."
+                        tools "OPC UA test clients, PROFINET network analyzers"
+                        expected_outcome "Validation report confirming no functional regression or security degradation."
+        last_updated "2023-11-20"

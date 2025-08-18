@@ -1,0 +1,358 @@
+$group
+    {
+        practice "4"
+        code "SI-2"
+        subCode "a)"
+        [ policies
+            {
+                code "SI-2"
+                subCode "a)"
+                title "Secure Coding Standards Enforcement"
+                description "This policy mandates the use of secure coding standards to avoid implementation
+                    +b constructs with known security weaknesses, as per IEC 62443-4-1 SI-2a. It
+                    +b applies to all ICS development, including PLC firmware and HMI applications,
+                    +b ensuring compliance with MISRA C/C++ guidelines and ICS-specific static
+                    +b analysis tools."
+                enforcement "Enforcement is achieved through automated static code analysis integrated into
+                    +b CI/CD pipelines, mandatory code reviews, and periodic audits by the security
+                    +b team. Non-compliance results in code rejection and mandatory remediation
+                    +b training."
+            {
+                code "SI-2"
+                subCode "a)"
+                title "Legacy Code Refactoring Policy"
+                description "This policy outlines the process for identifying and refactoring insecure
+                    +b constructs in legacy ICS codebases, aligning with IEC 62443-4-1 SI-2a
+                    +b requirements. It prioritizes critical vulnerabilities (e.g., buffer overflows
+                    +b in PLC ladder logic) and includes phased updates with compensating controls."
+                enforcement "Enforcement includes quarterly legacy code assessments using tools like
+                    +b Klocwork, with remediation timelines tracked via a centralized dashboard.
+                    +b Progress is reviewed by the ICS Security Review Board."
+            {
+                code "SI-2"
+                subCode "a)"
+                title "Third-Party Library Security Validation"
+                description "This policy requires rigorous security validation of third-party libraries used
+                    +b in ICS software, addressing SI-2a's concern about exploitable constructs. It
+                    +b mandates SBOM (Software Bill of Materials) generation and vulnerability
+                    +b scanning for all dependencies, including OPC UA stacks and PROFINET libraries."
+                enforcement "Enforcement is implemented through automated dependency checking in artifact
+                    +b repositories (e.g., JFrog Xray), with critical vulnerabilities blocking
+                    +b deployment. Annual third-party vendor security assessments are conducted."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "a)"
+                title "Static Analysis Integration for IEC 61131-3 Code"
+                description "Procedure for integrating static analysis tools into CODESYS development
+                    +b environments to detect insecure constructs in PLC programs (ST, LD, FBD
+                    +b languages) per IEC 62443-4-1 SI-2a requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Configure CODESYS IDE with ICS-specific rule sets (e.g., buffer overflow
+                            +b detection in STRING operations)"
+                        tools "CODESYS Static Analysis Plugin, Parasoft C/C++test for PLC"
+                        expected_outcome "IDE flags insecure code patterns during development with IEC 62443-4-1
+                            +b violation references"
+                    {
+                        step 2
+                        action "Implement Git pre-commit hooks to reject code with critical vulnerabilities"
+                        tools "Git Hooks with Klocwork CLI, Custom Python Scripts"
+                        expected_outcome "Developers receive immediate feedback on policy violations before code
+                            +b submission"
+                    {
+                        step 3
+                        action "Generate compliance reports mapping findings to IEC 62443-4-1 SI-2a
+                            +b requirements"
+                        tools "CODESYS Security Report Generator, Jenkins Pipeline"
+                        expected_outcome "Audit-ready documentation showing 100% scanned code coverage and remediation
+                            +b status"
+            {
+                code "SI-2"
+                subCode "a)"
+                title "ICS Threat Modeling for Secure Design Patterns"
+                description "Procedure for conducting threat modeling sessions focused on identifying and
+                    +b mitigating insecure implementation patterns in ICS software architecture, per
+                    +b IEC 62443-4-1 SI-2a."
+                [ steps
+                    {
+                        step 1
+                        action "Create data flow diagrams for ICS components (e.g., OPC UA client-server
+                            +b interactions in CNC controllers)"
+                        tools "Microsoft Threat Modeling Tool with ICS stencils"
+                        expected_outcome "Visual representation of trust boundaries and potential attack vectors"
+                    {
+                        step 2
+                        action "Apply STRIDE methodology to identify insecure constructs (e.g., tampering risk
+                            +b in unsigned MODBUS messages)"
+                        tools "ICS-specific STRIDE checklist, DREAD risk assessment matrix"
+                        expected_outcome "Prioritized list of implementation risks with CVSS scores"
+                    {
+                        step 3
+                        action "Document mitigation controls in design specifications (e.g., enforce OPC UA
+                            +b Basic256Sha256 for all remote calls)"
+                        tools "Enterprise Architect, IBM DOORS"
+                        expected_outcome "Traceable requirements linking threats to IEC 62443-4-1 compliant mitigations"
+            {
+                code "SI-2"
+                subCode "a)"
+                title "Secure Code Review for Industrial Protocols"
+                description "Procedure for manual code reviews targeting protocol-specific vulnerabilities
+                    +b (e.g., PROFINET PN Security implementation) as required by IEC 62443-4-1 SI-2a."
+                [ steps
+                    {
+                        step 1
+                        action "Extract protocol handling code segments (e.g., EtherNet/IP CIP Security context
+                            +b validation)"
+                        tools "Semgrep with ICS rule packs, CodeQL"
+                        expected_outcome "Isolated code segments requiring human review for protocol-specific risks"
+                    {
+                        step 2
+                        action "Verify cryptographic implementations against ICS hardening guides (e.g., NIST
+                            +b SP 800-82r3 for SCADA)"
+                        tools "Cryptographic Module Verification Program (CMVP) checklists"
+                        expected_outcome "Signed review checklist confirming absence of weak algorithms (e.g., RC4 in
+                            +b legacy HMI)"
+                    {
+                        step 3
+                        action "Document exceptions with compensating controls (e.g., network segmentation for
+                            +b vulnerable legacy code)"
+                        tools "GRC Platform (e.g., ServiceNow IRM)"
+                        expected_outcome "Risk-accepted items with mitigation timelines recorded in central registry"
+        last_updated "2023-10-25"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "b)"
+        [ policies
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Secure Coding Standards Enforcement Policy"
+                description "This policy mandates the avoidance of banned functions and coding constructs
+                    +b with known security weaknesses in all ICS software development, in compliance
+                    +b with IEC 62443-4-1 SI-2b. It applies to all Breton Spa CNC and stone processing
+                    +b machine firmware and control software. The policy requires static analysis
+                    +b tools to detect banned patterns and documented code reviews for security
+                    +b compliance."
+                enforcement "Automated static analysis in CI/CD pipelines (e.g., SonarQube with ICS
+                    +b plugins), quarterly security audits of codebases, and mandatory training
+                    +b completion tracking for developers."
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Legacy Code Remediation Policy"
+                description "Defines procedures for handling banned functions in legacy systems (e.g.,
+                    +b Breton's 2018-2022 CNC firmware), allowing temporary risk-accepted exceptions
+                    +b only with compensating controls (network segmentation, runtime protection).
+                    +b Aligns with IEC 62443-4-1's handling of legacy system constraints (CR3.1)."
+                enforcement "Inventory of legacy systems with banned functions maintained in CMDB, exception
+                    +b requests reviewed by security board, compensating controls verified via
+                    +b penetration testing."
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Third-Party Code Security Policy"
+                description "Requires vetting of third-party libraries (e.g., OPC UA stacks) for banned
+                    +b functions before integration into Breton's control systems. Includes
+                    +b contractual clauses for secure coding compliance and right-to-audit provisions
+                    +b per IEC 62443-4-1 supplier requirements."
+                enforcement "Vendor code analysis using tools like Black Duck, procurement checklists with
+                    +b secure coding requirements, and sample auditing of 20% of supplier-delivered
+                    +b code."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Static Analysis Implementation Procedure"
+                description "Step-by-step process for integrating static code analysis into Breton's PLC
+                    +b software development lifecycle to detect banned functions (e.g., strcpy in CNC
+                    +b control code), as required by IEC 62443-4-1 SI-2b."
+                [ steps
+                    {
+                        step 1
+                        action "Configure static analysis tools (e.g., Klocwork) with ICS-specific rule sets
+                            +b including banned functions list from ISA/IEC 62443"
+                        tools "Klocwork with Industrial plugin, ISA/IEC 62443-4-2 banned functions list"
+                        expected_outcome "Tool configured with all prohibited functions (CWE-120, CWE-676, etc.) relevant
+                            +b to CNC firmware development"
+                    {
+                        step 2
+                        action "Integrate analysis into CI/CD pipeline with fail-gates for high-severity
+                            +b findings"
+                        tools "Jenkins with Klocwork plugin, GitLab CI"
+                        expected_outcome "Builds fail when banned functions detected, with reports sent to security team"
+                    {
+                        step 3
+                        action "Generate remediation tickets in Jira with severity based on ICS risk context"
+                        tools "Jira Service Desk, IEC 62443-4-1 risk assessment matrix"
+                        expected_outcome "Tracked vulnerabilities with SL-based prioritization (e.g., buffer overflow in
+                            +b stone cutter control = SL3)"
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Secure Code Review Procedure"
+                description "Structured review process for identifying banned functions in control system
+                    +b code during development phases, fulfilling IEC 62443-4-1's code review
+                    +b requirements (SM-4)."
+                [ steps
+                    {
+                        step 1
+                        action "Prepare review package with static analysis report and code snippets"
+                        tools "Coverity report, GitHub pull requests"
+                        expected_outcome "Reviewers receive complete context including threat models for CNC functions"
+                    {
+                        step 2
+                        action "Conduct review using ICS-specific checklist (buffer handling, auth functions)"
+                        tools "Breton Secure Coding Checklist v4.1 (IEC 62443-4-1 aligned)"
+                        expected_outcome "All banned functions identified with mitigation plans documented"
+                    {
+                        step 3
+                        action "Document decisions and remediation timelines in SecureCR system"
+                        tools "Jira Security Module, Confluence documentation"
+                        expected_outcome "Auditable trail of reviews meeting IEC 62443-4-1 evidence requirements"
+            {
+                code "SI-2"
+                subCode "b)"
+                title "Banned Functions List Update Procedure"
+                description "Process for quarterly updates to the prohibited functions list based on new
+                    +b vulnerabilities and ICS threat intelligence, maintaining compliance with IEC
+                    +b 62443-4-1's continuous improvement requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor CWE/CVE databases for new ICS-relevant vulnerabilities"
+                        tools "NVD, CISA ICS advisories, MITRE CWE ICS View"
+                        expected_outcome "Identified new insecure patterns (e.g., CWE-1321 in OPC UA implementations)"
+                    {
+                        step 2
+                        action "Assess impact on Breton's machine control systems using SL criteria"
+                        tools "IEC 62443-3-2 risk assessment framework"
+                        expected_outcome "Prioritized list of new functions to ban based on SL requirements"
+                    {
+                        step 3
+                        action "Update static analysis tools and developer training materials"
+                        tools "Klocwork rule editor, Breton Security Training Portal"
+                        expected_outcome "Developers receive alerts for newly banned functions in next sprint"
+        last_updated "2023-11-20"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "c) automated tool use and settings (for example, for static analysis tools);"
+        [ policies
+            {
+                code "SI-2"
+                subCode "c)"
+                title "Static Analysis Tool Configuration Policy"
+                description "This policy mandates the use of vendor-recommended static analysis tools
+                    +b tailored for ICS environments, configured with ICS-specific rules to ensure
+                    +b compliance with IEC 62443-4-1. Tools must be integrated into the CI/CD pipeline
+                    +b to automatically scan code upon each commit, blocking builds with critical
+                    +b vulnerabilities. Example: Siemens’ Coverity for embedded systems with
+                    +b ICS-specific rules."
+                enforcement "Regular audits of tool configurations and integration points, automated
+                    +b blocking of non-compliant code commits, and periodic reviews of tool
+                    +b effectiveness."
+            {
+                code "SI-2"
+                subCode "c)"
+                title "False Positive Management Policy"
+                description "This policy requires the creation and maintenance of curated suppression files
+                    +b to exclude benign findings in ICS environments, ensuring that static analysis
+                    +b tools are not rendered ineffective by high false positive rates. Example:
+                    +b Whitelisting safe MELSEC ladder logic in Mitsubishi systems."
+                enforcement "Documentation of suppression files, regular reviews of false positive rates,
+                    +b and validation of suppression rules by the security team."
+            {
+                code "SI-2"
+                subCode "c)"
+                title "Custom Rule Development Policy"
+                description "This policy mandates the development of custom rules for static analysis tools
+                    +b to address ICS-specific threats, such as improper OPC UA access control or
+                    +b ladder logic injection. Example: Writing custom rules for TIA Portal to detect
+                    +b unauthorized SCADA function calls."
+                enforcement "Annual reviews of custom rule sets, validation of rules against emerging
+                    +b threats, and documentation of rule development processes."
+        [ procedures
+            {
+                code "SI-2"
+                subCode "c)"
+                title "Static Analysis Tool Integration Procedure"
+                description "This procedure outlines the steps to integrate static analysis tools into the
+                    +b CI/CD pipeline for ICS software development, ensuring continuous security
+                    +b assessment."
+                [ steps
+                    {
+                        step 1
+                        action "Select a static analysis tool compatible with the ICS environment (e.g.,
+                            +b Coverity for embedded systems)."
+                        tools "Vendor documentation, tool compatibility matrices."
+                        expected_outcome "A tool selected that supports the programming languages and protocols used in
+                            +b the ICS."
+                    {
+                        step 2
+                        action "Configure the tool with ICS-specific rules and settings, prioritizing relevant
+                            +b vulnerabilities."
+                        tools "Vendor configuration guides, ICS security standards."
+                        expected_outcome "Tool configured to detect ICS-relevant vulnerabilities with minimal false
+                            +b positives."
+                    {
+                        step 3
+                        action "Integrate the tool into the CI/CD pipeline (e.g., GitLab CI) to automatically
+                            +b scan code upon each commit."
+                        tools "CI/CD platform documentation, integration scripts."
+                        expected_outcome "Automated static analysis scans triggered on each code commit, with builds
+                            +b blocked if critical vulnerabilities are detected."
+            {
+                code "SI-2"
+                subCode "c)"
+                title "False Positive Management Procedure"
+                description "This procedure details the process for managing false positives in static
+                    +b analysis tools to maintain tool effectiveness and developer trust."
+                [ steps
+                    {
+                        step 1
+                        action "Identify and document common false positives in the ICS codebase."
+                        tools "Static analysis tool reports, developer feedback."
+                        expected_outcome "A list of recurring false positives categorized by severity and impact."
+                    {
+                        step 2
+                        action "Create suppression files or rules to exclude benign findings, ensuring they are
+                            +b reviewed and approved by the security team."
+                        tools "Static analysis tool configuration files, security review checklists."
+                        expected_outcome "Suppression files implemented, reducing false positive rates without
+                            +b compromising security."
+                    {
+                        step 3
+                        action "Periodically review and update suppression files to reflect changes in the
+                            +b codebase and emerging threats."
+                        tools "Version control systems, threat intelligence feeds."
+                        expected_outcome "Suppression files remain relevant and effective over time."
+            {
+                code "SI-2"
+                subCode "c)"
+                title "Custom Rule Development Procedure"
+                description "This procedure outlines the steps to develop and implement custom rules for
+                    +b static analysis tools to address ICS-specific threats."
+                [ steps
+                    {
+                        step 1
+                        action "Identify ICS-specific threats not covered by default tool rules (e.g., ladder
+                            +b logic injection)."
+                        tools "Threat modeling methodologies (STRIDE, DREAD), ICS security guidelines."
+                        expected_outcome "A list of ICS-specific threats requiring custom rules."
+                    {
+                        step 2
+                        action "Develop custom rules using vendor-provided tools and documentation (e.g.,
+                            +b Siemens’ TIA Portal Rule Development)."
+                        tools "Vendor rule development guides, scripting tools."
+                        expected_outcome "Custom rules capable of detecting ICS-specific vulnerabilities."
+                    {
+                        step 3
+                        action "Validate and deploy custom rules in the static analysis tool, ensuring they do
+                            +b not introduce excessive false positives."
+                        tools "Test codebases, validation scripts."
+                        expected_outcome "Custom rules integrated into the static analysis process, enhancing threat
+                            +b detection without degrading performance."
+        last_updated "2023-10-15"

@@ -1,0 +1,20 @@
+ittf
+
+    $foreach legislation in wzCtx.Documents.legislations
+        
+        $file .wizzi-override/docs/ai/documents/${legislation.name}.ai.ittf
+
+            ai lab
+                api-url http://localhost:3000
+
+                $
+                    var options = {
+                        name: 'legislation-' + legislation.name,
+                        legislation: legislation.name,
+                    }
+
+                $foreach document in legislation.documents
+                    $
+                        options.document = document.Code;
+                        options.description = 'Document ' +  document.Code + ' of legislation ' + legislation.name;
+                    ai/document-summary(&options)

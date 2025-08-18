@@ -1,0 +1,204 @@
+$group
+    {
+        id "FSA-CR 1.10"
+        check_description "When a component provides an authentication capability, the component shall
+            +b provide the capability to obscure feedback of authenticator information during
+            +b the authentication process."
+        requirement_id "IEC 62443-4-2: CR 1.10"
+        title "Authenticator Feedback"
+        description "This requirement mandates that any system providing authentication services
+            +b must ensure that feedback given to the user during the authentication process
+            +b does not disclose information that could be used to compromise the system. The
+            +b goal is to minimize the amount of information exposed to potential attackers
+            +b while maintaining sufficient usability for legitimate users."
+        [ key_aspects
+            "Minimized Feedback: Authentication systems should only provide minimal feedback to avoid revealing whether a username or password is incorrect, reducing the risk of targeted attacks."
+            "Error Messages: Error messages should be generic to prevent attackers from inferring valid usernames or passwords."
+            "Back-off Mechanisms: Implementing back-off mechanisms can deter repeated guessing attempts by introducing delays after failed login attempts."
+            "User Awareness: Users should be informed about the need for security without compromising system integrity. This can be achieved by providing generic messages like 'Invalid login attempt' instead of specifying whether the username or password was incorrect."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.9.4.3 - Password Management System"
+                description "This control emphasizes the need for secure password management systems, which
+                    +b aligns with the concept of minimizing feedback during authentication to protect
+                    +b password confidentiality."
+            {
+                standard "NIST SP 800-63B"
+                reference "5.2.5 - Authenticator Error Messages"
+                description "NIST guidelines recommend that authentication errors should not reveal which
+                    +b part of the credential was incorrect, supporting the principle of minimizing
+                    +b feedback."
+            {
+                standard "OWASP ASVS"
+                reference "V2.2 - Authentication Error Messages"
+                description "This standard advises against detailed error messages in authentication to
+                    +b prevent user enumeration attacks, which is directly related to the feedback
+                    +b minimization requirement."
+    {
+        id "FSA-CR 1.11A"
+        check_description "When a component provides an authentication capability the component shall
+            +b provide the capability to enforce a limit of a configurable number of
+            +b consecutive invalid access attempts by any user (human, software process or
+            +b device) during a configurable time period."
+        requirement_id "IEC 62443-4-2: CR 1.11(a)"
+        title "Unsuccessful Login Attempts - Limit Number"
+        description "This requirement aims to enhance the security of a component by limiting the
+            +b number of unsuccessful login attempts. This measure helps to prevent
+            +b unauthorized access through brute-force attacks by imposing a threshold on the
+            +b number of failed attempts before taking further action, such as locking the
+            +b account or requiring additional authentication measures."
+        { key_aspects
+            limit_unsuccessful_attempts "Define a maximum number of consecutive unsuccessful login attempts allowed.
+                +b Once this limit is reached, the system should trigger a predefined response."
+            response_mechanism "Implement a response mechanism that could include account lockout, increased
+                +b monitoring, or alerting administrators after the threshold is exceeded."
+            user_notification "Optional notification to the user about the account status, if applicable,
+                +b after reaching the limit."
+            configurability "Ensure that the limit and response mechanisms are configurable to accommodate
+                +b different security policies and risk profiles."
+        { related_standards
+            { "ISO/IEC 27001"
+                control "A.9.4.3 Management of privileged access rights"
+                description "This control emphasizes controlling access to systems and applications, which
+                    +b can relate to limiting unsuccessful login attempts to mitigate unauthorized
+                    +b access."
+            { "NIST SP 800-53"
+                control "AC-7 Unsuccessful Login Attempts"
+                description "This control requires the implementation of mechanisms to limit the number of
+                    +b consecutive unsuccessful access attempts to an information system."
+            { "PCI DSS"
+                requirement "8.1.6"
+                description "Implement controls to limit repeated access attempts by locking out the user ID
+                    +b after not more than six attempts."
+            { "ISO/IEC 27002"
+                control "9.2.3 Management of privileged access rights"
+                description "Supports the management of access rights and can include mechanisms for
+                    +b handling unsuccessful login attempts as part of overall access control
+                    +b strategies."
+    {
+        id "FSA-CR 1.11B"
+        check_description "When a component provides an authentication capability the component shall
+            +b provide the capability to deny access for a specified period of time or until
+            +b unlocked by an administrator when this limit has been reached."
+        requirement_id "IEC 62443-4-2: CR 1.11(b)"
+        title "Unsuccessful Login Attempts - Response"
+        description "This requirement mandates that the system must implement measures to respond
+            +b appropriately to a predefined number of unsuccessful login attempts. The
+            +b response could include account lockout, delay in further login attempts, or
+            +b alerting system administrators, thereby enhancing the overall security posture
+            +b by mitigating unauthorized access attempts."
+        { key_aspects
+            threshold_setting "Define the number of unsuccessful login attempts that will trigger a response."
+            [ response_actions
+                "Account lockout after a set number of failed attempts."
+                "Temporary delay or cooldown period before further attempts are allowed."
+                "Notification or alert to system administrators upon reaching the threshold."
+            audit_and_logging "Ensure all unsuccessful login attempts are logged for audit purposes."
+            user_notification "Optionally inform the user of the failed attempts and any resulting actions."
+        { related_standards
+            { "NIST SP 800-53"
+                AC-7 "This control outlines the need for information systems to enforce a limit of
+                    +b consecutive invalid access attempts by a user during a defined time period and
+                    +b automatically lock the account or delay the next login attempt."
+            { "ISO/IEC 27001"
+                A.9.4.3 "This control focuses on the use of secure logon procedures which include
+                    +b managing unsuccessful login attempts to prevent unauthorized access."
+            { "NERC CIP"
+                "CIP-007-6 R5" "Requires measures to detect, report, and respond to security events like
+                    +b unsuccessful login attempts to critical cyber assets."
+    {
+        id "FSA-CR 1.12"
+        check_description "When a component provides local human user access/HMI, it shall provide the
+            +b capability to display a system use notification message before authenticating.
+            +b The system use notification message shall be configurable by authorized
+            +b personnel."
+        requirement_id "IEC 62443-4-2: CR 1.12"
+        title "System Use Notification"
+        description "This requirement mandates that a system must have the capability to display a
+            +b notification message to users before they log in or access the system. The
+            +b notification should inform users about the system's terms of use, legal
+            +b notices, or any other relevant information that pertains to authorized access
+            +b and usage."
+        { key_aspects
+            notification_display "The system should present the notification message at every login or access
+                +b attempt."
+            content_relevance "The content of the notification should be relevant and include legal and
+                +b organizational terms of use."
+            "user acknowledgment" "Users may be required to acknowledge their understanding of the notification
+                +b before proceeding."
+            customization "Organizations should have the capability to customize the notification message
+                +b to align with their specific policies and legal requirements."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "AC-8 System Use Notification"
+                details "This control requires that systems display an approved system use notification
+                    +b message or banner before granting access to the system."
+            {
+                standard "ISO/IEC 27002"
+                reference "11.1.2 User access management"
+                details "While ISO 27002 does not directly mandate system use notifications, it requires
+                    +b organizations to implement user access management policies, which often include
+                    +b informing users of access terms."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "This guide emphasizes the importance of security controls in ICS environments,
+                    +b including the use of notifications to inform users about legal and security
+                    +b requirements."
+    {
+        id "FSA-NDR 1.13"
+        check_description "The network device supporting device access into a network shall provide the
+            +b capability to monitor and control all methods of access to the network device
+            +b via untrusted networks."
+        requirement_id "IEC 62443-4-2: NDR 1.13"
+        title "Access via Untrusted Networks"
+        description "This requirement focuses on ensuring that any communication between industrial
+            +b control system (ICS) components and external entities over untrusted networks
+            +b is conducted securely. It mandates the implementation of security measures to
+            +b protect data integrity, confidentiality, and availability when accessing
+            +b resources over networks that cannot be fully trusted."
+        [ key_aspects
+            {
+                aspect "Data Confidentiality"
+                details "Ensure that sensitive data is encrypted when transmitted over untrusted
+                    +b networks to prevent unauthorized disclosure."
+            {
+                aspect "Data Integrity"
+                details "Implement mechanisms such as cryptographic hashes to verify that data has not
+                    +b been altered during transmission over untrusted networks."
+            {
+                aspect "Authentication"
+                details "Require strong authentication mechanisms to verify the identity of entities
+                    +b accessing the system over untrusted networks."
+            {
+                aspect "Access Control"
+                details "Restrict access to critical resources and ensure that only authorized entities
+                    +b can communicate with the system over untrusted networks."
+            {
+                aspect "Network Security"
+                details "Deploy network security measures such as firewalls and intrusion
+                    +b detection/prevention systems to monitor and control traffic from untrusted
+                    +b networks."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1 - Communication Integrity"
+                details "Focuses on ensuring the integrity of communications through measures such as
+                    +b cryptographic protection and network segmentation."
+            {
+                standard "ISO/IEC 27033"
+                reference "Information technology — Security techniques — Network security"
+                details "Provides guidelines for network security, addressing risks associated with data
+                    +b transmission over networks."
+            {
+                standard "NIST SP 800-53"
+                reference "AC-17 - Remote Access"
+                details "Guidelines for managing secure remote access, including the use of encryption
+                    +b and strong authentication."
+            {
+                standard "ISO/IEC 27002"
+                reference "Section 13.1 - Network Security Management"
+                details "Describes the implementation of network controls to protect information in
+                    +b networks and supporting information processing facilities."

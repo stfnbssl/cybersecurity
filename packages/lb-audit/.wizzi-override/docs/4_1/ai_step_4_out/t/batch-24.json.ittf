@@ -1,0 +1,357 @@
+$group
+    {
+        practice "6"
+        code "DM-1"
+        subCode "a) security verification and validation testers;"
+        [ policies
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Centralized Vulnerability Management Policy"
+                description "This policy mandates the use of a centralized system (e.g., JIRA or ServiceNow)
+                    +b for tracking security vulnerabilities reported by verification and validation
+                    +b testers. It ensures systematic logging, prioritization (using CVSS), and
+                    +b resolution of issues, aligning with IEC 62443-4-1's traceability requirements
+                    +b for ICS security."
+                enforcement "Regular audits of the vulnerability management system to verify issue logging,
+                    +b prioritization accuracy, and resolution timelines. Automated alerts for SLA
+                    +b breaches."
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Secure Vulnerability Reporting Policy"
+                description "Requires encrypted channels (e.g., PGP-enabled email or dedicated portals) for
+                    +b testers to submit vulnerabilities, ensuring confidentiality per IEC 62443-4-1's
+                    +b data confidentiality controls (CR4). Includes guidelines for handling
+                    +b third-party reports."
+                enforcement "Periodic penetration testing to validate secure reporting channels. Logging and
+                    +b review of all submission attempts for anomalies."
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Cross-Functional Response Team Policy"
+                description "Defines roles and responsibilities for a team comprising security, engineering,
+                    +b and operations personnel to review and resolve vulnerabilities. Aligns with IEC
+                    +b 62443-4-1's governance requirements for collaborative issue resolution."
+                enforcement "Quarterly reviews of team performance metrics (e.g., resolution time,
+                    +b escalation rates). Mandatory training on ICS-specific threat models (e.g.,
+                    +b STRIDE)."
+        [ procedures
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Vulnerability Intake and Triage Procedure"
+                description "Standardizes the process for receiving, classifying, and assigning security
+                    +b issues from testers, ensuring consistency with IEC 62443-4-1's severity
+                    +b frameworks (e.g., CVSS)."
+                [ steps
+                    {
+                        step 1
+                        action "Receive submission via encrypted channel and log in the centralized system."
+                        tools "JIRA Security Module, PGP for email submissions"
+                        expected_outcome "Vulnerability ticket created with unique ID and timestamp."
+                    {
+                        step 2
+                        action "Classify severity using CVSS v3.1 (e.g., score ≥7.0 = Critical)."
+                        tools "NVD CVSS Calculator, internal scoring guidelines"
+                        expected_outcome "Ticket prioritized based on score and ICS impact (e.g., operational disruption
+                            +b risk)."
+                    {
+                        step 3
+                        action "Assign to the cross-functional team based on affected component (e.g., PLC
+                            +b firmware → Engineering Team)."
+                        tools "RACI matrix, asset inventory database"
+                        expected_outcome "Ticket ownership confirmed with SLA clock started."
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Vulnerability Resolution and Verification Procedure"
+                description "Outlines steps to remediate vulnerabilities and validate fixes, ensuring
+                    +b compliance with IEC 62443-4-1's system integrity controls (CR3)."
+                [ steps
+                    {
+                        step 1
+                        action "Develop patch or mitigation (e.g., firmware update, network rule)."
+                        tools "IDE (e.g., CODESYS for PLCs), ICS-aware static analysis tools"
+                        expected_outcome "Testable fix documented with rollback plan."
+                    {
+                        step 2
+                        action "Validate in a sandboxed ICS environment replicating production conditions."
+                        tools "Hardware-in-the-loop (HIL) testbeds, protocol fuzzers (e.g., Peach Fuzzer)"
+                        expected_outcome "Fix confirmed to resolve vulnerability without regressions."
+                    {
+                        step 3
+                        action "Deploy to production via change management process with rollback safeguards."
+                        tools "OT-approved deployment tools (e.g., Siemens Automation Updater), signed updates"
+                        expected_outcome "Vulnerability closed with verification evidence archived."
+            {
+                code "DM-1"
+                subCode "a)"
+                title "Legacy System Vulnerability Handling Procedure"
+                description "Specialized process for addressing vulnerabilities in legacy ICS components
+                    +b lacking modern security features, per IEC 62443-4-1's compensating controls
+                    +b guidance."
+                [ steps
+                    {
+                        step 1
+                        action "Assess feasibility of patch (e.g., vendor support status, downtime impact)."
+                        tools "Asset management system, vendor EOL documentation"
+                        expected_outcome "Decision documented to patch, mitigate, or accept risk."
+                    {
+                        step 2
+                        action "Implement compensating controls (e.g., network segmentation, enhanced
+                            +b monitoring)."
+                        tools "Firewalls (e.g., Tofino), IDS (e.g., Darktrace for OT)"
+                        expected_outcome "Residual risk reduced to acceptable level per SLA."
+                    {
+                        step 3
+                        action "Schedule legacy component replacement/upgrade in roadmap."
+                        tools "IT/OT lifecycle management platform"
+                        expected_outcome "Legacy system flagged for decommissioning with target date."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-1"
+        subCode "c) product developers and testers; and"
+        [ policies
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Centralized Security Issue Tracking Policy"
+                description "This policy mandates the use of a centralized issue-tracking system to log,
+                    +b prioritize, and resolve security-related issues reported by product developers
+                    +b and testers. The system must support role-based access control (RBAC) to ensure
+                    +b only authorized personnel can view or modify issues. Compliance with IEC
+                    +b 62443-4-1 requires traceability and accountability in issue resolution, which
+                    +b this policy enforces through structured workflows and audit logs."
+                enforcement "Regular audits of the issue-tracking system will be conducted to verify
+                    +b compliance. Automated alerts will notify security teams of unresolved issues
+                    +b exceeding predefined SLAs. Tools like JIRA with ICS Security Plugins will be
+                    +b used to enforce workflows."
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Security Issue Reporting SLA Policy"
+                description "This policy defines Service Level Agreements (SLAs) for acknowledging and
+                    +b resolving security issues reported by developers and testers. Critical
+                    +b vulnerabilities must be acknowledged within 24 hours and resolved within 7
+                    +b days, while medium-severity issues have a 14-day resolution window. This aligns
+                    +b with IEC 62443-4-1's requirement for timely response to security-related
+                    +b issues."
+                enforcement "SLAs will be monitored via the issue-tracking system, with escalation paths for
+                    +b overdue items. Monthly reports will be generated to track compliance, and
+                    +b non-compliance will trigger management review."
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Automated Issue Triage Policy"
+                description "This policy requires the integration of automated triaging tools to classify
+                    +b and prioritize security issues reported by developers and testers. Tools like
+                    +b GitHub Advanced Security or GitLab Ultimate will be used to auto-tag issues
+                    +b based on severity, type, and affected components, ensuring efficient handling
+                    +b as per IEC 62443-4-1 guidelines."
+                enforcement "Automated triaging will be validated quarterly through manual reviews of a
+                    +b sample of issues. Discrepancies will be addressed through tool configuration
+                    +b updates or additional training for developers."
+        [ procedures
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Security Issue Reporting Procedure"
+                description "This procedure outlines the steps for product developers and testers to report
+                    +b security-related issues, ensuring compliance with IEC 62443-4-1's traceability
+                    +b requirements. It includes guidelines for providing reproducible test cases and
+                    +b environment details."
+                [ steps
+                    {
+                        step 1
+                        action "Log the issue in the centralized tracking system (e.g., JIRA) using the
+                            +b predefined security issue template."
+                        tools "JIRA with ICS Security Plugins"
+                        expected_outcome "Issue is logged with all required fields (e.g., severity, affected component,
+                            +b steps to reproduce)."
+                    {
+                        step 2
+                        action "Attach relevant logs, screenshots, or code snippets to aid reproducibility."
+                        tools "GitHub/GitLab for code snippets, SIEM for logs"
+                        expected_outcome "Issue report includes sufficient evidence for the security team to validate and
+                            +b reproduce the problem."
+                    {
+                        step 3
+                        action "Assign the issue to the security team and notify them via the system's
+                            +b escalation feature."
+                        tools "JIRA escalation workflows, Slack/Teams integration"
+                        expected_outcome "Security team receives notification and begins triage within the SLA timeframe."
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Security Issue Triage Procedure"
+                description "This procedure defines how the security team validates, prioritizes, and
+                    +b assigns security issues reported by developers and testers, ensuring alignment
+                    +b with IEC 62443-4-1's closure tracking requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Review the issue report for completeness and reproducibility. Contact the
+                            +b reporter if additional details are needed."
+                        tools "JIRA, GitHub Advanced Security"
+                        expected_outcome "Issue is either marked as 'ready for analysis' or returned to the reporter for
+                            +b clarification."
+                    {
+                        step 2
+                        action "Classify the issue using CVSS scoring and assign a priority (Critical, High,
+                            +b Medium, Low)."
+                        tools "NIST CVSS Calculator, internal risk matrix"
+                        expected_outcome "Issue is tagged with a severity level and prioritized in the backlog."
+                    {
+                        step 3
+                        action "Assign the issue to the appropriate development team or individual based on the
+                            +b affected component."
+                        tools "JIRA role-based assignments, RACI matrix"
+                        expected_outcome "Issue is routed to the responsible party with a clear deadline per the SLA
+                            +b policy."
+            {
+                code "DM-1"
+                subCode "c)"
+                title "Security Issue Resolution Verification Procedure"
+                description "This procedure ensures that resolved security issues are properly validated and
+                    +b documented before closure, meeting IEC 62443-4-1's accountability requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Verify the fix by reproducing the issue in a controlled test environment with
+                            +b the patched version."
+                        tools "Testbeds with cloned production environments, OPC UA/PROFINET simulators"
+                        expected_outcome "The vulnerability is confirmed to be remediated without introducing
+                            +b regressions."
+                    {
+                        step 2
+                        action "Document the resolution method, including code changes, configuration updates,
+                            +b or compensating controls."
+                        tools "Confluence, GitHub/GitLab commit logs"
+                        expected_outcome "Resolution details are recorded in the issue ticket and linked to the code
+                            +b repository."
+                    {
+                        step 3
+                        action "Notify the original reporter and request confirmation of resolution."
+                        tools "JIRA notifications, email"
+                        expected_outcome "Reporter acknowledges the fix, or provides feedback if the issue persists."
+        last_updated "2023-11-20"
+    {
+        practice "6"
+        code "DM-1"
+        subCode "d) product users including integrators, asset owners, and maintenance
+            +b personnel."
+        [ policies
+            {
+                code "DM-1"
+                subCode "d)"
+                title "Centralized Security Issue Reporting Policy"
+                description "Mandates the use of a unified portal for reporting security-related issues by
+                    +b all product users, including integrators, asset owners, and maintenance
+                    +b personnel. Ensures traceability and accountability as per IEC 62443-4-1
+                    +b DM-1(d). The portal must capture device model, firmware version, and detailed
+                    +b issue description."
+                enforcement "Regular audits of the portal logs to verify compliance. Automated alerts for
+                    +b unresolved issues beyond SLA."
+            {
+                code "DM-1"
+                subCode "d)"
+                title "Role-Based Issue Access Policy"
+                description "Defines differentiated access levels for integrators, asset owners, and
+                    +b maintenance personnel to view and update security issues, aligning with IEC
+                    +b 62443-4-1's principle of least privilege. Integrators can submit and track all
+                    +b issues, while asset owners only see issues affecting their assets."
+                enforcement "Quarterly access reviews using IAM tools. SIEM monitoring for unauthorized
+                    +b access attempts."
+            {
+                code "DM-1"
+                subCode "d)"
+                title "Closed-Loop Feedback Policy"
+                description "Requires notifying reporters of resolution status within 48 hours for critical
+                    +b issues (SL 3) and 7 days for others, per IEC 62443-4-1 DM-1(d). Includes root
+                    +b cause analysis for high-severity issues to prevent recurrence."
+                enforcement "Automated status updates via the reporting portal. Manual verification for
+                    +b critical issues by the security team."
+        [ procedures
+            {
+                code "DM-1"
+                subCode "d)"
+                title "Security Issue Intake Procedure"
+                description "Standardizes the process for receiving and triaging security reports from
+                    +b product users, ensuring compliance with IEC 62443-4-1 DM-1(d)."
+                [ steps
+                    {
+                        step 1
+                        action "Log the issue in the centralized tracking system (e.g., JIRA with ICS plugin),
+                            +b capturing all mandatory fields: reporter role, affected machine type, and
+                            +b protocol used."
+                        tools "JIRA ICS Security Plugin, OPC UA Analyzer"
+                        expected_outcome "Issue ticket created with unique ID and initial severity classification
+                            +b (Low/Medium/High/Critical)."
+                    {
+                        step 2
+                        action "Validate reproducibility by testing on a quarantined system matching the
+                            +b reported configuration (e.g., CNC Machining Center with firmware 2025.1)."
+                        tools "Virtualized testbed with Breton machine emulators, Wireshark for protocol
+                            +b analysis"
+                        expected_outcome "Confirmation of issue validity and updated severity score based on impact to
+                            +b CR1-CR7."
+                    {
+                        step 3
+                        action "Assign to the relevant team (Security/Engineering) based on issue type (e.g.,
+                            +b authentication flaws to Security Team, protocol vulnerabilities to Network
+                            +b Team)."
+                        tools "RACI Matrix, Siemens Teamcenter for cross-functional coordination"
+                        expected_outcome "Ticket ownership established with SLA clock started."
+            {
+                code "DM-1"
+                subCode "d)"
+                title "Legacy System Notification Handling Procedure"
+                description "Outlines steps to process security issues for legacy Breton machines (pre-2020)
+                    +b that lack modern reporting capabilities, per IEC 62443-4-1's handling
+                    +b constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Identify proxy system (e.g., newer Polishing Machine) to relay alerts from
+                            +b legacy equipment via OPC UA Pub/Sub."
+                        tools "Network segmentation maps, OPC UA Configuration Tool"
+                        expected_outcome "Legacy system mapped to a modern proxy with monitoring enabled."
+                    {
+                        step 2
+                        action "Convert legacy protocol alerts (e.g., Modbus TCP without TLS) to standardized
+                            +b format using protocol translator."
+                        tools "Profinet/Modbus Gateway with TLS wrapper, Zeek IDS"
+                        expected_outcome "Legacy issue translated to DM-1(d)-compliant report with machine metadata."
+                    {
+                        step 3
+                        action "Apply compensating controls (e.g., network micro-segmentation) if immediate
+                            +b patch is unavailable."
+                        tools "Cisco Industrial Network Director, Tofino Firewall"
+                        expected_outcome "Mitigation implemented and documented in the ticket."
+            {
+                code "DM-1"
+                subCode "d)"
+                title "User Awareness Training Rollout Procedure"
+                description "Systematic approach to train integrators and maintenance staff on recognizing
+                    +b and reporting security issues per IEC 62443-4-1 DM-1(d)."
+                [ steps
+                    {
+                        step 1
+                        action "Develop role-specific training modules (e.g., integrators learn protocol
+                            +b analysis, maintenance staff focus on physical tampering indicators)."
+                        tools "Articulate 360 for e-learning, Breton Machine Simulators"
+                        expected_outcome "Tailored training content for each user group."
+                    {
+                        step 2
+                        action "Conduct hands-on drills with simulated attacks (e.g., malicious OPC UA node
+                            +b insertion) on test machines."
+                        tools "Metasploit ICS Modules, Breton Test CNC Machine"
+                        expected_outcome "Participants demonstrate ability to detect and report simulated incidents."
+                    {
+                        step 3
+                        action "Assess competency via scored scenarios and issue reporting accuracy metrics."
+                        tools "LMS (Learning Management System) quizzes, False Positive/Negative Tracking"
+                        expected_outcome "≥90% pass rate for certification; updated training materials based on gaps."
+        last_updated "2023-11-20"

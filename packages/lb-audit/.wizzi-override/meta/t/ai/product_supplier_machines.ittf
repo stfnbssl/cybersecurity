@@ -1,0 +1,56 @@
+$group
+    $params &options, kind|step
+    $
+        var prefix_n = kind == 'step' ? '\\n ' : ''
+        var prefix_b = kind == 'step' ? '\\b ' : ''
+
+    ${prefix_n}Concentrati su caratteristiche dettagliate del prodotto e tecnicismi di cybersecurity, escludendo i requisiti di sistema, 
+    ${prefix_b}per fornire contesto ai passaggi successivi.
+    ${prefix_n}Popola il JSON con caratteristiche dettagliate delle macchine, ambiente operativo e tecnicismi di cybersecurity, 
+    ${prefix_b}estrapolando dalla descrizione del produttore e dagli standard di settore per macchinari CNC.
+    ${prefix_n}Assicura che tutte le assunzioni siano giustificate, facendo riferimento alle capacità tipiche dei 
+    ${prefix_b}macchinari industriali avanzati e ai requisiti IEC 62443.
+    ${prefix_n}Includi riferimenti a requisiti tecnici specifici di IEC 62443-4-2 (es. CR1 Controllo di Identificazione e 
+    ${prefix_b}Autenticazione, CR3 Integrità del Sistema) nella descrizione delle caratteristiche di cybersecurity.
+    
+    ${prefix_n}Linee guida:
+    ${prefix_n}Usa un tono tecnico e formale, adatto a ingegneri di cybersecurity che lavorano su ICS.
+    ${prefix_n}Per machine_types, includi almeno 4 tipi di macchine con descrizioni dettagliate della loro funzionalità e 
+    ${prefix_b}almeno 4 protocolli industriali per tipo, dando priorità a protocolli sicuri (es. OPC UA con Security Policy 
+    ${prefix_b}Basic256Sha256, PROFINET con PN Security).
+    ${prefix_n}Giustifica la scelta dei protocolli in base alla loro rilevanza per la cybersecurity degli ICS e IEC 62443-4-2.
+    
+    ${prefix_n}Per applications, elenca almeno 4 applicazioni, ciascuna con un livello di criticità (Alto, Medio, Basso) e 
+    ${prefix_b}una breve descrizione (max 50 parole) del loro impatto operativo.
+    
+    ${prefix_n}Per key_features, fornisci almeno 5 caratteristiche, ciascuna con una descrizione (max 50 parole), 
+    ${prefix_b}meccanismi di cybersecurity supportati (es. crittografia, avvio sicuro) ed un esempio pratico 
+    ${prefix_b}di implementazione (es. ‘L’avvio sicuro garantisce il caricamento solo di firmware firmato all’avvio, 
+    ${prefix_b}verificato tramite un modulo di piattaforma fidato’).
+    ${prefix_n}Assicura che gli esempi siano pratici e allineati a IEC 62443-4-2.
+    ${prefix_n}Per operational_environment, descrivi le condizioni fisiche (es. intervallo di temperatura, livelli di polvere, umidità) 
+    ${prefix_b}e l’architettura di rete (es. reti OT segmentate, utilizzo di DMZ o connettività Internet). 
+    ${prefix_n}Specifica come l’ambiente influisce sui requisiti di cybersecurity, come controlli di accesso fisico o 
+    ${prefix_b}isolamento di rete, secondo i modelli di zona e condotto di IEC 62443-3-3.
+    
+    ${prefix_n}Per security_profile, includi i livelli di sicurezza supportati (SL 1-4), certificazioni e almeno 3 minacce 
+    ${prefix_b}informatiche comuni specifiche per ambienti ICS (es. ransomware mirati ai sistemi di controllo, 
+    ${prefix_b}attacchi MitM su protocolli industriali, manipolazione dati nelle interfacce HMI), 
+    ${prefix_b}con una breve spiegazione della loro rilevanza per il contesto operativo della macchina.
+    
+    ${prefix_n}Per product_version, fornisci una versione plausibile e la data dell’ultimo aggiornamento (allineata alla data odierna). 
+    
+    ${prefix_n}Per assumptions_justifications, includi almeno 5 voci, ciascuna con un’assunzione concisa (max 50 parole) 
+    ${prefix_b}sulle capacità o sull’ambiente della macchina e una giustificazione (max 50 parole) che fa riferimento a 
+    ${prefix_b}standard di settore (es. ISO, NIST) o requisiti IEC 62443.
+    
+    ${prefix_n}Assicura che le assunzioni coprano aree chiave come funzionalità della macchina, protocolli, 
+    ${prefix_b}caratteristiche di cybersecurity e ambiente.
+    ${prefix_n}Assicura che le descrizioni in machine_types, applications e key_features siano distinte, evitando sovrapposizioni. 
+    ${prefix_n}Ad esempio, machine_types si concentrano su hardware e funzionalità, key_features su capacità tecniche 
+    ${prefix_b}specifiche con rilevanza per la cybersecurity e applications su casi d’uso e il loro impatto operativo. 
+    ${prefix_n}Mantieni le descrizioni concise, con un massimo di 50 parole per campo, salvo diversa specificazione.
+    ${prefix_n}Valida il JSON risultante rispetto allo schema fornito utilizzando un validatore JSON.
+    ${prefix_n}Assicura che tutti i campi siano popolati con dati realistici e coerenti, facendo riferimento incrociato 
+    ${prefix_b}all’industria del produttore e ai tipi di macchine.
+

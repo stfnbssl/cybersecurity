@@ -1,0 +1,228 @@
+$group
+    {
+        id "FSA-CR 1.7 RE(1)"
+        check_description "Components shall provide, or integrate into a system that provides, the
+            +b capability to protect against any given human user account from reusing a
+            +b password for a configurable number of generations. In addition, the component
+            +b shall provide the capability to enforce password minimum and maximum lifetime
+            +b restrictions for human users. These capabilities shall conform to commonly
+            +b accepted security industry practices."
+        requirement_id "IEC 62443-4-2: CR 1.7 RE(1)"
+        title "Password Generation and Lifetime Restrictions for Human Users"
+        description "This requirement focuses on implementing robust controls for the generation and
+            +b management of passwords used by human users. It ensures that passwords are
+            +b complex enough to resist common attacks and are changed regularly to minimize
+            +b the risk of unauthorized access."
+        { key_aspects
+            password_complexity "Passwords must meet certain complexity requirements, such as a minimum length
+                +b and the inclusion of uppercase and lowercase letters, numbers, and special
+                +b characters."
+            password_lifetime "There should be policies in place that dictate how often passwords must be
+                +b changed. This helps in limiting the duration a compromised password can be
+                +b used."
+            password_history "Systems should keep track of previously used passwords to prevent users from
+                +b reusing them immediately after a change."
+            user_training "Users should be educated on best practices for password creation and management
+                +b to ensure adherence to the policies."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.9.2.4"
+                description "Management of secret authentication information of users, which includes
+                    +b password management policies and procedures."
+            { "NIST SP 800-63B"
+                section "5.1.1"
+                description "Digital Identity Guidelines for authenticators and verifiers, which provide
+                    +b recommendations on password strength and policies."
+            { "CIS Controls"
+                control "Control 16"
+                description "Account Monitoring and Control, which includes aspects of password management
+                    +b and monitoring to ensure effective user authentication."
+    {
+        id "FSA-CR 1.7 RE(2)"
+        check_description "Components shall provide, or integrate into a system that provides, the
+            +b capability to enforce password minimum and maximum lifetime restrictions for
+            +b all users."
+        requirement_id "IEC 62443-4-2: CR 1.7 RE(2)"
+        title "Password Lifetime Restrictions for All Users"
+        description "This requirement mandates the implementation of password lifetime restrictions
+            +b for all types of users, including human users, software processes, and devices.
+            +b The goal is to ensure that passwords are changed periodically to reduce the
+            +b risk of unauthorized access due to compromised credentials."
+        [ key_aspects
+            {
+                aspect "Password Expiration"
+                details "Define a maximum duration for password validity and enforce password changes
+                    +b upon expiration."
+            {
+                aspect "User Types"
+                details "Apply restrictions uniformly across different user types, including human
+                    +b operators, automated processes, and devices."
+            {
+                aspect "Security Policy"
+                details "Incorporate password lifetime policies within the overall security policy
+                    +b framework, ensuring they align with organizational risk management strategies."
+            {
+                aspect "Automated Enforcement"
+                details "Implement automated mechanisms to enforce password expiration and notify users
+                    +b of impending password changes."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "IA-5(1) - Authenticator Management"
+                details "Focuses on managing information system authenticators, including establishing
+                    +b and enforcing password lifetime and complexity requirements."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.2.4 - Management of Secret Authentication Information of Users"
+                details "Addresses the management of secret authentication information to ensure it is
+                    +b protected and changed regularly."
+            {
+                standard "NIST SP 800-63B"
+                reference "Section 5.1.1.2 - Memorized Secret Verifiers"
+                details "Discusses the guidelines for memorized secret verifiers, including guidance on
+                    +b lifetime and renewal to prevent unauthorized access."
+            {
+                standard "CIS Controls"
+                reference "Control 16.5 - Configure Password Length and Complexity"
+                details "Recommends configuring password policies, including lifetime restrictions, to
+                    +b enhance security posture."
+    {
+        id "FSA-CR 1.8"
+        check_description "When public key infrastructure (PKI) is utilized, the component shall provide
+            +b or integrate into a system that provides the capability to interact and operate
+            +b in accordance with IEC 62443?3?3 [11] SR1.8."
+        requirement_id "IEC 62443-4-2: CR 1.8"
+        title "Public Key Infrastructure (PKI) Certificates"
+        description "The requirement pertains to the use of Public Key Infrastructure (PKI)
+            +b certificates to ensure secure communication and authentication within
+            +b industrial automation and control systems (IACS). It mandates the
+            +b implementation of PKI to manage digital certificates, which are used to verify
+            +b the identity of entities and ensure the integrity and confidentiality of data
+            +b exchanges."
+        { key_aspects
+            certificate_management "Focuses on issuing, renewing, revoking, and managing digital certificates to
+                +b ensure the security of communications."
+            authentication "Ensures that entities interacting within the IACS are authenticated using
+                +b certificates, reducing the risk of unauthorized access."
+            encryption "Utilizes certificates to enable secure encryption of data transmitted across
+                +b networks, safeguarding against interception and tampering."
+            integrity "Maintains the integrity of data by ensuring that any alterations during
+                +b transmission are detectable and preventable through the use of PKI."
+        { related_standards
+            "IEC 62351" "This standard provides guidelines for security in the communication protocols
+                +b used in power system automation, emphasizing the role of PKI in ensuring secure
+                +b data exchange."
+            "ISO/IEC 27001" "An international standard on information security management, which includes
+                +b guidelines for implementing PKI as part of a comprehensive security strategy."
+            "RFC 5280" "The Internet X.509 Public Key Infrastructure Certificate and Certificate
+                +b Revocation List (CRL) Profile, which defines the standard for public key
+                +b certificates used in PKI."
+            "NIST SP 800-57" "Recommendations for Key Management, providing guidelines on cryptographic key
+                +b management, including the use of PKI in securing information systems."
+    {
+        id "FSA-CR 1.9A"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to validate certificates by checking the
+            +b validity of the signature of a given certificate."
+        requirement_id "IEC 62443-4-2: CR 1.9(a)"
+        title "Strength of Public Key-Based Authentication - Check Validity of Signature of a
+            +b Given Certificate"
+        description "This requirement mandates that components within an industrial control system
+            +b (ICS) must have the capability to verify the validity of the digital signature
+            +b on a given certificate. This ensures that the certificate is authentic and has
+            +b not been tampered with, thereby enhancing the security of the authentication
+            +b mechanisms within the ICS."
+        [ key_aspects
+            {
+                aspect "Public Key Infrastructure (PKI)"
+                details "Utilizes a hierarchical architecture to manage digital certificates and
+                    +b public-key encryption. Verifying the certificate's signature is a critical part
+                    +b of ensuring the integrity and authenticity of the certificate."
+            {
+                aspect "Digital Signature Verification"
+                details "Involves using the public key of the certificate authority (CA) to validate the
+                    +b signature on the certificate. This confirms that the certificate was issued by
+                    +b a trusted CA and has not been altered."
+            {
+                aspect "Certificate Revocation"
+                details "Systems should also consider mechanisms for checking certificate revocation
+                    +b lists (CRLs) or using the Online Certificate Status Protocol (OCSP) to ensure
+                    +b the certificate is still valid and has not been revoked."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.9 – Access Control"
+                details "Emphasizes the importance of strong access control mechanisms, including the
+                    +b use of cryptographic controls for authentication."
+            {
+                standard "RFC 5280"
+                reference "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation
+                    +b List (CRL) Profile"
+                details "Provides the framework and guidelines for implementing and managing X.509
+                    +b certificates and CRLs, which are fundamental for verifying certificate
+                    +b signatures."
+            {
+                standard "NIST SP 800-57"
+                reference "Recommendation for Key Management"
+                details "Offers comprehensive guidance on cryptographic key management, including the
+                    +b use of public key cryptography and digital signatures."
+            {
+                standard "IEC 62351"
+                reference "Power systems management and associated information exchange - Data and
+                    +b communications security"
+                details "Focuses on securing communications in power system operations, including the
+                    +b use of authentication mechanisms that rely on certificate-based validation."
+    {
+        id "FSA-CR 1.9B"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to validate the certificate chain or, in the
+            +b case of self-signed certificates, by deploying leaf certificates to all hosts
+            +b that communicate with the subject to which the certificate is issued."
+        requirement_id "CR 1.9(b)"
+        title "Strength of Public Key-Based Authentication - Validate Certificate Chain"
+        description "This requirement ensures that systems utilizing public key infrastructure (PKI)
+            +b for authentication purposes properly validate the certificate chain. This
+            +b involves verifying that each certificate in the chain is valid, has not
+            +b expired, is not revoked, and that the chain leads to a trusted root certificate
+            +b authority (CA). Proper validation prevents unauthorized access by ensuring that
+            +b only certificates issued and trusted by legitimate CAs are accepted."
+        [ key_aspects
+            {
+                aspect "Certificate Chain Validation"
+                details "The process involves checking the validity of each certificate in the chain,
+                    +b ensuring all certificates are correctly signed by their respective issuers up
+                    +b to the root CA."
+            {
+                aspect "Expiration and Revocation Checks"
+                details "Ensures that none of the certificates in the chain have expired or been
+                    +b revoked, which can involve checking CRLs (Certificate Revocation Lists) or
+                    +b using OCSP (Online Certificate Status Protocol)."
+            {
+                aspect "Trusted Root CA"
+                details "The chain must terminate at a root CA that is trusted by the system, indicating
+                    +b that the entire chain is legitimate and properly vetted."
+        [ related_standards
+            {
+                standard "ISO/IEC 9594-8:2020"
+                title "Information Technology - Open Systems Interconnection - The Directory:
+                    +b Public-key and Attribute Certificate Frameworks"
+                relevance "Provides a framework for public key certificates and their management,
+                    +b including the structure and validation of certificate chains."
+            {
+                standard "RFC 5280"
+                title "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation
+                    +b List (CRL) Profile"
+                relevance "Defines the standards for X.509 certificates and outlines the procedures for
+                    +b validating certificate chains, including the use of CRLs and OCSP."
+            {
+                standard "NIST SP 800-57 Part 1"
+                title "Recommendation for Key Management: Part 1 - General"
+                relevance "Discusses guidelines for the management of cryptographic keys, including those
+                    +b used in PKI systems for authentication purposes."
+            {
+                standard "ISO/IEC 27001:2022"
+                title "Information Security Management Systems - Requirements"
+                relevance "Includes requirements for managing information security risks, which
+                    +b encompasses the secure use and validation of PKI systems."

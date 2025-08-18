@@ -1,0 +1,141 @@
+$group
+    { tool_box
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Cybersecurity Auditing Tools Schema"
+        description "Schema for a list of tools used in the Integrated Cybersecurity Auditing Process for IT/OT environments, aligned with standards like IEC 62443, ISO 27001, NIS2, and EU Machinery Regulation."
+        { items
+            type "object"
+            { properties
+            type "object"
+            { properties
+                { name
+                    type "string"
+                    description "The name of the tool."
+                    minLength 1
+                    maxLength 100
+                    [ examples
+                        "Tenable Nessus" 
+                        "Nozomi Guardian" 
+                { description
+                    type "string"
+                    description "A brief overview of the tool's purpose and functionality."
+                    minLength 10
+                    maxLength 500
+                    [ examples
+                        "A leading vulnerability scanner for IT environments." 
+                { capabilities
+                    type "array"
+                    description "List of key features or functionalities of the tool."
+                    minItems 1
+                    { items
+                        type "string"
+                        minLength 1
+                        [ examples
+                            "OT asset discovery" 
+                            "CVE scanning" 
+                { alternatives
+                    type "array"
+                    description "List of alternative tools with similar functionality."
+                    minItems 1
+                    { items
+                        type "string"
+                        minLength 1
+                        [ examples
+                            "Claroty CTD" 
+                            "OpenVAS" 
+                { process
+                    type "string"
+                    description "How to use the tool in the auditing phase."
+                    minLength 10
+                    maxLength 500
+                    [ examples
+                        "Deploy on OT network, scan passively, export asset data." 
+                { deliverable
+                    type "string"
+                    description "The output produced by the tool for the audit."
+                    minLength 5
+                    maxLength 200
+                    [ examples
+                        "Asset Inventory Table (CSV)" 
+                { auditing_phase
+                    type "string"
+                    description "The phase(s) of the auditing methodology where the tool is used."
+                    [ enum
+                        "Asset Mapping" 
+                        "Weakness Assessment" 
+                        "Threat Contextualization" 
+                        "Gap Analysis" 
+                        "Remediation Validation" 
+                        "Asset Mapping, Threat Contextualization" 
+                        "Asset Mapping, Remediation Validation" 
+                        "Threat Contextualization, Remediation Validation" 
+                        "Asset Mapping, Gap Analysis" 
+                    [ examples
+                        "Asset Mapping" 
+                { type
+                    type "string"
+                    description "The tool's licensing or development model."
+                    [ enum
+                        "Commercial" 
+                        "Open-Source" 
+                        "Custom" 
+                        "Manual" 
+                        "Commercial/Open-Source" 
+                    [ examples
+                        "Commercial" 
+                { version
+                    type "string"
+                    description "The tool's version number or 'N/A' if not applicable."
+                    minLength 1
+                    maxLength 50
+                    [ examples
+                        "10.7.2" 
+                        "N/A" 
+                { url
+                    type "string"
+                    description "Official website or repository URL for the tool."
+                    format "uri"
+                    minLength 10
+                    maxLength 200
+                    [ examples
+                        "https://www.tenable.com/products/nessus" 
+                { price
+                    type "string"
+                    description "Estimated cost (2025) or 'Free' for open-source/custom tools."
+                    minLength 1
+                    maxLength 100
+                    [ examples
+                        "$2,990/year" 
+                        "Free" 
+                { standards_relevance
+                    type "array"
+                    description "Standards and controls the tool supports."
+                    minItems 1
+                    { items
+                        type "string"
+                        minLength 1
+                        [ examples
+                            "IEC 62443 (62443-2-1)" 
+                            "ISO 27001 (A.12.6.1)" 
+                { notes
+                    type "string"
+                    description "Additional context, caveats, or usage tips."
+                    minLength 1
+                    maxLength 500
+                    [ examples
+                        "Best for IT; pair with Tenable.ot for OT." 
+            [ required
+                "name" 
+                "description" 
+                "capabilities" 
+                "alternatives" 
+                "process" 
+                "deliverable" 
+                "auditing_phase" 
+                "type" 
+                "version" 
+                "url" 
+                "price" 
+                "standards_relevance" 
+                "notes" 
+            additionalProperties false

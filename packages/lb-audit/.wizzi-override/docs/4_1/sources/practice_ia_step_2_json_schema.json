@@ -1,0 +1,85 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "practice": {
+            "type": "string"
+        },
+        "code": {
+            "type": "string"
+        },
+        "subCode": {
+            "type": "string"
+        },
+        "explanation": {
+            "type": "string",
+            "description": "Explanation of the requirement",
+            "example": "..."
+        },
+        "context": {
+            "type": "string",
+            "description": "Context of the requirement",
+            "example": "..."
+        },
+        "challenges": {
+            "type": "array",
+            "description": "Challenges of the requirement",
+            "items": {
+                "type": "string",
+                "example": "..."
+            }
+        },
+        "best_practices": {
+        "type": "array",
+        "description": "Best practices for the requirement",
+        "items": {
+            "type": "object",
+            "properties": {
+                "description": {"type": "string", "example": "..."},
+                "url": {"type": "string", "example": "https://example.com"},
+                "url_description": {"type": "string", "example": "Description of the resource"}
+            },
+            "required": ["description"],
+            "additionalProperties": false
+            }
+        },        
+        "key_aspects": { 
+            "type": "array", 
+            "items": { 
+                "type": "object", 
+                "properties": { 
+                "id": { "type": "string" }, 
+                "title": { "type": "string" }, 
+                "description": { "type": "string" }, 
+                "related_links": { 
+                    "type": "array", 
+                    "items": { 
+                    "type": "object", 
+                    "properties": { 
+                        "title": { "type": "string" }, 
+                        "url": { "type": "string" }, 
+                        "description": { "type": "string" } 
+                    }, 
+                    "required": ["title", "url", "description"], 
+                    "additionalProperties": false 
+                    }
+                }
+                }, 
+                "required": ["id", "title", "description", "related_links"], 
+                "additionalProperties": false 
+            }
+            }
+    },
+    "required": [
+        "practice",
+        "code",
+        "subCode",
+        "explanation",
+        "context",
+        "challenges",
+        "best_practices",
+        "key_aspects"
+    ],
+    "additionalProperties": false
+}
+

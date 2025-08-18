@@ -1,0 +1,25 @@
+$group
+    {
+        manufacturer "Breton Spa"
+        description "Breton S.p.A. is a leading manufacturer of advanced industrial machinery for
+            +b stone processing and composite material production. The company specializes in
+            +b integrating automation and control systems into their machines, aligning with
+            +b IACS requirements for cybersecurity under IEC 62443."
+        { machine
+            type "Si tratta di una macchina a Controllo Numerico (CNC), appartenente alla divisione `meccanica` di Breton."
+            [ descriptions
+                "Sistemi di Controllo e Componenti"
+                "● Controllo Principale: Affidato a un Controllo Numerico (CN) Siemens (si presume Sinumerik)."
+                "● PLC: Presenti all’interno del controllo numerico (si presume softplc Simatic S7-1500)."
+                "● PC Dedicato: Connesso alla macchina per il controllo remoto (si presume Ubiquiti ASEM), esegue esclusivamente software di controllo remoto. Altri software"
+                "risiedono esternamente sulla rete del cliente o su un PC dedicato al software di controllo."
+                "● Pannello Operatore: logica dell'interfaccia utente (UI/HMI) gestita direttamente dal Controllo Numerico (si presume tramite protocollo RDP/VNC)."
+                "● Software Proprietario: Non presente su questa specifica macchina nell'ambito dell'analisi iniziale."
+                "Architettura di Rete e Connettività"
+                "● Rete Interna: La macchina possiede una rete interna propria, idealmente segmentata in almeno tre VLAN distinte: automazione, HMI e comunicazione verso"
+                "l'esterno. Breton sta sperimentando soluzioni di SDN su cui porre particolare attenzione."
+                "● Comunicazione Esterna: Avviene attraverso un unico punto (single point), verso un portale Breton o il sistema master del cliente, utilizzando protocolli come"
+                "OPC-UA o REST."
+                "● Gateway/Firewall: Un PC funge da gateway e può includere un firewall interno o essere protetto da un firewall esterno. Breton sta valutando diverse soluzioni"
+                "NG firewall."
+                "● Protocolli di Rete: Utilizza PROFINET IRT per applicazioni Real-Time (Classe 3) e si presume PROFISAFE."

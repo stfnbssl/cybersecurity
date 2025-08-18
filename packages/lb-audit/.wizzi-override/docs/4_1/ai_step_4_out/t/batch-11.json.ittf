@@ -1,0 +1,377 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        subCode "l) security-related issues identified; and"
+        [ policies
+            {
+                code "SR-2"
+                subCode "l)"
+                title "Threat Modeling Policy for ICS Products"
+                description "This policy mandates the use of standardized threat modeling methodologies
+                    +b (e.g., STRIDE, PASTA) tailored for ICS environments to identify and document
+                    +b security-related issues during product development. It aligns with IEC
+                    +b 62443-4-1 SR-2(l) by ensuring systematic identification of threats unique to OT
+                    +b systems, such as process disruption or equipment damage. The policy applies to
+                    +b all Breton Spa CNC, stone cutting, and polishing machines, with specific focus
+                    +b on OPC UA, PROFINET, and EtherNet/IP protocols."
+                enforcement "Compliance is verified through quarterly audits by the security team, automated
+                    +b checks in CI/CD pipelines using tools like Microsoft Threat Modeling Tool, and
+                    +b mandatory documentation in the centralized security repository."
+            {
+                code "SR-2"
+                subCode "l)"
+                title "Legacy System Threat Integration Policy"
+                description "Requires the inclusion of legacy ICS components (e.g., older PLCs in Breton's
+                    +b stone cutting machines) in threat models, addressing their unique
+                    +b vulnerabilities through compensating controls like network segmentation.
+                    +b Supports IEC 62443-4-1 KA2 by ensuring outdated but critical systems are not
+                    +b overlooked. Specifically covers PROFINET and Modbus TCP implementations in
+                    +b high-dust environments."
+                enforcement "Enforced via pre-deployment architecture reviews, mandatory risk matrices for
+                    +b legacy components, and annual red team exercises using MITRE ATT&CK for ICS
+                    +b techniques."
+            {
+                code "SR-2"
+                subCode "l)"
+                title "Threat Model Update and Validation Policy"
+                description "Mandates biannual updates to threat models based on new CISA advisories and
+                    +b ICS-specific threat intelligence (e.g., ransomware variants targeting OPC UA).
+                    +b Implements IEC 62443-4-1 KA4 requirements for validation through simulated
+                    +b attacks on Breton's polishing machine HMI interfaces and composite material
+                    +b processing lines."
+                enforcement "Validated through automated version control checks of threat model documents,
+                    +b mandatory participation in ICS Cyber Kill Chain workshops, and evidence of
+                    +b updated mitigation strategies for SL 3 systems."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "l)"
+                title "STRIDE-Based Threat Modeling for CNC Machines"
+                description "Procedure for conducting STRIDE threat modeling on Breton's CNC machining
+                    +b centers, focusing on multi-axis control systems and OPC UA implementations.
+                    +b Aligns with IEC 62443-4-1 KA1 by identifying OT-specific threats like tampering
+                    +b with G-code integrity."
+                [ steps
+                    {
+                        step 1
+                        action "Document all data flows between CNC controller, HMI, and OPC UA server using
+                            +b Microsoft Threat Modeling Tool"
+                        tools "Microsoft Threat Modeling Tool, OPC UA Wireshark dissectors"
+                        expected_outcome "Data flow diagrams showing all communication paths with protocol details
+                            +b (Basic256Sha256 encryption)"
+                    {
+                        step 2
+                        action "Identify STRIDE threats for each component (e.g., Spoofing of PROFINET device
+                            +b identities)"
+                        tools "Siemens TIA Portal security analyzer, Rockwell Automation threat matrices"
+                        expected_outcome "Threat catalog with 100% coverage of CNC-specific attack vectors per NIST SP
+                            +b 800-82"
+                    {
+                        step 3
+                        action "Prioritize threats using DREAD scoring with OT-specific weights (e.g., higher
+                            +b Damage scores for axis control tampering)"
+                        tools "Custom DREAD calculator for ICS, Breton risk assessment templates"
+                        expected_outcome "Risk-ranked threat list approved by both security and mechanical engineering
+                            +b teams"
+            {
+                code "SR-2"
+                subCode "l)"
+                title "Legacy Stone Cutter Threat Analysis"
+                description "Procedure for extending threat models to Breton's legacy water-cooled stone
+                    +b cutting machines with unsupported EtherCAT implementations. Addresses IEC
+                    +b 62443-4-1 KA2 requirements through compensating controls."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy EtherCAT devices in separate VLAN using industrial firewalls"
+                        tools "Hirschmann OCTOPUS firewall, Wireshark with EtherCAT plugin"
+                        expected_outcome "Network segmentation diagrams showing attack surface reduction by ≥80%"
+                    {
+                        step 2
+                        action "Deploy protocol-aware IDS to monitor unencrypted EtherCAT traffic"
+                        tools "Dragos Neighborhood Watch, Snort with ICS rulesets"
+                        expected_outcome "Real-time alerts for malicious EtherCAT commands (e.g., unauthorized blade
+                            +b speed changes)"
+                    {
+                        step 3
+                        action "Document residual risks and compensating controls in threat model"
+                        tools "Breton legacy system risk register, ISA 62443-3-3 templates"
+                        expected_outcome "Approved threat model extension with SL 2 compliance evidence for audit"
+            {
+                code "SR-2"
+                subCode "l)"
+                title "Threat Model Validation via ICS Red Teaming"
+                description "Procedure for validating Breton polishing machine threat models through
+                    +b controlled attacks, fulfilling IEC 62443-4-1 KA4 requirements. Focuses on HMI
+                    +b interfaces and S7comm secure authentication."
+                [ steps
+                    {
+                        step 1
+                        action "Develop attack scenarios based on MITRE ATT&CK for ICS Tactic TA004 (Impact)"
+                        tools "MITRE CALDERA for ICS, Siemens S7comm exploit framework"
+                        expected_outcome "Approved test plan covering 100% of high-risk threats from model"
+                    {
+                        step 2
+                        action "Execute simulated attacks on testbed polishing machine (e.g., abrasive pressure
+                            +b sensor spoofing)"
+                        tools "Hardware-in-the-loop test rig, Codenomicon PROFINET fuzzer"
+                        expected_outcome "Documented success/failure rates of attacks against implemented controls"
+                    {
+                        step 3
+                        action "Update threat model with validation results and new mitigations (e.g.,
+                            +b additional HMI input validation)"
+                        tools "Breton version-controlled threat model repository, Jira Security tickets"
+                        expected_outcome "Revised threat model with ≤5% residual high-risk threats after mitigation"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-3"
+        subCode "undefined"
+        [ policies
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Security Requirement Documentation Policy"
+                description "This policy mandates the documentation of all security requirements for
+                    +b industrial products and features, covering their entire lifecycle from
+                    +b installation to decommissioning. It ensures that security is embedded in the
+                    +b design and operational phases, aligning with IEC 62443-4-1 standards. The
+                    +b policy applies to all Breton Spa CNC machining and stone cutting machines,
+                    +b ensuring compliance with CR1, CR3, and CR4 security capabilities."
+                enforcement "Regular audits will be conducted to verify the completeness and accuracy of
+                    +b security requirement documentation. Automated tools like JIRA and Confluence
+                    +b will be used to track and manage requirements, with integration into DevSecOps
+                    +b pipelines for continuous validation."
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Lifecycle Security Controls Policy"
+                description "This policy defines the security controls required during each phase of the
+                    +b product lifecycle, including installation, operation, maintenance, and
+                    +b decommissioning. It ensures that all Breton Spa machines, such as CNC Machining
+                    +b Centers and Polishing Machines, adhere to IEC 62443-4-1 requirements for system
+                    +b integrity and data confidentiality. The policy includes specific controls like
+                    +b secure bootstrap for installation and runtime integrity checks for operation."
+                enforcement "Compliance will be enforced through phase-specific audits and validation
+                    +b checks. Tools like Siemens' security baseline for PLCs and Rockwell's CIP
+                    +b Security protocol will be used to implement and verify controls. Non-compliance
+                    +b will trigger remediation actions documented in the incident logging system."
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Threat Mitigation and Compliance Mapping Policy"
+                description "This policy requires the explicit linkage between documented threats (e.g.,
+                    +b ransomware, MitM attacks) and product security requirements (e.g., firmware
+                    +b signing, network segmentation). It ensures that all Breton Spa products,
+                    +b including Composite Material Processing Lines, have traceable compliance
+                    +b evidence showing how they meet IEC 62443-4-1 clauses SR-3.1 through SR-3.4."
+                enforcement "Enforcement will involve regular threat modeling sessions using methodologies
+                    +b like STRIDE and ICS-specific threat models. Compliance will be verified through
+                    +b documentation reviews and testing, with findings reported in audit-ready
+                    +b formats. Tools like Microsoft Threat Modeling Tool and NIST 800-30 adapted for
+                    +b SCADA systems will be utilized."
+        [ procedures
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Documenting Security Requirements"
+                description "This procedure outlines the process for documenting security requirements for
+                    +b Breton Spa industrial machines, ensuring alignment with IEC 62443-4-1. It
+                    +b covers the identification, prioritization, and documentation of requirements
+                    +b for security capabilities related to installation, operation, maintenance, and
+                    +b decommissioning."
+                [ steps
+                    {
+                        step 1
+                        action "Identify security requirements using asset criticality assessments and threat
+                            +b modeling methodologies like STRIDE."
+                        tools "Microsoft Threat Modeling Tool, NIST 800-30 adapted for SCADA systems"
+                        expected_outcome "A comprehensive list of security requirements prioritized by criticality and
+                            +b threat impact."
+                    {
+                        step 2
+                        action "Document requirements in a Security Capability Matrix, mapping product features
+                            +b to IEC 62443 security capabilities."
+                        tools "Confluence, JIRA"
+                        expected_outcome "A tabulated matrix showing traceability between requirements and implemented
+                            +b controls."
+                    {
+                        step 3
+                        action "Review and validate requirements with cross-functional teams, including
+                            +b security, engineering, and management."
+                        tools "RACI matrix, Cross-functional meeting minutes"
+                        expected_outcome "Approved and prioritized security requirements ready for implementation."
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Implementing Lifecycle Security Controls"
+                description "This procedure details the steps for implementing security controls during each
+                    +b phase of the product lifecycle, ensuring compliance with IEC 62443-4-1. It
+                    +b covers controls for installation, operation, maintenance, and decommissioning
+                    +b of Breton Spa machines."
+                [ steps
+                    {
+                        step 1
+                        action "Define phase-specific security controls, such as secure bootstrap for
+                            +b installation and runtime integrity checks for operation."
+                        tools "Siemens' security baseline for PLCs, Rockwell's CIP Security protocol"
+                        expected_outcome "A documented set of controls for each lifecycle phase."
+                    {
+                        step 2
+                        action "Integrate controls into the product development and deployment processes,
+                            +b ensuring they are tested and validated."
+                        tools "DevSecOps pipelines, Automated testing tools"
+                        expected_outcome "Implemented and validated controls ready for deployment."
+                    {
+                        step 3
+                        action "Conduct phase-specific audits to verify control implementation and
+                            +b effectiveness."
+                        tools "Audit checklists, Incident logging system"
+                        expected_outcome "Audit reports confirming compliance with lifecycle security controls."
+            {
+                code "SR-3"
+                subCode "undefined"
+                title "Mapping Threats to Security Requirements"
+                description "This procedure describes the process for linking documented threats to product
+                    +b security requirements, ensuring that all Breton Spa machines have traceable
+                    +b mitigation measures. It aligns with IEC 62443-4-1 by providing audit-ready
+                    +b compliance evidence."
+                [ steps
+                    {
+                        step 1
+                        action "Identify and document potential threats using ICS-specific threat models and
+                            +b real-world attack data."
+                        tools "Dragos ICS Threat Assessment Framework, Kaspersky ICS CERT Threat Landscape"
+                        expected_outcome "A comprehensive list of threats relevant to Breton Spa products."
+                    {
+                        step 2
+                        action "Map each threat to specific security requirements, such as firmware signing for
+                            +b Stuxnet-style attacks."
+                        tools "Security Capability Matrix, Compliance mapping tools"
+                        expected_outcome "A clear linkage between threats and mitigation requirements."
+                    {
+                        step 3
+                        action "Validate and document compliance evidence, showing how requirements satisfy IEC
+                            +b 62443-4-1 clauses."
+                        tools "GE Digital Cyber Security tools, Moxa Security Compliance Center templates"
+                        expected_outcome "Audit-ready documentation demonstrating compliance with SR-3."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-4"
+        subCode "b) the required capability security level (SL-C) of the product."
+        [ policies
+            {
+                code "SR-4"
+                subCode "b)"
+                title "SL-C Target Profiling Policy"
+                description "This policy mandates the explicit documentation of target SL-C for each
+                    +b security function within Breton Spa's industrial control systems (ICS). It
+                    +b aligns with IEC 62443-4-1 Section 4.2.2, requiring verifiable implementation of
+                    +b security capabilities (e.g., authentication SL-C(2), data integrity SL-C(3))
+                    +b across CNC Machining Centers and Stone Cutting Machines. The policy applies
+                    +b during product design and supplier evaluations."
+                enforcement "Quarterly audits using ISA/IEC 62443-3-2 assessment tools; automated SL-C
+                    +b validation in Teamcenter® requirements management system"
+            {
+                code "SR-4"
+                subCode "b)"
+                title "Component SL-C Inheritance Policy"
+                description "Governs how commercial off-the-shelf (COTS) components inherit SL-C in Breton's
+                    +b systems (e.g., Windows Embedded OS in HMIs must meet SL-C(2) patching
+                    +b requirements). Complies with IEC 62443-4-1 Clause 7.2.3 for supply chain
+                    +b security. Covers all protocols including OPC UA with Basic256Sha256 and
+                    +b PROFINET with PN Security."
+                enforcement "Vendor compliance checks via Honeywell Experion PKS-style SL-C mapping tables;
+                    +b static code analysis for third-party firmware"
+            {
+                code "SR-4"
+                subCode "b)"
+                title "SL-C Maintenance Policy"
+                description "Defines procedures for SL-C re-evaluation during product lifecycle (e.g.,
+                    +b impact assessment when adding OPC UA to legacy PLCs in Polishing Machines).
+                    +b Implements IEC 62443-4-1 Clause 8 requirements through structured change
+                    +b management processes."
+                enforcement "Automated impact assessment tools integrated with Rockwell Automation's Secure
+                    +b Development Lifecycle; mandatory SL-C review before firmware updates"
+        [ procedures
+            {
+                code "SR-4"
+                subCode "b)"
+                title "SL-C Determination Procedure"
+                description "Formal process for deriving SL-C requirements based on risk assessment for
+                    +b Breton's industrial equipment. Incorporates STRIDE threat modeling and NIST
+                    +b 800-30 adapted for SCADA systems, specifically addressing threats like
+                    +b ransomware targeting CNC control systems."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct asset criticality assessment using ISA/IEC 62443-3-2 methodology for
+                            +b each machine type (e.g., CNC Machining Centers = Criticality High)"
+                        tools "Microsoft Threat Modeling Tool, Breton-specific risk assessment templates"
+                        expected_outcome "Documented criticality ratings per IEC 62443-4-1 Section 4.2.2 requirements"
+                    {
+                        step 2
+                        action "Perform threat modeling for supported protocols (OPC UA, PROFINET etc.)
+                            +b considering plant network segmentation"
+                        tools "ICS-specific threat model templates, Wireshark with industrial protocol
+                            +b dissectors"
+                        expected_outcome "Threat report identifying SL-C requirements per communication channel (e.g.,
+                            +b SL-C(3) for EtherNet/IP in metalworking)"
+                    {
+                        step 3
+                        action "Validate SL-C assignments against ISA TR62443-4-2 technical report requirements"
+                        tools "SL-C compliance checklist, ABB Security Testing Framework references"
+                        expected_outcome "Signed SL-C traceability matrix approved by security and engineering teams"
+            {
+                code "SR-4"
+                subCode "b)"
+                title "SL-C Verification Procedure"
+                description "Step-by-step validation of implemented security controls against target SL-C
+                    +b for Breton's products. Includes protocol-specific testing for all supported
+                    +b industrial networks (PROFINET, EtherCAT etc.) as per IEC 62443-4-1 Section 4.4."
+                [ steps
+                    {
+                        step 1
+                        action "Execute fuzz testing on protocol implementations per ICS-CERT recommendations"
+                        tools "Peach Fuzzer with industrial protocol profiles, OPC UA Test Server"
+                        expected_outcome "Verification of SL-C(3) communication robustness requirements"
+                    {
+                        step 2
+                        action "Test authentication mechanisms against SL-C requirements (e.g., Basic256Sha256
+                            +b for SL-C(2))"
+                        tools "Crypto-analysis tools, protocol analyzers"
+                        expected_outcome "Compliance report showing meeting of target SL-C for identification and
+                            +b authentication"
+                    {
+                        step 3
+                        action "Validate network segmentation effectiveness for SL-C inheritance in multi-zone
+                            +b deployments"
+                        tools "Network traffic analyzers, firewall rule verification tools"
+                        expected_outcome "Evidence of proper SL-C zone boundary enforcement per IEC 62443-3-3"
+            {
+                code "SR-4"
+                subCode "b)"
+                title "SL-C Update Procedure"
+                description "Process for revising SL-C during product lifecycle maintenance of Breton's
+                    +b equipment. Addresses scenarios like new vulnerability disclosures or protocol
+                    +b additions (e.g., implementing MQTT with TLS in Composite Material Processing
+                    +b Lines)."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor CISA alerts and vendor bulletins for relevant vulnerabilities"
+                        tools "ICS-CERT RSS feeds, Breton security monitoring dashboard"
+                        expected_outcome "Documented threat intelligence impacting current SL-C assignments"
+                    {
+                        step 2
+                        action "Perform gap analysis using Emerson DeltaV Security Lifecycle methodology"
+                        tools "Impact assessment templates, SL-C comparison matrices"
+                        expected_outcome "Report identifying required SL-C adjustments with risk justification"
+                    {
+                        step 3
+                        action "Implement compensating controls for legacy systems unable to meet revised SL-C"
+                        tools "Network segmentation design tools, Yokogawa third-party component guidelines"
+                        expected_outcome "Updated security architecture documentation with approved SL-C exceptions"
+        last_updated "2023-10-15"

@@ -1,0 +1,78 @@
+ittf
+
+    $file .wizzi-override/docs/4_1_manu/transformed/opencre.json.ittf
+
+        {
+            [ items
+                $
+                  var count = 0;
+                  var ltypes = {}
+                  var doctypes = {}
+
+                $foreach item in all_opencre.data
+                    {
+                        code "${++count}"
+                        id "${item.id}"
+                        doctype "${item.doctype}"
+                        name "${item.name}"
+                        [ links
+                            $foreach link in item.links
+                                $
+                                    ltypes[link.ltype] = {}
+                                    if (link.document && link.document.doctype != 'CRE') {
+                                      doctypes[link.document.doctype+'-'+link.document.name] = {}
+                                    }
+
+                                {
+                                    ltype "${link.ltype}"
+                                    doctype "${link.doctype}"
+                                    document "${_.stringify(link.document)}"          
+            
+            { ltypes                
+                $foreach item in Object.keys(ltypes)
+                    name "${item}"
+            { doctypes_no_cre
+                $foreach item in Object.keys(doctypes)
+                    name "${item}"
+
+    $file .wizzi-override/docs/4_1_manu/transformed/opencre_standards.json.ittf
+
+        {
+            [ items
+                $
+                  var count = 0;
+
+                $foreach item in all_opencre.data
+                    {
+                        code "${++count}"
+                        id "${item.id}"
+                        doctype "${item.doctype}"
+                        name "${item.name}"
+                        [ links
+                            $foreach link in item.links
+                                $if _.isObject(link.document)
+                                    $ var document = link.document
+
+                                    $if document.doctype == 'Standard' && document.name != 'CWE'
+                                        {
+                                            ltype "${link.ltype}"
+                                            doctype "${document.doctype}"
+                                            id "${document.id}"
+                                            name "${document.name}"
+                                            sectionID "${document.sectionID}"
+                                            section "${document.section}"
+                                            hyperlink "${document.hyperlink}"
+                        [ vulnerabilities
+                            $foreach link in item.links
+                                $if _.isObject(link.document)
+                                    $ var document = link.document
+
+                                    $if document.doctype == 'Standard' && document.name == 'CWE'
+                                        {
+                                            ltype "${link.ltype}"
+                                            doctype "${document.doctype}"
+                                            id "${document.id}"
+                                            name "${document.name}"
+                                            sectionID "${document.sectionID}"
+                                            section "${document.section}"
+                                            hyperlink "${document.hyperlink}"

@@ -1,0 +1,367 @@
+$group
+    {
+        practice "8"
+        code "SG-2"
+        subCode "undefined"
+        [ policies
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Environmental Security Dependencies Documentation Policy"
+                description "This policy mandates the documentation of all security measures provided by the
+                    +b external environment, such as network segmentation, firewalls, and intrusion
+                    +b detection systems, as per IEC 62443-4-1. It ensures clarity on security
+                    +b responsibilities and aids in risk assessment. The documentation must be
+                    +b reviewed and updated annually or when significant changes occur in the
+                    +b environment."
+                enforcement "Regular audits using network mapping tools and compliance checks against
+                    +b documented policies. Non-compliance triggers corrective actions and updates to
+                    +b the documentation."
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Vendor Collaboration and Validation Policy"
+                description "This policy requires collaboration with vendors to validate and update security
+                    +b documentation, ensuring alignment between documented measures and actual
+                    +b implementations. It includes joint reviews of configurations and security
+                    +b postures, as specified in IEC 62443-4-1."
+                enforcement "Vendor audits and joint review sessions. Documentation discrepancies must be
+                    +b resolved within 30 days, with updates logged in the version control system."
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Documentation Version Control and Audit Policy"
+                description "This policy enforces the use of version control systems for security
+                    +b documentation to track changes and ensure consistency. It mandates regular
+                    +b audits to verify compliance with documented policies, in line with IEC
+                    +b 62443-4-1 requirements."
+                enforcement "Automated version control tools (e.g., Git) and quarterly audits. Audit results
+                    +b are reviewed by the security team, with corrective actions documented and
+                    +b tracked."
+        [ procedures
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Procedure for Documenting Environmental Security Dependencies"
+                description "This procedure outlines the steps to identify and document security measures
+                    +b provided by the external environment, ensuring compliance with IEC 62443-4-1.
+                    +b It includes risk assessment and threat modeling to align documentation with the
+                    +b threat landscape."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a thorough security assessment of the external environment using
+                            +b network mapping tools (e.g., Nmap)."
+                        tools "Nmap, Microsoft Threat Modeling Tool"
+                        expected_outcome "Comprehensive list of connected devices and their security postures."
+                    {
+                        step 2
+                        action "Document all identified security measures, including network segmentation,
+                            +b firewalls, and intrusion detection systems."
+                        tools "GRC platforms, Git for version control"
+                        expected_outcome "Detailed documentation of environmental security dependencies."
+                    {
+                        step 3
+                        action "Validate the documentation with stakeholders and update it in the version
+                            +b control system."
+                        tools "Git, collaboration tools (e.g., Confluence)"
+                        expected_outcome "Approved and version-controlled security documentation."
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Procedure for Vendor Collaboration and Documentation Validation"
+                description "This procedure defines the process for collaborating with vendors to validate
+                    +b security documentation, ensuring alignment with actual implementations as per
+                    +b IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Schedule joint review sessions with vendors to validate firewall configurations
+                            +b and security postures."
+                        tools "Vendor-provided documentation, collaboration tools"
+                        expected_outcome "List of discrepancies between documented and actual security measures."
+                    {
+                        step 2
+                        action "Resolve identified discrepancies and update the documentation accordingly."
+                        tools "Git, GRC platforms"
+                        expected_outcome "Updated and validated security documentation."
+                    {
+                        step 3
+                        action "Log all changes in the version control system and notify stakeholders."
+                        tools "Git, email notifications"
+                        expected_outcome "Version-controlled updates and stakeholder awareness."
+            {
+                code "SG-2"
+                subCode "undefined"
+                title "Procedure for Regular Audits of Environmental Security Measures"
+                description "This procedure details the steps for conducting regular audits of external
+                    +b security measures to ensure compliance with documented policies, in accordance
+                    +b with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Perform quarterly audits using the documented security measures as a baseline."
+                        tools "SIEM tools, audit checklists"
+                        expected_outcome "Audit report highlighting compliance status and gaps."
+                    {
+                        step 2
+                        action "Identify and document any gaps or non-compliance issues."
+                        tools "GRC platforms, Git"
+                        expected_outcome "List of non-compliance issues and recommended corrective actions."
+                    {
+                        step 3
+                        action "Implement corrective actions and update the documentation as needed."
+                        tools "Git, collaboration tools"
+                        expected_outcome "Resolved non-compliance issues and updated documentation."
+        last_updated "2023-10-25"
+    {
+        practice "8"
+        code "SG-3"
+        subCode "a) integration of the product, including third-party components, with its
+            +b product security context;"
+        [ policies
+            {
+                code "SG-3"
+                subCode "a"
+                title "Third-Party Component Security Assessment Policy"
+                description "Mandates a formal security assessment for all third-party components prior to
+                    +b integration, evaluating authentication mechanisms, patch management
+                    +b capabilities, and compliance with IEC 62443-4-1. Requires documentation of
+                    +b security features and alignment with the product's security context
+                    +b (zones/conduits model)."
+                enforcement "Automated component vetting tools (e.g., ICS-specific SBOM analyzers) and
+                    +b quarterly audits by the security team to verify assessment completeness."
+            {
+                code "SG-3"
+                subCode "a"
+                title "Secure Communication Protocol Enforcement Policy"
+                description "Requires all integrated components to use encrypted communication protocols
+                    +b (e.g., OPC UA with Basic256Sha256, PROFINET with PN Security) as defined in IEC
+                    +b 62443-4-1 CR4. Prohibits legacy unencrypted protocols (e.g., Modbus TCP without
+                    +b TLS) unless isolated via network segmentation."
+                enforcement "Network traffic monitoring with tools like Wireshark ICS plugins and
+                    +b protocol-specific validators (e.g., OPC UA Secure Channel verifier).
+                    +b Non-compliant components are quarantined automatically."
+            {
+                code "SG-3"
+                subCode "a"
+                title "Integration Testing and Validation Policy"
+                description "Specifies mandatory security testing for all component integrations, including
+                    +b penetration testing of communication paths and validation of role-based access
+                    +b controls. Aligns with IEC 62443-4-1 KA3 (Secure Integration Testing) using
+                    +b frameworks like ICS ATT&CK."
+                enforcement "Automated test suites executed in a mirrored staging environment. Results are
+                    +b logged in the central compliance dashboard with mandatory review before
+                    +b production deployment."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "a"
+                title "Third-Party Component Vetting Procedure"
+                description "Step-by-step process to evaluate third-party components against IEC 62443-4-1
+                    +b security requirements before integration into Breton Spa's CNC systems."
+                [ steps
+                    {
+                        step 1
+                        action "Collect vendor security documentation including ISA Secure Component
+                            +b Certification (if available) and completed Rockwell Automation Security
+                            +b Checklist."
+                        tools "Vendor portal access, Document management system (e.g., SharePoint with ICS
+                            +b security templates)"
+                        expected_outcome "Dossier with component security specifications, including supported SL levels
+                            +b (SL1-SL3) and implemented CRs (e.g., CR3 for firmware signing)."
+                    {
+                        step 2
+                        action "Conduct hands-on validation of security claims using the MITRE ICS ATT&CK
+                            +b evaluation methodology. Test secure boot, encrypted storage, and protocol
+                            +b implementations."
+                        tools "ICS-specific test harness (e.g., Codenomicon Defensics for PROFINET), Hardware
+                            +b security module (HSM) for key validation"
+                        expected_outcome "Test report identifying any discrepancies between claimed and actual security
+                            +b capabilities, with risk scoring per IEC 62443-3-3."
+                    {
+                        step 3
+                        action "Document integration constraints and required compensating controls (e.g.,
+                            +b network segmentation for components only supporting SL1). Submit for security
+                            +b team approval."
+                        tools "Integration risk matrix template (aligned with ISA/IEC 62443-3-3
+                            +b zones/conduits), GRC platform (e.g., ServiceNow IRM)"
+                        expected_outcome "Approved component integration plan with mapped security zones, allowed
+                            +b communication paths, and scheduled re-validation dates."
+            {
+                code "SG-3"
+                subCode "a"
+                title "Secure Integration Testing Procedure"
+                description "Validates that integrated components function securely within Breton Spa's
+                    +b operational environment without introducing vulnerabilities."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy components in an isolated testbed replicating production network
+                            +b segmentation (VLANs, firewalls) and security levels (SL2/SL3 as applicable)."
+                        tools "ICS network emulator (e.g., GNS3 with PROFINET plugins), Hardware-in-the-loop
+                            +b (HIL) test rigs"
+                        expected_outcome "Test environment mirroring production security contexts, with verified zone
+                            +b boundaries and monitoring probes."
+                    {
+                        step 2
+                        action "Execute protocol-specific fuzz testing (e.g., OPC UA Secure Conversation
+                            +b attacks) and validate certificate-based authentication between components."
+                        tools "Protocol fuzzers (e.g., Peach Fuzzer with ICS protocols), Wireshark with ICS
+                            +b dissectors"
+                        expected_outcome "Log of protocol vulnerabilities (e.g., malformed OPC UA messages causing PLC
+                            +b crashes) with severity ratings per CVSS for ICS."
+                    {
+                        step 3
+                        action "Verify patch coordination mechanisms by simulating the deployment of security
+                            +b updates across all integrated components while monitoring system stability."
+                        tools "Patch management system (e.g., Siemens SIMATIC Update Manager), ICS-aware SIEM
+                            +b (e.g., Dragos or Claroty)"
+                        expected_outcome "Validated patch rollout procedure with documented downtime impacts and rollback
+                            +b contingencies for critical machining processes."
+            {
+                code "SG-3"
+                subCode "a"
+                title "Hardening Documentation Update Procedure"
+                description "Ensures integration guidelines remain current with evolving threats and
+                    +b component updates, per IEC 62443-4-1 continuous improvement requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Quarterly review of CISA ICS advisories and vendor bulletins to identify new
+                            +b vulnerabilities affecting integrated components."
+                        tools "Threat intelligence platforms (e.g., ICS-CERT alerts), Vendor security portals
+                            +b (e.g., Siemens ProductCERT)"
+                        expected_outcome "List of relevant vulnerabilities mapped to Breton Spa's component inventory,
+                            +b prioritized by CVSS scores and operational impact."
+                    {
+                        step 2
+                        action "Update hardening guidelines with new configuration requirements (e.g.,
+                            +b disabling vulnerable OPC UA endpoints) and validate in test environment."
+                        tools "Version-controlled documentation system (e.g., GitLab with IEC 62443
+                            +b templates), Automated configuration validation tools (e.g., Belden Tofino
+                            +b Config Tester)"
+                        expected_outcome "Revised hardening guide (vX.Y) with tracked changes, including rationale for
+                            +b new measures referencing specific threats (e.g., CVE-2025-1234)."
+                    {
+                        step 3
+                        action "Conduct training for integration engineers on updated guidelines, emphasizing
+                            +b changes affecting third-party component interactions."
+                        tools "E-learning platform with ICS security modules (e.g., SANS ICS410), Hands-on
+                            +b labs with vulnerable component setups"
+                        expected_outcome "Training completion records and competency assessment scores demonstrating
+                            +b understanding of new integration security requirements."
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-3"
+        subCode "c) applying and maintaining the product’s defense in depth strategy;"
+        [ policies
+            {
+                code "SG-3"
+                subCode "c"
+                title "Network Segmentation Policy"
+                description "This policy mandates the implementation of network segmentation to isolate
+                    +b critical control systems from less secure networks, in accordance with IEC
+                    +b 62443-4-1 SG-3. It applies to all Breton Spa CNC Machining Centers and Stone
+                    +b Cutting Machines, ensuring that each operational zone (e.g., process control,
+                    +b DMZ) is segregated via VLANs or physical firewalls. Reference: IEC 62443-3-3
+                    +b for zone/conduit models."
+                enforcement "Quarterly audits using network scanning tools (e.g., Wireshark, Nessus) to
+                    +b verify VLAN configurations and firewall rules. Non-compliance triggers
+                    +b remediation workflows in the IT/OT ticketing system."
+            {
+                code "SG-3"
+                subCode "c"
+                title "Role-Based Access Control (RBAC) Policy"
+                description "Defines granular access permissions for ICS components (HMIs, PLCs) based on
+                    +b job roles, aligning with IEC 62443-4-1 SG-3's defense-in-depth principles.
+                    +b Covers Breton Spa’s Polishing Machines and Composite Material Processing Lines,
+                    +b requiring unique credentials for operators, engineers, and maintenance staff.
+                    +b Reference: NIST SP 800-82 Rev.3 for ICS-specific RBAC guidelines."
+                enforcement "Automated logging via SIEM (e.g., Splunk) to monitor access attempts. Bi-annual
+                    +b user access reviews with HR to revoke unnecessary privileges."
+            {
+                code "SG-3"
+                subCode "c"
+                title "Secure Configuration Baseline Policy"
+                description "Requires adherence to vendor-specific hardening templates (e.g., Siemens
+                    +b SIMATIC, Allen-Bradley) for all Breton Spa devices, as per IEC 62443-4-1 SG-3.
+                    +b Includes disabling unused services, changing default credentials, and enabling
+                    +b firmware signing. Reference: MITRE ICS Hardening Recommendations for
+                    +b benchmarks."
+                enforcement "Automated compliance checks using tools like Qualys or Tenable.sc. Deviations
+                    +b generate alerts for the security team to enforce remediation within 72 hours."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "c"
+                title "Network Segmentation Implementation"
+                description "Procedure to deploy VLANs and firewalls for Breton Spa’s CNC Machining Centers,
+                    +b ensuring isolation of OPC UA and PROFINET traffic per IEC 62443-4-1 SG-3."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a network topology assessment to identify critical zones (e.g., process
+                            +b control, DMZ)."
+                        tools "Microsoft Visio, Nmap"
+                        expected_outcome "Documented network map with proposed segmentation boundaries."
+                    {
+                        step 2
+                        action "Configure VLANs on industrial switches (e.g., Cisco IE 4000) using port-based
+                            +b tagging."
+                        tools "Cisco IOS CLI, Siemens SCALANCE"
+                        expected_outcome "Traffic isolation between zones, verified via packet captures."
+                    {
+                        step 3
+                        action "Deploy firewalls (e.g., Palo Alto OT-Security) between zones with rules
+                            +b restricting unauthorized protocols."
+                        tools "Palo Alto Panorama, Wireshark"
+                        expected_outcome "Approved traffic only (e.g., OPC UA with Basic256Sha256) flows between zones."
+            {
+                code "SG-3"
+                subCode "c"
+                title "RBAC Setup for HMIs"
+                description "Procedure to configure role-based access on Breton Spa’s Polishing Machine
+                    +b HMIs, enforcing least privilege per IEC 62443-4-1 SG-3."
+                [ steps
+                    {
+                        step 1
+                        action "Define roles (Operator, Engineer, Admin) with specific permissions (e.g.,
+                            +b parameter changes, firmware updates)."
+                        tools "Rockwell FactoryTalk Security, Siemens SIMATIC Logon"
+                        expected_outcome "Role definitions documented in the access control matrix."
+                    {
+                        step 2
+                        action "Assign users to roles using Active Directory or local HMI user databases."
+                        tools "Microsoft AD, Siemens WinCC"
+                        expected_outcome "Users can only access functions relevant to their role."
+                    {
+                        step 3
+                        action "Enable logging of all access attempts and privilege escalations."
+                        tools "Splunk ICS, Nozomi Networks"
+                        expected_outcome "Auditable records for compliance reviews."
+            {
+                code "SG-3"
+                subCode "c"
+                title "Firmware Hardening for PLCs"
+                description "Procedure to secure firmware on Breton Spa’s Stone Cutting Machine PLCs,
+                    +b ensuring integrity via signing and patch management (IEC 62443-4-1 SG-3)."
+                [ steps
+                    {
+                        step 1
+                        action "Verify firmware authenticity using vendor-provided signing keys (e.g., Siemens
+                            +b PGP keys)."
+                        tools "GnuPG, Vendor-specific signing tools"
+                        expected_outcome "Only cryptographically signed firmware is loaded."
+                    {
+                        step 2
+                        action "Disable unused services (e.g., Telnet, HTTP) via PLC configuration tools."
+                        tools "TIA Portal, Rockwell Studio 5000"
+                        expected_outcome "Reduced attack surface confirmed via port scans."
+                    {
+                        step 3
+                        action "Schedule quarterly firmware updates using a patch management system."
+                        tools "Siemens SINEC INS, Rockwell LifecycleIQ"
+                        expected_outcome "PLCs run the latest secure firmware versions."
+        last_updated "2023-10-15"

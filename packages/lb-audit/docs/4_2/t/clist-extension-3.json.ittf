@@ -1,0 +1,251 @@
+$group
+    {
+        id "FSA-CR 1.5D"
+        check_description "Components shall provide the capability to protect authenticators from
+            +b unauthorized disclosure and modification when stored, used and transmitted."
+        requirement_id "IEC 62443-4-2: CR 1.5(d)"
+        title "Authenticator Management - Protect Authenticators"
+        description "This requirement focuses on the protection of authenticators to ensure their
+            +b integrity and confidentiality. It mandates that authenticators, such as
+            +b passwords or cryptographic keys, are protected against unauthorized access,
+            +b disclosure, or modification during storage and transmission."
+        [ key_aspects
+            {
+                aspect "Storage Protection"
+                details "Authenticators must be stored securely using encryption or hashing techniques
+                    +b to prevent unauthorized access and disclosure."
+            {
+                aspect "Transmission Protection"
+                details "During transmission, authenticators must be protected using secure protocols
+                    +b (e.g., TLS, IPsec) to ensure that they are not intercepted or tampered with."
+            {
+                aspect "Access Control"
+                details "Only authorized entities should have access to authenticators, and access
+                    +b should be logged and monitored for any unauthorized attempts."
+            {
+                aspect "Integrity Verification"
+                details "Measures must be in place to ensure that authenticators have not been altered
+                    +b or tampered with during storage and transmission."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.9.4.2 - Secure Log-on Procedures"
+                details "This control requires secure log-on procedures to protect the integrity and
+                    +b confidentiality of authentication information."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "IA-5 - Authenticator Management"
+                details "This control outlines requirements for managing authentication information,
+                    +b including protection during storage and transmission."
+            {
+                standard "NIST SP 800-63B"
+                reference "Section 5.1 - Authenticator and Verifier Requirements"
+                details "This section provides guidelines on the management and protection of
+                    +b authenticators, emphasizing secure storage and transmission."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 10.1 - Cryptographic Controls"
+                details "This section provides guidance on using cryptographic controls to protect
+                    +b sensitive information, including authenticators."
+    {
+        id "FSA-CR 1.5 RE(1)"
+        check_description "The authenticators on which the component rely shall be protected via hardware
+            +b mechanisms."
+        requirement_id "IEC 62443-4-2: CR 1.5 RE(1)"
+        title "Hardware Security for Authenticators"
+        description "This requirement focuses on ensuring that authenticators, such as passwords,
+            +b tokens, or cryptographic keys, are protected by hardware mechanisms. This is
+            +b intended to reduce the risk of these authenticators being compromised through
+            +b software-based attacks."
+        { key_aspects
+            hardware_protection "Authenticators should be stored and managed using hardware devices or modules
+                +b that provide secure storage and restrict access to the authenticators."
+            tamper_resistance "Hardware modules should be resistant to tampering and unauthorized access
+                +b attempts, ensuring that even physical attacks do not compromise the
+                +b authenticators."
+            secure_generation "The process of generating authenticators should be performed within a secure
+                +b hardware environment to prevent interception or unauthorized duplication."
+            isolation "Authenticators should be isolated from other system components and accessible
+                +b only to authorized processes, thereby reducing the attack surface."
+            auditability "Access to and usage of authenticators should be logged and monitored to detect
+                +b and respond to suspicious activities."
+        { related_standards
+            { "FIPS 140-2"
+                title "Security Requirements for Cryptographic Modules"
+                description "This standard specifies the security requirements that will be satisfied by a
+                    +b cryptographic module protecting sensitive information."
+                relevance "FIPS 140-2 outlines the hardware security requirements for cryptographic
+                    +b modules, which align with the need for hardware protection of authenticators."
+            { "ISO/IEC 19790"
+                title "Security Requirements for Cryptographic Modules"
+                description "This international standard specifies the security requirements for
+                    +b cryptographic modules, similar to FIPS 140-2, and is often used in conjunction
+                    +b with it."
+                relevance "ISO/IEC 19790 provides guidelines on the implementation of cryptographic
+                    +b modules, relevant to the secure management of authenticators."
+            { "ISO/IEC 15408"
+                title "Common Criteria for Information Technology Security Evaluation"
+                description "Common Criteria is an international standard for computer security
+                    +b certification, which evaluates the security properties of IT products."
+                relevance "The protection profiles and security targets defined in the Common Criteria can
+                    +b be used to evaluate the security of hardware modules used to protect
+                    +b authenticators."
+            { "NIST SP 800-164"
+                title "Guidelines on Hardware-Rooted Security in Mobile Devices"
+                description "This publication provides guidelines for implementing hardware-based security
+                    +b mechanisms in mobile devices."
+                relevance "Although focused on mobile devices, this guideline covers principles of
+                    +b hardware-secured environments that are applicable to the protection of
+                    +b authenticators."
+    {
+        id "FSA-NDR 1.6"
+        check_description "A network device supporting wireless access management shall provide the
+            +b capability to identify and authenticate all users (humans, software processes
+            +b or devices) engaged in wireless communication."
+        requirement_id "IEC 62443-4-2: NDR 1.6"
+        title "Wireless Access Management"
+        description "This requirement focuses on the management of wireless access to ensure the
+            +b security of industrial automation and control systems (IACS). It mandates the
+            +b implementation of measures to protect against unauthorized wireless access,
+            +b ensuring that wireless communication is controlled and monitored effectively to
+            +b prevent potential security breaches."
+        [ key_aspects
+            {
+                aspect "Access Control"
+                detail "Implement mechanisms to ensure that only authorized devices can connect to the
+                    +b wireless network. This includes using strong authentication methods such as
+                    +b WPA3 or enterprise-level WPA2."
+            {
+                aspect "Encryption"
+                detail "Ensure that all wireless communications are encrypted to protect data integrity
+                    +b and confidentiality. This involves using robust encryption protocols like AES."
+            {
+                aspect "Monitoring and Logging"
+                detail "Continuously monitor wireless network activity and maintain logs of access
+                    +b attempts and other significant events. This can help in detecting and
+                    +b responding to unauthorized access attempts."
+            {
+                aspect "Network Segmentation"
+                detail "Segment wireless networks from critical control networks to minimize the impact
+                    +b of any potential security incident on the overall IACS."
+            {
+                aspect "Periodic Security Assessments"
+                detail "Conduct regular security assessments and penetration testing to identify and
+                    +b address vulnerabilities in the wireless access management system."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27033-6"
+                title "Information technology — Security techniques — Network security — Part 6:
+                    +b Securing wireless IP network access"
+                description "Provides guidelines for securing wireless IP network access, including risk
+                    +b assessment and security controls."
+            {
+                standard_id "NIST SP 800-153"
+                title "Guidelines for Securing Wireless Local Area Networks (WLANs)"
+                description "Offers a comprehensive set of recommendations for the security of wireless
+                    +b local area networks, addressing topics like encryption, authentication, and
+                    +b monitoring."
+            {
+                standard_id "ISA/IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                description "This standard provides detailed security requirements for systems, including
+                    +b network segmentation and access control, relevant to wireless access
+                    +b management."
+            {
+                standard_id "IEEE 802.11"
+                title "Wireless LAN Medium Access Control (MAC) and Physical Layer (PHY)
+                    +b Specifications"
+                description "Defines standards for wireless networking, including security protocols such as
+                    +b WPA2 and WPA3."
+    {
+        id "FSA-NDR 1.6 RE(1)"
+        check_description "The network device shall provide the capability to uniquely identify and
+            +b authenticate all users (humans, software processes or devices) engaged in
+            +b wireless communication."
+        requirement_id "IEC 62443-4-2: NDR 1.6 RE(1)"
+        title "Unique Identification and Authentication"
+        description "This requirement mandates that all devices within an industrial control system
+            +b (ICS) network must have the capability to uniquely identify and authenticate
+            +b users or processes attempting to access them. This ensures that access
+            +b management is robust, reducing the risk of unauthorized access to critical
+            +b system components."
+        [ key_aspects
+            {
+                aspect_id "A1"
+                aspect "Unique Identification"
+                details "Each user or process must have a distinct identifier that differentiates them
+                    +b from all other users or processes. This is crucial for tracking access and
+                    +b actions within the system."
+            {
+                aspect_id "A2"
+                aspect "Authentication Mechanisms"
+                details "Devices should support strong authentication mechanisms such as passwords,
+                    +b biometrics, or hardware tokens to verify the identity of users or processes."
+            {
+                aspect_id "A3"
+                aspect "Access Control"
+                details "Integration with access control systems to ensure that authentication is
+                    +b followed by authorization, granting access based on predefined permissions."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001:2013"
+                title "Information Security Management Systems"
+                relation "Provides a framework for establishing and maintaining an information security
+                    +b management system, which includes identification and authentication as core
+                    +b components."
+            {
+                standard_id "NIST SP 800-63B"
+                title "Digital Identity Guidelines - Authentication and Lifecycle Management"
+                relation "Offers guidelines on digital identity management, focusing on authentication
+                    +b processes and lifecycle management, relevant to unique identification
+                    +b practices."
+            {
+                standard_id "IEC 62443-3-3:2013"
+                title "System Security Requirements and Security Levels"
+                relation "Includes requirements for system security, emphasizing the importance of
+                    +b authentication and access control within ICS environments."
+    {
+        id "FSA-CR 1.7"
+        check_description "For components that utilize password-based authentication, those components
+            +b shall provide or integrate into a system that provides the capability to
+            +b enforce configurable password strength according to internationally recognized
+            +b and proven password guidelines."
+        requirement_id "IEC 62443-4-2: CR 1.7"
+        title "Strength of Password-based Authentication"
+        description "This requirement focuses on ensuring that password-based authentication
+            +b mechanisms employed in industrial automation and control systems (IACS) are
+            +b sufficiently strong to resist unauthorized access. It mandates the use of
+            +b robust password policies and mechanisms to safeguard these systems from
+            +b potential cyber threats."
+        { key_aspects
+            password_complexity "Passwords should have a minimum length and complexity, incorporating a mix of
+                +b letters, numbers, and special characters to enhance security."
+            password_expiration "Regular updates and expiration of passwords should be enforced to minimize
+                +b risks associated with stale credentials."
+            password_storage "Secure storage mechanisms for passwords, such as hashing and salting, should be
+                +b implemented to protect against credential theft."
+            account_lockout "Mechanisms should be in place to lock accounts after a specified number of
+                +b failed login attempts to prevent brute force attacks."
+            password_reuse "Policies should be enforced to prevent the reuse of passwords after a certain
+                +b period or number of password changes."
+        { related_standards
+            { "NIST SP 800-63B"
+                title "Digital Identity Guidelines: Authentication and Lifecycle Management"
+                description "Provides guidelines for digital identities, including password policies,
+                    +b strength, and management practices, aligning with CR 1.7's focus on robust
+                    +b authentication mechanisms."
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "Offers a framework for managing information security, including controls on
+                    +b access management and password policy requirements, relevant for implementing
+                    +b strong password-based authentication."
+            { "NIST SP 800-171"
+                title "Protecting Controlled Unclassified Information in Nonfederal Systems and
+                    +b Organizations"
+                description "Addresses security requirements for protecting information, including access
+                    +b control measures that emphasize strong password practices."
+            { "CIS Controls v8"
+                title "Center for Internet Security Controls"
+                description "Provides a set of security controls, including specific measures for secure
+                    +b authentication, which correlate with enhancing password strength as described
+                    +b in CR 1.7."

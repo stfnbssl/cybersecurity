@@ -1,0 +1,226 @@
+$group
+    {
+        id "FSA-CR 1.3"
+        check_description "Components shall provide the capability to support the management of all
+            +b accounts directly or integrated into a system that manages accounts according
+            +b to IEC 62443?3?3 [11] SR 1.3."
+        requirement_id "IEC 62443-4-2: CR 1.3"
+        title "Account Management"
+        description "The requirement focuses on ensuring that only authorized and authenticated
+            +b users are able to access and manage accounts within a control system
+            +b environment. This involves the establishment, alteration, monitoring, and
+            +b removal of user accounts."
+        [ key_aspects
+            {
+                aspect "User Authentication"
+                details "Ensures that each user is authenticated before granting access to the system.
+                    +b This may include password policies, multi-factor authentication, and other
+                    +b security measures to verify user identity."
+            {
+                aspect "Access Control"
+                details "Implements role-based or attribute-based access control to ensure users have
+                    +b access only to the resources necessary for their role."
+            {
+                aspect "Account Monitoring"
+                details "Regular monitoring and auditing of accounts to detect unauthorized access or
+                    +b anomalies in user activities."
+            {
+                aspect "Account Lifecycle Management"
+                details "Processes for creating, modifying, and deleting accounts, including the
+                    +b management of inactive or expired accounts."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.2 User Access Management"
+                description "Covers the management and control of user access, emphasizing the need for
+                    +b formal user registration and de-registration processes."
+            {
+                standard "NIST SP 800-53"
+                reference "AC-2 Account Management"
+                description "Provides guidelines on account management, detailing procedures for creating,
+                    +b disabling, and monitoring user accounts."
+            {
+                standard "NERC CIP"
+                reference "CIP-007-6 R5.1.1 Account Management"
+                description "Specifically addresses account management within critical infrastructure,
+                    +b focusing on the management of access to cyber assets."
+    {
+        id "FSA-CR 1.4"
+        check_description "Components shall provide the capability to integrate into a system that
+            +b supports the management of identifiers and/or provide the capability to support
+            +b the management of identifiers directly according to IEC 62443?3?3 [11] SR 1.4."
+        requirement_id "IEC 62443-4-2: CR 1.4"
+        title "Identifier Management"
+        description "CR 1.4 focuses on the management of identifiers within an industrial control
+            +b system (ICS). It involves ensuring that all users, processes, and devices are
+            +b uniquely identified and that these identifiers are managed throughout their
+            +b lifecycle to maintain system security."
+        [ key_aspects
+            {
+                aspect "Unique Identification"
+                details "Each user, process, and device must be assigned a unique identifier to ensure
+                    +b that actions can be accurately traced and authenticated within the system."
+            {
+                aspect "Lifecycle Management"
+                details "Identifiers should be managed throughout their lifecycle, including creation,
+                    +b usage, modification, and eventual deactivation or deletion, to maintain system
+                    +b integrity and security."
+            {
+                aspect "Authentication"
+                details "Identifiers must be used as part of an authentication process to verify the
+                    +b identity of users, processes, and devices before granting access to system
+                    +b resources."
+            {
+                aspect "Access Control"
+                details "Identifiers are crucial for implementing role-based access control (RBAC) or
+                    +b other access control mechanisms to ensure that entities have appropriate
+                    +b permissions."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.2.4 - Management of Secret Authentication Information of Users"
+                details "This section of ISO/IEC 27001 deals with the management of authentication
+                    +b information to ensure that users’ secret information is protected and managed
+                    +b effectively."
+            {
+                standard "NIST SP 800-53"
+                reference "IA-2 - Identification and Authentication (Organizational Users)"
+                details "NIST SP 800-53 provides guidelines for identification and authentication of
+                    +b organizational users, ensuring that all users are uniquely identified and
+                    +b authenticated."
+            {
+                standard "NERC CIP"
+                reference "CIP-005-6 R1 - Electronic Security Perimeter(s)"
+                details "NERC CIP standards require the identification and authentication of all users
+                    +b accessing electronic security perimeters, focusing on controlling and
+                    +b monitoring access."
+    {
+        id "FSA-CR 1.5A"
+        check_description "Components shall provide the capability to support the use of initial
+            +b authenticator content."
+        requirement_id "IEC 62443-4-2: CR 1.5(a)"
+        title "Authenticator Management - Initialize Authenticator Content"
+        description "This requirement addresses the initialization of authenticator content,
+            +b ensuring that authenticators are properly set up and managed to prevent
+            +b unauthorized access to industrial automation and control systems (IACS). The
+            +b process involves setting up credentials, keys, or other authentication
+            +b mechanisms that control access to system resources."
+        [ key_aspects
+            {
+                aspect "Secure Initialization"
+                detail "Authenticators must be initialized securely to prevent interception or
+                    +b unauthorized replication. This includes using strong, unique initialization
+                    +b values."
+            {
+                aspect "Documentation"
+                detail "Documentation of the initialization process is crucial to ensure
+                    +b reproducibility and compliance with security policies."
+            {
+                aspect "Access Control"
+                detail "During initialization, access to authenticator content must be restricted to
+                    +b authorized personnel only, using secure channels."
+            {
+                aspect "Audit and Logging"
+                detail "All initialization activities should be logged for audit purposes to ensure
+                    +b traceability and accountability."
+        [ related_standards
+            {
+                standard "NIST SP 800-63B"
+                reference "This standard provides guidelines for digital authentication, including
+                    +b authenticator assurance levels and lifecycle management, which are relevant for
+                    +b initializing and managing authenticators securely."
+            {
+                standard "ISO/IEC 27001"
+                reference "As a general standard for information security management, ISO/IEC 27001
+                    +b outlines the importance of control measures for secure access management, which
+                    +b includes the proper initialization of authenticators."
+            {
+                standard "IEC 62351-8"
+                reference "This standard focuses on power system management and information exchange
+                    +b security and provides guidance on role-based access control, which complements
+                    +b the secure initialization of authenticators."
+    {
+        id "FSA-CR 1.5B"
+        check_description "Components shall provide the capability to support the recognition of changes
+            +b to default authenticators made at installation time."
+        requirement_id "IEC 62443-4-2: CR 1.5(b)"
+        title "Authenticator Management - Change Default Authenticators"
+        description "This requirement mandates that all default authenticators must be changed to
+            +b ensure the security of the industrial control system. Default authenticators,
+            +b such as usernames and passwords provided by the manufacturer, are often
+            +b publicly known and can be exploited by unauthorized users if not changed."
+        [ key_aspects
+            {
+                aspect "Default Authenticator Identification"
+                details "Identify all default authenticators within the system, including those for
+                    +b devices, software, and applications."
+            {
+                aspect "Procedure for Changing Authenticators"
+                details "Establish and document a procedure for changing default authenticators upon
+                    +b system installation or initial setup."
+            {
+                aspect "Security Policy Enforcement"
+                details "Implement policies to enforce the change of default authenticators and ensure
+                    +b compliance through regular audits."
+            {
+                aspect "User Training and Awareness"
+                details "Provide training for relevant personnel to understand the importance of
+                    +b changing default authenticators and the steps involved."
+        [ related_standards
+            {
+                standard "NIST SP 800-63B"
+                reference "This standard provides guidelines on digital identity management, including the
+                    +b importance of securing authenticators."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "Annex A.9.2.3 - Management of privileged access rights, which addresses the
+                    +b need for managing and changing default credentials."
+            {
+                standard "NERC CIP-007-6"
+                reference "Requirement R5 - System Security Management, which includes directives for
+                    +b managing default accounts and passwords."
+            {
+                standard "OWASP ASVS"
+                reference "Verification Requirement 2.1 - Ensure that all default passwords are changed,
+                    +b providing a foundational security measure for web applications."
+    {
+        id "FSA-CR 1.5C"
+        check_description "Components shall provide the capability to function properly with periodic
+            +b authenticator change/refresh operation."
+        requirement_id "IEC 62443-4-2: CR 1.5(c)"
+        title "Authenticator Management - Change/Refresh All Authenticators Periodically"
+        description "This requirement mandates that all authenticators used within the industrial
+            +b control system (ICS) environment must be changed or refreshed at regular
+            +b intervals. The purpose is to mitigate the risk of unauthorized access due to
+            +b compromised or outdated authenticators."
+        { key_aspects
+            periodic_refresh "Authenticators such as passwords, cryptographic keys, and tokens must be
+                +b updated regularly to ensure they remain secure."
+            security_policy "Organizations should have a documented policy that defines the frequency and
+                +b method for refreshing authenticators."
+            "risk mitigation" "Regular updates help prevent unauthorized access by reducing the likelihood of
+                +b using outdated or compromised authenticators."
+            automation "Where possible, automation tools should be used to ensure consistent and timely
+                +b updates of authenticators."
+        [ related_standards
+            {
+                standard "NIST SP 800-63B"
+                reference "Digital Identity Guidelines: Authentication and Lifecycle Management"
+                details "Provides guidelines for authentication and lifecycle management, including
+                    +b periodic authenticator updates and requirements for password policies."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "Information Security Management Systems"
+                details "Annex A.9 in ISO/IEC 27001:2013 emphasizes the importance of access control
+                    +b measures, including the management and periodic update of authentication
+                    +b credentials."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "Security and Privacy Controls for Information Systems and Organizations"
+                details "Control IA-5 discusses authenticator management and specifies requirements for
+                    +b the periodic update of authenticators to maintain security."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Code of Practice for Information Security Controls"
+                details "Provides best practices for managing authenticators, including recommendations
+                    +b for the periodic change of passwords and other authentication credentials."

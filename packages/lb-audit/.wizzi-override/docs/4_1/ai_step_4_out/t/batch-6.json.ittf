@@ -1,0 +1,345 @@
+$group
+    {
+        practice "1"
+        code "SM-11"
+        subCode "c) implementation (see Clause 8, Practice 4 – Secure implementation);"
+        [ policies
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Automated Vulnerability Detection Policy"
+                description "This policy mandates the integration of static and dynamic code analysis tools
+                    +b into the CI/CD pipeline to detect security vulnerabilities early in the
+                    +b implementation phase. It aligns with IEC 62443-4-1 SM-11 requirements for
+                    +b identifying and addressing security-related issues before product or patch
+                    +b release. Tools like Checkmarx or Fortify are recommended for ICS software."
+                enforcement "Regular audits of CI/CD pipeline logs and automated tool reports to ensure
+                    +b compliance. Non-compliance results in halting the release until issues are
+                    +b resolved."
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Patch Validation Process Policy"
+                description "This policy establishes a formal process for validating patches for security
+                    +b and stability before deployment. It ensures that all security-related issues
+                    +b are addressed and documented, as required by IEC 62443-4-1 SM-11. The process
+                    +b includes penetration testing and threat modeling for critical patches."
+                enforcement "Patch validation reports must be reviewed and approved by the security team
+                    +b before deployment. Random post-deployment audits to verify patch integrity."
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Threat Modeling for Implementation Policy"
+                description "This policy requires the use of threat modeling methodologies like STRIDE
+                    +b during the implementation phase to proactively identify and mitigate security
+                    +b risks. It supports IEC 62443-4-1 SM-11 by ensuring that potential threats are
+                    +b addressed before product or patch release."
+                enforcement "Threat models must be documented and reviewed by the security team. Regular
+                    +b training sessions to ensure personnel competency in threat modeling techniques."
+        [ procedures
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Static Code Analysis Procedure"
+                description "This procedure outlines the steps for integrating static code analysis tools
+                    +b into the development lifecycle to detect security vulnerabilities early. It
+                    +b ensures compliance with IEC 62443-4-1 SM-11 by addressing
+                    +b implementation-related security issues."
+                [ steps
+                    {
+                        step 1
+                        action "Configure static code analysis tools (e.g., SonarQube) in the CI/CD pipeline."
+                        tools "SonarQube, Checkmarx"
+                        expected_outcome "Tool is integrated and automatically scans code upon each commit."
+                    {
+                        step 2
+                        action "Review analysis reports for critical vulnerabilities."
+                        tools "SonarQube Dashboard, JIRA"
+                        expected_outcome "All critical vulnerabilities are documented and assigned for resolution."
+                    {
+                        step 3
+                        action "Resolve identified vulnerabilities and verify fixes."
+                        tools "IDE (e.g., Visual Studio), JIRA"
+                        expected_outcome "Vulnerabilities are fixed and re-scanned to confirm resolution."
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Patch Validation Procedure"
+                description "This procedure details the steps for validating security patches before
+                    +b deployment to ensure they do not introduce new vulnerabilities. It aligns with
+                    +b IEC 62443-4-1 SM-11 requirements for secure implementation."
+                [ steps
+                    {
+                        step 1
+                        action "Perform penetration testing on the patch in a controlled environment."
+                        tools "Metasploit, Nessus"
+                        expected_outcome "Identified vulnerabilities are documented and addressed."
+                    {
+                        step 2
+                        action "Validate patch compatibility with existing systems."
+                        tools "Test environment, Compatibility testing tools"
+                        expected_outcome "Patch is confirmed to work without disrupting existing operations."
+                    {
+                        step 3
+                        action "Document validation results and obtain approval for deployment."
+                        tools "JIRA, Documentation system"
+                        expected_outcome "Patch is approved for deployment with all security issues resolved."
+            {
+                code "SM-11"
+                subCode "c)"
+                title "Threat Modeling Procedure"
+                description "This procedure describes the process for conducting threat modeling during the
+                    +b implementation phase to identify and mitigate potential security risks. It
+                    +b supports IEC 62443-4-1 SM-11 by ensuring proactive risk management."
+                [ steps
+                    {
+                        step 1
+                        action "Identify and document system components and data flows."
+                        tools "Microsoft Threat Modeling Tool, Diagrams.net"
+                        expected_outcome "Comprehensive system diagram with all components and interactions."
+                    {
+                        step 2
+                        action "Apply STRIDE methodology to identify potential threats."
+                        tools "Microsoft Threat Modeling Tool, STRIDE checklist"
+                        expected_outcome "List of potential threats with associated risk levels."
+                    {
+                        step 3
+                        action "Develop and implement mitigation strategies for identified threats."
+                        tools "JIRA, Security controls documentation"
+                        expected_outcome "All high-risk threats have mitigation strategies in place."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-11"
+        subCode "d) verification/validation (see Clause 9, Practice 5 – Security verification
+            +b and validation testing);"
+        [ policies
+            {
+                code "SM-11"
+                subCode "d)"
+                title "Automated Security Validation Policy"
+                description "This policy mandates the use of automated security testing tools tailored for
+                    +b ICS environments to ensure consistent validation of security-related issues
+                    +b before product or patch release. It aligns with IEC 62443-4-1 requirements for
+                    +b verification and validation testing, ensuring compliance with security
+                    +b standards."
+                enforcement "Regular audits using tools like Claroty or Nozomi Networks to verify automated
+                    +b testing coverage. Non-compliance triggers remediation actions documented in the
+                    +b security incident management system."
+            {
+                code "SM-11"
+                subCode "d)"
+                title "Risk-Based Validation Prioritization Policy"
+                description "This policy requires a risk-based approach to validation, focusing on
+                    +b high-criticality assets (e.g., CNC control systems) first. It incorporates
+                    +b asset criticality analysis per IEC 62443-4-1 to allocate testing resources
+                    +b effectively, ensuring critical vulnerabilities are addressed before release."
+                enforcement "Quarterly reviews of validation test plans by the security governance team,
+                    +b with metrics tracking coverage of critical assets (target: 100%). Deviations
+                    +b require justification and management approval."
+            {
+                code "SM-11"
+                subCode "d)"
+                title "Vendor-Specific Validation Documentation Policy"
+                description "This policy enforces comprehensive documentation of validation procedures for
+                    +b proprietary ICS components (e.g., Rockwell PLCs), including test cases,
+                    +b results, and remediation actions. It ensures auditability per IEC 62443-4-1
+                    +b Clause 9 requirements."
+                enforcement "Automated checks in the document management system for required fields (e.g.,
+                    +b test timestamps, component IDs). Missing documentation halts release workflows
+                    +b until resolved."
+        [ procedures
+            {
+                code "SM-11"
+                subCode "d)"
+                title "ICS Protocol-Specific Validation Procedure"
+                description "Step-by-step process for validating security implementations in industrial
+                    +b protocols (e.g., OPC UA, PROFINET) used in Breton Spa machines. Ensures
+                    +b cryptographic controls and access restrictions function as intended per IEC
+                    +b 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Configure protocol testbed with target device (e.g., CNC controller) and
+                            +b security analyzer tool (e.g., Wireshark ICS plugin)."
+                        tools "Wireshark ICS plugin, OPC UA Test Server"
+                        expected_outcome "Test environment replicates production network conditions with all protocol
+                            +b features enabled."
+                    {
+                        step 2
+                        action "Execute predefined test cases for cryptographic validation (e.g.,
+                            +b Basic256Sha256 handshake in OPC UA)."
+                        tools "Python scripts with opcua library, Protocol fuzzers"
+                        expected_outcome "All cryptographic operations complete successfully with no protocol violations
+                            +b logged."
+                    {
+                        step 3
+                        action "Verify access control enforcement by attempting unauthorized operations (e.g.,
+                            +b write to restricted PLC tags)."
+                        tools "Custom TIA Portal test clients, Siemens S7comm tester"
+                        expected_outcome "All unauthorized attempts are blocked and logged in the device security event
+                            +b log."
+            {
+                code "SM-11"
+                subCode "d)"
+                title "Firmware Security Validation Procedure"
+                description "Validates firmware integrity and authentication mechanisms in Breton machines
+                    +b per IEC 62443-4-1 CR3 (System Integrity). Covers signature verification,
+                    +b downgrade prevention, and secure update processes."
+                [ steps
+                    {
+                        step 1
+                        action "Extract firmware image from target device (e.g., stone cutting machine PLC) and
+                            +b verify digital signature using vendor-provided keys."
+                        tools "OpenSSL, Vendor-specific signing tools"
+                        expected_outcome "Signature validation succeeds with trusted vendor certificate; tampered images
+                            +b are rejected."
+                    {
+                        step 2
+                        action "Attempt firmware downgrade to known vulnerable version to test version control
+                            +b enforcement."
+                        tools "Vendor maintenance software, JTAG debuggers"
+                        expected_outcome "Downgrade attempts fail with version compliance error message."
+                    {
+                        step 3
+                        action "Validate secure update process by transferring signed firmware via all
+                            +b supported channels (USB, network)."
+                        tools "Network packet analyzers, USB write blockers"
+                        expected_outcome "Updates only succeed over authenticated channels; unsigned transfers are
+                            +b rejected."
+            {
+                code "SM-11"
+                subCode "d)"
+                title "Patch Validation Regression Testing Procedure"
+                description "Ensures security patches for Breton machines do not introduce functional
+                    +b regressions while addressing vulnerabilities. Combines IEC 62443-4-1 validation
+                    +b requirements with operational testing."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy patch to test machine (e.g., polishing machine) and execute security
+                            +b test cases from vulnerability disclosure."
+                        tools "Metasploit ICS modules, Custom exploit PoCs"
+                        expected_outcome "Patch mitigates all documented vulnerabilities without crashing core services."
+                    {
+                        step 2
+                        action "Run production-equivalent functional tests (e.g., 8-hour polishing cycle) to
+                            +b verify operational stability."
+                        tools "Machine HMI, OPC UA data loggers"
+                        expected_outcome "All machining operations maintain specified precision tolerances (±0.1mm)."
+                    {
+                        step 3
+                        action "Validate backward compatibility with connected systems (e.g., MES interfaces)
+                            +b using protocol-specific test suites."
+                        tools "PROFINET test tools, OPC UA compliance testers"
+                        expected_outcome "All existing system integrations function without modification or performance
+                            +b degradation."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-11"
+        subCode "e) defect management (see Clause 10, Practice 6 – Management of
+            +b security-related issues)."
+        [ policies
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Automated Defect Detection Policy"
+                description "This policy mandates the use of automated static and dynamic code analysis
+                    +b tools to identify security defects early in the development lifecycle, ensuring
+                    +b compliance with IEC 62443-4-1 requirements for defect management. Tools like
+                    +b Coverity and SonarQube must be integrated into the CI/CD pipeline to scan for
+                    +b vulnerabilities before release."
+                enforcement "Regular audits of tool integration and scan results, with non-compliance
+                    +b blocking product releases until defects are resolved."
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Risk-Based Defect Triage Policy"
+                description "Defects must be prioritized based on CVSS scores and potential impact on ICS
+                    +b operations, aligning with IEC 62443-4-1's risk management focus. Critical
+                    +b defects (CVSS ≥ 7.0) must be resolved before release, while lower-severity
+                    +b defects are scheduled for future updates."
+                enforcement "Monthly reviews of defect prioritization by the security team, with deviations
+                    +b documented and justified."
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Defect Tracking and Documentation Policy"
+                description "All security-related defects must be logged in a centralized system (e.g., Jira
+                    +b or GitLab) with audit trails, ensuring traceability from identification to
+                    +b resolution. Documentation must include root cause analysis, mitigation steps,
+                    +b and verification of fixes."
+                enforcement "Automated checks in CI/CD pipelines to verify defect resolution before release,
+                    +b with manual audits for legacy systems."
+        [ procedures
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Defect Identification and Logging Procedure"
+                description "Procedure for identifying and logging security defects during development,
+                    +b testing, or field operations, ensuring compliance with IEC 62443-4-1 defect
+                    +b management requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Run automated static and dynamic analysis tools (e.g., Coverity, SonarQube) on
+                            +b code commits."
+                        tools "Coverity, SonarQube"
+                        expected_outcome "List of potential security defects with severity ratings."
+                    {
+                        step 2
+                        action "Manually review tool outputs and validate defects with the development team."
+                        tools "Jira, GitLab"
+                        expected_outcome "Validated defects logged in the tracking system with CVSS scores."
+                    {
+                        step 3
+                        action "Assign defects to owners based on component/module and severity."
+                        tools "Jira, GitLab"
+                        expected_outcome "Defects assigned with deadlines for resolution."
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Defect Resolution and Verification Procedure"
+                description "Procedure for resolving and verifying security defects before product or patch
+                    +b release, ensuring no unresolved critical defects are released."
+                [ steps
+                    {
+                        step 1
+                        action "Develop fixes for defects and submit for code review."
+                        tools "GitLab Merge Requests, Jira"
+                        expected_outcome "Code changes peer-reviewed and approved."
+                    {
+                        step 2
+                        action "Re-run automated scans to verify defect resolution."
+                        tools "Coverity, SonarQube"
+                        expected_outcome "Scan reports confirming defect closure."
+                    {
+                        step 3
+                        action "Update defect tracking system with resolution details and attach evidence."
+                        tools "Jira, GitLab"
+                        expected_outcome "Defect marked as resolved with audit trail."
+            {
+                code "SM-11"
+                subCode "e)"
+                title "Defect Management Audit Procedure"
+                description "Procedure for auditing defect management processes to ensure compliance with
+                    +b IEC 62443-4-1, including documentation and resolution verification."
+                [ steps
+                    {
+                        step 1
+                        action "Select a sample of resolved defects from the tracking system."
+                        tools "Jira, GitLab"
+                        expected_outcome "List of defects for audit."
+                    {
+                        step 2
+                        action "Verify documentation (root cause, fix, testing) and check for unresolved
+                            +b critical defects."
+                        tools "Jira, GitLab"
+                        expected_outcome "Audit report highlighting compliance gaps."
+                    {
+                        step 3
+                        action "Report findings to the governance board and update processes if needed."
+                        tools "Audit Report Template"
+                        expected_outcome "Updated defect management procedures."
+        last_updated "2023-11-20"

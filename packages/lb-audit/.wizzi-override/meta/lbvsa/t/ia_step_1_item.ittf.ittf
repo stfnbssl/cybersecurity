@@ -1,0 +1,35 @@
+$group
+    $params &options
+
+    call ${options.name}
+        description ${options.description}
+        $if options.provider == 'deepSeek'
+            llm_service deepSeek
+            llm_model deepseek-chat
+            max_tokens 8192 $$ max for DeepSeek
+        $elif options.provider == 'grok'
+            llm_service grok
+            llm_model grok-3
+            max_tokens 8192 $$ to equal DeepSeek
+        temperature 0.7
+        message
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                ${'\\'}n Sotto riporto il JSON schema del database e il JSON di un item della check list. 
+                ${'\\'}n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                ${'\\'}n 1) una spiegazione dettagliata, 
+                ${'\\'}n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                ${'\\'}n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                ${'\\'}n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                ${'\\'}n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                ${'\\'}n Usa il seguente JSON schema.
+                ${'\\'}n <database_json_schema>
+                ${'\\'}n ${options.checklist_explanation_json_schema}
+                ${'\\'}n </database_json_schema>
+                ${'\\'}n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                ${'\\'}n <sr_json>
+                ${'\\'}n ${options.cl_defJSONString}
+                ${'\\'}n </sr_json>

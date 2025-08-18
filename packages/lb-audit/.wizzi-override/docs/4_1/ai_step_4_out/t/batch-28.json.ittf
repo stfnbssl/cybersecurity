@@ -1,0 +1,359 @@
+$group
+    {
+        practice "6"
+        code "DM-4"
+        subCode "1) defense in depth strategy or design change;"
+        [ policies
+            {
+                code "DM-4"
+                subCode "1"
+                title "Defense-in-Depth Implementation Policy"
+                description "This policy mandates the implementation of a defense-in-depth strategy for all
+                    +b Breton Spa industrial control systems (ICS), ensuring multiple layers of
+                    +b security controls are in place to protect against cyber threats. The policy
+                    +b aligns with IEC 62443-4-1 by requiring threat modeling, risk assessment, and
+                    +b residual risk evaluation. It applies to all CNC Machining Centers, Stone
+                    +b Cutting Machines, Polishing Machines, and Composite Material Processing Lines."
+                enforcement "Compliance is enforced through quarterly security audits, automated monitoring
+                    +b tools (e.g., SIEM systems), and mandatory documentation of all defense layers.
+                    +b Non-compliance results in remediation actions tracked via JIRA with ICS
+                    +b Security Plugins."
+            {
+                code "DM-4"
+                subCode "1"
+                title "Residual Risk Acceptance Policy"
+                description "Defines the criteria and process for accepting residual risks in Breton Spa ICS
+                    +b products, as per IEC 62443-4-1 requirements. The policy requires documented
+                    +b risk assessments using NIST 800-30 (adapted for ICS) and approval from the
+                    +b security governance board for risks exceeding SL-2 thresholds. It covers all
+                    +b protocols (OPC UA, PROFINET, EtherNet/IP) and machine types."
+                enforcement "Enforced via Polarion ALM for traceability, with annual reviews by the security
+                    +b team. Automated risk scoring tools flag deviations, and unresolved high-risk
+                    +b issues trigger escalation to senior management."
+            {
+                code "DM-4"
+                subCode "1"
+                title "Security Design Change Policy"
+                description "Governs modifications to ICS designs (e.g., firmware updates, network
+                    +b segmentation) to address security issues. Requires impact analysis templates
+                    +b from Yokogawa and validation of defense-in-depth effectiveness per IEC
+                    +b 62443-4-1. Applies specifically to High-Precision CNC Control Systems and
+                    +b Secure Remote Access features."
+                enforcement "Enforced through CI/CD pipeline checks (e.g., firmware signing verification)
+                    +b and change management audits. Unauthorized design changes are detected via hash
+                    +b verification tools and reported to the incident logging system."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "1"
+                title "Threat Modeling for Defense-in-Depth"
+                description "Procedure to conduct STRIDE-based threat modeling for Breton Spa ICS products,
+                    +b identifying required security layers per IEC 62443-4-1. Focuses on CNC
+                    +b Machining Centers and Stone Cutting Machines due to their high criticality."
+                [ steps
+                    {
+                        step 1
+                        action "Assemble cross-functional team (security, engineering, operations) and gather
+                            +b system architecture diagrams."
+                        tools "Microsoft Threat Modeling Tool, Visio"
+                        expected_outcome "Documented ICS component inventory with communication pathways."
+                    {
+                        step 2
+                        action "Apply STRIDE methodology to identify spoofing, tampering, and DoS threats
+                            +b specific to supported protocols (e.g., PROFINET with PN Security)."
+                        tools "STRIDE checklist, ICS-specific threat libraries"
+                        expected_outcome "Threat matrix with prioritized vulnerabilities (e.g., MitM attacks on Modbus
+                            +b TCP)."
+                    {
+                        step 3
+                        action "Map threats to defense layers (e.g., VLAN segmentation for network threats,
+                            +b HSMs for cryptographic protection)."
+                        tools "Belden's ICS Defense-in-Depth Checklist"
+                        expected_outcome "Validated defense-in-depth design with traceability to IEC 62443-4-1 CR1-CR7
+                            +b requirements."
+            {
+                code "DM-4"
+                subCode "1"
+                title "Residual Risk Assessment Process"
+                description "Step-by-step process to evaluate and document residual risks for Breton Spa
+                    +b ICS, ensuring compliance with IEC 62443-4-1's risk management requirements.
+                    +b Covers all machine types and applications."
+                [ steps
+                    {
+                        step 1
+                        action "Quantify risk impact using NIST 800-30 (adapted) for each identified
+                            +b vulnerability (e.g., ransomware on Polishing Machines)."
+                        tools "NIST 800-30 ICS templates, Rockwell Automation risk calculators"
+                        expected_outcome "Risk scores (High/Medium/Low) for all security issues."
+                    {
+                        step 2
+                        action "Determine mitigation effectiveness (e.g., network segmentation reduces risk
+                            +b score by 40% for legacy systems)."
+                        tools "GE Digital's impact analysis templates, Moxa case studies"
+                        expected_outcome "Residual risk levels post-mitigation, documented in Polarion ALM."
+                    {
+                        step 3
+                        action "Obtain stakeholder approvals using RACI matrix (Management for SL-3 risks,
+                            +b Engineering for SL-1)."
+                        tools "Electronic signature system, Yokogawa approval workflows"
+                        expected_outcome "Signed risk acceptance forms archived in centralized repository."
+            {
+                code "DM-4"
+                subCode "1"
+                title "Security Design Change Implementation"
+                description "Procedure to execute and validate security-related design changes (e.g.,
+                    +b firmware updates, protocol hardening) in Breton Spa ICS products, per IEC
+                    +b 62443-4-1 KA4 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Document change rationale and impact analysis (e.g., TLS 1.3 upgrade for
+                            +b EtherNet/IP CIP Security)."
+                        tools "Yokogawa's impact analysis templates, JIRA issue tracking"
+                        expected_outcome "Approved change request with test plan."
+                    {
+                        step 2
+                        action "Implement change in controlled environment (e.g., testbed with Composite
+                            +b Material Processing Line)."
+                        tools "Schneider Electric's HSM test tools, Wireshark for protocol validation"
+                        expected_outcome "Verification logs showing no regression in functionality."
+                    {
+                        step 3
+                        action "Deploy to production with rollback plan and monitor for 72 hours using SIEM
+                            +b tools."
+                        tools "Siemens SIEM, Honeywell patch management systems"
+                        expected_outcome "Deployment report with security effectiveness metrics (e.g., reduced attack
+                            +b surface)."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "3) use of compensating mechanisms; and/or"
+        [ policies
+            {
+                code "DM-4"
+                subCode "3"
+                title "Network Segmentation for Legacy Systems"
+                description "Implement VLANs or physical segmentation to isolate legacy ICS devices that
+                    +b cannot support modern security controls, as per IEC 62443-4-1 DM-4 subCode 3.
+                    +b This reduces attack surface by restricting lateral movement."
+                enforcement "Quarterly network audits using tools like Wireshark or industrial protocol
+                    +b analyzers to verify segmentation effectiveness. Automated alerts for
+                    +b unauthorized cross-segment traffic via IDS/IPS."
+            {
+                code "DM-4"
+                subCode "3"
+                title "Application Whitelisting Enforcement"
+                description "Mandate application whitelisting on all engineering workstations and HMIs as a
+                    +b compensating control for systems lacking advanced threat protection (IEC
+                    +b 62443-4-1 CR3). Whitelists must be cryptographically signed and updated via
+                    +b change management."
+                enforcement "Monthly hash validation audits using tools like Microsoft AppLocker or McAfee
+                    +b Application Control. Automated blocking of unauthorized processes with SIEM
+                    +b integration."
+            {
+                code "DM-4"
+                subCode "3"
+                title "Out-of-Band Monitoring for Critical Assets"
+                description "Deploy passive network taps and dedicated monitoring networks for systems where
+                    +b inline security tools would impact real-time operations (IEC 62443-4-1 CR6).
+                    +b Captured data feeds into anomaly detection systems."
+                enforcement "Continuous validation via tools like Darktrace or Dragos Network Monitor.
+                    +b Annual penetration testing to verify detection coverage."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "3"
+                title "Compensating Control Implementation Process"
+                description "Standardized workflow for deploying interim security measures when primary
+                    +b controls cannot be applied to ICS components, aligned with IEC 62443-4-1 risk
+                    +b management requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct threat modeling using STRIDE methodology on target system"
+                        tools "Microsoft Threat Modeling Tool, ICS-specific attack trees"
+                        expected_outcome "Documented vulnerability assessment report identifying gaps requiring
+                            +b compensating controls"
+                    {
+                        step 2
+                        action "Select controls from approved catalog (e.g., NIST SP 800-82 Appendix F)
+                            +b matching identified risks"
+                        tools "ICS security control matrix, risk assessment templates"
+                        expected_outcome "Signed control selection form with justification for each compensating
+                            +b mechanism"
+                    {
+                        step 3
+                        action "Validate controls in staging environment using protocol fuzzers and traffic
+                            +b generators"
+                        tools "Peach Fuzzer, Spirent TestCenter, ICS-specific test harnesses"
+                        expected_outcome "Test report proving control effectiveness without operational impact"
+            {
+                code "DM-4"
+                subCode "3"
+                title "Legacy System Isolation Procedure"
+                description "Step-by-step process for segmenting vulnerable legacy equipment in accordance
+                    +b with IEC 62443-4-1 network security requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all legacy devices and map communication dependencies using network
+                            +b discovery tools"
+                        tools "Nmap, Wireshark with ICS dissectors, asset management systems"
+                        expected_outcome "Complete asset inventory with protocol and communication partner details"
+                    {
+                        step 2
+                        action "Design segmentation architecture using Purdue Model principles with firewall
+                            +b rules for required flows"
+                        tools "Visio for network diagrams, firewall rule generators"
+                        expected_outcome "Approved network segmentation design document"
+                    {
+                        step 3
+                        action "Implement segmentation using industrial firewalls and VLANs with change
+                            +b management oversight"
+                        tools "Cisco Industrial Ethernet, Tofino firewalls, version control systems"
+                        expected_outcome "Operational segmented network with verified traffic isolation"
+            {
+                code "DM-4"
+                subCode "3"
+                title "Compensating Control Sunset Review"
+                description "Periodic evaluation process for transitioning from temporary controls to
+                    +b permanent solutions as per IEC 62443-4-1 lifecycle requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Assess original vulnerability status through updated penetration tests and
+                            +b vendor patches"
+                        tools "Qualys ICS, Tenable.sc, vendor security bulletins"
+                        expected_outcome "Current vulnerability assessment showing residual risk levels"
+                    {
+                        step 2
+                        action "Verify availability of primary controls through technology evaluation and
+                            +b compatibility testing"
+                        tools "ICS compatibility matrices, test benches with target systems"
+                        expected_outcome "Feasibility report on implementing permanent controls"
+                    {
+                        step 3
+                        action "Execute migration plan with rollback procedures during scheduled maintenance
+                            +b windows"
+                        tools "Change management systems, backup solutions, fallback configurations"
+                        expected_outcome "Decommissioned compensating controls with verified primary control operation"
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "4) disabling or removing features;"
+        [ policies
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "Feature Risk Assessment Policy"
+                description "This policy mandates a systematic evaluation of each feature's security impact
+                    +b and operational necessity in ICS environments, ensuring only essential
+                    +b components remain active. It aligns with IEC 62443-4-1 requirements for
+                    +b reducing attack surfaces by disabling or removing non-essential features. The
+                    +b policy applies to all Breton Spa CNC Machining Centers, Stone Cutting Machines,
+                    +b Polishing Machines, and Composite Material Processing Lines."
+                enforcement "Compliance is enforced through quarterly audits using vulnerability scanning
+                    +b tools (e.g., Tenable Nessus for ICS) and review of feature registry logs.
+                    +b Non-compliance triggers remediation workflows in the company's GRC platform."
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "Legacy Protocol Management Policy"
+                description "Establishes protocols for handling deprecated communication features in older
+                    +b ICS equipment where removal may cause operational disruption. Specifically
+                    +b addresses PROFINET, Modbus TCP, and other protocols listed in Breton Spa's
+                    +b product specifications. Requires compensating controls when features cannot be
+                    +b disabled, per IEC 62443-4-1 SL2 requirements."
+                enforcement "Enforced through network traffic monitoring (Darktrace Industrial) and protocol
+                    +b whitelisting on industrial firewalls (Tofino Xenon). Annual penetration tests
+                    +b validate effectiveness."
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "Secure Remote Access Feature Control Policy"
+                description "Governs the disabling of non-essential remote access features across Breton
+                    +b Spa's product line, particularly web interfaces and maintenance ports in CNC
+                    +b control systems. Aligns with IEC 62443-4-1 CR4 (Data Confidentiality) by
+                    +b removing unnecessary entry points while maintaining secure remote diagnostics
+                    +b capabilities."
+                enforcement "Implementation verified through automated configuration checks (Tripwire
+                    +b Industrial) and manual inspection during factory acceptance tests. Requires
+                    +b signed exceptions for any retained remote access features."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "ICS Feature Disablement Procedure"
+                description "Standardized process for safely disabling non-essential features in Breton Spa
+                    +b industrial equipment without impacting core functionality. Incorporates IEC
+                    +b 62443-4-1 requirements for change management and residual risk documentation."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct STRIDE threat modeling session for target device/feature using
+                            +b Microsoft Threat Modeling Tool"
+                        tools "Microsoft Threat Modeling Tool, Breton Spa Protocol Matrix"
+                        expected_outcome "Documented threat model identifying risks associated with the feature (e.g.,
+                            +b Modbus TCP without TLS)"
+                    {
+                        step 2
+                        action "Perform impact analysis in test environment matching production specifications
+                            +b (temperature, dust levels)"
+                        tools "Virtualized test bench with OPC UA historian, Wireshark for protocol analysis"
+                        expected_outcome "Validation report confirming operational impact thresholds (<0.5% productivity
+                            +b loss allowed)"
+                    {
+                        step 3
+                        action "Deploy change through secure provisioning system with cryptographic signing"
+                        tools "Breton Secure Provisioning Platform, HSM for firmware signing"
+                        expected_outcome "Audit trail in SIEM showing authorized feature disablement with technician
+                            +b authentication"
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "Legacy Protocol Isolation Procedure"
+                description "Step-by-step process for implementing compensating controls when deprecated
+                    +b protocols cannot be removed from Breton Spa equipment, meeting IEC 62443-4-1
+                    +b SL3 requirements for critical stone cutting applications."
+                [ steps
+                    {
+                        step 1
+                        action "Segment network using VLANs and industrial firewalls (Tofino or Cisco IE)"
+                        tools "Network diagramming tool (Visio), Industrial firewall CLI"
+                        expected_outcome "Network topology map showing protocol-constrained devices in isolated zones"
+                    {
+                        step 2
+                        action "Implement protocol-specific deep packet inspection rules"
+                        tools "Palo Alto Industrial Firewall, Wireshark with ICS dissectors"
+                        expected_outcome "Firewall logs showing allowed protocol transactions matching whitelist"
+                    {
+                        step 3
+                        action "Deploy anomaly detection for legacy protocol traffic"
+                        tools "Darktrace Industrial, Nozomi Networks"
+                        expected_outcome "SOC dashboard alerts configured for abnormal Modbus/TCP packet patterns"
+            {
+                code "DM-4"
+                subCode "4) disabling or removing features;"
+                title "Secure Feature Removal Documentation Procedure"
+                description "Process for maintaining IEC 62443-4-1 compliant records of disabled features
+                    +b across Breton Spa product versions, including risk justification and
+                    +b authorization chains."
+                [ steps
+                    {
+                        step 1
+                        action "Update central feature registry in CMDB with removal details"
+                        tools "ServiceNow CMDB, Breton Spa Asset Database"
+                        expected_outcome "CMDB record showing feature status as 'disabled' with timestamp and auth code"
+                    {
+                        step 2
+                        action "Generate cryptographic hash of device configuration post-removal"
+                        tools "OpenSSL, Breton Configuration Hasher"
+                        expected_outcome "SHA-256 hash stored in blockchain ledger for integrity verification"
+                    {
+                        step 3
+                        action "Distribute updated security manuals to field technicians"
+                        tools "Adobe Sign for approvals, Secure PDF distribution portal"
+                        expected_outcome "Audit log showing all technicians acknowledged receipt within 7 business days"
+        last_updated "2023-10-15"

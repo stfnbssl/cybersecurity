@@ -1,0 +1,240 @@
+$group
+    {
+        id "FSA-EDR 3.12"
+        check_description "Embedded devices shall provide the capability to provision and protect the
+            +b confidentiality, integrity, and authenticity of product supplier keys and data
+            +b to be used as one or more “roots of trust” at the time of manufacture of the
+            +b device."
+        requirement_id "IEC 62443-4-2:EDR 3.12"
+        title "Provisioning Product Supplier Roots of Trust - Protection"
+        description "This requirement focuses on ensuring that the root of trust for provisioning
+            +b product suppliers is protected against unauthorized disclosure and
+            +b modification. The root of trust is a set of security functions, processes, and
+            +b services that are foundational for ensuring the integrity and authenticity of
+            +b the system. This requirement ensures that the integrity of the provisioning
+            +b process is maintained, thereby securing the system against potential threats
+            +b that could arise from compromised roots of trust."
+        [ key_aspects
+            "Protection of the root of trust involves securing cryptographic keys, certificates, and any other sensitive data that could be exploited if exposed."
+            "The requirement emphasizes the use of secure and tamper-proof storage mechanisms to protect these critical assets."
+            "Access controls should be in place to ensure that only authorized personnel can manage or interact with the root of trust components."
+            "Regular audits and integrity checks should be conducted to ensure that the roots of trust have not been compromised or altered without authorization."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                section "SR 3.12 - Use of Cryptography"
+                reference "Focuses on the use of cryptographic measures to protect sensitive information,
+                    +b paralleling the need to secure the roots of trust in IEC 62443-4-2."
+            {
+                standard "NIST SP 800-57"
+                section "Part 1 - General"
+                reference "Provides guidelines on key management, including secure storage and protection
+                    +b of cryptographic keys, which aligns with the protection of roots of trust."
+            {
+                standard "ISO/IEC 19790"
+                section "Security Requirements for Cryptographic Modules"
+                reference "Specifies requirements for cryptographic modules, which are crucial for
+                    +b securing the roots of trust as per IEC 62443-4-2."
+            {
+                standard "FIPS PUB 140-3"
+                section "Security Requirements for Cryptographic Modules"
+                reference "Details security requirements for cryptographic modules used to protect
+                    +b sensitive data, ensuring the integrity of the root of trust."
+    {
+        id "FSA-HDR 3.12"
+        check_description "Host devices shall provide the capability to provision and protect the
+            +b confidentiality, integrity, and authenticity of product supplier keys and data
+            +b to be used as one or more “roots of trust” at the time of manufacture of the
+            +b device."
+        requirement_id "HDR 3.12"
+        title "Provisioning Product Supplier Roots of Trust - Protection"
+        description "This requirement focuses on ensuring that the provisioning of the product
+            +b supplier's roots of trust is secure and protected. Roots of trust are the
+            +b foundational security elements upon which other security mechanisms in a
+            +b product are built. Protecting these roots of trust is crucial to maintaining
+            +b the overall integrity and security of the system."
+        [ key_aspects
+            {
+                aspect "Secure Handling"
+                details "Ensures that the roots of trust are securely handled during provisioning,
+                    +b preventing unauthorized access or tampering."
+            {
+                aspect "Trusted Environment"
+                details "Provisioning should occur within a trusted environment to guarantee the
+                    +b integrity and confidentiality of the roots of trust."
+            {
+                aspect "Authentication and Authorization"
+                details "Implements strong authentication and authorization mechanisms to control access
+                    +b to the roots of trust."
+            {
+                aspect "Integrity Checks"
+                details "Regular integrity checks should be performed on the roots of trust to detect
+                    +b any signs of compromise."
+            {
+                aspect "Audit and Traceability"
+                details "Comprehensive auditing and traceability mechanisms should be in place to
+                    +b monitor provisioning activities and ensure accountability."
+        [ related_standards
+            {
+                standard "ISO/IEC 19790:2012"
+                reference "Security requirements for cryptographic modules"
+                relevance "This standard outlines the security requirements for cryptographic modules,
+                    +b which are often involved in implementing roots of trust. It emphasizes the
+                    +b importance of secure provisioning and handling of cryptographic elements."
+            {
+                standard "NIST SP 800-57 Part 1"
+                reference "Recommendation for Key Management Part 1: General"
+                relevance "Provides guidelines for the secure management of cryptographic keys, which are
+                    +b critical components of roots of trust. It includes recommendations for the
+                    +b secure generation, distribution, and storage of keys."
+            {
+                standard "FIPS PUB 140-3"
+                reference "Security Requirements for Cryptographic Modules"
+                relevance "Similar to ISO/IEC 19790, this standard provides a framework for the design and
+                    +b implementation of cryptographic modules, highlighting the importance of
+                    +b protecting foundational security elements."
+            {
+                standard "IEC 62443-3-3:2013"
+                reference "System security requirements and security levels"
+                relevance "This part of the IEC 62443 series specifies security requirements at the system
+                    +b level, including the need for secure handling of roots of trust within
+                    +b industrial control systems."
+    {
+        id "FSA-NDR 3.12"
+        check_description "Network devices shall provide the capability to provision and protect the
+            +b confidentiality, integrity, and authenticity of product supplier keys and data
+            +b to be used as one or more “roots of trust” at the time of manufacture of the
+            +b device."
+        requirement_id "NDR 3.12"
+        title "Provisioning Product Supplier Roots of Trust - Protection"
+        description "This requirement focuses on ensuring the integrity and confidentiality of the
+            +b product supplier's roots of trust during provisioning. It mandates that secure
+            +b methods and mechanisms be in place to protect these roots of trust, which are
+            +b critical to the security posture of industrial automation and control systems
+            +b (IACS)."
+        [ key_aspects
+            {
+                aspect "Integrity"
+                details "The integrity of the roots of trust must be maintained to ensure that they have
+                    +b not been altered or tampered with during the provisioning process. This is
+                    +b crucial for maintaining the trustworthiness of the IACS components."
+            {
+                aspect "Confidentiality"
+                details "Confidentiality must be preserved to prevent unauthorized access to the roots
+                    +b of trust. This includes encrypting sensitive data and ensuring that only
+                    +b authorized entities can access or modify the roots of trust."
+            {
+                aspect "Secure Provisioning"
+                details "Provisioning processes must be secured to protect the roots of trust throughout
+                    +b their lifecycle, from initial deployment to updates and decommissioning."
+            {
+                aspect "Access Control"
+                details "Access to the roots of trust should be restricted based on the principle of
+                    +b least privilege, ensuring that only authorized personnel can manage or utilize
+                    +b these critical components."
+        [ related_standards
+            {
+                standard "NIST SP 800-57"
+                reference "Provides guidelines for key management, which are applicable to protecting
+                    +b cryptographic keys associated with roots of trust."
+            {
+                standard "ISO/IEC 27001"
+                reference "Outlines requirements for an information security management system, which
+                    +b includes protecting sensitive information such as roots of trust."
+            {
+                standard "FIPS 140-2"
+                reference "Specifies the security requirements for cryptographic modules, ensuring that
+                    +b cryptographic elements of roots of trust meet stringent security criteria."
+            {
+                standard "IEC 62443-3-3"
+                reference "Focuses on system security requirements and security levels, providing guidance
+                    +b on implementing security measures to protect critical components like roots of
+                    +b trust."
+    {
+        id "FSA-EDR 3.13A"
+        check_description "Embedded devices shall provide the capability to provision and protect the
+            +b confidentiality, integrity, and authenticity of asset owner keys and data to be
+            +b used as “roots of trust”."
+        requirement_id "IEC 62443-4-2: EDR 3.13(a)"
+        title "Provisioning Asset Owner Roots of Trust - Protection"
+        description "This requirement focuses on the secure provisioning and protection of the asset
+            +b owner’s root of trust within industrial automation and control systems (IACS).
+            +b It ensures that the cryptographic keys and other trust anchors are provisioned
+            +b securely and are protected from unauthorized access or tampering."
+        [ key_aspects
+            {
+                aspect "Secure Provisioning"
+                details "Implementation of secure methods for the provisioning of root of trust
+                    +b elements, such as cryptographic keys, ensuring they are securely stored and
+                    +b handled during the provisioning process."
+            {
+                aspect "Protection Mechanisms"
+                details "Utilization of hardware or software mechanisms to protect the root of trust
+                    +b from unauthorized access, disclosure, or modification, ensuring integrity and
+                    +b confidentiality."
+            {
+                aspect "Access Controls"
+                details "Application of strict access control measures to ensure that only authorized
+                    +b entities can access or modify the root of trust components."
+            {
+                aspect "Audit and Monitoring"
+                details "Implementation of logging and monitoring mechanisms to detect and respond to
+                    +b unauthorized access attempts or anomalies related to the root of trust."
+        [ related_standards
+            {
+                standard "NIST SP 800-57"
+                reference "NIST Special Publication 800-57 provides guidelines for key management,
+                    +b including secure provisioning, distribution, and lifecycle management of
+                    +b cryptographic keys."
+            {
+                standard "ISO/IEC 19790"
+                reference "This standard specifies security requirements for cryptographic modules, which
+                    +b can include protections for roots of trust and secure provisioning techniques."
+            {
+                standard "FIPS 140-3"
+                reference "Federal Information Processing Standard Publication 140-3 outlines security
+                    +b requirements for cryptographic modules, providing guidelines on protecting
+                    +b cryptographic keys and ensuring their secure management."
+            {
+                standard "IEC 62443-3-3"
+                reference "This standard addresses system security requirements and security levels,
+                    +b offering guidance on implementing security controls that can support the
+                    +b protection of roots of trust in an IACS environment."
+    {
+        id "FSA-EDR 3.13B"
+        check_description "Embedded devices shall support the capability to provision without reliance on
+            +b components that may be outside of the device’s security zone."
+        requirement_id "IEC 62443-4-2:EDR 3.13(b)"
+        title "Provisioning Asset Owner Roots of Trust - Inside Zone"
+        description "This requirement focuses on the secure provisioning and management of roots of
+            +b trust within a defined security zone for asset owners. It ensures that only
+            +b authorized entities have the ability to establish and manage cryptographic keys
+            +b and other security credentials essential for trusted operations."
+        { key_aspects
+            secure_provisioning "Ensures that the provisioning of roots of trust is performed in a secure
+                +b manner, preventing unauthorized access and manipulation."
+            "asset_owner control" "Empowers asset owners with the ability to establish and manage their own roots
+                +b of trust, maintaining control over their operational security."
+            "zone-based security" "Applies this requirement specifically to the inside zone, highlighting the need
+                +b for localized security measures aligned with zone-specific risks."
+            "cryptographic integrity" "Emphasizes the importance of using cryptographic methods to ensure the
+                +b integrity and authenticity of the roots of trust."
+        { related_standards
+            { "IEC 62443-3-3"
+                reference "SR 3.13 - Use of Cryptography"
+                details "Provides guidelines on the use of cryptographic techniques to protect the
+                    +b confidentiality, integrity, and authenticity of information."
+            { "NIST SP 800-57"
+                reference "Recommendation for Key Management"
+                details "Offers comprehensive guidance on key management, including the creation,
+                    +b distribution, and protection of cryptographic keys, which is crucial for
+                    +b establishing roots of trust."
+            { "ISO/IEC 27001"
+                reference "A.10 - Cryptography"
+                details "Specifies requirements for implementing cryptographic controls to safeguard
+                    +b information, aligning with the concept of roots of trust."
+            { "IEC 62351"
+                reference "Power Systems Management and Associated Information Exchange"
+                details "Focuses on securing communication protocols in power system environments, which
+                    +b may overlap with the technologies and processes used in provisioning roots of
+                    +b trust."

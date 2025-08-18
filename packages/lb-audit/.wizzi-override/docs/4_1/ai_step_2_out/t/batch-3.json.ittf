@@ -1,0 +1,1045 @@
+$group
+    {
+        practice "1"
+        code "SM-11"
+        subCode "e) defect management (see Clause 10, Practice 6 – Management of
+            +b security-related issues)."
+        explanation "The requirement mandates a structured process to ensure that products or
+            +b patches are not released until all identified security-related issues are
+            +b resolved and documented. This includes tracking defects from identification to
+            +b closure."
+        context "In industrial control systems (ICS), unresolved security defects can lead to
+            +b vulnerabilities exploitable by attackers, potentially causing operational
+            +b disruptions or safety incidents. Effective defect management is critical for
+            +b maintaining system integrity."
+        [ challenges
+            "Identifying all security-related defects during development or patch cycles. Example: A zero-day vulnerability in a PLC firmware update may go undetected without thorough testing."
+            "Prioritizing defects based on risk. Example: A critical buffer overflow in an HMI must be addressed before minor UI bugs."
+            "Ensuring timely resolution of defects. Example: A patch for a SCADA system vulnerability may be delayed due to vendor backlog."
+            "Tracking defects across distributed teams. Example: A defect reported by a field engineer may not reach the development team promptly."
+            "Maintaining documentation for compliance audits. Example: An auditor may require proof that all defects in a release were resolved."
+        [ best_practices
+            {
+                description "Implement automated static and dynamic code analysis tools to detect security
+                    +b defects early. Example: Using Coverity for static analysis in ICS software
+                    +b development."
+                url "
+                    +b https://www.synopsys.com/software-integrity/resources/analyst-reports/coverity-static-analysis.html"
+                url_description "Synopsys Coverity for static analysis in ICS software development."
+            {
+                description "Establish a risk-based defect triage process. Example: Using CVSS scores to
+                    +b prioritize vulnerabilities in ICS patches."
+                url "https://www.first.org/cvss/"
+                url_description "FIRST CVSS for risk-based vulnerability prioritization."
+            {
+                description "Integrate defect tracking with CI/CD pipelines. Example: Using Jira to track
+                    +b defects in ICS firmware updates."
+                url "https://www.atlassian.com/software/jira"
+                url_description "Jira for defect tracking in ICS development."
+            {
+                description "Conduct regular security reviews with cross-functional teams. Example: Monthly
+                    +b security review meetings with ICS vendors and operators."
+                url "https://www.sans.org/white-papers/36280/"
+                url_description "SANS guide on security reviews for ICS."
+            {
+                description "Maintain a centralized defect repository with audit trails. Example: Using
+                    +b GitLab for defect documentation in ICS projects."
+                url "https://docs.gitlab.com/ee/user/project/issues/"
+                url_description "GitLab for centralized defect tracking."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Automated Defect Detection"
+                description "Automated tools like static and dynamic analyzers are essential for identifying
+                    +b security defects early in the development lifecycle, reducing the risk of
+                    +b vulnerabilities in released products."
+                [ related_links
+                    {
+                        title "Coverity Static Analysis"
+                        url "
+                            +b https://www.synopsys.com/software-integrity/security-testing/static-analysis-sast.html"
+                        description "Synopsys Coverity for static analysis in ICS software."
+                    {
+                        title "SonarQube for ICS"
+                        url "https://www.sonarsource.com/products/sonarqube/"
+                        description "SonarQube for continuous inspection of code quality."
+            {
+                id "KA2"
+                title "Risk-Based Triage"
+                description "Prioritizing defects based on their potential impact ensures that critical
+                    +b vulnerabilities are addressed first, aligning with IEC 62443-4-1's focus on
+                    +b risk management."
+                [ related_links
+                    {
+                        title "CVSS Scoring Guide"
+                        url "https://www.first.org/cvss/"
+                        description "FIRST CVSS for risk-based prioritization."
+                    {
+                        title "NIST Vulnerability Management"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-40/rev-3/final"
+                        description "NIST guide on vulnerability management."
+            {
+                id "KA3"
+                title "Defect Tracking Integration"
+                description "Integrating defect tracking with development pipelines ensures visibility and
+                    +b accountability, critical for compliance with defect management requirements."
+                [ related_links
+                    {
+                        title "Jira for ICS"
+                        url "https://www.atlassian.com/software/jira"
+                        description "Jira for defect tracking in ICS projects."
+                    {
+                        title "GitLab Issue Tracking"
+                        url "https://docs.gitlab.com/ee/user/project/issues/"
+                        description "GitLab for centralized defect management."
+            {
+                id "KA4"
+                title "Documentation and Audit Trails"
+                description "Maintaining detailed records of defect resolution is essential for
+                    +b demonstrating compliance with IEC 62443-4-1 and facilitating audits."
+                [ related_links
+                    {
+                        title "ISO 27001 Documentation"
+                        url "https://www.iso.org/standard/54534.html"
+                        description "ISO 27001 for documentation standards."
+                    {
+                        title "NIST SP 800-53"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+                        description "NIST SP 800-53 for audit requirements."
+    {
+        practice "1"
+        code "SM-12"
+        subCode "undefined"
+        explanation "Process verification ensures that all security-related processes are completed
+            +b and documented before product release, aligning with IEC 62443-4-1
+            +b requirements."
+        context "Critical for ICS environments where security gaps can lead to operational
+            +b disruptions or safety incidents. Ensures traceability and compliance."
+        [ challenges
+            "Lack of standardized documentation formats can lead to inconsistencies. Example: Different teams using varied templates for process records."
+            "Ensuring all processes are covered, especially in complex ICS products. Example: Missing a firmware update verification step in a PLC release."
+            "Maintaining up-to-date records as processes evolve. Example: Failing to document changes in patch management procedures."
+            "Integrating verification with existing development workflows. Example: Security checks delaying agile release cycles."
+            "Auditing verification processes for compliance. Example: External auditors finding gaps in documented evidence."
+        [ best_practices
+            {
+                description "Use automated tools to track process completion. Example: Integrating JIRA with
+                    +b Confluence for real-time documentation. Link: Siemens ICS Security Guide."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-software/automation-software/tia-portal.html"
+                url_description "Siemens' guide on integrating security processes in ICS development."
+            {
+                description "Define clear roles for verification tasks. Example: Assigning a security lead
+                    +b to sign off on each process. Link: Rockwell Automation Whitepaper."
+                url "https://www.rockwellautomation.com/en-us/resources/white-papers.html"
+                url_description "Rockwell's approach to role-based security verification."
+            {
+                description "Conduct pre-release audits. Example: Third-party review of patch management
+                    +b records. Link: Honeywell ICS Security Case Study."
+                url "https://www.honeywellprocess.com/library/support/Pages/security.aspx"
+                url_description "Honeywell's case study on audit-driven verification."
+            {
+                description "Leverage version control for documentation. Example: Git for tracking changes
+                    +b in security process records. Link: Schneider Electric Technical Note."
+                url "https://www.se.com/ww/en/work/support/cybersecurity/"
+                url_description "Schneider's technical note on document versioning in ICS."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Process Completion Tracking"
+                description "Systematic tracking of all security processes from initiation to completion,
+                    +b ensuring nothing is missed before release. Critical for IEC 62443-4-1
+                    +b compliance."
+                [ related_links
+                    {
+                        title "Siemens Process Verification Guide"
+                        url "https://www.siemens.com/processverification"
+                        description "Detailed methodology for tracking ICS security processes."
+                    {
+                        title "ISA-62443 Compliance Checklist"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA's checklist for verifying process completion."
+            {
+                id "KA2"
+                title "Documentation Standardization"
+                description "Uniform documentation formats for all security processes to facilitate
+                    +b verification and auditing. Aligns with IEC 62443-4-1's emphasis on
+                    +b traceability."
+                [ related_links
+                    {
+                        title "NIST ICS Documentation Template"
+                        url "https://www.nist.gov/ics"
+                        description "NIST-recommended templates for ICS process records."
+                    {
+                        title "ABB Security Documentation Guide"
+                        url "https://new.abb.com/docs/default-source/security-docs/abb_security_guide.pdf"
+                        description "ABB's guide to standardized security documentation."
+            {
+                id "KA3"
+                title "Automated Verification Tools"
+                description "Implementation of tools to automatically verify process completion, reducing
+                    +b human error. Essential for complex ICS environments."
+                [ related_links
+                    {
+                        title "Siemens TIA Portal Security Features"
+                        url "https://www.siemens.com/tia-portal-security"
+                        description "Tool for automating security process verification."
+                    {
+                        title "Rockwell Automation FactoryTalk Security"
+                        url "https://www.rockwellautomation.com/factorytalk-security"
+                        description "Automated verification in industrial control systems."
+            {
+                id "KA4"
+                title "Audit Trail Maintenance"
+                description "Comprehensive audit trails for all verification activities, providing evidence
+                    +b for compliance assessments. Required by IEC 62443-4-1."
+                [ related_links
+                    {
+                        title "Honeywell Audit Trail Best Practices"
+                        url "https://www.honeywellprocess.com/audit-trails"
+                        description "Best practices for maintaining ICS audit trails."
+                    {
+                        title "Schneider Electric Cybersecurity Audit Guide"
+                        url "https://www.se.com/cybersecurity-audit"
+                        description "Guide to implementing audit trails in ICS."
+    {
+        practice "1"
+        code "SM-13"
+        subCode "undefined"
+        explanation "The requirement mandates a structured process for continuous improvement of the
+            +b Secure Development Lifecycle (SDL), focusing on analyzing security defects that
+            +b reach operational environments."
+        context "This practice is critical in industrial control systems (ICS) where
+            +b vulnerabilities can lead to significant operational disruptions. Continuous
+            +b improvement ensures that lessons from field defects enhance future development."
+        [ challenges
+            "Identifying field defects: Many ICS environments lack robust logging, making defect detection difficult. Example: A PLC firmware bug causing intermittent failures may go unnoticed."
+            "Root cause analysis: Complex ICS architectures complicate tracing defects to their source. Example: A network latency issue may stem from multiple subsystems."
+            "Prioritizing fixes: Limited resources require balancing security fixes with operational uptime. Example: A patch for a non-critical vulnerability may be deferred during peak production."
+            "Vendor coordination: Many ICS components are third-party, requiring collaboration for fixes. Example: A vulnerability in a proprietary HMI module needs vendor involvement."
+            "Legacy system integration: Older ICS devices may not support modern SDL improvements. Example: A 20-year-old RTU cannot receive firmware updates."
+        [ best_practices
+            {
+                description "Implement automated defect tracking tools to capture and analyze field
+                    +b incidents. Example: Deploy SIEM solutions to correlate security events across
+                    +b ICS networks."
+                url "
+                    +b https://www.siemens.com/global/en/products/automation/industry-software/process-safety-security/security-services.html"
+                url_description "Siemens ICS security services guide, detailing defect tracking integration."
+            {
+                description "Conduct regular post-mortems on field defects to update SDL policies. Example:
+                    +b After a malware incident, revise code review checklists to include new attack
+                    +b vectors."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/technical-documents/cybersecurity-best-practices.pdf"
+                url_description "Honeywell technical note on ICS incident analysis methodologies."
+            {
+                description "Establish a vulnerability disclosure program with component vendors. Example:
+                    +b Create a secure channel for suppliers to report SDL-related issues."
+                url "
+                    +b https://www.schneider-electric.com/en/work/support/cybersecurity/security-notifications.jsp"
+                url_description "Schneider Electric's vendor collaboration framework for security notifications."
+            {
+                description "Develop risk-based patch management protocols for fielded systems. Example: Use
+                    +b ISA/IEC 62443-2-4 to prioritize critical updates."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                url_description "ISA's guidance on risk assessment for ICS patch management."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Defect Classification Framework"
+                description "A standardized system for categorizing field defects by severity, impact, and
+                    +b root cause. Critical for aligning SDL improvements with actual operational
+                    +b risks in ICS environments."
+                [ related_links
+                    {
+                        title "Rockwell Automation Security Incident Classification"
+                        url "https://www.rockwellautomation.com/en-us/support/security-advisories.html"
+                        description "Rockwell's taxonomy for ICS defect severity assessment."
+                    {
+                        title "NIST ICS Security Incident Handling Guide"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final"
+                        description "NIST framework adapted for industrial control systems."
+            {
+                id "KA2"
+                title "SDL Feedback Loop Mechanism"
+                description "Structured process for feeding field defect analysis back into development
+                    +b phases. Ensures continuous SDL enhancement while maintaining ICS operational
+                    +b requirements."
+                [ related_links
+                    {
+                        title "Siemens SDL Integration Handbook"
+                        url "https://www.siemens.com/sdl-handbook"
+                        description "Guidance on implementing closed-loop SDL processes for ICS."
+                    {
+                        title "ABB Secure Development Lifecycle White Paper"
+                        url "
+                            +b https://new.abb.com/docs/default-source/default-document-library/abb_secure_development_lifecycle.pdf"
+                        description "ABB's approach to incorporating field data into SDL."
+            {
+                id "KA3"
+                title "Vendor Security Collaboration"
+                description "Protocols for coordinated vulnerability response with ICS component suppliers.
+                    +b Addresses the multi-vendor nature of industrial control ecosystems."
+                [ related_links
+                    {
+                        title "ICS-CERT Vendor Coordination Guidelines"
+                        url "https://www.cisa.gov/uscert/ics/advisories"
+                        description "Official framework for multi-vendor ICS security collaboration."
+                    {
+                        title "Schneider Electric Vulnerability Coordination Process"
+                        url "https://www.se.com/ww/en/work/support/cybersecurity/security-notifications.jsp"
+                        description "Vendor-specific implementation example."
+            {
+                id "KA4"
+                title "Legacy System Adaptation"
+                description "Methods for applying SDL improvements to older ICS devices with limited update
+                    +b capabilities. Balances security with operational continuity requirements."
+                [ related_links
+                    {
+                        title "ISA Secure Legacy System Guidelines"
+                        url "https://www.isasecure.org/en-US/Standards/ISA-IEC-62443"
+                        description "ISA recommendations for securing outdated ICS equipment."
+                    {
+                        title "GE Industrial Cyber Legacy Whitepaper"
+                        url "https://www.ge.com/digital/documentation/cyber-security"
+                        description "Technical approaches for legacy device security enhancement."
+    {
+        practice "2"
+        code "SR-1"
+        subCode "undefined"
+        explanation "The requirement mandates documenting the security context of industrial
+            +b products to ensure alignment with operational environments and threats."
+        context "This practice is critical in ICS environments where products must operate
+            +b securely within specific industrial contexts, considering factors like legacy
+            +b systems and real-time constraints."
+        [ challenges
+            "Identifying all relevant stakeholders for context documentation, e.g., operational technology (OT) teams often overlook IT security inputs."
+            "Balancing security requirements with operational performance, such as latency-sensitive systems rejecting encryption."
+            "Integrating legacy systems with modern security contexts, exemplified by decades-old PLCs lacking secure communication protocols."
+            "Ensuring consistency across global deployments, where regional regulations may impose conflicting security requirements."
+            "Maintaining updated documentation as threats evolve, like new ransomware targeting ICS-specific protocols."
+        [ best_practices
+            {
+                description "Conduct threat modeling workshops with cross-functional teams to capture
+                    +b security context. Example: A chemical plant involved process engineers to
+                    +b identify safety-critical communication paths."
+                url "
+                    +b https://www.siemens.com/global/en/products/automation/industry-software/process-safety.html"
+                url_description "Siemens' guide on integrating safety and security in process industries."
+            {
+                description "Use standardized templates (e.g., ISA-62443-1-1) for context documentation to
+                    +b ensure completeness. Example: A power utility adopted ISA templates for all
+                    +b substation devices."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                url_description "ISA's official documentation templates for IEC 62443 alignment."
+            {
+                description "Implement automated documentation tools that link asset databases with security
+                    +b parameters. Example: A SCADA vendor integrated CyberX (now Microsoft) for
+                    +b real-time context updates."
+                url "
+                    +b https://learn.microsoft.com/en-us/azure/defender-for-iot/organizations/device-builders/overview"
+                url_description "Microsoft's IoT security documentation automation framework."
+            {
+                description "Validate context assumptions through red team exercises. Example: A water
+                    +b utility discovered undocumented serial connections during a penetration test."
+                url "https://www.dragos.com/resources/dragos-year-in-review/"
+                url_description "Dragos' ICS-specific threat assessment methodologies."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Stakeholder Engagement Framework"
+                description "Defines roles for OT, IT, and safety teams in context documentation. Critical
+                    +b for capturing operational constraints (e.g., safety shutdowns overriding
+                    +b security policies) per IEC 62443-4-1."
+                [ related_links
+                    {
+                        title "Rockwell Automation Security Roles"
+                        url "https://www.rockwellautomation.com/en-us/capabilities/cybersecurity.html"
+                        description "Role definitions for ICS security collaboration."
+                    {
+                        title "NIST IR 8183 Vol.2"
+                        url "https://nvlpubs.nist.gov/nistpubs/ir/2021/NIST.IR.8183v2.pdf"
+                        description "Framework for cross-functional ICS security teams."
+            {
+                id "KA2"
+                title "Threat Landscape Mapping"
+                description "Documents ICS-specific threats (e.g., Stuxnet-style payloads) relevant to the
+                    +b product's deployment context. Aligns with SR-1's requirement for
+                    +b environment-aware security."
+                [ related_links
+                    {
+                        title "MITRE ICS ATT&CK Matrix"
+                        url "https://collaborate.mitre.org/attackics/index.php/Main_Page"
+                        description "Comprehensive ICS threat taxonomy."
+                    {
+                        title "CISA ICS Advisories"
+                        url "https://www.cisa.gov/topics/industrial-control-systems"
+                        description "Real-world ICS threat intelligence."
+            {
+                id "KA3"
+                title "Legacy System Integration"
+                description "Specifies methods to document security contexts for unsupported systems (e.g.,
+                    +b MODBUS RTU devices) without native security features."
+                [ related_links
+                    {
+                        title "Honeywell Legacy Security Guide"
+                        url "https://www.honeywellprocess.com/library/support/Pages/cybersecurity.aspx"
+                        description "Approaches for securing legacy industrial devices."
+                    {
+                        title "Schneider Electric White Paper"
+                        url "
+                            +b https://www.se.com/ww/en/work/solutions/system/s1/cybersecurity/cybersecurity-for-industrial-automation.jsp"
+                        description "Case studies on modernizing legacy ICS security."
+            {
+                id "KA4"
+                title "Regulatory Alignment Matrix"
+                description "Cross-references security context with regional regulations (e.g., NERC CIP, EU
+                    +b NIS2) to ensure compliance while maintaining operational requirements."
+                [ related_links
+                    {
+                        title "IEC 62443 Compliance Toolkit"
+                        url "https://www.iec.ch/basecamp/62443"
+                        description "Tools for mapping standards to security contexts."
+                    {
+                        title "ENISA ICS Security Guide"
+                        url "https://www.enisa.europa.eu/publications/ics-recommendations"
+                        description "EU-specific ICS security context guidance."
+    {
+        practice "2"
+        code "SR-2"
+        subCode "a) correct flow of categorized information throughout the system;"
+        explanation "Threat modeling ensures that information flows securely within industrial
+            +b control systems (ICS), identifying potential vulnerabilities and
+            +b misconfigurations that could compromise data integrity or confidentiality."
+        context "In ICS environments, threat modeling is critical to prevent unauthorized access
+            +b or manipulation of categorized information, which could disrupt operations or
+            +b lead to safety incidents."
+        [ challenges
+            "Identifying all data flows in complex ICS architectures, especially in legacy systems with undocumented communication paths."
+            "Example: A legacy SCADA system may have unsecured data flows between HMIs and PLCs that are not documented."
+            "Ensuring consistent categorization of information (e.g., critical vs. non-critical) across different subsystems."
+            "Example: A power plant may misclassify sensor data as non-critical, leading to inadequate protection measures."
+            "Integrating threat modeling with existing development lifecycles without causing delays."
+            "Example: A vendor rushing a product release may skip threat modeling for new features."
+            "Addressing zero-day vulnerabilities that are not yet documented in threat databases."
+            "Example: A new ICS protocol vulnerability could bypass existing threat models."
+            "Balancing security controls with real-time performance requirements in ICS."
+            "Example: Encryption may introduce latency in a gas pipeline's control system."
+        [ best_practices
+            {
+                description "Use automated tools like Microsoft Threat Modeling Tool or IriusRisk to map
+                    +b data flows and identify threats systematically."
+                url "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool"
+                url_description "Microsoft's guide on using their Threat Modeling Tool for ICS data flow
+                    +b analysis."
+            {
+                description "Adopt the STRIDE framework (Spoofing, Tampering, Repudiation, Information
+                    +b Disclosure, DoS, Elevation of Privilege) to categorize threats."
+                url "
+                    +b https://www.siemens.com/global/en/products/services/cert/security-advisories.html"
+                url_description "Siemens' advisories demonstrate STRIDE applications in ICS threat models."
+            {
+                description "Conduct regular threat model reviews with cross-functional teams (security, OT,
+                    +b engineering)."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/publications/cybersecurity/Pages/default.aspx"
+                url_description "Honeywell's whitepapers on collaborative threat modeling for process control
+                    +b systems."
+            {
+                description "Document assumptions and constraints (e.g., legacy protocol limitations)
+                    +b explicitly in the threat model."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                url_description "ISA/IEC 62443 standards provide templates for ICS threat model documentation."
+            {
+                description "Validate threat models against real-world attack scenarios (e.g., Stuxnet-style
+                    +b attacks)."
+                url "https://www.cisa.gov/resources-tools/services/shields-ready"
+                url_description "CISA's SHIELDS program offers ICS-specific attack simulations for validation."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Data Flow Mapping"
+                description "Comprehensive documentation of all information pathways between ICS components,
+                    +b including protocols and interfaces. Critical for identifying unauthorized data
+                    +b exfiltration points."
+                [ related_links
+                    {
+                        title "Rockwell Automation Data Flow Diagrams"
+                        url "https://www.rockwellautomation.com/en-us/products/security.html"
+                        description "Rockwell's guidelines for mapping ICS data flows in FactoryTalk environments."
+                    {
+                        title "NIST SP 800-82 Rev.3 ICS Security"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST's framework for ICS data flow analysis (Section 3.1.2)."
+            {
+                id "KA2"
+                title "Information Categorization"
+                description "Classification of data by criticality (e.g., safety-related vs. operational) to
+                    +b apply appropriate security controls. Aligns with ISA/IEC 62443 zoning
+                    +b requirements."
+                [ related_links
+                    {
+                        title "Schneider Electric Data Classification Guide"
+                        url "https://www.se.com/ww/en/work/support/cybersecurity/guidelines.jsp"
+                        description "Schneider's methodology for classifying ICS data in EcoStruxure systems."
+                    {
+                        title "ISA-99 Zone/Conduit Models"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                        description "ISA standards for information categorization in ICS zones."
+            {
+                id "KA3"
+                title "Threat Identification"
+                description "Systematic enumeration of potential threats to each data flow using
+                    +b industry-standard methodologies (e.g., attack trees, MITRE ATT&CK for ICS)."
+                [ related_links
+                    {
+                        title "MITRE ATT&CK for ICS Matrix"
+                        url "https://attack.mitre.org/matrices/ics/"
+                        description "Comprehensive ICS threat taxonomy for modeling attacks."
+                    {
+                        title "Yokogawa Threat Analysis Case Studies"
+                        url "https://www.yokogawa.com/solutions/products-platforms/control-system/security/"
+                        description "Real-world ICS threat identification examples."
+            {
+                id "KA4"
+                title "Control Validation"
+                description "Verification that implemented security controls (e.g., firewalls, encryption)
+                    +b effectively mitigate identified threats without impacting ICS performance."
+                [ related_links
+                    {
+                        title "Siemens PCS 7 Security Configurations"
+                        url "https://support.industry.siemens.com/cs/ww/en/view/109740668"
+                        description "Siemens' validated security controls for process systems."
+                    {
+                        title "ABB Ability™ Cyber Security"
+                        url "https://new.abb.com/control-systems/seguridad"
+                        description "ABB's approach to control validation in distributed control systems."
+    {
+        practice "2"
+        code "SR-2"
+        subCode "b) trust boundaries;"
+        explanation "Threat modeling for trust boundaries identifies where data or control
+            +b transitions between different security levels or domains within an ICS,
+            +b ensuring proper security controls are in place."
+        context "Trust boundaries are critical in ICS environments where operational technology
+            +b (OT) and information technology (IT) systems interact, requiring clear
+            +b demarcation to prevent unauthorized access or data leakage."
+        [ challenges
+            "Identifying all trust boundaries in complex ICS architectures, especially in legacy systems with undocumented interfaces."
+            "Ensuring consistent security controls across trust boundaries, such as firewalls or encryption, without disrupting operational continuity."
+            "Managing dynamic trust boundaries in virtualized or cloud-based ICS environments where boundaries may shift frequently."
+            "Addressing human factors, such as misconfigurations by operators when crossing trust boundaries during maintenance or updates."
+            "Validating trust boundary assumptions through penetration testing, which can be resource-intensive in OT environments."
+        [ best_practices
+            {
+                description "Document trust boundaries in network diagrams, highlighting interfaces between
+                    +b IT/OT zones. Example: A power plant marks boundaries between SCADA and
+                    +b corporate networks with VLANs and firewalls."
+                url "https://www.siemens.com/industrial-security"
+                url_description "Siemens’ guide on ICS network segmentation aligns with SR-2(b) for visualizing
+                    +b trust boundaries."
+            {
+                description "Implement micro-segmentation within OT networks to enforce granular trust
+                    +b boundaries. Example: A refinery uses software-defined perimeters to isolate
+                    +b critical PLCs."
+                url "https://www.cisco.com/c/en/us/solutions/industries/industrial-iot/security.html"
+                url_description "Cisco’s IIoT security whitepaper details micro-segmentation for ICS trust
+                    +b boundaries."
+            {
+                description "Use hardware-enforced boundaries (e.g., unidirectional gateways) for high-risk
+                    +b interfaces. Example: A nuclear facility deploys data diodes to prevent
+                    +b exfiltration from OT networks."
+                url "https://www.waterfall-security.com/solutions/industrial-control-systems"
+                url_description "Waterfall Security’s case studies on hardware-enforced boundaries for ICS."
+            {
+                description "Conduct regular trust boundary reviews during system changes. Example: A
+                    +b manufacturer updates boundary models after integrating IoT sensors."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                url_description "ISA’s technical reports on maintaining ICS security during lifecycle changes."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Trust Boundary Mapping"
+                description "Detailed documentation of all trust boundaries in ICS architectures, including
+                    +b data flow diagrams and asset ownership. Essential for compliance with SR-2(b)
+                    +b to ensure no boundary is overlooked during threat modeling."
+                [ related_links
+                    {
+                        title "Rockwell Automation: ICS Network Design Guidelines"
+                        url "https://www.rockwellautomation.com/en-us/products/network-infrastructure.html"
+                        description "Guidelines for mapping trust boundaries in industrial networks."
+                    {
+                        title "NIST SP 800-82 Rev.3: ICS Security"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST’s framework for identifying ICS trust boundaries (Section 6.1.1)."
+            {
+                id "KA2"
+                title "Boundary Control Validation"
+                description "Verification of security controls (e.g., firewalls, IDS) at each trust boundary
+                    +b through testing and audits. Ensures controls align with the threat model’s
+                    +b assumptions for SR-2(b)."
+                [ related_links
+                    {
+                        title "Honeywell ICS Cyber Security Handbook"
+                        url "
+                            +b https://www.honeywellprocess.com/library/support/Public/Documents/Cyber-Security-Handbook.pdf"
+                        description "Honeywell’s methodology for validating boundary controls in OT."
+                    {
+                        title "Schneider Electric: Secure Architecture Design"
+                        url "https://www.se.com/ww/en/work/solutions/cybersecurity/"
+                        description "Schneider’s reference architectures for boundary control testing."
+            {
+                id "KA3"
+                title "Dynamic Boundary Management"
+                description "Procedures to update trust boundaries during system modifications (e.g., cloud
+                    +b migration). Critical for maintaining SR-2(b) compliance in evolving ICS
+                    +b environments."
+                [ related_links
+                    {
+                        title "Microsoft Azure IoT Edge Security"
+                        url "https://learn.microsoft.com/en-us/azure/iot-edge/iot-edge-security-management"
+                        description "Microsoft’s approach to managing trust boundaries in hybrid ICS/cloud setups."
+                    {
+                        title "AWS Industrial IoT Security Best Practices"
+                        url "https://aws.amazon.com/iot-core/industrial-iot/security/"
+                        description "AWS guidelines for dynamic trust boundaries in IIoT."
+            {
+                id "KA4"
+                title "Boundary-Specific Threat Scenarios"
+                description "Development of attack scenarios targeting each trust boundary (e.g., MITM at
+                    +b IT/OT interfaces). Supports SR-2(b) by contextualizing threats to boundary
+                    +b vulnerabilities."
+                [ related_links
+                    {
+                        title "Dragos ICS Threat Assessment Framework"
+                        url "https://www.dragos.com/resource/dragos-threat-assessment-framework/"
+                        description "Dragos’ methodology for boundary-focused ICS threat modeling."
+                    {
+                        title "MITRE ATT&CK for ICS"
+                        url "https://attack.mitre.org/matrices/ics/"
+                        description "Tactics for exploiting trust boundaries in ICS (e.g., T0816)."
+    {
+        practice "2"
+        code "SR-2"
+        subCode "c) processes;"
+        explanation "Threat modeling for processes ensures that security risks are systematically
+            +b identified and mitigated during the development lifecycle of industrial control
+            +b systems (ICS)."
+        context "This requirement applies to the development phase of ICS products, ensuring
+            +b that security is integrated into the design and implementation of processes."
+        [ challenges
+            "Identifying all potential threats in complex ICS environments, such as a manufacturing plant with interconnected devices."
+            "Lack of standardized methodologies for threat modeling in ICS, leading to inconsistent practices."
+            "Integrating threat modeling into existing development processes without causing delays."
+            "Ensuring that all stakeholders, including developers and security teams, understand and contribute to the threat model."
+            "Keeping threat models updated as new vulnerabilities and attack vectors emerge in ICS."
+        [ best_practices
+            {
+                description "Use a structured threat modeling methodology like STRIDE to systematically
+                    +b identify threats. Example: Applying STRIDE to a PLC communication protocol to
+                    +b uncover spoofing and tampering risks."
+                url "https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling"
+                url_description "Microsoft's guide on STRIDE methodology for threat modeling."
+            {
+                description "Involve cross-functional teams in threat modeling sessions to ensure
+                    +b comprehensive coverage. Example: Including both OT and IT teams in threat
+                    +b modeling for a SCADA system."
+                url "https://www.sans.org/white-papers/36240/"
+                url_description "SANS whitepaper on collaborative threat modeling for ICS."
+            {
+                description "Document threat models in a standardized format for consistency and
+                    +b traceability. Example: Using a template to document threats for a DCS upgrade
+                    +b project."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                url_description "ISA standards for documenting ICS security practices."
+            {
+                description "Regularly review and update threat models to reflect changes in the ICS
+                    +b environment. Example: Updating threat models after adding new IoT devices to a
+                    +b plant network."
+                url "
+                    +b https://www.cisa.gov/sites/default/files/publications/20_0309_cisa_ics_threat_modeling_guide.pdf"
+                url_description "CISA's guide on updating threat models for ICS."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Structured Threat Identification"
+                description "Systematically identify threats using methodologies like STRIDE to ensure all
+                    +b potential risks are considered during the development of ICS processes."
+                [ related_links
+                    {
+                        title "STRIDE Threat Modeling Guide"
+                        url "https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling"
+                        description "Microsoft's guide on using STRIDE for threat modeling."
+                    {
+                        title "ICS Threat Modeling Case Study"
+                        url "https://www.sans.org/white-papers/36240/"
+                        description "Case study on applying STRIDE to ICS environments."
+            {
+                id "KA2"
+                title "Cross-Functional Collaboration"
+                description "Engage OT and IT teams in threat modeling to ensure comprehensive coverage of
+                    +b security risks in ICS processes."
+                [ related_links
+                    {
+                        title "Collaborative Threat Modeling"
+                        url "https://www.sans.org/white-papers/36240/"
+                        description "SANS whitepaper on collaborative threat modeling."
+                    {
+                        title "ISA-62443 Standards"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA standards for ICS security collaboration."
+            {
+                id "KA3"
+                title "Documentation Standards"
+                description "Maintain standardized documentation of threat models to ensure consistency and
+                    +b traceability in ICS development processes."
+                [ related_links
+                    {
+                        title "ISA-62443 Documentation Guide"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA guide on documenting ICS security practices."
+                    {
+                        title "CISA Threat Modeling Template"
+                        url "
+                            +b https://www.cisa.gov/sites/default/files/publications/20_0309_cisa_ics_threat_modeling_guide.pdf"
+                        description "CISA's template for ICS threat modeling."
+            {
+                id "KA4"
+                title "Continuous Review Process"
+                description "Regularly update threat models to reflect changes in the ICS environment,
+                    +b ensuring ongoing security relevance."
+                [ related_links
+                    {
+                        title "CISA ICS Threat Modeling Guide"
+                        url "
+                            +b https://www.cisa.gov/sites/default/files/publications/20_0309_cisa_ics_threat_modeling_guide.pdf"
+                        description "CISA's guide on updating ICS threat models."
+                    {
+                        title "NIST SP 800-82 Rev. 3"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final"
+                        description "NIST guidelines for ICS security updates."
+    {
+        practice "2"
+        code "SR-2"
+        subCode "d) data stores;"
+        explanation "Threat modeling for data stores involves identifying potential security threats
+            +b to stored data, including unauthorized access, data corruption, and
+            +b exfiltration. This ensures robust protection mechanisms are in place."
+        context "In industrial control systems (ICS), data stores often contain sensitive
+            +b operational data. Threat modeling helps mitigate risks specific to these
+            +b environments, such as manipulation of process data or unauthorized access to
+            +b configuration files."
+        [ challenges
+            "Identifying all potential attack vectors for data stores in complex ICS environments. Example: A legacy SCADA system may have undocumented data storage mechanisms vulnerable to exploitation."
+            "Ensuring threat models remain updated with evolving threats. Example: New ransomware targeting ICS data stores may not be covered in older models."
+            "Balancing security with performance in real-time systems. Example: Encryption of high-frequency sensor data may introduce latency."
+            "Integrating threat models across heterogeneous systems. Example: A plant may use multiple vendors' PLCs, each with different data storage architectures."
+            "Addressing insider threats to data stores. Example: A disgruntled employee with legitimate access may exfiltrate sensitive production data."
+        [ best_practices
+            {
+                description "Implement data-at-rest encryption for all sensitive ICS data stores. Example:
+                    +b Encrypt historian databases containing process parameters. Link: Siemens guide
+                    +b on ICS data encryption."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-software/process-safety-cybersecurity/industrial-security/whitepapers.html"
+                url_description "Siemens whitepaper on implementing encryption in industrial data stores
+                    +b (aligned with SR-2d)"
+            {
+                description "Establish strict access controls with role-based permissions for data stores.
+                    +b Example: Limit write access to control system configuration files. Link:
+                    +b Rockwell Automation ICS security manual."
+                url "
+                    +b https://literature.rockwellautomation.com/idc/groups/literature/documents/wp/enet-wp003_-en-p.pdf"
+                url_description "Rockwell's implementation guide for ICS access controls (relevant to SR-2d)"
+            {
+                description "Implement comprehensive logging for all data store access attempts. Example:
+                    +b Monitor access to recipe databases in pharmaceutical manufacturing. Link:
+                    +b Honeywell Industrial Cybersecurity Best Practices."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/technical-notes/cybersecurity/TN-17-00-01-01A.pdf"
+                url_description "Honeywell's technical note on ICS data access monitoring (supports SR-2d)"
+            {
+                description "Conduct regular vulnerability assessments of data storage systems. Example:
+                    +b Scan SQL databases used in DCS for unpatched vulnerabilities. Link: Schneider
+                    +b Electric ICS Security Implementation Guide."
+                url "https://www.se.com/ww/en/work/support/cybersecurity/guides.jsp"
+                url_description "Schneider's guide to securing industrial data systems (applicable to SR-2d)"
+        [ key_aspects
+            {
+                id "KA1"
+                title "Data Classification Schema"
+                description "Establish a clear classification system for ICS data stores based on
+                    +b sensitivity and criticality. This enables targeted protection measures aligned
+                    +b with threat models, ensuring high-value assets receive strongest safeguards."
+                [ related_links
+                    {
+                        title "ISA-62443-2-1 Data Classification Guide"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards/isa-62443-2-1"
+                        description "ISA's framework for classifying industrial data assets"
+                    {
+                        title "GE Digital Data Classification for ICS"
+                        url "https://www.ge.com/digital/documentation/cybersecurity"
+                        description "GE's implementation guide for industrial data classification"
+            {
+                id "KA2"
+                title "Secure Data Archiving"
+                description "Implement secure archiving processes for historical ICS data that maintain
+                    +b integrity while preventing unauthorized modification. Critical for forensic
+                    +b investigations and compliance with SR-2d requirements."
+                [ related_links
+                    {
+                        title "OSIsoft PI System Security Guidelines"
+                        url "https://osisoft.com/resources/white-papers/pi-system-security-guidelines"
+                        description "Best practices for securing industrial historian data"
+                    {
+                        title "Yokogawa Data Storage Security Handbook"
+                        url "
+                            +b https://www.yokogawa.com/library/resources/white-papers/industrial-cybersecurity-best-practices/"
+                        description "Yokogawa's approach to secure industrial data archiving"
+            {
+                id "KA3"
+                title "Data Integrity Verification"
+                description "Implement mechanisms to verify integrity of stored ICS data, including
+                    +b checksums or digital signatures. Essential for detecting manipulation attempts
+                    +b identified in threat models."
+                [ related_links
+                    {
+                        title "Emerson Data Integrity Solutions"
+                        url "
+                            +b https://www.emerson.com/documents/automation/white-paper-ensuring-data-integrity-in-industrial-systems-en-68444.pdf"
+                        description "Technical approaches to industrial data integrity"
+                    {
+                        title "ABB Cyber Security for Data Historians"
+                        url "https://new.abb.com/control-systems/seg/cyber-security"
+                        description "ABB's implementation of data verification in historians"
+            {
+                id "KA4"
+                title "Data Lifecycle Management"
+                description "Establish clear policies for data retention, sanitization, and destruction in
+                    +b ICS environments. Addresses threat model concerns about residual data exposure."
+                [ related_links
+                    {
+                        title "Mitsubishi ICS Data Lifecycle Guide"
+                        url "
+                            +b https://www.mitsubishielectric.com/fa/products/sys/ics/security/technical_information.html"
+                        description "Lifecycle management for industrial control system data"
+                    {
+                        title "Phoenix Contact Secure Data Disposal"
+                        url "
+                            +b https://www.phoenixcontact.com/online/portal/us?uri=pxc-oc-itemdetail:pid=2703802&library=usen&tab=5"
+                        description "Secure data disposal methods for industrial systems"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "e) interacting external entities;"
+        explanation "Threat modeling for interacting external entities involves identifying and
+            +b mitigating risks from third-party systems, devices, or services that interact
+            +b with the industrial control system (ICS). This ensures secure integration and
+            +b reduces attack surfaces."
+        context "In ICS environments, external entities (e.g., cloud services, vendor devices)
+            +b introduce vulnerabilities. Threat modeling helps assess their security impact
+            +b and enforce controls to prevent exploitation."
+        [ challenges
+            "Identifying all external entities: Legacy systems may have undocumented integrations. Example: A PLC communicating with an unrecorded cloud service."
+            "Assessing third-party security: Vendors may not disclose vulnerabilities. Example: A compromised IoT device bypassing network segmentation."
+            "Dynamic threat landscape: New attack vectors emerge. Example: Zero-day exploits in vendor software."
+            "Regulatory compliance: Ensuring third parties meet standards (e.g., IEC 62443). Example: A supplier failing to certify their device."
+            "Monitoring interactions: Real-time detection of malicious activity. Example: An unauthorized API call to a SCADA system."
+        [ best_practices
+            {
+                description "Maintain an inventory of all external entities with risk ratings. Example: A
+                    +b dashboard tracking vendor devices and their security postures."
+                url "https://www.siemens.com/industrial-security"
+                url_description "Siemens’ guide on asset inventory for ICS security, aligned with SR-2."
+            {
+                description "Enforce contractual security requirements for vendors. Example: Mandating
+                    +b penetration testing for supplier devices."
+                url "https://www.honeywellprocess.com/library/support/security/whitepapers/"
+                url_description "Honeywell’s whitepaper on vendor security clauses in ICS contracts."
+            {
+                description "Implement API gateways to monitor and control external communications. Example:
+                    +b Filtering malicious requests to a historian database."
+                url "https://www.schneider-electric.com/en/work/solutions/cybersecurity/"
+                url_description "Schneider Electric’s API security best practices for industrial systems."
+            {
+                description "Conduct regular threat modeling workshops with vendors. Example: Joint sessions
+                    +b to update threat models for a new PLC firmware."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                url_description "ISA’s collaborative threat modeling guidelines for IEC 62443 compliance."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Entity Risk Classification"
+                description "Categorize external entities by criticality and attack surface (e.g., cloud
+                    +b APIs vs. sensors). Supports targeted mitigation in SR-2."
+                [ related_links
+                    {
+                        title "Rockwell Automation ICS Risk Assessment"
+                        url "https://www.rockwellautomation.com/en-us/capabilities/cybersecurity.html"
+                        description "Framework for classifying ICS device risks."
+                    {
+                        title "NIST SP 800-82r3 (ICS Security)"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final"
+                        description "Guidance on risk-based external entity management."
+            {
+                id "KA2"
+                title "Communication Protocol Security"
+                description "Analyze protocols (e.g., OPC UA, MQTT) used by external entities for encryption
+                    +b and authentication gaps. Essential for SR-2e compliance."
+                [ related_links
+                    {
+                        title "OPC Foundation Security Whitepaper"
+                        url "https://opcfoundation.org/security/"
+                        description "Best practices for securing OPC UA communications."
+                    {
+                        title "MQTT Security Guidelines"
+                        url "https://www.hivemq.com/blog/mqtt-security-fundamentals/"
+                        description "HiveMQ’s guide to securing MQTT in industrial IoT."
+            {
+                id "KA3"
+                title "Vendor Security Audits"
+                description "Regularly audit third-party security controls (e.g., patch management). Aligns
+                    +b with SR-2e’s focus on interacting entities."
+                [ related_links
+                    {
+                        title "ICS Vendor Audit Checklist"
+                        url "https://www.cisa.gov/ics-cert"
+                        description "CISA’s template for assessing vendor security postures."
+                    {
+                        title "Microsoft IoT Security Framework"
+                        url "https://azure.microsoft.com/en-us/solutions/iot/"
+                        description "Vendor audit criteria for IoT devices in ICS."
+            {
+                id "KA4"
+                title "Boundary Defense Controls"
+                description "Deploy firewalls and IDS/IPS at interaction points. Mitigates threats from
+                    +b SR-2e’s external entities."
+                [ related_links
+                    {
+                        title "Cisco Industrial Firewall Guide"
+                        url "
+                            +b https://www.cisco.com/c/en/us/solutions/industries/manufacturing/industrial-security.html"
+                        description "Configuring firewalls for ICS external interfaces."
+                    {
+                        title "Palo Alto ICS IDS Deployment"
+                        url "
+                            +b https://www.paloaltonetworks.com/cyberpedia/what-is-an-industrial-control-system-ics"
+                        description "Case study on IDS for third-party ICS connections."
+    {
+        practice "2"
+        code "SR-2"
+        subCode "f) internal and external communication protocols implemented in the product;"
+        explanation "Threat modeling for communication protocols ensures identification and
+            +b mitigation of vulnerabilities in data exchange mechanisms within and outside
+            +b the product, critical for ICS security."
+        context "In ICS environments, secure communication protocols are vital to prevent
+            +b unauthorized access, data breaches, and operational disruptions. This
+            +b requirement focuses on analyzing protocols for inherent risks."
+        [ challenges
+            "Legacy Protocol Support: Many ICS devices use outdated protocols (e.g., Modbus) lacking encryption. Example: A power plant using unsecured Modbus TCP for SCADA communications."
+            "Protocol Complexity: Modern protocols (e.g., OPC UA) have intricate configurations. Example: Misconfigured OPC UA endpoints exposing sensitive data."
+            "Interoperability Issues: Mixed protocol environments (e.g., PROFINET and Ethernet/IP) create security gaps. Example: A manufacturing line with inconsistent security settings across protocols."
+            "Encryption Overhead: Secure protocols (e.g., TLS) may impact real-time performance. Example: A DCS system experiencing latency due to TLS handshakes."
+            "Vendor-Specific Extensions: Proprietary protocol extensions introduce unknown risks. Example: A vendor’s custom DNP3 extension bypassing authentication checks."
+        [ best_practices
+            {
+                description "Implement protocol whitelisting to restrict unauthorized communications.
+                    +b Example: Allowing only MQTT with TLS in an IIoT gateway. Resource: Siemens’
+                    +b guide on secure protocol configuration."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-software/automation-software/tia-portal.html"
+                url_description "Siemens’ TIA Portal documentation includes protocol security settings for ICS
+                    +b devices."
+            {
+                description "Use protocol analyzers (e.g., Wireshark with ICS plugins) to monitor traffic.
+                    +b Example: Detecting unencrypted DNP3 traffic in a substation. Resource:
+                    +b Wireshark’s ICS dissector guide."
+                url "
+                    +b https://www.wireshark.org/docs/wsug_html_chunked/ChAdvCustomDissectorsSection.html"
+                url_description "Wireshark’s dissector development guide for ICS protocol analysis."
+            {
+                description "Enforce mutual authentication for all protocols. Example: OPC UA certificates
+                    +b for client/server validation. Resource: OPC Foundation’s security whitepaper."
+                url "
+                    +b https://opcfoundation.org/wp-content/uploads/2014/10/OPC-UA-Security-White-Paper-1-00.pdf"
+                url_description "OPC UA security guidelines for authentication and encryption."
+            {
+                description "Segment networks by protocol criticality. Example: Isolating PROFINET real-time
+                    +b traffic from HTTP. Resource: Cisco’s industrial network design guide."
+                url "
+                    +b https://www.cisco.com/c/en/us/solutions/enterprise/design-zone-industrial/index.html"
+                url_description "Cisco’s best practices for ICS network segmentation."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Protocol Risk Assessment"
+                description "Systematic evaluation of protocol vulnerabilities (e.g., replay attacks in
+                    +b DNP3) and their impact on ICS operations. Aligns with SR-2(f) by identifying
+                    +b threats specific to communication layers."
+                [ related_links
+                    {
+                        title "NIST Guide to ICS Protocol Security"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST SP 800-82 details risk assessment methodologies for ICS protocols."
+                    {
+                        title "Rockwell Automation Protocol Hardening"
+                        url "
+                            +b https://literature.rockwellautomation.com/idc/groups/literature/documents/wp/enet-wp001_-en-p.pdf"
+                        description "Rockwell’s whitepaper on securing EtherNet/IP and CIP protocols."
+            {
+                id "KA2"
+                title "Secure Protocol Configuration"
+                description "Documentation of secure settings (e.g., disabling SNMP v1/v2c) for each
+                    +b protocol. Ensures compliance with SR-2(f) by enforcing baseline security
+                    +b configurations."
+                [ related_links
+                    {
+                        title "Schneider Electric Modbus Security Guide"
+                        url "https://www.se.com/ww/en/work/support/cybersecurity/security-notifications.jsp"
+                        description "Schneider’s recommendations for securing Modbus TCP implementations."
+                    {
+                        title "Honeywell Secure OPC Configuration"
+                        url "https://www.honeywellprocess.com/library/support/Pages/technical-notes.aspx"
+                        description "Honeywell’s technical notes on OPC DA/UA security settings."
+            {
+                id "KA3"
+                title "Protocol Monitoring"
+                description "Real-time analysis of protocol traffic for anomalies (e.g., malformed PROFINET
+                    +b packets). Supports SR-2(f) by detecting threats during operation."
+                [ related_links
+                    {
+                        title "Yokogawa Network Monitoring for ICS"
+                        url "
+                            +b https://www.yokogawa.com/solutions/products-platforms/control-system/network-security/"
+                        description "Yokogawa’s approach to ICS protocol monitoring and anomaly detection."
+                    {
+                        title "Belden ICS IDS Solutions"
+                        url "https://www.belden.com/solutions/industries/industrial/cybersecurity"
+                        description "Belden’s intrusion detection systems for industrial protocols."
+            {
+                id "KA4"
+                title "Vendor Protocol Documentation"
+                description "Review of vendor-supplied protocol specifications (e.g., Siemens S7 comms) for
+                    +b undocumented features. Critical for SR-2(f) to address hidden risks."
+                [ related_links
+                    {
+                        title "ABB Protocol Implementation Guides"
+                        url "https://library.e.abb.com/public/"
+                        description "ABB’s technical documentation on protocol implementations in ICS devices."
+                    {
+                        title "Mitsubishi MELSEC Security Manual"
+                        url "
+                            +b https://www.mitsubishielectric.com/fa/products/cnt/plc/plc/melsec_q/download/manual.html"
+                        description "Mitsubishi’s security guidelines for MELSEC protocol stacks."

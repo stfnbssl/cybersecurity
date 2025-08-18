@@ -1,0 +1,358 @@
+$group
+    {
+        practice "5"
+        code "SVV-1"
+        subCode "a) functional testing of security requirements;"
+        [ policies
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Automated Security Testing for ICS Protocols"
+                description "This policy mandates the use of automated tools to test the security of
+                    +b industrial communication protocols (e.g., OPC UA, PROFINET) in accordance with
+                    +b IEC 62443-4-1. Testing must validate encryption, authentication, and error
+                    +b handling to ensure compliance with security requirements. Reference: IEC
+                    +b 62443-4-1, Section SVV-1."
+                enforcement "Regular audits using tools like Wireshark with ICS plugins and automated test
+                    +b scripts integrated into the CI/CD pipeline. Non-compliance results in blocking
+                    +b deployment until vulnerabilities are remediated."
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Third-Party Component Security Validation"
+                description "All vendor-supplied components (e.g., PLC firmware, HMI modules) must undergo
+                    +b functional security testing before integration. Tests must cover authentication
+                    +b bypass, input validation, and protocol robustness, aligned with IEC 62443-4-1's
+                    +b KA3 (Third-Party Component Testing)."
+                enforcement "Require vendors to provide test reports compliant with IEC 62443-4-1. Internal
+                    +b verification via hardware-in-the-loop (HIL) testing. Non-compliant components
+                    +b are quarantined."
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Real-Time Performance Impact Assessment"
+                description "Security functions (e.g., encrypted OPC UA sessions) must be tested for
+                    +b performance degradation under operational load. Thresholds (e.g., <5% latency
+                    +b increase) are defined per IEC 62443-4-1's KA4 (Real-Time Performance Impact)."
+                enforcement "Performance benchmarks using tools like Yokogawa’s ICS simulators. Deviations
+                    +b trigger design reviews."
+        [ procedures
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Protocol Fuzz Testing for CNC Machines"
+                description "Procedure to test PROFINET and OPC UA implementations on Breton Spa CNC
+                    +b machines for resilience against malformed packets, ensuring compliance with IEC
+                    +b 62443-4-1's KA1 (Protocol Security Validation)."
+                [ steps
+                    {
+                        step 1
+                        action "Configure Peach Fuzzer with PROFINET PN Security test cases."
+                        tools "Peach Fuzzer, Breton Spa protocol specifications."
+                        expected_outcome "Test cases generated for invalid packet lengths/fields."
+                    {
+                        step 2
+                        action "Execute fuzzing against the CNC's control interface in a sandboxed HIL
+                            +b environment."
+                        tools "Hardware-in-the-loop simulator, network taps."
+                        expected_outcome "Logs of system responses to malformed inputs without production disruption."
+                    {
+                        step 3
+                        action "Analyze crashes/unhandled exceptions; update PLC firmware per IEC 62443-4-1 CR3
+                            +b (System Integrity)."
+                        tools "IDA Pro for crash analysis, vendor patch management system."
+                        expected_outcome "Patched firmware with validated error handling."
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Stone Cutting Machine Authentication Testing"
+                description "Procedure to verify multi-factor authentication (MFA) for remote access to
+                    +b Breton Spa stone cutters, per IEC 62443-4-1's KA1 and CR1 (Identification and
+                    +b Authentication Control)."
+                [ steps
+                    {
+                        step 1
+                        action "Simulate MitM attacks on MQTT-TLS sessions using Kali Linux tools."
+                        tools "Ettercap, Wireshark with ICS dissectors."
+                        expected_outcome "Evidence of TLS 1.2+ enforcement and certificate pinning."
+                    {
+                        step 2
+                        action "Attempt brute-force attacks on HMI login interfaces."
+                        tools "Hydra, rate-limiting configuration guides."
+                        expected_outcome "Account lockout after 5 failed attempts (per CR1)."
+                    {
+                        step 3
+                        action "Validate audit logs record authentication events per CR6 (Timely Response)."
+                        tools "SIEM (e.g., Splunk with ICS add-ons)."
+                        expected_outcome "Logs show timestamped login attempts with source IPs."
+            {
+                code "SVV-1"
+                subCode "a)"
+                title "Composite Material Line Error Handling Validation"
+                description "Procedure to test error recovery in Breton Spa composite processing lines when
+                    +b receiving invalid CANopen commands, per IEC 62443-4-1's KA2 (Error Handling
+                    +b Testing)."
+                [ steps
+                    {
+                        step 1
+                        action "Inject malformed CANopen frames using a secure test harness."
+                        tools "CANoe with Secure Extensions, Breton Spa API documentation."
+                        expected_outcome "System rejects invalid frames without crashing."
+                    {
+                        step 2
+                        action "Monitor system logs for error messages and recovery time."
+                        tools "Graylog with ICS log parsing rules, stopwatch."
+                        expected_outcome "Errors logged within 1 second; recovery <10ms (per SL-2)."
+                    {
+                        step 3
+                        action "Verify fail-safe state activation (e.g., emergency stop) on critical errors."
+                        tools "Breton Spa safety manual, multimeter for relay testing."
+                        expected_outcome "Machine enters safe state without manual intervention."
+        last_updated "2023-11-15"
+    {
+        practice "5"
+        code "SVV-1"
+        subCode "b) performance and scalability testing;"
+        [ policies
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "Performance Baseline Establishment"
+                description "This policy mandates the creation of performance baselines for all security
+                    +b functions within ICS environments, ensuring they operate effectively under
+                    +b expected and peak load conditions as per IEC 62443-4-1 requirements. Baselines
+                    +b must include metrics for CPU, memory, and network utilization during security
+                    +b operations."
+                enforcement "Regular audits using tools like Wireshark for network traffic analysis and PRTG
+                    +b for resource monitoring. Non-compliance triggers mandatory remediation within
+                    +b 30 days."
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "Protocol-Aware Load Testing"
+                description "Requires all ICS security components to undergo protocol-specific stress
+                    +b testing (e.g., Modbus TCP with TLS, OPC UA) using tools like Tofino LoadMaster.
+                    +b Testing must simulate 150% of maximum expected transaction volumes to validate
+                    +b performance under attack conditions (IEC 62443-4-1 SVV-1b)."
+                enforcement "Quarterly testing cycles documented in the Security Verification Report. Test
+                    +b plans require approval by the ICS Security Architect."
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "Scalability Validation Framework"
+                description "Implements Yokogawa's DCS scalability methodology (referenced in IEC 62443-4-1
+                    +b KA4) to progressively increase system load until operational limits are
+                    +b identified. Applies to all new control system deployments and major upgrades."
+                enforcement "Automated scaling tests using Kubernetes-based test harnesses for
+                    +b cloud-connected ICS components. Results reviewed by the Change Advisory Board
+                    +b before production deployment."
+        [ procedures
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "ICS Protocol Stress Testing"
+                description "Procedure for executing performance tests using actual industrial protocols
+                    +b (PROFINET, EtherNet/IP) with security features enabled, measuring latency and
+                    +b throughput degradation under load."
+                [ steps
+                    {
+                        step 1
+                        action "Configure testbed with representative ICS devices (PLCs, RTUs) and security
+                            +b appliances (firewalls, IDS)"
+                        tools "Tofino LoadMaster, Wireshark with ICS dissectors"
+                        expected_outcome "Documented network topology showing all test components and their baseline
+                            +b configurations"
+                    {
+                        step 2
+                        action "Generate protocol-specific traffic patterns (poll-response, alarm bursts) at
+                            +b increasing load levels (50%, 100%, 150% of normal operation)"
+                        tools "IXIA BreakingPoint, Spirent TestCenter"
+                        expected_outcome "CSV files containing timestamped transaction latency measurements per protocol"
+                    {
+                        step 3
+                        action "Inject security events (malformed packets, DoS attempts) during peak load and
+                            +b measure impact on control loop stability"
+                        tools "Metasploit Industrial Exploit Pack, custom Python scripts"
+                        expected_outcome "Report identifying maximum sustainable load before security function
+                            +b degradation occurs"
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "Hardware-in-the-Loop Security Validation"
+                description "Process for testing embedded ICS devices (PLCs, drives) under cryptographic
+                    +b processing loads using physical hardware testbeds."
+                [ steps
+                    {
+                        step 1
+                        action "Flash test firmware with instrumentation hooks to measure real-time
+                            +b cryptographic operation durations"
+                        tools "JTAG debuggers, Green Hills MULTI IDE"
+                        expected_outcome "Instrumented firmware image with verified measurement points"
+                    {
+                        step 2
+                        action "Execute control logic with increasing security policy strictness (SL1-SL3)
+                            +b while monitoring cycle time deviations"
+                        tools "NI VeriStand, dSPACE SCALEXIO"
+                        expected_outcome "Tabulated data showing control loop jitter vs. security level"
+                    {
+                        step 3
+                        action "Validate fail-safe behaviors during cryptographic processor overload (watchdog
+                            +b timeouts, graceful degradation)"
+                        tools "Oscilloscopes with protocol triggers, logic analyzers"
+                        expected_outcome "Documented recovery procedures meeting IEC 62443-4-1 RTO requirements"
+            {
+                code "SVV-1"
+                subCode "b)"
+                title "Distributed Control System Scaling Test"
+                description "Methodology for validating security function performance in geographically
+                    +b distributed ICS architectures with mixed criticality zones."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy test nodes across operational zones (Level 1-3 per ISA-95) with
+                            +b representative network latency"
+                        tools "Cisco Modeling Labs, GNS3 with ICS device images"
+                        expected_outcome "Validated test environment mirroring production network characteristics"
+                    {
+                        step 2
+                        action "Execute coordinated security operations (certificate renewals, policy updates)
+                            +b while measuring synchronization delays"
+                        tools "SEL-3530 Real-Time Automation Controller, IEEE 1588 PTP grandmaster"
+                        expected_outcome "Time-synchronized logs showing security operation completion times across zones"
+                    {
+                        step 3
+                        action "Simulate zone isolation events (network segmentation failures) and validate
+                            +b security policy consistency"
+                        tools "RuggedCom ROS, Hirschmann OCTOPUS"
+                        expected_outcome "Documented maximum partition duration before security state divergence occurs"
+        last_updated "2023-10-15"
+    {
+        practice "5"
+        code "SVV-2"
+        subCode "b) creating and executing plans for attempting to thwart each mitigation."
+        [ policies
+            {
+                code "SVV-2"
+                subCode "b"
+                title "ICS Mitigation Test Planning Policy"
+                description "This policy mandates the development of documented test plans for each security
+                    +b mitigation control implemented in Breton Spa's industrial control systems.
+                    +b Plans must include ICS-specific attack simulations (e.g., protocol fuzzing for
+                    +b OPC UA/PROFINET), success criteria aligned with SL 2-3 requirements, and safety
+                    +b boundaries to prevent operational disruption. Reference: IEC 62443-4-1 SVV-2
+                    +b subCode b for threat mitigation validation requirements."
+                enforcement "Quarterly audits by the ICS Security Office using test plan documentation
+                    +b reviews and tool execution logs. Automated verification via Claroty Platform
+                    +b for test coverage completeness."
+            {
+                code "SVV-2"
+                subCode "b"
+                title "Safety-Preserving Attack Simulation Policy"
+                description "Establishes requirements for conducting mitigation tests without compromising
+                    +b machine safety in Breton's CNC and stone cutting equipment. Requires
+                    +b Hardware-in-the-Loop (HIL) testing for physical controls (e.g., validating
+                    +b emergency stop bypass attempts on shadow PLCs) and prohibits live testing of
+                    +b safety instrumented systems. Aligns with IEC 62443-4-1 SVV-2's safety
+                    +b integration requirements."
+                enforcement "Pre-test safety validations by certified functional safety engineers (TÜV
+                    +b certified). Post-test verification through safety system integrity checks using
+                    +b Siemens TIA Portal diagnostics."
+            {
+                code "SVV-2"
+                subCode "b"
+                title "Mitigation Test Documentation Standard"
+                description "Defines the reporting format for SVV-2 subCode b test results across Breton's
+                    +b product lines. Requires MITRE ATT&CK for ICS mapping (Tactics TA004-TA008),
+                    +b residual risk assessment using ISA-62443-3-3 templates, and evidence of
+                    +b engineering review for all failed tests. Implements IEC 62443-4-1 KA4 (Results
+                    +b Documentation) requirements."
+                enforcement "Automated documentation checks in Breton's Product Lifecycle Management (PLM)
+                    +b system. Annual compliance audits against document control procedures by
+                    +b notified bodies."
+        [ procedures
+            {
+                code "SVV-2"
+                subCode "b"
+                title "Industrial Protocol Mitigation Testing Procedure"
+                description "Step-by-step process for validating security controls on Breton machines'
+                    +b industrial protocols (OPC UA, PROFINET, EtherNet/IP). Focuses on testing
+                    +b cryptographic implementations and session hijacking mitigations per IEC
+                    +b 62443-4-1 CR3/CR4 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Configure testbed with target machine controller (e.g., Siemens S7-1500 PLC)
+                            +b and attacker workstation running ICS-Security-Tools"
+                        tools "Siemens TIA Portal v18, Wireshark with ICS dissectors"
+                        expected_outcome "Isolated test environment mirroring production network segmentation (Zone 1A
+                            +b per IEC 62443-3-3)"
+                    {
+                        step 2
+                        action "Execute protocol-specific attacks: OPC UA session spoofing, PROFINET
+                            +b PN-Security downgrade attacks, Modbus TCP/TLS fuzzing"
+                        tools "Python-opcua library, PROFINET PenTest Toolkit, Boofuzz framework"
+                        expected_outcome "Documented evidence of mitigation effectiveness (e.g., TLS 1.2 termination on
+                            +b invalid handshakes)"
+                    {
+                        step 3
+                        action "Validate safety interlocks triggered during testing (e.g., emergency stop
+                            +b activation on unauthorized command injection)"
+                        tools "Siemens Safety Evaluation Tool, Rockwell Studio 5000 Logix Designer"
+                        expected_outcome "Safety functions remain operational with zero false triggers during security
+                            +b testing"
+            {
+                code "SVV-2"
+                subCode "b"
+                title "CNC Firmware Integrity Testing Procedure"
+                description "Validates firmware signing and secure boot implementations on Breton's CNC
+                    +b machining centers per IEC 62443-4-1 CR3 requirements. Covers both runtime
+                    +b manipulation attempts and update process vulnerabilities."
+                [ steps
+                    {
+                        step 1
+                        action "Extract firmware from target CNC controller using approved diagnostic ports
+                            +b (USB/SD card interfaces)"
+                        tools "Hex-Rays IDA Pro with ARM processor module, JTAG debugger"
+                        expected_outcome "Successful firmware dump with verification of read-protection mechanisms"
+                    {
+                        step 2
+                        action "Attempt unsigned firmware upload via all supported channels
+                            +b (network/USB/fieldbus)"
+                        tools "Breton Service Toolkit v2025.1, OPC UA Client with write privileges"
+                        expected_outcome "Rejection of all unsigned firmware with appropriate security event logging (CIP
+                            +b Security alarms)"
+                    {
+                        step 3
+                        action "Verify runtime integrity checks by injecting modified code segments into
+                            +b running process memory"
+                        tools "Windbg with ICS plugin, Runtime CRC checker"
+                        expected_outcome "Immediate system halt and security alert upon detection of memory corruption"
+            {
+                code "SVV-2"
+                subCode "b"
+                title "Composite Material Line Network Control Testing"
+                description "Procedure for testing network segmentation and restricted data flow controls
+                    +b (IEC 62443-4-1 CR5) on Breton's composite processing lines. Validates zone
+                    +b boundary protections between cell controllers and enterprise networks."
+                [ steps
+                    {
+                        step 1
+                        action "Map all network pathways between Level 3 (site operations) and Level 2 (area
+                            +b controllers) using network taps"
+                        tools "Nmap with NSE ICS scripts, Claroty CTD"
+                        expected_outcome "Complete traffic flow diagram showing all permitted communication paths"
+                    {
+                        step 2
+                        action "Attempt cross-zone communication bypass via protocol tunneling (e.g., MQTT over
+                            +b HTTP, OPC UA through firewalls)"
+                        tools "Chariot network tool, Metasploit proxychains"
+                        expected_outcome "Blocked connection attempts with firewall/IDS alerts for each unauthorized
+                            +b tunnel"
+                    {
+                        step 3
+                        action "Validate deep packet inspection rules by sending malformed industrial protocol
+                            +b packets across zone boundaries"
+                        tools "Scapy with ICS protocol templates, Wurldtech Achilles Test Platform"
+                        expected_outcome "100% packet inspection and blocking of protocol violations per configured SL-3
+                            +b rules"
+        last_updated "2023-10-15"

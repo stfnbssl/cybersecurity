@@ -1,0 +1,392 @@
+$group
+    {
+        practice "8"
+        code "SG-3"
+        subCode "1) its contribution to the product’s defense in depth strategy;"
+        [ policies
+            {
+                code "SG-3"
+                subCode "1"
+                title "Security Hardening Documentation Policy"
+                description "This policy mandates the creation and maintenance of comprehensive security
+                    +b hardening documentation for all Breton Spa products. The documentation must
+                    +b detail configurable security settings, default values, and recommended
+                    +b configurations, aligning with IEC 62443-4-1 requirements. It should explicitly
+                    +b link hardening measures to the product's defense in depth strategy, providing
+                    +b rationale for each recommendation based on identified threats (e.g.,
+                    +b ransomware, MitM attacks)."
+                enforcement "Compliance is verified through quarterly audits using OpenSCAP for automated
+                    +b checks and manual reviews by the security team. Non-compliance triggers
+                    +b remediation workflows in the company's GRC platform."
+            {
+                code "SG-3"
+                subCode "1"
+                title "Default Configuration Risk Assessment Policy"
+                description "Requires systematic analysis of all default configurations in Breton Spa's CNC
+                    +b and stone cutting machines to identify security gaps. For each default setting
+                    +b (e.g., OPC UA security modes, PROFINET PN Security parameters), the policy
+                    +b mandates documentation of: 1) Associated threats (e.g., unauthorized access via
+                    +b default credentials), 2) Impact on defense in depth layers, 3) Recommended
+                    +b secure alternatives. Aligns with IEC 62443-4-1 KA2 (Default Settings Analysis)."
+                enforcement "Enforced through the product development lifecycle gate reviews. The security
+                    +b team uses checklists derived from NIST SP 800-82 to validate assessments.
+                    +b Findings are tracked in Jira with SLAs for resolution."
+            {
+                code "SG-3"
+                subCode "1"
+                title "Hardening Guideline Update Policy"
+                description "Establishes a 90-day review cycle for all security hardening guidelines to
+                    +b address emerging threats (e.g., new ICS protocol vulnerabilities). Requires
+                    +b updates to: 1) Incorporate threat intelligence from CISA ICS-CERT, 2) Reflect
+                    +b changes in supported protocols (e.g., new TLS versions), 3) Integrate lessons
+                    +b from field incidents. Complies with IEC 62443-4-1 continuous improvement
+                    +b requirements."
+                enforcement "Managed via a documented change control process in SharePoint. Version history
+                    +b is maintained, and updates are pushed automatically to customer portals through
+                    +b Breton's secure documentation distribution system."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "1"
+                title "ICS Component Hardening Procedure"
+                description "Step-by-step process for implementing security hardening on Breton Spa's CNC
+                    +b and polishing machines, focusing on defense in depth integration. Covers: 1)
+                    +b Secure configuration of control system components, 2) Network segmentation for
+                    +b critical functions, 3) Protocol-specific security settings (e.g., OPC UA
+                    +b Basic256Sha256 configuration)."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all configurable security parameters in target system (PLC, HMI,
+                            +b network devices) using Breton's Configuration Discovery Tool."
+                        tools "Breton CDS v2.1, Wireshark with ICS protocol dissectors"
+                        expected_outcome "Comprehensive list of security-relevant settings with current values, mapped to
+                            +b IEC 62443-4-1 controls."
+                    {
+                        step 2
+                        action "Apply hardening templates from Breton's Secure Configuration Repository,
+                            +b prioritizing: 1) Authentication controls (CR1), 2) Protocol encryption
+                            +b settings, 3) Audit logging parameters."
+                        tools "Ansible playbooks (ICS-Harden-2025 module), Breton SCP (Secure Configuration
+                            +b Pusher)"
+                        expected_outcome "Validated secure configurations deployed with pre-change backups stored in the
+                            +b configuration management database (CMDB)."
+                    {
+                        step 3
+                        action "Verify hardening effectiveness through: 1) Functional testing of control
+                            +b operations, 2) Vulnerability scanning with ICS-specific tools, 3) Network
+                            +b traffic analysis for protocol security compliance."
+                        tools "Tenable.ot, Dragos Passive Network Monitor, Breton VAS (Vulnerability
+                            +b Assessment Suite)"
+                        expected_outcome "Scan reports showing ≥20% reduction in vulnerabilities compared to baseline,
+                            +b with no critical operational impacts."
+            {
+                code "SG-3"
+                subCode "1"
+                title "Defense in Depth Alignment Procedure"
+                description "Methodology for ensuring hardening measures contribute effectively to layered
+                    +b security architecture in industrial environments. Specifically addresses: 1)
+                    +b Network zone protection (e.g., Cell Protection Zones), 2) Cross-layer security
+                    +b controls, 3) Compensating controls for legacy components."
+                [ steps
+                    {
+                        step 1
+                        action "Map product security capabilities to ISA/IEC 62443 zones and conduits model,
+                            +b identifying: 1) Protection layers provided by the product, 2) Required external
+                            +b controls (e.g., firewalls), 3) Interface security requirements."
+                        tools "Breton ZCM (Zone Conduit Mapper) software, Network diagrams"
+                        expected_outcome "Visualization of product's role in defense in depth architecture with
+                            +b identified control gaps."
+                    {
+                        step 2
+                        action "Implement product-level controls that complement facility-wide security
+                            +b measures, including: 1) Device authentication at zone boundaries, 2) Data diode
+                            +b configurations for critical communications, 3) Secure time synchronization
+                            +b across layers."
+                        tools "Breton SMC (Security Management Console), Hardware security modules (HSMs)"
+                        expected_outcome "Product configurations that actively enforce zone security policies while
+                            +b maintaining operational requirements."
+                    {
+                        step 3
+                        action "Validate defense in depth integration through red team exercises simulating
+                            +b multi-stage attacks, verifying: 1) Effectiveness of layered detection, 2)
+                            +b Containment at product level, 3) Coordinated response capabilities."
+                        tools "ICS-specific penetration testing tools (e.g., ISF Faraday), Attack simulation
+                            +b platforms"
+                        expected_outcome "Test report demonstrating successful containment of ≥90% of simulated attacks
+                            +b through integrated hardening measures."
+            {
+                code "SG-3"
+                subCode "1"
+                title "Hardening Documentation Review Procedure"
+                description "Structured process for creating and maintaining security hardening
+                    +b documentation as required by IEC 62443-4-1. Ensures guidelines are: 1)
+                    +b Technically accurate, 2) Actionable for field personnel, 3) Traceable to threat
+                    +b models."
+                [ steps
+                    {
+                        step 1
+                        action "Extract security-relevant configuration options from engineering documentation
+                            +b and source code using Breton's Documentation Analyzer tool."
+                        tools "Breton DA-400, Code scanning tools with ICS signatures"
+                        expected_outcome "Initial draft of hardening guidelines covering all identified security
+                            +b parameters with engineering context."
+                    {
+                        step 2
+                        action "Enhance draft with: 1) Threat rationale (linking to STRIDE model), 2)
+                            +b Recommended settings for different SL levels, 3) Operational impact
+                            +b assessments, 4) Visual aids (network diagrams, configuration screenshots)."
+                        tools "Threat modeling tools (Microsoft TMT), Graphics software"
+                        expected_outcome "Comprehensive hardening guide draft ready for review, structured per IEC
+                            +b 62443-4-1 KA3 requirements."
+                    {
+                        step 3
+                        action "Conduct multidisciplinary review with: 1) Security team (technical accuracy),
+                            +b 2) Field engineers (practical applicability), 3) Legal (compliance statements).
+                            +b Incorporate feedback through documented change process."
+                        tools "Collaboration platform (Confluence), Document versioning system"
+                        expected_outcome "Approved hardening documentation package with version control, ready for
+                            +b distribution through secure channels."
+        last_updated "2023-10-25"
+    {
+        practice "8"
+        code "SG-3"
+        subCode "3) setting/changing/deleting its value;"
+        [ policies
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "Role-Based Access Control for Configuration Changes"
+                description "This policy enforces role-based access control (RBAC) for all configuration
+                    +b changes in industrial control systems (ICS) to ensure only authorized personnel
+                    +b can modify settings. It aligns with IEC 62443-4-1's requirement for
+                    +b traceability and authorization of changes. The policy applies to all phases of
+                    +b the system lifecycle, including deployment, maintenance, and decommissioning."
+                enforcement "Regular audits using tools like Rockwell’s FactoryTalk AssetCentre to verify
+                    +b RBAC compliance. Automated logging of all configuration changes with alerts for
+                    +b unauthorized attempts."
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "Secure Configuration Templates"
+                description "This policy mandates the use of pre-approved, hardened configuration templates
+                    +b for all ICS devices, ensuring compliance with IEC 62443-4-1 security
+                    +b requirements. Templates must be reviewed and updated annually to address
+                    +b emerging threats. The policy covers default settings, network configurations,
+                    +b and access controls."
+                enforcement "Automated validation tools like Ansible or Chef to enforce template adherence.
+                    +b Quarterly audits to verify template usage and identify deviations."
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "Change Management and Documentation"
+                description "This policy requires documented procedures for all configuration changes,
+                    +b including justification, approval, and testing before implementation. It
+                    +b ensures compliance with IEC 62443-4-1's traceability requirements and mitigates
+                    +b risks from unauthorized or untested changes. The policy applies to both planned
+                    +b and emergency changes."
+                enforcement "Change management tools like Schneider Electric’s EcoStruxure to track and log
+                    +b changes. Monthly reviews of change logs by the security team."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "RBAC Implementation for Configuration Changes"
+                description "This procedure outlines the steps to implement role-based access control (RBAC)
+                    +b for configuration changes in ICS, ensuring only authorized personnel can modify
+                    +b settings. It aligns with IEC 62443-4-1's requirements for secure configuration
+                    +b management."
+                [ steps
+                    {
+                        step 1
+                        action "Identify roles and permissions required for configuration changes (e.g.,
+                            +b Engineer, Operator, Auditor)."
+                        tools "Siemens TIA Portal, Rockwell FactoryTalk"
+                        expected_outcome "A defined list of roles with specific permissions for configuration changes."
+                    {
+                        step 2
+                        action "Configure RBAC in the ICS software (e.g., Siemens TIA Portal, Rockwell
+                            +b FactoryTalk) to enforce the identified roles and permissions."
+                        tools "Siemens TIA Portal, Rockwell FactoryTalk"
+                        expected_outcome "RBAC is enabled and enforced in the ICS software."
+                    {
+                        step 3
+                        action "Test the RBAC implementation by attempting unauthorized changes and verifying
+                            +b they are blocked."
+                        tools "ICS software, Audit logs"
+                        expected_outcome "Unauthorized changes are blocked, and attempts are logged."
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "Configuration Backup and Recovery"
+                description "This procedure details the steps to regularly back up secure configurations and
+                    +b recover them in case of incidents, ensuring compliance with IEC 62443-4-1's
+                    +b integrity requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Schedule regular backups of all ICS configurations, including PLCs, HMIs, and
+                            +b network devices."
+                        tools "Siemens SIMATIC Backup, Rockwell FactoryTalk AssetCentre"
+                        expected_outcome "Regular backups are performed and stored securely."
+                    {
+                        step 2
+                        action "Verify the integrity of backup files by periodically restoring them in a test
+                            +b environment."
+                        tools "Test environment, Backup files"
+                        expected_outcome "Backup files are verified and can be restored successfully."
+                    {
+                        step 3
+                        action "Document the recovery process and train personnel on executing it during
+                            +b incidents."
+                        tools "Documentation, Training materials"
+                        expected_outcome "Personnel are trained and can execute the recovery process effectively."
+            {
+                code "SG-3"
+                subCode "3) setting/changing/deleting its value;"
+                title "Audit Configuration Changes"
+                description "This procedure describes the steps to audit configuration changes in ICS to
+                    +b ensure compliance with IEC 62443-4-1's traceability and security requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Collect logs of all configuration changes from ICS devices and management
+                            +b tools."
+                        tools "Schneider EcoStruxure, Rockwell FactoryTalk AssetCentre"
+                        expected_outcome "Comprehensive logs of all configuration changes are collected."
+                    {
+                        step 2
+                        action "Analyze logs for unauthorized or suspicious changes, comparing them against
+                            +b approved change requests."
+                        tools "SIEM tools, Audit logs"
+                        expected_outcome "Unauthorized or suspicious changes are identified and flagged."
+                    {
+                        step 3
+                        action "Report findings to the security team and take corrective actions for any
+                            +b deviations."
+                        tools "Reporting tools, Incident response plan"
+                        expected_outcome "Findings are reported, and corrective actions are implemented."
+        last_updated "2023-10-25"
+    {
+        practice "8"
+        code "SG-3"
+        subCode "f) instructions and recommendations for periodic security maintenance
+            +b activities;"
+        [ policies
+            {
+                code "SG-3"
+                subCode "f"
+                title "Automated Patch Management Policy"
+                description "This policy mandates the use of automated tools for patch management in ICS
+                    +b environments to ensure timely application of security updates while minimizing
+                    +b operational disruption. It aligns with IEC 62443-4-1 requirements for
+                    +b maintaining system integrity (CR3) and includes vendor-specific patch
+                    +b validation procedures for Breton Spa's CNC and stone cutting machines."
+                enforcement "Quarterly audits using Siemens SIMATIC Update Manager logs and Breton's
+                    +b internal patch tracking system (v2025.1). Non-compliance triggers incident
+                    +b response procedures."
+            {
+                code "SG-3"
+                subCode "f"
+                title "Configuration Baseline Enforcement Policy"
+                description "Establishes mandatory configuration baselines for all industrial control
+                    +b systems, with specific hardening guidelines for OPC UA and PROFINET
+                    +b implementations in Breton's product lines. References IEC 62443-4-1 CR5
+                    +b (Restricted Data Flow) requirements for network segmentation of polishing and
+                    +b composite material processing equipment."
+                enforcement "Automated checks via Honeywell Experion PKS configuration validation tools,
+                    +b with manual audits during annual security assessments. Deviations require
+                    +b immediate remediation and root cause analysis documentation."
+            {
+                code "SG-3"
+                subCode "f"
+                title "Security Maintenance Documentation Policy"
+                description "Requires comprehensive documentation of all periodic maintenance activities,
+                    +b including patch records, configuration changes, and audit results. Specifically
+                    +b addresses IEC 62443-4-1's demand for traceability in maintenance processes,
+                    +b with tailored templates for Breton's high-criticality metalworking
+                    +b applications."
+                enforcement "Monthly reviews by the OT security team using Schneider Electric's EcoStruxure
+                    +b audit templates. Missing documentation results in system quarantine until
+                    +b compliance is verified."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "f"
+                title "ICS Patch Deployment Procedure"
+                description "Standardized process for testing and deploying security patches across Breton's
+                    +b industrial equipment portfolio, incorporating IEC 62443-4-1 CR6 (Timely
+                    +b Response) requirements for critical vulnerabilities in CNC control systems."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate target system in test environment mirroring production (e.g., identical
+                            +b CNC machining center with 2025.1 firmware)"
+                        tools "Breton TestBench v3.2 with OPC UA traffic simulation"
+                        expected_outcome "Validated test environment with operational data flows matching production"
+                    {
+                        step 2
+                        action "Apply patch using vendor-approved methods (Siemens SIMATIC for PROFINET
+                            +b components, Rockwell tools for EtherNet/IP)"
+                        tools "Automated deployment scripts with hash verification"
+                        expected_outcome "Patch installed with verification logs showing no integrity errors"
+                    {
+                        step 3
+                        action "Execute 72-hour burn-in test with production-equivalent workloads"
+                        tools "Breton Performance Monitor tracking axis positioning accuracy (±0.001mm
+                            +b tolerance)"
+                        expected_outcome "Zero critical faults with all security functions operational per IEC 62443-4-2
+                            +b SL2 requirements"
+            {
+                code "SG-3"
+                subCode "f"
+                title "Configuration Audit Procedure"
+                description "Detailed process for verifying compliance with security baselines across
+                    +b Breton's industrial systems, addressing IEC 62443-4-1 CR3 (System Integrity)
+                    +b through comprehensive checks of authentication controls and protocol
+                    +b implementations."
+                [ steps
+                    {
+                        step 1
+                        action "Collect current configurations from all ICS components (PLCs, HMIs, network
+                            +b devices)"
+                        tools "Breton SecureConfig Collector with signed hash verification"
+                        expected_outcome "Cryptographically verified configuration snapshot for all systems"
+                    {
+                        step 2
+                        action "Compare against hardened baselines using NIST SP 800-128 guidelines for
+                            +b industrial systems"
+                        tools "Honeywell Configuration Diff Tool with IEC 62443-4-1 rule templates"
+                        expected_outcome "Deviation report highlighting non-compliant parameters with severity ratings"
+                    {
+                        step 3
+                        action "Document findings in Breton's GRC system with remediation timelines"
+                        tools "SAP GRC module with ISA-62443 workflow integration"
+                        expected_outcome "Audit trail showing all discrepancies and approved remediation plans"
+            {
+                code "SG-3"
+                subCode "f"
+                title "Legacy System Maintenance Procedure"
+                description "Specialized process for maintaining security on obsolete Breton equipment still
+                    +b in operation, implementing IEC 62443-4-1 compensating controls for systems that
+                    +b cannot meet current patch requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy systems (pre-2020 Breton controllers) in dedicated VLANs"
+                        tools "Cisco Industrial Ethernet switches with MACsec enforcement"
+                        expected_outcome "Network segmentation verified via traffic analysis showing no cross-VLAN
+                            +b communication"
+                    {
+                        step 2
+                        action "Deploy protocol gateways with deep packet inspection for legacy PROFINET/MODBUS
+                            +b traffic"
+                        tools "Hirschmann OCTOPUS firewall with ICS-specific rule sets"
+                        expected_outcome "All legacy protocol traffic filtered through security proxies with event
+                            +b logging"
+                    {
+                        step 3
+                        action "Implement physical access controls for legacy device panels"
+                        tools "ABLOY electronic locks with Breton maintenance badge integration"
+                        expected_outcome "Access logs showing only authorized personnel interacting with legacy systems"
+        last_updated "2023-10-15"

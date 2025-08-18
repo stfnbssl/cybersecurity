@@ -1,0 +1,238 @@
+$group
+    {
+        id "FSA-CR 3.8C"
+        check_description "Components shall provide mechanisms to protect the integrity of communications
+            +b sessions including the capability to generate unique session identifiers with
+            +b commonly accepted sources of randomness."
+        requirement_id "IEC 62443-4-2: CR 3.8(c)"
+        title "Session Integrity - Random Session Identifiers"
+        description "This requirement focuses on ensuring the integrity of sessions by utilizing
+            +b random session identifiers. It aims to prevent unauthorized access and session
+            +b hijacking by making it difficult for attackers to predict or intercept session
+            +b identifiers."
+        [ key_aspects
+            {
+                aspect "Randomness"
+                detail "Session identifiers must be generated using a method that ensures a high degree
+                    +b of randomness, making them unpredictable and difficult to guess. This minimizes
+                    +b the risk of session hijacking."
+            {
+                aspect "Uniqueness"
+                detail "Each session identifier must be unique across all sessions to prevent
+                    +b duplication and ensure that each session can be distinctly authenticated and
+                    +b authorized."
+            {
+                aspect "Secure Generation"
+                detail "The process of generating session identifiers should employ cryptographic
+                    +b algorithms or secure random number generators to enhance security."
+            {
+                aspect "Session Management"
+                detail "Effective session management practices should be in place to ensure that
+                    +b session identifiers are securely exchanged and stored, and that expired
+                    +b sessions are properly terminated."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.2.3 - User access management"
+                detail "This section emphasizes the importance of secure access control mechanisms,
+                    +b including the management of session identifiers to prevent unauthorized access."
+            {
+                standard "OWASP"
+                reference "Session Management Cheat Sheet"
+                detail "Provides guidelines on secure session management, including the generation and
+                    +b handling of session identifiers to protect against session-related
+                    +b vulnerabilities."
+            {
+                standard "NIST SP 800-63B"
+                reference "Digital Identity Guidelines"
+                detail "Offers recommendations on session management, including the use of secure
+                    +b session identifiers in the context of digital identity and authentication
+                    +b processes."
+            {
+                standard "RFC 4086"
+                reference "Randomness Requirements for Security"
+                detail "Describes the requirements for generating random numbers or identifiers that
+                    +b are secure and suitable for use in cryptographic applications, which is
+                    +b relevant for generating session identifiers."
+    {
+        id "FSA-CR 3.9"
+        check_description "Components shall protect audit information, audit logs, and audit tools (if
+            +b present) from unauthorized access, modification and deletion."
+        requirement_id "IEC 62443-4-2: CR 3.9"
+        title "Protection of Audit Information"
+        description "This requirement focuses on ensuring the integrity, confidentiality, and
+            +b availability of audit information. It mandates that audit logs and other
+            +b relevant data must be protected against unauthorized access, modification, and
+            +b deletion to maintain the trustworthiness of the audit processes within the
+            +b control system environment."
+        [ key_aspects
+            {
+                aspect "Integrity"
+                description "Audit records must be protected from unauthorized alterations to ensure that
+                    +b the data accurately reflects the events that occurred."
+            {
+                aspect "Confidentiality"
+                description "Access to audit information must be restricted to authorized personnel only,
+                    +b preventing unauthorized disclosure of sensitive information."
+            {
+                aspect "Availability"
+                description "Audit information must be available to authorized users when needed, ensuring
+                    +b logs can be reviewed or analyzed during investigations or audits."
+            {
+                aspect "Access Control"
+                description "Implementation of strict access controls to limit who can view or modify audit
+                    +b logs."
+            {
+                aspect "Log Retention"
+                description "Establishing policies for how long audit logs should be retained to meet
+                    +b compliance and operational needs."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.4 - Logging and monitoring"
+                description "This section emphasizes the importance of protecting logged information and
+                    +b ensuring that logging facilities and log information are adequately protected
+                    +b against tampering and unauthorized access."
+            {
+                standard "NIST SP 800-53"
+                reference "AU-9 - Protection of Audit Information"
+                description "Focuses on the protection of audit information and audit tools from
+                    +b unauthorized access, modification, and deletion."
+            {
+                standard "NERC CIP"
+                reference "CIP-007-6 R4 - Security Event Monitoring"
+                description "Defines requirements for logging and monitoring security events to protect the
+                    +b confidentiality, integrity, and availability of the logs."
+    {
+        id "FSA-CR 3.9 RE(1)"
+        check_description "Components shall provide the capability to store audit records on
+            +b hardware-enforced write-once media."
+        requirement_id "IEC 62443-4-2: CR 3.9 RE(1)"
+        title "Audit Records on Write-Once Media"
+        description "This requirement mandates that audit records must be stored on write-once media
+            +b to prevent unauthorized modifications and ensure the integrity of the audit
+            +b trail. Write-once media provides a tamper-evident solution for storing critical
+            +b security logs, thus preserving the authenticity and reliability of the records."
+        [ key_aspects
+            {
+                aspect "Integrity"
+                detail "Ensures that once audit records are written, they cannot be altered, thus
+                    +b maintaining the integrity of the logs."
+            {
+                aspect "Tamper-Evident"
+                detail "Provides a mechanism to detect unauthorized attempts to modify or delete audit
+                    +b records, ensuring any tampering is evident."
+            {
+                aspect "Non-repudiation"
+                detail "Enables accountability by ensuring that records cannot be disputed or denied
+                    +b once written, supporting forensic investigations."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.4 - Logging and Monitoring"
+                detail "ISO/IEC 27001 highlights the importance of protecting log information against
+                    +b tampering and unauthorized access, aligning with the requirement to store audit
+                    +b records on write-once media."
+            {
+                standard "NIST SP 800-92"
+                reference "Guide to Computer Security Log Management"
+                detail "This document provides guidance on log management and emphasizes the need for
+                    +b protecting log integrity, which supports the use of write-once media for audit
+                    +b records."
+            {
+                standard "NERC CIP-007-6"
+                reference "System Security Management"
+                detail "NERC CIP standards require logging and monitoring, including measures to ensure
+                    +b log integrity, similar to the use of write-once media in IEC 62443-4-2."
+    {
+        id "FSA-EDR 3.10"
+        check_description "The embedded device shall support the ability to be updated and upgraded."
+        requirement_id "IEC 62443-4-2:EDR 3.10"
+        title "Support for Updates"
+        description "This requirement focuses on ensuring that the component under consideration can
+            +b be updated in a secure and reliable manner. It involves the implementation of
+            +b mechanisms that support the installation and application of updates to maintain
+            +b the security and functionality of the component throughout its lifecycle."
+        { key_aspects
+            "update mechanisms" "The component should have defined processes for applying updates, including
+                +b security patches and functional enhancements, in a manner that does not
+                +b compromise the system's integrity."
+            "authentication and verification" "Updates should be authenticated and verified to ensure they are from a trusted
+                +b source and have not been tampered with."
+            "rollback procedures" "There should be procedures to revert to a previous state if an update fails or
+                +b causes issues, ensuring system stability and continuity."
+            "notification and logging" "The system should provide notifications of updates and maintain logs for audit
+                +b and traceability purposes."
+            "minimal disruption" "Updates should be applied in a way that minimizes disruption to the operational
+                +b environment, ensuring continued availability of critical functions."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.8 - Security updates"
+                description "This requirement emphasizes the importance of having a process for managing
+                    +b security updates, including patch management and vulnerability mitigation
+                    +b strategies."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Management of technical vulnerabilities"
+                description "Addresses the management of technical vulnerabilities through timely updates
+                    +b and patch management, ensuring that information systems are protected against
+                    +b known threats."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-2 - Flaw Remediation"
+                description "Focuses on the identification, reporting, and timely remediation of system
+                    +b flaws, including the deployment of security-relevant updates to mitigate
+                    +b vulnerabilities."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                description "Provides guidance on securing ICS, including the management of updates and
+                    +b patches to ensure the integrity and security of industrial control
+                    +b environments."
+    {
+        id "FSA-EDR 3.10 RE(1)"
+        check_description "The embedded device shall validate the authenticity and integrity of any
+            +b software update or upgrade prior to installation."
+        requirement_id "IEC 62443-4-2:EDR 3.10 RE(1)"
+        title "Update Authenticity and Integrity"
+        description "This requirement ensures that updates to industrial automation and control
+            +b systems (IACS) are both authentic and unaltered. It focuses on verifying that
+            +b updates come from a legitimate source and have not been tampered with during
+            +b transmission."
+        [ key_aspects
+            {
+                aspect "Authenticity Verification"
+                details "The requirement mandates the use of cryptographic techniques such as digital
+                    +b signatures to verify the authenticity of updates. This ensures that updates are
+                    +b from a trusted source."
+            {
+                aspect "Integrity Protection"
+                details "Integrity checks, using cryptographic hash functions, are required to confirm
+                    +b that the update has not been modified since its creation by the original
+                    +b source."
+            {
+                aspect "Secure Distribution"
+                details "Updates should be distributed over secure channels to prevent interception and
+                    +b alteration during transit."
+            {
+                aspect "Validation Mechanisms"
+                details "Systems must have mechanisms in place to validate both the authenticity and
+                    +b integrity of updates before they are applied."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3:SR 3.8"
+                reference "This standard covers security requirements for system integrity, providing
+                    +b guidelines for protecting systems from unauthorized modifications."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "This standard is relevant for information security management, including
+                    +b controls for maintaining the integrity and authenticity of information."
+            {
+                standard "NIST SP 800-53:SI-7"
+                reference "Provides guidelines on software, firmware, and information integrity,
+                    +b emphasizing mechanisms for ensuring the integrity of system updates."
+            {
+                standard "IEC 62351"
+                reference "This set of standards addresses the security of control systems and data
+                    +b integrity, focusing on secure communication protocols."

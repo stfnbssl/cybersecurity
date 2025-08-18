@@ -1,0 +1,595 @@
+$group
+    {
+        practice "1"
+        code "SM-6"
+        subCode "undefined"
+        name "File integrity"
+        description "A process shall be employed to provide an integrity verification mechanism for
+            +b all scripts, executables and other important files included in a product."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify potential threats to file integrity and ensure appropriate controls
+                    +b are in place."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model threats such as tampering (integrity violation) and spoofing."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as unauthorized
+                            +b firmware updates."
+                [ tools
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a structured approach to risk assessment tailored for ICS
+                            +b environments."
+                { case_study
+                    example "A power plant implemented file integrity monitoring (FIM) for its DCS,
+                        +b detecting unauthorized changes to critical configuration files."
+            { audit_and_compliance_verification
+                why "To ensure the file integrity process is effectively implemented and maintained."
+                [ audit_checklist
+                    "Verify that file integrity monitoring tools are installed and configured correctly."
+                    "Check logs for evidence of integrity checks and alerts."
+                    "Review procedures for responding to integrity violations."
+                [ metrics
+                    {
+                        kpi "Percentage of critical files monitored for integrity"
+                        target "100%"
+                    {
+                        kpi "Mean time to detect integrity violations"
+                        target "<1 hour"
+                compliance_procedure "Documentation of file integrity checks, alert logs, and response procedures
+                    +b must be reviewed quarterly."
+            { training_and_competency_requirements
+                why "To ensure personnel are capable of implementing and maintaining file integrity
+                    +b controls."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers fundamental ICS security principles, including file integrity."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on securing ICS, including file integrity monitoring."
+                competency_assessment "Annual reviews of personnel competency in file integrity tools and procedures."
+            { tooling_and_automation_support
+                why "To automate file integrity checks and integrate them into the development and
+                    +b operational lifecycle."
+                [ tools
+                    {
+                        name "Tripwire"
+                        purpose "Monitors file integrity and detects unauthorized changes."
+                    {
+                        name "OSSEC"
+                        purpose "Open-source host-based intrusion detection system with file integrity
+                            +b monitoring capabilities."
+                automation_strategy "Integrate file integrity checks into CI/CD pipelines using tools like Jenkins
+                    +b or GitLab CI."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack native file integrity capabilities, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to reduce exposure to tampering."
+                    {
+                        approach "External monitoring"
+                        description "Use external tools to monitor file integrity on legacy systems."
+                example_policy "Legacy systems must be placed in a segmented network zone with external file
+                    +b integrity monitoring."
+            { stakeholder_collaboration_and_governance
+                why "Effective file integrity management requires collaboration across teams."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Implement and monitor file integrity controls."
+                        {
+                            role "Engineering Team"
+                            responsibility "Ensure file integrity tools do not disrupt operations."
+                        {
+                            role "Management"
+                            responsibility "Approve policies and allocate resources."
+                conflict_resolution "A cross-functional committee reviews and resolves conflicts between security
+                    +b and operational priorities."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and improve file integrity processes."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new threats."
+                    {
+                        step "Review incidents"
+                        description "Analyze file integrity violations to identify gaps."
+                    {
+                        step "Update policies"
+                        description "Revise file integrity policies based on lessons learned."
+                lessons_learned "After a firmware tampering incident, a manufacturer updated its file integrity
+                    +b policy to include cryptographic signing of all firmware updates."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-7"
+        subCode "undefined"
+        name "Development environment security"
+        description "A process that includes procedural and technical controls shall be employed for
+            +b protecting the product during development, production and delivery. This
+            +b includes protecting the product or product update (patch) during design,
+            +b implementation, testing and release."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential security threats during the development
+                    +b lifecycle."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored to Industrial Control Systems, focusing on
+                            +b operational technology (OT) risks."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Risk assessment framework customized for ICS environments."
+                { case_study
+                    example "A DCS in a power plant underwent a risk assessment using NIST 800-30 adapted
+                        +b for SCADA systems, identifying critical vulnerabilities in patch management
+                        +b processes."
+            { audit_and_compliance_verification
+                why "To ensure adherence to SM-7 requirements and validate the effectiveness of
+                    +b security controls."
+                [ audit_checklist
+                    "Verify that development environments are isolated from production networks."
+                    "Check that access controls are enforced for development tools and repositories."
+                    "Review patch management procedures for development systems."
+                    "Assess encryption mechanisms for protecting code during transit and storage."
+                [ metrics
+                    {
+                        kpi "Percentage of development systems with up-to-date security patches"
+                        target "≥ 95%"
+                    {
+                        kpi "Number of unauthorized access attempts to development repositories"
+                        target "0"
+                compliance_procedure "Documentation must include evidence of secure development practices, such as
+                    +b code signing certificates, access logs, and patch management records. Regular
+                    +b reviews by the security team are required."
+            { training_and_competency_requirements
+                why "To ensure that development teams have the necessary skills to implement secure
+                    +b development practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering secure development practices for ICS."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focusing on ICS security, including secure development."
+                competency_assessment "Annual competency reviews must be conducted, including practical assessments of
+                    +b secure coding practices and threat modeling skills."
+            { tooling_and_automation_support
+                why "To integrate security into the development lifecycle efficiently."
+                [ tools
+                    {
+                        name "GitHub Advanced Security"
+                        purpose "To automate code scanning for vulnerabilities during development."
+                    {
+                        name "Jenkins with security plugins"
+                        purpose "To integrate security checks into CI/CD pipelines."
+                automation_strategy "Implement DevSecOps pipelines that include automated static and dynamic code
+                    +b analysis, dependency scanning, and compliance checks."
+            { handling_legacy_systems_and_constraints
+                why "Legacy development tools may not support modern security standards, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy development systems in a separate network segment with strict
+                            +b access controls."
+                    {
+                        approach "Virtual patching"
+                        description "Use intrusion prevention systems to protect legacy systems from known
+                            +b vulnerabilities."
+                example_policy "Legacy development tools must be documented, and compensating controls must be
+                    +b implemented if they cannot meet current security standards. A risk assessment
+                    +b must justify their continued use."
+            { stakeholder_collaboration_and_governance
+                why "Effective implementation of SM-7 requires collaboration between development,
+                    +b security, and management teams."
+                { governance_model
+                    name "RACI Matrix for SM-7"
+                    [ roles
+                        {
+                            role "Development Team"
+                            responsibility "Implement secure development practices and tools."
+                        {
+                            role "Security Team"
+                            responsibility "Define security requirements and review compliance."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and enforce policy adherence."
+                conflict_resolution "Conflicts between development and security priorities are resolved through a
+                    +b risk-based approach, with escalation to a governance committee if necessary."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and improve security practices over time."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new vulnerabilities."
+                    {
+                        step "Review incidents"
+                        description "Analyze security incidents to identify gaps in development security."
+                    {
+                        step "Update policies"
+                        description "Revise SM-7 policies based on lessons learned and new threats."
+                lessons_learned "After a supply chain attack, the organization updated its SM-7 policies to
+                    +b include stricter controls for third-party code integration."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-8"
+        subCode "undefined"
+        name "Controls for private keys"
+        description "The supplier shall have procedural and technical controls in place to protect
+            +b private keys used for code signing from unauthorized access or modification."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Private keys are critical assets that, if compromised, can lead to unauthorized
+                    +b code execution, system breaches, and loss of trust."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify threats such as Spoofing (unauthorized use of keys), Tampering
+                            +b (modification of keys), and Information Disclosure (leakage of keys)."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to ICS environments, such as unauthorized firmware
+                            +b updates via compromised keys."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To model and mitigate threats related to private key management."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "To assess risks associated with private key storage and usage in ICS
+                            +b environments."
+                { case_study
+                    example "A power plant's DCS was compromised due to weak private key controls, leading
+                        +b to unauthorized firmware updates. Post-incident analysis highlighted the need
+                        +b for hardware security modules (HSMs) and strict access controls."
+            { audit_and_compliance_verification
+                why "Regular audits ensure that private key controls remain effective and compliant
+                    +b with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that private keys are stored in HSMs or secure cryptographic modules."
+                    "Check access logs for unauthorized attempts to use private keys."
+                    "Review key rotation policies and procedures."
+                [ metrics
+                    {
+                        kpi "Percentage of private keys stored in HSMs"
+                        target "100%"
+                    {
+                        kpi "Frequency of key rotation"
+                        target "Annually or as per policy"
+                compliance_procedure "Document evidence of key storage mechanisms, access logs, and rotation
+                    +b schedules. Review annually or after significant changes."
+            { training_and_competency_requirements
+                why "Personnel must understand the importance of private key security and how to
+                    +b handle keys properly."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure key management practices as part of the broader ICS security
+                            +b curriculum."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Includes modules on cryptographic controls and key management in ICS."
+                competency_assessment "Annual reviews of personnel handling private keys, including practical tests on
+                    +b secure key usage and incident response."
+            { tooling_and_automation_support
+                why "Automation reduces human error and ensures consistent enforcement of key
+                    +b management policies."
+                [ tools
+                    {
+                        name "Hashicorp Vault"
+                        purpose "Secure storage and automated rotation of private keys."
+                    {
+                        name "Azure Key Vault"
+                        purpose "Cloud-based key management with access controls and audit logging."
+                automation_strategy "Integrate key management tools into CI/CD pipelines to automate code signing
+                    +b and key rotation, ensuring keys are never exposed in plaintext."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack modern key management capabilities, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems that cannot support HSMs to limit exposure."
+                    {
+                        approach "Key escrow"
+                        description "Securely archive keys used by legacy systems for emergency recovery."
+                example_policy "Legacy systems must be placed in a restricted VLAN, and keys must be manually
+                    +b rotated every 6 months with documented approval."
+            { stakeholder_collaboration_and_governance
+                why "Clear governance ensures accountability and alignment between security,
+                    +b engineering, and management teams."
+                { governance_model
+                    name "RACI Matrix for Key Management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define key management policies and monitor compliance."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement technical controls for key storage and usage."
+                        {
+                            role "Management"
+                            responsibility "Approve policies and allocate resources for key management."
+                conflict_resolution "Disputes over key management policies are escalated to a cross-functional
+                    +b governance committee for resolution."
+            { continuous_improvement_and_updates
+                why "Threats evolve, and key management practices must adapt to new vulnerabilities."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new key-related
+                            +b vulnerabilities."
+                    {
+                        step "Review incidents"
+                        description "Analyze internal and external incidents to identify gaps in key controls."
+                lessons_learned "After a key leakage incident, a supplier updated policies to require
+                    +b multi-person approval for key usage in production environments."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-9"
+        subCode "undefined"
+        name "Security requirements for externally provided components"
+        description "A process shall be employed to identify and manage the security risks of all
+            +b externally provided components used within the product."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that externally provided components do not introduce vulnerabilities
+                    +b into the ICS product."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) in
+                            +b externally provided components."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling approaches that consider the unique operational and
+                            +b environmental constraints of ICS components."
+                [ tools
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a structured approach to risk assessment, adapted for the specific
+                            +b needs of SCADA and other ICS components."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in identifying and mitigating potential security issues early in the
+                            +b development lifecycle."
+                { case_study
+                    example "A power plant integrated a third-party PLC into their DCS. Using STRIDE, they
+                        +b identified tampering risks and implemented additional integrity checks."
+            { audit_and_compliance_verification
+                why "To verify that the process for managing externally provided components is
+                    +b effective and compliant with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify documentation of all externally provided components."
+                    "Check that risk assessments have been performed for each component."
+                    "Ensure that mitigation strategies are documented and implemented."
+                [ metrics
+                    {
+                        kpi "Percentage of externally provided components with completed risk assessments"
+                        target "100%"
+                    {
+                        kpi "Number of vulnerabilities identified in externally provided components"
+                        target "Reduction over time"
+                compliance_procedure "Documentation must include risk assessment reports, mitigation strategies, and
+                    +b evidence of implementation. Regular reviews should be conducted to ensure
+                    +b ongoing compliance."
+            { training_and_competency_requirements
+                why "To ensure personnel are capable of identifying and managing security risks in
+                    +b externally provided components."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides foundational knowledge on securing ICS components, including
+                            +b externally provided ones."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Focuses on the security of industrial control systems, including risk
+                            +b assessment for third-party components."
+                competency_assessment "Annual reviews of personnel competency in risk assessment and threat modeling
+                    +b for externally provided components."
+            { tooling_and_automation_support
+                why "To streamline the process of assessing and managing risks in externally
+                    +b provided components."
+                [ tools
+                    {
+                        name "OWASP Dependency-Check"
+                        purpose "Identifies known vulnerabilities in project dependencies."
+                    {
+                        name "Black Duck"
+                        purpose "Provides comprehensive analysis of open-source and third-party components for
+                            +b security risks."
+                automation_strategy "Integrate vulnerability scanning tools into the CI/CD pipeline to automatically
+                    +b assess externally provided components during the build process."
+            { handling_legacy_systems_and_constraints
+                why "Legacy components may not meet modern security standards, requiring special
+                    +b considerations."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy components in separate network zones to limit potential attack
+                            +b vectors."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b mitigate risks."
+                example_policy "A policy for legacy PLCs might include mandatory network segmentation and
+                    +b regular vulnerability scanning."
+            { stakeholder_collaboration_and_governance
+                why "Effective management of externally provided components requires collaboration
+                    +b across multiple teams."
+                { governance_model
+                    name "RACI matrix for SM-9"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Perform risk assessments and recommend mitigations."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement recommended security measures."
+                        {
+                            role "Procurement Team"
+                            responsibility "Ensure vendors provide necessary security documentation."
+                conflict_resolution "A cross-functional committee reviews and resolves conflicts, prioritizing
+                    +b security requirements without compromising operational needs."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and vulnerabilities in externally provided
+                    +b components."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review sources like CISA alerts for new vulnerabilities."
+                    {
+                        step "Review and update risk assessments"
+                        description "Update assessments based on new threat intelligence and incident learnings."
+                lessons_learned "After a vulnerability was exploited in a third-party component, the company now
+                    +b requires vendors to provide timely security patches."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-10"
+        subCode "a) the components are developed specifically for a single supplier for a
+            +b specific purpose; and"
+        name "Custom developed components from third-party"
+        description "A process shall be employed to ensure that product development life-cycle
+            +b processes for components from a third-party supplier conform to the
+            +b requirements used in this document when they meet the following criteria: a)
+            +b the components are developed specifically for a single supplier for a specific
+            +b purpose; and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Third-party components may introduce vulnerabilities if not properly assessed
+                    +b and integrated."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats in third-party components by analyzing
+                            +b Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service,
+                            +b and Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats specific to Industrial Control Systems, such as unauthorized
+                            +b access to control logic or manipulation of process data."
+                [ tools
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a structured approach to risk assessment tailored for ICS
+                            +b environments."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Helps in creating and analyzing threat models for third-party components."
+                { case_study
+                    example "A power plant integrated a third-party DCS component and used STRIDE to
+                        +b identify tampering risks, leading to additional integrity checks in the
+                        +b development lifecycle."
+            { audit_and_compliance_verification
+                why "Ensures third-party components comply with IEC 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify third-party supplier's adherence to secure development lifecycle processes."
+                    "Review documentation of security assessments performed on the component."
+                    "Check for evidence of vulnerability management processes."
+                [ metrics
+                    {
+                        kpi "Percentage of third-party components with documented security assessments"
+                        target "100%"
+                    {
+                        kpi "Number of vulnerabilities identified in third-party components during
+                            +b integration"
+                        target "0 critical vulnerabilities"
+                compliance_procedure "Document and review security assessment reports, supplier certifications, and
+                    +b integration test results to ensure compliance with SM-10 requirements."
+            { training_and_competency_requirements
+                why "Ensures personnel are capable of assessing and integrating third-party
+                    +b components securely."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides training on secure development and integration of ICS components."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Covers ICS security fundamentals, including third-party component integration."
+                competency_assessment "Annual reviews of personnel competency in third-party component security
+                    +b assessments, including practical evaluations of threat modeling and risk
+                    +b assessment skills."
+            { tooling_and_automation_support
+                why "Automates and streamlines the secure integration of third-party components."
+                [ tools
+                    {
+                        name "OWASP Dependency-Check"
+                        purpose "Scans third-party components for known vulnerabilities."
+                    {
+                        name "SonarQube"
+                        purpose "Performs static code analysis on third-party components to identify security
+                            +b issues."
+                automation_strategy "Integrate vulnerability scanning tools into the CI/CD pipeline to automatically
+                    +b assess third-party components during the build process."
+            { handling_legacy_systems_and_constraints
+                why "Legacy third-party components may not meet modern security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy third-party components in separate network zones to limit
+                            +b exposure."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and access controls to mitigate risks from
+                            +b legacy components."
+                example_policy "A policy for legacy third-party components mandates network segmentation and
+                    +b continuous monitoring if the component cannot be updated to meet current
+                    +b security standards."
+            { stakeholder_collaboration_and_governance
+                why "Ensures alignment between engineering, security, and management teams on
+                    +b third-party component integration."
+                { governance_model
+                    name "RACI Matrix for Third-Party Component Integration"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Responsible for integrating and testing third-party components."
+                        {
+                            role "Security Team"
+                            responsibility "Accountable for assessing and approving third-party components."
+                        {
+                            role "Management"
+                            responsibility "Consulted for resource allocation and informed of risks."
+                conflict_resolution "A cross-functional review board resolves conflicts between engineering and
+                    +b security priorities, focusing on risk mitigation and project timelines."
+            { continuous_improvement_and_updates
+                why "Adapts to evolving threats and vulnerabilities in third-party components."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new vulnerabilities in
+                            +b third-party components."
+                    {
+                        step "Update policies"
+                        description "Revise integration and assessment procedures based on new threat intelligence."
+                lessons_learned "After a third-party component vulnerability was exploited in an ICS, the policy
+                    +b was updated to mandate more frequent security assessments and automated
+                    +b scanning."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

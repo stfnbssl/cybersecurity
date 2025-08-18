@@ -1,0 +1,205 @@
+$group
+    {
+        id "FSA-NDR 5.3"
+        check_description "A network device at a zone boundary shall provide the capability to protect
+            +b against general purpose, person-to-person messages from being received from
+            +b users or systems external to the control system."
+        requirement_id "IEC 62443-4-2: NDR 5.3"
+        title "General Purpose, Person-to-Person Communication Restrictions"
+        description "This requirement focuses on limiting the use of general-purpose communication
+            +b services that can facilitate unauthorized person-to-person interactions within
+            +b industrial control systems. The goal is to restrict services such as email,
+            +b instant messaging, and other communication platforms that are not essential for
+            +b the operation and maintenance of industrial processes."
+        { key_aspects
+            restriction_on_services "Ensures the minimization or elimination of general-purpose communication
+                +b services within the industrial network environment."
+            risk_mitigation "Aims to reduce the risk of social engineering, malware propagation, and
+                +b unauthorized data exfiltration that can occur through unrestricted
+                +b communication channels."
+            control_enforcement "Requires implementation of technical controls to block or monitor such
+                +b communications if they are deemed non-essential."
+            policy_definition "Organizations must define and enforce policies determining what constitutes
+                +b essential communication, ensuring compliance with security objectives."
+        { related_standards
+            { "IEC 62443-3-3"
+                "SR 3.8" "This system requirement discusses the need for controlling the use of
+                    +b communication channels and protocols, which aligns with restricting
+                    +b non-essential person-to-person communications."
+                "SR 3.1" "Addresses system access control, emphasizing the management of communication
+                    +b pathways, which is relevant to controlling unapproved person-to-person
+                    +b communications."
+            { "NIST SP 800-53"
+                AC-17 "Remote Access control, which includes managing communications to ensure that
+                    +b unauthorized interactions are prevented."
+                CM-7 "Focuses on least functionality, ensuring that only necessary services and
+                    +b protocols are used, which relates to restricting unnecessary communications."
+            { "ISO/IEC 27001"
+                A.13.2 "Information transfer policies and procedures, which include controls for
+                    +b managing communications, ensuring secure and appropriate exchanges of
+                    +b information."
+    {
+        id "FSA-CR 5.4"
+        check_description "There is no component level requirement associated with IEC 62443?3?3 SR 5.4."
+        requirement_id "CR 5.4"
+        title "Application Partitioning"
+        description "This requirement focuses on ensuring that applications within an industrial
+            +b automation and control system (IACS) are partitioned in such a way as to
+            +b prevent unauthorized access and interference between applications. The goal is
+            +b to enhance the security and stability of the system by isolating applications
+            +b and their resources from one another."
+        [ key_aspects
+            {
+                aspect "Isolation"
+                details "Applications should be designed and implemented to run in isolated
+                    +b environments, reducing the risk of one application affecting the operation or
+                    +b security of another."
+            {
+                aspect "Resource Allocation"
+                details "Proper allocation and separation of resources such as memory, processing power,
+                    +b and storage to prevent conflicts and unauthorized access."
+            {
+                aspect "Access Control"
+                details "Implementation of strict access control mechanisms to ensure that applications
+                    +b and their data are only accessible by authorized entities."
+            {
+                aspect "Inter-Application Communication"
+                details "Secure channels should be established for necessary communication between
+                    +b applications, ensuring data integrity and confidentiality."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1 - Network Segmentation"
+                details "This standard discusses network segmentation to limit the access and spread of
+                    +b cyber threats, which complements application partitioning by isolating network
+                    +b segments."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.13.1 - Network Security Management"
+                details "Focuses on ensuring the protection of information in networks, aligning with
+                    +b the need for secure communication between partitioned applications."
+            {
+                standard "NIST SP 800-53"
+                reference "SC-2 - Application Partitioning"
+                details "Recommends partitioning applications to enhance security, which directly aligns
+                    +b with IEC 62443-4-2 CR 5.4."
+    {
+        id "FSA-CR 6.1"
+        check_description "Components shall provide the capability for authorized humans and/or tools to
+            +b access audit logs on a read-only basis."
+        requirement_id "IEC 62443-4-2: CR 6.1"
+        title "Audit Log Accessibility"
+        description "This requirement ensures that audit logs are accessible to authorized users and
+            +b systems only, providing the necessary mechanisms for auditing and monitoring
+            +b while protecting the integrity and confidentiality of the logs."
+        { key_aspects
+            Accessibility "Audit logs must be accessible to authorized personnel and systems to facilitate
+                +b effective monitoring and forensic analysis."
+            Protection "Ensure that access to audit logs is controlled and that unauthorized access is
+                +b prevented, maintaining the confidentiality and integrity of the logs."
+            Availability "Audit logs should be available when needed for auditing purposes, ensuring that
+                +b they can be promptly reviewed and analyzed."
+            Usability "Logs should be maintained in a manner that allows them to be easily retrieved
+                +b and understood by authorized users."
+        { related_standards
+            { "ISO/IEC 27002:2013"
+                "Section 12.4" "Covers logging and monitoring, emphasizing that logs should be protected from
+                    +b unauthorized access and tampering, aligning with the accessibility and
+                    +b protection aspects of CR 6.1."
+            { "NIST SP 800-53 Rev. 5"
+                AU-9 "Addresses the protection of audit information, ensuring that audit log data is
+                    +b secured against unauthorized access and modification."
+            { "NERC CIP-007-6"
+                R4 "Focuses on logging and monitoring, requiring the protection and availability of
+                    +b audit logs similar to the requirements of IEC 62443-4-2 CR 6.1."
+    {
+        id "FSA-CR 6.1 RE(1)"
+        check_description "Components shall provide programmatic access to audit records by either using
+            +b an application programming interface (API) or sending the audit records to a
+            +b centralized system"
+        requirement_id "IEC 62443-4-2: CR 6.1 RE(1)"
+        title "Programmatic Access to Audit Logs"
+        description "This requirement mandates that systems provide programmatic interfaces for
+            +b accessing audit logs, enabling automated tools and processes to retrieve and
+            +b analyze log data. The capability to programmatically access audit logs is
+            +b essential for effective monitoring, incident response, and compliance
+            +b reporting."
+        [ key_aspects
+            "Ensures that audit logs can be accessed by automated systems through API or other programmatic interfaces."
+            "Facilitates integration with security information and event management (SIEM) systems for centralized logging and analysis."
+            "Supports compliance with organizational and regulatory requirements for audit trail management."
+            "Enables efficient and accurate retrieval of log data for forensic analysis during security incidents."
+            "Requires secure access controls to prevent unauthorized access to sensitive log information."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                section "A.12.4 - Logging and Monitoring"
+                description "ISO/IEC 27001 provides guidelines for logging and monitoring, which align with
+                    +b the need for programmatic access to audit logs to ensure security events are
+                    +b captured and analyzed effectively."
+            {
+                standard "NIST SP 800-92"
+                section "Guide to Computer Security Log Management"
+                description "NIST SP 800-92 offers comprehensive guidance on managing computer security
+                    +b logs, including the importance of automated retrieval and analysis of log data,
+                    +b which is directly related to the need for programmatic access."
+            {
+                standard "PCI DSS v3.2.1"
+                section "Requirement 10"
+                description "The Payment Card Industry Data Security Standard (PCI DSS) emphasizes the need
+                    +b for secure and effective log management, including automated mechanisms to
+                    +b access and review logs, similar to the requirements outlined in IEC 62443-4-2."
+            {
+                standard "IEC 62443-3-3:2013"
+                section "SR 7.1 - Audit Log Accessibility"
+                description "This section of IEC 62443-3-3 complements the programmatic access requirement
+                    +b by detailing the need for audit log accessibility, ensuring that logs are
+                    +b available to authorized users and systems."
+    {
+        id "FSA-CR 6.2"
+        check_description "Components shall provide the capability to be continuously monitored using
+            +b commonly accepted security industry practices and recommendations to detect,
+            +b characterize and report security breaches in a timely manner."
+        requirement_id "IEC 62443-4-2: CR 6.2"
+        title "Continuous Monitoring"
+        description "This requirement mandates that industrial control systems (ICS) and components
+            +b should have the capability to continuously monitor their operational
+            +b environment and detect security events. Continuous monitoring is essential to
+            +b maintain visibility into the system's security posture and facilitate timely
+            +b response to potential threats."
+        { key_aspects
+            security_event_detection "Systems must be able to identify and log security events, ensuring that
+                +b anomalies and potential security breaches are detected as early as possible."
+            "log management" "Implementing robust mechanisms for the collection, aggregation, and secure
+                +b storage of logs generated by the system. This includes ensuring the integrity
+                +b and availability of log data."
+            "alerting mechanisms" "Establishing real-time alerting capabilities to notify relevant stakeholders of
+                +b detected security events, facilitating prompt investigation and response."
+            "system integrity" "Monitoring the integrity of system components to detect unauthorized changes or
+                +b anomalies that could indicate a security compromise."
+            "performance metrics" "Defining and tracking performance metrics to evaluate the effectiveness and
+                +b coverage of the continuous monitoring processes."
+        { related_standards
+            { "ISO/IEC 27002"
+                section "12.4"
+                title "Logging and Monitoring"
+                description "Provides guidelines on logging and monitoring information security events,
+                    +b emphasizing the importance of retaining logs and monitoring systems to detect
+                    +b unauthorized activities."
+            { "NIST SP 800-53"
+                control_id "SI-4"
+                title "System Monitoring"
+                description "Outlines controls for continuous monitoring of information systems, including
+                    +b automated mechanisms to monitor various aspects of system security and report
+                    +b anomalies."
+            { "NIST SP 800-137"
+                title "Information Security Continuous Monitoring (ISCM) for Federal Information
+                    +b Systems and Organizations"
+                description "Provides a comprehensive framework for implementing continuous monitoring
+                    +b programs, emphasizing the need for maintaining ongoing awareness of information
+                    +b security, vulnerabilities, and threats."
+            { "IEC 62443-3-3"
+                requirement_id "SR 6.2"
+                title "Continuous Monitoring"
+                description "Specifies requirements for continuous monitoring at the system level, aligning
+                    +b closely with the component-level requirements outlined in IEC 62443-4-2."

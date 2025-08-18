@@ -1,0 +1,235 @@
+$group
+    {
+        id "FSA-CR 4.2"
+        check_description "Components shall provide the capability to erase all information, for which
+            +b explicit read authorization is supported, from components to be released from
+            +b active service and/or decommissioned."
+        requirement_id "IEC 62443-4-2: CR 4.2"
+        title "Information Persistence"
+        description "This requirement addresses the need to ensure that sensitive information is not
+            +b improperly exposed or accessible after it is no longer needed. It requires that
+            +b systems and components securely handle the persistence of sensitive data,
+            +b ensuring that information is appropriately retained or disposed of according to
+            +b policy."
+        [ key_aspects
+            {
+                aspect "Data Retention"
+                details "Defines how long data should be retained and the conditions under which it
+                    +b should be securely deleted."
+            {
+                aspect "Data Disposal"
+                details "Ensures that data is disposed of in a manner that prevents unauthorized
+                    +b recovery, using techniques such as data wiping or degaussing."
+            {
+                aspect "Access Control"
+                details "Implements access controls to prevent unauthorized retrieval of sensitive
+                    +b information during its retention period."
+            {
+                aspect "Audit and Monitoring"
+                details "Regular audits and monitoring to ensure compliance with data persistence
+                    +b policies and to detect any unauthorized data access or retention."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "Annex A.8 - Asset Management"
+                details "Focuses on the protection of information assets, including data retention and
+                    +b disposal policies."
+            {
+                standard "NIST SP 800-88 Rev 1"
+                reference "Guidelines for Media Sanitization"
+                details "Provides detailed methods and recommendations for the secure disposal of
+                    +b electronic data."
+            {
+                standard "GDPR (General Data Protection Regulation)"
+                reference "Article 17 - Right to erasure (‘right to be forgotten’)"
+                details "Mandates the secure deletion of personal data when it is no longer necessary
+                    +b for the purposes for which it was collected."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 12.3 - Backup"
+                details "Addresses the protection and management of backup data, ensuring that it is
+                    +b stored securely and disposed of appropriately."
+    {
+        id "FSA-CR 4.2 RE(1)"
+        check_description "Components shall provide the capability to protect against unauthorized and
+            +b unintended information transfer via volatile shared memory resources."
+        requirement_id "IEC 62443-4-2: CR 4.2 RE(1)"
+        title "Erase of Shared Memory Resources"
+        description "This requirement focuses on ensuring that shared memory resources are properly
+            +b erased to prevent unauthorized access to sensitive data. It is crucial for
+            +b components within an industrial automation and control system (IACS) to
+            +b securely manage memory resources that are shared among different processes or
+            +b applications."
+        [ key_aspects
+            {
+                aspect "Memory Management"
+                details "The secure management of memory resources involves ensuring that any sensitive
+                    +b data stored in shared memory is overwritten or erased when no longer needed or
+                    +b before reallocation to other processes. This prevents data remnants from being
+                    +b accessed by unauthorized processes."
+            {
+                aspect "Data Confidentiality"
+                details "By erasing shared memory resources, the confidentiality of sensitive
+                    +b information is maintained. This is particularly important in environments where
+                    +b memory might be reused by different applications or users."
+            {
+                aspect "Access Control"
+                details "Implementing strict access control mechanisms to shared memory areas ensures
+                    +b that only authorized processes can read, write, or erase these resources."
+        [ related_standards
+            {
+                standard "NIST SP 800-88"
+                reference "Guidelines for Media Sanitization"
+                details "Provides recommendations for the sanitization of different types of storage
+                    +b media, including volatile memory, to ensure that sensitive information is not
+                    +b accessible after media is reused or disposed of."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Information technology — Security techniques — Code of practice for information
+                    +b security controls"
+                details "While focusing broadly on information security controls, it highlights the
+                    +b importance of secure data management practices, including the proper handling
+                    +b and disposal of information stored in memory."
+            {
+                standard "IEC 62443-3-3"
+                reference "System security requirements and security levels"
+                details "Focuses on broader system security requirements, including those related to
+                    +b memory and data handling, providing a context for component-level requirements
+                    +b such as those in IEC 62443-4-2."
+    {
+        id "FSA-CR 4.2 RE(2)"
+        check_description "Components shall provide the capability to verify that the erasure of
+            +b information occurred."
+        requirement_id "IEC 62443-4-2: CR 4.2 RE(2)"
+        title "Erase Verification"
+        description "This requirement mandates that components must ensure that data is completely
+            +b erased from storage before it is released for reuse or disposal. This is
+            +b crucial to prevent unauthorized access to potentially sensitive information
+            +b that could remain on storage media even after deletion."
+        [ key_aspects
+            "Data Sanitization: Ensures that data is irrecoverable after deletion, protecting sensitive information from unauthorized access."
+            "Verification Mechanism: Requires a method to verify that data has been erased properly."
+            "Reuse and Disposal: Addresses both scenarios where storage is reused within the same environment or disposed of outside the organization."
+            "Risk Management: Part of broader risk management strategies to prevent data breaches through discarded or recycled components."
+        [ related_standards
+            {
+                standard "NIST SP 800-88 Rev. 1"
+                title "Guidelines for Media Sanitization"
+                description "Provides guidelines for the sanitization of data from various types of media,
+                    +b including methods for clearing, purging, and destroying data to prevent
+                    +b unauthorized recovery."
+            {
+                standard "ISO/IEC 27040:2015"
+                title "Information technology – Security techniques – Storage security"
+                description "Covers security techniques for protecting data stored on various types of
+                    +b storage media, including the importance of data erasure and sanitization."
+            {
+                standard "ISO/IEC 27001:2013"
+                title "Information Security Management Systems – Requirements"
+                description "Includes requirements for establishing and maintaining an information security
+                    +b management system, which encompasses data protection and erasure practices."
+            {
+                standard "DoD 5220.22-M"
+                title "National Industrial Security Program Operating Manual (NISPOM)"
+                description "Includes provisions for the secure handling and destruction of sensitive
+                    +b information, relevant to data sanitization and erasure verification."
+    {
+        id "FSA-CR 4.3"
+        check_description "If cryptography is required, the component shall use cryptographic security
+            +b mechanisms according to internationally recognized and proven security
+            +b practices and recommendations."
+        requirement_id "IEC 62443-4-2: CR 4.3"
+        title "Use of Cryptography"
+        description "This requirement focuses on ensuring the confidentiality, integrity, and
+            +b authenticity of information by employing cryptographic methods. It mandates the
+            +b implementation of cryptography to protect data in transit and at rest, ensuring
+            +b secure communication and storage within industrial control systems (ICS). The
+            +b requirement highlights the necessity of using proven cryptographic algorithms
+            +b and key management practices, thereby safeguarding against unauthorized access
+            +b and tampering."
+        { key_aspects
+            confidentiality "Ensures that sensitive information is not disclosed to unauthorized
+                +b individuals, entities, or processes."
+            integrity "Maintains the accuracy and completeness of information and processing methods,
+                +b preventing unauthorized alterations."
+            authentication "Verifies the identity of users, devices, or systems, thus preventing
+                +b unauthorized access."
+            "proven algorithms" "Emphasizes the use of well-established cryptographic algorithms that have been
+                +b thoroughly analyzed and tested by the cryptographic community."
+            "key management" "Involves practices for generating, distributing, storing, and disposing of
+                +b cryptographic keys securely."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                reference "ISO/IEC 27001 provides guidelines for establishing, implementing, maintaining,
+                    +b and continually improving an information security management system (ISMS),
+                    +b which includes cryptographic controls for protecting information."
+            {
+                standard_id "NIST SP 800-57"
+                title "Recommendation for Key Management"
+                reference "This NIST Special Publication provides guidance on key management, including
+                    +b key generation, distribution, storage, use, and disposal, which are critical
+                    +b aspects of implementing cryptography in ICS."
+            {
+                standard_id "FIPS 140-3"
+                title "Security Requirements for Cryptographic Modules"
+                reference "FIPS 140-3 specifies security requirements for cryptographic modules, covering
+                    +b areas such as module specification, ports and interfaces, roles, services,
+                    +b authentication, and physical security."
+            {
+                standard_id "ISO/IEC 19790"
+                title "Security Requirements for Cryptographic Modules"
+                reference "Aligned with FIPS 140-3, this standard specifies the security requirements for
+                    +b cryptographic modules used to protect sensitive information."
+            {
+                standard_id "RFC 5246"
+                title "The Transport Layer Security (TLS) Protocol Version 1.2"
+                reference "TLS is a widely used protocol that ensures privacy between communicating
+                    +b applications and users on the internet. It is relevant for securing data in
+                    +b transit within ICS."
+    {
+        id "FSA-CR 5.1"
+        check_description "Components shall support a segmented network to support zones and conduits, as
+            +b needed, to support the broader network architecture based on logical
+            +b segmentation and criticality."
+        requirement_id "IEC 62443-4-2: CR 5.1"
+        title "Network Segmentation"
+        description "Network segmentation refers to the practice of dividing a network into multiple
+            +b segments or zones to enhance security and manageability. This requirement
+            +b emphasizes the need for implementing mechanisms to control and restrict
+            +b communications between these network segments, thereby reducing the attack
+            +b surface and limiting the potential impact of security breaches."
+        { key_aspects
+            [ segmentation_techniques
+                "Firewalls"
+                "Virtual LANs (VLANs)"
+                "Access Control Lists (ACLs)"
+                "Demilitarized Zones (DMZs)"
+            [ objectives
+                "Reduce unnecessary communication paths"
+                "Isolate critical systems"
+                "Limit lateral movement of threats"
+                "Improve network performance and management"
+            [ implementation_considerations
+                "Identify and classify assets and data flows"
+                "Determine segmentation boundaries"
+                "Configure and enforce access controls"
+                "Regularly review and update segmentation policies"
+        { related_standards
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                reference "SR 5.1 - Network Segmentation"
+                description "IEC 62443-3-3 outlines specific security requirements for network segmentation
+                    +b at the system level, providing guidance on how to achieve security levels
+                    +b through segmentation."
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                reference "Annex A.13.1 - Network Security Management"
+                description "ISO/IEC 27001 discusses the management of information security in networks,
+                    +b including the use of network segmentation to protect information and systems."
+            { "NIST SP 800-82"
+                title "Guide to Industrial Control Systems (ICS) Security"
+                reference "Section 5.3 - Network Architecture"
+                description "This NIST guide provides recommendations for securing ICS, including the use of
+                    +b network segmentation to protect critical infrastructure systems."

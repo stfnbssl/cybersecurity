@@ -1,0 +1,249 @@
+$group
+    {
+        id "FSA-HDR 3.10"
+        check_description "Host devices shall support the ability to be updated and upgraded."
+        requirement_id "IEC 62443-4-2: HDR 3.10"
+        title "Support for Updates"
+        description "This requirement mandates that industrial automation and control system (IACS)
+            +b components must support mechanisms for secure updates. This ensures that the
+            +b components can receive and apply updates or patches to address vulnerabilities
+            +b and improve functionality while maintaining system integrity and security."
+        [ key_aspects
+            {
+                aspect "Security"
+                details "The update mechanism must ensure the integrity and authenticity of the updates,
+                    +b typically through digital signatures or secure channels."
+            {
+                aspect "Availability"
+                details "Updates should be applied in a manner that minimizes downtime and maintains the
+                    +b availability of the system."
+            {
+                aspect "Compatibility"
+                details "The update process must ensure compatibility with existing system
+                    +b configurations and not disrupt ongoing operations."
+            {
+                aspect "Verification"
+                details "Before applying updates, there should be a mechanism to verify the authenticity
+                    +b and integrity of the update to prevent malicious software from being installed."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.8 - Application of Security Patches"
+                details "This standard emphasizes the importance of applying security patches in a
+                    +b timely manner to mitigate vulnerabilities."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Management of Technical Vulnerabilities"
+                details "This outlines the need for timely patch management processes to ensure systems
+                    +b are protected against known vulnerabilities."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-2 - Flaw Remediation"
+                details "This standard describes processes for identifying, reporting, and correcting
+                    +b information system flaws to prevent exploitation."
+            {
+                standard "IEC 62443-2-4"
+                reference "RE-CR 2.6 - Patch Management"
+                details "Provides requirements for service providers to manage patches and updates for
+                    +b IACS systems effectively."
+    {
+        id "FSA-HDR 3.10 RE(1)"
+        check_description "Host devices shall validate the authenticity and integrity of any software
+            +b update or upgrade prior to installation."
+        requirement_id "HDR 3.10 RE(1)"
+        title "Update Authenticity and Integrity"
+        description "This requirement focuses on ensuring that any updates to the software or
+            +b firmware within an industrial control system (ICS) are both authentic and have
+            +b maintained their integrity during the update process. This is critical to
+            +b prevent unauthorized modifications that could compromise the security and
+            +b functionality of the ICS."
+        [ key_aspects
+            {
+                aspect "Authentication"
+                description "Ensure that updates are received from a trusted source. This typically involves
+                    +b the use of digital signatures or certificates to verify the identity of the
+                    +b sender."
+            {
+                aspect "Integrity Verification"
+                description "Confirm that the update has not been altered in transit. Techniques such as
+                    +b checksums, cryptographic hashes, and integrity checks are employed to ensure
+                    +b the data remains unchanged."
+            {
+                aspect "Secure Delivery"
+                description "Utilize secure channels for the delivery of updates to protect against
+                    +b interception and tampering. Protocols like TLS (Transport Layer Security) are
+                    +b commonly used."
+            {
+                aspect "Rollback Capability"
+                description "Implement mechanisms that allow systems to revert to a previous state if an
+                    +b update is found to be compromised or malfunctions."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.8 - Software and information integrity"
+                description "Focuses on ensuring the integrity of software and data within an ICS
+                    +b environment, supporting the need for trustworthy update processes."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                description "Provides guidelines for ensuring the integrity of software and firmware, which
+                    +b aligns with the need to authenticate and verify updates in ICS."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.14.2.5 - Secure system engineering principles"
+                description "Emphasizes the need for secure development and maintenance of systems,
+                    +b including the management of updates."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                description "Addresses security for ICS and includes recommendations for managing updates
+                    +b securely."
+    {
+        id "FSA-NDR 3.10"
+        check_description "Network devices shall support the ability to be updated and upgraded."
+        requirement_id "IEC 62443-4-2: NDR 3.10"
+        title "Support for Updates"
+        description "This requirement focuses on the ability of a component to efficiently and
+            +b securely support updates. It ensures that components can receive, verify, and
+            +b apply software or firmware updates in a manner that maintains the integrity,
+            +b authenticity, and availability of the system. This is critical for ensuring
+            +b that security patches and feature enhancements can be deployed to address
+            +b vulnerabilities and improve system functionality over time."
+        [ key_aspects
+            {
+                aspect "Update Mechanism"
+                details "The requirement mandates the presence of a secure and reliable update mechanism
+                    +b within the component, ensuring updates can be applied without compromising
+                    +b system security or stability."
+            {
+                aspect "Integrity and Authenticity"
+                details "Updates must be verified for integrity and authenticity, typically through
+                    +b digital signatures or checksums, to prevent unauthorized or malicious code from
+                    +b being executed on the component."
+            {
+                aspect "Rollback Procedures"
+                details "Components should support rollback procedures, allowing restoration to a
+                    +b previous state if an update fails or if issues arise post-update."
+            {
+                aspect "Access Control"
+                details "Access to the update mechanism should be controlled and restricted to
+                    +b authorized personnel only, ensuring that updates cannot be applied without
+                    +b proper authorization."
+            {
+                aspect "Notification and Logging"
+                details "Systems should notify administrators of available updates and log update
+                    +b actions, providing an audit trail for security and compliance purposes."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "CM-5 - Configuration Change Control"
+                details "Discusses the need for managing and controlling changes to information systems,
+                    +b which includes applying updates and patches."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Control of Technical Vulnerabilities"
+                details "Focuses on the timely identification and application of technical vulnerability
+                    +b updates to reduce risks associated with outdated software."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.8 - Patch Management"
+                details "Addresses the need for patch management processes within an industrial
+                    +b automation and control system, ensuring systems remain secure through updates."
+            {
+                standard "CIS Critical Security Controls"
+                reference "CSC 3 - Continuous Vulnerability Management"
+                details "Emphasizes the importance of implementing updates as part of a continuous
+                    +b vulnerability management process to protect systems against known
+                    +b vulnerabilities."
+    {
+        id "FSA-NDR 3.10 RE(1)"
+        check_description "Network devices shall validate the authenticity and integrity of any software
+            +b update or upgrade prior to installation."
+        requirement_id "IEC 62443-4-2: NDR 3.10 RE(1)"
+        title "Update Authenticity and Integrity"
+        description "This requirement ensures that any updates to the software, firmware, or
+            +b configuration data of a component are authentic and have not been tampered
+            +b with. The goal is to maintain the integrity and authenticity of updates,
+            +b protecting the component from malicious alterations that could compromise its
+            +b security or functionality."
+        [ key_aspects
+            {
+                aspect "Authenticity Verification"
+                details "Mechanisms must be in place to verify the source of updates, ensuring they
+                    +b originate from a trusted source. This typically involves digital signatures or
+                    +b certificates."
+            {
+                aspect "Integrity Checks"
+                details "Updates should be checked for integrity to confirm that the content has not
+                    +b been altered during transmission. This is often achieved through checksums or
+                    +b cryptographic hashes."
+            {
+                aspect "Secure Distribution"
+                details "Updates must be distributed over secure channels to prevent interception or
+                    +b tampering during transport."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7: Software, Firmware, and Information Integrity"
+                relation "Provides guidelines on ensuring integrity and authenticity of software and
+                    +b firmware updates."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.5: Security in Development and Support Processes"
+                relation "Outlines controls for maintaining the security of system integrity throughout
+                    +b the development and support lifecycle."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4: Use of Cryptography"
+                relation "Specifies the use of cryptographic measures to ensure the integrity and
+                    +b authenticity of data."
+            {
+                standard "NIST SP 800-147"
+                reference "BIOS Protection Guidelines"
+                relation "Focuses on ensuring the integrity and authenticity of BIOS updates, which can
+                    +b be extended to other types of firmware."
+    {
+        id "FSA-EDR 3.11"
+        check_description "The embedded device shall provide tamper resistance and detection mechanisms to
+            +b protect against unauthorized physical access into the device."
+        requirement_id "EDR 3.11"
+        title "Physical Tamper Resistance and Detection"
+        description "This requirement focuses on ensuring that a component within an industrial
+            +b automation and control system (IACS) is resistant to physical tampering and is
+            +b capable of detecting and responding to such tampering attempts. The goal is to
+            +b protect the system's integrity by preventing unauthorized physical access and
+            +b manipulation of the hardware."
+        [ key_aspects
+            {
+                aspect "Tamper Resistance"
+                details "Components should be designed to resist physical tampering. This can include
+                    +b the use of tamper-evident seals, secure enclosures, or materials that are
+                    +b difficult to alter without detection."
+            {
+                aspect "Tamper Detection"
+                details "Systems should have mechanisms to detect physical tampering. This may involve
+                    +b sensors that trigger alerts if a device is opened or moved, and logging these
+                    +b events for further analysis."
+            {
+                aspect "Response to Tampering"
+                details "Upon detection of tampering, the system should be capable of executing a
+                    +b predefined response, which could include alerting operators, logging the event,
+                    +b or initiating a shutdown procedure to prevent further unauthorized access."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3:2013"
+                reference "SR 3.11 - Physical protection"
+                description "This standard provides system-level requirements for protecting against
+                    +b physical tampering, including access control measures and environmental
+                    +b protections."
+            {
+                standard "NIST SP 800-53"
+                reference "PE-3 - Physical Access Control"
+                description "This guideline outlines requirements for managing physical access to
+                    +b information systems and their components, emphasizing the importance of
+                    +b physical security measures."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "11.1 - Physical and environmental security"
+                description "Provides guidance on securing physical access to critical systems and
+                    +b infrastructure to prevent unauthorized access and interference."

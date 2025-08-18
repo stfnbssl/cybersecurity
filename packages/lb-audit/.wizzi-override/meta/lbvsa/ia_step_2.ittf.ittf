@@ -1,0 +1,108 @@
+ittf
+
+    $*
+        AI extension of lbvsa
+        model lbvsa in /.wizzi-override/models/LB Vendor Security Assesment.json
+    *$
+
+    $
+        // var provider = 'chatGPT';
+        var provider = 'deepSeek';
+        // var provider = 'grok';
+        var maxNumInBatch = 4;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+        var ctx = {};
+        var checkListItems = {};
+        var checklist_explanation_json_schema = '{"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}';
+        function cleanName(name) {
+            var retval = name.indexOf(' ') > -1 ? '"' + name + '"' : name;
+            return _.replace(retval,'(',"$"+"{'('}");
+        }
+
+    $foreach item in lbvsa
+        $
+            checkListItems[item.IDD] = item;
+
+    $foreach dc in wzCtx.Data.classifiers
+        $
+            ctx[dc.name] = {};
+
+    $
+        function add(type, key, value) {
+            var x = ctx[type];
+            if (!_.isObject(x)) {
+                ctx[type] = {}
+                x = ctx[type];
+            }
+            var y = x[key];
+            if (!_.isObject(y)) {
+                x[key] = { items: [] }
+                y = x[key];
+            }
+            // y.items.push(value);
+            y.items.push(value.IDD);
+        }
+
+    $foreach item in lbvsa
+        $foreach dc in wzCtx.Data.classifiers
+            $if item[dc.property] != '-'
+                $
+                    add(dc.name, item[dc.property], item);
+
+    $foreach clItem in lbvsa
+        $ _.log('----> item.IDD', item.IDD);
+        $if count > maxNumInBatch
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [clItem]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(clItem);
+                count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/lbvsa/ai_step_2_in/batch-${batch.id}.ai.ittf
+            $ _.log('batch.id', batch.id)
+            ai lab
+                api-url http://localhost:3000
+
+                $foreach item in batch.items
+                    $
+                        var options = {
+                            name: 'clist-item-' + item.IDD,
+                            description: 'clist extension of item ' + item.IDD,
+                            cl_def: {
+                                idd: item.IDD,
+                                area: item.Ambito,
+                                category: item.Categoria,
+                                description: item['Descrizione requisito'],
+                                note: item['Ulteriori note']
+                            },
+                            checklist_explanation_json_schema: checklist_explanation_json_schema,
+                            provider: provider,
+                        }
+
+                    $foreach dc in wzCtx.Data.classifiers
+                        $if dc.isSpecification
+                            $if _.isNotEmpty(item[dc.property]) && item[dc.property] != '-'
+                                $
+                                    options.cl_def[''+cleanName(dc.property)] = item[dc.property];
+
+                    $ options.cl_defJSONString = _.stringify(options.cl_def, null, null)
+
+                    ia_step_2_item(&options)                

@@ -1,0 +1,17 @@
+$group
+    $params name, description|@@null
+    { ${name}
+        type "array"
+        $if description != null
+            description "${description}"
+        { items
+            type "object"
+            { properties
+                string( title )
+                string( url )
+                string( description )
+            [ required
+                "title" 
+                "url" 
+                "description" 
+            additionalProperties false

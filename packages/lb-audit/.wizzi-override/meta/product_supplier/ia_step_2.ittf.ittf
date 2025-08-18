@@ -1,0 +1,78 @@
+ittf
+
+    $
+        var step_name = 'product_supplier.step_2';
+        var x_options = {
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.product_supplier_ai_step_2, null, null),
+        }        
+        // var provider = 'chatGPT';
+        // var provider = 'deepSeek';
+        var provider = 'grok';
+        var maxNumInBatch = 2;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $foreach aiGroup in product_supplier_ai_step_1_out.items
+        $foreach aiItem in aiGroup.items
+            $ _.log('----> ', step_name, 'aiItem.name', aiItem.name);
+            $if count > maxNumInBatch
+                $
+                    batches.push(currentBatch);
+                    currentBatch = {
+                        id: currentBatch.id + 1,
+                        items: [aiItem]
+                    }
+                    count = 1;
+
+            $else
+                $
+                    currentBatch.items.push(aiItem);
+                    count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/product_supplier/ai_step_2_in/batch-${batch.id}.ai.ittf
+    
+            ai ${step_name}
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                    $
+                        var options = {
+                            provider: provider,
+                            id: batchItem.name,
+                            inputJSON: batchItem,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_options.step_2_JSONSchema,
+                            product_supplier_JSON: null, // not used
+                        }
+                    call step_1_${options.id}
+                        description Raccolta informazione macchine prodotte da ditta ${options.id}
+                        ai/call_header( &options )
+                            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                                ${'\\'}b e conosci le aziende delle varie regioni italiane.
+                                ${'\\'}b Sei anche esperto dello standard IEC 62443 e in particolare del volume 62443-3-3.
+                        message 
+                            role user
+                            content Popola un database JSON con dati dettagliati che descrivano i componenti e il contesto di sistema
+                                ${'\\'}n delle macchine costruite dal produttore specificato nel JSON fornito con dati di input.
+                                ${'\\'}n Il risultato sarà utilizzato come dato di contesto per creare policies ed 
+                                ${'\\'}n esempi di applicazione dei requisiti IEC 62443-3-3 e IEC 62443-4-2
+                                ${'\\'}n per supportare lo sviluppo sicuro delle macchine.
+                                ai/product_supplier_machines( &options, step )
+                                ai/schema_data_return( &options, step )                    
+
+    $file .wizzi-override/docs/product_supplier/ai_step_2_out/index.json.ittf
+        {
+            [ items
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

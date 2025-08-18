@@ -1,0 +1,226 @@
+$group
+    {
+        id "FSA-CR 2.1 RE(2)"
+        check_description "Components shall, directly or through a compensating security mechanism,
+            +b provide for an authorized role to define and modify the mapping of permissions
+            +b to roles for all human users."
+        requirement_id "IEC 62443-4-2: CR 2.1 RE(2)"
+        title "Permission Mapping to Roles"
+        description "This requirement focuses on ensuring that permissions within a system are
+            +b appropriately mapped to specific roles. The intention is to ensure that access
+            +b controls are effectively implemented, such that individuals or entities have
+            +b access to only those resources necessary for their roles. This helps in
+            +b maintaining a principle of least privilege, where permissions are granted based
+            +b on job responsibilities and requirements."
+        [ key_aspects
+            {
+                aspect "Role-Based Access Control (RBAC)"
+                details "Implementing RBAC to define and manage roles and permissions systematically,
+                    +b ensuring that users are granted access rights based on their role within the
+                    +b organization."
+            {
+                aspect "Access Control Policies"
+                details "Developing and enforcing policies that dictate how permissions are assigned to
+                    +b roles, ensuring consistency and security across the system."
+            {
+                aspect "Review and Audit"
+                details "Regularly reviewing and auditing role and permission assignments to ensure they
+                    +b remain appropriate and in line with security policies and operational needs."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013 - A.9.2"
+                reference "User access management, ensuring that access rights are allocated based on the
+                    +b needs of the role and the principles of least privilege."
+            {
+                standard "NIST SP 800-53 Rev. 5 - AC-2"
+                reference "Account Management, emphasizing the importance of managing user accounts and
+                    +b access permissions according to roles and responsibilities."
+            {
+                standard "ISO/IEC 27002:2013 - 9.1.2"
+                reference "Access control to networks and network services, focusing on the principle that
+                    +b user access should align with business requirements and security policy."
+    {
+        id "FSA-CR 2.1 RE(3)"
+        check_description "Components shall support a supervisor manual override for a configurable time
+            +b or sequence of events."
+        requirement_id "IEC 62443-4-2: CR 2.1 RE(3)"
+        title "Supervisor Override"
+        description "The requirement specifies that the system should have a mechanism for a
+            +b supervisor to override security controls under specific, justified
+            +b circumstances. This override functionality must be thoroughly secured to
+            +b prevent unauthorized use and should be logged for audit purposes."
+        { key_aspects
+            supervisor_role "Defines a specific role with the authority to perform overrides, ensuring that
+                +b only designated individuals can execute this function."
+            override_conditions "Clearly specifies the conditions under which a supervisor is permitted to
+                +b override standard security controls, such as emergencies or maintenance
+                +b activities."
+            security_measures "Requires robust security measures to prevent unauthorized access to the
+                +b override function, including multi-factor authentication and encryption."
+            auditability "Mandates logging of all override actions, capturing details such as who
+                +b performed the override, the reason for the override, and the time of the
+                +b action, to ensure accountability and traceability."
+        { related_standards
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                reference "IEC 62443-3-3 outlines the overall security requirements for industrial
+                    +b automation and control systems, including the concept of role-based access
+                    +b control, which is pertinent to defining supervisor roles."
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems - Requirements"
+                reference "ISO/IEC 27001 provides a framework for managing information security risks,
+                    +b including access control policies that are relevant for managing supervisor
+                    +b override capabilities."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                reference "NIST SP 800-53 provides guidelines on access control, audit logging, and
+                    +b incident response, which can inform the implementation of secure supervisor
+                    +b override features."
+    {
+        id "FSA-CR 2.1 RE(4)"
+        check_description "Components shall support dual approval when action can result in serious impact
+            +b on the industrial process."
+        requirement_id "IEC 62443-4-2: CR 2.1 RE(4)"
+        title "Dual Approval"
+        description "The dual approval requirement mandates that certain critical actions within a
+            +b control system require authorization from two or more individuals. This measure
+            +b is designed to prevent unauthorized actions, reduce the risk of insider
+            +b threats, and ensure that critical system changes undergo sufficient scrutiny
+            +b before implementation."
+        { key_aspects
+            purpose "To enhance the security of critical operations by requiring multiple
+                +b authorizations, thereby reducing the risk of unauthorized or erroneous actions."
+            implementation "Organizations should establish procedures that require dual approval for
+                +b actions such as access to sensitive data, configuration changes, and software
+                +b updates. This can be implemented through technical controls within the system
+                +b or through administrative procedures."
+            [ benefits
+                "Reduces the likelihood of insider threats by ensuring that no single individual has the authority to perform critical actions."
+                "Increases accountability and auditability by requiring multiple parties to approve significant changes."
+                "Enhances the overall security posture of the organization by adding an additional layer of verification."
+            [ challenges
+                "Implementing dual approval processes can introduce delays in operations if not properly managed."
+                "Requires careful coordination and communication among team members to ensure efficiency."
+        { related_standards
+            { "NIST SP 800-53"
+                AC-5 "Separation of Duties - This control requires the separation of duties within an
+                    +b organization to prevent conflict of interest and reduce the risk of fraudulent
+                    +b or malicious activity."
+                CM-5 "Access Control for Change - This control emphasizes the need for managing
+                    +b access to systems and data, which can complement the requirement for dual
+                    +b approval by ensuring that only authorized changes are made."
+            { "ISO/IEC 27001"
+                A.12.4.3 "Access Control to Program Source Code - This control involves restricting
+                    +b access to source code, which can be part of a dual approval process for changes
+                    +b to software systems."
+                A.6.1.2 "Segregation of Duties - This control requires segregation of duties to reduce
+                    +b the risk of unauthorized or unintentional modification or misuse of the
+                    +b organization's assets."
+            { "CIS Controls"
+                "Control 4" "Controlled Use of Administrative Privileges - This control suggests minimizing
+                    +b the use of administrative privileges and ensuring that such actions require
+                    +b oversight, aligning with the dual approval requirement."
+    {
+        id "FSA-CR 2.2"
+        check_description "If a component supports usage through wireless interfaces it shall provide the
+            +b capability to integrate into the system that supports usage authorization,
+            +b monitoring and restrictions according to commonly accepted industry practices."
+        requirement_id "IEC 62443-4-2: CR 2.2"
+        title "Wireless Use Control"
+        description "This requirement focuses on ensuring that wireless communication within an
+            +b industrial automation and control system is controlled to prevent unauthorized
+            +b access and protect the integrity of the data being transmitted. The goal is to
+            +b safeguard wireless networks from potential threats and vulnerabilities that
+            +b could be exploited by malicious entities."
+        [ key_aspects
+            "Authentication: Implement mechanisms to authenticate wireless devices before they are allowed to connect to the network."
+            "Encryption: Use strong encryption protocols to protect data transmitted over wireless networks from interception and unauthorized access."
+            "Access Control: Define and enforce access control policies to manage which devices are permitted to connect to the wireless network and what resources they can access."
+            "Monitoring: Continuously monitor wireless communications for any unauthorized access attempts or anomalies that could indicate a security breach."
+            "Configuration Management: Maintain strict control over the configuration of wireless devices and networks to ensure compliance with security policies and standards."
+        [ related_standards
+            {
+                standard "IEEE 802.11"
+                description "Specifies the standards for wireless LANs, including protocols for wireless
+                    +b communication and security mechanisms such as WPA3 for enhanced protection."
+                relevance "Provides foundational protocols and security features that support the
+                    +b implementation of wireless use control in industrial environments."
+            {
+                standard "NIST SP 800-97"
+                description "Guide to IEEE 802.11i: Establishing Secure Wireless Networks. Provides
+                    +b recommendations for securing wireless networks, particularly for government and
+                    +b critical infrastructure."
+                relevance "Offers guidelines and best practices that align with the security objectives
+                    +b outlined in IEC 62443-4-2 for wireless communications."
+            {
+                standard "ISO/IEC 27033-4"
+                description "IT Security techniques — Network security — Part 4: Securing communications
+                    +b between networks using security gateways."
+                relevance "Addresses network security practices that can be applied to wireless
+                    +b communications to ensure secure data transfer and access control."
+            {
+                standard "IEC 62443-3-3: SR 2.2"
+                description "System Requirement for Wireless Use Control within the broader context of
+                    +b system security."
+                relevance "Provides overarching requirements and guidelines for wireless use control at
+                    +b the system level, complementing the component-level focus of IEC 62443-4-2."
+    {
+        id "FSA-CR 2.3"
+        check_description "There is no component level requirement associated with IEC 62443?3?3 SR 2.3."
+        requirement_id "CR 2.3"
+        title "Use Control for Portable and Mobile Devices"
+        description "This requirement focuses on controlling and managing the use of portable and
+            +b mobile devices within an industrial network to ensure they do not introduce
+            +b vulnerabilities or unauthorized access points. The goal is to safeguard the
+            +b system from potential threats that these devices could bring if not properly
+            +b managed."
+        [ key_aspects
+            {
+                aspect_id "1"
+                aspect_title "Device Authorization"
+                aspect_description "Ensure that only authorized portable and mobile devices are allowed to connect
+                    +b to the network. This involves maintaining an inventory of approved devices and
+                    +b implementing procedures for their management and monitoring."
+            {
+                aspect_id "2"
+                aspect_title "Access Control"
+                aspect_description "Implement strict access control mechanisms to manage how these devices interact
+                    +b with the network. This includes authentication protocols and role-based access
+                    +b controls to limit the functions these devices can perform."
+            {
+                aspect_id "3"
+                aspect_title "Data Protection"
+                aspect_description "Protect data that is accessed, transmitted, or stored on portable and mobile
+                    +b devices. Encryption and secure communication protocols should be employed to
+                    +b safeguard sensitive information."
+            {
+                aspect_id "4"
+                aspect_title "Security Monitoring"
+                aspect_description "Continuously monitor the activities of portable and mobile devices on the
+                    +b network to detect and respond to any unusual or unauthorized behavior. This can
+                    +b involve the use of intrusion detection systems and regular security audits."
+        [ related_standards
+            {
+                standard_id "NIST SP 800-124"
+                standard_title "Guidelines for Managing the Security of Mobile Devices in the Enterprise"
+                standard_description "Provides comprehensive guidance on managing security for mobile devices,
+                    +b covering areas such as device management technologies, security policies, and
+                    +b the protection of sensitive data."
+            {
+                standard_id "ISO/IEC 27001"
+                standard_title "Information Security Management"
+                standard_description "Offers a systematic approach to managing sensitive company information,
+                    +b ensuring its security through a risk management framework, which includes
+                    +b considerations for mobile and portable device security."
+            {
+                standard_id "NIST SP 800-53"
+                standard_title "Security and Privacy Controls for Information Systems and Organizations"
+                standard_description "Provides a catalog of security and privacy controls, including those specific
+                    +b to mobile devices, which can be used to strengthen the security posture of
+                    +b information systems."
+            {
+                standard_id "CIS Controls"
+                standard_title "Center for Internet Security Controls"
+                standard_description "Offers a set of controls and best practices, including those related to the
+                    +b secure use of mobile devices, aimed at improving the cybersecurity defense of
+                    +b organizations."

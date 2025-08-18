@@ -1,0 +1,525 @@
+$group
+    {
+        idd "11.2.1"
+        area "Identity & Access management"
+        category "Gestione delle utenze privilegiate"
+        NIS2 "Art. 21, par. 2, comma i"
+        ISA_n_62443_n_${'('}2-4) "SP.09.01"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-5"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le utenze privilegiate sono assegnate al solo personale strettamente incaricato
+            +b IT o di terze parte autorizzate?"
+        NIST_CSF "PR.AC-5"
+        Exe_Ord_on_Improving_the_Nation’s_Cybersecurity "Sec. 4 lect. e"
+        detailed_explanation "La gestione delle utenze privilegiate è un aspetto cruciale della sicurezza
+            +b informatica. Le utenze privilegiate, infatti, dispongono di accessi e permessi
+            +b superiori rispetto agli utenti standard, rendendole obiettivi di alto valore
+            +b per i potenziali attaccanti. Assegnare queste utenze solo al personale IT
+            +b strettamente incaricato o a terze parti autorizzate riduce il rischio di
+            +b accessi non autorizzati che potrebbero portare a violazioni di sicurezza."
+        { glossary
+            "Utenze Privilegiate" "Account con diritti di accesso superiori che consentono di eseguire operazioni
+                +b amministrative sui sistemi IT."
+            "Accesso non autorizzato" "Quando un utente ottiene l'accesso a dati o sistemi senza permesso."
+            "Terze Parti Autorizzate" "Entità esterne che hanno ricevuto il permesso di accedere ai sistemi di
+                +b un'organizzazione."
+            Misconfigurazione "Errori di configurazione che possono esporre sistemi a vulnerabilità di
+                +b sicurezza."
+        { relevant_links
+            ISO_27001 "https://www.iso.org/standard/54534.html"
+            NIST_CSF "https://www.nist.gov/cyberframework"
+            IEC_62443 "https://webstore.iec.ch/publication/70319"
+            EuCRA "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32019R0881"
+            Executive_Order "
+                +b https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "11.2.2"
+        area "Identity & Access management"
+        category "Gestione delle utenze privilegiate"
+        NIS2 "Art. 21, par. 2, comma i"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-5"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Sono adottate soluzioni di Privileged Access Management (PAM) per la gestione
+            +b degli accessi logici degli amministratori di sistema?"
+        detailed_explanation "Il Privileged Access Management (PAM) è un insieme di tecnologie e pratiche
+            +b progettate per controllare e proteggere gli accessi privilegiati alle risorse
+            +b critiche all'interno di un'organizzazione. Gli amministratori di sistema,
+            +b spesso dotati di privilegi elevati, possono accedere a sistemi e dati
+            +b sensibili, il che li rende bersagli attraenti per gli attaccanti. L'adozione di
+            +b soluzioni PAM aiuta a mitigare i rischi associati agli abusi di accesso
+            +b privilegiato, fornendo funzionalità come il controllo degli accessi basato su
+            +b policy, il monitoraggio e la registrazione delle sessioni, e la gestione delle
+            +b credenziali. Queste soluzioni garantiscono che solo gli utenti autorizzati
+            +b possano accedere a risorse sensibili, e lo fanno solo per il tempo necessario.
+            +b Inoltre, PAM aiuta a mantenere la conformità con normative e standard di
+            +b sicurezza."
+        [ glossary
+            {
+                term "Privileged Access Management (PAM)"
+                definition "Privileged Access Management (PAM) si riferisce a una classe di soluzioni
+                    +b tecnologiche che aiuta le organizzazioni a proteggere, controllare e monitorare
+                    +b l'accesso privilegiato alle risorse IT."
+                link "
+                    +b https://www.csoonline.com/article/3249765/what-is-privileged-access-management-pam-products-and-best-practices.html"
+            {
+                term "Accesso privilegiato"
+                definition "L'accesso privilegiato è un livello di accesso e autorizzazione superiore
+                    +b rispetto agli utenti standard, consentendo l'accesso a sistemi, applicazioni e
+                    +b dati critici."
+                link "https://www.techtarget.com/searchsecurity/definition/privileged-access"
+            {
+                term "Amministratore di sistema"
+                definition "Un amministratore di sistema è un professionista IT responsabile della
+                    +b gestione, manutenzione e configurazione dei sistemi informatici."
+                link "https://en.wikipedia.org/wiki/System_administrator"
+        [ related_links
+            {
+                title "NIST Cybersecurity Framework (CSF)"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "ISO/IEC 27001:2013 Information security management systems"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "European Union Cybersecurity Act"
+                url "https://digital-strategy.ec.europa.eu/en/policies/cybersecurity-act"
+    {
+        idd "11.2.3"
+        area "Identity & Access management"
+        category "Gestione delle utenze privilegiate"
+        NIS2 "Art. 21, par. 2, comma i"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-5"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le utenze di dominio sono gestite secondo un principio di tiering?"
+        detailed_explanation "Il principio di tiering nella gestione delle utenze di dominio è un approccio
+            +b alla sicurezza che implica la separazione delle utenze in diversi livelli o
+            +b "tier", ciascuno con diversi diritti e responsabilità. Questo metodo aiuta a
+            +b limitare l'accesso non autorizzato e a mitigare i rischi associati all'uso di
+            +b account con privilegi elevati. Ad esempio, in un sistema a tre livelli, il Tier
+            +b 0 potrebbe essere riservato agli account con il massimo livello di accesso
+            +b amministrativo (come il Domain Admin), il Tier 1 agli amministratori di server
+            +b o applicazioni, e il Tier 2 agli utenti finali. La gestione secondo il
+            +b principio di tiering richiede una rigorosa applicazione delle politiche di
+            +b controllo degli accessi, la revisione periodica dei privilegi e la formazione
+            +b continua del personale per garantire che solo gli utenti corretti abbiano
+            +b accesso ai livelli appropriati."
+        [ glossary
+            {
+                term "Utenze di Dominio"
+                definition "Riferimento agli account utente all'interno di un dominio di rete, che possono
+                    +b avere vari livelli di accesso e permessi."
+                link "
+                    +b https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/active-directory-domain-services"
+            {
+                term "Principio di Tiering"
+                definition "Metodo di gestione degli account utente che li separa in diversi livelli con
+                    +b differenti privilegi, per migliorare la sicurezza."
+                link "https://docs.microsoft.com/en-us/security/compass/privileged-access-tier-model"
+            {
+                term "Controllo degli Accessi"
+                definition "Processo di definizione e gestione delle autorizzazioni degli utenti per
+                    +b accedere a risorse e informazioni."
+                link "https://csrc.nist.gov/glossary/term/access_control"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32022L2555"
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/fact-sheet-president-biden-signs-executive-order-charting-new-course-to-improve-the-nations-cybersecurity-and-protect-federal-government-networks/"
+            {
+                title "EuCRA Allegato I.1"
+                url "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32021R0821"
+    {
+        idd "11.3.1"
+        area "Identity & Access management"
+        category "Autenticazione"
+        NIS2 "Art. 21, par. 2, comma i, j"
+        ISA_n_62443_n_${'('}2-4) "SP.09.05"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-6"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Sono adottati requisiti di complessità delle credenziali di autenticazione in
+            +b linea con le best practice di riferimento (lunghezza min. 12 caratteri,
+            +b caratteri alfanumerici, maiuscole)?"
+        detailed_explanation "L'adozione di requisiti di complessità per le credenziali di autenticazione è
+            +b una misura fondamentale per garantire la sicurezza degli account utente. La
+            +b complessità della password rende più difficile per gli attaccanti indovinare o
+            +b forzare una password attraverso attacchi di forza bruta o tecniche di cracking.
+            +b Le best practice suggeriscono che una password dovrebbe avere una lunghezza
+            +b minima di 12 caratteri e includere una combinazione di caratteri alfanumerici,
+            +b lettere maiuscole e minuscole, e, idealmente, caratteri speciali. Questo
+            +b aumenta il numero di combinazioni possibili, rendendo l'attacco più difficile e
+            +b dispendioso in termini di tempo. Inoltre, le organizzazioni possono adottare
+            +b politiche di rotazione delle password e incoraggiare l'uso di password manager
+            +b per migliorare ulteriormente la sicurezza."
+        [ glossary
+            {
+                term "Autenticazione"
+                definition "Processo di verifica dell'identità di un utente o sistema per consentire
+                    +b l'accesso a risorse protette."
+                link "https://en.wikipedia.org/wiki/Authentication"
+            {
+                term "Attacco di forza bruta"
+                definition "Tentativo di ottenere una password o chiave di cifratura provando
+                    +b sistematicamente tutte le combinazioni possibili."
+                link "https://en.wikipedia.org/wiki/Brute-force_attack"
+            {
+                term "Password manager"
+                definition "Software che aiuta a generare, recuperare e gestire le password per diversi
+                    +b account, migliorando la sicurezza complessiva."
+                link "https://en.wikipedia.org/wiki/Password_manager"
+        [ related_links
+            {
+                title "NIST Special Publication 800-63B: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/sp800-63b.html"
+            {
+                title "ISO/IEC 27001:2013 Information security management systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "11.3.2"
+        area "Identity & Access management"
+        category "Autenticazione"
+        NIS2 "Art. 21, par. 2, comma i, j"
+        ISA_n_62443_n_${'('}2-4) "SP.09.05"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-6"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le procedure, i processi e le misure tecniche per la gestione sicura delle
+            +b password sono definite e implementate?"
+        detailed_explanation "La gestione sicura delle password è un aspetto critico della sicurezza
+            +b informatica che mira a proteggere le credenziali di accesso degli utenti da
+            +b attacchi e accessi non autorizzati. Le procedure e i processi di gestione delle
+            +b password devono includere la creazione, l'archiviazione, il recupero e la
+            +b distruzione sicura delle password. È fondamentale che le password siano
+            +b sufficientemente complesse, cambiate regolarmente, e che i tentativi di accesso
+            +b falliti siano limitati per prevenire attacchi di forza bruta. Le misure
+            +b tecniche possono includere l'uso di strumenti di gestione delle password,
+            +b l'implementazione di autenticazione a più fattori (MFA) e il monitoraggio
+            +b continuo degli accessi per individuare anomalie. Queste pratiche aiutano a
+            +b garantire che solo utenti autorizzati abbiano accesso ai sistemi e ai dati
+            +b sensibili, riducendo il rischio di violazioni di sicurezza."
+        [ glossary
+            {
+                term "Autenticazione a più fattori (MFA)"
+                definition "Una misura di sicurezza che richiede più di una forma di verifica per concedere
+                    +b accesso a un sistema. Questo potrebbe includere una combinazione di qualcosa
+                    +b che l'utente conosce (password), qualcosa che l'utente possiede (token o
+                    +b smartphone), e qualcosa che l'utente è (impronta digitale)."
+                link "https://en.wikipedia.org/wiki/Multi-factor_authentication"
+            {
+                term "Forza bruta"
+                definition "Una tecnica di attacco che tenta di indovinare una password o una chiave
+                    +b crittografica provando tutte le combinazioni possibili fino a trovare quella
+                    +b corretta."
+                link "https://en.wikipedia.org/wiki/Brute-force_attack"
+            {
+                term "Credenziali di accesso"
+                definition "Informazioni di autenticazione utilizzate per verificare l'identità di un
+                    +b utente, spesso composte da un nome utente e una password."
+                link "https://www.techopedia.com/definition/26417/login-credentials"
+            {
+                term "Gestione delle password"
+                definition "Pratiche e strumenti utilizzati per creare, archiviare, proteggere e recuperare
+                    +b password in modo sicuro."
+                link "https://en.wikipedia.org/wiki/Password_management"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013 - Information technology — Security techniques — Information
+                    +b security management systems — Requirements"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework (CSF)"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "11.3.3"
+        area "Identity & Access management"
+        category "Autenticazione"
+        NIS2 "Art. 21, par. 2, comma i, j"
+        ISA_n_62443_n_${'('}2-4) "SP.03.07"
+        ISO_n_27001 "A.5.16"
+        "NIST CSF" "PR.AC-6"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "L'accesso ai sistemi avviene attraverso metodi di autenticazione sicura quali
+            +b MFA e strong authentication?"
+        detailed_explanation "L'accesso ai sistemi attraverso metodi di autenticazione sicura è cruciale per
+            +b garantire che solo utenti autorizzati possano accedere alle risorse sensibili.
+            +b L'autenticazione multifattoriale (MFA) e l'autenticazione forte sono due metodi
+            +b che aumentano significativamente la sicurezza. L'MFA richiede l'utilizzo di due
+            +b o più fattori di autenticazione, che possono includere qualcosa che l'utente
+            +b conosce (es. password), qualcosa che l'utente possiede (es. smart card), e
+            +b qualcosa che l'utente è (es. impronta digitale). L'autenticazione forte,
+            +b invece, si focalizza sull'utilizzo di credenziali difficili da compromettere.
+            +b Implementare tali misure riduce il rischio di accessi non autorizzati,
+            +b proteggendo le informazioni critiche dai cyber attacchi."
+        [ glossary
+            {
+                term "Autenticazione Multifattoriale (MFA)"
+                definition "Un metodo di autenticazione che richiede all'utente di fornire due o più
+                    +b fattori di verifica per ottenere l'accesso a una risorsa come un'applicazione,
+                    +b un account online o una VPN."
+                link "https://en.wikipedia.org/wiki/Multi-factor_authentication"
+            {
+                term "Autenticazione Forte"
+                definition "Un metodo di autenticazione che utilizza tecniche avanzate per garantire che le
+                    +b credenziali di accesso siano difficili da compromettere, spesso includendo
+                    +b password complesse e altre forme di verifica sicura."
+                link "https://www.nist.gov/publications/strong-authentication"
+            {
+                term "Accesso Non Autorizzato"
+                definition "L'atto di accedere a sistemi, reti o dati senza permesso, spesso con l'intento
+                    +b di condurre attività illecite."
+                link "https://en.wikipedia.org/wiki/Unauthorized_access"
+        [ related_links
+            {
+                title "NIST Special Publication 800-63B: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/sp800-63b.html"
+            {
+                title "ISO/IEC 27001 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/presidential-actions/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "12.1.1"
+        area "Operational Security"
+        category "Log management"
+        NIS2 "Art. 21, par. 2, comma b, e"
+        ISA_n_62443_n_${'('}2-4) "SP.08.03"
+        "REG. MACCHINE" "Allegato III - 1.7.1"
+        "NIST CSF" "PR.PT-1"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le politiche e le procedure di logging e monitoraggio sono stabilite,
+            +b documentate, approvate, comunicate, applicate, valutate e mantenute?"
+        detailed_explanation "Log management is a critical component of operational security, focusing on the
+            +b systematic collection, storage, and analysis of log data generated by systems
+            +b and applications. Effective log management policies and procedures ensure that
+            +b logs are appropriately documented, approved, and communicated across the
+            +b organization. These logs must be collected and stored in a secure manner to
+            +b protect against unauthorized access and tampering. Regular evaluation and
+            +b maintenance of these policies ensure they remain effective and compliant with
+            +b current standards and regulations. Monitoring logs allows organizations to
+            +b detect and respond to potential security incidents promptly, thereby minimizing
+            +b the impact on business operations."
+        [ glossary
+            {
+                term "Log Management"
+                definition "Log management refers to the process of handling log data, including the
+                    +b collection, storage, and analysis of logs generated by various systems and
+                    +b applications to monitor and improve security and operational efficiency."
+                link "https://en.wikipedia.org/wiki/Log_management"
+            {
+                term "Operational Security"
+                definition "Operational security (OPSEC) is a risk management process that identifies
+                    +b critical information and subsequently analyzes and controls potential threats
+                    +b to safeguard sensitive information from adversaries."
+                link "https://en.wikipedia.org/wiki/Operations_security"
+            {
+                term "NIST CSF"
+                definition "The National Institute of Standards and Technology Cybersecurity Framework
+                    +b (NIST CSF) provides guidelines and best practices for managing cybersecurity
+                    +b risks, helping organizations to prevent, detect, and respond to cyber threats."
+                link "https://www.nist.gov/cyberframework"
+        [ related_links
+            {
+                title "NIST SP 800-92: Guide to Computer Security Log Management"
+                url "https://csrc.nist.gov/publications/detail/sp/800-92/final"
+            {
+                title "ISO/IEC 27001:2013 Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "CIS Control 6: Maintenance, Monitoring, and Analysis of Audit Logs"
+                url "
+                    +b https://www.cisecurity.org/controls/maintenance-monitoring-and-analysis-of-audit-logs"
+    {
+        idd "12.1.2"
+        area "Operational Security"
+        category "Log management"
+        NIS2 "Art. 21, par. 2, comma b, e"
+        ISA_n_62443_n_${'('}2-4) "SP.08.03_n_SP.08.02"
+        "NIST CSF" "PR.PT-1"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Gli audit log di sicurezza vengono monitorati per rilevare attività anomale o
+            +b non previste?"
+        detailed_explanation "Monitorare gli audit log di sicurezza è un aspetto fondamentale della gestione
+            +b della sicurezza operativa. Gli audit log sono registri dettagliati che
+            +b tracciano le attività all'interno di un sistema informatico, incluse operazioni
+            +b eseguite da utenti e applicazioni. La loro analisi aiuta a identificare
+            +b attività anomale o non previste, che potrebbero indicare tentativi di accesso
+            +b non autorizzati, violazioni della sicurezza o malfunzionamenti del sistema. Il
+            +b monitoraggio continuo e proattivo degli audit log permette alle organizzazioni
+            +b di rilevare tempestivamente eventuali minacce o incidenti di sicurezza,
+            +b riducendo il tempo di risposta e mitigando i potenziali danni. È importante che
+            +b il personale addetto alla sicurezza configuri correttamente i sistemi di
+            +b logging, stabilisca politiche di retention appropriate per i log e utilizzi
+            +b strumenti di analisi che permettano di identificare automaticamente schemi
+            +b sospetti o attività anomale."
+        [ glossary
+            {
+                term "Audit Log"
+                definition "Un audit log è un file di registro che documenta una sequenza cronologica di
+                    +b eventi su un sistema informatico, utile per tracciare attività e diagnosticare
+                    +b problemi di sicurezza."
+                link "https://en.wikipedia.org/wiki/Audit_trail"
+            {
+                term "Attività Anomale"
+                definition "Eventi o azioni che si discostano dal comportamento normale o previsto di un
+                    +b sistema, spesso indicative di potenziali minacce alla sicurezza."
+                link "https://www.imperva.com/learn/application-security/anomalies/"
+            {
+                term "Monitoraggio"
+                definition "Il processo di raccolta, analisi e utilizzo di informazioni per rilevare e
+                    +b rispondere a eventi di sicurezza in tempo reale."
+                link "https://www.sans.org/white-papers/monitoring-essentials-36972/"
+        [ related_links
+            {
+                title "NIST Special Publication 800-92: Guide to Computer Security Log Management"
+                url "https://csrc.nist.gov/publications/detail/sp/800-92/final"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "CIS Controls Version 8"
+                url "https://www.cisecurity.org/controls/v8/"
+    {
+        idd "12.1.3"
+        area "Operational Security"
+        category "Log management"
+        NIS2 "Art. 21, par. 2, comma b, e"
+        ISA_n_62443_n_${'('}2-4) "SP.08.03_n_SP.08.02"
+        "NIST CSF" "PR.PT-1"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Sono attuati presidi di sicurezza atti a prevenire l'accesso non autorizzato o
+            +b la violazione dell'integrità dei log degli eventi di sicurezza?"
+        detailed_explanation "La gestione dei log è un componente critico della sicurezza operativa in quanto
+            +b i log degli eventi di sicurezza contengono informazioni preziose su attività di
+            +b sistema, accessi e potenziali incidenti di sicurezza. È cruciale implementare
+            +b misure rigorose per proteggere questi log da accessi non autorizzati o
+            +b alterazioni, poiché la loro integrità e disponibilità sono fondamentali per le
+            +b investigazioni successive a un evento di sicurezza e il monitoraggio continuo
+            +b delle minacce. Le misure di sicurezza possono includere la crittografia dei
+            +b log, l'utilizzo di controlli di accesso basati sui ruoli (RBAC),
+            +b l'archiviazione sicura e la verifica dell'integrità tramite checksum o firme
+            +b digitali. Inoltre, è essenziale assicurare che solo personale autorizzato abbia
+            +b accesso ai log e che queste azioni siano documentate e monitorate regolarmente."
+        [ glossary
+            {
+                term "Log Management"
+                definition "Il processo di gestione e analisi dei log generati dai sistemi IT per
+                    +b monitorare le attività, rilevare anomalie e supportare le investigazioni di
+                    +b sicurezza."
+                link "https://www.sans.org/reading-room/whitepapers/logging/log-management-101-34297"
+            {
+                term "RBAC (Role-Based Access Control)"
+                definition "Un metodo di regolazione dell'accesso ai sistemi informatici basato sui ruoli
+                    +b degli utenti all'interno di un'organizzazione."
+                link "https://csrc.nist.gov/Projects/Role-Based-Access-Control"
+            {
+                term "Checksum"
+                definition "Un valore di controllo utilizzato per verificare l'integrità dei dati,
+                    +b assicurando che non siano stati alterati durante la trasmissione o la
+                    +b memorizzazione."
+                link "https://en.wikipedia.org/wiki/Checksum"
+            {
+                term "Digital Signature"
+                definition "Un meccanismo di autenticazione che utilizza la crittografia per verificare
+                    +b l'autenticità e l'integrità di un messaggio, software o documento digitale."
+                link "https://en.wikipedia.org/wiki/Digital_signature"
+        [ related_links
+            {
+                title "NIST Special Publication 800-92: Guide to Computer Security Log Management"
+                url "https://csrc.nist.gov/publications/detail/sp/800-92/final"
+            {
+                title "ISO/IEC 27002:2022 - Information security, cybersecurity and privacy protection"
+                url "https://www.iso.org/standard/75652.html"
+            {
+                title "CIS Controls v8 - Control 8: Audit Log Management"
+                url "https://www.cisecurity.org/controls/audit-log-management"
+    {
+        idd "12.2.1"
+        area "Operational Security"
+        category "Patch management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.11.01_n_SP.11.02"
+        "NIST CSF" "DE.CM-8_n_RS.MI-3"
+        EuCRA "Art. 10.9_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "E' definito ed attuato un programma di patching che prevede l'adozione delle
+            +b patch di sicurezza entro massimo 30 giorni dalla pubblicazione delle stesse dai
+            +b vendor di riferimento?"
+        detailed_explanation "A patch management program is essential for maintaining the security posture of
+            +b an organization by ensuring that software vulnerabilities are promptly
+            +b addressed. Patches, which are updates to software that fix security
+            +b vulnerabilities and other bugs, need to be applied within a specified timeframe
+            +b to minimize the window of exposure to potential threats. The recommended
+            +b timeframe for applying security patches is typically within 30 days of their
+            +b release by vendors. This ensures that known vulnerabilities are not exploited
+            +b by malicious actors. The process involves identifying and prioritizing patches,
+            +b testing them in a controlled environment, and deploying them across all
+            +b relevant systems in a timely manner. Effective patch management reduces the
+            +b risk of cyber attacks that could compromise data integrity, confidentiality,
+            +b and availability."
+        [ glossary
+            {
+                term "Patch Management"
+                definition "Patch management is the process of managing a network of computers by regularly
+                    +b performing system updates to close vulnerabilities in applications and
+                    +b operating systems."
+                link "https://www.cisa.gov/uscert/bsi/articles/knowledge/principles/patch-management"
+            {
+                term "Vulnerability"
+                definition "A vulnerability is a weakness in an information system, system security
+                    +b procedures, internal controls, or implementation that could be exploited by a
+                    +b threat source."
+                link "https://csrc.nist.gov/glossary/term/vulnerability"
+            {
+                term "Vendor"
+                definition "A vendor is a company or person that sells goods or services, in this context,
+                    +b software vendors who provide updates and patches for their products."
+                link "https://en.wikipedia.org/wiki/Vendor_(supply_chain)"
+            {
+                term "Security Patch"
+                definition "A security patch is a change applied to an asset to correct the weakness
+                    +b described by a vulnerability."
+                link "https://www.techopedia.com/definition/24836/security-patch"
+        [ related_links
+            {
+                title "NIST Special Publication 800-40: Guide to Enterprise Patch Management
+                    +b Technologies"
+                url "https://csrc.nist.gov/publications/detail/sp/800-40/rev-3/final"
+            {
+                title "Cybersecurity & Infrastructure Security Agency (CISA) Patch Management Guidance"
+                url "
+                    +b https://www.cisa.gov/sites/default/files/publications/CISA%20Patch%20Management%20Guide_S508C.pdf"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"

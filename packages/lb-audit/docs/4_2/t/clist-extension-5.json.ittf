@@ -1,0 +1,244 @@
+$group
+    {
+        id "FSA-CR 1.9C"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to validate certificates by checking a given
+            +b certificate’s revocation status."
+        requirement_id "IEC 62443-4-2:CR 1.9(c)"
+        title "Strength of Public Key-Based Authentication - Check Certificate's Revocation
+            +b Status"
+        description "This requirement focuses on ensuring that public key-based authentication
+            +b mechanisms are robust by verifying the revocation status of certificates.
+            +b Revocation checking is critical for maintaining trust in digital certificates,
+            +b as it ensures that compromised or otherwise invalid certificates are not used
+            +b for authentication purposes."
+        [ key_aspects
+            {
+                aspect "Revocation Checking Methods"
+                details "The system should implement mechanisms to check the revocation status of
+                    +b certificates using methods such as Certificate Revocation Lists (CRLs) or
+                    +b Online Certificate Status Protocol (OCSP)."
+            {
+                aspect "Automated Verification"
+                details "Automated processes should be in place to ensure timely and continuous
+                    +b verification of certificate status, minimizing human error and ensuring
+                    +b up-to-date status checking."
+            {
+                aspect "Handling of Revoked Certificates"
+                details "Systems must be capable of effectively handling revoked certificates by
+                    +b preventing their use in authentication processes and generating alerts for
+                    +b further investigation."
+        [ related_standards
+            {
+                standard "RFC 5280"
+                description "Internet X.509 Public Key Infrastructure Certificate and Certificate Revocation
+                    +b List (CRL) Profile. This RFC defines the format of certificates and CRLs and
+                    +b provides guidance on how they should be used in the context of encryption and
+                    +b authentication."
+            {
+                standard "RFC 6960"
+                description "X.509 Internet Public Key Infrastructure Online Certificate Status Protocol -
+                    +b OCSP. This RFC describes the OCSP protocol, which allows real-time verification
+                    +b of a certificate's validity."
+            {
+                standard "NIST SP 800-57 Part 1"
+                description "Recommendation for Key Management - Part 1: General. This document provides
+                    +b guidance on key management, including practices related to certificate
+                    +b revocation and validation."
+            {
+                standard "ISO/IEC 27001"
+                description "Information Security Management Systems. This standard outlines requirements
+                    +b for establishing, implementing, maintaining, and continually improving an
+                    +b information security management system, including aspects related to secure
+                    +b authentication practices."
+    {
+        id "FSA-CR 1.9D"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to establish user (human, software process or
+            +b device) control of the corresponding private key."
+        requirement_id "IEC 62443-4-2: CR 1.9(d)"
+        title "Strength of Public Key-Based Authentication - Establish User Control of Private
+            +b Key"
+        description "This requirement emphasizes the necessity for users to maintain control over
+            +b their private keys in public key-based authentication systems. Ensuring user
+            +b control of private keys is crucial for the integrity and security of
+            +b authentication processes in industrial automation and control systems (IACS).
+            +b The private key must remain confidential and protected from unauthorized access
+            +b or misuse."
+        [ key_aspects
+            "User Control: Users must have exclusive control over their private keys, ensuring no unauthorized entities can access or use them."
+            "Confidentiality: Private keys should be stored securely to prevent exposure to unauthorized parties, maintaining the confidentiality essential for secure communications."
+            "Authentication Integrity: By safeguarding private keys, the integrity of the authentication process is ensured, preventing impersonation and unauthorized access."
+            "Key Management: Robust key management practices should be in place, including secure generation, storage, and disposal of private keys."
+        [ related_standards
+            {
+                standard "NIST SP 800-57 Part 1"
+                reference "This NIST publication provides guidelines on key management, including key
+                    +b generation, distribution, and storage, which are critical for maintaining user
+                    +b control of private keys."
+            {
+                standard "ISO/IEC 11770-3"
+                reference "This standard focuses on key management mechanisms and provides detailed
+                    +b procedures for ensuring secure key ownership and control."
+            {
+                standard "FIPS 140-3"
+                reference "Federal Information Processing Standard (FIPS) 140-3 provides security
+                    +b requirements for cryptographic modules, including those used for key storage
+                    +b and management, ensuring private key protection."
+            {
+                standard "RFC 5280"
+                reference "RFC 5280 describes the Internet X.509 Public Key Infrastructure Certificate and
+                    +b CRL Profile, which includes considerations for managing and controlling private
+                    +b keys within PKI systems."
+    {
+        id "FSA-CR 1.9E"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to map the authenticated identity to a user
+            +b (human, software process or device)."
+        requirement_id "IEC 62443-4-2: CR 1.9(e)"
+        title "Strength of Public Key-Based Authentication - Map Authenticated Identity to a
+            +b User"
+        description "This requirement focuses on ensuring the implementation of strong public
+            +b key-based authentication mechanisms in an industrial control system (ICS)
+            +b environment. It specifies that the authenticated identity, verified through
+            +b public key infrastructure (PKI), must be accurately mapped to a user within the
+            +b system to maintain the integrity and security of the ICS operations. This
+            +b mapping is crucial for maintaining accountability and ensuring that actions
+            +b within the system can be traced back to authorized users."
+        [ key_aspects
+            {
+                aspect "Public Key Infrastructure"
+                details "The use of PKI to establish a secure and reliable method for verifying user
+                    +b identities. This involves using digital certificates, certificate authorities
+                    +b (CAs), and public/private key pairs."
+            {
+                aspect "Identity Mapping"
+                details "Ensuring that once an identity is authenticated via PKI, it is correctly mapped
+                    +b to a user entity within the system's user management framework."
+            {
+                aspect "Accountability and Traceability"
+                details "Maintaining logs and records that link authenticated identities to specific
+                    +b users to ensure actions are accountable and traceable."
+            {
+                aspect "Security Controls"
+                details "Implementing additional security controls to protect the mapping process and
+                    +b ensure it cannot be tampered with or bypassed."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9 Access Control"
+                details "This section of ISO/IEC 27001 emphasizes the importance of robust access
+                    +b control mechanisms, including the management of user identities and
+                    +b authentication methods that can relate to the mapping of authenticated
+                    +b identities."
+            {
+                standard "NIST SP 800-63B"
+                reference "Digital Identity Guidelines: Authentication and Lifecycle Management"
+                details "This NIST guideline provides specific recommendations for digital identity
+                    +b authentication, including the use of public key-based methods and the
+                    +b importance of linking authenticated identities to user accounts."
+            {
+                standard "IEC 62351"
+                reference "Power systems management and associated information exchange - Data and
+                    +b communications security"
+                details "IEC 62351 focuses on securing the communication within power systems, which
+                    +b includes ensuring the integrity and authentication of identities within the
+                    +b network, paralleling the identity mapping requirement in ICS environments."
+    {
+        id "FSA-CR 1.9F"
+        check_description "For components that utilize public-key-based authentication, those components
+            +b shall provide directly or integrate into a system that provides the capability
+            +b within the same IACS environment to ensure that the algorithms and keys used
+            +b for the public key authentication comply with CR 4.3 – Use of cryptography."
+        requirement_id "IEC 62443-4-2: CR 1.9(f)"
+        title "Strength of Public Key-Based Authentication - Use of Cryptography"
+        description "This requirement focuses on ensuring that public key-based authentication
+            +b mechanisms implement cryptographic techniques with adequate strength to protect
+            +b against unauthorized access and ensure data integrity and confidentiality. The
+            +b cryptographic algorithms, key sizes, and other parameters must be chosen to
+            +b resist known attacks and should be periodically reviewed and updated as threats
+            +b evolve."
+        [ key_aspects
+            "Use of industry-standard cryptographic algorithms such as RSA, ECC, and DSA for public key-based authentication."
+            "Selection of appropriate key sizes to ensure sufficient security, typically at least 2048 bits for RSA and 256 bits for ECC, in accordance with current security best practices."
+            "Implementation of robust key management practices, including secure key generation, distribution, storage, and revocation."
+            "Regular review and update of cryptographic algorithms and key sizes to adapt to evolving threats and computational advancements."
+            "Integration of cryptographic modules that are compliant with recognized standards such as FIPS 140-2/3 or equivalent, to ensure the overall security of the authentication mechanism."
+        [ related_standards
+            {
+                standard_name "NIST SP 800-57 Part 1"
+                description "Provides guidelines for key management, including recommendations for
+                    +b cryptographic key sizes and algorithms to ensure adequate security levels."
+            {
+                standard_name "FIPS 140-2/3"
+                description "Specifies security requirements for cryptographic modules used within security
+                    +b systems to protect sensitive information."
+            {
+                standard_name "ISO/IEC 19790"
+                description "An international standard similar to FIPS 140-2/3 that defines security
+                    +b requirements for cryptographic modules."
+            {
+                standard_name "RFC 5280"
+                description "Specifies the Internet X.509 Public Key Infrastructure Certificate and
+                    +b Certificate Revocation List (CRL) Profile, which is crucial for managing public
+                    +b key certificates used in authentication."
+            {
+                standard_name "NIST SP 800-131A"
+                description "Provides recommendations for the transition to stronger cryptographic keys and
+                    +b algorithms, ensuring the ongoing security of cryptographic systems."
+    {
+        id "FSA-CR 1.9 RE(1)"
+        check_description "Components shall provide the capability to protect critical, long-lived private
+            +b keys via hardware mechanisms."
+        requirement_id "IEC 62443-4-2: CR 1.9 RE(1)"
+        title "Hardware Security for Public Key-Based Authentication"
+        description "This requirement focuses on ensuring that the components used in an industrial
+            +b control system support public key-based authentication methods through secure
+            +b hardware mechanisms. The aim is to enhance the overall security posture by
+            +b leveraging hardware capabilities to protect sensitive cryptographic operations
+            +b and data."
+        [ key_aspects
+            {
+                aspect "Public Key Infrastructure (PKI)"
+                details "PKI is employed to manage digital certificates and public-key encryption.
+                    +b Hardware components should support PKI operations securely to prevent
+                    +b unauthorized access and ensure integrity."
+            {
+                aspect "Hardware Security Modules (HSMs)"
+                details "Utilizing HSMs can provide a secure environment for key generation, storage,
+                    +b and management. These modules are designed to resist physical tampering and
+                    +b provide a higher level of security for cryptographic operations."
+            {
+                aspect "Secure Boot and Firmware Integrity"
+                details "Ensuring that hardware platforms support secure boot processes to verify
+                    +b firmware integrity at startup. This prevents unauthorized or malicious firmware
+                    +b from being executed."
+            {
+                aspect "Tamper Resistance and Detection"
+                details "Hardware should incorporate features to resist tampering and detect
+                    +b unauthorized access attempts. This includes physical tamper-evident seals and
+                    +b electronic tamper detection mechanisms."
+        [ related_standards
+            {
+                standard "FIPS 140-3"
+                description "Federal Information Processing Standard (FIPS) 140-3 provides security
+                    +b requirements for cryptographic modules, including hardware security aspects
+                    +b such as physical security and cryptographic key management."
+            {
+                standard "ISO/IEC 19790"
+                description "This standard specifies security requirements for cryptographic modules,
+                    +b aligning closely with FIPS standards, and includes guidelines for hardware
+                    +b security implementations."
+            {
+                standard "NIST SP 800-57"
+                description "The NIST Special Publication 800-57 series provides guidelines for key
+                    +b management, including secure key establishment and protection methods that can
+                    +b be supported by hardware mechanisms."
+            {
+                standard "ISO/IEC 11889"
+                description "The Trusted Platform Module (TPM) standard, which outlines specifications for a
+                    +b secure cryptoprocessor designed to secure hardware by integrating cryptographic
+                    +b keys into devices."

@@ -1,0 +1,622 @@
+$group
+    {
+        practice "3"
+        code "SD-1"
+        subCode "g)"
+        name "Secure design principles"
+        description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: g) the security capabilities and/or
+            +b compensating mechanisms used to safeguard the interface and the assets defined
+            +b in c) above, including input validation as well as output and error handling;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify potential security vulnerabilities in the design phase and
+                    +b implement appropriate safeguards."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage
+                            +b potential, Reproducibility, Exploitability, Affected users, and
+                            +b Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, considering
+                            +b operational technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant was assessed using STRIDE,
+                        +b identifying critical vulnerabilities in input validation mechanisms, leading to
+                        +b the implementation of enhanced output and error handling procedures."
+            { audit_and_compliance_verification
+                why "To ensure that secure design principles are consistently applied and
+                    +b documented."
+                [ audit_checklist
+                    "Verify that all interfaces (physical and logical) are documented with their security capabilities."
+                    "Check for evidence of input validation mechanisms in the design documentation."
+                    "Review error handling procedures for all interfaces."
+                    "Confirm the presence of compensating controls for legacy interfaces."
+                [ metrics
+                    {
+                        kpi "Percentage of interfaces with documented security capabilities"
+                        target "100%"
+                    {
+                        kpi "Number of vulnerabilities identified in design reviews"
+                        target "Reduction of 20% year-over-year"
+                compliance_procedure "Documentation must include interface characterization, security capabilities,
+                    +b and compensating mechanisms. Regular design reviews must be conducted and
+                    +b findings documented."
+            { training_and_competency_requirements
+                why "To ensure that engineers and designers have the necessary skills to implement
+                    +b secure design principles."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Provides foundational knowledge of IEC 62443 standards, including secure design
+                            +b principles."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focusing on securing industrial control systems, including secure
+                            +b design practices."
+                competency_assessment "Annual competency reviews must be conducted, including practical assessments of
+                    +b secure design implementation."
+            { tooling_and_automation_support
+                why "To integrate secure design principles into the development lifecycle
+                    +b efficiently."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities during development."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                automation_strategy "Integrate SAST and DAST tools into the CI/CD pipeline to automatically scan for
+                    +b vulnerabilities in input validation and error handling mechanisms."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems often lack modern security capabilities and require special
+                    +b consideration."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy components in separate network zones to limit exposure."
+                    {
+                        approach "Protocol gateways"
+                        description "Use secure gateways to mediate communication between legacy and modern systems."
+                example_policy "Legacy systems must be documented with their security limitations, and
+                    +b compensating controls must be implemented. All legacy interfaces must undergo a
+                    +b risk assessment and have documented mitigation strategies."
+            { stakeholder_collaboration_and_governance
+                why "Secure design requires collaboration between engineering, security, and
+                    +b management teams."
+                { governance_model
+                    name "RACI Matrix for Secure Design"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define security requirements and review designs."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design principles."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and enforce compliance."
+                conflict_resolution "Conflicts between engineering and security priorities must be escalated to a
+                    +b cross-functional governance board for resolution."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, and security practices must adapt accordingly."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other ICS security advisories."
+                    {
+                        step "Conduct post-incident reviews"
+                        description "Analyze security incidents to identify gaps in design principles."
+                    {
+                        step "Update policies and procedures"
+                        description "Incorporate lessons learned into secure design documentation."
+                lessons_learned "After a buffer overflow vulnerability was exploited in a legacy PLC, input
+                    +b validation procedures were enhanced across all products, and additional memory
+                    +b protection mechanisms were implemented."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "h)"
+        name "Secure design principles"
+        description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: h) the use of third-party products to
+            +b implement the interface and their security capabilities;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure third-party products used in interfaces do not introduce
+                    +b vulnerabilities."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model potential threats to third-party components, focusing on
+                            +b Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service,
+                            +b and Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling for ICS environments, considering operational impacts
+                            +b and legacy system interactions."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for third-party components."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "Risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A power plant DCS integrated a third-party PLC module. A STRIDE analysis
+                        +b revealed tampering risks, leading to additional encryption controls."
+            { audit_and_compliance_verification
+                why "To verify that third-party products meet security requirements and do not
+                    +b compromise the system."
+                [ audit_checklist
+                    "Verify third-party vendor security certifications (e.g., IEC 62443-4-2)."
+                    "Review third-party component vulnerability history."
+                    "Check for secure update mechanisms in third-party products."
+                [ metrics
+                    {
+                        kpi "Percentage of third-party components with documented security assessments"
+                        target "100%"
+                    {
+                        kpi "Number of critical vulnerabilities in third-party components"
+                        target "0"
+                compliance_procedure "Document all third-party components, their security capabilities, and
+                    +b assessment results in the product security file."
+            { training_and_competency_requirements
+                why "To ensure teams can properly evaluate and integrate third-party products
+                    +b securely."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure design principles for ICS, including third-party component
+                            +b integration."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification includes secure
+                            +b third-party product evaluation."
+                competency_assessment "Annual reviews of engineering staff's ability to assess third-party security
+                    +b capabilities, with mandatory training if gaps are found."
+            { tooling_and_automation_support
+                why "To automate security checks of third-party components in the development
+                    +b pipeline."
+                [ tools
+                    {
+                        name "Software Composition Analysis (SCA) tools"
+                        purpose "To identify vulnerabilities in third-party libraries and components."
+                    {
+                        name "ICS-specific SBOM generators"
+                        purpose "To maintain a Software Bill of Materials for all third-party components."
+                automation_strategy "Integrate SCA tools into the CI/CD pipeline to automatically flag vulnerable
+                    +b third-party components before deployment."
+            { handling_legacy_systems_and_constraints
+                why "Legacy third-party components may not meet modern security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy third-party components in separate network zones."
+                    {
+                        approach "Wrapper interfaces"
+                        description "Develop secure wrappers around legacy third-party interfaces."
+                example_policy "Legacy Integration Policy: All third-party components lacking security updates
+                    +b must be placed in a dedicated DMZ with additional monitoring."
+            { stakeholder_collaboration_and_governance
+                why "Third-party component selection involves multiple teams with competing
+                    +b priorities."
+                { governance_model
+                    name "Third-Party Security Review Board"
+                    [ roles
+                        {
+                            role "Security Lead"
+                            responsibility "Final approval of third-party components."
+                        {
+                            role "Engineering Lead"
+                            responsibility "Technical evaluation of component functionality."
+                        {
+                            role "Procurement"
+                            responsibility "Vendor security requirement verification."
+                conflict_resolution "Monthly cross-functional meetings to review third-party component issues, with
+                    +b escalation to CISO if unresolved."
+            { continuous_improvement_and_updates
+                why "Third-party component vulnerabilities emerge continuously."
+                [ update_process
+                    {
+                        step "Monitor"
+                        description "Subscribe to vendor security bulletins and ICS-CERT alerts for all third-party
+                            +b components."
+                    {
+                        step "Assess"
+                        description "Quarterly review of third-party component security posture."
+                    {
+                        step "Remediate"
+                        description "Develop mitigation plans for vulnerable components within 30 days of
+                            +b identification."
+                lessons_learned "After a third-party PLC vulnerability caused downtime, the company now requires
+                    +b vendors to provide patching SLAs in contracts."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "i) documentation that describes how to use the interface if it is externally
+            +b accessible ; and"
+        name "Secure design principles"
+        description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: i) documentation that describes how to use
+            +b the interface if it is externally accessible ; and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify potential security vulnerabilities in the design phase and mitigate
+                    +b them before implementation."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems to address unique
+                            +b operational and security requirements."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A risk assessment for a Distributed Control System (DCS) in a power plant
+                        +b identified vulnerabilities in communication protocols, leading to the
+                        +b implementation of additional encryption layers."
+            { audit_and_compliance_verification
+                why "To ensure that the secure design principles are correctly implemented and
+                    +b comply with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that all interfaces are documented, including physical and logical interfaces."
+                    "Check that documentation describes how to use externally accessible interfaces."
+                    "Ensure that threat modeling has been conducted for all identified interfaces."
+                [ metrics
+                    {
+                        kpi "Percentage of interfaces with documented secure usage guidelines"
+                        target "100%"
+                    {
+                        kpi "Number of identified threats mitigated in design phase"
+                        target "All critical threats mitigated"
+                compliance_procedure "Documentation review and threat model validation by an independent auditor."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the design process have the necessary
+                    +b skills and knowledge."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Certification covering fundamental concepts of ICS cybersecurity, including
+                            +b secure design principles."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focused on securing industrial control systems, including secure
+                            +b design practices."
+                competency_assessment "Annual competency reviews to ensure design engineers maintain up-to-date
+                    +b knowledge of secure design principles and threat modeling techniques."
+            { tooling_and_automation_support
+                why "To streamline the secure design process and integrate security into the
+                    +b development lifecycle."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities during the design phase."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                automation_strategy "Integration of SAST and DAST tools into the CI/CD pipeline to automatically
+                    +b scan for vulnerabilities during development."
+            { handling_legacy_systems_and_constraints
+                why "To address security challenges posed by legacy systems that cannot meet modern
+                    +b security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network segments to limit exposure to
+                            +b potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b mitigate vulnerabilities in legacy systems."
+                example_policy "A policy for integrating legacy PLCs into a secure design framework, including
+                    +b network segmentation and monitoring requirements."
+            { stakeholder_collaboration_and_governance
+                why "To ensure alignment between engineering, security, and management teams on
+                    +b secure design principles."
+                { governance_model
+                    name "RACI matrix for secure design"
+                    [ roles
+                        {
+                            role "Design Engineer"
+                            responsibility "Implement secure design principles and document interfaces."
+                        {
+                            role "Security Team"
+                            responsibility "Review and validate threat models and secure design documentation."
+                        {
+                            role "Management"
+                            responsibility "Approve secure design policies and allocate resources."
+                conflict_resolution "A formal escalation process to resolve conflicts between engineering and
+                    +b security priorities, with final arbitration by management."
+            { continuous_improvement_and_updates
+                why "To adapt secure design practices based on new threats and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate findings from audits and incidents into the secure design process."
+                    {
+                        step "Update policies"
+                        description "Revise secure design policies to address new threats and vulnerabilities."
+                lessons_learned "After a security incident involving an undocumented interface, the policy was
+                    +b updated to require comprehensive documentation of all interfaces, including
+                    +b internal ones."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "j) description of how the design mitigates the threats identified in the threat
+            +b model."
+        name "Secure design principles"
+        description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: j) description of how the design mitigates
+            +b the threats identified in the threat model."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that the design effectively mitigates identified threats, a
+                    +b structured approach to threat modeling and risk assessment is essential."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored to Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments and unique ICS threats."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation of threat models using STRIDE and provides
+                            +b recommendations for mitigations."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "A risk assessment framework adapted for ICS environments to evaluate and
+                            +b prioritize risks."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant underwent a threat modeling
+                        +b exercise using STRIDE, identifying critical threats such as unauthorized access
+                        +b to control loops. Mitigations included network segmentation and role-based
+                        +b access controls."
+            { audit_and_compliance_verification
+                why "Regular audits ensure that the secure design principles are consistently
+                    +b applied and documented."
+                [ audit_checklist
+                    "Verify that all interfaces (physical and logical) are documented and characterized."
+                    "Confirm that threat models are up-to-date and cover all identified threats."
+                    "Check that mitigations for each threat are implemented as described in the design."
+                [ metrics
+                    {
+                        kpi "Percentage of interfaces with documented threat mitigations"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved high-risk threats"
+                        target "0"
+                compliance_procedure "Documentation reviews and design walkthroughs are conducted to verify
+                    +b compliance with secure design principles. Evidence is maintained in a secure
+                    +b repository."
+            { training_and_competency_requirements
+                why "Ensuring that personnel are trained in secure design principles and threat
+                    +b modeling is critical for effective implementation."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers foundational knowledge of IEC 62443 standards, including secure design
+                            +b principles."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on ICS security, including threat modeling and secure design."
+                competency_assessment "Annual competency reviews are conducted to ensure personnel maintain up-to-date
+                    +b knowledge of secure design practices and threat modeling techniques."
+            { tooling_and_automation_support
+                why "Automation and tooling can streamline the secure design process and ensure
+                    +b consistency."
+                [ tools
+                    {
+                        name "ThreatModeler"
+                        purpose "Automates threat modeling and integrates with DevSecOps pipelines."
+                    {
+                        name "Polaris"
+                        purpose "A software composition analysis tool that helps identify vulnerabilities in
+                            +b dependencies."
+                automation_strategy "Integrate threat modeling tools into the CI/CD pipeline to automatically assess
+                    +b designs for security risks during development."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security standards, requiring alternative
+                    +b strategies."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network zones to limit exposure to threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional controls such as intrusion detection systems (IDS) to
+                            +b monitor legacy systems."
+                example_policy "Legacy systems must be documented, and compensating controls must be
+                    +b implemented to mitigate risks. A risk assessment must be performed annually."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for secure design."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design principles and document mitigations."
+                        {
+                            role "Security Team"
+                            responsibility "Review threat models and validate mitigations."
+                        {
+                            role "Management"
+                            responsibility "Approve design decisions and allocate resources."
+                conflict_resolution "Conflicts are resolved through a structured escalation process, with final
+                    +b decisions made by a cross-functional security governance board."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, requiring regular updates to design principles and
+                    +b mitigations."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Subscribe to CISA alerts and other ICS security advisories."
+                    {
+                        step "Review and update threat models"
+                        description "Conduct quarterly reviews of threat models to incorporate new threats."
+                lessons_learned "Incident post-mortems are documented, and findings are integrated into the
+                    +b secure design process to prevent recurrence."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-2"
+        subCode "undefined"
+        name "Defense in depth design"
+        description "A process shall be employed to implement multiple layers of defense using a
+            +b risk based approach based on the threat model. This process shall be employed
+            +b for assigning responsibilities to each layer of defense."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that multiple layers of defense are designed based on identified
+                    +b risks and threats, aligning with the risk-based approach mandated by IEC
+                    +b 62443-4-1."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, considering
+                            +b operational technology (OT) environments and legacy constraints."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models based on the STRIDE methodology."
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A power plant implemented defense in depth for its Distributed Control System
+                        +b (DCS) by segmenting networks, deploying firewalls, and using role-based access
+                        +b controls, reducing attack surface by 40%."
+            { audit_and_compliance_verification
+                why "To verify that defense-in-depth measures are correctly implemented and comply
+                    +b with IEC 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify that multiple layers of defense (e.g., network segmentation, access controls) are documented and implemented."
+                    "Check if responsibilities for each layer are clearly assigned."
+                    "Review threat models and risk assessments for alignment with defense layers."
+                [ metrics
+                    {
+                        kpi "Percentage of defense layers implemented as per design"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved high-risk threats per layer"
+                        target "0"
+                compliance_procedure "Documentation must include threat models, risk assessments, and evidence of
+                    +b implemented controls for each layer. Reviews should be conducted quarterly."
+            { training_and_competency_requirements
+                why "To ensure personnel understand defense-in-depth principles and can implement
+                    +b them effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers foundational concepts of ICS security, including defense in depth."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on securing ICS environments, including layered defenses."
+                competency_assessment "Annual reviews of engineering and security teams' understanding of
+                    +b defense-in-depth principles, including practical implementation scenarios."
+            { tooling_and_automation_support
+                why "To automate and streamline the implementation and monitoring of
+                    +b defense-in-depth measures."
+                [ tools
+                    {
+                        name "Palo Alto Networks Firewalls"
+                        purpose "To enforce network segmentation and access controls between defense layers."
+                    {
+                        name "Tenable.sc"
+                        purpose "For continuous vulnerability assessment across defense layers."
+                automation_strategy "Integrate security tools into CI/CD pipelines to automate policy enforcement
+                    +b and monitoring for each defense layer (e.g., automated firewall rule
+                    +b validation)."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may not support modern security controls, requiring
+                    +b compensating measures."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems in separate network zones to limit exposure."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional monitoring (e.g., IDS) for legacy systems that lack
+                            +b built-in security."
+                example_policy "Legacy devices must be placed in a dedicated VLAN with strict access controls
+                    +b and monitored via network-based intrusion detection."
+            { stakeholder_collaboration_and_governance
+                why "Defense-in-depth requires coordination between engineering, security, and
+                    +b operations teams."
+                { governance_model
+                    name "RACI Matrix for SD-2"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define threat models and security requirements for each layer."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement and test defense layers."
+                        {
+                            role "Operations Team"
+                            responsibility "Monitor and report on layer effectiveness."
+                conflict_resolution "A cross-functional committee reviews conflicts (e.g., usability vs. security)
+                    +b and aligns on risk-acceptance decisions."
+            { continuous_improvement_and_updates
+                why "Threat landscapes evolve, necessitating updates to defense-in-depth strategies."
+                [ update_process
+                    {
+                        step "Threat Intelligence Review"
+                        description "Quarterly review of CISA alerts and ICS-CERT advisories for new threats."
+                    {
+                        step "Layer Effectiveness Assessment"
+                        description "Biannual penetration testing to validate defense layers."
+                lessons_learned "After a 2023 incident involving a legacy PLC, the policy was updated to require
+                    +b annual firmware reviews for all critical devices."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"

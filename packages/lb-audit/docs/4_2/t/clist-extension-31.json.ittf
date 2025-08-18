@@ -1,0 +1,229 @@
+$group
+    {
+        id "FSA-CR 7.1"
+        check_description "Components shall provide the capability to maintain essential functions when
+            +b operating in a degraded mode as the result of  a DoS event."
+        requirement_id "IEC 62443-4-2: CR 7.1"
+        title "Denial of Service Protection"
+        description "This requirement focuses on ensuring that industrial control systems (ICS) are
+            +b protected against denial of service (DoS) attacks, which can disrupt operations
+            +b by overwhelming system resources or rendering services unavailable. The
+            +b requirement mandates that ICS components must possess the necessary
+            +b capabilities to detect, mitigate, and recover from potential DoS threats to
+            +b maintain the availability and reliability of critical services."
+        { key_aspects
+            detection "Systems should have mechanisms to identify potential DoS attacks in real-time,
+                +b using techniques such as anomaly detection or signature-based detection."
+            mitigation "The ICS should implement strategies to limit the impact of DoS attacks, such as
+                +b rate limiting, traffic shaping, or deploying redundant systems."
+            recovery "After an attack, systems must be able to quickly restore normal operations and
+                +b services, ensuring minimal downtime."
+            "resource management" "Efficient allocation and management of resources to prevent exhaustion during
+                +b high-demand scenarios induced by malicious actors."
+            "logging and monitoring" "Continuous monitoring and logging of network traffic and system performance to
+                +b identify patterns indicative of a DoS attack."
+        [ related_standards
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                [ topics
+                    "Section 6.2.1: Prevention and Response to DoS attacks."
+                    "Emphasizes the importance of network segmentation and traffic filtering to protect against DoS."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information Security Management Systems"
+                [ topics
+                    "A.12.1: Operational procedures and responsibilities, focusing on controls to safeguard against DoS."
+                    "A.13.1: Network security management, including protection against DoS by ensuring robust network configurations."
+            {
+                standard "IEC 61850"
+                reference "Communication networks and systems for power utility automation"
+                [ topics
+                    "Part 6: Configuration description language for communication in electrical substations related to IEDs."
+                    "Ensures that communication protocols are resilient against DoS through redundancy and failover capabilities."
+    {
+        id "FSA-CR 7.1 RE(1)"
+        check_description "Components shall provide the capability to mitigate the effects of information
+            +b and/or message flooding types of DoS events."
+        requirement_id "IEC 62443-4-2: CR 7.1 RE(1)"
+        title "Manage Communication Load from Component"
+        description "This requirement focuses on ensuring that industrial components manage their
+            +b communication load effectively. It requires components to implement mechanisms
+            +b that regulate, monitor, and control the communication load they generate or
+            +b receive to prevent overwhelming the network infrastructure, which could lead to
+            +b performance degradation or denial of service."
+        [ key_aspects
+            {
+                aspect "Load Monitoring"
+                details "Components should have the capability to monitor their outgoing and incoming
+                    +b communication loads in real-time to detect abnormal increases in traffic that
+                    +b could lead to network congestion."
+            {
+                aspect "Traffic Regulation"
+                details "Components must implement traffic shaping or throttling mechanisms to control
+                    +b the rate of outgoing communications, ensuring that the network remains stable
+                    +b and performant."
+            {
+                aspect "Alerting and Reporting"
+                details "Components should be able to generate alerts or logs when communication loads
+                    +b exceed predefined thresholds, allowing for timely intervention by network
+                    +b administrators."
+            {
+                aspect "Interoperability Considerations"
+                details "Ensure that load management mechanisms are compatible with the overall network
+                    +b architecture and do not interfere with other components' operations."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                relevance "Provides higher-level requirements for network and system security, including
+                    +b those related to communication paths and system robustness against
+                    +b network-based attacks."
+            {
+                standard "NIST SP 800-82 Rev 2"
+                title "Guide to Industrial Control Systems (ICS) Security"
+                relevance "Offers guidelines on securing ICS, including recommendations for protecting
+                    +b network communication channels and managing load to prevent denial of service."
+            {
+                standard "ISO/IEC 27033-1:2015"
+                title "Network Security - Part 1: Overview and Concepts"
+                relevance "Provides a framework for network security, including guidelines on managing
+                    +b network load and ensuring communication security in complex environments."
+            {
+                standard "ISO/IEC 27034-7:2023"
+                title "Application Security - Part 7: Guidelines for Application Whitelisting"
+                relevance "Although focused on application security, it provides insights into controlling
+                    +b application-level communications that contribute to overall communication load."
+    {
+        id "FSA-CR 7.2"
+        check_description "Components shall provide the capability to limit the use of resources by
+            +b security functions to protect against resource exhaustion."
+        requirement_id "IEC 62443-4-2: CR 7.2"
+        title "Resource Management"
+        description "This requirement focuses on ensuring that IACS (Industrial Automation and
+            +b Control Systems) components are capable of managing resources efficiently to
+            +b maintain security during operation. Proper resource management involves
+            +b ensuring that system resources such as CPU, memory, and storage are utilized
+            +b effectively to prevent any potential degradation of security functions."
+        [ key_aspects
+            {
+                aspect "Resource Allocation"
+                details "Allocate adequate resources to critical security functions to ensure
+                    +b uninterrupted operation, even during peak usage times."
+            {
+                aspect "Resource Monitoring"
+                details "Implement monitoring mechanisms to continuously assess the availability and
+                    +b utilization of system resources."
+            {
+                aspect "Resource Limitations"
+                details "Define and enforce limits on resource consumption to prevent denial-of-service
+                    +b conditions."
+            {
+                aspect "Graceful Degradation"
+                details "Ensure the system can continue to operate securely, albeit at reduced
+                    +b functionality, under resource constraints."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.1 - Operational Procedures and Responsibilities"
+                description "Highlights the importance of managing operational resources effectively to
+                    +b maintain security and availability."
+            {
+                standard "NIST SP 800-53"
+                reference "CM-7 - Least Functionality"
+                description "Addresses the principle of minimizing resource usage by limiting unnecessary
+                    +b functions and services, thus contributing to efficient resource management."
+            {
+                standard "ISO/IEC 27002"
+                reference "12.4 - Logging and Monitoring"
+                description "Covers the necessity of monitoring systems to ensure resource availability and
+                    +b performance, aligning with the resource management requirements."
+            {
+                standard "ISA/IEC 62443-3-3"
+                reference "SR 7.2 - Resource Management"
+                description "Similar to CR 7.2, this section emphasizes the importance of resource
+                    +b management at the system level, ensuring that security functions are supported
+                    +b by adequate resources."
+    {
+        id "FSA-CR 7.3"
+        check_description "Components shall provide the capability to participate in system level backup
+            +b operations in order to safeguard the component state (user- and system-level
+            +b information). The backup process shall not affect the normal component
+            +b operations."
+        requirement_id "IEC 62443-4-2: CR 7.3"
+        title "Control System Backup"
+        description "This requirement ensures that control systems have the capability to create and
+            +b restore backups of critical system data and configurations. This capability is
+            +b essential for recovering from failures, attacks, or data corruption, thereby
+            +b maintaining system availability and integrity."
+        { key_aspects
+            backup_creation "Systems must be capable of creating complete and consistent backups of critical
+                +b data and configurations at regular intervals."
+            "backup storage" "Backups should be stored securely, both physically and logically, to prevent
+                +b unauthorized access or tampering."
+            "restore capability" "Systems must include mechanisms for restoring data and configurations from
+                +b backups in a timely and reliable manner."
+            "testing and validation" "Regular testing and validation of backup and restore processes should be
+                +b conducted to ensure effectiveness and reliability."
+            documentation "Comprehensive documentation of backup and restore procedures must be
+                +b maintained."
+        { related_standards
+            { "IEC 62443-3-3"
+                "SR 7.3" "Addresses the requirement for maintaining the availability and integrity of
+                    +b essential functions through backup and recovery mechanisms."
+                "SR 7.4" "Focuses on the need for disaster recovery planning, which intersects with the
+                    +b concepts of system backup and restore."
+            { "ISO/IEC 27001"
+                A.12.3 "Covers the need for backup copies of information and software to protect
+                    +b against data loss, aligning with the objectives of CR 7.3."
+            { "NIST SP 800-82"
+                "Section 6.2.5" "Recommends backup and restore policies for Industrial Control Systems (ICS) and
+                    +b aligns with CR 7.3 in ensuring system resilience."
+            { "NIST SP 800-34"
+                "Contingency Planning Guide" "Provides guidance on creating effective backup and recovery plans, which
+                    +b supports the implementation of CR 7.3."
+    {
+        id "FSA-CR 7.3 RE(1)"
+        check_description "Components shall provide the capability to validate the integrity of backed up
+            +b information prior to the initiation of a restore of that information."
+        requirement_id "IEC 62443-4-2: CR 7.3 RE(1)"
+        title "Backup Integrity Verification"
+        description "This requirement focuses on ensuring the integrity of backups made for
+            +b industrial automation and control systems. The main goal is to verify that
+            +b backups have not been tampered with and remain unaltered from the time of their
+            +b creation. This verification is essential to ensure that, in the event of data
+            +b loss, restoration from backups can be trusted to be accurate and reliable."
+        [ key_aspects
+            {
+                aspect "Integrity Check"
+                detail "Backups should include mechanisms for integrity checks, such as checksums or
+                    +b hash functions, to verify that the data has not been altered or corrupted."
+            {
+                aspect "Verification Process"
+                detail "Regular verification processes should be established to ensure that the
+                    +b integrity of backups is maintained over time. This may involve automated tools
+                    +b or manual procedures to check backup files."
+            {
+                aspect "Tamper Evidence"
+                detail "Backup systems should provide evidence if any unauthorized changes were made to
+                    +b the backup files. This could be achieved through logging or alerting
+                    +b mechanisms."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27040"
+                title "Storage Security"
+                description "ISO/IEC 27040 provides guidelines for secure storage, including the protection
+                    +b and integrity of stored data, which is closely related to ensuring the
+                    +b integrity of backups."
+            {
+                standard_id "NIST SP 800-34"
+                title "Contingency Planning Guide for Federal Information Systems"
+                description "This guide outlines the importance of backup integrity and restoration
+                    +b processes as part of contingency planning, highlighting the need for verified
+                    +b and reliable backups in the event of disruptions."
+            {
+                standard_id "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                description "This standard includes controls related to maintaining the integrity of
+                    +b information, which can be applied to backup processes to ensure data remains
+                    +b unaltered and trustworthy."

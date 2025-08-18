@@ -1,0 +1,246 @@
+$group
+    {
+        practice "6"
+        code "DM-6"
+        name "Periodic review of security defect management practice"
+        check_description "A process shall be employed for conducting periodic reviews of the
+            +b security-related issue management process. Periodic reviews of the process
+            +b shall, at a minimum, examine security related issues managed through the
+            +b process since the last periodic review to determine if the management process
+            +b was complete, efficient, and led to the resolution of each security-related
+            +b issue. Periodic reviews of the security-related issue management process shall
+            +b be conducted at least annually."
+        requirement_id "DM-6"
+        title "Periodic Review of Security Defect Management Practice"
+        description "This requirement mandates that organizations regularly review and update their
+            +b security defect management practices to ensure they remain effective and
+            +b responsive to new threats and vulnerabilities. The periodic review aims to
+            +b enhance the organization's ability to manage and mitigate security defects in
+            +b industrial control systems (ICS) by ensuring the practices are current and
+            +b aligned with evolving security standards."
+        [ key_aspects
+            "Regular Assessment: Organizations must establish a schedule for reviewing their security defect management practices, ensuring that these reviews occur at regular intervals."
+            "Feedback Incorporation: The review process should incorporate feedback from previous incidents, lessons learned, and input from stakeholders to improve the effectiveness of the practices."
+            "Documentation: All reviews should be documented, including the findings, any changes made to the practices, and the rationale behind these changes."
+            "Continuous Improvement: The goal of the review is to continuously improve the security defect management process, adapting to new threats and incorporating best practices."
+            "Compliance Check: Ensure that the practices comply with the latest standards and regulations in cybersecurity, particularly those relevant to industrial control systems."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.12.6 - Technical Vulnerability Management"
+                description "ISO/IEC 27001 emphasizes the need for an organization to establish a process
+                    +b for technical vulnerability management, which aligns with the periodic review
+                    +b and updating of security practices."
+            {
+                standard "NIST SP 800-53"
+                reference "RA-5 - Vulnerability Scanning"
+                description "This standard provides guidelines on vulnerability scanning procedures, which
+                    +b support the identification of defects and inform the periodic review process."
+            {
+                standard "ISO/IEC 30111"
+                reference "Information Technology - Security Techniques - Vulnerability Handling Processes"
+                description "This standard outlines the processes for handling vulnerabilities, which are
+                    +b integral to managing security defects effectively and can be reviewed and
+                    +b improved periodically."
+            {
+                standard "IEC 62443-2-4"
+                reference "Security Program Requirements for IACS Service Providers"
+                description "This standard provides requirements for service providers to ensure they have
+                    +b robust security programs, including practices for managing defects, which are
+                    +b subject to periodic review."
+    {
+        practice "7"
+        code "SUM-1"
+        name "Security update qualification"
+        sub "(1) security updates created by the product developer address the intended
+            +b security vulnerabilities"
+        check_description "A process shall be employed for verifying (1) security updates created by the
+            +b product developer address the intended security vulnerabilities"
+        requirement_id "IEC 62443-4-1: SUM-1"
+        title "Security Update Qualification"
+        description "This requirement ensures that security updates created by the product developer
+            +b effectively address the intended security vulnerabilities. It emphasizes the
+            +b necessity for thorough validation and qualification of updates before
+            +b deployment to confirm they mitigate the identified security issues."
+        [ key_aspects
+            {
+                aspect "Identification of Vulnerabilities"
+                details "The process begins with the accurate identification of security vulnerabilities
+                    +b that need addressing. This involves a comprehensive analysis and documentation
+                    +b of the vulnerabilities to ensure that the updates target the correct issues."
+            {
+                aspect "Development of Security Updates"
+                details "Security updates are developed with the objective of mitigating the identified
+                    +b vulnerabilities. This involves coding, testing, and preparing patches or
+                    +b updates that rectify the security flaws."
+            {
+                aspect "Validation and Testing"
+                details "Security updates undergo rigorous testing to ensure they effectively address
+                    +b the vulnerabilities without introducing new issues. This includes functional
+                    +b testing, regression testing, and security testing."
+            {
+                aspect "Documentation and Release Notes"
+                details "Comprehensive documentation accompanies each security update, providing details
+                    +b on the vulnerabilities addressed, the nature of the update, and any potential
+                    +b impact on system operations."
+        [ related_standards
+            {
+                standard "ISO/IEC 29147:2018"
+                reference "This standard provides guidelines on vulnerability disclosure, which is a
+                    +b critical component in identifying and communicating security vulnerabilities
+                    +b that updates need to address."
+            {
+                standard "ISO/IEC 30111:2019"
+                reference "This standard outlines processes for handling vulnerabilities once they are
+                    +b identified. It complements the security update process by ensuring a structured
+                    +b approach to vulnerability management."
+            {
+                standard "NIST SP 800-40 Rev. 3"
+                reference "This document provides guidance on managing the patching process, including the
+                    +b planning, testing, and deployment of security updates to mitigate
+                    +b vulnerabilities effectively."
+            {
+                standard "CWE (Common Weakness Enumeration)"
+                reference "CWE provides a comprehensive list of software weaknesses that can lead to
+                    +b security vulnerabilities, aiding developers in identifying and addressing such
+                    +b issues through updates."
+    {
+        practice "7"
+        code "SUM-1"
+        name "Security update qualification"
+        sub "(2) security updates do not introduce regressions, including but not limited to
+            +b patches created by:"
+        check_description "A process shall be employed for verifying (2) security updates do not introduce
+            +b regressions, including but not limited to patches created by:"
+        requirement_id "IEC 62443-4-1:SUM-1:2"
+        title "Security Update Qualification - Regression Avoidance"
+        description "This requirement ensures that security updates, including patches created by
+            +b the product supplier, integrator, or other parties, do not introduce
+            +b regressions into the system. Regressions can degrade system security,
+            +b functionality, or performance. The focus is on verifying that updates maintain
+            +b the intended security posture and do not negatively impact existing system
+            +b operations."
+        { key_aspects
+            regression_testing "Conduct thorough testing to verify that new security updates do not adversely
+                +b affect existing functionalities."
+            patch_source_verification "Assess patches from various sources, including internal teams and third-party
+                +b providers, ensuring they meet quality and security standards."
+            impact_analysis "Perform impact analysis to understand potential side effects of applying
+                +b security updates."
+            "update validation" "Implement processes for validating updates in a controlled environment before
+                +b deployment to production systems."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                section "A.12.6.1"
+                description "Control of technical vulnerabilities involves timely application of patches to
+                    +b mitigate identified vulnerabilities, ensuring they do not introduce new
+                    +b vulnerabilities."
+            {
+                standard "NIST SP 800-53"
+                section "SI-2"
+                description "Flaw remediation processes in place to address security flaws, including patch
+                    +b management, to prevent regression issues."
+            {
+                standard "CIS Controls v8"
+                section "Control 7"
+                description "Continuous vulnerability management includes the testing of patches for
+                    +b regression issues before deployment."
+    {
+        practice "7"
+        code "SUM-1"
+        name "Security update qualification"
+        sub "a) the product developer;"
+        check_description "A process shall be employed for verifying a) the product developer;"
+        requirement_id "SUM-1-a"
+        title "Security Update Qualification for Product Developer"
+        description "This requirement mandates that the product developer must establish and
+            +b maintain a process for qualifying security updates. The focus is on ensuring
+            +b that updates are rigorously evaluated for their security impact and
+            +b compatibility with existing systems."
+        [ key_aspects
+            {
+                aspect "Process Establishment"
+                details "Product developers must develop a systematic approach to evaluate security
+                    +b updates, ensuring they meet predefined security criteria before deployment."
+            {
+                aspect "Impact Assessment"
+                details "Assess the potential impact of the security updates on the product's
+                    +b functionality and security posture. This includes testing for compatibility
+                    +b with existing systems and configurations."
+            {
+                aspect "Documentation"
+                details "Maintain detailed records of the qualification process, including test results,
+                    +b impact assessments, and any identified issues or anomalies."
+            {
+                aspect "Continuous Improvement"
+                details "Regularly review and improve the security update qualification process to adapt
+                    +b to new threats and incorporate lessons learned from previous updates."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                relevance "Provides a framework for establishing, implementing, maintaining, and
+                    +b continuously improving an information security management system (ISMS), which
+                    +b supports processes like security update management."
+            {
+                standard "NIST SP 800-40"
+                relevance "Guidance for creating a patch and vulnerability management program, which
+                    +b aligns with the requirements for qualifying security updates in industrial
+                    +b control systems."
+            {
+                standard "IEC 62443-3-3"
+                relevance "Specifies security requirements for industrial automation and control systems,
+                    +b including policies for managing security updates and patches."
+            {
+                standard "ISO/IEC 29147"
+                relevance "Details vulnerability disclosure processes, which are critical for
+                    +b understanding the nature of updates and ensuring they address known
+                    +b vulnerabilities effectively."
+    {
+        practice "7"
+        code "SUM-1"
+        name "Security update qualification"
+        sub "b) suppliers of components used in the product; and"
+        check_description "A process shall be employed for verifying b) suppliers of components used in
+            +b the product; and"
+        requirement_id "IEC 62443-4-1_SUM-1_b"
+        title "Security Update Qualification for Suppliers of Components"
+        description "This requirement focuses on the qualification of security updates for
+            +b components provided by suppliers, ensuring that any updates made to these
+            +b components maintain the overall security posture of the product."
+        [ key_aspects
+            {
+                aspect "Supplier Evaluation"
+                details "Ensure that suppliers are evaluated for their capability to provide secure and
+                    +b timely updates for their components. This involves assessing their processes,
+                    +b track record, and security practices."
+            {
+                aspect "Compatibility Assurance"
+                details "Verify that updates provided by suppliers are compatible with the product
+                    +b architecture and do not introduce vulnerabilities or degrade existing security
+                    +b measures."
+            {
+                aspect "Testing and Validation"
+                details "Conduct thorough testing of supplier updates in a controlled environment to
+                    +b validate their effectiveness and ensure they do not introduce new issues."
+            {
+                aspect "Documentation and Communication"
+                details "Maintain comprehensive documentation of the update process, including supplier
+                    +b communication, testing results, and any mitigations applied to address
+                    +b potential issues."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Control of technical vulnerabilities"
+                details "This control emphasizes the need for timely updates to address technical
+                    +b vulnerabilities, aligning with the need to manage updates from suppliers."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-2 - Flaw Remediation"
+                details "Stresses the importance of having processes for flaw remediation, which
+                    +b includes updates from suppliers to ensure ongoing security."
+            {
+                standard "ISO/IEC 20243"
+                reference "Open Trusted Technology Provider™ Standard (OTTPS)"
+                details "This standard provides guidance on secure development and supply chain
+                    +b practices, including the management of third-party components."

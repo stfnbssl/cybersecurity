@@ -1,0 +1,539 @@
+$group
+    {
+        idd "7.2.1"
+        area "Secure Configuration"
+        category "Accesso al codice sorgente"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISA_n_62443_n_${'('}2-4) "SP.02.01_n_SP.03.03"
+        ISO_n_27001 "PR.AC-4"
+        "NIST CSF" "PR.AC-4"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "L'accesso al codice sorgente è limitato al solo personale strettamente
+            +b autorizzato?"
+        detailed_explanation "L'accesso al codice sorgente deve essere rigorosamente controllato per evitare
+            +b modifiche non autorizzate, furti di proprietà intellettuale o introduzione di
+            +b vulnerabilità. Limitare l'accesso al codice sorgente solo al personale
+            +b autorizzato riduce i rischi di compromissione della sicurezza e protegge la
+            +b riservatezza e l'integrità del software. È fondamentale definire e implementare
+            +b policy di accesso basate sui ruoli, utilizzando strumenti di gestione degli
+            +b accessi e autenticazione forte per garantire che solo gli individui con una
+            +b reale necessità operativa possano accedere al codice sorgente."
+        { glossary
+            "Codice sorgente" "Il testo di un programma scritto in un linguaggio di programmazione che può
+                +b essere letto e compreso dagli esseri umani."
+            "Autenticazione forte" "Un processo di verifica dell'identità che utilizza due o più fattori per
+                +b confermare l'identità di un utente."
+            "Gestione degli accessi" "Un sistema o processo che garantisce che solo utenti autorizzati possano
+                +b accedere a determinate risorse."
+            "Policy di accesso basate sui ruoli" "Un modello di sicurezza in cui l'accesso alle risorse è determinato in base al
+                +b ruolo dell'utente all'interno di un'organizzazione."
+        { glossary_links
+            "Codice sorgente" "https://it.wikipedia.org/wiki/Codice_sorgente"
+            "Autenticazione forte" "https://searchsecurity.techtarget.com/definition/strong-authentication"
+            "Gestione degli accessi" "
+                +b https://www.csoonline.com/article/3251714/what-is-access-control-a-key-component-of-data-security.html"
+            "Policy di accesso basate sui ruoli" "https://en.wikipedia.org/wiki/Role-based_access_control"
+        { related_standards_links
+            "ISO/IEC 27001:2013" "https://www.iso.org/standard/54534.html"
+            "NIST Cybersecurity Framework" "https://www.nist.gov/cyberframework"
+            "ISA/IEC 62443" "https://www.isa.org/isaiec-62443"
+            "Executive Order on Improving the Nation's Cybersecurity" "
+                +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "7.3.1"
+        area "Secure Configuration"
+        category "Hardening"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        "NIST CSF" "PR.PT-4"
+        EuCRA "Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Sono attuate procedure di hardening in linea con le best practice di settore in
+            +b relazione alla tipologia di asset? (p.e. CIS benchmarks)"
+        detailed_explanation "Hardening refers to the process of securing a system by reducing its surface of
+            +b vulnerability, which is larger when a system performs more functions; in
+            +b principle, a single-function system is more secure than a multipurpose one.
+            +b Hardening often involves applying a security baseline, such as the CIS (Center
+            +b for Internet Security) benchmarks, which provide specific security guidance to
+            +b configure operating systems, applications, and network devices securely. The
+            +b question asks whether such hardening procedures are implemented according to
+            +b industry best practices, ensuring that each type of asset is configured to
+            +b mitigate risks associated with its specific vulnerabilities. This is crucial as
+            +b proper hardening can prevent unauthorized access and mitigate potential threats
+            +b by disabling unnecessary services, removing unused software, and closing unused
+            +b network ports."
+        [ glossary
+            {
+                term "Hardening"
+                definition "The process of securing a system by reducing its surface of vulnerability,
+                    +b often by applying specific security measures and configurations."
+                link "https://en.wikipedia.org/wiki/Hardening_(computing)"
+            {
+                term "CIS Benchmarks"
+                definition "Security configuration guides developed by the Center for Internet Security
+                    +b that provide industry-accepted best practices for securing IT systems and data."
+                link "https://www.cisecurity.org/cis-benchmarks"
+            {
+                term "Surface of Vulnerability"
+                definition "The totality of the points (attack vector) in a system where an unauthorized
+                    +b user (the attacker) can try to enter data to or extract data from an
+                    +b environment."
+                link "https://en.wikipedia.org/wiki/Attack_surface"
+        [ related_links
+            {
+                title "CIS Benchmarks"
+                url "https://www.cisecurity.org/cis-benchmarks"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Guide to General Server Security (NIST SP 800-123)"
+                url "https://csrc.nist.gov/publications/detail/sp/800-123/final"
+            {
+                title "OWASP Server Security"
+                url "https://owasp.org/www-project-server-security/"
+    {
+        idd "7.4.1"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.PT-4"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "I dispositivi endpoint utilizzati dal fornitore sono protetti mediante
+            +b cifratura at-rest?"
+        detailed_explanation "La crittografia at-rest si riferisce alla cifratura dei dati quando sono
+            +b memorizzati su un dispositivo, che potrebbe essere un server, un computer, o un
+            +b qualsiasi dispositivo di archiviazione. Questo tipo di cifratura è fondamentale
+            +b per assicurare che i dati siano protetti anche quando non vengono utilizzati,
+            +b prevenendo accessi non autorizzati in caso di furto o compromissione fisica del
+            +b dispositivo. La gestione della crittografia su dispositivi endpoint coinvolge
+            +b la selezione di algoritmi crittografici robusti e l'implementazione di pratiche
+            +b di gestione delle chiavi crittografiche sicure. È essenziale per proteggere le
+            +b informazioni sensibili e conformarsi alle normative di sicurezza e privacy. Gli
+            +b auditor devono verificare che i dispositivi endpoint siano configurati per
+            +b utilizzare la crittografia at-rest e che le politiche di gestione delle chiavi
+            +b siano in atto per garantire la sicurezza continua dei dati memorizzati."
+        [ glossary
+            {
+                term "Crittografia at-rest"
+                definition "La cifratura dei dati quando sono memorizzati e non in transito. Protegge i
+                    +b dati da accessi non autorizzati in caso di compromissione del dispositivo."
+                link "https://en.wikipedia.org/wiki/Data_at_rest"
+            {
+                term "Algoritmo Crittografico"
+                definition "Un algoritmo utilizzato per cifrare e decifrare i dati, trasformando i dati
+                    +b leggibili in un formato cifrato e viceversa."
+                link "https://en.wikipedia.org/wiki/Cryptographic_algorithm"
+            {
+                term "Gestione delle chiavi crittografiche"
+                definition "Il processo di gestione delle chiavi utilizzate per cifrare e decifrare i dati,
+                    +b che include la generazione, distribuzione, archiviazione e rotazione delle
+                    +b chiavi."
+                link "https://csrc.nist.gov/projects/key-management"
+        [ related_links
+            {
+                title "NIST Special Publication 800-111, Guide to Storage Encryption Technologies for
+                    +b End User Devices"
+                url "https://csrc.nist.gov/publications/detail/sp/800-111/final"
+            {
+                title "ISO/IEC 27001:2013 Information technology — Security techniques — Information
+                    +b security management systems — Requirements"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "7.4.2"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.03.10_n_SP.04.02_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.PT-4"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "I dati ospitati sui server e memorizzati nei database sono protetti da
+            +b cifratura at rest secondo i più recenti standard?"
+        detailed_explanation "La crittografia dei dati a riposo (data at rest encryption) è una misura di
+            +b sicurezza fondamentale che garantisce la protezione dei dati memorizzati nei
+            +b sistemi informatici. Questo tipo di crittografia assicura che i dati siano
+            +b illeggibili senza una chiave di decrittazione adeguata, anche se un attaccante
+            +b riesce ad accedere fisicamente al dispositivo di memorizzazione. I recenti
+            +b standard di crittografia, come AES (Advanced Encryption Standard), sono
+            +b comunemente utilizzati per proteggere i dati a riposo. È cruciale che le chiavi
+            +b di crittografia siano gestite in modo sicuro, utilizzando tecnologie come HSM
+            +b (Hardware Security Module), e che le politiche di sicurezza siano conformi agli
+            +b standard internazionali. Un audit di sicurezza dovrebbe verificare che tutti i
+            +b dati sensibili siano criptati e che le chiavi siano gestite in modo tale da
+            +b prevenire accessi non autorizzati."
+        [ glossary
+            {
+                term "Data at Rest Encryption"
+                definition "La crittografia dei dati a riposo si riferisce alla protezione dei dati
+                    +b memorizzati staticamente, non in transito, su dispositivi di archiviazione."
+                link "https://en.wikipedia.org/wiki/Data_at_rest"
+            {
+                term "AES (Advanced Encryption Standard)"
+                definition "Un algoritmo di crittografia a blocchi simmetrico utilizzato in tutto il mondo
+                    +b per proteggere i dati sensibili."
+                link "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf"
+            {
+                term "HSM (Hardware Security Module)"
+                definition "Un dispositivo fisico che gestisce e protegge le chiavi di crittografia."
+                link "https://en.wikipedia.org/wiki/Hardware_security_module"
+        [ related_links
+            {
+                title "NIST SP 800-57 Part 1: Recommendation for Key Management"
+                url "https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "ISA/IEC 62443 - Security for Industrial Automation and Control Systems"
+                url "https://www.isa.org/standards-and-publications/isa-standards/isa-62443"
+    {
+        idd "7.4.3"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.03.10_n_SP.04.02_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.PT-4"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "I dati in transito nelle comunicazioni verso l'esterno della rete aziendale
+            +b cifrati in-transit secondo i più recenti standard?"
+        detailed_explanation "La crittografia dei dati in transito è un aspetto critico della sicurezza
+            +b informatica che mira a proteggere i dati mentre vengono trasmessi attraverso la
+            +b rete. Questo processo garantisce che i dati non possano essere letti o
+            +b manomessi da attori non autorizzati durante il loro trasferimento. Gli standard
+            +b di crittografia moderni, come TLS (Transport Layer Security), forniscono
+            +b protocolli sicuri per la cifratura dei dati in transito, assicurando che le
+            +b informazioni sensibili rimangano protette anche quando lasciano il perimetro di
+            +b sicurezza dell'organizzazione. Assicurarsi che i dati in transito siano cifrati
+            +b secondo gli standard più aggiornati è fondamentale per prevenire attacchi di
+            +b tipo man-in-the-middle e altre minacce correlate alla sicurezza della rete."
+        [ glossary
+            {
+                term "Crittografia"
+                definition "La crittografia è il processo di conversione di informazioni o dati in un
+                    +b codice, specialmente per impedire l'accesso non autorizzato."
+                link "https://it.wikipedia.org/wiki/Crittografia"
+            {
+                term "Dati in transito"
+                definition "I dati in transito si riferiscono alle informazioni che vengono trasferite
+                    +b attraverso una rete da un sistema all'altro."
+                link "https://www.cloudflare.com/it-it/learning/ssl/what-is-data-in-transit/"
+            {
+                term "TLS (Transport Layer Security)"
+                definition "TLS è un protocollo crittografico progettato per fornire comunicazioni sicure
+                    +b su una rete di computer."
+                link "https://en.wikipedia.org/wiki/Transport_Layer_Security"
+            {
+                term "Man-in-the-middle (MitM)"
+                definition "Un attacco man-in-the-middle è un attacco in cui un attaccante intercetta e
+                    +b altera la comunicazione tra due parti che credono di comunicare direttamente
+                    +b tra loro."
+                link "
+                    +b https://www.imperva.com/learn/application-security/man-in-the-middle-attack-mitm/"
+        [ related_links
+            {
+                title "NIST SP 800-52 Rev. 2: Guidelines for the Selection, Configuration, and Use of
+                    +b Transport Layer Security (TLS) Implementations"
+                url "https://doi.org/10.6028/NIST.SP.800-52r2"
+            {
+                title "ISO/IEC 27001:2013 Information Security Management Systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "IEC 62443-2-4:2015 - Security for industrial automation and control systems"
+                url "https://webstore.iec.ch/publication/22273"
+    {
+        idd "7.4.4"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.03.10_n_SP.04.02_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.PT-4"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le chiavi crittografiche utilizzate sono generate secondo elevati criteri di
+            +b sicurezza utilizzando librerie crittografiche accettate e approvate dalle best
+            +b practices di settore?"
+        detailed_explanation "La gestione delle chiavi crittografiche è un elemento fondamentale nella
+            +b sicurezza informatica, poiché le chiavi sono utilizzate per proteggere dati
+            +b sensibili tramite cifratura. Questo item richiede che le chiavi crittografiche
+            +b siano generate con alti standard di sicurezza, utilizzando librerie
+            +b crittografiche accettate e approvate. Le chiavi devono essere imprevedibili e
+            +b di lunghezza adeguata per resistere agli attacchi. L'utilizzo di librerie
+            +b crittografiche accettate garantisce che le chiavi siano generate in modo sicuro
+            +b e che gli algoritmi utilizzati siano stati ampiamente testati e approvati dalla
+            +b comunità scientifica e dalle agenzie di sicurezza. Questo approccio riduce il
+            +b rischio di compromissione dei dati crittografati a causa di chiavi deboli o
+            +b vulnerabilità negli algoritmi di generazione delle chiavi. Inoltre, è
+            +b importante che le chiavi siano gestite e archiviate in modo sicuro per
+            +b prevenire accessi non autorizzati."
+        [ glossary
+            {
+                term "Chiavi crittografiche"
+                definition "Informazioni segrete utilizzate per cifrare e decifrare dati, assicurando
+                    +b l'integrità e la riservatezza delle informazioni."
+                link "https://en.wikipedia.org/wiki/Cryptographic_key"
+            {
+                term "Librerie crittografiche"
+                definition "Collezioni di strumenti e algoritmi per implementare la crittografia in
+                    +b applicazioni software, garantendone la sicurezza e l'efficienza."
+                link "https://en.wikipedia.org/wiki/Comparison_of_cryptography_libraries"
+        [ related_links
+            {
+                title "NIST Special Publication 800-57 Part 1"
+                url "https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final"
+            {
+                title "ISO/IEC 27002:2022"
+                url "https://www.iso.org/standard/75652.html"
+            {
+                title "NIST Cryptographic Standards and Guidelines"
+                url "https://csrc.nist.gov/projects/cryptographic-standards-and-guidelines"
+    {
+        idd "7.4.5"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.03.10_n_SP.04.02_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.DS-5"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Sono stabiliti processi, procedure e misure tecniche per garantire la corretta
+            +b rotazione, disattivazione e distruzione delle chiavi crittografiche?"
+        detailed_explanation "La gestione delle chiavi crittografiche è una componente fondamentale della
+            +b sicurezza informatica. Le chiavi crittografiche sono utilizzate per cifrare e
+            +b decifrare dati, garantendo la riservatezza e l'integrità delle informazioni.
+            +b Stabilire processi, procedure e misure tecniche per la rotazione,
+            +b disattivazione e distruzione delle chiavi crittografiche è cruciale per
+            +b prevenire accessi non autorizzati e garantire che le chiavi non diventino un
+            +b punto debole in un sistema di sicurezza. La rotazione delle chiavi implica la
+            +b sostituzione periodica delle chiavi in uso con nuove chiavi, minimizzando i
+            +b rischi associati a una potenziale compromissione. La disattivazione delle
+            +b chiavi prevede la rimozione delle chiavi non più necessarie, mentre la
+            +b distruzione garantisce che le chiavi obsolete o compromesse non possano essere
+            +b recuperate e utilizzate da attori malevoli. Implementare queste pratiche aiuta
+            +b a mantenere un elevato livello di sicurezza e conformità agli standard
+            +b internazionali."
+        [ glossary
+            {
+                term "Crittografia"
+                definition "La crittografia è il processo di trasformazione dei dati in un formato
+                    +b illeggibile per proteggere la riservatezza delle informazioni durante la
+                    +b trasmissione o l'archiviazione."
+                link "https://it.wikipedia.org/wiki/Crittografia"
+            {
+                term "Rotazione delle chiavi crittografiche"
+                definition "La rotazione delle chiavi crittografiche consiste nella sostituzione periodica
+                    +b delle chiavi di cifratura per limitare l'esposizione in caso di compromissione."
+                link "https://www.ibm.com/docs/en/zos/2.3.0?topic=keys-cryptographic-management"
+            {
+                term "Disattivazione delle chiavi crittografiche"
+                definition "La disattivazione delle chiavi consiste nel rendere inutilizzabili chiavi che
+                    +b non sono più necessarie per operazioni di cifratura."
+                link "https://docs.microsoft.com/en-us/azure/key-vault/keys/key-rotation-overview"
+            {
+                term "Distruzione delle chiavi crittografiche"
+                definition "La distruzione delle chiavi crittografiche è il processo di eliminazione
+                    +b definitiva delle chiavi, assicurandosi che non possano essere recuperate o
+                    +b utilizzate in futuro."
+                link "https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final"
+        [ related_links
+            {
+                title "NIST SP 800-57: Recommendation for Key Management Part 1"
+                url "https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final"
+            {
+                title "ISO/IEC 27001:2013 - Information technology — Security techniques — Information
+                    +b security management systems — Requirements"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework (CSF)"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "7.4.6"
+        area "Secure Configuration"
+        category "Gestione della crittografia"
+        NIS2 "Art. 21, par. 2, comma h"
+        ISA_n_62443_n_${'('}2-4) "SP.03.08_n_SP.03.10_n_SP.04.02_n_SP.07.04"
+        ISO_n_27001 "A.8.24"
+        "NIST CSF" "PR.DS-5"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le chiavi di cifratura sono archiviate in un repository sicuro e accessibile in
+            +b accordo con il principio least privilege?"
+        detailed_explanation "La gestione delle chiavi di crittografia è fondamentale per garantire la
+            +b sicurezza dei dati cifrati. Le chiavi devono essere archiviate in un repository
+            +b sicuro per prevenire accessi non autorizzati e garantire che solo il personale
+            +b autorizzato possa accedervi. Il principio del 'least privilege' si riferisce al
+            +b concetto di limitare l'accesso e i permessi degli utenti al minimo necessario
+            +b per svolgere il loro lavoro. Questo principio riduce il rischio di abuso di
+            +b privilegi e minimizza le potenziali vie di attacco. Un repository sicuro per le
+            +b chiavi di crittografia può includere soluzioni come Hardware Security Modules
+            +b (HSM) o software di gestione delle chiavi che implementano controlli di accesso
+            +b rigorosi e audit logging per monitorare chi ha accesso alle chiavi e quando."
+        [ glossary
+            {
+                term "Crittografia"
+                definition "Tecnica di protezione delle informazioni mediante trasformazione dei dati in un
+                    +b formato sicuro, rendendoli illeggibili senza una chiave di decifratura."
+                link "https://it.wikipedia.org/wiki/Crittografia"
+            {
+                term "Least Privilege"
+                definition "Un principio di sicurezza che afferma che gli utenti dovrebbero avere solo i
+                    +b diritti di accesso minimi necessari per svolgere le loro funzioni."
+                link "https://en.wikipedia.org/wiki/Principle_of_least_privilege"
+            {
+                term "Repository Sicuro"
+                definition "Un sistema di archiviazione progettato per proteggere le informazioni sensibili
+                    +b attraverso controlli di sicurezza avanzati, come la crittografia e
+                    +b l'autenticazione."
+                link "https://en.wikipedia.org/wiki/Secure_data_storage"
+            {
+                term "Hardware Security Module (HSM)"
+                definition "Dispositivo fisico che gestisce e protegge le chiavi di crittografia
+                    +b utilizzando funzioni di sicurezza robuste."
+                link "https://en.wikipedia.org/wiki/Hardware_security_module"
+        [ related_links
+            {
+                title "ISO/IEC 27002:2022 - Information security, cybersecurity and privacy protection
+                    +b — Information security controls"
+                url "https://www.iso.org/standard/75652.html"
+            {
+                title "NIST Special Publication 800-57 Part 1 Revision 5: Recommendation for Key
+                    +b Management"
+                url "https://csrc.nist.gov/publications/detail/sp/800-57-part-1/rev-5/final"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "8.1.1"
+        area "Cloud security"
+        category "Data location"
+        NIS2 "Art. 21, par. 2, comma e"
+        GDPR "Art. 44"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "DSP-19"
+        ISO27017 "8.1.1"
+        description "I servizi di Cloud Computing eventualmente impiegati prevedono l'archiviazione
+            +b dei dati all'interno della UE?"
+        detailed_explanation "La domanda si riferisce alla conformità e alle pratiche di gestione dei dati
+            +b nel contesto del Cloud Computing. La localizzazione dei dati è un aspetto
+            +b fondamentale della sicurezza delle informazioni e della conformità legale.
+            +b Conservare i dati all'interno dell'Unione Europea (UE) è spesso una necessità
+            +b per garantire il rispetto delle normative europee sulla protezione dei dati,
+            +b come il GDPR (Regolamento Generale sulla Protezione dei Dati). La
+            +b localizzazione dei dati può influenzare la sovranità dei dati, la possibilità
+            +b di accesso da parte di autorità governative e la protezione contro
+            +b trasferimenti non autorizzati o non sicuri. Verificare se i servizi di Cloud
+            +b Computing archiviano i dati all'interno della UE significa assicurarsi che i
+            +b dati siano trattati in base alle leggi e regolamenti applicabili, riducendo i
+            +b rischi legali e di sicurezza associati alla gestione transfrontaliera dei dati."
+        [ glossary
+            {
+                term "Cloud Computing"
+                definition "Una tecnologia che permette l'accesso remoto a software, archiviazione dati e
+                    +b potenza di elaborazione su Internet piuttosto che su un server locale o un
+                    +b computer personale."
+                link "https://en.wikipedia.org/wiki/Cloud_computing"
+            {
+                term "Unione Europea (UE)"
+                definition "Una unione politica ed economica di 27 paesi situata principalmente in Europa."
+                link "https://europa.eu/european-union/index_en"
+            {
+                term "GDPR"
+                definition "Il regolamento generale sulla protezione dei dati è una normativa dell'UE sulla
+                    +b protezione dei dati e sulla privacy nell'Unione Europea e nello Spazio
+                    +b Economico Europeo."
+                link "https://gdpr-info.eu/"
+            {
+                term "Localizzazione dei dati"
+                definition "Il processo di archiviazione dei dati in un luogo fisico specifico, spesso per
+                    +b motivi di conformità legale e sicurezza."
+                link "https://en.wikipedia.org/wiki/Data_localization"
+        [ related_links
+            {
+                title "GDPR - Articolo 44: Condizioni generali per il trasferimento"
+                url "https://gdpr-info.eu/art-44-gdpr/"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "ISO/IEC 27001:2013 - Information security management systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "Cloud Security Alliance - Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+    {
+        idd "8.2.1"
+        area "Cloud security"
+        category "Security Integrations"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "AIS-04"
+        ISO27017 "14.2.1"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Il servizio Cloud supporta protocolli oAuth2.0, OpenID Connect, SAML 2.0
+            +b nell'ambito dei processi di autenticazione, autorizzazione e SignleSignOn?"
+        detailed_explanation "La verifica del supporto per protocolli di autenticazione e autorizzazione come
+            +b oAuth2.0, OpenID Connect e SAML 2.0 nel servizio Cloud è fondamentale per
+            +b garantire che i processi di accesso siano sicuri e standardizzati. Questi
+            +b protocolli permettono l'implementazione di Single Sign-On (SSO), che semplifica
+            +b l'accesso degli utenti ai servizi cloud senza richiedere multiple
+            +b autenticazioni. oAuth2.0 è un framework che consente alle applicazioni di
+            +b ottenere accesso limitato agli account degli utenti su un servizio HTTP. OpenID
+            +b Connect è un livello di identità che si basa su oAuth2.0 per verificare
+            +b l'identità di un utente finale. SAML 2.0 è un protocollo aperto per lo scambio
+            +b di dati di autenticazione e autorizzazione tra le parti coinvolte, come i
+            +b fornitori di identità e i fornitori di servizi. L'implementazione corretta di
+            +b questi protocolli è cruciale per proteggere le credenziali degli utenti e
+            +b ridurre il rischio di accessi non autorizzati."
+        [ glossary
+            {
+                term "oAuth2.0"
+                definition "Un framework di autorizzazione che consente alle applicazioni di ottenere
+                    +b accesso limitato agli account degli utenti su un servizio HTTP."
+                link "https://oauth.net/2/"
+            {
+                term "OpenID Connect"
+                definition "Un protocollo di autenticazione che si basa su oAuth2.0 per verificare
+                    +b l'identità di un utente finale."
+                link "https://openid.net/connect/"
+            {
+                term "SAML 2.0"
+                definition "Security Assertion Markup Language, un protocollo aperto per lo scambio di dati
+                    +b di autenticazione e autorizzazione tra le parti coinvolte."
+                link "https://docs.oasis-open.org/security/saml/v2.0/"
+            {
+                term "Single Sign-On (SSO)"
+                definition "Una proprietà di controllo degli accessi che consente a un utente di accedere a
+                    +b più sistemi con un singolo set di credenziali."
+                link "https://en.wikipedia.org/wiki/Single_sign-on"
+        [ related_links
+            {
+                title "OAuth 2.0 Authorization Framework"
+                url "https://tools.ietf.org/html/rfc6749"
+            {
+                title "OpenID Connect Core 1.0"
+                url "https://openid.net/specs/openid-connect-core-1_0.html"
+            {
+                title "SAML V2.0 OASIS Standard"
+                url "https://docs.oasis-open.org/security/saml/v2.0/saml-core-2.0-os.pdf"
+            {
+                title "ISO/IEC 27017:2015 Information technology — Security techniques — Code of
+                    +b practice for information security controls based on ISO/IEC 27002 for cloud
+                    +b services"
+                url "https://www.iso.org/standard/43757.html"

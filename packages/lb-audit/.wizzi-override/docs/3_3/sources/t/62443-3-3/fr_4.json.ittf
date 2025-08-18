@@ -1,0 +1,139 @@
+$group
+    {
+        id "FR-4"
+        key "DC"
+        name "Data confidentiality"
+        page 52
+        purpose "Ensure the confidentiality of information on communication channels and in data repositories 
+            +b to prevent unauthorized disclosure."
+        rationale "Some control system-generated information, whether at rest or in transit, 
+            +b is of a confidential or sensitive nature. 
+            +b This implies that some communication channels and data-stores require protection 
+            +b against eavesdropping and unauthorized access."
+        [ security_levels_descriptions
+            "SL 1 – Prevent the unauthorized disclosure of information via eavesdropping or casual exposure."
+            "SL 2 – Prevent the unauthorized disclosure of information to an entity actively searching for it using simple means with low resources, generic skills and low motivation."
+            "SL 3 – Prevent the unauthorized disclosure of information to an entity actively searching for it using sophisticated means with moderate resources, IACS specific skills and moderate motivation."
+            "SL 4 – Prevent the unauthorized disclosure of information to an entity actively searching for it using sophisticated means with extended resources, IACS specific skills and high motivation."
+        [ srs
+            {
+                id "SR 4.1"
+                page 53
+                name "Information confidentiality"
+                description "The control system shall provide the capability to protect the confidentiality of information 
+                    +b for which explicit read authorization is supported, whether at rest or in transit."
+                rationale "Protection of information, at rest or in transit, can be maintained through physical means, 
+                    +b compartmentalization or encryption, among other techniques. 
+                    +b It is crucial that the technique chosen considers the potential ramifications on 
+                    +b control system performance and the capability to recover from system failure or attack.
+                    +b The decision whether the confidentiality of a given piece of information should be protected or not 
+                    +b depends on the context and cannot be made at product design. 
+                    +b However, the fact that an organization limits access to information by configuring 
+                    +b explicit read authorizations in the control system is an indicator that this information 
+                    +b is considered confidential by the organization. 
+                    +b Thus, all information for which the control system supports the capability to 
+                    +b assign explicit read authorizations should be considered potentially confidential and 
+                    +b thus the control system should also provide the capability to protect it.
+                    +b Different organizations and industries may require different levels of encryption strength 
+                    +b for different categories of information, based on the sensitivity of the information as well as 
+                    +b industry standards and regulatory requirements (see 8.5, SR 4.3 – Use of cryptography). 
+                    +b In some situations network configuration information stored and processed in switches and routers 
+                    +b may be considered as confidential.
+                    +b Communications involving exposed information transfer may be vulnerable to eavesdropping or tampering. 
+                    +b If the control system is depending upon an external communications service provider, 
+                    +b it may be more difficult to obtain the necessary assurances regarding the implementation of 
+                    +b needed security requirements for communication confidentiality. 
+                    +b In such cases, it may be appropriate to implement compensating countermeasures or 
+                    +b explicitly accept the additional risk.
+                    +b Entities should also be cognizant of information confidentiality when portable and mobile devices 
+                    +b are utilized (for example, engineering laptops and USB sticks).
+                    +b As required by 5.7, SR 1.5 – Authenticator management, authentication information, 
+                    +b such as passwords, should be considered confidential, and thus never be sent in the clear."
+                [ rhs
+                    {
+                        id "SR 4.1 RE 1"
+                        name "Protection of confidentiality at rest or in transit via untrusted networks"
+                        description "The control system shall provide the capability to protect the confidentiality 
+                            +b of information at rest and remote access sessions traversing an untrusted network."
+                        [ notes
+                            "Cryptography is a common mechanism for ensuring information confidentiality."
+                    {
+                        id "SR 4.1 RE 2"
+                        name "Protection of confidentiality across zone boundaries"
+                        description "The control system shall provide the capability to protect the confidentiality 
+                            +b of information traversing any zone boundary."
+                [ security_levels                        
+                    "SL-C (DC, control system) 1: SR 4.1"
+                    "SL-C (DC, control system) 2: SR 4.1 (1)"
+                    "SL-C (DC, control system) 3: SR 4.1 (1)"
+                    "SL-C (DC, control system) 4: SR 4.1 (1) (2)"
+            {
+                id "SR 4.2"
+                page 54
+                name "Information persistence"
+                description "The control system shall provide the capability to purge all information for which 
+                    +b explicit read authorization is supported from components to be released from active service 
+                    +b and/or decommissioned."
+                rationale "Removal of a control system component from active service should not provide 
+                    +b the opportunity for unintentional release of information for which explicit 
+                    +b read authorization is supported. 
+                    +b An example of such information would include ‘join keys’ (in the case of some wireless field devices) 
+                    +b stored in non-volatile storage or other cryptographic information that 
+                    +b would facilitate unauthorized or malicious activity.
+                    +b Information produced by the actions of a user or role (or the actions of a software process 
+                    +b acting on behalf of a user or role) should not be disclosed to a different user or role 
+                    +b in an uncontrolled fashion. 
+                    +b Control of control system information or data persistence prevents information stored 
+                    +b on a shared resource from being unintentionally disclosed after that resource has been 
+                    +b released back to the control system."
+                [ rhs
+                    {
+                        id "SR 4.2 RE 1"
+                        name "Purging of shared memory resources"
+                        description "The control system shall provide the capability to prevent unauthorized 
+                            +b and unintended information transfer via volatile shared memory resources."
+                        [ notes
+                            "Volatile memory resources are those that typically do not retain information after 
+                                +b being released to memory management. 
+                                +b However, there are attacks against random access memory (RAM) 
+                                +b that have the potential to extract key material or other confidential data 
+                                +b before it is actually over-written. 
+                                +b Therefore, it is a commonly accepted practice to purge all unique data and 
+                                +b connections to unique data from volatile shared memory when that memory 
+                                +b is released back to the control system for use by a different user, 
+                                +b such that this data is not visible or accessible to the new user."
+                [ security_levels                        
+                    "SL-C (DC, control system) 1: Not Selected"
+                    "SL-C (DC, control system) 2: SR 4.2"
+                    "SL-C (DC, control system) 3: SR 4.2 (1)"
+                    "SL-C (DC, control system) 4: SR 4.2 (1)"
+            {
+                id "SR 4.3"
+                page 54
+                name "Use of cryptography"
+                description "If cryptography is required, the control system shall use cryptographic algorithms, 
+                    +b key sizes and mechanisms for key establishment and management according 
+                    +b to commonly accepted security industry practices and recommendations."
+                rationale "The selection of cryptographic protection should match the value of the information being protected, 
+                    +b the consequences of the confidentiality of the information being breached, 
+                    +b the time period during which the information is confidential and control system operating constraints. 
+                    +b This can involve either information at rest, in transit, or both. 
+                    +b Note that backups are an example of information at rest, 
+                    +b and should be considered as part of a data confidentiality assessment process. 
+                    +b The control system product supplier should document the practices and procedures 
+                    +b relating to cryptographic key establishment and management. 
+                    +b The control system should utilize established and tested encryption and hash algorithms, 
+                    +b such as the advanced encryption standard (AES) and the secure hash algorithm (SHA) series, 
+                    +b and key sizes based on an assigned standard. 
+                    +b Key generation needs to be performed using an effective random number generator. 
+                    +b The security policies and procedures for key management need to address periodic key changes, 
+                    +b key destruction, key distribution and encryption key backup in accordance with defined standards. 
+                    +b Generally accepted practices and recommendations can be found in documents such as NIST SP800-57 [25]. 
+                    +b Implementation requirements can be found for example in ISO/IEC 19790 [12].
+                    +b This SR, along with 5.10, SR 1.8 – Public key infrastructure (PKI) certificates may be applicable 
+                    +b when meeting many other requirements defined within this standard."
+                [ security_levels
+                    "SL-C (DC, control system) 1: SR 4.3"
+                    "SL-C (DC, control system) 2: SR 4.3"
+                    "SL-C (DC, control system) 3: SR 4.3"
+                    "SL-C (DC, control system) 4: SR 4.3"

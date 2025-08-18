@@ -1,0 +1,137 @@
+ai lab
+    api-url http://localhost:3000
+    call clist-item-3.1.3
+        description clist extension of item 3.1.3
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"3.1.3","area":"Legal & Compliance","category":"GDPR & Data Protection","description":"Sono definite ed attuate logiche di retention dei dati in accordo con i requisiti normativi applicabili di riferimento?","note":"","ISA_n_62443_n_${'('}2-4)":"SP.03.10","GDPR":"Artt. 5-11","ISO_n_27001":"A.5.31","\"NIST CSF\"":"ID.GV-3"}
+                \n </sr_json>
+    call clist-item-3.1.4
+        description clist extension of item 3.1.4
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"3.1.4","area":"Legal & Compliance","category":"GDPR & Data Protection","description":"Sono adottate tecniche volte a garantire la confidenzialità del dato personale (p.e. pseudonimizzazione / tokenizzazione)?","note":"","GDPR":"Artt. 5-11","ISO_n_27001":"A.5.31","\"NIST CSF\"":"ID.GV-3"}
+                \n </sr_json>
+    call clist-item-3.1.5
+        description clist extension of item 3.1.5
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"3.1.5","area":"Legal & Compliance","category":"GDPR & Data Protection","description":"Durante le attività di test, sono utilizzati dati personali reali appartenenti a persone fisiche?","note":"","GDPR":"Artt. 5-11","ISO_n_27001":"A.5.31","\"NIST CSF\"":"ID.GV-3"}
+                \n </sr_json>
+    call clist-item-3.1.6
+        description clist extension of item 3.1.6
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"3.1.6","area":"Legal & Compliance","category":"GDPR & Data Protection","description":"I dati personali sono trattati all'interno dell'Unione Europea? Se all'esterno, specificare in quale Paese.","note":"","GDPR":"Artt. 5-11","ISO_n_27001":"A.5.31","\"NIST CSF\"":"ID.GV-3"}
+                \n </sr_json>
+    call clist-item-3.1.7
+        description clist extension of item 3.1.7
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"3.1.7","area":"Legal & Compliance","category":"GDPR & Data Protection","description":"Sono definite ed attuate procedure di privacy by design nell'ambito dei processi di sviluppo dei sistemi o servizi?","note":"","GDPR":"Artt. 5-11","ISO_n_27001":"A.5.31","\"NIST CSF\"":"ID.GV-3"}
+                \n </sr_json>

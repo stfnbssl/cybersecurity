@@ -1,0 +1,214 @@
+$group
+    {
+        id "FSA-EDR 3.11 RE(1)"
+        check_description "The embedded device shall be capable of automatically providing notification to
+            +b a configurable set of recipients upon discovery of an attempt to make an
+            +b unauthorized physical access. All notifications of tampering shall be logged as
+            +b part of the overall audit logging function."
+        requirement_id "IEC 62443-4-2:EDR 3.11 RE(1)"
+        title "Notification of a Tampering Attempt"
+        description "This requirement focuses on the capability of a system to detect and notify
+            +b relevant personnel or systems of any attempts to tamper with its components.
+            +b The notification mechanism should be efficient and ensure timely awareness of
+            +b tampering activities, which could potentially compromise the integrity and
+            +b security of the industrial control system (ICS)."
+        { key_aspects
+            detection "The system must be able to identify unauthorized modifications or attempts to
+                +b alter its components or configurations."
+            notification "Upon detection of tampering, the system should promptly alert designated
+                +b personnel or systems through pre-defined communication channels."
+            logging "All tampering attempts should be logged with sufficient detail, including time,
+                +b date, affected component, and nature of the attempt, to support further
+                +b analysis and response."
+            response "The notification should trigger an appropriate response mechanism to mitigate
+                +b any potential impact of the tampering attempt."
+        { related_standards
+            { "IEC 62443-3-3"
+                "SR 3.4" "Security Requirement (SR) 3.4 addresses the need for robust monitoring and
+                    +b detection mechanisms to identify security breaches, including tampering
+                    +b attempts, within ICS environments."
+                "SR 4.2" "This requirement emphasizes the importance of logging security events, which is
+                    +b critical for incident response and forensic analysis, aligning with the need
+                    +b for comprehensive logging in tampering detection."
+            { "ISO/IEC 27001"
+                A.12.4 "The ISO/IEC 27001 standard section A.12.4 covers logging and monitoring, which
+                    +b is essential for detecting and responding to security incidents, including
+                    +b unauthorized access attempts and tampering."
+                A.16.1 "Incident management in ISO/IEC 27001 highlights the importance of a structured
+                    +b process for handling security incidents, ensuring that tampering attempts are
+                    +b addressed effectively."
+            { "NIST SP 800-53"
+                SI-4 "System and Information Integrity controls within NIST SP 800-53 focus on
+                    +b monitoring and detecting system anomalies, including tampering attempts, to
+                    +b maintain the integrity of information systems."
+                AU-6 "Audit review, analysis, and reporting are crucial for understanding security
+                    +b events, including tampering attempts, and formulating an appropriate response
+                    +b strategy."
+    {
+        id "FSA-HDR 3.11"
+        check_description "Host devices shall provide the capability to support tamper resistance and
+            +b detection mechanisms to protect against unauthorized physical access into the
+            +b device."
+        requirement_id "HDR 3.11"
+        title "Physical Tamper Resistance and Detection"
+        description "This requirement under IEC 62443-4-2 pertains to ensuring that a component is
+            +b resistant to physical tampering and has mechanisms in place to detect any
+            +b tampering that may occur. The objective is to protect the component from
+            +b unauthorized physical access and ensure that any attempt to breach the physical
+            +b security is promptly detected and reported."
+        [ key_aspects
+            "Tamper Resistance: Components must be designed in a way that makes unauthorized physical access difficult and time-consuming."
+            "Tamper Detection: Mechanisms must be in place to detect physical tampering attempts and trigger alerts or logs when such attempts are identified."
+            "Response to Tampering: The system should be capable of taking predefined actions when tampering is detected, such as alerting operators or initiating shutdown procedures."
+            "Logging: All tampering attempts should be logged for forensic and auditing purposes."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "PE-3: Physical Access Control"
+                details "Addresses the need for controlled access to physical systems and components to
+                    +b prevent unauthorized physical access."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.11.2: Equipment"
+                details "Focuses on the protection of equipment from physical and environmental threats,
+                    +b including secure location and protection against tampering."
+            {
+                standard "FIPS PUB 140-3"
+                reference "Security Requirements for Cryptographic Modules"
+                details "Includes requirements for physical security to prevent unauthorized access to
+                    +b the cryptographic module."
+            {
+                standard "NERC CIP-006-6"
+                reference "Physical Security of BES Cyber Systems"
+                details "Outlines requirements for the physical security of critical infrastructure,
+                    +b including methods to detect and respond to physical tampering."
+    {
+        id "FSA-HDR 3.11 RE(1)"
+        check_description "Host devices shall be capable of automatically providing notification to a
+            +b configurable set of recipients upon discovery of an attempt to make an
+            +b unauthorized physical access. All notifications of tampering shall be logged as
+            +b part of the overall audit logging function."
+        requirement_id "IEC 62443-4-2: HDR 3.11 RE(1)"
+        title "Notification of a Tampering Attempt"
+        description "This requirement focuses on the capability of an industrial control system
+            +b (ICS) component to detect and notify relevant parties of any tampering
+            +b attempts. Tampering can include unauthorized modifications, physical
+            +b interference, or any actions that compromise the integrity of the system."
+        { key_aspects
+            detection "The component must have mechanisms to detect unauthorized physical or logical
+                +b modifications."
+            notification "Upon detection of a tampering attempt, the system should notify designated
+                +b personnel or systems promptly."
+            logging "All tampering attempts should be logged with sufficient detail to support
+                +b further investigation and response."
+            response "Systems should support automated responses to tampering attempts, such as
+                +b triggering alerts or initiating shutdown protocols."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.8 - Physical and Logical Tamper Detection"
+                details "This standard specifies the requirements for tamper detection in the overall
+                    +b security program of an industrial control system, emphasizing the need for both
+                    +b physical and logical protections."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "NIST SP 800-82 provides guidance on securing ICS, including sections on
+                    +b detecting and responding to unauthorized access or modifications which are akin
+                    +b to tampering."
+            {
+                standard "ISO/IEC 27002"
+                reference "12.4 - Logging and Monitoring"
+                details "This section of ISO/IEC 27002 emphasizes the importance of monitoring systems
+                    +b for unauthorized activities and ensuring that logs are maintained and reviewed."
+            {
+                standard "IEC 61508"
+                reference "Functional Safety"
+                details "While primarily focused on safety, IEC 61508 includes requirements for systems
+                    +b to handle unexpected events, including potential tampering, to maintain safe
+                    +b operations."
+    {
+        id "FSA-NDR 3.11"
+        check_description "Network devices shall provide tamper resistance and detection mechanisms to
+            +b protect against unauthorized physical access into the device."
+        requirement_id "NDR 3.11"
+        title "Physical Tamper Resistance and Detection"
+        description "This requirement addresses the need for components to resist physical tampering
+            +b and to detect any unauthorized physical access or modifications. The aim is to
+            +b ensure that the physical integrity of the component is maintained, and any
+            +b attempts to compromise it are either thwarted or promptly detected."
+        { key_aspects
+            "tamper-resistant design" "Components should be designed to resist physical tampering. This involves using
+                +b materials and construction techniques that are difficult to alter or destroy
+                +b without specialized tools."
+            "tamper detection mechanisms" "Incorporate mechanisms that can detect and alert to unauthorized physical
+                +b access or modifications. This could include sensors that detect case openings,
+                +b seals that break upon tampering, or electronic notifications."
+            "logging and alerting" "Any detected tampering attempts should be logged and, where possible, generate
+                +b alerts to appropriate personnel or systems to ensure timely response."
+            "physical access control" "Implement controls to restrict physical access to the components to authorized
+                +b personnel only, potentially using methods such as locks, access cards, or
+                +b biometric systems."
+        { related_standards
+            { "IEC 62443-3-3"
+                reference "Security for industrial automation and control systems - Part 3-3: System
+                    +b security requirements and security levels"
+                details "This standard outlines system-level security requirements, including physical
+                    +b security measures, which complement the component-level focus of IEC 62443-4-2."
+            { "ISO/IEC 27001"
+                reference "Information technology - Security techniques - Information security management
+                    +b systems - Requirements"
+                details "Provides a broader framework for information security management, including
+                    +b physical and environmental security controls relevant to physical tamper
+                    +b resistance and detection."
+            { "NIST SP 800-53"
+                reference "Security and Privacy Controls for Information Systems and Organizations"
+                details "Offers a comprehensive set of security controls, including those for physical
+                    +b and environmental protection, which align with the principles of tamper
+                    +b resistance and detection."
+            { "FIPS PUB 140-2"
+                reference "Security Requirements for Cryptographic Modules"
+                details "Specifies security requirements for cryptographic modules, including physical
+                    +b security mechanisms to prevent tampering."
+    {
+        id "FSA-NDR 3.11 RE(1)"
+        check_description "Network devices shall be capable of automatically providing notification to a
+            +b configurable set of recipients upon discovery of an attempt to make an
+            +b unauthorized physical access. All notifications of tampering shall be logged as
+            +b part of the overall audit logging function."
+        requirement_id "IEC 62443-4-2:NDR 3.11 RE(1)"
+        title "Notification of a Tampering Attempt"
+        description "This requirement mandates that industrial automation and control system (IACS)
+            +b components must have the capability to detect and notify operators or systems
+            +b of any unauthorized attempts to alter or interfere with their normal
+            +b operational settings. The notification should be timely to allow for
+            +b appropriate response measures to be taken to safeguard the system's integrity
+            +b and functionality."
+        [ key_aspects
+            "Detection: The system must be capable of identifying attempts to tamper with hardware, software, or configuration settings."
+            "Notification: Once a tampering attempt is detected, an alert must be generated and communicated to the relevant stakeholders in a timely manner."
+            "Response: The notification should trigger predefined response protocols to mitigate the potential impact of the tampering attempt."
+            "Logging: All tampering attempts should be logged for forensic analysis and to enhance system resilience."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3:2013"
+                clause "SR 7.7 - Detection of a Security Breach"
+                description "This clause emphasizes the need for systems to detect security breaches,
+                    +b including tampering attempts, and to alert operators promptly."
+            {
+                standard "ISO/IEC 27001:2013"
+                clause "A.12.4.1 - Event Logging"
+                description "This clause requires the implementation of event logging systems, which would
+                    +b include logging tampering attempts for security monitoring and forensic
+                    +b analysis."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                control "SI-4 - System Monitoring"
+                description "This control focuses on monitoring systems to detect and respond to
+                    +b security-related events, including tampering attempts."
+            {
+                standard "IEC 61508-1:2010"
+                clause "7.4.2 - Hazard and Risk Analysis"
+                description "While primarily focused on functional safety, this clause includes
+                    +b consideration of risks related to unauthorized system changes, which parallels
+                    +b the need for tampering detection and notification."

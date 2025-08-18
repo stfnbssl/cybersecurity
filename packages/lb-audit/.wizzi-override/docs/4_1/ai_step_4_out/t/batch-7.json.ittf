@@ -1,0 +1,332 @@
+$group
+    {
+        practice "1"
+        code "SM-12"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Automated Process Verification Policy"
+                description "This policy mandates the use of automated tools to track and verify the
+                    +b completion of all security-related processes before product release, as
+                    +b required by IEC 62443-4-1. It ensures consistency and reduces human error in
+                    +b verification tasks."
+                enforcement "Regular audits using tools like JIRA and GitLab CI/CD to verify automated
+                    +b tracking. Non-compliance results in release delays until verification is
+                    +b complete."
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Documentation Standardization Policy"
+                description "This policy enforces uniform documentation formats for all security processes
+                    +b to facilitate verification and auditing, aligning with IEC 62443-4-1's emphasis
+                    +b on traceability."
+                enforcement "Use of standardized templates (e.g., NIST ICS Documentation Template) and
+                    +b periodic reviews by the security team to ensure compliance."
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Audit Trail Maintenance Policy"
+                description "This policy requires comprehensive audit trails for all verification
+                    +b activities, providing evidence for compliance assessments as mandated by IEC
+                    +b 62443-4-1."
+                enforcement "Implementation of automated logging tools (e.g., Siemens TIA Portal Security
+                    +b Features) and quarterly audits to review audit trails."
+        [ procedures
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Process Completion Verification Procedure"
+                description "This procedure outlines the steps to systematically verify the completion of
+                    +b all security-related processes before product release, ensuring compliance with
+                    +b IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all security-related processes scoped for the product."
+                        tools "JIRA, Confluence"
+                        expected_outcome "A comprehensive list of security processes to be verified."
+                    {
+                        step 2
+                        action "Use automated tools to track the completion status of each process."
+                        tools "GitLab CI/CD, Siemens TIA Portal"
+                        expected_outcome "Real-time status updates on process completion."
+                    {
+                        step 3
+                        action "Document the verification results in a centralized repository."
+                        tools "NIST ICS Documentation Template, ABB Security Documentation Guide"
+                        expected_outcome "Standardized records of process completion for auditing."
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Pre-Release Audit Procedure"
+                description "This procedure details the steps for conducting a pre-release audit to ensure
+                    +b all security processes are completed and documented, as per IEC 62443-4-1
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Schedule an audit with the security team and relevant stakeholders."
+                        tools "Microsoft Teams, Outlook"
+                        expected_outcome "A scheduled audit session with all necessary participants."
+                    {
+                        step 2
+                        action "Review all documented security processes and their completion status."
+                        tools "Honeywell Audit Trail Best Practices, Schneider Electric Cybersecurity Audit
+                            +b Guide"
+                        expected_outcome "Identification of any gaps or incomplete processes."
+                    {
+                        step 3
+                        action "Address any identified gaps and update documentation accordingly."
+                        tools "JIRA, Git"
+                        expected_outcome "All security processes are completed and documented."
+            {
+                code "SM-12"
+                subCode "undefined"
+                title "Continuous Improvement Procedure"
+                description "This procedure ensures that process verification methods are continuously
+                    +b improved based on audit findings and evolving threats, in line with IEC
+                    +b 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor threat intelligence sources for new ICS vulnerabilities."
+                        tools "CISA Alerts, Siemens ICS Security Guide"
+                        expected_outcome "Updated knowledge of potential threats."
+                    {
+                        step 2
+                        action "Review audit findings and incorporate lessons learned into process
+                            +b improvements."
+                        tools "Rockwell Automation Whitepaper, Honeywell ICS Security Case Study"
+                        expected_outcome "Refined verification procedures."
+                    {
+                        step 3
+                        action "Update documentation and training programs to reflect improved procedures."
+                        tools "Git, Confluence"
+                        expected_outcome "Up-to-date documentation and trained personnel."
+        last_updated "2023-10-25"
+    {
+        practice "1"
+        code "SM-13"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Automated Defect Tracking Policy"
+                description "This policy mandates the use of automated tools to track and analyze security
+                    +b defects in fielded ICS components, as per IEC 62443-4-1 requirements for
+                    +b continuous SDL improvement. Tools like SIEM solutions must correlate events
+                    +b across industrial networks to identify patterns and root causes."
+                enforcement "Quarterly audits of defect tracking systems by the security team, with
+                    +b verification of at least 90% coverage of critical ICS components.
+                    +b Non-compliance triggers mandatory process reviews."
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Vulnerability Disclosure Coordination Policy"
+                description "Establishes protocols for collaborating with third-party ICS component vendors
+                    +b on vulnerability reporting and mitigation, addressing multi-vendor ecosystem
+                    +b challenges specified in IEC 62443-4-1. Includes SLAs for vendor response times
+                    +b and secure communication channels."
+                enforcement "Annual vendor compliance assessments documented in security reports. Failure to
+                    +b meet SLAs results in procurement review for critical components."
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Legacy System Risk Mitigation Policy"
+                description "Defines compensating controls for legacy ICS devices unable to receive SDL
+                    +b updates, aligning with IEC 62443-4-1's adaptation requirements. Requires
+                    +b network segmentation and additional monitoring for all equipment exceeding 10
+                    +b years in service."
+                enforcement "Bi-annual penetration testing of legacy system isolation measures, with
+                    +b findings reported to plant management and engineering teams."
+        [ procedures
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Post-Incident SDL Update Procedure"
+                description "Structured process for incorporating field incident lessons into the Secure
+                    +b Development Lifecycle, fulfilling IEC 62443-4-1 continuous improvement
+                    +b mandates. Applies to all Breton Spa CNC and stone cutting machines."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct root cause analysis using NIST SP 800-61r2 adapted for ICS environments"
+                        tools "Wireshark ICS plugins, Siemens SCADA logs"
+                        expected_outcome "Documented defect classification per Rockwell Automation severity matrix"
+                    {
+                        step 2
+                        action "Update threat models in Microsoft Threat Modeling Tool with new attack vectors"
+                        tools "STRIDE methodology templates, Breton-specific machine profiles"
+                        expected_outcome "Revised threat model XML files for affected product lines"
+                    {
+                        step 3
+                        action "Implement JIRA workflow changes to include new security checkpoints"
+                        tools "JIRA Service Management, Confluence documentation"
+                        expected_outcome "Updated SDL phase-gate requirements visible in all active sprints"
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Vendor Security Collaboration Procedure"
+                description "Step-by-step process for coordinating vulnerability remediation with ICS
+                    +b component suppliers, addressing IEC 62443-4-1 multi-party requirements for
+                    +b Breton's networked industrial machines."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate secure disclosure via Schneider Electric's vendor portal for affected
+                            +b components"
+                        tools "ICS-CERT encrypted mail, vendor-specific security forms"
+                        expected_outcome "Acknowledgement receipt with tracking number"
+                    {
+                        step 2
+                        action "Conjoint risk assessment using ISA/IEC 62443-2-4 criteria"
+                        tools "Shared risk matrices, OPC UA diagnostic data"
+                        expected_outcome "Joint severity classification document signed by both parties"
+                    {
+                        step 3
+                        action "Validate patches on isolated testbed with PROFINET PN Security enabled"
+                        tools "Breton test machines, Wurldtech Achilles tester"
+                        expected_outcome "Certification report meeting SL-T requirements"
+            {
+                code "SM-13"
+                subCode "undefined"
+                title "Legacy System Security Enhancement Procedure"
+                description "Methodology for applying SDL improvements to older Breton stone polishing
+                    +b machines with limited update capabilities, per IEC 62443-4-1 adaptation
+                    +b guidelines."
+                [ steps
+                    {
+                        step 1
+                        action "Segment legacy devices into VLANs using industrial firewalls"
+                        tools "Cisco IE switches, Tofino industrial firewall configs"
+                        expected_outcome "Network diagrams showing air-gapped legacy zones"
+                    {
+                        step 2
+                        action "Deploy protocol-specific IDS for Modbus TCP traffic"
+                        tools "Darktrace Industrial, Nozomi Networks sensors"
+                        expected_outcome "Alert logs showing monitored legacy protocol traffic"
+                    {
+                        step 3
+                        action "Implement physical access controls for maintenance ports"
+                        tools "Schneider Electric rack locks, access logs"
+                        expected_outcome "Audit trail of all physical interactions with legacy units"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-1"
+        subCode "undefined"
+        [ policies
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Security Context Documentation Policy"
+                description "This policy mandates the documentation of the security context for all
+                    +b industrial products, ensuring alignment with operational environments and
+                    +b threats as per IEC 62443-4-1. It includes identifying stakeholders, threat
+                    +b modeling, and regulatory compliance."
+                enforcement "Regular audits and automated documentation tools (e.g., Microsoft Threat
+                    +b Modeling Tool) will be used to ensure compliance. Non-compliance will trigger
+                    +b corrective actions."
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Legacy System Integration Policy"
+                description "This policy outlines the methods to document security contexts for legacy
+                    +b systems lacking native security features, ensuring they are integrated securely
+                    +b within modern industrial environments as per IEC 62443-4-1."
+                enforcement "Compliance will be verified through periodic reviews and red team exercises.
+                    +b Legacy systems must be documented with identified risks and compensating
+                    +b controls."
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Regulatory Alignment Policy"
+                description "This policy ensures that the documented security context aligns with regional
+                    +b regulations (e.g., NERC CIP, EU NIS2) and organizational security policies,
+                    +b maintaining compliance with IEC 62443-4-1."
+                enforcement "Regular audits and cross-referencing with regulatory matrices will be
+                    +b conducted. Documentation must be reviewed and approved by security and
+                    +b engineering teams."
+        [ procedures
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Threat Modeling Procedure"
+                description "This procedure details the process for conducting threat modeling workshops to
+                    +b capture the security context of industrial products, aligning with IEC
+                    +b 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all relevant stakeholders (OT, IT, safety teams) and schedule a threat
+                            +b modeling workshop."
+                        tools "Microsoft Threat Modeling Tool, STRIDE methodology"
+                        expected_outcome "List of stakeholders and scheduled workshop dates."
+                    {
+                        step 2
+                        action "Conduct the workshop to identify potential threats (e.g., spoofing, tampering)
+                            +b and document them using standardized templates."
+                        tools "ISA-62443-1-1 templates, CyberX for real-time updates"
+                        expected_outcome "Completed threat model document with identified threats and vulnerabilities."
+                    {
+                        step 3
+                        action "Review and validate the threat model with cross-functional teams and update the
+                            +b security context document."
+                        tools "Confluence for documentation, JIRA for issue tracking"
+                        expected_outcome "Approved and updated security context document."
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Legacy System Documentation Procedure"
+                description "This procedure outlines the steps to document the security context for legacy
+                    +b systems, ensuring they are integrated securely within modern industrial
+                    +b environments as per IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all legacy systems and identify their operational constraints and
+                            +b security limitations."
+                        tools "Asset management databases, Honeywell Legacy Security Guide"
+                        expected_outcome "Inventory list of legacy systems with identified constraints."
+                    {
+                        step 2
+                        action "Document compensating controls (e.g., network segmentation, intrusion detection
+                            +b systems) for each legacy system."
+                        tools "Schneider Electric White Paper, NIST IR 8183 Vol.2"
+                        expected_outcome "List of compensating controls for each legacy system."
+                    {
+                        step 3
+                        action "Review and approve the documented security context for legacy systems with the
+                            +b security team."
+                        tools "Confluence for documentation, JIRA for approvals"
+                        expected_outcome "Approved security context document for legacy systems."
+            {
+                code "SR-1"
+                subCode "undefined"
+                title "Regulatory Compliance Procedure"
+                description "This procedure ensures the documented security context aligns with regional
+                    +b regulations and organizational policies, maintaining compliance with IEC
+                    +b 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Identify applicable regional regulations (e.g., NERC CIP, EU NIS2) and
+                            +b organizational security policies."
+                        tools "IEC 62443 Compliance Toolkit, ENISA ICS Security Guide"
+                        expected_outcome "List of applicable regulations and policies."
+                    {
+                        step 2
+                        action "Cross-reference the security context document with identified regulations and
+                            +b policies, ensuring alignment."
+                        tools "Regulatory alignment matrices, compliance checklists"
+                        expected_outcome "Completed cross-reference report with alignment status."
+                    {
+                        step 3
+                        action "Update the security context document based on the cross-reference findings and
+                            +b obtain approvals from relevant teams."
+                        tools "Confluence for documentation, JIRA for approvals"
+                        expected_outcome "Approved and updated security context document."
+        last_updated "2023-10-15"

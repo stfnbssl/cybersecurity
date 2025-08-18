@@ -1,0 +1,334 @@
+{
+    "SCADAExamples": [
+      {
+        "BusinessPractice": "Governance",
+        "SecurityPractice": "Strategy & Metrics",
+        "StreamA": {
+          "name": "Build Security Strategy",
+          "levels": {
+            "SM0-A": "A SCADA developer has no plan to secure PLCs against remote exploits.",
+            "SM1-A": "Team agrees informally to reduce HMI vulnerabilities but lacks a formal plan.",
+            "SM2-A": "A documented strategy aims to secure Modbus communications in all SCADA deployments.",
+            "SM3-A": "Strategy includes proactive encryption of OPC-UA traffic, reviewed with plant operators."
+          }
+        },
+        "StreamB": {
+          "name": "Establish Metrics Program",
+          "levels": {
+            "SM0-B": "No data on RTU vulnerability fixes is collected.",
+            "SM1-B": "Team occasionally notes time to patch PLC firmware in a spreadsheet.",
+            "SM2-B": "Monthly reports track HMI exploit attempts and resolution times.",
+            "SM3-B": "Trend analysis of DCS downtime leads to faster patch deployment processes."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Governance",
+        "SecurityPractice": "Policy & Compliance",
+        "StreamA": {
+          "name": "Define Policies",
+          "levels": {
+            "PC0-A": "No policy exists for securing SCADA network communications.",
+            "PC1-A": "Team informally agrees all PLCs need passwords.",
+            "PC2-A": "A documented policy mandates encryption for all HMI data exchanges.",
+            "PC3-A": "Policy updated yearly to require MFA on all SCADA endpoints based on audit feedback."
+          }
+        },
+        "StreamB": {
+          "name": "Manage Compliance",
+          "levels": {
+            "PC0-B": "No check if RTU firmware meets security standards.",
+            "PC1-B": "Team casually confirms DCS complies with basic regulations.",
+            "PC2-B": "Annual audits ensure PLCs meet IEC 62443-4-1 requirements.",
+            "PC3-B": "Automated scans verify HMI compliance with NIST standards daily."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Governance",
+        "SecurityPractice": "Education & Guidance",
+        "StreamA": {
+          "name": "Provide Role-Based Training",
+          "levels": {
+            "EG0-A": "No training on SCADA security for developers.",
+            "EG1-A": "Occasional seminar on general cybersecurity for PLC programmers.",
+            "EG2-A": "Regular training on securing HMI interfaces for SCADA engineers.",
+            "EG3-A": "Continuous courses on defending RTUs against zero-day exploits."
+          }
+        },
+        "StreamB": {
+          "name": "Distribute Security Guidance",
+          "levels": {
+            "EG0-B": "No guidance on securing DCS systems exists.",
+            "EG1-B": "Basic tips on PLC password use shared verbally.",
+            "EG2-B": "Detailed guide on securing Modbus traffic distributed to all teams.",
+            "EG3-B": "Interactive guide on HMI security updated monthly in the intranet."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Design",
+        "SecurityPractice": "Threat Assessment",
+        "StreamA": {
+          "name": "Identify Threats",
+          "levels": {
+            "TA0-A": "No effort to identify risks in an HMI controlling a water pump.",
+            "TA1-A": "Team discusses potential PLC spoofing risks in a meeting.",
+            "TA2-A": "STRIDE identifies tampering risks in Modbus data from an RTU.",
+            "TA3-A": "Automated tool flags new threats in DCS firmware updates."
+          }
+        },
+        "StreamB": {
+          "name": "Analyze Risk",
+          "levels": {
+            "TA0-B": "No assessment of a DoS risk on a SCADA network.",
+            "TA1-B": "Team guesses an HMI exploit could disrupt operations.",
+            "TA2-B": "Matrix rates PLC tampering as high impact, medium likelihood.",
+            "TA3-B": "Quantitative model predicts 80% chance of RTU exploit, prompting encryption."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Design",
+        "SecurityPractice": "Security Requirements",
+        "StreamA": {
+          "name": "Define Security Requirements",
+          "levels": {
+            "SR0-A": "No security requirements for a PLC controlling a gas valve.",
+            "SR1-A": "Team informally requires HMI login passwords.",
+            "SR2-A": "Documented requirement mandates AES-256 encryption for RTU data.",
+            "SR3-A": "Prioritized requirements tie DCS security to risk of physical damage."
+          }
+        },
+        "StreamB": {
+          "name": "Validate Requirements",
+          "levels": {
+            "SR0-B": "No check if PLC security meets any standards.",
+            "SR1-B": "Team casually tests HMI login during development.",
+            "SR2-B": "Formal tests ensure RTU encryption meets requirements.",
+            "SR3-B": "Automated tests verify DCS security requirements in CI/CD."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Design",
+        "SecurityPractice": "Architecture",
+        "StreamA": {
+          "name": "Assess Architecture",
+          "levels": {
+            "SA0-A": "No review of SCADA network architecture security.",
+            "SA1-A": "Informal check of PLC-HMI connection security.",
+            "SA2-A": "Structured review finds open ports in RTU architecture.",
+            "SA3-A": "Automated scans ensure DCS architecture has no weak points."
+          }
+        },
+        "StreamB": {
+          "name": "Define Security Architecture",
+          "levels": {
+            "SA0-B": "No secure architecture for SCADA systems exists.",
+            "SA1-B": "Basic firewall added to HMI network informally.",
+            "SA2-B": "Documented architecture uses segmented networks for PLCs.",
+            "SA3-B": "Optimized architecture enforces zero-trust for all RTU connections."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Implementation",
+        "SecurityPractice": "Secure Build",
+        "StreamA": {
+          "name": "Control Build Process",
+          "levels": {
+            "SB0-A": "No control over PLC firmware build process.",
+            "SB1-A": "Manual signing of HMI binaries by one developer.",
+            "SB2-A": "Automated build signs RTU firmware with verified keys.",
+            "SB3-A": "Build process for DCS includes tamper-proof integrity checks."
+          }
+        },
+        "StreamB": {
+          "name": "Manage Dependencies",
+          "levels": {
+            "SB0-B": "No tracking of libraries in SCADA software.",
+            "SB1-B": "Team notes PLC library versions in a text file.",
+            "SB2-B": "HMI build scans dependencies for known vulnerabilities.",
+            "SB3-B": "Automated updates keep RTU dependencies secure."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Implementation",
+        "SecurityPractice": "Secure Deployment",
+        "StreamA": {
+          "name": "Secure Deployment Process",
+          "levels": {
+            "SD0-A": "PLC firmware deployed manually with no security steps.",
+            "SD1-A": "Basic checklist used for HMI deployment.",
+            "SD2-A": "Documented process ensures RTU deployment is encrypted.",
+            "SD3-A": "Fully automated deployment secures DCS with no human error."
+          }
+        },
+        "StreamB": {
+          "name": "Validate Deployment",
+          "levels": {
+            "SD0-B": "No validation of PLC deployment security.",
+            "SD1-B": "Team manually checks HMI after deployment.",
+            "SD2-B": "Formal tests confirm RTU deployment meets security standards.",
+            "SD3-B": "Automated scans validate DCS deployment integrity."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Implementation",
+        "SecurityPractice": "Defect Management",
+        "StreamA": {
+          "name": "Track Defects",
+          "levels": {
+            "DM0-A": "A buffer overflow in a PLC is ignored with no record.",
+            "DM1-A": "HMI vulnerabilities listed in an Excel file by one developer.",
+            "DM2-A": "Jira tracks a Modbus injection flaw in an RTU.",
+            "DM3-A": "Automated scans feed PLC defects into a CI/CD pipeline."
+          }
+        },
+        "StreamB": {
+          "name": "Manage Defect Resolution",
+          "levels": {
+            "DM0-B": "An HMI crash bug is left unfixed with no plan.",
+            "DM1-B": "PLC firmware flaw fixed only after customer complaint.",
+            "DM2-B": "Critical RTU defect resolved within 48 hours per SLA.",
+            "DM3-B": "DCS defect analyzed, leading to updated coding guidelines."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Verification",
+        "SecurityPractice": "Design Review",
+        "StreamA": {
+          "name": "Review Design",
+          "levels": {
+            "DR0-A": "No review of PLC control system design.",
+            "DR1-A": "Informal discussion on HMI design security.",
+            "DR2-A": "Structured review finds RTU design lacks encryption.",
+            "DR3-A": "Automated tools flag DCS design flaws instantly."
+          }
+        },
+        "StreamB": {
+          "name": "Validate Security Controls",
+          "levels": {
+            "DR0-B": "No check on PLC security controls.",
+            "DR1-B": "Team casually tests HMI controls during review.",
+            "DR2-B": "Formal validation ensures RTU controls meet standards.",
+            "DR3-B": "Continuous checks validate DCS controls in real-time."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Verification",
+        "SecurityPractice": "Code Review",
+        "StreamA": {
+          "name": "Perform Code Review",
+          "levels": {
+            "CR0-A": "No review of PLC firmware code.",
+            "CR1-A": "Manual review of HMI code finds a flaw once.",
+            "CR2-A": "Regular reviews check RTU code for injection risks.",
+            "CR3-A": "Risk-based reviews prioritize DCS code vulnerabilities."
+          }
+        },
+        "StreamB": {
+          "name": "Automate Code Analysis",
+          "levels": {
+            "CR0-B": "No automated analysis of SCADA code.",
+            "CR1-B": "Basic SAST tool scans PLC code occasionally.",
+            "CR2-B": "SonarQube integrated into HMI build pipeline.",
+            "CR3-B": "Continuous analysis improves RTU code quality."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Verification",
+        "SecurityPractice": "Security Testing",
+        "StreamA": {
+          "name": "Conduct Security Testing",
+          "levels": {
+            "ST0-A": "No tests on a PLC for remote exploit risks.",
+            "ST1-A": "Manual pen test finds HMI login flaw once a year.",
+            "ST2-A": "Quarterly pen tests target RTU network vulnerabilities.",
+            "ST3-A": "Fuzzing tests Modbus inputs on a DCS weekly."
+          }
+        },
+        "StreamB": {
+          "name": "Manage Test Results",
+          "levels": {
+            "ST0-B": "PLC test findings ignored with no follow-up.",
+            "ST1-B": "HMI test flaws discussed in a meeting, no tracking.",
+            "ST2-B": "RTU test results logged in Jira with priorities.",
+            "ST3-B": "DCS test trends lead to stronger input validation."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Operations",
+        "SecurityPractice": "Issue Management",
+        "StreamA": {
+          "name": "Detect Issues",
+          "levels": {
+            "IM0-A": "No detection of unauthorized PLC access attempts.",
+            "IM1-A": "Operator reports HMI glitch after an attack.",
+            "IM2-A": "SIEM alerts on RTU network anomalies.",
+            "IM3-A": "AI predicts DCS exploits from log patterns."
+          }
+        },
+        "StreamB": {
+          "name": "Respond to Issues",
+          "levels": {
+            "IM0-B": "PLC breach ignored with no action.",
+            "IM1-B": "HMI attack fixed manually after downtime.",
+            "IM2-B": "RTU breach resolved in 24 hours per plan.",
+            "IM3-B": "DCS incident leads to updated firewall rules."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Operations",
+        "SecurityPractice": "Environment Management",
+        "StreamA": {
+          "name": "Secure Environment",
+          "levels": {
+            "EM0-A": "No hardening of SCADA server environment.",
+            "EM1-A": "Basic firewall added to PLC network informally.",
+            "EM2-A": "HMI servers hardened with documented standards.",
+            "EM3-A": "RTU environment enforces strict access controls."
+          }
+        },
+        "StreamB": {
+          "name": "Monitor Environment",
+          "levels": {
+            "EM0-B": "No monitoring of DCS network traffic.",
+            "EM1-B": "Basic log check after a PLC issue is reported.",
+            "EM2-B": "Continuous monitoring alerts on HMI anomalies.",
+            "EM3-B": "Predictive monitoring flags RTU threats early."
+          }
+        }
+      },
+      {
+        "BusinessPractice": "Operations",
+        "SecurityPractice": "Operational Management",
+        "StreamA": {
+          "name": "Manage Operations",
+          "levels": {
+            "OM0-A": "No patching process for PLC firmware.",
+            "OM1-A": "HMI patches applied manually when noticed.",
+            "OM2-A": "Structured process patches RTU firmware monthly.",
+            "OM3-A": "Automated patching keeps DCS systems current."
+          }
+        },
+        "StreamB": {
+          "name": "Analyze Operational Data",
+          "levels": {
+            "OM0-B": "No analysis of SCADA system logs.",
+            "OM1-B": "Basic review of PLC logs after a failure.",
+            "OM2-B": "HMI log analysis identifies attack patterns.",
+            "OM3-B": "Predictive analytics on RTU logs prevent issues."
+          }
+        }
+      }
+    ]
+  }

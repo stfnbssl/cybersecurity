@@ -1,0 +1,370 @@
+$group
+    {
+        practice "6"
+        code "DM-4"
+        subCode "e.b)"
+        [ policies
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "Third-Party Vulnerability Reporting Policy"
+                description "Defines the structured process for identifying, assessing, and reporting
+                    +b security vulnerabilities in third-party source code integrated into Breton
+                    +b Spa's industrial control systems. Aligns with IEC 62443-4-1 DM-4 requirements
+                    +b by establishing SLAs for vendor notifications and residual risk acceptance
+                    +b criteria. Applies to all CNC machining centers and stone cutting machines using
+                    +b OPC UA or PROFINET protocols."
+                enforcement "Automated software composition analysis tools (Black Duck, Sonatype Nexus IQ)
+                    +b integrated into CI/CD pipelines; quarterly audits by the security team to
+                    +b verify compliance with reporting SLAs."
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "ICS-Specific Risk Assessment Policy"
+                description "Mandates the use of modified CVSS metrics considering operational impacts
+                    +b (safety consequences, production disruption) when evaluating third-party
+                    +b vulnerabilities in stone polishing machines and composite material processing
+                    +b lines. Complies with IEC 62443-4-1 DM-4's requirement for context-aware risk
+                    +b assessment."
+                enforcement "Risk assessment templates embedded in Jira ticketing system; validation by the
+                    +b OT security lead before risk acceptance decisions; annual tabletop exercises
+                    +b with vendors."
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "Secure Vendor Communication Protocol"
+                description "Establishes encrypted channels (PGP-signed emails, vendor portals) for
+                    +b exchanging vulnerability details with third-party component providers,
+                    +b particularly for CNC control systems using PROFINET with PN Security.
+                    +b Implements IEC 62443-4-1 DM-4's secure reporting requirements while preventing
+                    +b sensitive data exposure."
+                enforcement "Mandatory use of Siemens ProductCERT-like portals for critical vendors; monthly
+                    +b verification of communication logs by compliance officers."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "Third-Party Component Vulnerability Assessment"
+                description "Procedure for identifying and evaluating security issues in third-party
+                    +b libraries used within Breton's CNC machining centers, including OPC UA protocol
+                    +b implementations."
+                [ steps
+                    {
+                        step 1
+                        action "Run automated dependency scanning using Black Duck against the software bill of
+                            +b materials (SBOM) for all machine control firmware."
+                        tools "Black Duck, Breton SBOM Repository"
+                        expected_outcome "List of identified CVEs with severity scores mapped to affected machine types
+                            +b (CNC/Stone Cutting/Polishing)."
+                    {
+                        step 2
+                        action "Apply ICS-modified CVSS scoring considering operational impact factors (safety
+                            +b criticality, production dependency) for each vulnerability."
+                        tools "NISTIR 8170 ICS Risk Framework, Breton Risk Matrix Template"
+                        expected_outcome "Prioritized vulnerability list with adjusted risk scores reflecting stone
+                            +b processing environment impacts."
+                    {
+                        step 3
+                        action "Document assessment results in the vulnerability management system, tagging
+                            +b third-party issues requiring vendor notification per SLA tiers."
+                        tools "Jira Service Management (OT Security Queue), Breton Vendor SLA Database"
+                        expected_outcome "Formalized risk assessment records ready for vendor communication or internal
+                            +b risk acceptance."
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "Vendor Vulnerability Notification Process"
+                description "Standardized workflow for securely reporting identified third-party code issues
+                    +b to component suppliers, particularly for PROFINET and EtherNet/IP protocol
+                    +b stacks."
+                [ steps
+                    {
+                        step 1
+                        action "Prepare vulnerability report package including: Proof-of-concept (if
+                            +b available), affected version ranges, observed impact on stone cutting
+                            +b operations."
+                        tools "Breton Security Report Template, PCAP captures from test machines"
+                        expected_outcome "Standardized report package encrypted per vendor requirements (PGP/S/MIME)."
+                    {
+                        step 2
+                        action "Submit via pre-established secure channel (vendor portal/encrypted email) with
+                            +b read receipts requested, CC'ing legal team for critical issues."
+                        tools "Siemens ProductCERT Portal, Rockwell Secure Upload"
+                        expected_outcome "Timestamped submission confirmation with vendor ticket reference number."
+                    {
+                        step 3
+                        action "Log communication in the vendor management system and initiate 72-hour response
+                            +b countdown per SLA terms."
+                        tools "Breton Vendor Risk Dashboard, ServiceNow OT Module"
+                        expected_outcome "Tracked vendor response timeline with escalation triggers for overdue replies."
+            {
+                code "DM-4"
+                subCode "e.b)"
+                title "Residual Risk Acceptance for Third-Party Code"
+                description "Procedure for formally accepting risks when third-party vulnerabilities cannot
+                    +b be immediately remediated in composite material processing lines."
+                [ steps
+                    {
+                        step 1
+                        action "Present risk assessment to the cross-functional review board (security,
+                            +b engineering, operations) with proposed compensating controls."
+                        tools "Breton Risk Acceptance Form, Impact Analysis Reports"
+                        expected_outcome "Board-approved temporary mitigation plan (e.g., network segmentation,
+                            +b monitoring rules)."
+                    {
+                        step 2
+                        action "Implement compensating controls: Network micro-segmentation for affected
+                            +b polishing machines, enhanced HMI monitoring for attack indicators."
+                        tools "Cisco Industrial Network Director, Splunk ICS Monitoring"
+                        expected_outcome "Verified control implementation reducing residual risk below acceptable
+                            +b threshold."
+                    {
+                        step 3
+                        action "Document risk acceptance in the corporate risk register with sunset clause for
+                            +b re-assessment (typically next patch cycle or 90 days)."
+                        tools "IBM OpenPages GRC, Breton OT Risk Register"
+                        expected_outcome "Audit-ready risk acceptance record with CISO approval and planned review date."
+        last_updated "2023-11-15"
+    {
+        practice "6"
+        code "DM-5"
+        subCode "b) description of the resolution."
+        [ policies
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Vulnerability Resolution Documentation Policy"
+                description "This policy mandates the detailed documentation of all security vulnerability
+                    +b resolutions, ensuring clarity and actionability for users. It aligns with IEC
+                    +b 62443-4-1 by requiring structured descriptions of fixes, including affected
+                    +b components, remediation steps, and potential impacts. Applicable to all Breton
+                    +b Spa CNC and stone cutting machines, it supports CR3 (System Integrity) by
+                    +b preventing unauthorized modifications through clear patch instructions."
+                enforcement "Compliance is enforced through quarterly audits of security advisories by the
+                    +b internal Security Compliance Team, using automated tools like Siemens'
+                    +b ProductCERT templates for consistency. Non-compliance triggers escalation to
+                    +b the Product Security Incident Response Team (PSIRT)."
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Timely Disclosure SLA Policy"
+                description "Establishes a 30-day Service Level Agreement (SLA) for disclosing resolved
+                    +b vulnerabilities to users, from issue identification to public advisory release.
+                    +b This policy addresses IEC 62443-4-1's emphasis on timeliness (KA2) and is
+                    +b critical for Breton's high-criticality metalworking applications where delays
+                    +b could lead to production line compromises. Includes protocols for emergency
+                    +b patches (e.g., Log4j-type vulnerabilities)."
+                enforcement "Enforced via Jira-based tracking with automated reminders. The PSIRT reviews
+                    +b timestamps of vulnerability tickets against disclosure dates. Missed SLAs
+                    +b require root-cause analysis reports to the CISO."
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Multi-Vendor Coordination Policy"
+                description "Defines procedures for coordinated vulnerability disclosures with third-party
+                    +b vendors (e.g., OPC UA stack providers) when Breton's systems are affected.
+                    +b Requires joint resolution descriptions that map to IEC 62443-4-1's DM-5(b) for
+                    +b integrated systems like composite material processing lines. Includes NDAs and
+                    +b predefined communication channels."
+                enforcement "Vendor compliance is verified through contractual obligations and biannual
+                    +b tabletop exercises simulating multi-vendor incidents. Breton's procurement team
+                    +b blocks payments to non-compliant vendors."
+        [ procedures
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Security Advisory Drafting Procedure"
+                description "Standardized process for creating vulnerability resolution advisories compliant
+                    +b with IEC 62443-4-1 DM-5(b). Used for Breton's CNC and polishing machines, it
+                    +b ensures technical accuracy while avoiding over-disclosure that could aid
+                    +b attackers."
+                [ steps
+                    {
+                        step 1
+                        action "Populate the Siemens ProductCERT template with: CVE ID, affected product
+                            +b versions (e.g., Breton 2025.1), and protocol-specific impacts (e.g., OPC UA
+                            +b Basic256Sha256 bypass)."
+                        tools "Siemens ProductCERT template, CVE databases"
+                        expected_outcome "Draft with all mandatory fields completed per IEC 62443-4-1 KA1 requirements."
+                    {
+                        step 2
+                        action "Add resolution details: patch hashes, configuration changes (e.g., PROFINET PN
+                            +b Security settings), and rollback instructions."
+                        tools "Git logs, firmware signing keys"
+                        expected_outcome "Actionable remediation steps that maintain CR3 (System Integrity)."
+                    {
+                        step 3
+                        action "Validate with engineering teams that descriptions don't expose attack vectors
+                            +b (e.g., buffer overflow locations in stone cutting machine firmware)."
+                        tools "Threat modeling tools (Microsoft Threat Modeling Tool adapted for ICS)"
+                        expected_outcome "PSIRT-approved advisory ready for distribution."
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Critical Patch Notification Procedure"
+                description "Escalation process for urgent vulnerabilities (CVSS ≥7.0) in Breton's
+                    +b high-criticality natural stone processing systems. Integrates with IEC
+                    +b 62443-4-1 CR6 (Timely Response) by using multiple notification channels."
+                [ steps
+                    {
+                        step 1
+                        action "Trigger automated SMS/email alerts through PagerDuty to registered maintainers,
+                            +b including resolution ETA."
+                        tools "PagerDuty ICS integration, customer CRM"
+                        expected_outcome "Immediate awareness for 100% of affected customers."
+                    {
+                        step 2
+                        action "Update machine HMIs with non-intrusive security messages (e.g., 'Security Patch
+                            +b 2025.1.2 available - contact support')."
+                        tools "HMI update packages signed with Breton's firmware keys"
+                        expected_outcome "On-premise operators see notifications within 4 hours."
+                    {
+                        step 3
+                        action "Verify patch adoption rates via authenticated telemetry from machines (e.g.,
+                            +b OPC UA secure read of firmware versions)."
+                        tools "Kibana dashboards with SL 3-compliant logging"
+                        expected_outcome "Quantifiable compliance metrics for audit (IEC 62443-4-1 KA4)."
+            {
+                code "DM-5"
+                subCode "b)"
+                title "Legacy System Disclosure Procedure"
+                description "Fallback process for Breton's older stone cutting machines lacking secure
+                    +b remote update capabilities. Meets DM-5(b) requirements through compensatory
+                    +b controls."
+                [ steps
+                    {
+                        step 1
+                        action "Generate printed resolution notices with QR codes linking to air-gapped
+                            +b documentation."
+                        tools "Secure print servers with tamper-evident paper"
+                        expected_outcome "Physical copies for facilities without IT/OT convergence."
+                    {
+                        step 2
+                        action "Dispatch field technicians with USB drives containing signed patches and
+                            +b resolution videos."
+                        tools "Yubikey-authenticated USBs, Breton Field Service App"
+                        expected_outcome "Manual updates applied with chain-of-custody records."
+                    {
+                        step 3
+                        action "Document compensating controls (e.g., network segmentation of legacy machines)
+                            +b in the advisory."
+                        tools "Network diagrams from NetBox, VLAN configuration files"
+                        expected_outcome "Advisory demonstrates SL 2 compliance despite legacy constraints."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-6"
+        subCode "undefined"
+        [ policies
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Automated Defect Tracking Policy"
+                description "Mandates the use of centralized tools like SIEM or ICS vulnerability managers
+                    +b to track all security-related defects across distributed ICS components.
+                    +b Ensures comprehensive logging and categorization per IEC 62443-4-1
+                    +b requirements. Reference: IEC 62443-4-1 DM-6 Key Aspect KA1 (Defect Tracking
+                    +b Completeness)."
+                enforcement "Regular audits using tool-generated reports to verify defect logging
+                    +b completeness. Non-compliance triggers remediation actions."
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Root Cause Analysis (RCA) Policy"
+                description "Requires RCA for all high-severity defects (SL 2-3) to identify systemic issues
+                    +b and prevent recurrence. Aligns with DM-6's efficiency evaluation requirement.
+                    +b Reference: IEC 62443-4-1 DM-6 Key Aspect KA2 (Resolution Timeframe Analysis)."
+                enforcement "Audit RCA documentation during annual reviews. Missing analyses for critical
+                    +b defects result in process improvement mandates."
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Legacy System Mitigation Policy"
+                description "Documents compensating controls (e.g., network segmentation, enhanced
+                    +b monitoring) for unpatchable legacy ICS equipment. Addresses DM-6's completeness
+                    +b requirement for issue resolution. Reference: IEC 62443-4-1 DM-6 Key Aspect KA4
+                    +b (Legacy System Defect Mitigation)."
+                enforcement "Annual validation of compensating controls through penetration testing.
+                    +b Unmitigated legacy systems require risk acceptance from CISO."
+        [ procedures
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Quarterly Defect Review Procedure"
+                description "Structured process for examining security defects managed since last review,
+                    +b evaluating completeness, efficiency, and resolution effectiveness per IEC
+                    +b 62443-4-1 DM-6."
+                [ steps
+                    {
+                        step 1
+                        action "Extract defect reports from SIEM/ICS vulnerability manager for the review
+                            +b period."
+                        tools "Splunk/SIEM with ICS plugins, JIRA with security workflows"
+                        expected_outcome "Consolidated list of all security defects categorized by severity (SL 1-3) and
+                            +b resolution status."
+                    {
+                        step 2
+                        action "Verify resolution evidence for critical defects (SL 3) including patch
+                            +b validation reports or compensating control documentation."
+                        tools "Vendor patch verification tools (e.g., GE Digital Patch Manager), network
+                            +b segmentation diagrams"
+                        expected_outcome "Documented proof that all critical defects were resolved or mitigated per SLA."
+                    {
+                        step 3
+                        action "Calculate and analyze resolution timeframes against defined KPIs (e.g., ≥95%
+                            +b within SLA)."
+                        tools "Custom dashboards in Tableau/Power BI with ICS security metrics"
+                        expected_outcome "Performance report identifying bottlenecks in defect resolution process."
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Post-Patch Validation Procedure"
+                description "Validates that security patches effectively resolve defects without introducing
+                    +b new vulnerabilities in ICS components."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct pre-patch vulnerability scan using ICS-aware tools (e.g., Tenable.ot,
+                            +b Claroty)."
+                        tools "ICS-specific vulnerability scanners, testbed environment"
+                        expected_outcome "Baseline vulnerability report documenting defects to be addressed."
+                    {
+                        step 2
+                        action "Deploy patch in test environment and verify operational functionality via
+                            +b protocol-specific tests (e.g., OPC UA communication checks)."
+                        tools "Protocol analyzers (Wireshark with ICS dissectors), HMI simulators"
+                        expected_outcome "Signed confirmation that patch doesn't disrupt critical control functions."
+                    {
+                        step 3
+                        action "Rescan system post-patch and compare results with baseline to confirm defect
+                            +b resolution."
+                        tools "Delta analysis in vulnerability management platforms"
+                        expected_outcome "Verification report showing resolved CVEs/CWEs with no new critical
+                            +b vulnerabilities introduced."
+            {
+                code "DM-6"
+                subCode "undefined"
+                title "Annual Process Improvement Workshop"
+                description "Formal review to update defect management processes based on lessons learned
+                    +b and emerging threats."
+                [ steps
+                    {
+                        step 1
+                        action "Analyze defect trends from past year using STRIDE threat modeling adapted for
+                            +b ICS."
+                        tools "Microsoft Threat Modeling Tool with ICS templates, NIST 800-30 risk assessment
+                            +b guides"
+                        expected_outcome "Identified patterns in defect types (e.g., recurring Modbus TCP exploits)."
+                    {
+                        step 2
+                        action "Review CISA ICS-CERT advisories and vendor bulletins (e.g., Schneider Electric)
+                            +b for new mitigation techniques."
+                        tools "CISA ICS-CERT RSS feeds, vendor security portals"
+                        expected_outcome "List of relevant threats requiring process adjustments."
+                    {
+                        step 3
+                        action "Update defect management playbooks with new procedures (e.g., MQTT TLS
+                            +b inspection for stone cutting machines)."
+                        tools "Confluence/knowledge management systems with version control"
+                        expected_outcome "Revised operational procedures approved by cross-functional review board."
+        last_updated "2023-11-15"

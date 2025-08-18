@@ -1,0 +1,229 @@
+$group
+    {
+        practice "1"
+        code "SM-7"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Secure Development Environment Access Control"
+                description "This policy enforces strict access controls for development environments to
+                    +b prevent unauthorized modifications, in compliance with IEC 62443-4-1. It
+                    +b mandates role-based access control (RBAC), multi-factor authentication (MFA),
+                    +b and least privilege principles for all developers and third-party contractors."
+                enforcement "Regular audits using SIEM tools (e.g., Splunk for ICS) to monitor access logs.
+                    +b Automated revocation of access rights upon role changes via Active Directory
+                    +b integration."
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Development Toolchain Integrity Policy"
+                description "Ensures all compilers, libraries, and CI/CD tools are verified and free from
+                    +b vulnerabilities as per IEC 62443-4-1 KA3. Requires cryptographic signing of
+                    +b toolchain components and software composition analysis (SCA) for third-party
+                    +b dependencies."
+                enforcement "Automated checks using SCA tools (e.g., Black Duck) integrated into the build
+                    +b pipeline. Quarterly manual audits of toolchain hashes against trusted
+                    +b repositories."
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Code Signing and Firmware Integrity Policy"
+                description "Mandates digital signing of all firmware updates and production code releases
+                    +b to prevent tampering, aligning with IEC 62443-4-1 CR3. Uses FIPS 140-2
+                    +b validated cryptographic modules for signature generation."
+                enforcement "Hardware security modules (HSMs) for key storage. Automated verification in
+                    +b bootloaders and OTA update systems with revocation checks via OCSP."
+        [ procedures
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Development Environment Onboarding"
+                description "Procedure for provisioning secure development workstations with controlled
+                    +b access to code repositories and build systems per IEC 62443-4-1 KA2."
+                [ steps
+                    {
+                        step 1
+                        action "Verify developer identity through HR records and issue hardware tokens for MFA."
+                        tools "YubiKey 5 FIPS, Microsoft Azure AD"
+                        expected_outcome "Unique cryptographic identity established for each developer with RBAC
+                            +b attributes."
+                    {
+                        step 2
+                        action "Provision isolated development VM with pre-approved toolchain (e.g., TIA Portal
+                            +b with security plugins)."
+                        tools "VMware ESXi with vSAN encryption, HashiCorp Vault for secrets management"
+                        expected_outcome "Developer workstation with encrypted storage and no direct internet access."
+                    {
+                        step 3
+                        action "Configure IDE with mandatory static analysis plugins (e.g., Coverity for C/C++
+                            +b ICS code)."
+                        tools "Eclipse with Coverity Connect, GitLab Ultimate"
+                        expected_outcome "All code commits automatically scanned for buffer overflows and injection
+                            +b vulnerabilities."
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Secure CI/CD Pipeline Execution"
+                description "Procedure for building and validating firmware images through a secured
+                    +b pipeline compliant with IEC 62443-4-1 KA4."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate build in air-gapped Jenkins instance with signed container images."
+                        tools "Jenkins with HashiCorp Nomad, Docker Content Trust"
+                        expected_outcome "Build environment with verified components and no external dependencies."
+                    {
+                        step 2
+                        action "Perform dynamic analysis using ICS-specific test harnesses (e.g., protocol
+                            +b fuzzing for PROFINET)."
+                        tools "Peach Fuzzer with ICS protocol packs, Wireshark with ICS dissectors"
+                        expected_outcome "Detection of memory corruption vulnerabilities in industrial protocol
+                            +b implementations."
+                    {
+                        step 3
+                        action "Generate SBOM and sign final artifact with timestamped signature."
+                        tools "CycloneDX SPDX, Utimaco CryptoServer HSMs"
+                        expected_outcome "Cryptographically verifiable firmware image with complete software bill of
+                            +b materials."
+            {
+                code "SM-7"
+                subCode "undefined"
+                title "Third-Party Component Risk Assessment"
+                description "Procedure for evaluating external libraries and tools against IEC 62443-4-1 SL
+                    +b requirements before integration."
+                [ steps
+                    {
+                        step 1
+                        action "Scan component for known vulnerabilities using ICS-specific databases."
+                        tools "NVD ICS-CERT advisories, OSS Index with ICS filters"
+                        expected_outcome "CVE report with CVSS scores adjusted for OT impact (ICS-CERT CVSS calculator)."
+                    {
+                        step 2
+                        action "Verify cryptographic integrity and provenance through supply chain artifacts."
+                        tools "Sigstore cosign, in-toto attestations"
+                        expected_outcome "Chain of custody documentation meeting IEC 62443-4-1 CR3 requirements."
+                    {
+                        step 3
+                        action "Test in isolated ICS simulation environment for unintended effects."
+                        tools "ICS-specific sandbox (e.g., Siemens PLCSIM Advanced with security monitoring)"
+                        expected_outcome "Validation report showing no disruption to control logic or safety functions."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-8"
+        subCode "undefined"
+        [ policies
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "Secure Storage of Private Keys"
+                description "Private keys must be stored in Hardware Security Modules (HSMs) or secure
+                    +b cryptographic modules to prevent unauthorized access or modification. This
+                    +b policy aligns with IEC 62443-4-1 SM-8 requirements for protecting code signing
+                    +b keys in industrial control systems (ICS)."
+                enforcement "Regular audits using automated tools (e.g., Thales HSM management console) to
+                    +b verify key storage mechanisms. Non-compliance triggers remediation workflows."
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "Role-Based Access Control for Key Management"
+                description "Access to private keys shall be restricted to authorized personnel through
+                    +b RBAC, with privileges granted based on the principle of least privilege. This
+                    +b implements SM-8's procedural controls for key access in ICS environments."
+                enforcement "Automated provisioning systems (e.g., Siemens RBAC modules) enforce access
+                    +b rules. Quarterly access reviews with SIEM-based anomaly detection."
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "Key Rotation and Revocation"
+                description "Private keys must be rotated annually or upon compromise, with revoked keys
+                    +b immediately invalidated. This policy operationalizes SM-8's technical controls
+                    +b for mitigating long-term key exposure risks in Breton Spa's CNC systems."
+                enforcement "Automated rotation via Hashicorp Vault integrated with ICS CI/CD pipelines.
+                    +b Certificate Transparency Logs monitor for unauthorized key usage."
+        [ procedures
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "HSM Deployment for Key Storage"
+                description "Procedure for provisioning and managing HSMs to securely store private keys
+                    +b used in Breton Spa's stone cutting machines, complying with IEC 62443-4-1 CR3
+                    +b (System Integrity) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Procure FIPS 140-2 Level 3 validated HSMs (e.g., Thales payShield 9000) for
+                            +b each production facility."
+                        tools "Vendor procurement systems, HSM compatibility matrices"
+                        expected_outcome "HSMs physically installed in controlled access areas with network connectivity
+                            +b to signing servers."
+                    {
+                        step 2
+                        action "Configure HSM partitions with dual-control authentication for administrative
+                            +b access."
+                        tools "HSM management software (e.g., SafeNet KeySecure)"
+                        expected_outcome "Partitions created with MFA requirements and activity logging enabled."
+                    {
+                        step 3
+                        action "Migrate existing keys from software storage to HSMs using secure key wrapping."
+                        tools "Key migration tools (e.g., OpenSSL with AES-256-GCM)"
+                        expected_outcome "All production signing keys stored in HSMs with zero plaintext exposure during
+                            +b transfer."
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "Code Signing Workflow Implementation"
+                description "Standardized process for signing firmware updates for Breton Spa's polishing
+                    +b machines, ensuring SM-8 compliance through controlled key usage and audit
+                    +b trails."
+                [ steps
+                    {
+                        step 1
+                        action "Submit firmware binary to build server with associated change ticket from PLM
+                            +b system."
+                        tools "Jenkins CI/CD, Siemens Teamcenter PLM"
+                        expected_outcome "Binary hash recorded in immutable build log with requester authentication."
+                    {
+                        step 2
+                        action "Trigger automated signing via HSM-connected signing service after peer code
+                            +b review approval."
+                        tools "Hashicorp Vault, GitLab MR approvals"
+                        expected_outcome "Signed firmware with timestamp and authorized signer metadata."
+                    {
+                        step 3
+                        action "Verify signature chain using distributed public keys before OTA deployment to
+                            +b machines."
+                        tools "OPC UA PubSub with Basic256Sha256, Schneider Electric Update Manager"
+                        expected_outcome "Cryptographically verified firmware deployed with full audit trail in SIEM."
+            {
+                code "SM-8"
+                subCode "undefined"
+                title "Emergency Key Revocation"
+                description "Procedure for immediate invalidation of compromised private keys across Breton
+                    +b Spa's composite material processing lines, per SM-8 requirements for incident
+                    +b response (CR6)."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate revocation via security incident response platform upon detection of
+                            +b key compromise."
+                        tools "IBM Resilient, Splunk ES"
+                        expected_outcome "Revocation ticket created with CISO approval and forensic evidence attached."
+                    {
+                        step 2
+                        action "Update Certificate Revocation Lists (CRLs) and OCSP responders for all affected
+                            +b PKI hierarchies."
+                        tools "Microsoft AD CS, Sectigo OCSP"
+                        expected_outcome "CRLs published to all ICS network segments within 1 hour of detection."
+                    {
+                        step 3
+                        action "Deploy signed firmware updates with new keys to all machines via secure
+                            +b channel."
+                        tools "PROFINET with PN Security, Rockwell Automation FactoryTalk"
+                        expected_outcome "100% of endpoints verified to reject old signatures within defined SLA."
+        last_updated "2023-10-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 2324"

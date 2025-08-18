@@ -1,0 +1,101 @@
+$group
+    { normative_e_standard
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Normative e standard"
+        description "Schema per dati di sintesi di normative e standard."
+        type "object"
+        { properties
+            { metadati
+                type "object"
+                { properties
+                    date( data_estrazione_scadenze )
+                    date( data_integrazione )
+                [ required
+                    "data_estrazione_scadenze" 
+                    "data_integrazione" 
+            { items
+                type "array"
+                { items
+                    type "object"
+                    { properties
+                        string( nome )
+                        string( descrizione )
+                        enum( tipo )
+                            "normativa"
+                            "standard"
+                        { rilevanza_per_logbot
+                            type "object"
+                            { properties
+                                string( contesto )
+                                { applicazioni
+                                    type "array"
+                                    { items
+                                        type "string"
+                                { allineamento_temi_logbot
+                                    type "array"
+                                    { items
+                                        type "string"
+                            [ required
+                                "contesto" 
+                                "applicazioni" 
+                                "allineamento_temi_logbot" 
+                        { collegamento_attivita
+                            type "array"
+                            { items
+                                type "object"
+                                { properties
+                                    { codice_attivita
+                                        type "string"
+                                    { nome_attivita
+                                        type "string"
+                                    { descrizione_collegamento
+                                        type "string"
+                                [ required
+                                    "codice_attivita" 
+                                    "nome_attivita" 
+                                    "descrizione_collegamento" 
+                        { mercato_nordamericano
+                            type "object"
+                            { properties
+                                { rilevanza
+                                    type "string"
+                                { opportunita
+                                    type "array"
+                                    { items
+                                        type "string"
+                                { clienti_target
+                                    type "array"
+                                    { items
+                                        type "string"
+                                { tecnologie_rilevanti
+                                    type "array"
+                                    { items
+                                        type "string"
+                            [ required
+                                "rilevanza" 
+                                "opportunita" 
+                                "clienti_target" 
+                                "tecnologie_rilevanti" 
+                        { link_significativi
+                            type "array"
+                            { items
+                                type "object"
+                                { properties
+                                    { descrizione
+                                        type "string"
+                                    { url
+                                        type "string"
+                                        format "uri"
+                                [ required
+                                    "descrizione" 
+                                    "url" 
+                    [ required
+                        "nome" 
+                        "descrizione" 
+                        "rilevanza_per_logbot" 
+                        "collegamento_attivita" 
+                        "mercato_nordamericano" 
+                        "link_significativi" 
+        [ required
+            "metadati" 
+            "items" 

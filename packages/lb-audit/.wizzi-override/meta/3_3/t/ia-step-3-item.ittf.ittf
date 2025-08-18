@@ -1,0 +1,30 @@
+$group
+    $params &options
+    call std_62443_3_3_step_2_policy_${options.id}
+        description Policy ai expansion of 62443-3-3 SR requirement ${options.id}
+        ai/call_header( &options )
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ${'\\'}n sei esperto dello standard ISA/IEC 62443,
+                ${'\\'}n in particolare del volume 62443-3-3.
+        message 
+            role user
+            content Popola un database JSON generando dei template per policy e procedure per la compliance con IEC 62443-3-3, 
+                ${'\\'}n Popola lo schema con l'id dell'input fornito nel JSON originale.
+                ${'\\'}n I template devono includere `purpose`, `scope`, dettagliati policy statements e procedure steps, 
+                ${'\\'}n `tools`, `challenges` addressed, e verification checklists, con placeholders per gli input degli ingegneri. 
+                ${'\\'}n Verifica l'allineamento del system requirement e del contesto del Product supplier. 
+                ai/schema_data_return( &options, step )
+                $*
+                ${'\\'}n Creating policy and procedure templates consider the following product and system context.
+                ${'\\'}n <product_system_context> 
+                ${'\\'}n ${options.product_context}
+                ${'\\'}n </product_system_context> 
+                ${'\\'}n Output the templates in JSON format using the following json schema:
+                ${'\\'}n <templates_json_schema>
+                ${'\\'}n ${options.sr_policy_json_schema}
+                ${'\\'}n </templates_json_schema>
+                ${'\\'}n Populate the schema with the following SR data and return the resulting JSON.
+                ${'\\'}n <sr_json>
+                ${'\\'}n ${options.sr_def}
+                ${'\\'}n </sr_json>
+                *$

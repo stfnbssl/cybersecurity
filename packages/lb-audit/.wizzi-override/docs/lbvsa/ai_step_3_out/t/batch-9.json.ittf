@@ -1,0 +1,184 @@
+$group
+    {
+        IDD "4.1.1"
+        area "Cybersecurity culture"
+        category "Training & awareness"
+        description "Vengono effettuate campagne formative orientate ad aumentare la preparazione
+            +b del personale nell'ambito della sicurezza delle informazioni?"
+        { asset_owner
+            isRelevant true
+            motivation "La formazione del personale è cruciale per l'asset owner per garantire che il
+                +b personale che gestisce l'IACS sia consapevole delle minacce e delle best
+                +b practice di sicurezza, riducendo il rischio di errori umani."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la formazione generale sulla sicurezza sia importante, questo controllo
+                +b è più orientato alla gestione operativa che allo sviluppo software. Non è
+                +b direttamente rilevante per il Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La formazione del personale coinvolto nell'integrazione di sistemi IACS è
+                +b essenziale per garantire che vengano seguite le corrette procedure di sicurezza
+                +b durante l'installazione e la configurazione."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo riguarda principalmente la formazione del personale operativo
+                +b piuttosto che i processi di produzione di componenti. La rilevanza per la
+                +b produzione di componenti è limitata."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'interpretazione del controllo nel
+            +b contesto delle diverse fasi del ciclo di vita. La formazione è particolarmente
+            +b critica per l'asset owner e per l'integrazione di sistema, mentre ha minore
+            +b rilevanza diretta per SSDL e produzione componenti."
+    {
+        IDD "4.1.2"
+        area "Cybersecurity culture"
+        category "Training & awareness"
+        description "Si eseguono periodicamente apposite campagne di ethical phishing?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire che il personale sia consapevole delle minacce di
+                +b phishing, che sono un vettore comune per attacchi agli IACS. Le campagne di
+                +b ethical phishing aiutano a valutare e migliorare la resilienza del personale."
+        { ssdl
+            isRelevant false
+            motivation "Le campagne di ethical phishing sono rilevanti per la formazione del personale
+                +b operativo, ma non direttamente correlate alle fasi di sviluppo del software nel
+                +b Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "Il sistema integrato IACS/macchina può essere vulnerabile a attacchi di social
+                +b engineering. Verificare che il personale addetto alla manutenzione e operazione
+                +b sia adeguatamente formato riduce questo rischio."
+        { component_production
+            isRelevant false
+            motivation "Sebbene la consapevolezza del phishing sia importante a livello aziendale,
+                +b questa specifica verifica non è direttamente applicabile alla produzione di
+                +b singoli componenti hardware/software."
+        note_su_json_risultante "La valutazione di rilevanza per 'ssdl' e 'component_production' è stata
+            +b impostata su 'false' in quanto le campagne di ethical phishing sono
+            +b principalmente rivolte al personale operativo piuttosto che a processi di
+            +b sviluppo o produzione. Tuttavia, rimangono critiche per l'asset owner e per la
+            +b sicurezza del sistema integrato."
+    {
+        IDD "4.1.3"
+        area "Cybersecurity culture"
+        category "Training & awareness"
+        description "Sono somministrati corsi specifici in ambito cybersecurity sulla base dei
+            +b risultati emersi dalle attività di test svolte e della tipologia di mansione
+            +b svolta da parte delle singole risorse?"
+        { asset_owner
+            isRelevant true
+            motivation "La formazione specifica in cybersecurity è fondamentale per l'asset owner per
+                +b garantire che il personale che gestisce l'IACS sia consapevole delle minacce e
+                +b delle best practice per mitigarle, riducendo i rischi operativi."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la formazione in cybersecurity sia importante per gli sviluppatori,
+                +b questo controllo è più orientato alla formazione del personale operativo
+                +b piuttosto che a specifiche attività del Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La formazione del personale coinvolto nell'integrazione di sistemi IACS è
+                +b cruciale per garantire che siano seguite le corrette pratiche di sicurezza
+                +b durante l'installazione e la configurazione del sistema."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo è più rilevante per il personale operativo e di integrazione
+                +b piuttosto che per la produzione di componenti, dove la formazione sarebbe più
+                +b focalizzata su aspetti specifici di produzione e qualità."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'ipotesi che il controllo sia
+            +b principalmente rivolto alla formazione del personale operativo e di
+            +b integrazione. La rilevanza per l'asset owner è alta poiché la formazione è un
+            +b elemento chiave per la sicurezza complessiva dell'IACS."
+    {
+        IDD "5.1.1"
+        area "Asset management"
+        category "Gestione degli Asset Digitali"
+        description "Sono adottate procedure documentate per la gestione degli asset ICT lungo le
+            +b diverse fasi del ciclo di vita?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della gestione del ciclo di vita degli asset ICT
+                +b nell'IACS. Procedure documentate sono essenziali per garantire tracciabilità,
+                +b sicurezza e conformità normativa."
+        { ssdl
+            isRelevant true
+            motivation "La gestione degli asset ICT è critica nel Secure SDL per garantire che tutti i
+                +b componenti software siano tracciati, aggiornati e sicuri durante tutto il ciclo
+                +b di vita dello sviluppo."
+        { system_integration
+            isRelevant true
+            motivation "Un sistema IACS integrato richiede una gestione rigorosa degli asset per
+                +b garantire interoperabilità, sicurezza e manutenzione durante tutto il ciclo di
+                +b vita del sistema."
+        { component_production
+            isRelevant true
+            motivation "Nella produzione di componenti, la gestione degli asset ICT è fondamentale per
+                +b tracciare versioni, dipendenze e vulnerabilità durante tutto il ciclo di vita
+                +b del prodotto."
+        note_su_json_risultante "Tutte le valutazioni sono state impostate come rilevanti (true) poiché la
+            +b gestione degli asset ICT è un requisito trasversale a tutti i contesti
+            +b indicati. La motivazione è stata differenziata per mostrare l'applicabilità
+            +b specifica in ogni scenario."
+    {
+        IDD "5.1.2"
+        area "Asset management"
+        category "Gestione degli Asset Digitali"
+        description "Viene mantenuto un inventario di tutti gli asset informatici con responsabilità
+            +b definite ed assegnate?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner ha la responsabilità finale della sicurezza degli asset IACS. Un
+                +b inventario aggiornato è fondamentale per identificare, proteggere e gestire
+                +b tutti gli asset critici, assegnare responsabilità e rispondere a incidenti."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione degli asset sia importante, questo controllo è più
+                +b orientato alla gestione operativa che alle fasi specifiche dello sviluppo
+                +b software. Non è direttamente rilevante per il Secure Software Development
+                +b Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "Un inventario accurato degli asset è essenziale per integrare correttamente
+                +b sistemi IACS o macchine, garantendo che tutti i componenti siano identificati,
+                +b configurati e gestiti in modo sicuro."
+        { component_production
+            isRelevant false
+            motivation "La gestione degli asset è più rilevante per l'ambiente operativo che per la
+                +b produzione di singoli componenti. I produttori di componenti si concentrano su
+                +b aspetti come specifiche tecniche e sicurezza intrinseca piuttosto che
+                +b sull'inventario degli asset."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'importanza della gestione degli
+            +b asset per i diversi contesti. L'asset owner e l'integrazione di sistema
+            +b beneficiano direttamente di un inventario accurato, mentre SSDL e produzione di
+            +b componenti hanno priorità diverse."
+    {
+        IDD "5.1.3"
+        area "Asset management"
+        category "Gestione degli Asset Digitali"
+        description "Sono adottati strumenti specifici di Asset Inventory per la gestione e la
+            +b tracciatura degli asset ICT (p.e. CMDB)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner necessita di una completa visibilità e tracciabilità degli asset
+                +b ICT per garantire la sicurezza e la conformità dell'IACS. Un CMDB è
+                +b fondamentale per la gestione del rischio e la risposta agli incidenti."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione degli asset sia importante, questo controllo è più
+                +b orientato all'operatività che allo sviluppo software. Non è direttamente
+                +b correlato alle fasi del Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "Un inventario accurato degli asset è critico per l'integrazione di sistemi IACS
+                +b o macchine, poiché permette di identificare e gestire le dipendenze tra
+                +b componenti e garantire la sicurezza dell'intero sistema."
+        { component_production
+            isRelevant false
+            motivation "La gestione degli asset ICT è più rilevante per l'operatività e l'integrazione
+                +b di sistemi che per la produzione di singoli componenti hardware/software, dove
+                +b il focus è su specifiche tecniche e processi produttivi."
+        note_su_json_risultante "Le valutazioni sono basate sull'importanza della gestione degli asset per i
+            +b diversi stakeholder. Per l'asset owner e l'integrazione di sistema, la
+            +b tracciabilità è critica, mentre è meno rilevante per SSDL e produzione
+            +b componenti."

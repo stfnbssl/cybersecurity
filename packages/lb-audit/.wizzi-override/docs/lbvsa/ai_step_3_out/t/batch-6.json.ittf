@@ -1,0 +1,176 @@
+$group
+    {
+        IDD "2.14.2"
+        area "Continuità operativa"
+        category "Digital - Protezione dei backup"
+        description "I dati di backup sono crittografati at-rest / on-transit?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la protezione dei dati sensibili e la continuità
+                +b operativa. La crittografia dei backup è essenziale per prevenire accessi non
+                +b autorizzati e garantire il ripristino in caso di incidenti."
+        { ssdl
+            isRelevant false
+            motivation "La crittografia dei backup è una misura operativa e non direttamente correlata
+                +b alle fasi di sviluppo del software. Tuttavia, potrebbe essere rilevante se il
+                +b software gestisce direttamente i processi di backup."
+        { system_integration
+            isRelevant true
+            motivation "La protezione dei backup è critica per garantire la continuità operativa di un
+                +b IACS o macchina. La crittografia previene la compromissione dei dati in caso di
+                +b accesso fisico o logico non autorizzato."
+        { component_production
+            isRelevant false
+            motivation "La crittografia dei backup è tipicamente una responsabilità del sistemista o
+                +b dell'integratore, non del produttore di componenti singoli, a meno che il
+                +b componente non gestisca direttamente i backup."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'ipotesi che il controllo si
+            +b applichi a un contesto operativo generale. Se il componente o il software
+            +b gestisce direttamente i backup, le valutazioni per 'ssdl' e
+            +b 'component_production' potrebbero essere riviste."
+    {
+        IDD "2.14.3"
+        area "Continuità operativa"
+        category "Digital - Protezione dei backup"
+        description "L'integrità dei backup è garantita da tecniche di immutabilità dei dati di
+            +b backup?"
+        { asset_owner
+            isRelevant true
+            motivation "L'immutabilità dei backup è critica per un asset owner per garantire il
+                +b ripristino in caso di incidenti (es. ransomware) e il rispetto dei requisiti
+                +b normativi. Un backup compromesso potrebbe impedire il ripristino dell'IACS."
+        { ssdl
+            isRelevant false
+            motivation "L'immutabilità dei backup è un requisito operativo più che di sviluppo
+                +b software. Sebbene il SSDL possa includere politiche per i backup del codice,
+                +b questa specifica misura è più rilevante per l'ambiente operativo."
+        { system_integration
+            isRelevant true
+            motivation "I backup immutabili sono essenziali per garantire il ripristino di
+                +b sistemi/macchine integrati dopo incidenti o corruzione dei dati. L'integrità
+                +b dei backup è fondamentale per la continuità operativa dell'IACS."
+        { component_production
+            isRelevant false
+            motivation "Sebbene i backup siano importanti, l'immutabilità è meno critica per un singolo
+                +b componente prodotto rispetto a un sistema integrato. La produzione può fare
+                +b affidamento su altri meccanismi di controllo della configurazione."
+        note_su_json_risultante "Le valutazioni si basano sull'assunto che l'immutabilità dei backup sia
+            +b principalmente rilevante per ambienti operativi (asset owner) e sistemi
+            +b integrati, mentre meno per SSDL o componenti singoli. La rilevanza per SSDL
+            +b potrebbe essere rivista se il backup includesse anche artefatti di sviluppo."
+    {
+        IDD "2.15.1"
+        area "Continuità operativa"
+        category "Terze parti"
+        description "I contratti stipulati con i fornitori di servizi ritenuti critici per i
+            +b processi di business contengono clausole volte a garantire la continuità
+            +b operativa dei servizi erogati dalla terza parte?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa dei servizi critici
+                +b forniti da terze parti, pertanto la presenza di clausole contrattuali
+                +b specifiche è fondamentale per la gestione del rischio."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la gestione contrattuale con fornitori esterni e non
+                +b è direttamente correlato al Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La continuità operativa dei servizi forniti da terze parti è cruciale per il
+                +b corretto funzionamento di un sistema IACS integrato, pertanto le clausole
+                +b contrattuali sono rilevanti."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo è focalizzato sulla gestione contrattuale con fornitori di
+                +b servizi e non è direttamente applicabile alla produzione di componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono state effettuate considerando che il controllo
+            +b si concentra sulla gestione contrattuale con fornitori esterni per servizi
+            +b critici. La rilevanza per asset owner e system integration è alta, mentre è
+            +b bassa per ssdl e component production."
+    {
+        IDD "3.1.1"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Le responsabilità in merito alle tematiche di Data Protection sono individuate
+            +b e documentate?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità alle normative di Data Protection
+                +b per i dati gestiti nell'IACS, inclusi i dati personali e sensibili che
+                +b potrebbero essere processati dal sistema."
+        { ssdl
+            isRelevant false
+            motivation "La domanda riguarda la documentazione delle responsabilità legali e non
+                +b direttamente lo sviluppo del software. Tuttavia, il team di sviluppo dovrebbe
+                +b essere consapevole di queste responsabilità durante la progettazione e
+                +b l'implementazione del software."
+        { system_integration
+            isRelevant true
+            motivation "L'integrazione di un sistema IACS deve tenere conto delle responsabilità legali
+                +b in materia di Data Protection, specialmente se il sistema processa dati
+                +b personali o sensibili."
+        { component_production
+            isRelevant false
+            motivation "La domanda è focalizzata sulle responsabilità legali e documentali, non
+                +b direttamente sulla produzione di componenti hardware o software. Tuttavia, il
+                +b produttore di componenti dovrebbe essere consapevole di queste responsabilità
+                +b se i componenti processano dati personali."
+        note_su_json_risultante "La valutazione di rilevanza per 'ssdl' e 'component_production' è impostata su
+            +b 'false' in quanto la domanda è principalmente legale/documentale. Tuttavia, è
+            +b importante che questi aspetti siano considerati indirettamente in tali
+            +b contesti."
+    {
+        IDD "3.1.2"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "I responsabili di sistema sono nominati mediante apposito atto di nomina in
+            +b accordo con il Provv. Garante 2008?"
+        { asset_owner
+            isRelevant true
+            motivation "La nomina formale dei responsabili di sistema è un requisito fondamentale per
+                +b l'asset owner per garantire la conformità al GDPR e la corretta gestione dei
+                +b dati personali nell'IACS."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la governance organizzativa e non direttamente il
+                +b processo di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "La nomina dei responsabili di sistema è rilevante per garantire la conformità
+                +b normativa durante l'integrazione di sistemi IACS o macchine."
+        { component_production
+            isRelevant false
+            motivation "La nomina dei responsabili di sistema è un aspetto organizzativo che
+                +b tipicamente non riguarda la produzione di singoli componenti hardware/software."
+        note_su_json_risultante "Il controllo è particolarmente rilevante per gli asset owner e per
+            +b l'integrazione di sistemi, mentre risulta meno pertinente per il SSDL e la
+            +b produzione di componenti."
+    {
+        IDD "3.1.3"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Sono definite ed attuate logiche di retention dei dati in accordo con i
+            +b requisiti normativi applicabili di riferimento?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità alle normative sulla protezione dei
+                +b dati (es. GDPR) per i dati gestiti nell'IACS. La retention dei dati è critica
+                +b per audit, responsabilità legali e gestione del ciclo di vita dei dati."
+        { ssdl
+            isRelevant false
+            motivation "La retention dei dati è un requisito operativo/post-deployment più che una
+                +b pratica di sviluppo software. Rilevanza limitata alle fasi di
+                +b design/architettura del SSDLC."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati devono rispettare i requisiti di retention per dati
+                +b operativi, log di sicurezza e tracce audit. Configurazioni errate possono
+                +b portare a non conformità."
+        { component_production
+            isRelevant false
+            motivation "La retention è tipicamente gestita a livello di sistema/infrastruttura, non dal
+                +b singolo componente prodotto. Eccezione per componenti che generano dati
+                +b persistenti (es. log interni)."
+            note_su_json_risultante "La valutazione per 'component_production' assume che il componente non gestisca
+                +b direttamente dati soggetti a retention. Se il componente ha funzionalità di
+                +b storage, la rilevanza potrebbe aumentare."

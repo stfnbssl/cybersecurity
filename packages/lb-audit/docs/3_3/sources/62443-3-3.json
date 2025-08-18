@@ -1,0 +1,566 @@
+{
+    "foundational_requirements": [
+        {
+            "id": "FR-5",
+            "key": "RDF",
+            "name": "Restricted data flow",
+            "page": 55,
+            "purpose": "Segment the control system via zones and conduits to limit the unnecessary flow of data.",
+            "rationale": "Using their risk assessment methodology, asset owners need to determine necessary information flow restrictions and thus, by extension, determine the configuration of the conduits used to deliver this information. Derived prescriptive recommendations and guidelines should include mechanisms that range from disconnecting control system networks from business or public networks to using unidirectional gateways, stateful firewalls and DMZs to manage the flow of information.",
+            "security_levels_descriptions": [
+                "SL 1 – Prevent the casual or coincidental circumvention of zone and conduit segmentation.",
+                "SL 2 – Prevent the intended circumvention of zone and conduit segmentation by entities using simple means with low resources, generic skills and low motivation.",
+                "SL 3 – Prevent the intended circumvention of zone and conduit segmentation by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation.",
+                "SL 4 – Prevent the intended circumvention of zone and conduit segmentation by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+            ],
+            "srs": [
+                {
+                    "id": "SR 5.1",
+                    "page": 56,
+                    "name": "Network segmentation",
+                    "description": "The control system shall provide the capability to logically segment control system networks from non-control system networks and to logically segment critical control system networks from other control system networks.",
+                    "rationale": "Network segmentation is used by organizations for a variety of purposes, including cyber security. The main reasons for segmenting networks are to reduce the exposure, or ingress, of network traffic into a control system and reduce the spread, or egress, of network traffic from a control system. This improves overall system response and reliability as well as provides a measure of cyber security protection. It also allows different network segments within the control system, including critical control systems and safety-related systems, to be segmented from other systems for an additional level of protection. Access from the control system to the World Wide Web should be clearly justified based on control system operational requirements. Network segmentation and the level of protection it provides will vary greatly depending on the overall network architecture used by an asset owner in their facility and even system integrators within their control systems. Logically segmenting networks based on their functionality provides some measure of protection, but may still lead to single-points-of-failure if a network device is compromised. Physically segmenting networks provides another level of protection by removing that single-point-of-failure case, but will lead to a more complex and costly network design. These trade-offs will need to be evaluated during the network design process (see IEC 62443‑2‑1). In response to an incident, it may be necessary to break the connections between different network segments. In that event, the services necessary to support essential operations should be maintained in such a way that the devices can continue to operate properly and/or shutdown in an orderly manner. This may require that some servers may need to be duplicated on the control system network to support normal network features, for example dynamic host configuration protocol (DHCP), domain name service (DNS) or local CAs. It may also mean that some critical control systems and safety-related systems be designed from the beginning to be completely isolated from other networks.",
+                    "rhs": [
+                        {
+                            "id": "SR 5.1 RE 1",
+                            "name": "Physical network segmentation",
+                            "description": "The control system shall provide the capability to physically segment control system networks from non-control system networks and to physically segment critical control system networks from non-critical control system networks."
+                        },
+                        {
+                            "id": "SR 5.1 RE 2",
+                            "name": "Independence from non-control system networks",
+                            "description": "The control system shall have the capability to provide network services to control system networks, critical or otherwise, without a connection to non-control system networks."
+                        },
+                        {
+                            "id": "SR 5.1 RE 3",
+                            "name": "Logical and physical isolation of critical networks",
+                            "description": "The control system shall provide the capability to logically and physically isolate critical control system networks from non-critical control system networks."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RDF, control system) 1: SR 5.1",
+                        "SL-C (RDF, control system) 2: SR 5.1 (1)",
+                        "SL-C (RDF, control system) 3: SR 5.1 (1) (2)",
+                        "SL-C (RDF, control system) 4: SR 5.1 (1) (2) (3)"
+                    ]
+                },
+                {
+                    "id": "SR 5.2",
+                    "page": 57,
+                    "name": "Zone boundary protection",
+                    "description": "The control system shall provide the capability to monitor and control communications at zone boundaries to enforce the compartmentalization defined in the risk-based zones and conduits model.",
+                    "rationale": "Any connections to external networks or other control systems should occur through managed interfaces consisting of appropriate boundary protection devices (for example, proxies, gateways, routers, firewalls, unidirectional gateways, guards and encrypted tunnels) arranged in an effective architecture (for example, firewalls protecting application gateways residing in a DMZ). Control system boundary protections at any designated alternate processing sites should provide the same levels of protection as that of the primary site. As part of a defense-in-depth protection strategy, higher impact control systems should be partitioned into separate zones utilizing conduits to restrict or prohibit network access in accordance with security policies and procedures and an assessment of risk. SL-T(system) categorization guides the selection of appropriate candidates for zone partitioning (see IEC 62443‑3‑2 [8]).",
+                    "rhs": [
+                        {
+                            "id": "SR 5.2 RE 1",
+                            "name": "Deny by default, allow by exception",
+                            "description": "The control system shall provide the capability to deny network traffic by default and allow network traffic by exception (also termed deny all, permit by exception)."
+                        },
+                        {
+                            "id": "SR 5.2 RE 2",
+                            "name": "Island mode",
+                            "description": "The control system shall provide the capability to prevent any communication through the control system boundary (also termed island mode).",
+                            "notes": [
+                                "Examples of when this capability may be used include where a security violation and/or breach has been detected within the control system, or an attack is occurring at the enterprise level (see also 4.2, Support of essential functions)."
+                            ]
+                        },
+                        {
+                            "id": "SR 5.2 RE 3",
+                            "name": "Fail close",
+                            "description": "The control system shall provide the capability to prevent any communication through the control system boundary when there is an operational failure of the boundary protection mechanisms (also termed fail close). This ‘fail close’ functionality shall be designed such that it does not interfere with the operation of a SIS or other safety-related functions.",
+                            "notes": [
+                                "Examples of when this capability may be used include scenarios where a hardware failure or power failure causes boundary protection devices to function in a degraded mode or fail entirely (see also 4.2, Support of essential functions)."
+                            ]
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RDF, control system) 1: SR 5.2",
+                        "SL-C (RDF, control system) 2: SR 5.2 (1)",
+                        "SL-C (RDF, control system) 3: SR 5.2 (1) (2) (3)",
+                        "SL-C (RDF, control system) 4: SR 5.2 (1) (2) (3)"
+                    ]
+                },
+                {
+                    "id": "SR 5.3",
+                    "page": 58,
+                    "name": "General purpose person-to-person communication restrictions",
+                    "description": "The control system shall provide the capability to prevent general purpose person-to-person messages from being received from users or systems external to the control system.",
+                    "rationale": "General purpose person-to-person communications systems include but are not limited to: email systems, forms of social media (Twitter, Facebook, picture galleries, etc.) or any message systems that permit the transmission of any type of executable file. These systems are usually utilized for private purposes which are not related to control system operations, and therefore the risks imposed by these systems normally outweigh any perceived benefit. These types of general purpose communications systems are commonly used attack vectors to introduce malware to the control system, pass information for which read authorization exists to locations external to the control system, and introduce excessive network loading that can be used to create security problems or launch attacks on the control system. Application of a broad range of other system requirements covering, for example, usage restrictions and limiting data flow as described elsewhere in this standard to general purpose person-to-person communication systems can provide adequate compensating countermeasures to meet this requirement. The control system may provide the capability to utilize these types of two-way communication systems, but only between servers and/or workstations within the control system. Note that this SR needs to support the requirements associated with 8.3, SR 5.1 – Information confidentiality. The control system may also restrict email or other messaging solutions that provide internal computer-to-external computer communications using outbound messages. These internal-to-external communications may be limited to the purpose of sending system alerts or other computer generated information messages to users or systems external to the control system. To prevent the passing of information for which explicit read authorization is supported, pre-configured messages (perhaps with the ability to include some limited text) should be used to transmit the alerts or status information. Users may not be given the ability to attach files or other information to these outbound-only messages at the time the messages are created by the system.",
+                    "rhs": [
+                        {
+                            "id": "SR 5.3 RE 1",
+                            "name": "Prohibit all general purpose person-to-person communications",
+                            "description": "The control system shall provide the capability to prevent both transmission and receipt of general purpose person-to-person messages."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RDF, control system) 1: SR 5.3",
+                        "SL-C (RDF, control system) 2: SR 5.3",
+                        "SL-C (RDF, control system) 3: SR 5.3 (1)",
+                        "SL-C (RDF, control system) 4: SR 5.3 (1)"
+                    ]
+                },
+                {
+                    "id": "SR 5.4",
+                    "page": 59,
+                    "name": "Application partitioning",
+                    "description": "The control system shall provide the capability to support partitioning of data, applications and services based on criticality to facilitate implementing a zoning model.",
+                    "rationale": "Partitioning may be accomplished via physical or logical means through the use of different computers, different central processing units, different instances of the operating system, different network addresses and combinations of these methods or other methods as appropriate. Examples of applications and services that could be considered for different partitions include, but are not limited to, emergency and/or safety systems, closed-loop control applications, operator workstations and engineering workstations.",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (RDF, control system) 1: SR 5.4",
+                        "SL-C (RDF, control system) 2: SR 5.4",
+                        "SL-C (RDF, control system) 3: SR 5.4",
+                        "SL-C (RDF, control system) 4: SR 5.4"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "FR-6",
+            "key": "TRE",
+            "name": "Timely response to events",
+            "page": 59,
+            "purpose": "Respond to security violations by notifying the proper authority, reporting needed evidence of the violation and taking timely corrective action when incidents are discovered.",
+            "rationale": "Using their risk assessment methodology, asset owners should establish security policies and procedures and proper lines of communication and control needed to respond to security violations. Derived prescriptive recommendations and guidelines should include mechanisms that collect, report, preserve and automatically correlate the forensic evidence to ensure timely corrective action. The use of monitoring tools and techniques should not adversely affect the operational performance of the control system.",
+            "security_levels_descriptions": [
+                "SL 1 – Monitor the operation of the IACS and respond to incidents when they are discovered by collecting and providing the forensic evidence when queried.",
+                "SL 2 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and periodically reporting forensic evidence.",
+                "SL 3 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and pushing forensic evidence to the proper authority.",
+                "SL 4 – Monitor the operation of the IACS and respond to incidents when they are discovered by actively collecting and pushing forensic evidence to the proper authority in near real-time."
+            ],
+            "srs": [
+                {
+                    "id": "SR 6.1",
+                    "page": 60,
+                    "name": "Audit log accessibility",
+                    "description": "The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.",
+                    "rationale": "The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.",
+                    "rhs": [
+                        {
+                            "id": "SR 6.1 RE 1",
+                            "name": "Programmatic access to audit logs",
+                            "description": "The control system shall provide programmatic access to audit records using an application programming interface (API)."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (TRE, control system) 1: SR 6.1",
+                        "SL-C (TRE, control system) 2: SR 6.1",
+                        "SL-C (TRE, control system) 3: SR 6.1 (1)",
+                        "SL-C (TRE, control system) 4: SR 6.1 (1)"
+                    ]
+                },
+                {
+                    "id": "SR 6.2",
+                    "page": 60,
+                    "name": "Continuous monitoring",
+                    "description": "The control system shall provide the capability to continuously monitor all security mechanism performance using commonly accepted security industry practices and recommendations to detect, characterize and report security breaches in a timely manner.",
+                    "notes": [
+                        "Response time is a local matter outside the scope of this standard."
+                    ],
+                    "rationale": "Control system monitoring capability can be achieved through a variety of tools and techniques (for example, IDS, IPS, malicious code protection mechanisms and network monitoring mechanisms). As attacks become more sophisticated, these monitoring tools and techniques will need to become more sophisticated as well, including for example behavior-based IDS/IPS. Monitoring devices should be strategically deployed within the control system (for example, at selected perimeter locations and near server farms supporting critical applications) to collect essential information. Monitoring mechanisms may also be deployed at ad hoc locations within the control system to track specific transactions. Monitoring should include appropriate reporting mechanisms to allow for a timely response to events. To keep the reporting focused and the amount of reported information to a level that can be processed by the recipients, mechanisms such as SIEM are commonly applied to correlate individual events into aggregate reports which establish a larger context in which the raw events occurred. Additionally, these mechanisms can be used to track the effect of security changes to the control system (see 6.10, SR 2.8 – Auditable events). Having forensic tools pre-installed can facilitate incident analysis.",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (TRE, control system) 1: Not Selected",
+                        "SL-C (TRE, control system) 2: SR 6.2",
+                        "SL-C (TRE, control system) 3: SR 6.2",
+                        "SL-C (TRE, control system) 4: SR 6.2"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "FR-7",
+            "key": "RA",
+            "name": "Resource availability",
+            "page": 61,
+            "purpose": "Ensure the availability of the control system against the degradation or denial of essential services.",
+            "rationale": "The aim of this series of SRs is to ensure that the control system is resilient against various types of DoS events. This includes the partial or total unavailability of system functionality at various levels. In particular, security incidents in the control system should not affect SIS or other safety-related functions.",
+            "security_levels_descriptions": [
+                "SL 1 – Ensure that the control system operates reliably under normal production conditions and prevents DoS situations caused by the casual or coincidental actions of an entity.",
+                "SL 2 – Ensure that the control system operates reliably under normal and abnormal production conditions and prevents DoS situations by entities using simple means with low resources, generic skills and low motivation.",
+                "SL 3 – Ensure that the control system operates reliably under normal, abnormal, and extreme production conditions and prevents DoS situations by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation.",
+                "SL 4 – Ensure that the control system operates reliably under normal, abnormal, and extreme production conditions and prevents DoS situations by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+            ],
+            "srs": [
+                {
+                    "id": "SR 7.1",
+                    "page": 60,
+                    "name": "Audit log accessibility",
+                    "description": "The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.",
+                    "rationale": "The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.",
+                    "rhs": [
+                        {
+                            "id": "SR 7.1 RE 1",
+                            "name": "Programmatic access to audit logs",
+                            "description": "The control system shall provide programmatic access to audit records using an application programming interface (API)."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (TRE, control system) 1: SR 7.1",
+                        "SL-C (TRE, control system) 2: SR 7.1",
+                        "SL-C (TRE, control system) 3: SR 7.1 (1)",
+                        "SL-C (TRE, control system) 4: SR 7.1 (1)"
+                    ]
+                },
+                {
+                    "id": "SR 7.1",
+                    "page": 62,
+                    "name": "Denial of service protection",
+                    "description": "The control system shall provide the capability to operate in a degraded mode during a DoS event.",
+                    "rationale": "A variety of technologies exist to limit, or in some cases, eliminate the effects of DoS situations. For example, boundary protection devices can filter certain types of packets to protect devices on an internal, trusted network from being directly affected by DoS events or restricting the information flow to be unidirectional outbound. Specifically, as noted in Clause 4, a DoS event on the control system should not adversely impact any safety-related systems.",
+                    "rhs": [
+                        {
+                            "id": "SR 7.1 RE 1",
+                            "name": "Manage communication loads",
+                            "description": "The control system shall provide the capability to manage communication loads (such as using rate limiting) to mitigate the effects of information flooding types of DoS events."
+                        },
+                        {
+                            "id": "SR 7.1 RE 2",
+                            "name": "Limit DoS effects to other systems or networks",
+                            "description": "The control system shall provide the capability to restrict the ability of all users (humans, software processes and devices) to cause DoS events which affect other control systems or networks."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.1",
+                        "SL-C (RA, control system) 2: SR 7.1 (1)",
+                        "SL-C (RA, control system) 3: SR 7.1 (1) (2)",
+                        "SL-C (RA, control system) 4: SR 7.1 (1) (2)"
+                    ]
+                },
+                {
+                    "id": "SR 7.2",
+                    "page": 62,
+                    "name": "Resource management",
+                    "description": "The control system shall provide the capability to limit the use of resources by security functions to prevent resource exhaustion.",
+                    "rationale": "Resource management (for example, network segmentation or priority schemes) prevents a lower-priority software process from delaying or interfering with the control system servicing any higher-priority software process. For example, initiating network scans, patching and/or antivirus checks on an operating system can cause severe disruption to normal operations. Traffic rate limiting schemes should be considered as a mitigation technique.",
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.2",
+                        "SL-C (RA, control system) 2: SR 7.2",
+                        "SL-C (RA, control system) 3: SR 7.2",
+                        "SL-C (RA, control system) 4: SR 7.2"
+                    ]
+                },
+                {
+                    "id": "SR 7.3",
+                    "page": 63,
+                    "name": "Control system backup",
+                    "description": "The identity and location of critical files and the ability to conduct backups of user-level and system-level information (including system state information) shall be supported by the control system without affecting normal plant operations.",
+                    "rationale": "The availability of up-to-date backups is essential for recovery from a control system failure and/or mis-configuration. Automating this function ensures that all required files are captured, reducing operator overhead. Although not usually required for control system recovery, information required for post-incident forensic activity (for example, audit logs) should be specifically included in the backup (see 10.4, SR 6.2 – Continuous monitoring). If the resulting backups contain confidential information, encryption should be considered (see 8.5, SR 4.3 – Use of cryptography).",
+                    "rhs": [
+                        {
+                            "id": "SR 7.3 RE 1",
+                            "name": "Backup verification",
+                            "description": "The control system shall provide the capability to verify the reliability of backup mechanisms."
+                        },
+                        {
+                            "id": "SR 7.3 RE 2",
+                            "name": "Backup automation",
+                            "description": "The control system shall provide the capability to automate the backup function based on a configurable frequency."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.3",
+                        "SL-C (RA, control system) 2: SR 7.3 (1)",
+                        "SL-C (RA, control system) 3: SR 7.3 (1) (2)",
+                        "SL-C (RA, control system) 4: SR 7.3 (1) (2)"
+                    ]
+                },
+                {
+                    "id": "SR 7.4",
+                    "page": 63,
+                    "name": "Control system recovery and reconstitution",
+                    "description": "The control system shall provide the capability to recover and reconstitute to a known secure state after a disruption or failure.",
+                    "rationale": "Control system recovery and reconstitution to a known secure state means that all system parameters (either default or configurable) are set to secure values, security-critical patches are reinstalled, security-related configuration settings are reestablished, system documentation and operating procedures are available, application and system software is reinstalled and configured with secure settings, information from the most recent, known secure backups is loaded and the system is fully tested and functional.",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.4",
+                        "SL-C (RA, control system) 2: SR 7.4",
+                        "SL-C (RA, control system) 3: SR 7.4",
+                        "SL-C (RA, control system) 4: SR 7.4"
+                    ]
+                },
+                {
+                    "id": "SR 7.5",
+                    "page": 64,
+                    "name": "Emergency power",
+                    "description": "The control system shall provide the capability to switch to and from an emergency power supply without affecting the existing security state or a documented degraded mode.",
+                    "rationale": "There may be instances where compensating countermeasures such as physical door access control may be affected by loss of base power supply, in which case the emergency power supply should cover those associated systems. If this is not possible, other compensating countermeasures may be needed during such an emergency situation.",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.5",
+                        "SL-C (RA, control system) 2: SR 7.5",
+                        "SL-C (RA, control system) 3: SR 7.5",
+                        "SL-C (RA, control system) 4: SR 7.5"
+                    ]
+                },
+                {
+                    "id": "SR 7.6",
+                    "page": 64,
+                    "name": "Network and security configuration settings",
+                    "description": "The control system shall provide the capability to be configured according to recommended network and security configurations as described in guidelines provided by the control system supplier. The control system shall provide an interface to the currently deployed network and security configuration settings.",
+                    "rationale": "These configuration settings are the adjustable parameters of the control system components. In order to be able to detect and correct any deviations from the approved and/or recommended configuration settings, the control system needs to support monitoring and control of changes to the configuration settings in accordance with security policies and procedures. For enhanced security, an automated check may be performed where the current settings are automatically collected by an agent and compared to approved settings.",
+                    "rhs": [
+                        {
+                            "id": "SR 7.6 RE 1",
+                            "name": "Machine-readable reporting of current security settings",
+                            "description": "The control system shall provide the capability to generate a report listing the currently deployed security settings in a machine-readable format."
+                        }
+                    ],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.6",
+                        "SL-C (RA, control system) 2: SR 7.6",
+                        "SL-C (RA, control system) 3: SR 7.6 (1)",
+                        "SL-C (RA, control system) 4: SR 7.6 (1)"
+                    ]
+                },
+                {
+                    "id": "SR 7.7",
+                    "page": 65,
+                    "name": "Least functionality",
+                    "description": "The control system shall provide the capability to specifically prohibit and/or restrict the use of unnecessary functions, ports, protocols and/or services.",
+                    "rationale": "Control systems are capable of providing a wide variety of functions and services. Some of the functions and services provided may not be necessary to support essential functions. Therefore, by default, functions beyond a baseline configuration should be disabled. Additionally, it is sometimes convenient to provide multiple services from a single component of a control system, but doing so increases risk over limiting the services provided by any one component. Many functions and services commonly provided by commercial-off-the-shelf (COTS) equipment may be candidates for elimination, for example, email, voice over internet protocol (VoIP), instant messaging (IM), file transfer protocol (FTP), hypertext transfer protocol (HTTP) and file sharing.",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: SR 7.7",
+                        "SL-C (RA, control system) 2: SR 7.7",
+                        "SL-C (RA, control system) 3: SR 7.7",
+                        "SL-C (RA, control system) 4: SR 7.7"
+                    ]
+                },
+                {
+                    "id": "SR 7.8",
+                    "page": 66,
+                    "name": "Control system component inventory",
+                    "description": "The control system shall provide the capability to report the current list of installed components and their associated properties.",
+                    "rationale": "A control system component inventory may include but is not limited to component ID, capability and revision level. The component inventory should be consistent with the SuC. A formal process of configuration management should be deployed to keep control of the changes in the component inventory baseline (see IEC 62443‑2‑1).",
+                    "rhs": [],
+                    "security_levels": [
+                        "SL-C (RA, control system) 1: Not Selected",
+                        "SL-C (RA, control system) 2: SR 7.8",
+                        "SL-C (RA, control system) 3: SR 7.8",
+                        "SL-C (RA, control system) 4: SR 7.8"
+                    ]
+                }
+            ]
+        }
+    ],
+    "producers": [
+        {
+            "name": "Piovan Group",
+            "sales_eur": "570.5M (2024)",
+            "description": "Headquartered in Santa Maria di Sala (VE), Piovan Group, founded in 1934, is a global leader in automation systems for plastics and food industries. They design and manufacture systems for storage, transport, and processing of polymers and food powders, integrating Industry 4.0 solutions with advanced control systems likely requiring IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "Material handling systems",
+                "Drying and dehumidifying systems",
+                "Dosing and blending units",
+                "Temperature control units",
+                "Oil condensers"
+            ],
+            "source": "PiovanGroup website, Plastics News"
+        },
+        {
+            "name": "Breton Spa",
+            "sales_eur": "Unknown (assumed >100M based on global leadership)",
+            "description": "Based in Castello di Godego (Treviso, near Padua), Breton Spa is a leader in manufacturing advanced machinery for natural stone, composite materials, and metalworking. Their CNC machines and automated lines incorporate sophisticated control systems, making them relevant for IEC 62443-3-3 cybersecurity standards.",
+            "machine_types": [
+                "CNC machining centers",
+                "Stone cutting machines",
+                "Polishing machines",
+                "Composite material processing lines"
+            ],
+            "source": "Breton website, Machines Italia"
+        },
+        {
+            "name": "Sidel Group",
+            "sales_eur": "1500M (2022, Tetra Laval Group)",
+            "description": "Part of the Tetra Laval Group, Sidel has operations in Parma (near Veneto) and is a global leader in packaging solutions, particularly for beverages. Their automated filling and packaging systems use advanced control technologies, potentially requiring IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "Blow molding machines",
+                "Filling machines",
+                "Labeling machines",
+                "Packaging lines"
+            ],
+            "source": "Research Germany"
+        },
+        {
+            "name": "Marchesini Group",
+            "sales_eur": "450M (2022)",
+            "description": "Based in Pianoro (Bologna, near Veneto), Marchesini specializes in packaging machinery for pharmaceuticals and cosmetics, with advanced automation and control systems integrated into their production lines, suitable for IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "Filling machines",
+                "Labeling machines",
+                "Cartoning machines",
+                "Blister packaging machines"
+            ],
+            "source": "Research Germany"
+        },
+        {
+            "name": "Carel Industries S.p.A.",
+            "sales_eur": "544.8M (2023)",
+            "description": "Headquartered in Brugine (Padua), Carel Industries produces control systems and humidification solutions for HVAC and refrigeration, with a focus on IoT-enabled automation for industrial applications, directly relevant to IEC 62443-3-3 cybersecurity standards.",
+            "machine_types": [
+                "Programmable controllers",
+                "Humidification systems",
+                "Refrigeration control units"
+            ],
+            "source": "Carel website, financial reports"
+        },
+        {
+            "name": "B&R Industrial Automation (ABB Group)",
+            "sales_eur": "Unknown (assumed >100M, part of ABB)",
+            "description": "With a presence in Veneto, B&R (part of ABB) specializes in industrial automation, providing control systems, PLCs, and software for machinery, highly relevant to IEC 62443-3-3 for secure automation in various industries.",
+            "machine_types": [
+                "PLCs",
+                "Motion control systems",
+                "HMI panels",
+                "Industrial PCs"
+            ],
+            "source": "ABB website, Machines Italia"
+        },
+        {
+            "name": "Mitsubishi Electric Automation",
+            "sales_eur": "Unknown (assumed >100M, part of Mitsubishi Electric)",
+            "description": "With operations in northern Italy, including Veneto, Mitsubishi Electric provides automation solutions like PLCs, servo systems, and robotics for industrial applications, designed with cybersecurity features aligned with IEC 62443-3-3.",
+            "machine_types": [
+                "Programmable logic controllers",
+                "Servo systems",
+                "Industrial robots"
+            ],
+            "source": "Mitsubishi Electric website"
+        },
+        {
+            "name": "Cannon Group",
+            "sales_eur": "Unknown (assumed >100M based on global presence)",
+            "description": "Based in Trezzano sul Naviglio (near Veneto), Cannon produces equipment for polyurethane processing, plastics, and composites, with automated systems incorporating control technologies suitable for IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "Polyurethane molding machines",
+                "Composite processing systems",
+                "Thermoforming machines"
+            ],
+            "source": "Cannon Group website"
+        },
+        {
+            "name": "Comau S.p.A.",
+            "sales_eur": "Unknown (assumed >100M, part of Stellantis)",
+            "description": "Headquartered in Turin but active in Veneto, Comau specializes in industrial automation and robotics for automotive and manufacturing sectors, with advanced control systems requiring IEC 62443-3-3 cybersecurity measures.",
+            "machine_types": [
+                "Industrial robots",
+                "Assembly lines",
+                "Welding systems"
+            ],
+            "source": "Comau website"
+        },
+        {
+            "name": "Salvagnini Italia S.p.A.",
+            "sales_eur": "Unknown (assumed >100M based on global reach)",
+            "description": "Located in Sarego (Vicenza, near Padua), Salvagnini designs and manufactures flexible automation systems for sheet metal processing, integrating advanced control systems that could align with IEC 62443-3-3 requirements.",
+            "machine_types": [
+                "Laser cutting machines",
+                "Panel benders",
+                "Press brakes"
+            ],
+            "source": "Salvagnini website"
+        },
+        {
+            "name": "Omas Srl",
+            "sales_eur": "Unknown (assumed >100M based on industry prominence)",
+            "description": "Founded in 1956 in Padova, Omas specializes in manufacturing machines for leather goods production, including belts, bags, and briefcases. Their equipment is designed for high-precision processing, likely requiring robust automation and control systems.",
+            "machine_types": [
+                "Leather cutting machines",
+                "Stitching machines",
+                "Embossing machines"
+            ]
+        },
+        {
+            "name": "Sirman SpA",
+            "sales_eur": "Unknown (assumed >100M based on market leadership)",
+            "description": "Established in 1969 in Padova, Sirman is Italy’s largest manufacturer of food processing equipment, with multiple factories in the region. Their advanced machinery likely incorporates automation systems relevant to IEC 62443-3-3 for secure operation.",
+            "machine_types": [
+                "Food slicers",
+                "Meat grinders",
+                "Mixers",
+                "Vacuum packaging machines"
+            ]
+        },
+        {
+            "name": "Sacea SpA",
+            "sales_eur": "Unknown (assumed >100M based on scale)",
+            "description": "Based in Padova, Sacea produces industrial furniture and equipment, including automated systems for logistics and warehousing, which may require cybersecurity compliance for control systems.",
+            "machine_types": [
+                "Automated conveyor systems",
+                "Packaging machines",
+                "Sorting machines"
+            ]
+        },
+        {
+            "name": "IMA Group",
+            "sales_eur": "1700M (2021)",
+            "description": "Though headquartered in Ozzano Dell’Emilia (Bologna), IMA has a strong presence in the Veneto region and specializes in industrial and packaging equipment for pharmaceuticals, cosmetics, food, and beverages, with systems likely adhering to automation security standards.",
+            "machine_types": [
+                "Packaging machines",
+                "Filling machines",
+                "Labeling machines",
+                "Processing equipment"
+            ]
+        },
+        {
+            "name": "Sacmi Group",
+            "sales_eur": "1800M (2022)",
+            "description": "Headquartered in Imola (Bologna) but with operations across northern Italy, Sacmi develops solutions for ceramics, plastics, and food processing, producing advanced machinery with integrated control systems suitable for IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "Ceramic processing machines",
+                "Filling machines",
+                "Packaging machines"
+            ]
+        },
+        {
+            "name": "Camozzi Group",
+            "sales_eur": "Unknown (assumed >100M based on global presence)",
+            "description": "Based in Brescia (near Veneto), Camozzi is a leader in pneumatic components and automation systems, producing machine tools and spinning machines with advanced control systems relevant to cybersecurity standards.",
+            "machine_types": [
+                "Pneumatic automation systems",
+                "Spinning machines",
+                "Machine tools"
+            ]
+        },
+        {
+            "name": "Euro Bucket S.r.l.",
+            "sales_eur": "Unknown (assumed >100M based on production scale)",
+            "description": "Founded in 2014 in Padua, Euro Bucket manufactures buckets and attachments for excavation and earthmoving, using CNC machines and advanced automation systems that could align with IEC 62443-3-3 requirements.",
+            "machine_types": [
+                "CNC-controlled bucket production systems",
+                "Attachment assembly machines"
+            ]
+        },
+        {
+            "name": "Fives Giustina SRL",
+            "sales_eur": "Unknown (assumed >100M based on global reach)",
+            "description": "Operating in northern Italy, Fives Giustina designs and manufactures surface grinding and centerless grinding machines, incorporating advanced automation and control systems suitable for cybersecurity compliance.",
+            "machine_types": [
+                "Surface grinding machines",
+                "Centerless grinders",
+                "CNC grinding systems"
+            ]
+        },
+        {
+            "name": "Crizaf Srl",
+            "sales_eur": "Unknown (assumed >100M based on global sales network)",
+            "description": "Established in 1954, Crizaf, based in northern Italy, produces belt conveyors and automation systems for the plastic, food, and pharmaceutical industries, with control systems potentially aligned with IEC 62443-3-3.",
+            "machine_types": [
+                "Belt conveyors",
+                "Sorting systems",
+                "Automation systems"
+            ]
+        },
+        {
+            "name": "Cutlite Penta",
+            "sales_eur": "Unknown (assumed >100M based on innovation and market reach)",
+            "description": "Located near Bologna but with ties to the Veneto region, Cutlite Penta manufactures high-precision laser systems for industrial applications, integrating advanced control systems that could require IEC 62443-3-3 compliance.",
+            "machine_types": [
+                "CO2 laser cutting machines",
+                "Laser processing systems"
+            ]
+        }
+    ]
+}
