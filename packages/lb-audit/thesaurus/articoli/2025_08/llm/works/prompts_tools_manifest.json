@@ -1,0 +1,838 @@
+{
+  "tools": [
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_product_sdlc_gate_review_62443_4_1",
+        "description": "[Prodotto] Secure SDLC Gate Review (IEC 62443-4-1). Valuta un gate SDLC rispetto alle practice di IEC 62443-4-1 e mappa eventuali gap. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            },
+            "artifacts_list": {
+              "type": "string",
+              "description": "Input per 'artifacts_list'. Accetta testo o JSON serializzato."
+            },
+            "policies": {
+              "type": "string",
+              "description": "Input per 'policies'. Accetta testo o JSON serializzato."
+            },
+            "gate_name": {
+              "type": "string",
+              "description": "Input per 'gate_name'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile",
+            "artifacts_list",
+            "policies",
+            "gate_name"
+          ]
+        },
+        "x-output-template": {
+          "gate": "{{gate_name}}",
+          "summary": {
+            "pass": 0,
+            "fail": 0,
+            "warn": 0
+          },
+          "findings": [
+            {
+              "practice": "62443-4-1:VUL",
+              "requirement": "Vulnerability management defined",
+              "evidence_refs": [
+                "{{doc_or_link}}"
+              ],
+              "status": "pass|fail|warn",
+              "severity": "low|medium|high",
+              "action_required": "...",
+              "owner": "{{role}}",
+              "due_date": "YYYY-MM-DD",
+              "maps_to_controls": [
+                {
+                  "framework": "IEC 62443-3-3",
+                  "control": "SR 7.6"
+                }
+              ]
+            }
+          ]
+        },
+        "x-tags": [
+          "IEC62443-4-1",
+          "SDLC",
+          "review"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_product_threat_model_ics_zones",
+        "description": "[Prodotto] Threat Model ICS/OT (zone & conduits). Costruisce un threat model per sistemi ICS/OT usando zone & conduits e STRIDE adattato. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "architecture_text": {
+              "type": "string",
+              "description": "Input per 'architecture_text'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "architecture_text"
+          ]
+        },
+        "x-output-template": {
+          "assets": [
+            {
+              "name": "{{asset}}",
+              "type": "PLC|HMI|SCADA|switch|server",
+              "criticality": "H|M|L"
+            }
+          ],
+          "zones": [
+            {
+              "name": "{{zone}}",
+              "assets": [
+                "..."
+              ],
+              "sl_target": "SL-T1..4"
+            }
+          ],
+          "conduits": [
+            {
+              "from": "{{zoneA}}",
+              "to": "{{zoneB}}",
+              "protocols": [
+                "{{proto}}"
+              ]
+            }
+          ],
+          "threats": [
+            {
+              "id": "T-###",
+              "stride": "S|T|R|I|D|E",
+              "asset_or_conduit": "{{ref}}",
+              "description": "...",
+              "likelihood": "H|M|L",
+              "impact": "H|M|L",
+              "risk": "H|M|L",
+              "mitigations": [
+                {
+                  "control": "IEC 62443-3-3 SR 1.1",
+                  "note": "..."
+                }
+              ]
+            }
+          ],
+          "open_questions": [
+            "..."
+          ]
+        },
+        "x-tags": [
+          "threat-model",
+          "IEC62443-3-3"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_product_security_requirements_backlog",
+        "description": "[Prodotto] Requisiti di sicurezza → backlog (user stories). Genera requisiti verificabili e testabili con user stories e criteri di accettazione. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            },
+            "feature_set": {
+              "type": "string",
+              "description": "Input per 'feature_set'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile",
+            "feature_set"
+          ]
+        },
+        "x-output-template": {
+          "requirements": [
+            {
+              "title": "Hardening credenziali",
+              "rationale": "...",
+              "user_story": "Come ... voglio ... così che ...",
+              "acceptance_criteria": [
+                "..."
+              ],
+              "tests": [
+                "unit|integration|pen"
+              ],
+              "maps_to_controls": [
+                {
+                  "framework": "IEC 62443-3-3",
+                  "control": "SR 1.2"
+                }
+              ]
+            }
+          ]
+        },
+        "x-tags": [
+          "requirements",
+          "backlog",
+          "stories"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_product_sbom_vex_risk_sweep",
+        "description": "[Prodotto] SBOM/VEX Risk Sweep. Prioritizza patch da SBOM (CycloneDX/SPDX) usando informazioni VEX fornite. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "sbom_excerpt": {
+              "type": "string",
+              "description": "Input per 'sbom_excerpt'. Accetta testo o JSON serializzato."
+            },
+            "vex_data": {
+              "type": "string",
+              "description": "Input per 'vex_data'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "sbom_excerpt",
+            "vex_data"
+          ]
+        },
+        "x-output-template": {
+          "components": [
+            {
+              "name": "{{lib}}",
+              "version": "x.y.z",
+              "cves": [
+                {
+                  "id": "CVE-YYYY-XXXX",
+                  "cvss": 7.5,
+                  "exploitability": "not_affected|affected|unknown",
+                  "rationale": "...",
+                  "priority": "P0|P1|P2|P3",
+                  "action": "patch|mitigate|accept"
+                }
+              ]
+            }
+          ],
+          "summary": {
+            "P0": 0,
+            "P1": 0,
+            "P2": 0,
+            "P3": 0
+          }
+        },
+        "x-tags": [
+          "SBOM",
+          "VEX",
+          "vulnerability-management"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_product_ota_secure_update_checklist",
+        "description": "[Prodotto] OTA/Secure Update Checklist. Verifica progettazione aggiornamenti sicuri. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile"
+          ]
+        },
+        "x-output-template": {
+          "areas": [
+            {
+              "topic": "code_signing",
+              "status": "ok|gap",
+              "note": "..."
+            },
+            {
+              "topic": "rollback_protection",
+              "status": "ok|gap",
+              "note": "..."
+            },
+            {
+              "topic": "A/B_partition",
+              "status": "ok|gap",
+              "note": "..."
+            },
+            {
+              "topic": "secure_boot",
+              "status": "ok|gap",
+              "note": "..."
+            },
+            {
+              "topic": "update_authN/Z",
+              "status": "ok|gap",
+              "note": "..."
+            },
+            {
+              "topic": "release_notes_SBOM",
+              "status": "ok|gap",
+              "note": "..."
+            }
+          ],
+          "overall": "pass|fail|warn"
+        },
+        "x-tags": [
+          "OTA",
+          "updates",
+          "secure-boot"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_compliance_applicability_conformity_path",
+        "description": "[Compliance] Applicabilità & percorso di conformità (CE/RED/CRA). Stabilisce atti applicabili, percorso di conformità e prove richieste. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            },
+            "markets": {
+              "type": "string",
+              "description": "Input per 'markets'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile",
+            "markets"
+          ]
+        },
+        "x-output-template": {
+          "applicability": [
+            {
+              "act": "RED|EMC|LVD|CRA|Machinery",
+              "applicable": true,
+              "triggers": [
+                "radio",
+                "elementi_digitali",
+                "safety_function"
+              ],
+              "conformity_path": "CE:self-assessment|third-party|type-approval",
+              "harmonised_standards": [
+                "{{EN/ETSI}}"
+              ],
+              "evidence": [
+                "test_report_RF",
+                "DoC",
+                "tech_file",
+                "security_by_design_evidence"
+              ],
+              "notes": "..."
+            }
+          ],
+          "unknowns": [
+            "..."
+          ]
+        },
+        "x-tags": [
+          "RED",
+          "CRA",
+          "CE",
+          "harmonised-standards"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_compliance_extractor_legal_text",
+        "description": "[Compliance] Estrattore obblighi da testo normativo. Trasforma testo legale in requisiti verificabili con citazioni. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "legal_text": {
+              "type": "string",
+              "description": "Input per 'legal_text'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "legal_text"
+          ]
+        },
+        "x-output-template": {
+          "requirements": [
+            {
+              "id": "{{norma}}-ArtX-parY",
+              "actor": "manufacturer|integrator|importer|distributor|null",
+              "obligation": "...",
+              "evidence": [
+                "..."
+              ],
+              "applies_from": "YYYY-MM-DD|null",
+              "reference": {
+                "document": "{{id}}",
+                "article": "X",
+                "annex": "...",
+                "url": "{{link}}"
+              },
+              "maps_to_controls": [
+                {
+                  "framework": "IEC 62443-3-3",
+                  "control": "SR x.x"
+                }
+              ]
+            }
+          ]
+        },
+        "x-tags": [
+          "legal",
+          "extraction",
+          "obligations"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_compliance_technical_file_red_builder",
+        "description": "[Compliance] Fascicolo Tecnico (RED) — Builder. Genera ToC del fascicolo tecnico, lacune e skeleton della DoC. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            },
+            "evidence_list": {
+              "type": "string",
+              "description": "Input per 'evidence_list'. Accetta testo o JSON serializzato."
+            },
+            "standards": {
+              "type": "string",
+              "description": "Input per 'standards'. Accetta testo o JSON serializzato."
+            },
+            "org": {
+              "type": "string",
+              "description": "Input per 'org'. Accetta testo o JSON serializzato."
+            },
+            "model": {
+              "type": "string",
+              "description": "Input per 'model'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile",
+            "evidence_list",
+            "standards",
+            "org",
+            "model"
+          ]
+        },
+        "x-output-template": {
+          "toc": [
+            "General description",
+            "Design drawings",
+            "Risk assessment",
+            "Test reports (EMC/RF/Safety)",
+            "Cybersecurity (RED 3(3)(d)(e)(f))",
+            "User instructions",
+            "EU DoC",
+            "Labeling"
+          ],
+          "gaps": [
+            {
+              "item": "Test RF EN 300 328",
+              "status": "missing",
+              "owner": "{{role}}",
+              "due": "YYYY-MM-DD"
+            }
+          ],
+          "doc_templates": {
+            "eu_doc": {
+              "fields": [
+                "manufacturer",
+                "model",
+                "directives_regulations",
+                "standards",
+                "signature"
+              ],
+              "prefill": {
+                "manufacturer": "{{org}}",
+                "model": "{{model}}"
+              }
+            }
+          }
+        },
+        "x-tags": [
+          "technical-file",
+          "RED",
+          "DoC"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_compliance_cra_art14_playbook",
+        "description": "[Compliance] CRA — Playbook di notifica (Art. 14). Crea scaffolding per early-warning, report 72h e report finale. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "incident_summary": {
+              "type": "string",
+              "description": "Input per 'incident_summary'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "incident_summary"
+          ]
+        },
+        "x-output-template": {
+          "early_warning": {
+            "within_hours": 24,
+            "fields": {
+              "time_discovery": "YYYY-MM-DDTHH:mmZ|null",
+              "impact": "...",
+              "mitigations": "..."
+            }
+          },
+          "report_72h": {
+            "fields": {
+              "indicators": "...",
+              "affected_products": [
+                "..."
+              ],
+              "CVE": [
+                "..."
+              ],
+              "temporary_measures": "..."
+            }
+          },
+          "final_report": {
+            "fields": {
+              "root_cause": "...",
+              "permanent_fix": "...",
+              "lessons_learned": "..."
+            }
+          }
+        },
+        "x-tags": [
+          "CRA",
+          "incident-reporting",
+          "Art14"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_compliance_label_manual_checker",
+        "description": "[Compliance] Etichettatura & Istruzioni — Checker. Convalida label (marcature) e manuale (safety+cyber by default). — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "product_profile": {
+              "type": "string",
+              "description": "Input per 'product_profile'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "product_profile"
+          ]
+        },
+        "x-output-template": {
+          "label_checks": [
+            {
+              "check": "CE mark size/visibility",
+              "status": "ok|gap",
+              "note": "..."
+            }
+          ],
+          "manual_checks": [
+            {
+              "check": "Default credentials policy",
+              "status": "ok|gap",
+              "note": "..."
+            }
+          ],
+          "missing": [
+            "..."
+          ]
+        },
+        "x-tags": [
+          "label",
+          "manual",
+          "compliance"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_delivery_ot_architecture_gap_check",
+        "description": "[Delivery] OT Architecture Gap Check (IEC 62443-3-3). Mappa l'as-built ai requisiti SR e propone SL-T e remediation. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "as_built_text": {
+              "type": "string",
+              "description": "Input per 'as_built_text'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "as_built_text"
+          ]
+        },
+        "x-output-template": {
+          "zones": [
+            {
+              "name": "{{zone}}",
+              "sl_target": "SL-T2",
+              "implemented_controls": [
+                "SR 1.1",
+                "SR 3.2"
+              ]
+            }
+          ],
+          "gaps": [
+            {
+              "zone": "{{zone}}",
+              "control": "SR 2.1",
+              "risk": "H|M|L",
+              "remediation": "..."
+            }
+          ],
+          "assumptions": [
+            "..."
+          ]
+        },
+        "x-tags": [
+          "IEC62443-3-3",
+          "architecture",
+          "gap-analysis"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_delivery_commissioning_hardening_checklist",
+        "description": "[Delivery] Commissioning Hardening Checklist. Baseline di hardening per messa in servizio dei dispositivi OT. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "inventory": {
+              "type": "string",
+              "description": "Input per 'inventory'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "inventory"
+          ]
+        },
+        "x-output-template": {
+          "devices": [
+            {
+              "type": "PLC|HMI|switch",
+              "model": "{{model}}",
+              "baseline": [
+                {
+                  "item": "change_default_passwords",
+                  "status": "todo|done"
+                },
+                {
+                  "item": "disable_unused_services",
+                  "status": "todo|done"
+                },
+                {
+                  "item": "time_sync_secure",
+                  "status": "todo|done"
+                },
+                {
+                  "item": "logging_remote",
+                  "status": "todo|done"
+                }
+              ]
+            }
+          ]
+        },
+        "x-tags": [
+          "hardening",
+          "commissioning",
+          "checklist"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_delivery_patch_backup_plan_builder",
+        "description": "[Delivery] Patch & Backup Plan Builder. Crea un piano trimestrale di patching e backup testabile. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "inventory": {
+              "type": "string",
+              "description": "Input per 'inventory'. Accetta testo o JSON serializzato."
+            },
+            "windows": {
+              "type": "string",
+              "description": "Input per 'windows'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "inventory",
+            "windows"
+          ]
+        },
+        "x-output-template": {
+          "schedule": [
+            {
+              "quarter": "Q{{n}}",
+              "assets": [
+                "{{device}}"
+              ],
+              "patch_window": "{{YYYY-MM-DD}}",
+              "rollback_plan": "...",
+              "backup_before_patch": true
+            }
+          ],
+          "exceptions": [
+            {
+              "asset": "{{device}}",
+              "reason": "safety validation pending"
+            }
+          ]
+        },
+        "x-tags": [
+          "patching",
+          "backup",
+          "maintenance"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_delivery_acceptance_test_procedure",
+        "description": "[Delivery] Acceptance Test Procedure (ATP). Genera ATP per autenticazione, segmentazione, logging, backup/restore. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "project_name": {
+              "type": "string",
+              "description": "Input per 'project_name'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "project_name"
+          ]
+        },
+        "x-output-template": {
+          "tests": [
+            {
+              "id": "ATP-{{id}}",
+              "objective": "AuthN on PLC",
+              "steps": [
+                "..."
+              ],
+              "expected_result": "...",
+              "evidence": "screenshot|logs",
+              "acceptance": "pass criteria"
+            }
+          ]
+        },
+        "x-tags": [
+          "ATP",
+          "acceptance",
+          "testing"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    },
+    {
+      "type": "function",
+      "function": {
+        "name": "ics_delivery_site_handover_pack",
+        "description": "[Delivery] Site Handover Pack. Verifica completezza pacchetto di consegna e prove di conformità. — Restituisci SOLO JSON conforme all'output atteso.",
+        "parameters": {
+          "type": "object",
+          "properties": {
+            "site_name": {
+              "type": "string",
+              "description": "Input per 'site_name'. Accetta testo o JSON serializzato."
+            }
+          },
+          "required": [
+            "site_name"
+          ]
+        },
+        "x-output-template": {
+          "required_docs": [
+            "as-built diagrams",
+            "hardening checklist",
+            "asset register",
+            "backup/restore SOP",
+            "ATP results",
+            "user/access list"
+          ],
+          "missing": [
+            {
+              "doc": "asset register",
+              "owner": "{{role}}",
+              "due": "YYYY-MM-DD"
+            }
+          ]
+        },
+        "x-tags": [
+          "handover",
+          "documentation",
+          "delivery"
+        ],
+        "x-language": "it",
+        "x-version": "2025-08-19"
+      }
+    }
+  ]
+}

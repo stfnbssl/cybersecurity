@@ -1,0 +1,53 @@
+wzschema
+    e wizard
+        a name
+            type string
+        a description
+            type string
+        r step/s
+
+    e step
+        a id
+            type number
+        a name
+            type string
+        a description
+            type string
+        a completionHint
+            type string
+        r form/s
+
+e form
+    r field/s
+
+e field
+    a name
+        type string
+    a label
+        type string
+    a type
+        type enum
+        options string, list, script, metric
+    a itemType
+        type string
+    a required
+        type boolean
+
+e script
+    a name
+        type string
+    a description
+        type string
+    a content
+        type code
+
+e metric
+    a name
+        type string
+    a type
+        type enum
+        options temperature, pressure, flow, custom
+    a dynamicTagReference
+        type string
+    a scriptReference
+        type string
