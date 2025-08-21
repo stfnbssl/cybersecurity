@@ -1,0 +1,2291 @@
+{
+  "about": {
+    "title": "Logbot Starter Catalog",
+    "created_at": "2025-08-20T05:10:33.219158Z",
+    "note": "Starter set with canonical controls, mappings, and two example profiles."
+  },
+  "frameworks_hint": [
+    {
+      "code": "IEC 62443-3-3:2013",
+      "name": "System security requirements and security levels"
+    },
+    {
+      "code": "IEC 62443-4-1:2018",
+      "name": "Secure product development lifecycle requirements"
+    },
+    {
+      "code": "IEC 62443-4-2:2019",
+      "name": "Technical security requirements for IACS components"
+    },
+    {
+      "code": "ISO/IEC 27002:2022",
+      "name": "Information security controls"
+    },
+    {
+      "code": "NIS2:2022",
+      "name": "EU Directive on cybersecurity"
+    },
+    {
+      "code": "GDPR:2016",
+      "name": "General Data Protection Regulation"
+    },
+    {
+      "code": "CRA:2024",
+      "name": "EU Cyber Resilience Act"
+    }
+  ],
+  "controls": [
+    {
+      "canonical_id": "LB-AC-001",
+      "objective": "Enforce strong remote administrative access for OT.",
+      "statement": "Require all remote administrative access to OT networks to traverse a managed jump service that enforces MFA and policy-based authorization.",
+      "type": "technical",
+      "risk_theme": "Access Control",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "mfa_required",
+          "description": "Require MFA for remote admin access",
+          "default": true
+        },
+        {
+          "name": "session_recording_required",
+          "description": "Record remote admin sessions",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 1.1",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.15",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is all OT remote admin access brokered via a jump service with MFA?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Provide gateway policy export and MFA settings.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "AccessGatewayConfig",
+            "IdPPolicy"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-002",
+      "objective": "Ensure unique accountability for privileged users.",
+      "statement": "Require unique, non-shared administrator accounts with least-privilege and periodic entitlement review for OT systems.",
+      "type": "technical",
+      "risk_theme": "Access Control",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "entitlement_review_days",
+          "description": "Days between privileged access reviews",
+          "default": 90
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 1.2",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.18",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are admin accounts unique and reviewed at least quarterly?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Upload last access review report for OT administrators.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "AccessReviewReport"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-003",
+      "objective": "Control and monitor privileged operations.",
+      "statement": "Enforce privileged access management (PAM) for OT-critical systems, including checkout/approval for break-glass access and session monitoring.",
+      "type": "technical",
+      "risk_theme": "Access Control",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "pam_required",
+          "description": "PAM required for OT critical assets",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 2.1",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.16",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is PAM enforced for OT-critical systems?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Provide PAM policy and example session record.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "PAMPolicy",
+            "SessionRecording"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-004",
+      "objective": "Protect and rotate service account credentials.",
+      "statement": "Manage OT service accounts with scoped privileges, vault-stored secrets, and automated rotation.",
+      "type": "technical",
+      "risk_theme": "Access Control",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "secret_rotation_days",
+          "description": "Rotation period for service secrets",
+          "default": 60
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 1.2",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.29",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are service account secrets vaulted and rotated on schedule?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Upload rotation logs or vault policy export.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "VaultPolicy",
+            "RotationLog"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-005",
+      "objective": "Limit session exposure.",
+      "statement": "Implement session timeout, lockout thresholds, and re-authentication for high-risk actions on OT admin interfaces.",
+      "type": "technical",
+      "risk_theme": "Access Control",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "session_timeout_minutes",
+          "description": "Idle timeout for OT admin sessions",
+          "default": 15
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 2.6",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.23",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is idle timeout enabled on OT admin consoles?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-001",
+      "objective": "Establish robust segmentation for OT.",
+      "statement": "Implement zone-and-conduit segmentation with deny-by-default ACLs between OT zones and DMZ, allowing only approved industrial protocols and flows.",
+      "type": "technical",
+      "risk_theme": "Network",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "rule_review_days",
+          "description": "Days between firewall rule reviews",
+          "default": 90
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 5.1",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.20",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are inter-zone ACLs deny-by-default with approved allowlists?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Provide firewall export for OT\u2194DMZ conduits.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "FirewallConfig"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-002",
+      "objective": "Broker remote access via DMZ.",
+      "statement": "Terminate external remote access in a managed DMZ and proxy into OT through controlled conduits only.",
+      "type": "technical",
+      "risk_theme": "Network",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 5.2",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.23",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is remote access terminated in DMZ and proxied into OT?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-003",
+      "objective": "Reduce protocol attack surface.",
+      "statement": "Allowlist and inspect industrial protocols (e.g., Modbus, Profinet) and block cleartext management protocols in OT.",
+      "type": "technical",
+      "risk_theme": "Network",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "ot_protocols_allowlisted",
+          "description": "List of approved OT protocols",
+          "default": null
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 5.2",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.20",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is protocol allowlisting configured on OT firewalls/IDS?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-004",
+      "objective": "Protect critical zones with constrained flows.",
+      "statement": "Enforce unidirectional gateways (data diode) or protocol brokers for data egress from safety-critical OT zones.",
+      "type": "technical",
+      "risk_theme": "Network",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "unidirectional_required",
+          "description": "Require unidirectional tech for critical zones",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 3,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 5.3",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are unidirectional gateways or brokers deployed for critical zones?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-005",
+      "objective": "Control changes to network security baselines.",
+      "statement": "Apply formal change control, rule justification, and periodic recertification for OT firewall/ACL policies.",
+      "type": "technical",
+      "risk_theme": "Network",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "recertification_days",
+          "description": "Days between rule recertifications",
+          "default": 180
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.9",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT firewall rules recertified on schedule with business justification?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PM-001",
+      "objective": "Maintain an OT vulnerability management process.",
+      "statement": "Maintain an asset-based vulnerability management process for OT, including discovery, risk rating, remediation tracking, and exceptions.",
+      "type": "process",
+      "risk_theme": "Vulnerability",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "scan_frequency_days",
+          "description": "Days between OT vuln scans (where safe)",
+          "default": 30
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 7.6",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.8",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is there an OT vulnerability management register with owners and due dates?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Provide last remediation status report.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "VulnReport"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PM-002",
+      "objective": "Validate patches in OT safely.",
+      "statement": "Test and validate patches in a representative OT testbed and deploy within approved maintenance windows with rollback plans.",
+      "type": "technical",
+      "risk_theme": "Vulnerability",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "patch_window_days",
+          "description": "Target days to deploy OT patches after validation",
+          "default": 30
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 2.8",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.7",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT patches tested in a lab before deployment?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PM-003",
+      "objective": "Apply compensating controls when patching is infeasible.",
+      "statement": "When vendor support or downtime constraints prevent patching, implement compensating controls such as network isolation, application allowlisting, and brokered remote access.",
+      "type": "technical",
+      "risk_theme": "Vulnerability",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "unpatchable_register",
+          "description": "Maintain register of unpatchable assets",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 3.1",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is there a documented compensating control plan for unpatchable assets?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PM-004",
+      "objective": "Track vendor advisories affecting OT.",
+      "statement": "Track vendor security advisories for OT components and assess applicability and risk within defined SLAs.",
+      "type": "process",
+      "risk_theme": "Vulnerability",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "advisory_review_days",
+          "description": "Days to review vendor advisories",
+          "default": 7
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.36",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is there a subscription/monitoring for vendor advisories with documented triage?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-LM-001",
+      "objective": "Collect and centralize OT security logs.",
+      "statement": "Forward security-relevant logs from OT gateways, servers, and brokers to a central SIEM with constrained connectivity.",
+      "type": "technical",
+      "risk_theme": "Monitoring",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "log_retention_days",
+          "description": "Days to retain OT security logs",
+          "default": 180
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 6.1",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.32",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT logs forwarded to a central SIEM?",
+          "answer_type": "yes/no"
+        },
+        {
+          "question": "Provide SIEM ingestion dashboard or sample.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "SIEMReport"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-LM-002",
+      "objective": "Synchronize time for reliable forensics.",
+      "statement": "Use trustworthy NTP/PTP sources and secure time distribution to ensure timestamp integrity across OT assets and collectors.",
+      "type": "technical",
+      "risk_theme": "Monitoring",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "ntp_stratum_max",
+          "description": "Maximum acceptable NTP stratum",
+          "default": 3
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 6.2",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.19",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is time synchronization enforced and monitored for OT logging components?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-LM-003",
+      "objective": "Detect OT network threats.",
+      "statement": "Deploy OT-aware IDS/monitoring to detect anomalous OT protocol activity and policy violations.",
+      "type": "technical",
+      "risk_theme": "Monitoring",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "ids_enabled",
+          "description": "Enable OT IDS/monitoring",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 6.2",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.16",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is an OT-aware IDS deployed with alerting to SOC?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-LM-004",
+      "objective": "Protect log integrity and retention.",
+      "statement": "Protect OT logs against tampering and retain them for the defined period to support investigations and legal holds.",
+      "type": "technical",
+      "risk_theme": "Monitoring",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "writable_window_hours",
+          "description": "Max time logs remain modifiable",
+          "default": 0
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.33",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT logs write-once or integrity-protected?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-IR-001",
+      "objective": "Prepare OT-specific incident response.",
+      "statement": "Maintain OT incident response playbooks including detection, containment, safe-state procedures, recovery, and post-incident review.",
+      "type": "process",
+      "risk_theme": "Incident Response",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "rto_hours",
+          "description": "Target Recovery Time Objective for essential OT services",
+          "default": null
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "NIS2:2022",
+          "section_path": "Art.21(2)(d)",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.24",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Do playbooks cover safe-state criteria and safety escalation?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-IR-002",
+      "objective": "Record remote admin sessions for forensics.",
+      "statement": "Record and securely store remote administrative session metadata and, where permissible, session content for forensic analysis.",
+      "type": "technical",
+      "risk_theme": "Incident Response",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "session_record_retention_days",
+          "description": "Retention of session recordings",
+          "default": 90
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "min_security_level": 2,
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 6.2",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are admin sessions recorded and retained per policy?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-IR-003",
+      "objective": "Exercise OT incident response.",
+      "statement": "Conduct periodic OT-focused incident exercises including external stakeholders and safety functions.",
+      "type": "process",
+      "risk_theme": "Incident Response",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "exercise_frequency_days",
+          "description": "Days between OT IR exercises",
+          "default": 180
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.30",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Has an OT IR exercise been conducted within the last 6 months?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-BC-001",
+      "objective": "Back up critical OT configurations securely.",
+      "statement": "Maintain offline or immutable backups of OT device configurations, engineering workstations, and historian data essential for recovery.",
+      "type": "technical",
+      "risk_theme": "BC/DR",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "backup_frequency_days",
+          "description": "Backup frequency for OT configs",
+          "default": 7
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 7.1",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.29",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT configuration backups offline/immutable and recent?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-BC-002",
+      "objective": "Prove recoverability.",
+      "statement": "Perform periodic restore tests for critical OT assets and document results and timing versus objectives.",
+      "type": "technical",
+      "risk_theme": "BC/DR",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "restore_test_frequency_days",
+          "description": "Days between restore tests",
+          "default": 90
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.31",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Provide last OT restore test report/log.",
+          "answer_type": "evidence",
+          "evidence_type": [
+            "RestoreTestLog"
+          ]
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-BC-003",
+      "objective": "Protect backups from ransomware and sabotage.",
+      "statement": "Apply access controls, network isolation, and integrity checks to OT backups to prevent unauthorized alteration or deletion.",
+      "type": "technical",
+      "risk_theme": "BC/DR",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.33",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT backup repositories access-controlled and isolated?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SC-001",
+      "objective": "Impose supplier security requirements for IACS.",
+      "statement": "Define and enforce supplier security requirements aligned to IEC 62443-4-1/-4-2 for components and integration services.",
+      "type": "process",
+      "risk_theme": "Supply Chain",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "Manufacturer",
+          "SystemIntegrator",
+          "AssetOwner"
+        ],
+        "env": [
+          "OT",
+          "IT"
+        ],
+        "lifecycle": [
+          "Design",
+          "Development",
+          "Integration",
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-4-1:2018",
+          "section_path": "All clauses",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.22",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Do contracts include IEC 62443-4-1/-4-2 aligned requirements?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SC-002",
+      "objective": "Secure third-party remote maintenance.",
+      "statement": "Ensure contracts and technical controls for remote maintenance enforce brokered access, MFA, monitoring, and session recording.",
+      "type": "process",
+      "risk_theme": "Supply Chain",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner",
+          "SystemIntegrator"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "NIS2:2022",
+          "section_path": "Art.21(2)",
+          "relation": "supports"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.21",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Do maintenance contracts mandate brokered access with MFA and monitoring?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SC-003",
+      "objective": "Consume and verify SBOMs for OT software.",
+      "statement": "Require SBOMs from suppliers and verify component vulnerabilities and licenses before deployment.",
+      "type": "process",
+      "risk_theme": "Supply Chain",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "sbom_format",
+          "description": "Accepted SBOM format (SPDX/CycloneDX)",
+          "default": "CycloneDX"
+        }
+      ],
+      "applicability": {
+        "role": [
+          "AssetOwner",
+          "SystemIntegrator"
+        ],
+        "env": [
+          "OT",
+          "IT"
+        ],
+        "lifecycle": [
+          "Integration",
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "CRA:2024",
+          "section_path": "Annex I",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are SBOMs provided and checked before integrating software?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SC-004",
+      "objective": "Operate a PSIRT and Coordinated Vulnerability Disclosure (CVD).",
+      "statement": "Maintain a Product Security Incident Response Team with public CVD policy, intake, triage, and advisory publication.",
+      "type": "process",
+      "risk_theme": "Supply Chain",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "advisory_sla_days",
+          "description": "Days to publish security advisory after fix/mitigation",
+          "default": 30
+        }
+      ],
+      "applicability": {
+        "role": [
+          "Manufacturer"
+        ],
+        "env": [
+          "IT",
+          "OT",
+          "Cloud",
+          "Edge",
+          "IIoT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-4-1:2018",
+          "section_path": "SR 10 Vulnerability management",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.14",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is a public CVD/PSIRT process documented and active?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SD-001",
+      "objective": "Apply threat modeling to IACS products.",
+      "statement": "Perform and maintain threat models for products and features, covering misuse of OT protocols and interfaces.",
+      "type": "process",
+      "risk_theme": "Secure Development",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "Manufacturer",
+          "SoftwareVendor"
+        ],
+        "env": [
+          "IT",
+          "OT",
+          "Edge",
+          "IIoT"
+        ],
+        "lifecycle": [
+          "Design",
+          "Development"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-4-1:2018",
+          "section_path": "Practice 1\u2014Security Requirements",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.3",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are threat models maintained for releases and reviewed?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SD-002",
+      "objective": "Integrate SAST/DAST into CI/CD.",
+      "statement": "Enforce automated static and dynamic security testing in CI/CD with policy gates for severity and coverage.",
+      "type": "process",
+      "risk_theme": "Secure Development",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "Manufacturer",
+          "SoftwareVendor"
+        ],
+        "env": [
+          "IT",
+          "Cloud",
+          "Edge",
+          "IIoT"
+        ],
+        "lifecycle": [
+          "Development",
+          "Integration"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-4-1:2018",
+          "section_path": "Practice 6\u2014Verification and testing",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.29",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Do pipelines enforce SAST/DAST gates before release?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SD-003",
+      "objective": "Publish SBOM per release.",
+      "statement": "Generate and publish SBOM for every product release with component hashes and licenses.",
+      "type": "process",
+      "risk_theme": "Secure Development",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "sbom_required",
+          "description": "SBOM required per release",
+          "default": true
+        }
+      ],
+      "applicability": {
+        "role": [
+          "Manufacturer",
+          "SoftwareVendor"
+        ],
+        "env": [
+          "IT",
+          "OT",
+          "Cloud",
+          "Edge",
+          "IIoT"
+        ],
+        "lifecycle": [
+          "Integration",
+          "Operation"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "CRA:2024",
+          "section_path": "Annex I",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "IEC 62443-4-1:2018",
+          "section_path": "Practice 5\u2014Secure build",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is SBOM generated and published for each release?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SD-004",
+      "objective": "Provide VEX for known vulnerabilities.",
+      "statement": "Publish VEX or equivalent statements to communicate exploitability and mitigations for known component CVEs.",
+      "type": "process",
+      "risk_theme": "Secure Development",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "Manufacturer",
+          "SoftwareVendor"
+        ],
+        "env": [
+          "IT",
+          "OT",
+          "Cloud",
+          "Edge",
+          "IIoT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "CRA:2024",
+          "section_path": "Annex I\u2014Vulnerability handling",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are VEX statements issued for relevant CVEs?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SD-005",
+      "objective": "Implement secure boot and signed firmware.",
+      "statement": "Enforce cryptographic signature verification for firmware and a chain of trust from bootloader to application.",
+      "type": "technical",
+      "risk_theme": "Secure Development",
+      "criticality": 3,
+      "params": [
+        {
+          "name": "signature_algorithm",
+          "description": "Approved signature algorithm family",
+          "default": "Ed25519/RSASSA-PSS"
+        }
+      ],
+      "applicability": {
+        "role": [
+          "Manufacturer"
+        ],
+        "env": [
+          "Edge",
+          "IIoT",
+          "OT"
+        ],
+        "lifecycle": [
+          "Design",
+          "Development",
+          "Integration",
+          "Operation"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-4-2:2019",
+          "section_path": "CR 1.4",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.8.6",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Is firmware signature verification enforced at boot?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PRIV-001",
+      "objective": "Assess privacy risks in OT processing.",
+      "statement": "Perform Data Protection Impact Assessment (DPIA) where OT systems process personal data or monitoring of operators.",
+      "type": "process",
+      "risk_theme": "Privacy",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner",
+          "ServiceProvider"
+        ],
+        "env": [
+          "OT",
+          "IT"
+        ],
+        "lifecycle": [
+          "Design",
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": true,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "GDPR:2016",
+          "section_path": "Art.35",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.34",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Has a DPIA been conducted for OT processing of personal data?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PRIV-002",
+      "objective": "Maintain records and processor agreements.",
+      "statement": "Maintain records of processing activities (ROPA) and data processing agreements with OT service providers.",
+      "type": "process",
+      "risk_theme": "Privacy",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT",
+          "IT",
+          "Cloud"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": true,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "GDPR:2016",
+          "section_path": "Art.30",
+          "relation": "equivalent"
+        },
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.5.32",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are ROPA and DPAs in place for OT-related processing?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SAF-001",
+      "objective": "Integrate safety and security engineering.",
+      "statement": "Conduct safety\u2013security co-engineering reviews to ensure security measures do not degrade safety functions and vice versa.",
+      "type": "process",
+      "risk_theme": "Safety",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner",
+          "SystemIntegrator",
+          "Manufacturer"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Design",
+          "Integration",
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 7.5",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are co-engineering reviews documented with actions and approvals?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-SAF-002",
+      "objective": "Define safe-state criteria in IR.",
+      "statement": "Define and validate safe-state criteria and interlocks in incident response playbooks for OT.",
+      "type": "process",
+      "risk_theme": "Safety",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "IEC 62443-3-3:2013",
+          "section_path": "SR 7.1",
+          "relation": "supports"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Do playbooks include tested safe-state actions and interlocks?",
+          "answer_type": "yes/no"
+        }
+      ]
+    },
+    {
+      "canonical_id": "LB-PHYS-001",
+      "objective": "Control physical access to OT areas.",
+      "statement": "Restrict and monitor physical access to OT zones and protect cabinets, panels, and field devices against unauthorized access.",
+      "type": "technical",
+      "risk_theme": "Physical",
+      "criticality": 3,
+      "params": [],
+      "applicability": {
+        "role": [
+          "AssetOwner"
+        ],
+        "env": [
+          "OT"
+        ],
+        "lifecycle": [
+          "Operation",
+          "Maintenance"
+        ],
+        "conditions": {
+          "personal_data": false,
+          "safety_critical": true
+        }
+      },
+      "mappings": [
+        {
+          "framework_code": "ISO/IEC 27002:2022",
+          "section_path": "A.7.1",
+          "relation": "equivalent"
+        }
+      ],
+      "checklist": [
+        {
+          "question": "Are OT areas controlled with access lists and monitoring?",
+          "answer_type": "yes/no"
+        }
+      ]
+    }
+  ],
+  "evidence_types": [
+    {
+      "code": "AccessGatewayConfig",
+      "name": "Remote access gateway policy export",
+      "examples": "JSON/YAML export"
+    },
+    {
+      "code": "IdPPolicy",
+      "name": "Identity Provider/MFA policy",
+      "examples": "Screenshots or URL"
+    },
+    {
+      "code": "SessionRecording",
+      "name": "PAM/Jump session record",
+      "examples": "Video/Log reference"
+    },
+    {
+      "code": "FirewallConfig",
+      "name": "Firewall/ACL ruleset export",
+      "examples": "Config file"
+    },
+    {
+      "code": "AccessReviewReport",
+      "name": "Privileged access review report",
+      "examples": "PDF/Spreadsheet"
+    },
+    {
+      "code": "VulnReport",
+      "name": "Vulnerability remediation status",
+      "examples": "CSV/PDF"
+    },
+    {
+      "code": "SIEMReport",
+      "name": "SIEM ingestion/alerts report",
+      "examples": "Dashboard export"
+    },
+    {
+      "code": "RestoreTestLog",
+      "name": "Backup restore test log",
+      "examples": "Job log/Report"
+    },
+    {
+      "code": "VaultPolicy",
+      "name": "Secrets vault policy export",
+      "examples": "JSON"
+    },
+    {
+      "code": "RotationLog",
+      "name": "Secrets rotation log",
+      "examples": "CSV/Log"
+    }
+  ],
+  "profiles": [
+    {
+      "name": "OT Asset Owner \u2014 SL2 Operations",
+      "version": "1.0.0",
+      "description": "Operational baseline for OT Asset Owners at IEC 62443 SL2 with GDPR/NIS2 overlays where applicable.",
+      "rules": {
+        "scope": {
+          "role": [
+            "AssetOwner"
+          ],
+          "env": [
+            "OT"
+          ],
+          "lifecycle": [
+            "Operation",
+            "Maintenance"
+          ]
+        },
+        "targets": {
+          "sl": 2,
+          "jurisdiction": "EU",
+          "essential_service": true
+        },
+        "include_domains": [
+          "NW",
+          "LM",
+          "IR",
+          "BC",
+          "PM",
+          "AC"
+        ],
+        "conditions": {
+          "personal_data": true,
+          "safety_critical": true
+        },
+        "scoring": {
+          "scheme": "weighted",
+          "weights_by_domain": {
+            "NW": 1.2,
+            "PM": 1.2,
+            "LM": 1.1,
+            "IR": 1.1,
+            "AC": 1.0,
+            "BC": 1.0
+          },
+          "pass_threshold": 0.8,
+          "partial_weight": 0.5,
+          "na_policy": "exclude"
+        },
+        "language": "it"
+      },
+      "controls": [
+        {
+          "canonical_id": "LB-AC-001",
+          "required": true,
+          "param_values": {
+            "mfa_required": true,
+            "session_recording_required": true
+          }
+        },
+        {
+          "canonical_id": "LB-AC-002",
+          "required": true,
+          "param_values": {
+            "entitlement_review_days": 90
+          }
+        },
+        {
+          "canonical_id": "LB-AC-003",
+          "required": true,
+          "param_values": {
+            "pam_required": true
+          }
+        },
+        {
+          "canonical_id": "LB-AC-004",
+          "required": true,
+          "param_values": {
+            "secret_rotation_days": 60
+          }
+        },
+        {
+          "canonical_id": "LB-AC-005",
+          "required": false,
+          "param_values": {
+            "session_timeout_minutes": 15
+          }
+        },
+        {
+          "canonical_id": "LB-NW-001",
+          "required": true,
+          "param_values": {
+            "rule_review_days": 90
+          }
+        },
+        {
+          "canonical_id": "LB-NW-002",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-NW-003",
+          "required": true,
+          "param_values": {
+            "ot_protocols_allowlisted": [
+              "Modbus",
+              "Profinet",
+              "DNP3"
+            ]
+          }
+        },
+        {
+          "canonical_id": "LB-NW-004",
+          "required": false,
+          "param_values": {
+            "unidirectional_required": true
+          }
+        },
+        {
+          "canonical_id": "LB-NW-005",
+          "required": true,
+          "param_values": {
+            "recertification_days": 180
+          }
+        },
+        {
+          "canonical_id": "LB-PM-001",
+          "required": true,
+          "param_values": {
+            "scan_frequency_days": 30
+          }
+        },
+        {
+          "canonical_id": "LB-PM-002",
+          "required": true,
+          "param_values": {
+            "patch_window_days": 30
+          }
+        },
+        {
+          "canonical_id": "LB-PM-003",
+          "required": true,
+          "param_values": {
+            "unpatchable_register": true
+          }
+        },
+        {
+          "canonical_id": "LB-PM-004",
+          "required": false,
+          "param_values": {
+            "advisory_review_days": 7
+          }
+        },
+        {
+          "canonical_id": "LB-LM-001",
+          "required": true,
+          "param_values": {
+            "log_retention_days": 180
+          }
+        },
+        {
+          "canonical_id": "LB-LM-002",
+          "required": true,
+          "param_values": {
+            "ntp_stratum_max": 3
+          }
+        },
+        {
+          "canonical_id": "LB-LM-003",
+          "required": true,
+          "param_values": {
+            "ids_enabled": true
+          }
+        },
+        {
+          "canonical_id": "LB-LM-004",
+          "required": true,
+          "param_values": {
+            "writable_window_hours": 0
+          }
+        },
+        {
+          "canonical_id": "LB-IR-001",
+          "required": true,
+          "param_values": {
+            "rto_hours": 4
+          }
+        },
+        {
+          "canonical_id": "LB-IR-002",
+          "required": true,
+          "param_values": {
+            "session_record_retention_days": 90
+          }
+        },
+        {
+          "canonical_id": "LB-IR-003",
+          "required": false,
+          "param_values": {
+            "exercise_frequency_days": 180
+          }
+        },
+        {
+          "canonical_id": "LB-BC-001",
+          "required": true,
+          "param_values": {
+            "backup_frequency_days": 7
+          }
+        },
+        {
+          "canonical_id": "LB-BC-002",
+          "required": true,
+          "param_values": {
+            "restore_test_frequency_days": 90
+          }
+        },
+        {
+          "canonical_id": "LB-BC-003",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-PRIV-001",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-PRIV-002",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SAF-001",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SAF-002",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-PHYS-001",
+          "required": true
+        }
+      ]
+    },
+    {
+      "name": "Manufacturer \u2014 CRA/62443 SDLC",
+      "version": "1.0.0",
+      "description": "Baseline for product manufacturers aligning with CRA and IEC 62443-4-1/-4-2 secure development and vulnerability handling.",
+      "rules": {
+        "scope": {
+          "role": [
+            "Manufacturer"
+          ],
+          "env": [
+            "IT",
+            "OT",
+            "Edge",
+            "IIoT"
+          ],
+          "lifecycle": [
+            "Design",
+            "Development",
+            "Integration",
+            "Operation",
+            "Maintenance"
+          ]
+        },
+        "targets": {
+          "jurisdiction": "EU"
+        },
+        "include_domains": [
+          "Secure Development",
+          "Supply Chain",
+          "Vulnerability",
+          "Incident Response"
+        ],
+        "scoring": {
+          "scheme": "weighted",
+          "weights_by_domain": {
+            "Secure Development": 1.4,
+            "Supply Chain": 1.2,
+            "Vulnerability": 1.1,
+            "Incident Response": 1.0
+          },
+          "pass_threshold": 0.8,
+          "partial_weight": 0.5,
+          "na_policy": "exclude"
+        },
+        "language": "en"
+      },
+      "controls": [
+        {
+          "canonical_id": "LB-SD-001",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SD-002",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SD-003",
+          "required": true,
+          "param_values": {
+            "sbom_required": true
+          }
+        },
+        {
+          "canonical_id": "LB-SD-004",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SD-005",
+          "required": true,
+          "param_values": {
+            "signature_algorithm": "Ed25519/RSASSA-PSS"
+          }
+        },
+        {
+          "canonical_id": "LB-SC-001",
+          "required": true
+        },
+        {
+          "canonical_id": "LB-SC-003",
+          "required": true,
+          "param_values": {
+            "sbom_format": "CycloneDX"
+          }
+        },
+        {
+          "canonical_id": "LB-SC-004",
+          "required": true,
+          "param_values": {
+            "advisory_sla_days": 30
+          }
+        },
+        {
+          "canonical_id": "LB-PM-001",
+          "required": true,
+          "param_values": {
+            "scan_frequency_days": 30
+          }
+        },
+        {
+          "canonical_id": "LB-PM-004",
+          "required": true,
+          "param_values": {
+            "advisory_review_days": 7
+          }
+        },
+        {
+          "canonical_id": "LB-IR-001",
+          "required": false,
+          "param_values": {
+            "rto_hours": 8
+          }
+        }
+      ]
+    }
+  ]
+}

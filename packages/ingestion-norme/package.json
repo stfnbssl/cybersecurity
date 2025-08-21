@@ -1,0 +1,28 @@
+{
+  "name": "ingestion-norme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "extract-cra": "node index_v1.js C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/normative/CRA/OJ_L_202402847_IT_TXT.pdf --framework \"CRA\" --edition 2024_2847 --jurisdiction Global --lang it --source \"https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32024R2847\" --out ./out",
+    "extract-batch": "node index_v2.js --batch manifest.json",
+    "extract-test": "node index_v2.js ../lb-audit/normative/NIS2/CELEX_32022L2555_IT_TXT.pdf --framework NIS2 --edition 2022 --lang it --source \"file://NIS2_it.pdf\" -o ./out > run.log 2>&1",
+    "extract-step-0": "node src/exec_step_0.js ./largepdf.json",
+    "extract-step-1": "node src/exec_step_1.js ./ingestion.json",
+    "extract-step-2": "node src/exec_step_2.js ./ingestion.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "jimp": "^1.6.0",
+    "mammoth": "^1.10.0",
+    "node-fetch": "^3.3.2",
+    "pdf-lib": "^1.17.1",
+    "pdf-parse": "^1.1.1",
+    "pdf-poppler": "^0.2.1",
+    "sharp": "^0.34.3",
+    "tesseract.js": "^6.0.1"
+  }
+}

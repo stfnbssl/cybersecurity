@@ -1,0 +1,275 @@
+{
+  "questions": [
+    {
+      "canonical_id": "LB-AC-001",
+      "risk_theme": "Access Control",
+      "question": "Is all OT remote admin access brokered via a jump service with MFA?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-AC-001",
+      "risk_theme": "Access Control",
+      "question": "Provide gateway policy export and MFA settings.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "AccessGatewayConfig",
+        "IdPPolicy"
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-002",
+      "risk_theme": "Access Control",
+      "question": "Are admin accounts unique and reviewed at least quarterly?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-AC-002",
+      "risk_theme": "Access Control",
+      "question": "Upload last access review report for OT administrators.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "AccessReviewReport"
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-003",
+      "risk_theme": "Access Control",
+      "question": "Is PAM enforced for OT-critical systems?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-AC-003",
+      "risk_theme": "Access Control",
+      "question": "Provide PAM policy and example session record.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "PAMPolicy",
+        "SessionRecording"
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-004",
+      "risk_theme": "Access Control",
+      "question": "Are service account secrets vaulted and rotated on schedule?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-AC-004",
+      "risk_theme": "Access Control",
+      "question": "Upload rotation logs or vault policy export.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "VaultPolicy",
+        "RotationLog"
+      ]
+    },
+    {
+      "canonical_id": "LB-AC-005",
+      "risk_theme": "Access Control",
+      "question": "Is idle timeout enabled on OT admin consoles?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-NW-001",
+      "risk_theme": "Network",
+      "question": "Are inter-zone ACLs deny-by-default with approved allowlists?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-NW-001",
+      "risk_theme": "Network",
+      "question": "Provide firewall export for OT↔DMZ conduits.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "FirewallConfig"
+      ]
+    },
+    {
+      "canonical_id": "LB-NW-002",
+      "risk_theme": "Network",
+      "question": "Is remote access terminated in DMZ and proxied into OT?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-NW-003",
+      "risk_theme": "Network",
+      "question": "Is protocol allowlisting configured on OT firewalls/IDS?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-NW-004",
+      "risk_theme": "Network",
+      "question": "Are unidirectional gateways or brokers deployed for critical zones?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-NW-005",
+      "risk_theme": "Network",
+      "question": "Are OT firewall rules recertified on schedule with business justification?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PM-001",
+      "risk_theme": "Vulnerability",
+      "question": "Is there an OT vulnerability management register with owners and due dates?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PM-001",
+      "risk_theme": "Vulnerability",
+      "question": "Provide last remediation status report.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "VulnReport"
+      ]
+    },
+    {
+      "canonical_id": "LB-PM-002",
+      "risk_theme": "Vulnerability",
+      "question": "Are OT patches tested in a lab before deployment?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PM-003",
+      "risk_theme": "Vulnerability",
+      "question": "Is there a documented compensating control plan for unpatchable assets?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PM-004",
+      "risk_theme": "Vulnerability",
+      "question": "Is there a subscription/monitoring for vendor advisories with documented triage?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-LM-001",
+      "risk_theme": "Monitoring",
+      "question": "Are OT logs forwarded to a central SIEM?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-LM-001",
+      "risk_theme": "Monitoring",
+      "question": "Provide SIEM ingestion dashboard or sample.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "SIEMReport"
+      ]
+    },
+    {
+      "canonical_id": "LB-LM-002",
+      "risk_theme": "Monitoring",
+      "question": "Is time synchronization enforced and monitored for OT logging components?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-LM-003",
+      "risk_theme": "Monitoring",
+      "question": "Is an OT-aware IDS deployed with alerting to SOC?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-LM-004",
+      "risk_theme": "Monitoring",
+      "question": "Are OT logs write-once or integrity-protected?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-IR-001",
+      "risk_theme": "Incident Response",
+      "question": "Do playbooks cover safe-state criteria and safety escalation?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-IR-002",
+      "risk_theme": "Incident Response",
+      "question": "Are admin sessions recorded and retained per policy?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-IR-003",
+      "risk_theme": "Incident Response",
+      "question": "Has an OT IR exercise been conducted within the last 6 months?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-BC-001",
+      "risk_theme": "BC/DR",
+      "question": "Are OT configuration backups offline/immutable and recent?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-BC-002",
+      "risk_theme": "BC/DR",
+      "question": "Provide last OT restore test report/log.",
+      "answer_type": "evidence",
+      "evidence_type": [
+        "RestoreTestLog"
+      ]
+    },
+    {
+      "canonical_id": "LB-BC-003",
+      "risk_theme": "BC/DR",
+      "question": "Are OT backup repositories access-controlled and isolated?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PRIV-001",
+      "risk_theme": "Privacy",
+      "question": "Has a DPIA been conducted for OT processing of personal data?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PRIV-002",
+      "risk_theme": "Privacy",
+      "question": "Are ROPA and DPAs in place for OT-related processing?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-SAF-001",
+      "risk_theme": "Safety",
+      "question": "Are co-engineering reviews documented with actions and approvals?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-SAF-002",
+      "risk_theme": "Safety",
+      "question": "Do playbooks include tested safe-state actions and interlocks?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    },
+    {
+      "canonical_id": "LB-PHYS-001",
+      "risk_theme": "Physical",
+      "question": "Are OT areas controlled with access lists and monitoring?",
+      "answer_type": "yes/no",
+      "evidence_type": []
+    }
+  ]
+}

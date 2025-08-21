@@ -1,0 +1,46 @@
+$group
+    # Intervento — Compliance del SDLC (Fase 1 Audit • Fase 2 Strumenti)
+
+    ## Obiettivo
+
+    Mettere il processo di sviluppo software in condizione di **dimostrare** sicurezza e conformità (IEC 62443-4-1, NIST SSDF, CRA), creando evidenze riusabili verso clienti e auditor.
+
+    ## Fase 1 — Audit “evidence-first”
+
+    * **Scoping & baseline**: raccolta di policy, procedure, pipeline, report e rilasci esistenti.
+    * **Matrice Requisiti↔Processi↔Evidenze**: traduzione dei requisiti in controlli SDLC e prove verificabili.
+    * **Gap analysis**: priorità tra quick-wins e interventi strutturali con owner e tempi.
+    * **SOP aggiornate**: threat modeling, secure coding, code review, gestione segreti, test (SAST/SCA/DAST), gestione vulnerabilità/PSIRT.
+    * **Evidence Factory**: archivio unico, versionato e firmato di tutte le prove (SBOM, report, note di rilascio, attestazioni).
+    * **Dry-run audit** e **Report di prontezza** con roadmap 6–12 mesi e KPI (es. % build firmate, MTTR CVE).
+
+    ### Deliverable
+
+    Baseline documentata, matrice requisiti-processi-evidenze, gap analysis, SOP aggiornate, Evidence Factory popolata, report & roadmap.
+
+    ### Vantaggi
+
+    * **Accesso ai mercati**: affermazioni supportate da evidenze.
+    * **Coerenza** tra qualità, R\&D e vendite.
+    * **Efficienza**: meno lavoro ad hoc per audit e richieste clienti.
+    * **Riduzione del rischio** operativo e regolatorio.
+
+    ## Fase 2 — Strumenti per la gestione del software (integrazione in CI/CD)
+
+    * **SBOM per ogni build** (CycloneDX/SPDX) + pubblicazione governata (es. Dependency-Track).
+    * **Scanning automatico** di codice/dependenze/immagini (SAST/SCA/Container) con **policy gate** su severità.
+    * **Firma artefatti & immagini** (Sigstore Cosign) e **provenance SLSA/in-toto** verificabile lato deploy.
+    * **Runner effimeri** e segreti a durata breve (OIDC), log e attestazioni come evidenza.
+    * **Aggiornamenti sicuri (OTA)** allineati a TUF: ruoli chiave, rotazione, rollback, finestre di manutenzione.
+    * **PSIRT operativo** (ISO 29147/30111): intake, triage, advisory, comunicazione ai clienti.
+    * **Teleassistenza sicura** (zero-trust, MFA, bastion, session recording) e **inventario** con correlazione SBOM↔asset.
+
+    ### Deliverable
+
+    Pipeline hardenizzata con step SBOM→scan→firma→provenance, policy gate, template di note di rilascio/advisory, dashboard vulnerabilità e KPI.
+
+    ### Vantaggi
+
+    * **Tempo di risposta** più breve su vuln e richieste clienti.
+    * **Tracciabilità end-to-end** del ciclo di rilascio.
+    * **Riutilizzo** sistematico delle prove in trattative e audit.

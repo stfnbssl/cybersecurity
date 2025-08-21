@@ -345,17 +345,23 @@ wzjob lb-audit/job
         dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/lbvsa/ai_step_3_out/t
         wzjobs(any_ai, &jobCtx)
 
+    line ittf-docs-masterdeck
+        cwd-folder ${jobCtx.ittf_docs_folder}/masterdeck
+        dest-folder ${jobCtx.dest_folder}/masterdeck
+        wzjobs(any_text, &jobCtx)
+        wzjobs(any_json, &jobCtx)
+
     production
         dest-folder ${jobCtx.dest_folder}
         $if false
             line-ref ittf-root
-        $if true
+        $if false
             line-ref ittf-models
         $if false
             line-ref ittf-meta
-        $if true
+        $if false
             line-ref ittf-meta-metas
-        $if true
+        $if false
             line-ref ittf-meta-normative_e_standard
         $if false
             line-ref ittf-meta-articles
@@ -404,3 +410,5 @@ wzjob lb-audit/job
             line-ref ittf-docs-ai-documents
         $if false
             line-ref ittf-docs-ai-lab
+        $if true
+            line-ref ittf-docs-masterdeck

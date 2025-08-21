@@ -1,0 +1,178 @@
+{
+    "_comment": "...",
+    "batch_stop": [
+        {
+            "framework": "CRA",
+            "edition": 2024,
+            "source": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=OJ:L_202402847",
+            "origin": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=OJ:L_202402847",
+            "type": "html",
+            "options": {
+                "_selector": "...",
+                "multiline": true,
+                "preserveIndentation": true,
+                "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
+                "legalAnalysis": {
+                    "outputFormat": "json",
+                    "trimWhitespace": true,
+                    "minArticleLength": 10,
+                    "skipEmptyArticles": true
+                }                
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/CRA.txt"
+        },
+        {
+            "framework": "NIS2",
+            "edition": 2022,
+            "source": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32022L2555",
+            "origin": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32022L2555",
+            "type": "html",
+            "options": {
+                "_selector": "...",
+                "multiline": true,
+                "preserveIndentation": true,
+                "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
+                "legalAnalysis": {
+                    "outputFormat": "json",
+                    "trimWhitespace": true,
+                    "minArticleLength": 10,
+                    "skipEmptyArticles": true
+                }                
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NIS2.txt"
+        },
+        {
+            "framework": "DM_2006",
+            "edition": 2006,
+            "source": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32006L0042",
+            "origin": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32006L0042",
+            "type": "html",
+            "options": {
+                "_selector": "...",
+                "multiline": true,
+                "preserveIndentation": true,
+                "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
+                "legalAnalysis": {
+                    "outputFormat": "json",
+                    "trimWhitespace": true,
+                    "minArticleLength": 10,
+                    "skipEmptyArticles": true
+                }                
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/DM_2006.txt"
+        },
+        {
+            "framework": "RM_2023",
+            "edition": 2023,
+            "source": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32023R1230",
+            "origin": "https://eur-lex.europa.eu/legal-content/IT/TXT/HTML/?uri=CELEX:32023R1230",
+            "type": "html",
+            "options": {
+                "_selector": "...",
+                "multiline": true,
+                "preserveIndentation": true,
+                "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
+                "legalAnalysis": {
+                    "outputFormat": "json",
+                    "trimWhitespace": true,
+                    "minArticleLength": 10,
+                    "skipEmptyArticles": true
+                }                
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/RM_2023.txt"
+        },
+        {
+            "framework": "NEC_2023",
+            "edition": "2023",
+            "source": "C:/My/wizzi/stfnbssl/lavori/logbot-cybersecurity/documenti/NFPA-70-National-Electrical-Code-2023.pdf",
+            "origin": "",
+            "options": {
+                "cleanText": true,
+                "fixOCR": true,
+                "fixHyphenation": true,
+                "analyzeQuality": true,
+                "customCorrections": {
+                "prm-idcs": "provides",
+                "cmcrtainmcnt": "entertainment", 
+                "elfecL\"l": "effects"
+                }
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023.txt"
+        }
+    ],
+    "batch": [
+        {
+            "framework": "NEC_2023",
+            "edition": "2023",
+            "source": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/normative/NEC/source/art_90_299.pdf",
+            "origin": "",
+            "options": {
+                "cleanText": true,
+                "useOCR": true,
+                "ocrOptions": {
+                    "dpi": 300,
+                    "columns": 2,
+                    "language": "ita+eng",
+                    "ocrEngine": "tesseract",
+                    "preprocessing": {
+                        "denoise": true,
+                        "deskew": true,
+                        "contrast": true
+                    }
+                }
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023_art_90_299.txt"
+        },        {
+            "framework": "NEC_2023",
+            "edition": "2023",
+            "source": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/normative/NEC/source/art_300_399.pdf",
+            "origin": "",
+            "options": {
+                "cleanText": true,
+                "useOCR": true,
+                "ocrOptions": {
+                    "dpi": 300,
+                    "columns": 2,
+                    "language": "ita+eng",
+                    "ocrEngine": "tesseract",
+                    "preprocessing": {
+                        "denoise": true,
+                        "deskew": true,
+                        "contrast": true
+                    }
+                }
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023_art_300_399.txt"
+        }
+    ],
+    "step_2": [
+        {
+            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/CRA.txt",
+            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/CRA.json",
+            "format": "EU",
+            "structure": "capo+article+letter+point" 
+        },
+        {
+            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NIS2.txt",
+            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/NIS2.json",
+            "format": "EU",
+            "structure": "capo+article+letter+point" 
+        },
+        {
+            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/DM_2006.txt",
+            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/DM_2006.json",
+            "format": "EU",
+            "structure": "article+letter+point" 
+        },
+        {
+            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/RM_2023.txt",
+            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/RM_2023.json",
+            "format": "EU",
+            "structure": "article+letter+point" 
+        }
+    ]
+}
