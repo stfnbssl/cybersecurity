@@ -1,0 +1,47 @@
+$group
+    function exitWithError
+        param msg
+        param code
+        set code = code || 1
+        _ console.error
+            `lit 
+                + [ERRORE]&nbsp;
+                @ msg
+                + 
+        _ process.exit(code)
+    function ensureDirSync
+        param filePathOrDir
+        const dir
+            iif fs.existsSync(filePathOrDir) && fs.lstatSync(filePathOrDir).isDirectory()
+                then filePathOrDir
+                else path.dirname(filePathOrDir)
+        if !fs.existsSync(dir)
+            _ fs.mkdirSync
+                @ dir
+                { 
+                    @ recursive true
+    function readJSONSync
+        param filePath
+        try 
+            const raw = fs.readFileSync(filePath, 'utf8')
+            return JSON.parse(raw)
+        catch err
+            _ exitWithError
+                `lit 
+                    + Impossibile leggere o parsare il JSON di configurazione:&nbsp;
+                    @ err.message
+                    + 
+    function readTextSync
+        param filePath
+        try 
+            let text = fs.readFileSync(filePath, 'utf8')
+            if text.charCodeAt(0) === 65279
+                set text = text.slice(1)
+            return text
+                # rimuove BOM iniziale
+        catch err
+            _ exitWithError
+                `lit 
+                    + Impossibile leggere il file di input:&nbsp;
+                    @ err.message
+                    + 

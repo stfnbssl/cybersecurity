@@ -22,7 +22,7 @@ class DocumentTextExtractor {
         this.supportedFormats = ['html', 'pdf', 'docx', 'txt'];
         this.legalParser = new LegalDocumentParser();
         this.pdfCleaner = new PDFTextCleaner();
-        this.ocrExtractor = new PDFImageOCRExtractor();
+        this.pdfOCRExtractor = new PDFImageOCRExtractor();
     }
 
     /**
@@ -300,19 +300,50 @@ class DocumentTextExtractor {
      */
     async extractFromPdf(content, options = {}) {
         try {
-            let text;
-            
-            // Verifica se usare OCR avanzato
+            // Se è richiesto OCR avanzato, usa il sistema immagini + OCR
             if (options.useOCR) {
-                console.log('📷 Usando estrazione OCR avanzata...');
-                text = await this.ocrExtractor.extractFromPDF(content, options.ocrOptions || {});
-            } else {
-                // Estrazione tradizionale con pdf-parse
-                const data = await pdfParse(content, {
-                    max: options.maxPages || 0,
-                    version: options.version || 'v1.10.100'
+                console.log('🔄 Utilizzando estrazione OCR avanzata...');
+                
+                const ocrResult = await this.pdfOCRExtractor.extractWithOCR(content, {
+                    language: options.ocrLanguage || 'eng+ita',
+                    detectColumns: options.detectColumns !== false,
+                    enhanceImage: options.enhanceImage !== false,
+                    dpi: options.dpi || 300,
+                    keepImages: options.keepImages || false,
+                    pageRange: options.pageRange || null,
+                    columnsCount: options.columnsCount || 'auto',
+                    columnSeparator: options.columnSeparator || '\n\n--- COLONNA ---\n\n',
+                    ...options.ocrOptions
                 });
-                text = data.text;
+                
+                if (!ocrResult.success) {
+                    throw new Error('Estrazione OCR fallita');
+                }
+                
+                console.log(`✅ OCR completato - Confidenza: ${ocrResult.confidence}% - Colonne: ${ocrResult.columnInfo?.columns || 1}`);
+                return ocrResult.text;
+            }
+            
+            // Estrazione PDF tradizionale
+            const data = await pdfParse(content, {
+                // Opzioni avanzate per migliorare l'estrazione
+                max: options.maxPages || 0, // 0 = tutte le pagine
+                version: options.version || 'v1.10.100'
+            });
+            
+            let text = data.text;
+            
+            // Se il testo è troppo corto o ha troppi errori, suggerisci OCR
+            if (options.autoSwitchToOCR !== false) {
+                const textQuality = this.assessPDFTextQuality(text, content.length);
+                
+                if (textQuality.shouldUseOCR) {
+                    console.log(`⚠️  Qualità testo bassa (${textQuality.score}%) - Switching automatico a OCR`);
+                    console.log(`   Motivo: ${textQuality.reason}`);
+                    
+                    // Ricorsione con OCR abilitato
+                    return await this.extractFromPdf(content, { ...options, useOCR: true });
+                }
             }
             
             // Applica pulizia del testo se richiesta
@@ -342,11 +373,6 @@ class DocumentTextExtractor {
                     if (analysis.suspiciousPatterns.length > 0) {
                         console.log('⚠️  Pattern sospetti trovati:', analysis.suspiciousPatterns.map(p => p.name).join(', '));
                     }
-                    
-                    // Suggerisci OCR se la qualità è bassa
-                    if (analysis.confidence < 70 && !options.useOCR) {
-                        console.log('💡 Suggerimento: Considera di usare "useOCR": true per migliorare la qualità');
-                    }
                 }
             }
             
@@ -354,6 +380,54 @@ class DocumentTextExtractor {
         } catch (error) {
             throw new Error(`Errore nell'estrazione PDF: ${error.message}`);
         }
+    }
+
+    /**
+     * Valuta la qualità del testo estratto da PDF per decidere se usare OCR
+     */
+    assessPDFTextQuality(text, pdfSize) {
+        const textLength = text.length;
+        const wordsCount = text.split(/\s+/).length;
+        const linesCount = text.split(/\n/).length;
+        
+        let score = 100;
+        let reasons = [];
+        
+        // Testo troppo corto rispetto al PDF
+        const textToPdfRatio = textLength / pdfSize;
+        if (textToPdfRatio < 0.01) { // Meno dell'1% 
+            score -= 50;
+            reasons.push('Testo troppo corto rispetto alla dimensione PDF');
+        }
+        
+        // Troppe righe brevi (possibile problema di layout)
+        const shortLines = text.split(/\n/).filter(line => line.trim().length < 10).length;
+        const shortLineRatio = shortLines / linesCount;
+        if (shortLineRatio > 0.5) {
+            score -= 30;
+            reasons.push('Troppe righe frammentate');
+        }
+        
+        // Caratteri sospetti di OCR fallito
+        const suspiciousChars = /[��\x00-\x08\x0B\x0C\x0E-\x1F]/g;
+        const suspiciousMatches = (text.match(suspiciousChars) || []).length;
+        if (suspiciousMatches > textLength * 0.01) { // Più dell'1%
+            score -= 40;
+            reasons.push('Caratteri corrotti rilevati');
+        }
+        
+        // Parole molto brevi (media < 3 caratteri)
+        const avgWordLength = textLength / wordsCount;
+        if (avgWordLength < 3) {
+            score -= 25;
+            reasons.push('Parole troppo frammentate');
+        }
+        
+        return {
+            score: Math.max(0, score),
+            shouldUseOCR: score < 60,
+            reason: reasons.join(', ') || 'Qualità accettabile'
+        };
     }
 
     /**

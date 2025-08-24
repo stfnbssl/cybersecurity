@@ -1,0 +1,38 @@
+$group
+    $
+        function cleanName(name) {
+            var retval = name.indexOf(' ') > -1 ? '"' + name + '"' : name;
+            return _.replace(retval,'(',"$"+"{'('}");
+        }
+        function splitTextIntoSegments(text, maxLength) {
+            const words = text.split(' ');
+            const segments = [];
+            let currentSegment = '';
+            for (var i=0; i<words.length; i++) {
+                var word = words[i];
+                if ((currentSegment + word).length + 1 > maxLength) { 
+                    segments.push(currentSegment.trim());
+                    currentSegment = '';
+                }
+                currentSegment += word + ' ';
+            }            
+            if (currentSegment.trim()) {
+                segments.push(currentSegment.trim());
+            }
+            return segments;
+        }        
+
+    $function toSplittedString
+        $param name
+        $param text
+        $
+            var lines = splitTextIntoSegments(text, 80);
+            lines[0] = '"' + lines[0];
+            lines[lines.length-1] = lines[lines.length-1] + '"';
+
+        ${''+cleanName(name)} ${lines[0]}
+            $ var j = 1
+
+            $while j < lines.length
+                +b ${lines[j]}
+                $ j++

@@ -1,5 +1,29 @@
 {
     "_comment": "...",
+    "batch": [
+        {
+            "framework": "62443-2-4",
+            "edition": "2015",
+            "source": "C:/My/wizzi/stfnbssl/lavori/logbot-cybersecurity/documenti/62443/2-4/pag_24_33.pdf",
+            "origin": "",
+            "options": {
+                "cleanText": true,
+                "useOCR": true,
+                "ocrOptions": {
+                    "dpi": 300,
+                    "columns": 2,
+                    "language": "eng",
+                    "ocrEngine": "tesseract",
+                    "preprocessing": {
+                        "denoise": true,
+                        "deskew": true,
+                        "contrast": true
+                    }
+                }
+            },
+            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/IEC_62443_2_4_pag_24_33.txt"
+        }
+    ],    
     "batch_stop": [
         {
             "framework": "CRA",
@@ -104,7 +128,7 @@
             "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023.txt"
         }
     ],
-    "batch": [
+    "batch_stop_2": [
         {
             "framework": "NEC_2023",
             "edition": "2023",
@@ -126,7 +150,8 @@
                 }
             },
             "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023_art_90_299.txt"
-        },        {
+        },
+        {
             "framework": "NEC_2023",
             "edition": "2023",
             "source": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/normative/NEC/source/art_300_399.pdf",
@@ -174,5 +199,90 @@
             "format": "EU",
             "structure": "article+letter+point" 
         }
-    ]
+    ],
+    "tabella_2_4_a1": {
+        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/manual_sources/iec_62443_2_4_tab_a1_e.txt",
+        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/DOC_62443_2_4_Tab_A1_e.json"
+    },
+    "iec_27001": {
+        "step0": {
+            "iso27001": "C:/My/lb/documenti/27001/ISO IEC 27001-2022.pdf",
+            "iso27002": "C:/My/lb/documenti/27001/ISO IEC 27002-2022.pdf",
+            "outdir": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001"
+        },
+        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001/27001-clean.txt",
+        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/27001.json",
+        "dirtyLines": [
+            "ISO/IEC 27001:2022(E)",
+            "© ISO/IEC 2022",
+            "© ISO/IEC 2022 – All rights reserved",
+            "INTERNATIONAL STANDARD"
+        ],
+        "blockHeaders": [
+            "1\t Scope",
+            "Annex A",
+            "Bibliography"
+            ],
+        "headersCaseSensitive": true,
+        "includeHeaderInBlock": true,
+        "step2": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/blocks/2.json",
+            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27001/27001_Requirements.json"
+        }
+    },
+    "iec_27002": {
+        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001/27002-clean.txt",
+        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27002/27002.json",
+        "dirtyLines": [
+            "ISO/IEC 27002:2022(E)",
+            "© ISO/IEC 2022",
+            "© ISO/IEC 2022 – All rights reserved",
+            "INTERNATIONAL STANDARD"
+        ],
+        "blockHeaders": [
+            "4\t Structure of this document",
+            "5\t Organizational controls",
+            "Annex A",
+            "Annex B",
+            "Bibliography"
+            ],
+        "headersCaseSensitive": true,
+        "includeHeaderInBlock": true,
+        "step2": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/blocks/3.json",
+            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27002/27002_Controls.json"
+        },
+        "step3": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27002/27002_Controls.json",
+            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_4/iec_27002/27002_Controls.json"
+        }        
+    },
+    "nist_800_53": {
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/NIST/NIST.SP.800-53r5.pdf",
+            "outdir": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/nist_800_53"
+        },
+        "step1": {
+            "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/nist_800_53/pdf-raw.txt",
+            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/nist_800_53/pdf.json",
+            "dirtyLines": [
+            ],
+            "blockHeaders": [
+                "Errata",
+                "CHAPTER ONE",
+                "CHAPTER TWO",
+                "CHAPTER THREE",
+                "REFERENCES",
+                "APPENDIX A",
+                "APPENDIX B",
+                "APPENDIX C"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/nist_800_53/blocks/5.json",
+            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/nist_800_53/nist_800_53_Controls.json"
+        }
+    }
 }

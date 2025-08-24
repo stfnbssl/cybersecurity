@@ -20,7 +20,7 @@ class DocumentTextExtractor {
     constructor() {
         this.supportedFormats = ['html', 'pdf', 'docx', 'txt'];
         this.pdfCleaner = new PDFTextCleaner();
-        this.ocrExtractor = new PDFImageOCRExtractor();
+        this.pdfOCRExtractor = new PDFImageOCRExtractor();
     }
 
     /**
@@ -289,18 +289,36 @@ class DocumentTextExtractor {
      */
     async extractFromPdf(content, options = {}) {
         try {
-            let text;
+            // Se è richiesto OCR avanzato, usa il sistema immagini + OCR
             if (options.useOCR) {
-                console.log('📷 Usando estrazione OCR avanzata...');
-                text = await this.ocrExtractor.extractFromPDF(content, options.ocrOptions || {});
-            } else {
-                // Estrazione tradizionale con pdf-parse
-                const data = await pdfParse(content, {
-                    max: options.maxPages || 0,
-                    version: options.version || 'v1.10.100'
+                console.log('🔄 Utilizzando estrazione OCR avanzata...');
+                
+                const ocrResult = await this.pdfOCRExtractor.extractWithOCR(content, {
+                    language: options.ocrLanguage || 'eng+ita',
+                    detectColumns: options.detectColumns !== false,
+                    enhanceImage: options.enhanceImage !== false,
+                    dpi: options.dpi || 300,
+                    keepImages: options.keepImages || false,
+                    pageRange: options.pageRange || null,
+                    columnsCount: options.columnsCount || 'auto',
+                    columnSeparator: options.columnSeparator || '\n\n--- COLONNA ---\n\n',
+                    ...options.ocrOptions
                 });
-                text = data.text;
+                
+                if (!ocrResult.success) {
+                    throw new Error('Estrazione OCR fallita');
+                }
+                
+                console.log(`✅ OCR completato - Confidenza: ${ocrResult.confidence}% - Colonne: ${ocrResult.columnInfo?.columns || 1}`);
+                return ocrResult.text;
             }
+            let text;
+            // Estrazione tradizionale con pdf-parse
+            const data = await pdfParse(content, {
+                max: options.maxPages || 0,
+                version: options.version || 'v1.10.100'
+            });
+            text = data.text;
             if (options.cleanText !== false) {
                 const cleanOptions = {
                     fixOCR: options.fixOCR !== false,

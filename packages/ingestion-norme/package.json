@@ -10,6 +10,15 @@
     "extract-step-0": "node src/exec_step_0.js ./largepdf.json",
     "extract-step-1": "node src/exec_step_1.js ./ingestion.json",
     "extract-step-2": "node src/exec_step_2.js ./ingestion.json",
+    "extract-27000-step-1": "python py/extract_iso_controls.py --config ./ingestion.json --dump-text --text-mode text",
+    "extract-27001-step-1": "node src/lib/27001/text-extractor.js ./ingestion.json 1",
+    "extract-27001-step-2": "node src/lib/27001/text-extractor-step-2.js ./ingestion.json 2",
+    "extract-27002-step-1": "node src/lib/27001/text-extractor.js ./ingestion.json 21",
+    "extract-27002-step-2": "node src/lib/27001/text-extractor-step-2.js ./ingestion.json 22",
+    "extract-27002-step-3": "node src/lib/27001/text-extractor-step-3.js ./ingestion.json 23",
+    "extract-nist-800-53-step-0": "python py/extract_pdf.py --config ./ingestion.json --configProp nist_800_53 --dump-text --text-mode text",
+    "extract-nist-800-53-step-1": "node src/lib/nist_800_53/text-extractor-step-1.js ./ingestion.json 1",
+    "extract-nist-800-53-step-2": "node src/lib/nist_800_53/text-extractor-step-2.js ./ingestion.json 2",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
@@ -22,6 +31,7 @@
     "pdf-lib": "^1.17.1",
     "pdf-parse": "^1.1.1",
     "pdf-poppler": "^0.2.1",
+    "pdf2pic": "^3.2.0",
     "sharp": "^0.34.3",
     "tesseract.js": "^6.0.1"
   }
