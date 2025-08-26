@@ -90,12 +90,12 @@ function processFiles(configPath) {
         const configContent = fs.readFileSync(configPath, 'utf8');
         const config = JSON.parse(configContent);
         
-        // Verifico che esista la configurazione per tabella_2_4_a1
-        if (!config.tabella_2_4_a1) {
-            throw new Error('Configurazione "tabella_2_4_a1" non trovata nel file di configurazione');
+        // Verifico che esista la configurazione per iec_62443_2_4
+        if (!config.iec_62443_2_4) {
+            throw new Error('Configurazione "iec_62443_2_4" non trovata nel file di configurazione');
         }
         
-        const { inputTextPath, outputJSONPath } = config.tabella_2_4_a1;
+        const { inputTextPath, outputJSONPath } = config.iec_62443_2_4;
         
         if (!inputTextPath || !outputJSONPath) {
             throw new Error('Proprietà "inputTextPath" e "outputJSONPath" sono obbligatorie');
@@ -167,7 +167,7 @@ Uso: node converter.js <path-config.json>
 
 Il file di configurazione deve contenere:
 {
-  "tabella_2_4_a1": {
+  "iec_62443_2_4": {
     "inputTextPath": "path/to/input.txt",
     "outputJSONPath": "path/to/output.json"
   }

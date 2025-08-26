@@ -1,0 +1,292 @@
+[
+  {
+    "Req_ID": "SP.03.07",
+    "BR_RE": "BR",
+    "Functional_area": "Architecture",
+    "Topic": "Devices - Workstations",
+    "Subtopic": "Access control",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that wired and wireless workstations, including handhelds, used for maintenance and engineering of wired and wireless control/instrumentation devices do not circumvent the: 1) Automation Solution's access controls for these devices,\n2) network security safeguards (e.g. network security devices) at the Automation Solution's boundary with Level 3.\nNOTE 1 Direct access to these devices by handhelds that bypass access controls of the Automation Solution is prohibited.\nNOTE 2 Direct access by a handheld to a wireless device in Level 3 that bypasses the Level 2/3 network security device is prohibited.",
+    "Rationale": "The capabilities specified by this BR and its RE are used to ensure that the Automation Solution's access controls (including authentication mechanisms) are always used to prevent unauthorized access to the Automation Solution's field devices from workstations/handhelds.\nHaving this capability means that the service provider has an identifiable process for ensuring that there are no direct paths between workstations/handhelds and control/instrumentation devices that bypass the control system's access controls. The assumption is that access controls to these devices by engineers and operators is built into the control system. However, maintenance or engineering may be done using handhelds or other workstations that are not tightly integrated with the control system, and this required capability ensures that they cannot directly connect to control/instrumentation devices, bypassing the control system's access controls.\nSP.03.07"
+  },
+  {
+    "Req_ID": "SP.03.08",
+    "BR_RE": "BR",
+    "Functional_area": "Architecture",
+    "Topic": "Devices - Network",
+    "Subtopic": "Least functionality",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that least privilege is used for which the service provider is responsible.",
+    "Rationale": "This BR and its REs recognize that network devices are critical to the Automation Solution, and as a result, are often the subject of attack. Therefore, this BR and its administration of network devices for REs are defined to ensure that the various facets of network device administration are protected.\nHaving this capability means that the service provider has an identifiable process for applying the concept of least privilege to the administration of network devices. Least privilege for administrative operations means that access is granted only to resources (e.g. directories and files) that are needed and operating system privileges are similarly restricted to only those that are needed."
+  },
+  {
+    "Req_ID": "SP.03.08",
+    "BR_RE": "RE(1)",
+    "Functional_area": "Architecture",
+    "Topic": "Devices - Network",
+    "Subtopic": "Access control",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that access controls used for the administration of network devices and wireless networks include role-based access controls.\nNOTE Normally network devices are only accessed by administrators so it is necessary to define only a single role for them. However, if the asset owner's operating procedures allow access to the network devices by administrators and others, then multiple roles can be defined.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for configuring network devices to use role-based access controls. Defining separate roles allows separate access control lists to be defined for each role, thus supporting the concept of least privilege.\nNormally, network devices are accessed only by administrators so only one role needs to be defined and the access control list to be set accordingly. However, if the asset owner's operating procedures provide for different levels of network device administration, then multiple roles need to be defined. Users capable of administering network devices will then be granted these roles.\nSee IEC 62351-8 for further discussion of role based access controls."
+  },
+  {
+    "Req_ID": "SP.03.08",
+    "BR_RE": "RE(2)",
+    "Functional_area": "Architecture",
+    "Topic": "Devices Network",
+    "Subtopic": "Cryptography",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that encryption is used to protect data, whether in transit or at rest, that is used in the administration of network device (e.g. passwords, configuration data) that is identified as data requiring safeguarding (see SP.03.10 BR and its REs).\nNOTE See SP.03.10 RE(3) for cryptographic requirements.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for ensuring that data used for the administration of network device that is regarded as sensitive data as specified in SP.03.10 BR and its RES is protected by encryption within the device and on communication links.\nEncryption used on communications links can be performed at the network layer, on the transport layer connection, or at the message level to protect the data \"on the wire\".\nEncryption within network devices is used to prevent attacks on the configuration by malicious software in the device (e.g. as a result of hacking).\nThe use of encryption mechanisms that provide integrity protection should be considered, such as AES_GCM."
+  },
+  {
+    "Req_ID": "SP.03.08",
+    "BR_RE": "RE(3)",
+    "Functional_area": "Architecture",
+    "Topic": "Devices - Network",
+    "Subtopic": "Access control",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that access controls used for the administration of network devices include mutual authentication.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for configuring network devices to use mutual authentication. Mutual authentication validates the identity of the user and the network device, and results in the ability of the network device to determine whether the user is authorized to access the device, and in the ability for the user to ensure the device is the intended device and is not being spoofed. Challenge/response, user password/device certificate, and Kerberos (RFC 1510), are examples of techniques used to provide mutual authentication."
+  },
+  {
+    "Req_ID": "SP.03.09",
+    "BR_RE": "BR",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that the Automation Solution is configured to verify that all control actions and data flows in the Automation Solution (e.g. between workstations and controllers), including configuration changes, are:\n1) valid,\n2) initiated or approved by an authorized user, and\n3) transferred over an approved connection in the approved direction.",
+    "Rationale": "The capability specified by this BR is used to ensure that there are manual and/or automated controls in place to prevent Automation Solution devices, such as controllers, from executing invalid and/or unauthorized commands.\nHaving this capability means that the service provider has an identifiable process for ensuring that all commands (e.g. writes to setpoints, configuration commands) sent to Automation Solution devices (e.g. from workstations) are valid (within authorized limits), are authorized by a user with the appropriate permissions, and are transferred to the device executing the command (e.g. controller) over a connection that has been designated/authorized to be used for this purpose (e.g. a connection from an Operator Console to a controller).\nThe intent of the second item of the requirement is to make sure that commands can only be requested by authorized users (e.g. operators), that the entity receiving and executing the command knows which connections are authorized for receiving commands, and that the command is checked for validity. Validity is normally value and state dependent. For example, a setpoint normally is not allowed to be written by the operator without putting the loop into manual control. This requirement also requires the service provider to have an identifiable process for ensuring that data flows are conducted over an authorized connection and that the data is transferred in the authorized direction. The intent of this portion of the requirement is make sure that the flow of data, including the direction, is authorized and conducted over authorized connections.\nFor example, if a dynamic change (not a configuration change) to a set point is initiated by an entity not explicitly authorized to make the change, such as an advanced control application, then the system will notify the operator of the change and the operator is required to approve it before it can take effect. If the operator does not approve it, the set point does not change.\nNOTE 1 This requirement generally applies to commands issued by workstations and sent to controllers, and not to commands sent from controllers to Level 1 devices.\nNOTE 2 Authorization of connections may be performed automatically by the control system and/or through appropriate configuration by the service provider (setting up network addresses/ports authorized to send commands.\nNOTE 3 Risk assessments (see IEC 62443-3-2) can be used to determine which connections are authorized to perform control actions. If warranted by the risk assessment, \"dual approval\" system capabilities (see IEC 62443-3-3) can be used to support this requirement. Dual approval refers to the system requiring two people to authorize actions that can result in serious impact to the IACS.\nNOTE 4 \"Initiated or approved by\" means, for example, that the Automation Solution can prevent remote operators from changing setpoints without approval by the local operator through the authorized connection. How this is implemented is Automation Solution dependent."
+  },
+  {
+    "Req_ID": "SP.03.10",
+    "BR_RE": "BR",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Sensitive data",
+    "Doc": "Yes",
+    "Requirement": "The service provider shall have the capability to ensure that data storage points and data flows within the Automation Solution that require safeguarding, as defined or approved by the asset owner, are documented, including the security requirements for their safeguarding (e.g. confidentiality, integrity).",
+    "Rationale": "The capabilities specified by this BR and its REs are used to ensure that data stored and/or transferred in the Automation Solution that needs protection is documented and adequately protected. Typically both the asset owner and the service provider collaborate to identify control system data that needs protection (e.g. passwords, certificates, keys) and other data deemed worthy of protection by the asset owner (e.g. recipes). Having this capability means that the service provider has an identifiable process for identifying the data within the Automation Solution, either at rest or in transit, that requires protection and the type of protection required. The definition of data requiring safeguarding often contains site-specific criteria, and therefore, the asset owner should provide or at least approve the criteria. Data at rest can be in memory or in a storage device, and data in transit is data that is being transferred from one entity to another (a data flow).\nExamples of the types of data to be protected include (this list is not exhaustive):\n1) legal or regulatory information\n2) asset owner confidential data, including proprietary data (e.g. recipes) and data identified in NDAs or other contractual vehicles\n3) configuration and operational data (e.g. commands and parameters)\n4) system data, such as cryptographic materials (e.g. keys and certificates), access control lists,\npasswords, network device data,\n5) audit and event logs,\n6) backup data,\n7) historical data,\n8) data warehouses."
+  },
+  {
+    "Req_ID": "SP.03.10",
+    "BR_RE": "RE(1)",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Sensitive data",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that data within the Automation Solution requiring safeguarding, as described in SP 03.10 BR, is protected from unauthorized disclosure or modification, whether at rest or in transit.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for ensuring that, after the sensitive data in an Automation Solution has been identified, the Automation Solution is enhanced as necessary to protect that data. Risk assessments (see IEC 62443-3-2) performed early in the project are often used in the identification of data requiring safeguarding. Protection mechanisms typically include:\n1) mechanisms to protect against unauthorized memory dumps and network sniffing,\n2) cryptographic mechanisms, including:\na) encryption keys\nb) public key security infrastructure,\nc) digital signatures,\nd) data transport and message encryption,\ne) data base encryption."
+  },
+  {
+    "Req_ID": "SP.03.10",
+    "BR_RE": "RE(2)",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Data/event retention",
+    "Doc": "Yes",
+    "Requirement": "The service provider shall have the capability to provide documentation to the asset owner that describes the retention capabilities provided by the Automation Solution for storing/archiving sensitive data. This documentation includes capacities, pruning and purging functions, retention timeouts, etc.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for documenting how the Automation Solution stores/archives sensitive data, such as historical data and events. This may include internal capabilities of the Automation Solution or that it requires export to a history archive. Historical data and events can be used during forensics and event analysis and correlation."
+  },
+  {
+    "Req_ID": "SP.03.10",
+    "BR_RE": "RE(3)",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Cryptography",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that the cryptographic mechanisms used in the Automation Solution, including algorithms and key management/distribution/protection, are commonly accepted by both the security and industrial automation communities.",
+    "Rationale": "Having this capability means that the service provider is able to ensure that components of the Automation Solution that it provides uses current encryption technology that is generally accepted for use in IACSS."
+  },
+  {
+    "Req_ID": "SP.03.10",
+    "BR_RE": "RE(4)",
+    "Functional_area": "Architecture",
+    "Topic": "Data protection",
+    "Subtopic": "Sanitizing",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that when it removes a component from the Automation Solution, all data in the component requiring safeguarding, as described in SP 03.10 BR, is permanently destroyed/deleted.",
+    "Rationale": "The capability specified by this BR is used to prevent sensitive data in a component/device that has been removed from the Automation Solution from being subsequently disclosed to anyone who may have access to the component after its removal.\nHaving this capability means that the service provider has an identifiable process for ensuring that devices that are removed from active participation in the Automation Solution are sanitized of their confidential or sensitive data. Typically this can be done by destroying memory or clearing it a number of times to remove residual data. The number of times memory has to be cleared is dependent on the type of memory."
+  },
+  {
+    "Req_ID": "SP.04.01",
+    "BR_RE": "BR",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Technical description",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that its Automation Solution architecture documentation describing wireless systems is current in its description of the following.\n1) Data exchange between a Level 1 network and wireless instrumentation,\n2) Data exchange between a Level 2 network and a Level 3 network through a secure wireless link,\n3) Security mechanisms that prevent an intruder from gaining access to the Automation Solution using the wireless system,\n4) Security mechanisms that restrict access within the Automation Solution by workers with handheld wireless devices,\n5) Where required, security mechanisms that provide protection for remote management of wireless systems.\nNOTE 1 The term \"Level\" refers to the position in the Purdue Reference Model as standardized by ISA 95 and IEC 62264-1 (see clause 5.3).",
+    "Rationale": "The capability specified by this BR is used to ensure that wireless networks are protected from being used to gain unauthorized access to the Automation Solution.\nHaving this capability means that the service provider has an identifiable process for keeping current its wireless communications architecture documentation that includes data flows, security mechanisms, and the use of wireless bridges.\nNOTE 2 Zones and conduits as described in IEC 62443-3-2 are often used to define the security boundaries associated with wireless access to wired devices/workstations in the Automation Solution."
+  },
+  {
+    "Req_ID": "SP.04.02",
+    "BR_RE": "BR",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Access control",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that access to wireless devices is protected by authentication and access control mechanisms that are commonly accepted by both the security and industrial automation communities.",
+    "Rationale": "The capabilities specified by this BR and its RE are used to ensure that wireless devices and their communications are protected from unauthorized access.\nHaving this capability means that the service provider has an identifiable process for providing or using commonly accepted authentication mechanisms and access control lists that prevent unauthorized access to wireless devices."
+  },
+  {
+    "Req_ID": "SP.04.02",
+    "BR_RE": "RE(1)",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that wireless communications are protected by cryptographic mechanisms that are commonly accepted by both the security and industrial automation communities.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process ensuring that networks used in the Automation Solution employ commonly accepted security mechanisms to protect access to their data during transmission. This includes wireless communications between wireless devices and wireless access points and between wireless access points and other wireless access point."
+  },
+  {
+    "Req_ID": "SP.04.03",
+    "BR_RE": "BR",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that wireless protocols used in the Automation Solution are compliant with standards commonly used within the industrial security community and with applicable regulations.",
+    "Rationale": "The capabilities specified by this BR and its REs are used to provide confidence that wireless networks use protocols that have been vetted for use in industrial applications.\nHaving this capability means that the service provider (1) uses a commonly accepted standard wireless technology in the Automation Solution and (2) has an identifiable process that ensures that the wireless technology used is compliant with local regulations."
+  },
+  {
+    "Req_ID": "SP.04.03",
+    "BR_RE": "RE(1)",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Wireless network identifiers",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that unique, Automation Solution-specific identifiers are used for wireless networks and that all wireless identifiers are descriptive acronyms that are not obviously associated with the asset owner's site.",
+    "Rationale": "The capability specified by this RE is used to provide confidence that wireless networks are configured to prevent easy identification (network identifiers are not obvious).\nHaving this capability means that the service provider has an identifiable process for ensuring that each wireless network is assigned its own identifier (e.g. SSID) and that these identifiers do not allow an external listener to identify the physical wireless network, its location, or owner of the wireless network. If the identifier values are defined by the asset owner, the service provider's role is, if required, to provide guidance for their definition and/or review of the defined identifiers."
+  },
+  {
+    "Req_ID": "SP.04.03",
+    "BR_RE": "RE(2)",
+    "Functional_area": "Wireless",
+    "Topic": "Network design",
+    "Subtopic": "Connectivity",
+    "Doc": "No",
+    "Requirement": "The service provider shall ensure that the Automation Solution's wireless devices that have IP addresses use static addressing and have dynamic address assignment mechanisms (e.g. DHCP) disabled.",
+    "Rationale": "The capability specified by this RE is used to provide confidence that wireless networks are configured to prevent:\n1) the use of unauthorized device addresses,\n2) DHCP exhaustion attacks (by disabling the use of DHCP).\nHaving this capability means that the service provider has an identifiable process for ensuring that wireless device that have IP addresses cannot have their addresses changed by dynamic address assignment mechanisms."
+  },
+  {
+    "Req_ID": "SP.05.01",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Risk assessment",
+    "Subtopic": "Verification",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to verify that security architecture reviews and/or security risk assessments of the communications of the SIS used in the Automation Solution have been conducted and addressed.",
+    "Rationale": "The capability specified by this BR is used to provide confidence that security risks associated with the SiS are addressed.\nHaving this capability means that the service provider can provide verification that the security of SIS communications, both internal and external, identified by risk assessments/security reviews have been addressed. Typically the review is done on integrated SIS/control system product under the direction of the control system supplier in response to IEC 61511-1 Clause 8.2.4, and addressed by the supplier. In some cases, mitigation of risks is deferred to the service provider as part of the installation/maintenance of the Automation Solution. In these cases, this requirement requires the service provider to ensure the appropriate mitigations for the Automation Solution are determined and implemented."
+  },
+  {
+    "Req_ID": "SP.05.02",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Network design",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that SIS safety- critical communications and other Automation Solution communications are physically or logically separated and that any failures at the interface between them do not impact the SIS from performing its safety functions.\nNOTE This requirement does not require that non-safety critical communications between the SIS and the BPCS (e.g. configuration downloads, status monitoring, logging) be separated from other Automation Solution communications.",
+    "Rationale": "The capability specified by this BR is used to ensure that safety-critical communications of the SIS is not subject to interference by non-safety critical communications.\nHaving this capability means that the service provider is able to logically or physically isolate functional safety communication from other Automation Solution traffic for SIL 1 and above (see IEC 61508).\nHaving this capability also means the service provider can demonstrate that the countermeasures taken to isolate functional safety communications do not impact the performance or operation of the SIS.\nRisk assessments, zones (network segments), and conduits (connections between network segments), as described in IEC 62443-3-2, can be used in the definition of requirements."
+  },
+  {
+    "Req_ID": "SP.05.03",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Network design",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that applications, including remote access applications (e.g. RDP) at Level 3 and above are not able to establish (or otherwise have) connections with the SIS. NOTE The term \"Level\" refers to the position in the Purdue Reference Model as standardized by ISA 95 and IEC 62264-1 (see 5.3).",
+    "Rationale": "The capability specified by this BR is used to ensure that the SIS is not capable of being impacted by devices/applications in Level 3.\nHaving this capability means that the service provider has an identifiable process for ensuring that the SIS cannot be connected, physically or logically, to Level 3 or above. Applications above Level 2 are not allowed to connect directly to the SIS."
+  },
+  {
+    "Req_ID": "SP.05.04",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Network design",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that there are no safety-critical communications between the SIS and applications outside the SIS (e.g. control system applications).",
+    "Rationale": "The capability specified by this BR is used to ensure that a trust boundary is established between the SIS and the BPCS that does not permit SIS safety critical communications to cross the trust boundary.\nHaving this capability means that the service provider has an identifiable process for ensuring that there are no safety-critical communications (e.g. data and/or commands) transferred between the SIS and applications residing external to the SIS. This\nrequirement is intended to prevent the SIS safety-critical functions from being compromised by traffic originating from sources outside the SIS."
+  },
+  {
+    "Req_ID": "SP.05.05",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Devices - Workstations",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that all communications from Level 3 and above to SIS EWSS that reside outside the SIS pass through a network security device, or equivalent mechanism, that separates Level 2 from Level 3 or above.\nNOTE The term \"Level\" refers to the position in the Purdue Reference Model as standardized by ISA 95 and IEC 62264-1 (see 5.3).",
+    "Rationale": "The capability specified by this BR is used to be able to use network security devices to ensure that only authorized communications from Level 3 applications to SIS engineering workstations residing outside the SIS are permitted. Access from Level 3 applications to SIS engineering workstations that reside within the SIS is prohibited by SP.05.03 BR.\nHaving this capability means that the service provider has an identifiable process for ensuring that all communications between the SIS engineering workstation and Level 3 (and above) applications pass through a network security device, or equivalent mechanism, that connects Level 2 and Level 3 (or above)."
+  },
+  {
+    "Req_ID": "SP.05.05",
+    "BR_RE": "RE(1)",
+    "Functional_area": "SIS",
+    "Topic": "Devices - Workstations",
+    "Subtopic": "Communications",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that remote access (e.g. RDP) to the Automation Solution's SIS EWS is not possible.",
+    "Rationale": "The capability specified by this RE is defined to be able to prevent SIS engineering workstations from being exploited via remote access connections.\nHaving this capability means that the service provider has an identifiable process for ensuring that SIS engineering workstations either (1) do not have remote access installed or (2) have it disabled. A risk assessment can be used to determine the risk of allowing remote access to the SIS EWS.\nNOTE See IEC 62443-3-2 for guidance on what to consider in such risk assessments from a cyber-security perspective."
+  },
+  {
+    "Req_ID": "SP.05.06",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Devices - Workstations",
+    "Subtopic": "Connectivity",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that all access to the Automation Solution's SIS is:\n1) via a Level 2 gateway dedicated to the SIS and physically connected to it (e.g. via a dedicated link), and/or\n2) from a SIS EWS that is physically connected to the SIS. If the SIS EWS is not physically connected to the SIS, then its only option is to communicate to the SIS via the gateway described in (1).\nThe capability specified by this BR is used to limit the number of physical access paths to the SIS, and hence reduce its attack surface.",
+    "Rationale": "Having this capability means that the service provider has an identifiable process for ensuring that the SIS is physically connected only to:\n1) the SIS EWS and/or\n2) a gateway used only to provide access to the SIS from Level 2.\nIf the first case is not used then, the SIS EWS connects to the gateway and the gateway makes requests to the SIS on behalf of the SIS EWS."
+  },
+  {
+    "Req_ID": "SP.05.07",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Devices - Workstations",
+    "Subtopic": "Least functionality",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that the Automation Solution's SIS EWS is restricted to performing SIS functions.",
+    "Rationale": "The capability specified by this BR is used to reduce the possibility that the SIS EWS will contain software that could intentionally or inadvertently cause harm to the SIS.\nHaving this capability means that the service provider has an identifiable process for ensuring that SIS engineering workstations are dedicated to SIS and are not used as workstations for other purposes within the control system."
+  },
+  {
+    "Req_ID": "SP.05.08",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "Devices - Wireless",
+    "Subtopic": "Connectivity",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to verify that wireless devices are not allowed as an integral part of SIS safety functions.",
+    "Rationale": "The capability specified by this BR is used to prevent wireless attacks against the SIS since wireless devices are not bounded by physical security perimeters nor by physical implementation. For example, if a workstation/server class machine resides outside the physical security perimeter and is configured with a wireless device interface and is able to connect to the wireless device network, it will pose a threat to the SIS. Having this capability means that the service provider has an identifiable process for verifying that that wireless device communications are not used within the SIS."
+  },
+  {
+    "Req_ID": "SP.05.09",
+    "BR_RE": "BR",
+    "Functional_area": "SIS",
+    "Topic": "User interface",
+    "Subtopic": "Configuration mode",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that the Automation Solution provides a user interface for enabling and disabling SIS configuration mode. While locked, this interface shall prohibit the SIS from being configured. NOTE This interface will typically prevent configuration messages from being delivered to the SIS.",
+    "Rationale": "The capabilities specified by this BR and its REs are used to prevent configuration access to the SIS during normal operation through a mechanism that requires the SIS to be unlocked to configure it, and locked at all other times.\nHaving this capability means that the service provider is able to ensure that the SIS can be locked to prevent configuration changes from being made and unlocked to allow them to be made. Locks can be physical key switches or software controlled locks, but however implemented they allow the SIS to be locked to prevent inadvertent or malicious changes from being made."
+  },
+  {
+    "Req_ID": "SP.05.09",
+    "BR_RE": "RE(1)",
+    "Functional_area": "SIS",
+    "Topic": "User interface",
+    "Subtopic": "Configuration mode",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to ensure that the Automation Solution provides a hardware implementation of the interface required by SP.05.09 BR and that this hardware interface is capable of being physically locked while configuration mode is disabled.",
+    "Rationale": "The capability specified by this RE is defined to require intentional human intervention to enable configuration of the SIS, such as holding a physical key open (unlocked) while the configuration is being changed, for the purpose of increasing confidence that inadvertent changes to the SIS configuration cannot occur.\nHaving this capability means that the service provider is able to ensure that the SIS has a hardware interface that can be disabled to prevent configuration changes from being made. The hardware interface, such as a physical key switch, when physically locked (e.g. removing the key), configuration mode is disabled."
+  },
+  {
+    "Req_ID": "SP.05.09",
+    "BR_RE": "RE(2)",
+    "Functional_area": "SIS",
+    "Topic": "User interface",
+    "Subtopic": "Configuration mode",
+    "Doc": "No",
+    "Requirement": "The service provider shall have the capability to have an independent 3rd party verify that it is not possible to change the configuration of the SIS when the hardware interface described in SP.05.09 RE(1) is locked in the \"disable\" configuration mode.",
+    "Rationale": "The capability specified by this RE is defined to add an additional level of confidence that the physical locking mechanism works as intended.\nHaving this capability means that the service provider has an identifiable process for providing a report from a 3rd party that verifies that the SIS configuration locking mechanism works.\nThis report may be initiated (e.g. contracted) by the control system supplier for the Automation Solution or by the service provider. This verification may occur prior to delivery of the product to the Automation Solution (as part of product verification) or after delivery of the hardware interface (as part of the service provider's its Automation Solution activities)."
+  }
+]

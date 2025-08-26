@@ -448,7 +448,7 @@ async function main() {
 
 // Avvia lo script
 if (require.main === module) {
-    main().catch(console.error);
+    main();
 }
 
 module.exports = { copyJsonFromGrok, interceptOnly };

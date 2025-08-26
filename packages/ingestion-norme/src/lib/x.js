@@ -11,8 +11,8 @@ const cheerio = require('cheerio'); // Per HTML
 const pdfParse = require('pdf-parse'); // Per PDF
 const mammoth = require('mammoth'); // Per DOCX
 const { LegalDocumentParser } = require('./legal-document-parser'); // Parser per documenti legali
-const { PDFTextCleaner } = require('./pdf-text-cleaner'); // Cleaner per testo PDF
-const { PDFImageOCRExtractor } = require('./pdf-ocr-extractor'); // OCR avanzato per PDF
+const { PDFTextCleaner } = require('./extractors/pdf-text-cleaner'); // Cleaner per testo PDF
+const { PDFImageOCRExtractor } = require('./extractors/pdf-ocr-extractor'); // OCR avanzato per PDF
 
 /**
  * Classe principale per l'estrazione di testo da documenti

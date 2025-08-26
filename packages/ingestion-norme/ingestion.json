@@ -21,7 +21,7 @@
                     }
                 }
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/IEC_62443_2_4_pag_24_33.txt"
+            "output": "./extraction/step_1/IEC_62443_2_4_pag_24_33.txt"
         }
     ],    
     "batch_stop": [
@@ -36,15 +36,9 @@
                 "multiline": true,
                 "preserveIndentation": true,
                 "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
-                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
-                "legalAnalysis": {
-                    "outputFormat": "json",
-                    "trimWhitespace": true,
-                    "minArticleLength": 10,
-                    "skipEmptyArticles": true
-                }                
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/CRA.txt"
+            "output": "./extraction/step_1/CRA.txt"
         },
         {
             "framework": "NIS2",
@@ -57,15 +51,9 @@
                 "multiline": true,
                 "preserveIndentation": true,
                 "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
-                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
-                "legalAnalysis": {
-                    "outputFormat": "json",
-                    "trimWhitespace": true,
-                    "minArticleLength": 10,
-                    "skipEmptyArticles": true
-                }                
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NIS2.txt"
+            "output": "./extraction/step_1/NIS2.txt"
         },
         {
             "framework": "DM_2006",
@@ -78,15 +66,9 @@
                 "multiline": true,
                 "preserveIndentation": true,
                 "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
-                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
-                "legalAnalysis": {
-                    "outputFormat": "json",
-                    "trimWhitespace": true,
-                    "minArticleLength": 10,
-                    "skipEmptyArticles": true
-                }                
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/DM_2006.txt"
+            "output": "./extraction/step_1/DM_2006.txt"
         },
         {
             "framework": "RM_2023",
@@ -99,15 +81,9 @@
                 "multiline": true,
                 "preserveIndentation": true,
                 "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
-                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"],
-                "legalAnalysis": {
-                    "outputFormat": "json",
-                    "trimWhitespace": true,
-                    "minArticleLength": 10,
-                    "skipEmptyArticles": true
-                }                
+                "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/RM_2023.txt"
+            "output": "./extraction/step_1/RM_2023.txt"
         },
         {
             "framework": "NEC_2023",
@@ -125,7 +101,7 @@
                 "elfecL\"l": "effects"
                 }
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023.txt"
+            "output": "./extraction/step_1/NEC_2023.txt"
         }
     ],
     "batch_stop_2": [
@@ -149,7 +125,7 @@
                     }
                 }
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023_art_90_299.txt"
+            "output": "./extraction/step_1/NEC_2023_art_90_299.txt"
         },
         {
             "framework": "NEC_2023",
@@ -171,100 +147,327 @@
                     }
                 }
             },
-            "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NEC_2023_art_300_399.txt"
+            "output": "./extraction/step_1/NEC_2023_art_300_399.txt"
         }
     ],
-    "step_2": [
-        {
-            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/CRA.txt",
-            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/CRA.json",
-            "format": "EU",
-            "structure": "capo+article+letter+point" 
+    "eu_lex_cra": {
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/cra_2024/step_1/raw.txt"
+            }
         },
-        {
-            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/NIS2.txt",
-            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/NIS2.json",
-            "format": "EU",
-            "structure": "capo+article+letter+point" 
-        },
-        {
-            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/DM_2006.txt",
-            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/DM_2006.json",
-            "format": "EU",
-            "structure": "article+letter+point" 
-        },
-        {
-            "sourceFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/RM_2023.txt",
-            "outJsonFile": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/RM_2023.json",
-            "format": "EU",
-            "structure": "article+letter+point" 
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/cra_2024/step_1/raw.txt",
+                "outJsonFile": "./extraction/eu_lex/cra_2024/step_2/articles.json",
+                "format": "EU",
+                "structure": "capo+article+letter+point",
+                "framework": "EU_Lex_CRA_2024",
+                "edition": 2024
         }
-    ],
-    "tabella_2_4_a1": {
-        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/manual_sources/iec_62443_2_4_tab_a1_e.txt",
-        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/DOC_62443_2_4_Tab_A1_e.json"
+    },
+    "eu_lex_nis2": {
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/nis2_2022/step_1/raw.txt"
+            }
+        },
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/nis2_2022/step_1/raw.txt",
+                "outJsonFile": "./extraction/eu_lex/nis2_2022/step_2/articles.json",
+                "format": "EU",
+                "structure": "capo+article+letter+point",
+                "framework": "EU_Lex_NIS2_2022",
+                "edition": 2022
+        }
+    },
+    "eu_lex_dm": {
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006L0042",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/dm_2006/step_1/raw.txt"
+            }
+        },
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/dm_2006/step_1/raw.txt",
+                "outJsonFile": "./extraction/eu_lex/dm_2006/step_2/articles.json",
+                "format": "EU",
+                "structure": "article+letter+point",
+                "framework": "EU_Lex_DM_2006",
+                "edition": 2006
+        }
+    },
+    "eu_lex_rm": {
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023R1230",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/rm_2023/step_1/raw.txt"
+            }
+        },
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/rm_2023/step_1/raw.txt",
+                "outJsonFile": "./extraction/eu_lex/rm_2023/step_2/articles.json",
+                "format": "EU",
+                "structure": "article+letter+point",
+                "framework": "EU_Lex_RM_2023",
+                "edition": 2023
+        }
+    },
+    "eu_lex_gdpr": {
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023R1230",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/gdpr_2023/step_1/raw.txt"
+            }
+        },
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/gdpr_2023/step_1/raw.txt",
+                "outJsonFile": "./extraction/step_2/eu_lex/gdpr_2023/articles.json",
+                "format": "EU",
+                "structure": "article+letter+point",
+                "framework": "EU_Lex_GDPR_2023",
+                "edition": 2023
+        }
+    },
+    "us_lex_nec_2023": {
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/NEC/NFPA-70-National-Electrical-Code-2023.pdf",
+            "ranges": [
+                {
+                    "startPage": 27,
+                    "endPage": 169,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_90_299.pdf"
+                },
+                {
+                    "startPage": 170,
+                    "endPage": 280,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_300_399.pdf"
+                },
+                {
+                    "startPage": 281,
+                    "endPage": 392,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_400_499.pdf"
+                },
+                {
+                    "startPage": 393,
+                    "endPage": 537,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_500_599.pdf"
+                },
+                {
+                    "startPage": 538,
+                    "endPage": 628,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_600_699.pdf"
+                },
+                {
+                    "startPage": 629,
+                    "endPage": 718,
+                    "output": "./extraction/us_lex/nec_2023/step_0/art_700_899.pdf"
+                },
+                {
+                    "startPage": 719,
+                    "endPage": 919,
+                    "output": "./extraction/us_lex/nec_2023/step_0/chapter_9_tables.pdf"
+                }        
+            ]
+        }
     },
     "iec_27001": {
         "step0": {
-            "iso27001": "C:/My/lb/documenti/27001/ISO IEC 27001-2022.pdf",
-            "iso27002": "C:/My/lb/documenti/27001/ISO IEC 27002-2022.pdf",
-            "outdir": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001"
+            "inputPdfPath": "C:/My/lb/documenti/27001/ISO IEC 27001-2022.pdf",
+            "outdir": "./extraction/iec_27001_2022/step_1"
         },
-        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001/27001-clean.txt",
-        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/27001.json",
-        "dirtyLines": [
-            "ISO/IEC 27001:2022(E)",
-            "© ISO/IEC 2022",
-            "© ISO/IEC 2022 – All rights reserved",
-            "INTERNATIONAL STANDARD"
-        ],
-        "blockHeaders": [
-            "1\t Scope",
-            "Annex A",
-            "Bibliography"
+        "step1": {
+            "inputTextPath": "./extraction/iec_27001_2022/step_1/pdf-clean.txt",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_2/27001.json",
+            "dirtyLines": [
+                "ISO/IEC 27001:2022(E)",
+                "© ISO/IEC 2022",
+                "© ISO/IEC 2022 – All rights reserved",
+                "INTERNATIONAL STANDARD"
             ],
-        "headersCaseSensitive": true,
-        "includeHeaderInBlock": true,
+            "blockHeaders": [
+                "1\t Scope",
+                "Annex A",
+                "Bibliography"
+            ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
         "step2": {
-            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/blocks/2.json",
-            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27001/27001_Requirements.json"
+            "inputJSONPath": "./extraction/iec_27001_2022/step_2/blocks/2.json",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_3/27001_Requirements.json",
+            "framework": "IEC_27001_2022",
+            "edition": 2022
         }
     },
     "iec_27002": {
-        "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/iec_27001/27002-clean.txt",
-        "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27002/27002.json",
-        "dirtyLines": [
-            "ISO/IEC 27002:2022(E)",
-            "© ISO/IEC 2022",
-            "© ISO/IEC 2022 – All rights reserved",
-            "INTERNATIONAL STANDARD"
-        ],
-        "blockHeaders": [
-            "4\t Structure of this document",
-            "5\t Organizational controls",
-            "Annex A",
-            "Annex B",
-            "Bibliography"
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/27001/ISO IEC 27002-2022.pdf",
+            "outdir": "./extraction/iec_27002_2022/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_27001_2022/step_1/pdf-clean.txt",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_2/27002.json",
+            "dirtyLines": [
+                "ISO/IEC 27002:2022(E)",
+                "© ISO/IEC 2022",
+                "© ISO/IEC 2022 – All rights reserved",
+                "INTERNATIONAL STANDARD"
             ],
-        "headersCaseSensitive": true,
-        "includeHeaderInBlock": true,
+            "blockHeaders": [
+                "4\t Structure of this document",
+                "5\t Organizational controls",
+                "Annex A",
+                "Annex B",
+                "Bibliography"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
         "step2": {
-            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/iec_27001/blocks/3.json",
-            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27002/27002_Controls.json"
+            "inputJSONPath": "./extraction/iec_27001_2022/step_2/blocks/3.json",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_3/27002_Controls.json"
         },
         "step3": {
-            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/iec_27002/27002_Controls.json",
-            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_4/iec_27002/27002_Controls.json"
+            "inputJSONPath": "./extraction/iec_27002_2022/step_3/27002_Controls.json",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_4/27002_Controls.json",
+            "framework": "IEC_27002_2022",
+            "edition": 2022
         }        
+    },
+    "iec_62443_2_4": {
+        "step1": {
+            "sources": [
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_a.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_a.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_b.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_b.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_c.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_c.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_d.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_d.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_e.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_e.json"
+                }
+            ],
+            "mergedOutputJSONPath": "./extraction/iec_62443_2_4_2015/step_3/requirements.json"
+        }
+    },
+    "iec_62443_3_2": {
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/62443/BS EN IEC 62443-3-2-2020.pdf",
+            "ranges": [
+                {
+                    "startPage": 1,
+                    "endPage": 10,
+                    "output": "./extraction/iec_62443_3_2_2020/step_0/intro.pdf"
+                },
+                {
+                    "startPage": 11,
+                    "endPage": 38,
+                    "output": "./extraction/iec_62443_3_2_2020/step_0/requirements.pdf"
+                }
+            ]
+        },
+        "step0": {
+            "inputPdfPath": "./extraction/iec_62443_3_2_2020/step_0/requirements.pdf",
+            "outdir": "./extraction/iec_62443_3_2_2020/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_62443_3_2_2020/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_2/blocks.json",
+            "dirtyLines": [
+            ],
+            "blockHeaders": [
+                "4",
+                "Annex A",
+                "Annex B",
+                "Bibliography"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/iec_62443_3_2_2020/step_2/blocks/2.json",
+            "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_3/Requirements.json"
+        }
+    },
+    "iec_62443_3_3": {
+        "step1": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/docs/3_3/sources/62443-3-3.json",
+            "outputJSONPath": "./extraction/iec_62443_3_3_2013/step_1/Requirements.json"
+        }
+    },
+    "iec_62443_4_1": {
+        "step1": {
+            "inputJSONPath": "",
+            "outputJSONPath": "./extraction/iec_62443_4_1_2020/step_1/Requirements.json"
+        }
+    },
+    "iec_62443_4_2": {
+        "step1": {
+            "inputJSONPath": "",
+            "outputJSONPath": "./extraction/iec_62443_4_2_2018/step_1/Requirements.json"
+        }
     },
     "nist_800_53": {
         "step0": {
             "inputPdfPath": "C:/My/lb/documenti/NIST/NIST.SP.800-53r5.pdf",
-            "outdir": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/nist_800_53"
+            "outdir": "./extraction/nist_800_53_2020/step_1"
         },
         "step1": {
-            "inputTextPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_1/nist_800_53/pdf-raw.txt",
-            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/nist_800_53/pdf.json",
+            "inputTextPath": "./extraction/nist_800_53_2020/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/nist_800_53_2020/step_2/pdf.json",
             "dirtyLines": [
             ],
             "blockHeaders": [
@@ -281,8 +484,10 @@
             "includeHeaderInBlock": true
         },
         "step2": {
-            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_2/nist_800_53/blocks/5.json",
-            "outputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/ingestion-norme/extraction/step_3/nist_800_53/nist_800_53_Controls.json"
+            "inputJSONPath": "./extraction/nist_800_53_2020/step_2/blocks/5.json",
+            "outputJSONPath": "./extraction/nist_800_53_2020/step_3/Controls.json",
+            "framework": "NIST_800_53_2020",
+            "edition": 2020
         }
     }
 }

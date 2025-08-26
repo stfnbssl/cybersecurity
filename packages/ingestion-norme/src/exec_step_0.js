@@ -162,7 +162,7 @@ async function main() {
 
 // Esegui se chiamato direttamente
 if (require.main === module) {
-    main().catch(console.error);
+    main();
 }
 
 // Esporta le funzioni
