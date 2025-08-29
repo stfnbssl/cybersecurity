@@ -1,4 +1,4 @@
-# Profili di esempio — CNC Audit (IEC 62443‑1‑5)
+# CNC Audit - AO (IEC 62443‑1‑5)
 
 Questo documento mostra **come raccordare l’intervento di audit sulla macchina CNC** a una **definizione di security profiles** (IEC 62443‑1‑5) e **come avvalersi dei profili** per assessment, pen‑test, remediation e documentazione.
 
