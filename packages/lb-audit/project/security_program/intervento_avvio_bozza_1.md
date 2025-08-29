@@ -251,3 +251,6 @@ Selezionare 2–3 sprint tra i seguenti (esempi di *DoD*):
 ## Nota finale
 
 Questo impianto consente di **agire subito** rispettando i principi di governance, creare **evidenze difendibili** e **preparare** la futura formalizzazione del Security Program secondo IEC 62443‑2‑1, senza rallentare le attività core del cliente.
+
+
+### sys_source https://chatgpt.com/c/68a4cfe1-2d68-832f-acb5-ba65e2aed5db
