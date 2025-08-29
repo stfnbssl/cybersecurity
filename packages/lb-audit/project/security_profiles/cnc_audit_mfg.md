@@ -1,40 +1,27 @@
-# Profili MFG — CRA/62443 (SDLC & Component)
+# Profili MFG — CRA/62443 (SDLC & Component) — Unificato
 
-Obiettivo: fornire **profili di sicurezza per Manufacturer (MFG)** che si raccordino al caso CNC e siano riutilizzabili in audit, pen‑test, remediation e fascicolo tecnico, allineando **CRA ↔ IEC 62443‑4‑1 (SDLC)** e **IEC 62443‑4‑2 (CR)**.
+Obiettivo: fornire **profili di sicurezza per Manufacturer (MFG)** riutilizzabili in audit, pen‑test, remediation e fascicolo tecnico, allineando **CRA ↔ IEC 62443‑4‑1 (SDLC)** e **IEC 62443‑4‑2 (CR)** e includendo una **segmentazione di riferimento** (zone & conduits) per la macchina CNC.
 
 ---
 
 ## 1) Razionale (MFG)
 
 * Il costruttore deve dimostrare **processi di sviluppo sicuro** (4‑1) e **capability di componente (SL‑C)** per le interfacce esposte (4‑2), oltre a fornire **documentazione prodotto** (secure configuration, SBOM, advisories/VEX) utile a AO/SI.
-* I profili MFG separano **processo** (SDLC & release) da **prodotto** (componenti e gateway), così che audit e pen‑test possano essere focalizzati e versionati.
+* I profili MFG separano **processo** (SDLC & release) da **prodotto** (componenti e gateway), e aggiungono un **profilo di integrazione di riferimento** per la segmentazione interna macchina.
 
 ---
 
-## 2) Profili proposti
+## 2) Profili proposti (panoramica)
 
-### M1 — *MFG — SDLC & Secure Release (CRA/62443‑4‑1)*
-
-**Scopo**: definire i requisiti minimi di processo/release per firmware/software/immagini macchina (coordinated disclosure, hardening CI/CD, firma e update sicuro, SBOM/VEX, test sicurezza).
-**Ruolo**: Manufacturer • **Ambiente**: IT • **Ciclo di vita**: Design
-**Overlay**: CRA (obbligatorio), NIS2 (se rientra)
-**Output tipici**: policy SDLC, pipeline CI/CD con firma artefatti, SBOM per release, VEX/advisories, report test sicurezza.
-
-### M2 — *MFG — CNC Component/Cell Security (62443‑4‑2, SL‑C target)*
-
-**Scopo**: requisiti di sicurezza per i **componenti** della cella CNC (CN/Soft‑PLC/HMI/gateway) che dichiarano **SL‑C** per le interfacce (OPC‑UA/REST, RDP/VNC, engineering).
-**Ruolo**: Manufacturer • **Ambiente**: Edge/OT • **Ciclo di vita**: Integration
-**Overlay**: opz. GDPR (se dati personali), opz. NIS2 per notifica vulnerabilità ai clienti enterprise.
-
-> *Uso con il caso CNC*: M1 copre le **release** (firmware/immagini, advisories); M2 copre la **sicurezza di runtime** del gateway/endpoint forniti con la macchina e delle loro interfacce.
+* **M1 — MFG — SDLC & Secure Release (CRA/62443‑4‑1)** — profilo *di processo* per release sicure (disclosure, firma, update, SBOM/VEX). *Senza zone/conduits*.
+* **M2 — MFG — CNC Component/Cell Security (62443‑4‑2)** — profilo *di prodotto* con requisiti CR e **SL‑C** per interfacce (OPC‑UA/REST, RDP/VNC, engineering).
+* **M3 — MFG — CNC Reference Integration (Zones & Conduits)** — profilo *di integrazione di riferimento*, **con zone/conduits** nel perimetro macchina e conduits esterni dichiarati (SL‑T suggeriti). AO/SI ne ereditano la segmentazione.
 
 ---
 
-## 3) Esempi JSON conformi allo **schema profilo**
+## 3) JSON conformi allo **schema profilo**
 
-> Nota: le **regole (rules)** selezionano i controlli dal vostro catalogo tramite mapping a **IEC 62443‑4‑2 CR** e meta di processo (per 4‑1). Le liste `controls` esplicite sono minime e **dimostrative** (usano ID demo); in produzione P2 compilerà l’elenco completo.
-
-### 3.1 M1 — *MFG — SDLC & Secure Release*
+### 3.1 M1 — *MFG — SDLC & Secure Release (CRA/62443‑4‑1)*
 
 ```json
 {
@@ -57,7 +44,7 @@ Obiettivo: fornire **profili di sicurezza per Manufacturer (MFG)** che si raccor
 }
 ```
 
-### 3.2 M2 — *MFG — CNC Component/Cell Security (SL‑C target)*
+### 3.2 M2 — *MFG — CNC Component/Cell Security (62443‑4‑2)*
 
 ```json
 {
@@ -90,19 +77,58 @@ Obiettivo: fornire **profili di sicurezza per Manufacturer (MFG)** che si raccor
 }
 ```
 
+### 3.3 M3 — *MFG — CNC Reference Integration (Zones & Conduits)*
+
+```json
+{
+  "profile": {"code":"MFG-CNC-REF","name":"MFG — CNC Reference Integration (Zones & Conduits)","description":"Segmentazione di riferimento per cella CNC e conduits esterni dichiarati"},
+  "version": {"semver":"1.0.0","status":"released","release_notes":"Profilo di integrazione di riferimento per CNC"},
+  "scope": {
+    "owner_role":"Manufacturer","environment":"Edge","lifecycle":"Integration",
+    "jurisdiction":["EU"],"essential_service": false,
+    "sl_t_zone": 3, "sl_t_conduit": 3,
+    "zones":[
+      {"name":"Z-Automation","sl_t":3},
+      {"name":"Z-HMI","sl_t":2},
+      {"name":"Z-Service","sl_t":2}
+    ],
+    "conduits":[
+      {"name":"C-HMI-Automation","from_zone":"Z-HMI","to_zone":"Z-Automation","sl_t":2},
+      {"name":"C-Ext-Portal","from_zone":"Z-Service","to_zone":"Portal","sl_t":3},
+      {"name":"C-Engineering","from_zone":"Z-Service","to_zone":"Vendor","sl_t":3}
+    ]
+  },
+  "rules": [
+    {"rule_kind":"include","criteria":{"mappings":{"framework_code":"IEC 62443-4-2","section_prefix":"CR 1."}}},
+    {"rule_kind":"include","criteria":{"mappings":{"framework_code":"IEC 62443-4-2","section_prefix":"CR 2."}}},
+    {"rule_kind":"include","criteria":{"mappings":{"framework_code":"IEC 62443-4-2","section_prefix":"CR 3."}}},
+    {"rule_kind":"include","criteria":{"mappings":{"framework_code":"IEC 62443-4-2","section_prefix":"CR 4."}}},
+    {"rule_kind":"include","criteria":{"mappings":{"framework_code":"IEC 62443-4-2","section_prefix":"CR 6."}}},
+    {"rule_kind":"set_weight","criteria":{"target":{"kind":"conduit","ref":"C-Ext-Portal"}},"action":{"weight":1.3}}
+  ],
+  "controls": [
+    {"canonical_id":"C-AC-IA","required":true,"weight":1.2,"param_values":{"password_length":"14"},"target":{"kind":"global"}},
+    {"canonical_id":"C-NW-SEG","required":true,"weight":1.1,"param_values":{"mgmt_vlan_id":"210"},"target":{"kind":"zone","ref":"Z-Automation"}},
+    {"canonical_id":"C-MO-LOG","required":true,"weight":1.2,"param_values":{"retention_days":"365"},"target":{"kind":"conduit","ref":"C-Ext-Portal"}}
+  ],
+  "checklist_extras": [
+    {"canonical_id":"C-NW-SEG","question":"Regole NGFW/allow-list per C-Ext-Portal (OPC-UA/REST)","answer_type":"text","evidence_type_code":"CONFIG"},
+    {"canonical_id":"C-MO-LOG","question":"Alerting mTLS/TLS failure sull'endpoint esterno","answer_type":"text","evidence_type_code":"LOG"}
+  ]
+}
+```
+
 ---
 
 ## 4) Spiegazione delle scelte
 
-* **M1 (SDLC)**: focalizza processi 4‑1 e richieste CRA (gestione vulnerabilità, disclosure, update sicuro, firma, SBOM/VEX). Non lega a zone/conduits perché è **process‑profile**. In audit: si chiedono *policy*, pipeline, attestazioni firma e pacchetti SBOM/VEX per release.
-* **M2 (4‑2)**: punta a **SL‑C** coerente con interfacce esposte del gateway/endpoint. Si pesano FR1/FR6/FR5 sui conduits esterni (mTLS OPC‑UA/REST, autenticazione forte, logging/alerting).
-* **Overlay GDPR (se applicabile)**: aumenta peso/rigore per identity/logging/cifratura quando i log contengono dati personali (vedi Glossario K.2).
+* **M1 (SDLC)**: 4‑1/CRA (vulnerability mgmt, disclosure, firma/update, SBOM/VEX). Nessuna zona/conduit perché è *process‑profile*.
+* **M2 (4‑2)**: capability **SL‑C** coerenti con le interfacce; conduits esterni pesati (FR1/FR5/FR6).
+* **M3 (Reference Integration)**: segmentazione **interna macchina** con conduits esterni dichiarati; AO/SI erediteranno e completeranno lato sito.
 
 ---
 
-## 5) SQL scaffolding minimo
-
-> Eseguire dopo il DDL. Gli ID demo dei controlli sono solo per renderlo eseguibile; il vostro catalogo reale selezionerà molte più voci via *rules*.
+## 5) SQL scaffolding (minimo)
 
 ```sql
 -- M1 — MFG-SDLC-CRA
@@ -111,8 +137,6 @@ INSERT INTO profile_version(profile_id, semver, status, release_notes)
 SELECT id, '1.0.0', 'released', 'Profilo iniziale SDLC & release' FROM profile WHERE code='MFG-SDLC-CRA';
 INSERT INTO profile_scope(profile_version_id, owner_role, environment, lifecycle, jurisdiction, essential_service, sl_t_zone, sl_t_conduit)
 SELECT id, 'Manufacturer','IT','Design','EU',0,2,2 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-SDLC-CRA') AND semver='1.0.0';
-
--- Nessuna zona/conduit per profilo di processo; controlli compilati via regole nel vostro tool P2.
 
 -- M2 — MFG-CNC-CR
 INSERT INTO profile(code, name, description) VALUES ('MFG-CNC-CR','MFG — CNC Component/Cell Security (62443-4-2)','Requisiti di sicurezza per componenti e gateway di cella') ON CONFLICT DO NOTHING;
@@ -125,21 +149,32 @@ SELECT id, 'Component',3 FROM profile_version WHERE profile_id=(SELECT id FROM p
 INSERT INTO profile_conduit(profile_version_id, conduit_name, from_zone, to_zone, sl_t)
 SELECT id, 'Ext-Portal','Component','Portal',3 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-CR') AND semver='1.0.0';
 
--- Controlli minimi demo (sostituire/espandere con P2 su catalogo reale)
-INSERT INTO profile_control(profile_version_id, canonical_id, required, weight, param_values, target_kind)
-SELECT id, 'C-AC-IA',1,1.2,'{"password_length":"14"}','global' FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-CR') AND semver='1.0.0';
-INSERT INTO profile_control(profile_version_id, canonical_id, required, weight, param_values, target_kind, target_ref)
-SELECT id, 'C-MO-LOG',1,1.2,'{"retention_days":"365"}','conduit','Ext-Portal' FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-CR') AND semver='1.0.0';
-INSERT INTO profile_control(profile_version_id, canonical_id, required, weight, param_values, target_kind, target_ref)
-SELECT id, 'C-NW-SEG',1,1.1,'{"mgmt_vlan_id":"210"}','zone','Component' FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-CR') AND semver='1.0.0';
+-- M3 — MFG-CNC-REF
+INSERT INTO profile(code, name, description) VALUES ('MFG-CNC-REF','MFG — CNC Reference Integration (Zones & Conduits)','Segmentazione di riferimento per cella CNC') ON CONFLICT DO NOTHING;
+INSERT INTO profile_version(profile_id, semver, status, release_notes)
+SELECT id, '1.0.0', 'released', 'Profilo di integrazione di riferimento per CNC' FROM profile WHERE code='MFG-CNC-REF';
+INSERT INTO profile_scope(profile_version_id, owner_role, environment, lifecycle, jurisdiction, essential_service, sl_t_zone, sl_t_conduit)
+SELECT id, 'Manufacturer','Edge','Integration','EU',0,3,3 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_zone(profile_version_id, zone_name, sl_t)
+SELECT id, 'Z-Automation',3 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_zone(profile_version_id, zone_name, sl_t)
+SELECT id, 'Z-HMI',2 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_zone(profile_version_id, zone_name, sl_t)
+SELECT id, 'Z-Service',2 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_conduit(profile_version_id, conduit_name, from_zone, to_zone, sl_t)
+SELECT id, 'C-HMI-Automation','Z-HMI','Z-Automation',2 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_conduit(profile_version_id, conduit_name, from_zone, to_zone, sl_t)
+SELECT id, 'C-Ext-Portal','Z-Service','Portal',3 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
+INSERT INTO profile_conduit(profile_version_id, conduit_name, from_zone, to_zone, sl_t)
+SELECT id, 'C-Engineering','Z-Service','Vendor',3 FROM profile_version WHERE profile_id=(SELECT id FROM profile WHERE code='MFG-CNC-REF') AND semver='1.0.0';
 ```
 
 ---
 
-## 6) Come usarli in audit MFG
+## 6) Integrazione con AO/SI (inheritance)
 
-1. **Seleziona profilo**: M1 per verificare il ciclo di vita prodotto/release; M2 per verificare le interfacce e le capability SL‑C dei componenti.
-2. **Compila controlli** con P2; valida che nessun `canonical_id` sia inventato.
-3. **Export checklist** per ogni profilo; allega SBOM/VEX, report test, evidenze di firma e impostazioni di sicurezza runtime.
-4. **Pen‑test**: focus su endpoint OPC‑UA/REST (mTLS, authz), RDP/VNC (MFA, session control), aggiornamento sicuro (rollback/resilience).
-5. **Fascicolo tecnico (Reg. Macchine)**: includi profili MFG + evidenze; fornisci guida di configurazione sicura a AO/SI.
+* **Uso raccomandato**: AO/SI creano un profilo di sito **figlio** (*inherit*) di `MFG-CNC-REF`, aggiungendo overlay locali (GDPR/NIS2), parametri e pesi specifici, e integrano i **site‑zones**.
+* **RACI** (sintesi): zonizzazione interna macchina & conduits esterni dichiarati → **R: MFG**, **A: AO**, **C: SI**; zonizzazione di sito → **R: SI**, **A: AO**, **C: MFG**.
+* **Deliverable MFG**: diagrammi *Zones & Conduits Annex*, **Interface Control Document**, **Security Capability Declaration** (CR 4‑2), guida di **secure configuration**.
+
+### sys_source https://chatgpt.com/c/68b120c0-27b8-832b-8d1f-691965bc9ccf?model=gpt-5-thinking
