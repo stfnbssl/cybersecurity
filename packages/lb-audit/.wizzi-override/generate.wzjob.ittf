@@ -217,6 +217,8 @@ wzjob lb-audit/job
         cwd-folder ${jobCtx.ittf_meta_folder}/4_1
         dest-folder ${jobCtx.dest_folder}
         wzjobs(any_ittf_meta, &jobCtx)
+            model-ref std_62443_4_1
+                export-name std_62443_4_1
             model-ref std_62443_4_1_extra
                 export-name std_62443_4_1_extra
             model-ref std_62443_4_1_extra_ex_json
@@ -300,10 +302,20 @@ wzjob lb-audit/job
         dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/product_supplier/ai_step_2_out/t
         wzjobs(any_ai, &jobCtx)
 
+    line ittf-docs-3-3-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/3_3/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/3_3/from_meta
+        wzjobs(any_json, &jobCtx)
+
     line ittf-docs-3-3-ai-step-1
         cwd-folder ${jobCtx.ittf_docs_folder}/3_3/ai_step_1_in
         dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/3_3/ai_step_1_out/t
         wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-1-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/4_1/from_meta
+        wzjobs(any_json, &jobCtx)
 
     line ittf-docs-4-1-ai-step-2
         cwd-folder ${jobCtx.ittf_docs_folder}/4_1/ai_step_2_in
@@ -319,6 +331,11 @@ wzjob lb-audit/job
         cwd-folder ${jobCtx.ittf_docs_folder}/4_1/ai_step_4_in
         dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/4_1/ai_step_4_out/t
         wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-2-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_2/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/4_2/from_meta
+        wzjobs(any_json, &jobCtx)
 
     line ittf-docs-4-2-ai-step-1
         cwd-folder ${jobCtx.ittf_docs_folder}/4_2/ai_step_1_in
@@ -371,7 +388,7 @@ wzjob lb-audit/job
             line-ref ittf-meta-3-3
         $if false
             line-ref ittf-meta-4-1
-        $if false
+        $if true
             line-ref ittf-meta-4-2
         $if false
             line-ref ittf-meta-lbvsa 
@@ -385,14 +402,20 @@ wzjob lb-audit/job
             line-ref ittf-docs-product-supplier-ai-step-1
         $if false
             line-ref ittf-docs-product-supplier-ai-step-2
+        $if true
+            line-ref ittf-docs-3-3-from-meta
         $if false
             line-ref ittf-docs-3-3-ai-step-1
         $if false
             line-ref ittf-docs-3-3-ai-step-2
+        $if true
+            line-ref ittf-docs-4-1-from-meta
         $if false
             line-ref ittf-docs-4-1-ai-step-2
         $if false
             line-ref ittf-docs-4-1-ai-step-3
+        $if true
+            line-ref ittf-docs-4-2-from-meta
         $if false
             line-ref ittf-docs-4-1-ai-step-4
         $if false
@@ -410,5 +433,5 @@ wzjob lb-audit/job
             line-ref ittf-docs-ai-documents
         $if false
             line-ref ittf-docs-ai-lab
-        $if true
+        $if false
             line-ref ittf-docs-masterdeck

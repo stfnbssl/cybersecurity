@@ -37,7 +37,7 @@
 ## C) Materiali di origine da collegare
 
 * Planner master → sez. **5) Ambito 1 – Security Program & Governance**
-* Base dati controlli → campi e controlli pertinenti (Governance)
+* Base dati controlli canonici → campi e controlli pertinenti (Governance)
 
 ---
 

@@ -20,7 +20,7 @@
 - **Deck 1 – Percorso Clienti** (40–60 slide)
   - Focus: quadro normativo (UE/NA), cosa aspettarsi dall’audit, ruoli/responsabilità, evidenze richieste, benefici (accesso al mercato, qualifica fornitori)
 - **Deck 2 – Percorso Collaboratori** (60–90 slide)
-  - Focus: metodo, data model dei controlli, procedure passo‑passo, checklists, raccolta evidenze, reporting
+  - Focus: metodo, data model di controlli canonici e security profiles, procedure passo‑passo, checklists, raccolta evidenze, reporting
 - **Trainer Notes / Dispensa** (testo articolato, 20–40 pagine)
   - Approfondimenti, esempi, script di conduzione, soluzioni degli esercizi
 - **Allegati**: checklist operative, modelli di report, modelli di piani di remediation
@@ -34,13 +34,13 @@ Compila una riga per ciascun ambito.
 | # | Ambito                                   | Scopo | Output principali | Stakeholder | Rischi/criticità |
 | - | ---------------------------------------- | ----- | ----------------- | ----------- | ---------------- |
 | 1 | Security Program & Governance            |       |                   |             |                  |
-| 2 | Catalogo Controlli & Profili per Dominio |       |                   |             |                  |
+| 2 | Controlli canonici & Profili per Dominio |       |                   |             |                  |
 | 3 | Auditing Sviluppo Software (SSDLC)       |       |                   |             |                  |
 | 4 | Auditing Macchine di OEM/Integratori     |       |                   |             |                  |
 
 ---
 
-## 3) Base dati dei controlli di audit (schema)
+## 3) Base dati dei controlli canonici di audit (schema)
 
 > Incolla qui la definizione che abbiamo elaborato o compila i campi se serve rifinirla.
 
@@ -66,7 +66,7 @@ Compila una riga per ciascun ambito.
 
 ## 4) Profili di intervento per Dominio
 
-> Elenca i **profili** (set di controlli pre‑selezionati) per: segmento di rete, impianto, macchina singola, fornitura, manutenzione, remoto, cloud/edge, ecc.
+> Elenca i **profili** (set di controlli canonici pre‑selezionati) per: segmento di rete, impianto, macchina singola, fornitura, manutenzione, remoto, cloud/edge, ecc.
 
 **Esempio tabellare (completa/integra):**
 
@@ -88,7 +88,7 @@ Compila una riga per ciascun ambito.
 
 ---
 
-## 6) Ambito 2 – Catalogo Controlli & Normative UE/NA
+## 6) Ambito 2 – Catalogo Controlli Canonici & Normative UE/NA
 
 - **Obiettivo**: riuso nei profili, tracciabilità verso le norme
 - **Mappature**: tabella di corrispondenza (es. 62443 ↔ ISO27001 ↔ NIST 800‑82 ↔ NIS2 ↔ NERC CIP)
@@ -102,7 +102,7 @@ Compila una riga per ciascun ambito.
 
 - **Scope**: PLC/RTU/SCADA, HMI, gateway, edge, firmware
 - **Riferimenti**: IEC 62443‑4‑1, 62443‑4‑2, OWASP SAMM, ISO/IEC 27034
-- **Controlli chiave**: policy coding sicuro, revisione codice, SBOM, gestione vulnerabilità, signing, patching
+- **Controlli canonici chiave**: policy coding sicuro, revisione codice, SBOM, gestione vulnerabilità, signing, patching
 - **Evidenze**: pipeline CI/CD, risultati SAST/DAST, threat model, test di penetrazione
 - **Esercizio**: valutare una pipeline CI/CD e compilare una check‑list SSDLC
 
@@ -112,7 +112,7 @@ Compila una riga per ciascun ambito.
 
 - **Scope**: macchine/linee fornite da terzi, retrofitting
 - **Riferimenti**: IEC 62443‑3‑3, 62443‑4‑2, requisiti fornitura 2‑4, NDA/contrattualistica, marcatura CE (solo contesto)
-- **Controlli chiave**: hardening, accessi remoti, gestione credenziali, logging, update, documentazione tecnica
+- **Controlli canonici chiave**: hardening, accessi remoti, gestione credenziali, logging, update, documentazione tecnica
 - **Evidenze**: manuali, configurazioni, SBOM, risultati FAT/SAT, prove di cyber‑safety
 - **Esercizio**: checklist per accettazione macchina in ingresso
 
@@ -139,7 +139,7 @@ Compila una riga per ciascun ambito.
 
 ### Percorso Collaboratori (suggerito)
 
-1. Data model dei controlli (45’)
+1. Data model dei controlli canonici (45’)
 2. Metodologia di audit (60’)
 3. Profili per dominio (45’)
 4. SSDLC e fornitori (60’)
@@ -157,7 +157,7 @@ Compila una riga per ciascun ambito.
 ## 12) Materiali di partenza da incollare qui
 
 - Estratti dalle 3–4 chat precedenti (copia/incolla)
-- Diagrammi, tabelle, elenchi di controlli
+- Diagrammi, tabelle, elenchi di controlli canonici
 - Esempi di report o checklist già abbozzati
 
 ---

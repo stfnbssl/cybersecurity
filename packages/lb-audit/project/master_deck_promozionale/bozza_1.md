@@ -212,3 +212,5 @@ Vuoi che:
 
 * produca la **versione email** (più testo per slide) e la **versione live** (bullet + note),
 * oppure che trasformi subito questo contenuto in un **.pptx** con layout coerenti (palette/font impostati)?
+
+### sys_source https://chatgpt.com/c/68a57145-9440-832a-8fd4-9a9671b87317

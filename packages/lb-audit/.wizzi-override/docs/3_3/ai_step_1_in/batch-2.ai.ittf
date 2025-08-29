@@ -1,7 +1,7 @@
 ai std_62443_3_3_step_1
     api-url http://localhost:3000
-    call std_62443_3_3_step_1_base_SR 5.4
-        description Base ai expansion of 62443-3-3 SR requirement SR 5.4
+    call std_62443_3_3_step_1_base_SR 1.4
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.4
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -26,17 +26,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -46,11 +46,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 5.4","page":59,"name":"Application partitioning","description":"The control system shall provide the capability to support partitioning of data, applications and services based on criticality to facilitate implementing a zoning model.","rationale":"Partitioning may be accomplished via physical or logical means through the use of different computers, different central processing units, different instances of the operating system, different network addresses and combinations of these methods or other methods as appropriate. Examples of applications and services that could be considered for different partitions include, but are not limited to, emergency and/or safety systems, closed-loop control applications, operator workstations and engineering workstations.","rhs":[],"security_levels":["SL-C (RDF, control system) 1: SR 5.4","SL-C (RDF, control system) 2: SR 5.4","SL-C (RDF, control system) 3: SR 5.4","SL-C (RDF, control system) 4: SR 5.4"]} 
+                \n {"id":"SR 1.4","page":28,"name":"Identifier management","description":"The control system shall provide the capability to support the management of identifiers by user,group, role or control system interface.","rationale":"Identifiers are distinguished from the privileges which they permit an entity to perform within a specific control system control domain or zone (see 6.3, SR 2.1 – Authorization enforcement). Where human users function as a single group (such as control room operators), user identification may be role-based, group-based or device-based. For some control systems, the capability for immediate operator interaction is critical. Local emergency actions for the control system should not be hampered by identification requirements. Access to these systems may be restricted by appropriate compensating countermeasures. Identifiers may be required on portions of the control system but not necessarily the entire control system. For example, wireless devices typically require identifiers, whereas wired devices may not. The management of identifiers will be determined by local policies and procedures established in compliance with IEC 62443‑2‑1.","security_levels":["SL-C (IAC, control system) 1: SR 1.4","SL-C (IAC, control system) 2: SR 1.4","SL-C (IAC, control system) 3: SR 1.4","SL-C (IAC, control system) 4: SR 1.4"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 6.1
-        description Base ai expansion of 62443-3-3 SR requirement SR 6.1
+    call std_62443_3_3_step_1_base_SR 1.5
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.5
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -75,17 +75,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -95,11 +95,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 6.1","page":60,"name":"Audit log accessibility","description":"The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.","rationale":"The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.","rhs":[{"id":"SR 6.1 RE 1","name":"Programmatic access to audit logs","description":"The control system shall provide programmatic access to audit records using an application programming interface (API)."}],"security_levels":["SL-C (TRE, control system) 1: SR 6.1","SL-C (TRE, control system) 2: SR 6.1","SL-C (TRE, control system) 3: SR 6.1 (1)","SL-C (TRE, control system) 4: SR 6.1 (1)"]} 
+                \n {"id":"SR 1.5","page":28,"name":"Authenticator management","description":"The control system shall provide the capability to: h) initialize authenticator content; i) change all default authenticators upon control system installation; j) change/refresh all authenticators; and k) protect all authenticators from unauthorized disclosure and modification when stored and transmitted.","rationale":"In addition to an identifier (see 5.6, SR 1.4 – Identifier management) an authenticator is required to prove identity. Control system authenticators include, but are not limited to, tokens, symmetric keys, private keys (part of a public/private key pair), biometrics, passwords, physical keys and key cards. Human users should take reasonable measures to safeguard authenticators, including maintaining possession of their individual authenticators, not loaning or sharing authenticators with others and reporting lost or compromised authenticators immediately. Authenticators have a lifecycle. When an account is created automatically a new authenticator needs to be created, in order for the account owner to be able to authenticate. For example, in a password-based system, the account has a password associated with it. Definition of the initial authenticator content could be interpreted as the administrator defining the initial password which the account management system sets for all new accounts. Being able to configure these initial values makes it harder for an attacker to guess the password between account creation and first account use (which should involve the setting of a new password by the account owner). Some control systems are installed with unattended installers which create all necessary accounts with default passwords and some embedded devices are shipped with default passwords. Over time, these passwords often become general knowledge and are documented on the Internet. Being able to change the default passwords protects the system against unauthorized users using default passwords to gain access. Passwords can be obtained from storage or from transmission when used in network authentication. The complexity of this can be increased by cryptographic protections such as encryption or hashing or by handshake protocols which do not require transmission of the password at all. Still, passwords might be subject to attacks, for example brute force guessing or breaking the cryptographic protection of passwords in transit or storage. The window of opportunity can be reduced by changing/refreshing the passwords periodically. Similar considerations apply to authentication systems based on cryptographic keys. Enhanced protection can be achieved by using hardware mechanisms such as hardware security modules like trusted platform modules (TPMs). The management of authenticators should be specified in applicable security policies and procedures, for example, constraints to change default authenticators, refresh periods, specification of the protection of authenticators or firecall (see 3.1.24) procedures. Lockout or loss of control due to security measures is not acceptable. If the control system is required to have a high level of availability, measures should be taken to maintain this high level of availability (such as compensating physical countermeasures, duplicate keys and supervisory override). Besides the capabilities for authenticator management specified in this requirement, the strength of the authentication mechanism depends on the strength of the chosen authenticator (for example password complexity or key length in public key authentication) and the policies for validating the authenticator in the authentication process (for example how long a password is valid or which checks are performed in public key certificate validation). For the most common authentication mechanisms password-based and public key authentication 5.9, SR 1.7 – Strength of password-based authentication, 5.10, SR 1.8 – Public key infrastructure (PKI) certificates and 5.11, SR 1.9 – Strength of public key authentication provide further requirements.","rhs":[{"id":"SR 1.5 RE 1","name":"Hardware security for software process identity credentials","description":"For software process and device users, the control system shall provide the capability to protect the relevant authenticators via hardware mechanisms."}],"security_levels":["SL-C (IAC, control system) 1: SR 1.5","SL-C (IAC, control system) 2: SR 1.5","SL-C (IAC, control system) 3: SR 1.5 (1)","SL-C (IAC, control system) 4: SR 1.5 (1)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 6.2
-        description Base ai expansion of 62443-3-3 SR requirement SR 6.2
+    call std_62443_3_3_step_1_base_SR 1.6
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.6
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -124,17 +124,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -144,6 +144,6 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 6.2","page":60,"name":"Continuous monitoring","description":"The control system shall provide the capability to continuously monitor all security mechanism performance using commonly accepted security industry practices and recommendations to detect, characterize and report security breaches in a timely manner.","notes":["Response time is a local matter outside the scope of this standard."],"rationale":"Control system monitoring capability can be achieved through a variety of tools and techniques (for example, IDS, IPS, malicious code protection mechanisms and network monitoring mechanisms). As attacks become more sophisticated, these monitoring tools and techniques will need to become more sophisticated as well, including for example behavior-based IDS/IPS. Monitoring devices should be strategically deployed within the control system (for example, at selected perimeter locations and near server farms supporting critical applications) to collect essential information. Monitoring mechanisms may also be deployed at ad hoc locations within the control system to track specific transactions. Monitoring should include appropriate reporting mechanisms to allow for a timely response to events. To keep the reporting focused and the amount of reported information to a level that can be processed by the recipients, mechanisms such as SIEM are commonly applied to correlate individual events into aggregate reports which establish a larger context in which the raw events occurred. Additionally, these mechanisms can be used to track the effect of security changes to the control system (see 6.10, SR 2.8 – Auditable events). Having forensic tools pre-installed can facilitate incident analysis.","rhs":[],"security_levels":["SL-C (TRE, control system) 1: Not Selected","SL-C (TRE, control system) 2: SR 6.2","SL-C (TRE, control system) 3: SR 6.2","SL-C (TRE, control system) 4: SR 6.2"]} 
+                \n {"id":"SR 1.6","page":30,"name":"Wireless access management","description":"The control system shall provide the capability to identify and authenticate all users (humans, software processes or devices) engaged in wireless communication.","rationale":"Any wireless technology can, and in most cases should, be considered just another communication protocol option, and thus subject to the same IACS security requirements as any other communication type utilized by the IACS. However, from a security point of view, there is at least one significant difference between wired and wireless communications: physical security countermeasures are typically less effective when using wireless. For this and possibly other reasons (for example regulatory differences), a risk analysis might legitimately result in a higher SL-T(IAC,control system) for wireless communications versus a wired protocol being used in an identical use case. Wireless technologies include, but are not limited to, microwave, satellite, packet radio, Institute of Electrical and Electronics Engineers (IEEE) 802.11x, IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), wireless LAN mobile routers, mobile phones with tethering and various infrared technologies.","rhs":[{"id":"SR 1.2 RE 1","name":"Unique identification and authentication","description":"The control system shall provide the capability to uniquely identify and authenticate all users (humans, software processes or devices) engaged in wireless communication."}],"security_levels":["SL-C (IAC, control system) 1: SR 1.6","SL-C (IAC, control system) 2: SR 1.6 (1)","SL-C (IAC, control system) 3: SR 1.6 (1)","SL-C (IAC, control system) 4: SR 1.6 (1)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.

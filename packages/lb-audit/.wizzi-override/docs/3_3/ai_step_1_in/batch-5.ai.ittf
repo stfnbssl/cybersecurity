@@ -1,7 +1,7 @@
 ai std_62443_3_3_step_1
     api-url http://localhost:3000
-    call std_62443_3_3_step_1_base_SR 7.6
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.6
+    call std_62443_3_3_step_1_base_SR 1.13
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.13
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -26,17 +26,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -46,11 +46,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.6","page":64,"name":"Network and security configuration settings","description":"The control system shall provide the capability to be configured according to recommended network and security configurations as described in guidelines provided by the control system supplier. The control system shall provide an interface to the currently deployed network and security configuration settings.","rationale":"These configuration settings are the adjustable parameters of the control system components. In order to be able to detect and correct any deviations from the approved and/or recommended configuration settings, the control system needs to support monitoring and control of changes to the configuration settings in accordance with security policies and procedures. For enhanced security, an automated check may be performed where the current settings are automatically collected by an agent and compared to approved settings.","rhs":[{"id":"SR 7.6 RE 1","name":"Machine-readable reporting of current security settings","description":"The control system shall provide the capability to generate a report listing the currently deployed security settings in a machine-readable format."}],"security_levels":["SL-C (RA, control system) 1: SR 7.6","SL-C (RA, control system) 2: SR 7.6","SL-C (RA, control system) 3: SR 7.6 (1)","SL-C (RA, control system) 4: SR 7.6 (1)"]} 
+                \n {"id":"SR 1.13","page":35,"name":"Access via untrusted networks","description":"The control system shall provide the capability to monitor and control all methods of access to the control system via untrusted networks.","rationale":"Examples of access to the control system via untrusted networks typically include remote access methods (such as dial-up, broadband and wireless) as well as connections from a company’s office (non-control system) network. The control system should restrict access achieved through dial-up connections (for example, limiting dial-up access based upon the source of the request) or protect against unauthorized connections or subversion of authorized connections (for example, using virtual private network technology). Access via untrusted networks to geographically remote control system component locations (for example, control centres and field locations) should only be enabled when necessary and authenticated. Security policies and procedures may require multifactor authentication for remote user access to the control system.","rhs":[{"id":"SR 1.13 RE 1","name":"Explicit access request approval","description":"The control system shall provide the capability to deny access requests via untrusted networks unless approved by an assigned role."}],"security_levels":["SL-C (IAC, control system) 1: SR 1.13","SL-C (IAC, control system) 2: SR 1.13 (1)","SL-C (IAC, control system) 3: SR 1.13 (1)","SL-C (IAC, control system) 4: SR 1.13 (1)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.7
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.7
+    call std_62443_3_3_step_1_base_SR 2.1
+        description Base ai expansion of 62443-3-3 SR requirement SR 2.1
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -75,17 +75,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -95,11 +95,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.7","page":65,"name":"Least functionality","description":"The control system shall provide the capability to specifically prohibit and/or restrict the use of unnecessary functions, ports, protocols and/or services.","rationale":"Control systems are capable of providing a wide variety of functions and services. Some of the functions and services provided may not be necessary to support essential functions. Therefore, by default, functions beyond a baseline configuration should be disabled. Additionally, it is sometimes convenient to provide multiple services from a single component of a control system, but doing so increases risk over limiting the services provided by any one component. Many functions and services commonly provided by commercial-off-the-shelf (COTS) equipment may be candidates for elimination, for example, email, voice over internet protocol (VoIP), instant messaging (IM), file transfer protocol (FTP), hypertext transfer protocol (HTTP) and file sharing.","rhs":[],"security_levels":["SL-C (RA, control system) 1: SR 7.7","SL-C (RA, control system) 2: SR 7.7","SL-C (RA, control system) 3: SR 7.7","SL-C (RA, control system) 4: SR 7.7"]} 
+                \n {"id":"SR 2.1","page":37,"name":"Authorization enforcement","description":"On all interfaces, the control system shall provide the capability to enforce authorizations assigned to all human users for controlling use of the control system to support segregation of duties and least privilege.","rationale":"Use control policies (for example, identity-based policies, role-based policies and rule-based policies) and associated read/write access enforcement mechanisms (for example, access control lists, access control matrices and cryptography) are employed to control usage between users (humans, software processes and devices) and assets (for example, devices, files, records, software processes, programs and domains). After the control system has verified the identity of a user (human, software process or device) (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, SR 1.2 – Software process and device identification and authentication), it also has to verify that a requested operation is actually permitted according to the defined security policies and procedures. For example, in a role-based access control policy, the control system would check which roles are assigned to a verified user or asset and which privileges are assigned to these roles – if the requested operation is covered by the permissions, it is executed, otherwise rejected. This allows the enforcement of segregation of duties and least privileges. Usage enforcement mechanisms should not be allowed to adversely affect the operational performance of the control system. Planned or unplanned changes to control system components can have significant effects on the overall security of the control system. Accordingly, only qualified and authorized individuals should obtain the use of control system components for purposes of initiating changes, including upgrades and modifications.","rhs":[{"id":"SR 2.1 RE 1","name":"Authorization enforcement for all users","description":"On all interfaces, the control system shall provide the capability to enforce authorizations assigned to all users (humans, software processes and devices) for controlling use of the control system to support segregation of duties and least privilege."},{"id":"SR 2.1 RE 2","name":"Permission mapping to roles","description":"The control system shall provide the capability for an authorized user or role to define and modify the mapping of permissions to roles for all human users.","notes":["It is a commonly accepted good practice to not limit roles to fixed nested hierarchies in which a higher level role is a superset of a lesser privileged role. For example, a system administrator generally does not necessarily encompass operator privileges.","This RE is applicable to software processes and devices as well."]},{"id":"SR 2.1 RE 3","name":"Supervisor override","description":"The control system shall support supervisor manual override of the current human user authorizations for a configurable time or event sequence.","notes":["Implementation of a controlled, audited and manual override of automated mechanisms in the event of emergencies or other serious events is often needed. This allows a supervisor to enable an operator to quickly react to unusual conditions without closing the current session and establishing a new session as a higher privilege human user."]},{"id":"SR 2.1 RE 4","name":"Dual approval","description":"The control system shall support dual approval where an action can result in serious impact on the industrial process.","notes":["It is a commonly accepted good practice to limit dual approval to actions which require a very high level of confidence that they will be performed reliably and correctly. Requiring dual approval provides emphasis to the seriousness of consequences that would result from failure of a correct action. An example of a situation in which dual approval is required would be a change to a set point of a critical industrial process. It is a commonly accepted good practice to not employ dual approval mechanisms when an immediate response is necessary to safeguard HSE consequences, for example, emergency shutdown of an industrial process."]}],"security_levels":["SL-C (UC, control system) 1: SR 2.1","SL-C (UC, control system) 2: SR 2.1 (1) (2)","SL-C (UC, control system) 3: SR 2.1 (1) (2) (3)","SL-C (UC, control system) 4: SR 2.1 (1) (2) (3) (4)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.8
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.8
+    call std_62443_3_3_step_1_base_SR 2.2
+        description Base ai expansion of 62443-3-3 SR requirement SR 2.2
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -124,17 +124,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -144,6 +144,6 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.8","page":66,"name":"Control system component inventory","description":"The control system shall provide the capability to report the current list of installed components and their associated properties.","rationale":"A control system component inventory may include but is not limited to component ID, capability and revision level. The component inventory should be consistent with the SuC. A formal process of configuration management should be deployed to keep control of the changes in the component inventory baseline (see IEC 62443‑2‑1).","rhs":[],"security_levels":["SL-C (RA, control system) 1: Not Selected","SL-C (RA, control system) 2: SR 7.8","SL-C (RA, control system) 3: SR 7.8","SL-C (RA, control system) 4: SR 7.8"]} 
+                \n {"id":"SR 2.2","page":37,"name":"Wireless use control","description":"The control system shall provide the capability to authorize, monitor and enforce usage restrictions for wireless connectivity to the control system according to commonly accepted security industry practices.","rationale":"Any wireless technology can, and in most cases should, be considered just another communication protocol option, and thus subject to the same IACS security requirements as any other communication type utilized by the IACS. However, a risk analysis may result in a requirement for wireless IACS components to support higher use control capabilities than are typically required of wired systems for the same use case and SL-T. Regulatory differences may also result in different required capabilities between wired and wireless communications. As noted in 5.8, SR 1.6 – Wireless access management, wireless technologies include, but are not limited to, microwave, satellite, packet radio, IEEE 802.11x, IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), wireless LAN mobile routers, mobile phones with tethering and various infrared technologies.","rhs":[{"id":"SR 2.2 RE 1","name":"Identify and report unauthorized wireless devices","description":"The control system shall provide the capability to identify and report unauthorized wireless devices transmitting within the control system physical environment."}],"security_levels":["SL-C (UC, control system) 1: SR 2.2","SL-C (UC, control system) 2: SR 2.2","SL-C (UC, control system) 3: SR 2.2 (1)","SL-C (UC, control system) 4: SR 2.2 (1)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.

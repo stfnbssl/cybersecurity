@@ -1,0 +1,225 @@
+ittf
+    $
+        function getstd_62443_4_1_extra(code) {
+            for (var i=0; i<std_62443_4_1_extra.items.length; i++) {
+                var item = std_62443_4_1_extra.items[i];
+                if (item.code == code) { return item; }
+            }
+            return null;
+        }        
+        function sha256(data) {
+            return crypto
+                .createHash('sha256')
+                .update(data, typeof data === 'string' ? 'utf8' : undefined)
+                .digest('hex');
+        } 
+
+    $file .wizzi-override/docs/4_1/from_meta/for_chunks.json.ittf
+
+        { 
+            [ chunks
+                $foreach practice in std_62443_4_1.practices
+                    $foreach pr in practice.requirements
+                        $
+                            var extra = getstd_62443_4_1_extra(pr.code);
+
+                        $if _.isArray(extra.subs)
+                            {
+                                chunk_id "IEC-62443-4-1:2020/${pr.code}"
+                                doc_id "IEC-62443-4-1:2020"
+                                section_path "${pr.code}"
+                                parent_id null
+                                group_id "IEC-62443-4-1:2020/${pr.code}[p${pr.page}]"
+                                seq 1                            
+                                normative false
+                                informative false
+                                role "preamble"
+                                scope_condition "${extra.description}"
+                                modal_verb "in scope_condition (TODO: split)"
+                                aggregation "all_of"
+                                sha256 "${sha256(extra.description)}"
+                            
+                            $ var subIndex = 2
+
+                            $foreach sub in extra.subs
+                                $
+                                    var sub_text = sub.description;
+                                    var ordinal = sub_text.substring(0, sub_text.indexOf(')'));
+
+                                {
+                                    chunk_id "IEC-62443-4-1:2020/${pr.code}/${ordinal}"
+                                    doc_id "IEC-62443-4-1:2020"
+                                    section_path "${pr.code}"
+                                    parent_id "IEC-62443-4-1:2020/${pr.code}"
+                                    group_id "IEC-62443-4-1:2020/${pr.code}[p${pr.page}]"
+                                    seq ${subIndex++}
+                                    normative true
+                                    text_normative "${extra.description} ${sub_text}"
+                                    ordinal "${ordinal}"
+                                    inherits_from "IEC-62443-4-1:2020/${pr.code}"
+                                    [ inherited_fields
+                                        "scope_condition"
+                                        "modal_verb"
+                                    { context
+                                        name "${pr.name}"
+                                        rationale "${pr.rationale}"
+                                        clause "${pr.clause}"
+                                        page "${pr.page}"
+                                    sha256 "${sha256(extra.description+' '+sub_text)}"
+                        $else
+                            {
+                                chunk_id "IEC-62443-4-1:2020/${pr.code}"
+                                doc_id "IEC-62443-4-1:2020"
+                                section_path "${pr.code}"
+                                parent_id null
+                                group_id "IEC-62443-4-1:2020/${pr.code}[p${pr.page}]"
+                                seq 1     
+                                normative true
+                                informative false
+                                text_normative "${pr.requirement}"
+                                context_note null
+                                { context
+                                    name "${pr.name}"
+                                    rationale "${pr.rationale}"
+                                    clause "${pr.clause}"
+                                    page "${pr.page}"
+                                sha256 "${sha256(pr.requirement)}"
+
+                $*
+                $foreach fr in std_62443_3_3_json.foundational_requirements
+                    $foreach sr in fr.srs
+                        $if _.isArray(sr.subs)
+                            {
+                                chunk_id "IEC-62443-4-1:2020/${pr.code}"
+                                doc_id "IEC-62443-4-1:2020"
+                                section_path "${pr.code}"
+                                parent_id null
+                                group_id "IEC-62443-4-1:2020/${pr.code}[p${sr.page}]"
+                                seq 1                            
+                                normative false
+                                informative false
+                                role "preamble"
+                                scope_condition "${sr.description}"
+                                modal_verb "in scope_condition (TODO: split)"
+                                aggregation "all_of"
+                                sha256 "${sha256(sr.description)}"
+                            $ var subIndex = 2
+
+                            $foreach sub in sr.subs
+                                $
+                                    var ordinal = sub.substring(0, sub.indexOf(')'));
+
+                                {
+                                    chunk_id "IEC-62443-4-1:2020/${pr.code}/${ordinal}"
+                                    doc_id "IEC-62443-4-1:2020"
+                                    section_path "${pr.code}"
+                                    parent_id "IEC-62443-4-1:2020/${pr.code}"
+                                    group_id "IEC-62443-4-1:2020/${pr.code}[p${sr.page}]"
+                                    seq ${subIndex++}
+                                    normative true
+                                    text_normative "${sr.description} ${sub}"
+                                    ordinal "${ordinal}"
+                                    inherits_from "IEC-62443-4-1:2020/${pr.code}"
+                                    [ inherited_fields
+                                        "scope_condition"
+                                        "modal_verb"
+                                    sha256 "${sha256(sr.description+' '+sub)}"
+                        $else
+                            {
+                                chunk_id "IEC-62443-4-1:2020/${pr.code}"
+                                doc_id "IEC-62443-4-1:2020"
+                                section_path "${pr.code}"
+                                parent_id null
+                                group_id "IEC-62443-4-1:2020/${pr.code}[p${sr.page}]"
+                                seq 1                            
+                                normative true
+                                informative false
+                                text_normative  "${sr.description}"
+                                text_informative null
+                                context_note null
+                                sha256 "${sha256(sr.description)}"
+                                { context
+                                    name "${sr.name}"
+                                    rationale "${sr.rationale}"
+                                    page "${sr.page}"
+                        $if _.isArray(sr.notes)
+                            $ var noteIndex = 1
+
+                            $foreach note in sr.notes
+                                $
+                                    var chunkId = "IEC-62443-4-1:2020/" + pr.code + "[note-" + noteIndex + "]"
+                                    noteIndex++;
+
+                                {
+                                    chunk_id "${chunkId}"
+                                    doc_id "IEC-62443-4-1:2020"
+                                    section_path "${pr.code}"
+                                    parent_id "IEC-62443-4-1:2020/${pr.code}"
+                                    group_id "IEC-62443-4-1:2020/${pr.code}[p${sr.page}]"
+                                    seq 2
+                                    normative false
+                                    informative true
+                                    informative_type "note"
+                                    text_normative null
+                                    text_informative "${note}"
+                                    context_note null
+                                    sha256 "${sha256(note)}"
+                                    { context
+                                        name null
+                                        rationale null
+                                        page "${sr.page}"
+                                    { chunk_relation
+                                        src_chunk_id "${chunkId}"
+                                        dst_chunk_id "IEC-62443-4-1:2020/${pr.code}"
+                                        relation "note_of"
+
+                        $if _.isArray(sr.rhs)
+                            $foreach rh in sr.rhs
+                                {
+                                    chunk_id "IEC-62443-4-1:2020/${rh.id}"
+                                    doc_id "IEC-62443-4-1:2020"
+                                    section_path "${rh.id}"
+                                    parent_id "IEC-62443-4-1:2020/${pr.code}"
+                                    group_id "IEC-62443-4-1:2020/${rh.id}[p${sr.page}]"
+                                    seq 1                            
+                                    normative true
+                                    informative false
+                                    text_normative  "${rh.description}"
+                                    text_informative null
+                                    context_note null
+                                    sha256 "${sha256(rh.description)}"
+                                    { context
+                                        name "${rh.name}"
+                                        rationale null
+                                        page "${sr.page}"
+                                $if _.isArray(rh.notes)
+                                    $ var noteIndex = 1
+
+                                    $foreach note in rh.notes
+                                        $ 
+                                            var chunkId = "IEC-62443-4-1:2020/" + rh.id + "[note-" + noteIndex + "]"
+                                            noteIndex++;
+
+                                        {
+                                            chunk_id "${chunkId}"
+                                            doc_id "IEC-62443-4-1:2020"
+                                            section_path "${rh.id}"
+                                            parent_id "IEC-62443-4-1:2020/${pr.code}"
+                                            group_id "IEC-62443-4-1:2020/${rh.id}[p${sr.page}]"
+                                            seq 2
+                                            normative false
+                                            informative true
+                                            informative_type "note"
+                                            text_normative null
+                                            text_informative "${note}"
+                                            context_note null
+                                            sha256 "${sha256(note)}"
+                                            { context
+                                                name null
+                                                rationale null
+                                                page "${sr.page}"
+                                            { chunk_relation
+                                                src_chunk_id "${chunkId}"
+                                                dst_chunk_id "IEC-62443-4-1:2020/${rh.id}"
+                                                relation "note_of"
+                    *$

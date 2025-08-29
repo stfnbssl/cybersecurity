@@ -350,14 +350,15 @@ $group
                 id "SR 1.9"
                 page 32
                 name "Strength of public key authentication"
-                description "For control systems utilizing public key authentication, the control system shall provide the capability to:
-                    +b a) validate certificates by checking the validity of the signature of a given certificate; 
-                    +b b) validate certificates by constructing a certification path to an accepted CA or in the case of
-                    +b self-signed certificates by deploying leaf certificates to all hosts which communicate with the subject 
-                    +b to which the certificate is issued;
-                    +b c) validate certificates by checking a given certificate’s revocation status; 
-                    +b d) establish user (human, software process or device) control of the corresponding private key; and 
-                    +b e) map the authenticated identity to a user (human, software process or device)."
+                description "For control systems utilizing public key authentication, the control system shall provide the capability to:"
+                [ subs
+                    "a) validate certificates by checking the validity of the signature of a given certificate;" 
+                    "b) validate certificates by constructing a certification path to an accepted CA or in the case of
+                        +b self-signed certificates by deploying leaf certificates to all hosts which communicate with the subject 
+                        +b to which the certificate is issued;"
+                    "c) validate certificates by checking a given certificate’s revocation status;" 
+                    "d) establish user (human, software process or device) control of the corresponding private key; and" 
+                    "e) map the authenticated identity to a user (human, software process or device)."
                 rationale "Public/private key cryptography strongly depends on the secrecy of a given subject’s private key and 
                     +b proper handling of the trust relationships. 
                     +b When verifying a trust between two entities based on public key authentication, 
@@ -447,7 +448,7 @@ $group
                     +b does not protect against remote login issues."
                 [ examples
                     "Examples of elements for inclusion in the system use notification message are:
-                        +b a) that the individual is accessing a specific control system; 
+                        +b a) that the individual is accessing a specific control system;
                         +b b) that system usage may be monitored, recorded and subject to audit; 
                         +b c) that unauthorized use of the system is prohibited and subject to criminal and/or civil penalties; and 
                         +b d) that use of the system indicates consent to monitoring and recording."

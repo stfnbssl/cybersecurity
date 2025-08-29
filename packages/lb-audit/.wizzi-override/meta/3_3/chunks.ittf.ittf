@@ -1,0 +1,160 @@
+ittf
+    $
+        function sha256(data) {
+            return crypto
+                .createHash('sha256')
+                .update(data, typeof data === 'string' ? 'utf8' : undefined)
+                .digest('hex');
+        } 
+
+    $file .wizzi-override/docs/3_3/from_meta/for_chunks.json.ittf
+
+        { 
+            [ chunks
+                $foreach fr in std_62443_3_3_json.foundational_requirements
+                    $foreach sr in fr.srs
+                        $if _.isArray(sr.subs)
+                            {
+                                chunk_id "IEC-62443-3-3:2013/${sr.id}"
+                                doc_id "IEC-62443-3-3:2013"
+                                section_path "${sr.id}"
+                                parent_id null
+                                group_id "IEC-62443-3-3:2013/${sr.id}[p${sr.page}]"
+                                seq 1                            
+                                normative false
+                                informative false
+                                role "preamble"
+                                scope_condition "${sr.description}"
+                                modal_verb "in scope_condition (TODO: split)"
+                                aggregation "all_of"
+                                sha256 "${sha256(sr.description)}"
+                            $ var subIndex = 2
+
+                            $foreach sub in sr.subs
+                                $
+                                    var ordinal = sub.substring(0, sub.indexOf(')'));
+
+                                {
+                                    chunk_id "IEC-62443-3-3:2013/${sr.id}/${ordinal}"
+                                    doc_id "IEC-62443-3-3:2013"
+                                    section_path "${sr.id}"
+                                    parent_id "IEC-62443-3-3:2013/${sr.id}"
+                                    group_id "IEC-62443-3-3:2013/${sr.id}[p${sr.page}]"
+                                    seq ${subIndex++}
+                                    normative true
+                                    text_normative "${sr.description} ${sub}"
+                                    ordinal "${ordinal}"
+                                    inherits_from "IEC-62443-3-3:2013/${sr.id}"
+                                    [ inherited_fields
+                                        "scope_condition"
+                                        "modal_verb"
+                                    sha256 "${sha256(sr.description+' '+sub)}"
+                        $else
+                            {
+                                chunk_id "IEC-62443-3-3:2013/${sr.id}"
+                                doc_id "IEC-62443-3-3:2013"
+                                section_path "${sr.id}"
+                                parent_id null
+                                group_id "IEC-62443-3-3:2013/${sr.id}[p${sr.page}]"
+                                seq 1                            
+                                normative true
+                                informative false
+                                text_normative  "${sr.description}"
+                                text_informative null
+                                context_note null
+                                sha256 "${sha256(sr.description)}"
+                                { context
+                                    name "${sr.name}"
+                                    rationale "${sr.rationale}"
+                                    page "${sr.page}"
+                        $if _.isArray(sr.notes)
+                            $ var noteIndex = 1
+
+                            $foreach note in sr.notes
+                                $
+                                    var chunkId = "IEC-62443-3-3:2013/" + sr.id + "[note-" + noteIndex + "]"
+                                    noteIndex++;
+
+                                {
+                                    chunk_id "${chunkId}"
+                                    doc_id "IEC-62443-3-3:2013"
+                                    section_path "${sr.id}"
+                                    parent_id "IEC-62443-3-3:2013/${sr.id}"
+                                    group_id "IEC-62443-3-3:2013/${sr.id}[p${sr.page}]"
+                                    seq 2
+                                    normative false
+                                    informative true
+                                    informative_type "note"
+                                    text_normative null
+                                    text_informative "${note}"
+                                    context_note null
+                                    sha256 "${sha256(note)}"
+                                    { context
+                                        name null
+                                        rationale null
+                                        page "${sr.page}"
+                                    { chunk_relation
+                                        src_chunk_id "${chunkId}"
+                                        dst_chunk_id "IEC-62443-3-3:2013/${sr.id}"
+                                        relation "note_of"
+
+                        $if _.isArray(sr.rhs)
+                            $foreach rh in sr.rhs
+                                {
+                                    chunk_id "IEC-62443-3-3:2013/${rh.id}"
+                                    doc_id "IEC-62443-3-3:2013"
+                                    section_path "${rh.id}"
+                                    parent_id "IEC-62443-3-3:2013/${sr.id}"
+                                    group_id "IEC-62443-3-3:2013/${rh.id}[p${sr.page}]"
+                                    seq 1                            
+                                    normative true
+                                    informative false
+                                    text_normative  "${rh.description}"
+                                    text_informative null
+                                    context_note null
+                                    sha256 "${sha256(rh.description)}"
+                                    { context
+                                        name "${rh.name}"
+                                        rationale null
+                                        page "${sr.page}"
+                                $if _.isArray(rh.notes)
+                                    $ var noteIndex = 1
+
+                                    $foreach note in rh.notes
+                                        $ 
+                                            var chunkId = "IEC-62443-3-3:2013/" + rh.id + "[note-" + noteIndex + "]"
+                                            noteIndex++;
+
+                                        {
+                                            chunk_id "${chunkId}"
+                                            doc_id "IEC-62443-3-3:2013"
+                                            section_path "${rh.id}"
+                                            parent_id "IEC-62443-3-3:2013/${sr.id}"
+                                            group_id "IEC-62443-3-3:2013/${rh.id}[p${sr.page}]"
+                                            seq 2
+                                            normative false
+                                            informative true
+                                            informative_type "note"
+                                            text_normative null
+                                            text_informative "${note}"
+                                            context_note null
+                                            sha256 "${sha256(note)}"
+                                            { context
+                                                name null
+                                                rationale null
+                                                page "${sr.page}"
+                                            { chunk_relation
+                                                src_chunk_id "${chunkId}"
+                                                dst_chunk_id "IEC-62443-3-3:2013/${rh.id}"
+                                                relation "note_of"
+
+                        $*
+                        id "SR 4.1 RE 1"
+                        name "Protection of confidentiality at rest or in transit via untrusted networks"
+                        description "The control system shall provide the capability to protect the confidentiality 
+                            +b of information at rest and remote access sessions traversing an untrusted network."
+                        [ notes
+                            "Cryptography is a common mechanism for ensuring information confidentiality."
+                        *$
+
+

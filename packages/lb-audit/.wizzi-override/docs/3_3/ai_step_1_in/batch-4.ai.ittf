@@ -1,7 +1,7 @@
 ai std_62443_3_3_step_1
     api-url http://localhost:3000
-    call std_62443_3_3_step_1_base_SR 7.3
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.3
+    call std_62443_3_3_step_1_base_SR 1.10
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.10
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -26,17 +26,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -46,11 +46,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.3","page":63,"name":"Control system backup","description":"The identity and location of critical files and the ability to conduct backups of user-level and system-level information (including system state information) shall be supported by the control system without affecting normal plant operations.","rationale":"The availability of up-to-date backups is essential for recovery from a control system failure and/or mis-configuration. Automating this function ensures that all required files are captured, reducing operator overhead. Although not usually required for control system recovery, information required for post-incident forensic activity (for example, audit logs) should be specifically included in the backup (see 10.4, SR 6.2 – Continuous monitoring). If the resulting backups contain confidential information, encryption should be considered (see 8.5, SR 4.3 – Use of cryptography).","rhs":[{"id":"SR 7.3 RE 1","name":"Backup verification","description":"The control system shall provide the capability to verify the reliability of backup mechanisms."},{"id":"SR 7.3 RE 2","name":"Backup automation","description":"The control system shall provide the capability to automate the backup function based on a configurable frequency."}],"security_levels":["SL-C (RA, control system) 1: SR 7.3","SL-C (RA, control system) 2: SR 7.3 (1)","SL-C (RA, control system) 3: SR 7.3 (1) (2)","SL-C (RA, control system) 4: SR 7.3 (1) (2)"]} 
+                \n {"id":"SR 1.10","page":33,"name":"Authenticator feedback","description":"The control system shall provide the capability to obscure feedback of authentication information during the authentication process.","rationale":"Obscuring feedback protects the information from possible exploitation by unauthorized individuals, for example, displaying asterisks or other random characters when a human user types in a password obscures feedback of authentication information. Other examples include the entry of wired equivalent privacy (WEP) keys, secure socket shell (SSH) token entry and RSA one-time passwords. The authenticating entity should not provide any hint as to the reason for the authentication failure, such as “unknown user name”.","rhs":[],"security_levels":["SL-C (IAC, control system) 1: SR 1.10","SL-C (IAC, control system) 2: SR 1.10","SL-C (IAC, control system) 3: SR 1.10","SL-C (IAC, control system) 4: SR 1.10"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.4
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.4
+    call std_62443_3_3_step_1_base_SR 1.11
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.11
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -75,17 +75,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -95,11 +95,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.4","page":63,"name":"Control system recovery and reconstitution","description":"The control system shall provide the capability to recover and reconstitute to a known secure state after a disruption or failure.","rationale":"Control system recovery and reconstitution to a known secure state means that all system parameters (either default or configurable) are set to secure values, security-critical patches are reinstalled, security-related configuration settings are reestablished, system documentation and operating procedures are available, application and system software is reinstalled and configured with secure settings, information from the most recent, known secure backups is loaded and the system is fully tested and functional.","rhs":[],"security_levels":["SL-C (RA, control system) 1: SR 7.4","SL-C (RA, control system) 2: SR 7.4","SL-C (RA, control system) 3: SR 7.4","SL-C (RA, control system) 4: SR 7.4"]} 
+                \n {"id":"SR 1.11","page":34,"name":"Unsuccessful login attempts","description":"The control system shall provide the capability to enforce a limit of a configurable number of consecutive invalid access attempts by any user (human, software process or device) during a configurable time period. The control system shall provide the capability to deny access for a specified period of time or until unlocked by an administrator when this limit has been exceeded. For system accounts on behalf of which critical services or servers are run, the control system shall provide the capability to disallow interactive logons.","rationale":"Due to the potential for denial of service, the number of consecutive invalid access attempts may be limited. If enabled, the control system may automatically reset to zero the number of access attempts after a predetermined time period established by the applicable security policies and procedures. Resetting the access attempts to zero will allow users (human, software process or device) to gain access if they have the correct login identifier. Automatic denial of access for control system operator workstations or nodes should not be used when immediate operator responses are required in emergency situations. All lockout mechanisms should consider functional requirements for continuous operations so as to mitigate adverse denial of service operating conditions which could result in total system failure or injury to personnel. Allowing interactive logins to an account used for critical services could provide a potential for denial of service or other abuse.","rhs":[],"security_levels":["SL-C (IAC, control system) 1: SR 1.11","SL-C (IAC, control system) 2: SR 1.11","SL-C (IAC, control system) 3: SR 1.11","SL-C (IAC, control system) 4: SR 1.11"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.5
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.5
+    call std_62443_3_3_step_1_base_SR 1.12
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.12
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -124,17 +124,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -144,6 +144,6 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.5","page":64,"name":"Emergency power","description":"The control system shall provide the capability to switch to and from an emergency power supply without affecting the existing security state or a documented degraded mode.","rationale":"There may be instances where compensating countermeasures such as physical door access control may be affected by loss of base power supply, in which case the emergency power supply should cover those associated systems. If this is not possible, other compensating countermeasures may be needed during such an emergency situation.","rhs":[],"security_levels":["SL-C (RA, control system) 1: SR 7.5","SL-C (RA, control system) 2: SR 7.5","SL-C (RA, control system) 3: SR 7.5","SL-C (RA, control system) 4: SR 7.5"]} 
+                \n {"id":"SR 1.12","page":34,"name":"System use notification","description":"The control system shall provide the capability to display a system use notification message before authenticating. The system use notification message shall be configurable by authorized personnel.","rationale":"Privacy and security policies and procedures need to be consistent with applicable laws, directives, policies, regulations, standards and guidance. Often the main justification for this requirement is legal prosecution of violators and proving intentional breach. This capability is thus necessary to support policy requirements, and does not improve IACS security. System use notification messages can be implemented in the form of warning banners displayed when individuals log in to the control system. A warning banner implemented as a posted physical notice in the control system facility does not protect against remote login issues.","examples":["Examples of elements for inclusion in the system use notification message are: a) that the individual is accessing a specific control system; b) that system usage may be monitored, recorded and subject to audit; c) that unauthorized use of the system is prohibited and subject to criminal and/or civil penalties; and d) that use of the system indicates consent to monitoring and recording."],"rhs":[],"security_levels":["SL-C (IAC, control system) 1: SR 1.12","SL-C (IAC, control system) 2: SR 1.12","SL-C (IAC, control system) 3: SR 1.12","SL-C (IAC, control system) 4: SR 1.12"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.

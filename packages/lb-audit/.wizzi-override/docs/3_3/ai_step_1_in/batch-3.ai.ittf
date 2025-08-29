@@ -1,7 +1,7 @@
 ai std_62443_3_3_step_1
     api-url http://localhost:3000
-    call std_62443_3_3_step_1_base_SR 7.1
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.1
+    call std_62443_3_3_step_1_base_SR 1.7
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.7
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -26,17 +26,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -46,11 +46,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.1","page":60,"name":"Audit log accessibility","description":"The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.","rationale":"The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.","rhs":[{"id":"SR 7.1 RE 1","name":"Programmatic access to audit logs","description":"The control system shall provide programmatic access to audit records using an application programming interface (API)."}],"security_levels":["SL-C (TRE, control system) 1: SR 7.1","SL-C (TRE, control system) 2: SR 7.1","SL-C (TRE, control system) 3: SR 7.1 (1)","SL-C (TRE, control system) 4: SR 7.1 (1)"]} 
+                \n {"id":"SR 1.7","page":30,"name":"Strength of public key authentication","description":"For control systems utilizing password-based authentication, the control system shall provide the capability to enforce configurable password strength based on minimum length and variety of character types.","rationale":"User authentication based on a username and a secret password is a very commonly used mechanism. Many attacks on such mechanisms focus on guessing the password (for example, dictionary attacks or targeted social engineering) or breaking the cryptographic protection of the stored password representation (for example, using rainbow tables or brute-forcing a hash collision). Increasing the size of the set of valid passwords by increasing the number of allowed characters makes such attacks more complex, but only if the increased set size is actually used (generally users would tend to not include special characters in a password as they are perceived as harder to remember). Limiting the lifetime of a password decreases the window of opportunity for an attacker to breach a given password’s secrecy. In order to prevent users from circumventing this control by once changing their password to a new one and then immediately changing back to their original password, a minimum lifetime for a password is commonly enforced as well. A notification to change the password prior the expiration allows the user to change the password at a convenient time according to process operations conditions. This protection can be further enhanced by limiting the reuse of passwords (preventing small sets of alternating passwords), which further decreases the usefulness of a once-breached password. Extended protection beyond password based mechanisms can be achieved using multifactor authentication (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, SR 1.2 – Software process and device identification and authentication).","rhs":[{"id":"SR 1.7 RE 1","name":"Password generation and lifetime restrictions for human users","description":"The control system shall provide the capability to prevent any given human user account from reusing a password for a configurable number of generations. In addition, the control system shall provide the capability to enforce password minimum and maximum lifetime restrictions for human users. These capabilities shall conform with commonly accepted security industry practices.","note":"It is a commonly accepted good practice that the control system provides the capability to prompt the user to change his password upon a configurable time prior to expiration."},{"id":"SR 1.7 RE 2","name":"Password lifetime restrictions for all users","description":"The control system shall provide the capability to enforce password minimum and maximum lifetime restrictions for all users."}],"security_levels":["SL-C (IAC, control system) 1: SR 1.7","SL-C (IAC, control system) 2: SR 1.7","SL-C (IAC, control system) 3: SR 1.7 (1)","SL-C (IAC, control system) 4: SR 1.7 (1) (2)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.1
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.1
+    call std_62443_3_3_step_1_base_SR 1.8
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.8
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -75,17 +75,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -95,11 +95,11 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.1","page":62,"name":"Denial of service protection","description":"The control system shall provide the capability to operate in a degraded mode during a DoS event.","rationale":"A variety of technologies exist to limit, or in some cases, eliminate the effects of DoS situations. For example, boundary protection devices can filter certain types of packets to protect devices on an internal, trusted network from being directly affected by DoS events or restricting the information flow to be unidirectional outbound. Specifically, as noted in Clause 4, a DoS event on the control system should not adversely impact any safety-related systems.","rhs":[{"id":"SR 7.1 RE 1","name":"Manage communication loads","description":"The control system shall provide the capability to manage communication loads (such as using rate limiting) to mitigate the effects of information flooding types of DoS events."},{"id":"SR 7.1 RE 2","name":"Limit DoS effects to other systems or networks","description":"The control system shall provide the capability to restrict the ability of all users (humans, software processes and devices) to cause DoS events which affect other control systems or networks."}],"security_levels":["SL-C (RA, control system) 1: SR 7.1","SL-C (RA, control system) 2: SR 7.1 (1)","SL-C (RA, control system) 3: SR 7.1 (1) (2)","SL-C (RA, control system) 4: SR 7.1 (1) (2)"]} 
+                \n {"id":"SR 1.8","page":32,"name":"Public key infrastructure (PKI) certificates","description":"Where PKI is utilized, the control system shall provide the capability to operate a PKI according to commonly accepted best practices or obtain public key certificates from an existing PKI.","rationale":"Registration to receive a public key certificate needs to include authorization by a supervisor or a responsible official and needs to be accomplished using a secure process that verifies the identity of the certificate holder and ensures that the certificate is issued to the intended party. Any latency induced from the use of public key certificates should not degrade the operational performance of the control system.\" The selection of an appropriate PKI should consider the organization’s certificate policy which should be based on the risk associated with a breach of confidentiality of the protected information. Guidance on the policy definition can be found in commonly accepted standards and guidelines, such as the Internet Engineering Task Force (IETF) Request for Comment (RFC) 3647 [29] for X.509-based PKI. For example, the appropriate location of a certification authority (CA), whether within the control system versus on the Internet, and the list of trusted CAs should be considered in the policy and depends on the network architecture (see also IEC 62443‑2‑1).","security_levels":["SL-C (IAC, control system) 1: Not Selected","SL-C (IAC, control system) 2: SR 1.8","SL-C (IAC, control system) 3: SR 1.8","SL-C (IAC, control system) 4: SR 1.8"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.
-    call std_62443_3_3_step_1_base_SR 7.2
-        description Base ai expansion of 62443-3-3 SR requirement SR 7.2
+    call std_62443_3_3_step_1_base_SR 1.9
+        description Base ai expansion of 62443-3-3 SR requirement SR 1.9
         llm_service grok
         llm_model grok-3
         max_tokens 8192
@@ -124,17 +124,17 @@ ai std_62443_3_3_step_1
                 \b  o scenario reale per ciascun elemento.
                 \n  - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento.
                 \b  Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore)
-                \b  direttamente correlato alla pratica e al subCode (integrazione del prodotto con l’ambiente previsto).
+                \b  direttamente correlato a `explanation` e `context`.
                 \b  Evita riferimenti generici a standard o framework.
                 \b  Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
                 \n  - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links,
-                \b  Ogni oggetto deve essere unico e pertinente alla pratica e al subCode.
+                \b  Ogni oggetto deve essere unico e pertinente a `explanation` e `context`.
                 \b  Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
-                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave della documentazione
-                \b  di configurazione (es. "Configurable Settings Documentation", "Default Settings Analysis").
-                \b  Il titolo deve riflettere un elemento critico della pratica e del subCode.
-                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto-
-                \b  spiegando il suo ruolo nella conformità a SG-3, subCode 2. La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+                \b  Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+                \b  Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+                \b  Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto
+                \b  spiegando il suo ruolo nella conformità a `explanation` e `context`.
+                \b  La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
                 \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
                 \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
                 \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
@@ -144,6 +144,6 @@ ai std_62443_3_3_step_1
                 \n </database_json_schema> 
                 \n Popola lo schema con i seguenti dati di input
                 \n <input_json_data> 
-                \n {"id":"SR 7.2","page":62,"name":"Resource management","description":"The control system shall provide the capability to limit the use of resources by security functions to prevent resource exhaustion.","rationale":"Resource management (for example, network segmentation or priority schemes) prevents a lower-priority software process from delaying or interfering with the control system servicing any higher-priority software process. For example, initiating network scans, patching and/or antivirus checks on an operating system can cause severe disruption to normal operations. Traffic rate limiting schemes should be considered as a mitigation technique.","security_levels":["SL-C (RA, control system) 1: SR 7.2","SL-C (RA, control system) 2: SR 7.2","SL-C (RA, control system) 3: SR 7.2","SL-C (RA, control system) 4: SR 7.2"]} 
+                \n {"id":"SR 1.9","page":32,"name":"Strength of public key authentication","description":"For control systems utilizing public key authentication, the control system shall provide the capability to:","subs":["a) validate certificates by checking the validity of the signature of a given certificate;","b) validate certificates by constructing a certification path to an accepted CA or in the case of self-signed certificates by deploying leaf certificates to all hosts which communicate with the subject to which the certificate is issued;","c) validate certificates by checking a given certificate’s revocation status;","d) establish user (human, software process or device) control of the corresponding private key; and","e) map the authenticated identity to a user (human, software process or device)."],"rationale":"Public/private key cryptography strongly depends on the secrecy of a given subject’s private key and proper handling of the trust relationships. When verifying a trust between two entities based on public key authentication, it is essential to trace the public key certificate to a trusted entity. A common implementation error in certificate validation is to only check the validity of a certificate’s signature, but not checking the trust in the signer. In a PKI setting, a signer is trusted if they are a trusted CA or have a certificate issued by a trusted CA, thus all verifiers need to trace certificates presented to them back to a trusted CA. If such a chain of trusted CAs cannot be established, the presented certificate should not be trusted. If self-signed certificates are used instead of a PKI, the certificate subject itself signed its certificate, thus there never is a trusted third-party or CA. This should be compensated by deploying the self-signed public key certificates to all peers that need to validate them via an otherwise secured mechanism (for example, configuration of all peers in a trusted environment). Trusted certificates need to be distributed to peers through secure channels. During the validation process, a self-signed certificate should only be trusted if it is already present in the list of trusted certificates of the validating peer. The set of trusted certificates should be configured to the minimum necessary set. In both cases, validation needs to also consider the possibility that a certificate is revoked. In a PKI setting this is typically done by maintaining certificate revocation lists (CRLs) or running an online certificate status protocol (OCSP) server. When revocation checking is not available due to control system constraints, mechanisms such as a short certificate lifetime can compensate for the lack of timely revocation information. Note that short lifetime certificates can sometimes create significant operational issues in a control system environment.","rhs":[{"id":"SR 1.9 RE 1","name":"Hardware security for public key authentication","description":"The control system shall provide the capability to protect the relevant private keys via hardware mechanisms according to commonly accepted security industry practices and recommendations."}],"security_levels":["SL-C (IAC, control system) 1: Not Selected","SL-C (IAC, control system) 2: SR 1.9","SL-C (IAC, control system) 3: SR 1.9 (1)","SL-C (IAC, control system) 4: SR 1.9 (1)"]} 
                 \n </input_json_data> 
                 \n Ritorna il JSON risultante.

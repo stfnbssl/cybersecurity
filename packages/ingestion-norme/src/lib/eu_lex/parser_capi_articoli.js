@@ -1,5 +1,6 @@
 const path = require('path');
 const {ensureDirSync, readTextSync, writeJSONSync} = require('../utils');
+const {parseArticleSections} = require('./single_article_parser');
 
 /**
  * Converte numeri romani in numeri arabi
@@ -10,20 +11,20 @@ function romanoToArabo(romano) {
         'C': 100, 'D': 500, 'M': 1000
     };
     
-    let risultato = 0;
+    let result = 0;
     let precedente = 0;
     
     for (let i = romano.length - 1; i >= 0; i--) {
         const corrente = valori[romano[i]];
         if (corrente < precedente) {
-            risultato -= corrente;
+            result -= corrente;
         } else {
-            risultato += corrente;
+            result += corrente;
         }
         precedente = corrente;
     }
     
-    return risultato;
+    return result;
 }
 
 /**
@@ -184,10 +185,11 @@ async function parseConCapi(testoCompleto, opzioni) {
                         const articolo = {
                             numero: numeroArticle,
                             titolo: titoloArticle,
-                            contenuto: contenutoArticle
+                            contenuto: contenutoArticle,
+                            sections: parseArticleSections(contenutoRighe)
                         };
                         
-                        capo.articoli.push(articolo);
+                        capo.articles.push(articolo);
                     } else {
                         i++; // salta righe che non sono articoli
                     }
@@ -197,20 +199,20 @@ async function parseConCapi(testoCompleto, opzioni) {
                 capo.articoli.sort((a, b) => a.numero - b.numero);
                 documento.capi.push(capo);
                 
-                console.log(`✅ CHAPTER ${numeroRomano} completato: ${capo.articoli.length} articoli`);
+                console.log(`✅ CHAPTER ${numeroRomano} completato: ${capo.articles.length} articoli`);
             }
         }
         
         // Ordina i capi per numero
         documento.capi.sort((a, b) => a.numero - b.numero);
         
-        // Salva il risultato nel file JSON
+        // Salva il result nel file JSON
         ensureDirSync(opzioni.outJsonFile);
         writeJSONSync(opzioni.outJsonFile, documento);
         
         console.log(`✅ Parsing completato!`);
         console.log(`📁 File salvato: ${opzioni.outJsonFile}`);
-        console.log(`📊 Trovati ${documento.capi.length} capi con un totale di ${documento.capi.reduce((acc, capo) => acc + capo.articoli.length, 0)} articoli`);
+        console.log(`📊 Trovati ${documento.capi.length} capi con un totale di ${documento.capi.reduce((acc, capo) => acc + capo.articles.length, 0)} articoli`);
         
         return documento;
 }
@@ -222,7 +224,7 @@ async function parseSoloArticoli(testoNormalizzato, opzioni) {
     // Struttura dati risultante
     const documento = {
         tipo: 'solo_articoli',
-        articoli: []
+        articles: []
     };
     
     console.log('📋 Parsing documento con solo articoli...');
@@ -266,22 +268,22 @@ async function parseSoloArticoli(testoNormalizzato, opzioni) {
                 paragrafi: parseContenutoArticle(contenutoArticle) // Analizza paragrafi, lettere, punti
             };
             
-            documento.articoli.push(articolo);
+            documento.articles.push(articolo);
         } else {
             i++; // salta righe che non sono articoli
         }
     }
     
-    // Ordina gli articoli per numero
-    documento.articoli.sort((a, b) => a.numero - b.numero);
+    // Ordina gli articles per numero
+    documento.articles.sort((a, b) => a.numero - b.numero);
     
-    // Salva il risultato nel file JSON
+    // Salva il result nel file JSON
     ensureDirSync(opzioni.outJsonFile);
     writeJSONSync(opzioni.outJsonFile, documento);
 
     console.log(`✅ Parsing completato!`);
     console.log(`📁 File salvato: ${opzioni.outJsonFile}`);
-    console.log(`📊 Trovati ${documento.articoli.length} articoli`);
+    console.log(`📊 Trovati ${documento.articles.length} articoli`);
     
     return documento;
 }
@@ -345,8 +347,8 @@ async function esempio() {
     };
     
     try {
-        const risultato = await parseCapiArticoli(opzioni);
-        console.log('Struttura creata:', risultato);
+        const result = await parseCapiArticoli(opzioni);
+        console.log('Struttura creata:', result);
     } catch (errore) {
         console.error('Errore:', errore);
     }

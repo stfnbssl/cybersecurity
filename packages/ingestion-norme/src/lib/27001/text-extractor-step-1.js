@@ -4,14 +4,44 @@
 const fs = require('fs');
 const path = require('path');
 
-const {ensureDirSync, readTextSync, readJSONSync, writeJSONSync} = require('../utils');
+const {ensureDirSync, readTextSync, readJSONSync, writeJSONSync, 
+  isRegExp, parseRegExp} = require('../utils');
+
+function cleanPdfText(text) {
+  return text
+    // Rimuovi caratteri invisibili problematici
+    .replace(/[\u00AD\u200B\u200C\u200D\uFEFF]/g, '')
+    // Sostituisci non-breaking spaces con spazi normali
+    .replace(/\u00A0/g, ' ')
+    // Normalizza altri tipi di whitespace a spazi normali
+    .replace(/[\u1680\u2000-\u200A\u202F\u205F\u3000]/g, ' ')
+    // Collassa spazi multipli in uno solo
+    // .replace(/\s+/g, ' ')
+    // Rimuovi spazi all'inizio e alla fine
+    /*.trim()*/;
+}
+
+function cleanPdfLines(lines) {
+  const retval = [];
+  lines.forEach(line => {  
+    retval.push(cleanPdfText(line));
+  });
+  // console.log("cleanPdfLines", retval);
+  return retval;
+}
 
 function filterLines(lines, dirtyPrefixes) {
   if (!Array.isArray(dirtyPrefixes) || dirtyPrefixes.length === 0) return lines.slice();
   return lines.filter(line => {
     for (const prefix of dirtyPrefixes) {
       if (typeof prefix !== 'string') continue;
-      if (line.startsWith(prefix)) return false;
+      if (isRegExp(prefix)) {
+        const re = parseRegExp(prefix);
+        if (re.test(line)) { return false}
+      } else {
+        // console.log(line, prefix, line.indexOf(prefix));
+        if (line.indexOf(prefix) > - 1) return false;
+      }
     }
     return true;
   });
@@ -28,29 +58,43 @@ function splitIntoBlocks(cleanedLines, {
     return blocks;
   }
 
-  const norm = s => (headersCaseSensitive ? s.trim() : s.trim().toLowerCase());
-  const headerSet = new Set(blockHeaders.map(h => norm(h)));
-
+  const norm = s => (headersCaseSensitive 
+    ? s.replace(/[\s\u00A0]+/g, ' ').trim() 
+    : s.replace(/[\s\u00A0]+/g, ' ').trim().toLowerCase());
+  
   let current = null;
   const pushCurrent = () => { if (current) blocks.push(current); };
-
   cleanedLines.forEach((line, idx) => {
-    const trimmed = line.trim();
-    const key = norm(trimmed);
-
-    if (headerSet.has(key)) {
+    let isBlockHeader = false;
+    let trimmed = null;
+    blockHeaders.forEach((bh, idx) => {
+      // console.log("isRegExp", bh, isRegExp(bh));
+      if (isRegExp(bh)) {
+        const re = parseRegExp(bh);
+        const normLine = norm(line);
+        // console.log('"' + normLine + '"', bh, re.test(normLine));
+        // console.log("Char codes:", [...normLine].map(c => c.charCodeAt(0)));
+        if (re.test(normLine)) { isBlockHeader = true; }
+      } else {
+        trimmed = norm(line);
+        // console.log('"' + trimmed + '"', norm(bh));
+        if (trimmed == norm(bh))  { isBlockHeader = true; }
+      }
+    });
+    if (isBlockHeader) {
       pushCurrent();
       current = { name: trimmed, lines: [], startIndex: idx };
       if (includeHeaderInBlock) current.lines.push(line);
     } else {
       if (!current) current = { name: '', lines: [], startIndex: 0 };
-      current.lines.push(line);
+      // console.log('before "' + line + '"');
+      current.lines.push(cleanPdfText(line));
     }
   });
-
   pushCurrent();
   if (blocks.length === 0) blocks.push({ name: '', lines: [], startIndex: 0 });
   return blocks;
+  
 }
 
 function writeBlocksFiles(blocks, outputJSONPath, blocksOutputDir) {
@@ -97,8 +141,10 @@ function step1(params) {
   const rawText = readTextSync(inputTextPath);
   const allLines = rawText.split(/\r?\n/);
 
-  const cleanedLines = filterLines(allLines, Array.isArray(dirtyLines) ? dirtyLines : []);
+  // console.log("allLines", allLines);
+  const cleanedLines = filterLines(cleanPdfLines(allLines), Array.isArray(dirtyLines) ? dirtyLines : []);
   const content = cleanedLines.join('\n');
+  // console.log("cleanedLines", cleanedLines);
 
   const blocks = splitIntoBlocks(cleanedLines, {
     blockHeaders,
