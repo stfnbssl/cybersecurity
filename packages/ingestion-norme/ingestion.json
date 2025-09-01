@@ -1,0 +1,548 @@
+{
+    "eu_lex_cra": {
+        "metadata": {
+            "framework_code": "EU-LEX-CRA:2024",
+            "edition": "2024",
+            "jurisdiction": "EU"
+        },
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=OJ:L_202402847",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/cra_2024/step_1/raw.txt"
+            }
+        },
+        "step1": {
+            "sourceFile": "./extraction/eu_lex/cra_2024/step_1/raw.txt",
+            "outJsonFile": "./extraction/eu_lex/cra_2024/step_2/articles.json",
+            "format": "EU",
+            "structure": "capo+article+letter+point"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/eu_lex/cra_2024/step_2/articles.json",
+            "outputJSONPath": "./extraction/eu_lex/cra_2024/step_3/chunks.json"
+        }        
+    },
+    "eu_lex_nis2": {
+        "metadata": {
+            "framework_code": "EU-LEX-NIS2_2022",
+            "edition": "2022",
+            "jurisdiction": "EU"
+        },
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32022L2555",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/nis2_2022/step_1/raw.txt"
+            }
+        },
+        "step1": {
+                "sourceFile": "./extraction/eu_lex/nis2_2022/step_1/raw.txt",
+                "outJsonFile": "./extraction/eu_lex/nis2_2022/step_2/articles.json",
+                "format": "EU",
+                "structure": "capo+article+letter+point"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/eu_lex/nis2_2022/step_2/articles.json",
+            "outputJSONPath": "./extraction/eu_lex/nis2_2022/step_3/chunks.json"
+        }        
+    },
+    "eu_lex_dm": {
+        "metadata": {
+            "framework_code": "EU-LEX-DirMac:2006",
+            "edition": "2006",
+            "jurisdiction": "EU"
+        },
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32006L0042",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/dm_2006/step_1/raw.txt"
+            }
+        },
+        "step1": {
+            "sourceFile": "./extraction/eu_lex/dm_2006/step_1/raw.txt",
+            "outJsonFile": "./extraction/eu_lex/dm_2006/step_2/articles.json",
+            "format": "EU",
+            "structure": "article+letter+point"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/eu_lex/dm_2006/step_2/articles.json",
+            "outputJSONPath": "./extraction/eu_lex/dm_2006//step_3/chunks.json"
+        }
+    },
+    "eu_lex_rm": {
+        "metadata": {
+            "framework_code": "EU-LEX-RegMac:2023",
+            "edition": "2023",
+            "jurisdiction": "EU"
+        },
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023R1230",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/rm_2023/step_1/raw.txt"
+            }
+        },
+        "step1": {
+            "sourceFile": "./extraction/eu_lex/rm_2023/step_1/raw.txt",
+            "outJsonFile": "./extraction/eu_lex/rm_2023/step_2/articles.json",
+            "format": "EU",
+            "structure": "article+letter+point"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/eu_lex/rm_2023/step_2/articles.json",
+            "outputJSONPath": "./extraction/eu_lex/rm_2023/step_3/chunks.json"
+        }
+    },
+    "eu_lex_gdpr": {
+        "metadata": {
+            "framework_code": "EU-LEX-GDPR:2016",
+            "edition": "2016",
+            "jurisdiction": "EU"
+        },
+        "step0": {
+            "single": {
+                "source": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32016R0679",
+                "type": "html",
+                "options": {
+                    "_selector": "...",
+                    "multiline": true,
+                    "preserveIndentation": true,
+                    "lineBreakTags": ["p", "div", "br", "h1", "h2", "h3", "li", "blockquote"],
+                    "doubleBreakTags": ["p", "h1", "h2", "h3", "blockquote"]
+                },
+                "output": "./extraction/eu_lex/gdpr_2016/step_1/raw.txt"
+            }
+        },
+        "step1": {
+            "sourceFile": "./extraction/eu_lex/gdpr_2016/step_1/raw.txt",
+            "outJsonFile": "./extraction/eu_lex/gdpr_2016/step_2/articles.json",
+            "format": "EU",
+            "structure": "article+letter+point"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/eu_lex/gdpr_2016/step_2/articles.json",
+            "outputJSONPath": "./extraction/eu_lex/gdpr_2016/chunks.json"
+        }
+    },
+    "us_lex_nec_2023": {
+        "metadata": {
+            "framework_code": "US-LEX-NEC:2023",
+            "edition": "2023",
+            "jurisdiction": "US"
+        },
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/NEC/NFPA 70 Handbook 2023.pdf",
+            "ranges": [
+                {
+                    "startPage": 67,
+                    "endPage": 338,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_90_299.pdf"
+                },
+                {
+                    "startPage": 339,
+                    "endPage": 508,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_300_399.pdf"
+                },
+                {
+                    "startPage": 509,
+                    "endPage": 680,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_400_499.pdf"
+                },
+                {
+                    "startPage": 681,
+                    "endPage": 896,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_500_599.pdf"
+                },
+                {
+                    "startPage": 897,
+                    "endPage": 1036,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_600_699.pdf"
+                },
+                {
+                    "startPage": 1037,
+                    "endPage": 1163,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_700_899.pdf"
+                },
+                {
+                    "startPage": 1164,
+                    "endPage": 1354,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/chapter_9_tables.pdf"
+                },
+                {
+                    "startPage": 67,
+                    "endPage": 1163,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_90_899.pdf"
+                },
+                {
+                    "startPage": 415,
+                    "endPage": 418,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/test_1.pdf"
+                },
+                {
+                    "startPage": 729,
+                    "endPage": 735,
+                    "output": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/test_2.pdf"
+                }
+            ]
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/test_2.pdf",
+            "inputPdfPath_stop": "C:/My/lb/documenti/ingestion-norme/us_lex/nec_2023/step_0/art_90_899.pdf",
+            "outdir": "./extraction/us_lex/nec_2023/step_1/"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/us_lex/nec_2023/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/us_lex/nec_2023/step_2/blocks.json",
+            "dirtyLines": [
+                "National Electrical Code Handbook 2023",
+                "/\\s*Article\\s+(\\d+)\\s+(.+)/",
+                "\\s*(\\d+)\\s*"
+            ],
+            "blockHeaders": [
+                "ARTICLE90",
+                "CHAPTER"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        }
+    },
+    "iec_27001": {
+        "metadata": {
+            "framework_code": "IEC-27001:2022",
+            "edition": "2022",
+            "jurisdiction": "Global"
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/27001/ISO IEC 27001-2022.pdf",
+            "outdir": "./extraction/iec_27001_2022/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_27001_2022/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_2/blocks.json",
+            "dirtyLines": [
+                "ISO/IEC 27001:2022(E)",
+                "© ISO/IEC 2022",
+                "© ISO/IEC 2022 – All rights reserved",
+                "INTERNATIONAL STANDARD",
+                "﻿",
+                "/^\\s*ISO\\/IEC 27001:2022\\(E\\)\\s*$/",
+                "/^\\s*-?\\d+\\s*$/",
+                "/^\\s*\\u0008\\s*$/"
+            ],
+            "blockHeaders": [
+                "1\t Scope",
+                "4\t Context of the organization",
+                "Annex A",
+                "Bibliography"
+            ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/iec_27001_2022/step_2/blocks/3.json",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_3/requirements.json"
+        },
+        "step3": {
+            "inputJSONPath": "./extraction/iec_27001_2022/step_3/requirements.json",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_4/requirements.json"
+        },
+        "step4": {
+            "inputJSONPath": "./extraction/iec_27001_2022/step_4/requirements.json",
+            "outputJSONPath": "./extraction/iec_27001_2022/step_5/chunks.json"
+        }        
+    },
+    "iec_27002": {
+        "metadata": {
+            "framework_code": "IEC-27002:2022",
+            "edition": "2022",
+            "jurisdiction": "Global"
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/27001/ISO IEC 27002-2022.pdf",
+            "outdir": "./extraction/iec_27002_2022/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_27002_2022/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_2/blocks.json",
+            "dirtyLines": [
+                "ISO/IEC 27002:2022(E)",
+                "© ISO/IEC 2022",
+                "© ISO/IEC 2022 – All rights reserved",
+                "INTERNATIONAL STANDARD",
+                "﻿",
+                "/^\\s*-?\\d+\\s*$/"
+            ],
+            "blockHeaders": [
+                "4\t Structure of this document",
+                "5\t Organizational controls",
+                "/^\\s*Annex A\\s*$/",
+                "/^\\s*Annex B\\s*$/",
+                "Bibliography"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/iec_27002_2022/step_2/blocks/3.json",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_3/controls.json"
+        },
+        "step3": {
+            "inputJSONPath": "./extraction/iec_27002_2022/step_3/controls.json",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_4/controls.json"
+        },
+        "step4": {
+            "inputJSONPath": "./extraction/iec_27002_2022/step_4/controls.json",
+            "outputJSONPath": "./extraction/iec_27002_2022/step_5/chunks.json"
+        }        
+    },
+    "iec_62443_2_1": {
+        "metadata": {
+            "framework_code": "IEC-62443-2-1:2011",
+            "edition": "2011",
+            "jurisdiction": "Global"
+        },
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/62443/IEC 62443-2-1-2011.pdf",
+            "ranges": [
+                {
+                    "startPage": 1,
+                    "endPage": 17,
+                    "output": "./extraction/iec_62443_2_1_2011/step_0/intro.pdf"
+                },
+                {
+                    "startPage": 18,
+                    "endPage": 40,
+                    "output": "./extraction/iec_62443_2_1_2011/step_0/requirements.pdf"
+                },
+                {
+                    "startPage": 41,
+                    "endPage": 164,
+                    "output": "./extraction/iec_62443_2_1_2011/step_0/informative.pdf"
+                }
+            ]
+        },
+        "step0": {
+            "inputPdfPath": "./extraction/iec_62443_2_1_2011/step_0/requirements.pdf",
+            "outdir": "./extraction/iec_62443_2_1_2011/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_62443_2_1_2011/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_62443_2_1_2011/step_2/blocks.json"
+        }        
+    },
+    "iec_62443_2_4": {
+        "metadata": {
+            "framework_code": "IEC-62443-2-4:2015",
+            "edition": "2015",
+            "jurisdiction": "Global"
+        },
+        "step1": {
+            "sources": [
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_a.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_a.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_b.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_b.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_c.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_c.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_d.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_d.json"
+                },
+                {
+                    "inputTextPath": "./manual_sources/iec_62443_2_4_2015/tab_a1_e.txt",
+                    "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_2/tab_a1_e.json"
+                }
+            ],
+            "mergedOutputJSONPath": "./extraction/iec_62443_2_4_2015/step_3/requirements.json"
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/iec_62443_2_4_2015/step_3/requirements.json",
+            "outputJSONPath": "./extraction/iec_62443_2_4_2015/step_4/chunks.json"
+        }        
+    },
+    "iec_62443_3_2": {
+        "metadata": {
+            "framework_code": "IEC-62443-3-2:2020",
+            "edition": "2020",
+            "jurisdiction": "Global"
+        },
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/62443/BS EN IEC 62443-3-2-2020.pdf",
+            "ranges": [
+                {
+                    "startPage": 1,
+                    "endPage": 10,
+                    "output": "C:/My/lb/documenti/ingestion-norme/iec_62443_3_2_2020/step_0/intro.pdf"
+                },
+                {
+                    "startPage": 11,
+                    "endPage": 38,
+                    "output": "C:/My/lb/documenti/ingestion-norme/iec_62443_3_2_2020/step_0/requirements.pdf"
+                }
+            ]
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/ingestion-norme/iec_62443_3_2_2020/step_0/requirements.pdf",
+            "outdir": "./extraction/iec_62443_3_2_2020/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_62443_3_2_2020/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_2/blocks.json",
+            "dirtyLines": [
+            ],
+            "blockHeaders": [
+                "4",
+                "Annex A",
+                "Annex B",
+                "Bibliography"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/iec_62443_3_2_2020/step_2/blocks/2.json",
+            "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_3/requirements.json"
+        },
+        "step3": {
+            "inputJSONPath": "./extraction/iec_62443_3_2_2020/step_3/requirements.json",
+            "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_4/chunks.json"
+        }
+    },
+    "iec_62443_3_3": {
+        "metadata": {
+            "framework_code": "IEC-62443-3-3:2013",
+            "edition": "2013",
+            "jurisdiction": "Global"
+        },
+        "step1": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/docs/3_3/from_meta/for_chunks.json",
+            "outputJSONPath": "./extraction/iec_62443_3_3_2013/step_1/chunks.json"
+        }
+    },
+    "iec_62443_4_1": {
+        "metadata": {
+            "framework_code": "IEC-62443-4-1:2020",
+            "edition": "2020",
+            "jurisdiction": "Global"
+        },
+        "step1": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/docs/4_1/from_meta/for_chunks.json",
+            "outputJSONPath": "./extraction/iec_62443_4_1_2020/step_1/chunks.json"
+        }
+    },
+    "iec_62443_4_2": {
+        "metadata": {
+            "framework_code": "IEC-62443-4-2:2018",
+            "edition": "2018",
+            "jurisdiction": "Global"
+        },
+        "step1": {
+            "inputJSONPath": "C:/My/wizzi/stfnbssl/cybersecurity/packages/lb-audit/docs/4_2/from_meta/for_chunks.json",
+            "outputJSONPath": "./extraction/iec_62443_4_2_2018/step_1/chunks.json"
+        }
+    },
+    "iec_62443_4_2_bis": {
+        "metadata": {
+            "framework_code": "IEC-62443-4-2:2018",
+            "edition": "2018",
+            "jurisdiction": "Global"
+        },
+        "stepmeno1": {
+            "source": "C:/My/lb/documenti/62443/TeleTrusT-Prüfschema_IEC62443-4-2_2019-05_DEU.pdf",
+            "ranges": [
+                {
+                    "startPage": 1,
+                    "endPage": 18,
+                    "output": "C:/My/lb/documenti/ingestion-norme/iec_62443_4_2_2018_bis/step_0/intro.pdf"
+                },
+                {
+                    "startPage": 19,
+                    "endPage": 37,
+                    "output": "C:/My/lb/documenti/ingestion-norme/iec_62443_4_2_2018_bis/step_0/requirements.pdf"
+                },
+                {
+                    "startPage": 38,
+                    "endPage": 48,
+                    "output": "C:/My/lb/documenti/ingestion-norme/iec_62443_4_2_2018_bis/step_0/coda.pdf"
+                }                
+            ]
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/ingestion-norme/iec_62443_4_2_2018_bis/step_0/requirements.pdf",
+            "outdir": "./extraction/iec_62443_4_2_2018_bis/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/iec_62443_4_2_2018_bis/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/iec_62443_4_2_2018_bis/step_2/blocks.json"
+        }
+    },
+    "nist_800_53": {
+        "metadata": {
+            "framework_code": "NIST-800-53:2020",
+            "edition": "2020",
+            "jurisdiction": "Global"
+        },
+        "step0": {
+            "inputPdfPath": "C:/My/lb/documenti/NIST/NIST.SP.800-53r5.pdf",
+            "outdir": "./extraction/nist_800_53_2020/step_1"
+        },
+        "step1": {
+            "inputTextPath": "./extraction/nist_800_53_2020/step_1/pdf-raw.txt",
+            "outputJSONPath": "./extraction/nist_800_53_2020/step_2/pdf.json",
+            "dirtyLines": [
+            ],
+            "blockHeaders": [
+                "Errata",
+                "CHAPTER ONE",
+                "CHAPTER TWO",
+                "CHAPTER THREE",
+                "REFERENCES",
+                "APPENDIX A",
+                "APPENDIX B",
+                "APPENDIX C"
+                ],
+            "headersCaseSensitive": true,
+            "includeHeaderInBlock": true
+        },
+        "step2": {
+            "inputJSONPath": "./extraction/nist_800_53_2020/step_2/blocks/5.json",
+            "outputJSONPath": "./extraction/nist_800_53_2020/step_3/controls.json"
+        }
+    }
+}

@@ -1,0 +1,103 @@
+$group
+    function splitIntoBlocks
+        param cleanedLines
+        param blockHeaders = []
+        param headersCaseSensitive = false
+        param includeHeaderInBlock = true
+        const blocks = []
+        if !Array.isArray(blockHeaders) || blockHeaders.length === 0
+            _ blocks.push
+                { 
+                    @ name ''
+                    @ lines cleanedLines.slice()
+                    @ startIndex 0
+            return blocks
+        const norm
+            => 
+                param s
+                ( 
+                    iif headersCaseSensitive
+                        then s.trim()
+                        else s.trim().toLowerCase()
+        const headerSet
+            new Set
+                _ blockHeaders.map
+                    => 
+                        param h
+                        _ norm(h)
+        let current = null
+        const pushCurrent
+            => 
+                if current
+                    _ blocks.push(current)
+        _ cleanedLines.forEach
+            => 
+                param line
+                param idx
+                const trimmed = line.trim()
+                const key = norm(trimmed)
+                if headerSet.has(key)
+                    _ pushCurrent()
+                    set current =
+                        { 
+                            @ name trimmed
+                            @ lines []
+                            @ startIndex idx
+                    if includeHeaderInBlock
+                        _ current.lines.push(line)
+                else
+                    if !current
+                        set current =
+                            { 
+                                @ name ''
+                                @ lines []
+                                @ startIndex 0
+                    _ current.lines.push(line)
+        _ pushCurrent()
+        if blocks.length === 0
+            _ blocks.push
+                { 
+                    @ name ''
+                    @ lines []
+                    @ startIndex 0
+        return blocks
+    function writeBlocksFiles
+        param blocks
+        param outputJSONPath
+        param blocksOutputDir
+        const baseDir
+            iif blocksOutputDir
+                then blocksOutputDir
+                else path.join(path.dirname(outputJSONPath), 'blocks')
+        _ ensureDirSync(baseDir)
+        const files = []
+        _ blocks.forEach
+            => 
+                param b
+                param i
+                const idx = i + 1
+                    # progressivo 1-based
+                const obj
+                    { 
+                        @ content (b.lines || []).join('\n')
+                        @ lines b.lines || []
+                        @ name b.name || ''
+                        @ startIndex
+                            iif typeof b.startIndex === 'number'
+                                then b.startIndex
+                                else 0
+                        @ index idx
+                    # progressivo 1-based
+                const filePath
+                    _ path.join
+                        @ baseDir
+                        `lit 
+                            + 
+                            @ idx
+                            + .json
+                _ fs.writeFileSync(filePath, JSON.stringify(obj, null, 2), 'utf8')
+                _ files.push(filePath)
+        return 
+            { 
+                @ baseDir
+                @ files

@@ -1,0 +1,1552 @@
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 17
+ 6
+ Anhang C (normativ) - Akzeptanzkriterien
+ 6.1
+ Vorbemerkung
+ Die Anforderungen werden nachfolgend im ursprünglichen englischen Text angegeben, da geplant ist
+ das vorliegende Prüfschema zukünftig zu übersetzen und international einzubringen, siehe Kapitel 3.2
+ "Zertifizierung".
+ Die Akzeptanzkriterien sind primär als "accept" positiv formuliert. In manchen Fällen ist ein expliziter
+ Ausschluss einer Umsetzung zur besseren Hervorhebung allerdings sinnvoll, diese Kriterien sind un-
+ terhalb von "not accept" aufgeführt.
+ 6.2
+ FR-1: Identification and Authentication Control
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR 1.1
+ Human user identifi-
+ cation and authenti-
+ cation
+ Accept:
+ - authentication of
+ human users on all
+ interfaces with hu-
+ man access
+ Accept:
+ - unique authentica-
+ tion for every human
+ user on all interfac-
+ es, for example with
+ username and
+ password
+ Accept:
+ - capability to em-
+ ploy multifactor au-
+ thentication for all
+ human
+ user access to the
+ component
+ CR 1.2
+ Software process
+ and
+ device identification
+ and authentication
+ no requirements
+ Accept:
+ - the component
+ identifies itself and
+ authenticates to any
+ other component
+ using passwords,
+ tokens or location
+ (physical or logical)
+ - authentication
+ mechanism is capa-
+ ble to prevent at-
+ tacks like man-in-
+ the-middle or mes-
+ sage spoofing
+ Accept:
+ - uniquely identify
+ and authenticate
+ itself to any other
+ component
+ Not accept:
+ - unencrypted au-
+ thentication and
+ identification
+ - no recommended
+ encryption (e.g. BSI
+ TR-02102)
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 18
+ CR 1.3
+ Account manage-
+ ment
+ Not relevant if only
+ one fixed administra-
+ tive account is im-
+ plemented on the
+ component.
+ Accept:
+ - capability to inte-
+ grate into a higher
+ level account man-
+ agement system
+ - account manage-
+ ment capability (only
+ by authorized users,
+ including adding,
+ activating, modifying,
+ disabling and remov-
+ ing accounts)
+ - the core functionali-
+ ty of the component
+ is not affected by an
+ availability problem
+ of the higher-level
+ system
+ Not accept:
+ - no capability to
+ enable/disable ac-
+ counts
+ no additional requi-
+ rements
+ no additional requi-
+ rements
+ CR 1.4
+ Identifier manage-
+ ment
+ Not relevant if only
+ one fixed administra-
+ tive account is im-
+ plemented on the
+ component.
+ Accept:
+ - capability to inte-
+ grate into a system
+ that supports man-
+ agement of identifi-
+ ers
+ - provide the capabil-
+ ity to support the
+ management of
+ identifiers by user,
+ group, role or control
+ system interface
+ no additional requi-
+ rements
+ no additional requi-
+ rements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 19
+ CR 1.5
+ Authenticator ma-
+ nagement
+ Accept:
+ - support of (initial)
+ authenticator content
+ (tokens, symmetric
+ keys, private keys,
+ biometrics, pass-
+ words, key cards)
+ - enforced change of
+ default authentica-
+ tors after installation
+ or recognition of
+ unchanged default
+ authenticator (com-
+ bined with warning
+ message)
+ - periodic change of
+ authenticators
+ - protection of unau-
+ thorized disclosure
+ or modification of
+ authenticators (when
+ stored, used, trans-
+ mitted)
+ Not accept:
+ - transmission of
+ cleartext passwords
+ no additional requi-
+ rements
+ Accept:
+ - authenticators are
+ protected via hard-
+ ware mechanisms
+ (e.g. Password pro-
+ tected memory, OTP
+ memory, hardware
+ data integrity
+ checks, and device
+ security boot
+ mechanism)
+ Not accept:
+ - no hardware pro-
+ tection mechanism
+ CR 1.6
+ Wireless access
+ management
+ Network Component
+ Requirement
+ Accept:
+ - capability to identify
+ and authenticate all
+ users (human, soft-
+ ware processes and
+ devices) engaged in
+ wireless communica-
+ tion
+ Accept:
+ - capability to
+ uniquely identify and
+ authenticate all us-
+ ers (human, soft-
+ ware processes and
+ devices) engaged in
+ wireless communica-
+ tion
+ no additional requi-
+ rements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 20
+ CR 1.7
+ Strength of pass-
+ word-based authen-
+ tication
+ Accept:
+ - enforce configura-
+ ble password
+ strength based on
+ minimum length and
+ variety of character
+ types
+ - configurable pass-
+ word strength ac-
+ cording to interna-
+ tionally recognized
+ and proven pass-
+ word guidelines, e.g.
+ NIST SP800-63-2,
+ BSI TR-02102
+ - external authenti-
+ cation
+ no additional re-
+ quirements
+ Accept:
+ - prevent any human
+ user account from
+ reusing a password
+ for a configurable
+ number of genera-
+ tions
+ - enforce password
+ minimum and maxi-
+ mum lifetime re-
+ strictions for human
+ users
+ - external authenti-
+ cation
+ Not accept:
+ - no configurable
+ options for reusing
+ passwords, i.e.
+ password reuse
+ cannot be prevented
+ - no minimum and
+ maximum lifetime
+ restrictions for hu-
+ man user passwords
+ CR 1.8
+ Public key infra-
+ structure certificates
+ no requirements
+ Relevant if PKI or
+ public keys are in
+ use.
+ Accept:
+ - interaction and
+ operation within the
+ scope of the PKI
+ according to 62443-
+ 3-3 SR 1.8 ("operate
+ a PKI according to
+ commonly accepted
+ best practices (see
+ IETF RFC 3647) or
+ obtain a public key
+ certificate from an
+ existing PKI")
+ no additional requi-
+ rements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 21
+ CR 1.9
+ Strength of public
+ key
+ authentication
+ no requirements
+ Relevant if PKI or
+ public keys are in
+ use.
+ Accept:
+ - provide directly or
+ integrate into a sys-
+ tem that provides,
+ the capability to:
+ - validating signature
+ of a given certificate
+ - validate certificate
+ chain
+ - in case of self-
+ signed certificates,
+ leaf certificates
+ should be deployed
+ to all hosts that
+ communicate with
+ the subject to which
+ the certificate is
+ issued
+ - validate certifica-
+ tion revocations
+ status
+ - establish user
+ (software, human or
+ device) control of the
+ corresponding pri-
+ vate key
+ - map authenticated
+ identity to a user by
+ checking either the
+ subject name, com-
+ mon name or distin-
+ guished name
+ against the destina-
+ tion
+ - algorithms and
+ keys comply with CR
+ 4.3
+ Accept:
+ - protect the relevant
+ private keys via
+ hardware mecha-
+ nisms (e.g. smart
+ cards)
+ Not accept:
+ - no additional pro-
+ tection mechanisms
+ CR 1.10
+ Authenticator feed-
+ back
+ Accept:
+ - sensitive data con-
+ cerning the authenti-
+ cation process is
+ obscured
+ Not accept:
+ - feedback not dis-
+ tinguish between
+ wrong password or
+ wrong username
+ - no timing differ-
+ ences for error and
+ no error response
+ - displaying pass-
+ word, wireless key,
+ SSH token in input
+ field instead of aster-
+ isks
+ - usage of WEP
+ no additional requi-
+ rements
+ no additional requi-
+ rements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 22
+ CR 1.11
+ Unsuccessful login
+ attempts
+ Accept:
+ - capability to en-
+ force, for each user
+ type (human, soft-
+ ware, device), a
+ configurable limit of
+ consecutive invalid
+ access attempts
+ performed in a con-
+ figurable time period
+ - capability to deny
+ access for a speci-
+ fied period of time or
+ until unlocked, when
+ limit reached
+ no additional requi-
+ rements
+ no additional requi-
+ rements
+ CR 1.12
+ System use notifica-
+ tion
+ Accept:
+ - capability to display
+ a system use notifi-
+ cation message
+ before authenticat-
+ ing to the local user
+ interface
+ - capability as an
+ authorized user to
+ configure the mes-
+ sage
+ no additional requi-
+ rements
+ no additional requi-
+ rements
+ CR 1.13
+ Access via untrusted
+ networks
+ Network Component
+ Requirement
+ Accept:
+ - monitor and control
+ all methods of ac-
+ cess to the network
+ device via untrusted
+ networks (dial-up,
+ office network, re-
+ mote access)
+ Not accept:
+ - access to the net-
+ work device cannot
+ be monitored / con-
+ trolled
+ - untrusted network
+ is missing in moni-
+ toring or cannot be
+ no additional requi-
+ rements
+ Accept:
+ - deny access re-
+ quests via untrusted
+ networks unless
+ approved by an as-
+ signed role
+ - for each connection
+ a device-internal or
+ external physical key
+ is used to authorize
+ the connection
+ CR 1.14
+ Strength of symmet-
+ ric key-based au-
+ thentication
+ no requirements
+ Relevant if symmet-
+ ric key authentica-
+ tion (e.g. pre-shared-
+ secrets) is used.
+ Accept:
+ - validate shared
+ secret to establish
+ the mutual trust
+ - authentication is
+ valid as long as
+ shared secret re-
+ mains a secret, i.e.
+ secrets are stored
+ securely
+ - restrict access to
+ the shared secret
+ Accept:
+ - control system
+ provides the capabil-
+ ity to protect the
+ relevant shared keys
+ via hardware mech-
+ anisms
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 23
+ - ensure that the
+ algorithms and keys
+ used comply with
+ CR 4.3 (Use of cryp-
+ tography)
+ 6.3
+ FR-2: Use Control
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR
+ 2.1
+ Authorization en-
+ forcement
+ Accept:
+ - authorization mecha-
+ nism is enforced on all
+ interfaces which can
+ accessed by human
+ users based on their
+ responsibilities, as dic-
+ tated by the least privi-
+ lege principle
+ Not accept:
+ - interface without au-
+ thorization mechanism
+ (e.g. HMI, web inter-
+ face, console)
+ Accept:
+ - authorization mecha-
+ nism on all interfaces
+ which are exposed,
+ independent of user
+ type (additionally tech-
+ nical users)
+ - management of roles
+ and permissions (defini-
+ tion and modification,
+ only by privileged role)
+ - management of users
+ mapped to roles
+ Not accept:
+ - interface without au-
+ thorization mechanism
+ (e.g. HMI, web inter-
+ face, console)
+ - user with access to
+ HMI can log in via con-
+ sole or SSH
+ Accept:
+ - capability to
+ configure a time
+ or sequence of
+ events during
+ supervisor over-
+ ride without
+ closing the cur-
+ rent session
+ Not accept:
+ - no possibility
+ to configure
+ supervisor over-
+ ride
+ CR
+ 2.2
+ Wireless use control
+ Accept:
+ - capability to deny
+ critical action via wire-
+ less connection (i.e.
+ only use wired)
+ - monitor devices
+ no additional require-
+ ments
+ no additional
+ requirements
+ CR
+ 2.3
+ Use control for port-
+ able and mobile
+ devices
+ no requirements
+ no additional require-
+ ments
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 24
+ CR
+ 2.4
+ Mobile code
+ Only relevant if compo-
+ nents allows to execute
+ mobile code.
+ Accept:
+ - capability to enforce a
+ security policy for the
+ usage of mobile code
+ - control execution of
+ mobile code
+ - define which users are
+ allowed to transfer mo-
+ bile code to/from device
+ Accept:
+ - provides the capability
+ to verify the integrity of
+ the mobile code before
+ execution is allowed
+ Not accept:
+ - execution is allowed
+ without verifying the
+ integrity of the mobile
+ code
+ no additional
+ requirements
+ Embedded Component
+ Requirements
+ - only upload to device
+ - perform integrity
+ checks on the code
+ prior to code execution
+ - perform authenticity
+ checks to verify origin
+ prior to code execution
+ CR
+ 2.5
+ Session lock
+ Accept:
+ - for HMI (local or via
+ network):
+ - Session Lock after
+ configurable time period
+ of inactivity
+ - option to explicitly
+ disable Session Lock
+ (e.g. in control room
+ scenarios)
+ - manual session lock
+ - access to session only
+ possible using authenti-
+ cation procedures
+ - comply with session
+ locks requested by the
+ underlying infrastruc-
+ ture (operating system,
+ control system)
+ no additional require-
+ ments
+ no additional
+ requirements
+ CR
+ 2.6
+ Remote session
+ termination
+ no requirements
+ Remote session is in-
+ terpreted as logical net-
+ work session.
+ Accept:
+ - remote session termi-
+ nated by user who initi-
+ ated session (minimum
+ requirement)
+ - remote session manu-
+ ally terminated by a
+ local authority/user
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 25
+ - remote session termi-
+ nated after configurable
+ inactive period of time
+ CR
+ 2.7
+ Concurrent session
+ control
+ no requirements
+ No requirements
+ Accept:
+ - ability to limit
+ the number of
+ session per
+ interface for any
+ user
+ Not accept:
+ - Sessions can-
+ not be limited
+ per interface
+ - Sessions can-
+ not be limited
+ per user
+ CR
+ 2.8
+ Auditable events
+ Accept:
+ - audit records for fol-
+ lowing security relevant
+ cases are generated:
+ access control, request
+ errors, control system
+ events, backup and
+ restore events, configu-
+ ration changes, audit
+ log events
+ - audit records include
+ at least the following
+ information: timestamp,
+ source, category, type,
+ event ID, event result
+ no additional require-
+ ments
+ no additional
+ requirements
+ CR
+ 2.9
+ Audit storage capa-
+ city
+ Accept:
+ - capability to allocate
+ audit record storage
+ Not accept:
+ - failure of audit func-
+ tionality when a thresh-
+ old is reached or the
+ storage capacity is ex-
+ ceeded
+ no additional require-
+ ments
+ Accept:
+ - a warning
+ message in-
+ forms when a
+ configurable
+ threshold is
+ reached
+ Not accept:
+ - no warning is
+ produced if the
+ used storage
+ capacity reach-
+ es the threshold
+ - the hreshold
+ not configurable
+ CR
+ 2.10
+ Response to audit
+ processing failures
+ Accept:
+ - no loss of essential
+ services or functions
+ during an audit pro-
+ cessing failure
+ - optional support of
+ no additional require-
+ ments
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 26
+ appropriate actions in
+ response to an audit
+ processing failure
+ - e.g. alerting personnel
+ could be an appropriate
+ action
+ CR
+ 2.11
+ Timestamps
+ Accept:
+ - ability to generate
+ timestamps for audit
+ records (see CR 2.8)
+ - timestamps include
+ date and time
+ Accept:
+ - synchronized
+ timestamps
+ - e.g. external source
+ like NTP server
+ no additional
+ requirements
+ CR
+ 2.12
+ Non-repudiation
+ Relevant if HMI is used.
+ Accept:
+ - possibility to deter-
+ mine which human user
+ took a particular action
+ - logging user id in audit
+ trail
+ no additional require-
+ ments
+ no additional
+ requirements
+ CR
+ 2.13
+ Use of physical di-
+ agnostic and test
+ interfaces
+ No requirements
+ Exempt are software
+ applications
+ In case factory diagnos-
+ tic and test interfaces
+ use network communi-
+ cation, the interfaces
+ are to be subjected to
+ all of the requirements
+ of this standard.
+ Accept:
+ - prevent unauthorized
+ use of the physical fac-
+ tory diagnostic and test
+ interfaces, e.g. JTAG
+ - disabled diagnostic
+ and test interface based
+ on removed external
+ connectors
+ Not accept:
+ - any diagnostic and test
+ interface without author-
+ ization
+ Accept:
+ - provides active
+ monitoring of
+ the device's
+ diagnostic and
+ test interfaces
+ - generate log
+ entry when at-
+ tempts to ac-
+ cess these inter-
+ faces are de-
+ tected
+ Not accept:
+ - disabled diag-
+ nostic and test
+ interface based
+ on removed
+ external con-
+ nectors
+ Tabelle 7
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 27
+ 6.4
+ FR-3: System Integrity
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR 3.1
+ Communication integrity
+ Accept:
+ - capability to protect
+ integrity of transmit-
+ ted information
+ - use of CRC (protec-
+ tion against casual or
+ coincidental manipu-
+ lation)
+ - use of standardized
+ cryptographic proto-
+ col
+ - use of recommend-
+ ed protocols (e.g. BSI
+ TR-02102), see
+ CR4.3
+ Accept:
+ - capability to authen-
+ ticate information
+ during communica-
+ tion
+ Not accept:
+ - use of error detec-
+ tion codes, weak
+ hashing or weak sig-
+ nature functions
+ - authentication of
+ information is not
+ possible
+ - fallback to not rec-
+ ommended protocols
+ no additional
+ requirements
+ CR 3.2
+ Protection from mali-
+ cious code
+ Software Application
+ Component
+ Accept:
+ - list at least one
+ compatible security
+ component which
+ implements the pro-
+ tection functionality
+ (user documentation
+ requirement)
+ no additional re-
+ quirements
+ no additional
+ requirements
+ Embedded Compo-
+ nent
+ Accept:
+ - capability to protect
+ from installation and
+ execution of unau-
+ thorized software
+ - environment is
+ allowed to provide
+ malicious code pro-
+ tection mechanism,
+ has to be required by
+ component intended
+ -use description (user
+ documentation re-
+ quirement)
+ - allowed detection
+ techniques: binary
+ integrity, attributes
+ monitoring, hashing,
+ signature techniques
+ - allowed prevention
+ techniques (e.g. re-
+ movable media con-
+ trol, sandbox
+ techniques, specific
+ computing platforms
+ mechanisms (e.g.
+ restricted firmware
+ no additional re-
+ quirements
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 28
+ update), No Execute
+ (NX) bit, data execu-
+ tion prevention
+ (DEP), address
+ space layout random-
+ ization (ASLR), stack
+ corruption detection.
+ mandatory access
+ controls)
+ Not accept:
+ - reference to IACS
+ capabilities which are
+ not implemented by
+ the component itself
+ Host Component
+ Accept:
+ - need to support the
+ use of malicious code
+ protection (design
+ documentation re-
+ quirement)
+ Accept:
+ - able to automatically
+ report version of the
+ malicious code pro-
+ tection which is actu-
+ ally in use
+ no additional
+ requirements
+ Network Component
+ Accept:
+ - provided by the
+ network device direct-
+ ly
+ - allowed to use com-
+ pensating control
+ no additional re-
+ quirements
+ no additional
+ requirements
+ CR 3.3
+ Security functionality
+ verification
+ Accept:
+ - definition of (manu-
+ al) verification proce-
+ dures for verifying the
+ security functionality
+ - guidance on how to
+ test security function-
+ ality (documentation
+ requirement)
+ - documented side
+ effects if these verifi-
+ cation procedures are
+ running during normal
+ operation
+ Not accept:
+ - no possibility to test
+ security functionality,
+ e.g. no log message,
+ no notification
+ no additional requi-
+ rements
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 29
+ CR 3.4
+ Software and informati-
+ on integrity
+ Accept:
+ - integrity check of
+ data at rest (e.g.
+ software, configura-
+ tion)
+ - capability to be inte-
+ grated into a system
+ that can perform or
+ support integrity
+ checks
+ Not accept:
+ - no recording of re-
+ sults of checks
+ Accept:
+ - authenticity check of
+ data at rest (e.g.
+ software, configura-
+ tion)
+ Accept:
+ - unauthorized
+ change is re-
+ ported to a
+ configurable
+ entity upon
+ discovery of the
+ attempt
+ CR 3.5
+ Input validation
+ Note:
+ Not-accept-criteria give
+ guidance which
+ insufficient input
+ validation methods
+ are most relevant for
+ the SL levels to plan
+ test cases with
+ reasonable effort.
+ Accept:
+ - every input, that
+ directly impacts the
+ action of the applica-
+ tion or device is vali-
+ dated for syntax and
+ content
+ Not accept:
+ - out-of-range values
+ for a defined field
+ type
+ - invalid characters in
+ data fields
+ - missing or incom-
+ plete data and buffer
+ overflow
+ Not accept:
+ - SQL injection at-
+ tacks
+ - cross-site scripting
+ - commonly known
+ malformed packets
+ Not accept:
+ - malformed
+ packets as
+ commonly gen-
+ erated by pro-
+ tocol fuzzers
+ CR 3.6
+ Deterministic output
+ Applicable if device
+ directly controls a
+ process.
+ Accept:
+ - the deterministic
+ output needs to be
+ documented (docu-
+ mentation require-
+ ment)
+ - in case of failsafe,
+ allowed to demon-
+ strate by described
+ process
+ no additional requi-
+ rements
+ no additional
+ requirements
+ CR 3.7
+ Error handling
+ Accept:
+ - error conditions are
+ identified and han-
+ dled
+ - no unintended in-
+ formation is leaked
+ - no security relevant
+ information is visible
+ no additional requi-
+ rements
+ no additional
+ requirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 30
+ CR 3.8
+ Session integrity
+ no requirements
+ Accept:
+ - use of mechanisms
+ to protect the integrity
+ of communication
+ sessions
+ - sessions are invali-
+ dated after termina-
+ tion
+ - sessions are invali-
+ dated after reboot
+ - use of unique ses-
+ sion IDs
+ Not accept:
+ - session hijacking
+ - man in the middle
+ attack
+ - insertion of false
+ information into a
+ session
+ - replay attacks
+ no additional
+ requirements
+ CR 3.9
+ Protection of audit
+ information
+ no requirements
+ Accept:
+ - protect audit infor-
+ mation and audit
+ tools (if present)
+ Not accept:
+ - unauthorized ac-
+ cess, modification or
+ deletion of audit in-
+ formation
+ no additional
+ requirements
+ CR 3.10
+ Support for updates
+ Accept:
+ - capability to be up-
+ dated and upgraded
+ once commissioned
+ - if component sup-
+ ports or executes
+ essential functions,
+ needs for mechanism
+ to support patching
+ and updating without
+ impacting the essen-
+ tial function
+ Accept:
+ - the authenticity and
+ integrity of any up-
+ date is validated prior
+ installation
+ no additional
+ requirements
+ CR 3.11
+ Physical tamper re-
+ sistance and detection
+ no requirements
+ Not relevant in case
+ of software applica-
+ tions.
+ Relevant if intended
+ use does not offer
+ physical protection of
+ component according
+ to threat modelling.
+ Accept:
+ - anti-tamper re-
+ sistance: specialized
+ materials to make
+ tampering difficult;
+ e.g.: hardened enclo-
+ sures, locks, encap-
+ sulation, security
+ screws
+ - detection mecha-
+ Accept:
+ - capability to
+ automatically
+ notify upon
+ discovery of an
+ attempt to
+ make an unau-
+ thorized physi-
+ cal access
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 31
+ nisms for unauthor-
+ ized physical access
+ into the device, e.g.
+ seal
+ CR 3.12
+ Provisioning product
+ supplier roots of trust
+ no requirements
+ Not relevant in case
+ of software applica-
+ tions.
+ Accept:
+ - provision of product
+ supplier keys and
+ roots of trust during
+ device manufacturing
+ - e.g. cryptographic
+ hashes or public key
+ used for verification
+ Fail:
+ - keys or root of trust
+ can be manipulated
+ or leaked
+ no additional
+ requirements
+ CR 3.13
+ Provisioning asset
+ owner roots of trust
+ no requirements
+ Not relevant in case
+ of software applica-
+ tions.
+ Relevant if CR 2.4
+ Mobile Code is se-
+ lected.
+ Accept:
+ - capability to provi-
+ sion asset owner
+ roots of trust
+ - protection of asset
+ owner roots of trust
+ Not accepted:
+ - export of root of
+ trust (private key)
+ - leakage of root of
+ trust security infor-
+ mation
+ no additional
+ requirements
+ CR 3.14
+ Integrity of the boot
+ process
+ Not relevant in case
+ of software applica-
+ tions.
+ Accept:
+ - integrity verification
+ of boot process rele-
+ vant firmware, soft-
+ ware and configura-
+ tion data prior to the
+ use
+ Accept:
+ - authentication verifi-
+ cation of boot pro-
+ cess relevant firm-
+ ware, software and
+ configuration data
+ prior to the use
+ - use of product sup-
+ pliers roots of trust for
+ verification
+ no additional
+ requirements
+ Tabelle 8
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 32
+ 6.5
+ FR-4: Data Confidentiality
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR
+ 4.1
+ Information confidentia-
+ lity
+ Accept:
+ - capability to pro-
+ tect against unau-
+ thorized disclo-
+ sure of information
+ via eavesdrop-
+ ping or casual
+ exposure
+ - capability to pro-
+ tect the confiden-
+ tiality of infor-
+ mation at rest for
+ which explicit read
+ authorization is
+ supported
+ - protection of the
+ confidentiality of
+ information in
+ transit
+ - (wireless) use of
+ encryption
+ Not accept:
+ - outdated or dep-
+ recated encryption
+ protocols
+ - use of cleartext
+ protocols (e.g.
+ FTP)
+ Accept:
+ - capability to protect
+ against unauthorized
+ disclosure of infor-
+ mation caused by an
+ attacker actively
+ searching for vulnera-
+ bilities with low re-
+ sources, generic
+ skills and low moti-
+ vation
+ Accept:
+ - capability to pro-
+ tect against unau-
+ thorized disclosure
+ of information
+ caused by an at-
+ tacker actively
+ searching for vul-
+ nerabilities with
+ moderate re-
+ sources, IACS
+ specific skills and
+ moderate motiva-
+ tion
+ CR
+ 4.2
+ Information persistence
+ no requirements
+ Accept:
+ - capability to purge
+ component
+ - capability to erase all
+ information with explic-
+ it read authorization
+ Not accept:
+ - existence of data
+ after component was
+ decommissioned
+ Accept:
+ - capability to pro-
+ tect against unau-
+ thorized and unin-
+ tended information
+ transfer via volatile
+ shared memory
+ resources
+ - capability to verify
+ that the erasure of
+ information oc-
+ curred effectively
+ CR
+ 4.3
+ Use of cryptography
+ If cryptography is
+ required by CR
+ 1.14, CR 3.1 and
+ CR 4.1.
+ Accept:
+ - use of standard-
+ ized cryptographic
+ protocol
+ - use of recom-
+ mended protocols
+ (e.g. BSI TR-
+ 02102), see
+ CR4.3
+ - used according
+ to proven practic-
+ no additional require-
+ ments
+ no additional re-
+ quirements
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 33
+ es or documenta-
+ tion
+ Tabelle 9
+ 6.6
+ FR-5: Restricted Data Flow
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR 5.1
+ Network segmentation
+ Network Component
+ Requirement
+ Accept:
+ - support of network
+ segmentation, e.g.
+ multiple network
+ cards, VLANs
+ - network configura-
+ tion with routing and
+ router capability
+ no additional re-
+ quirements
+ no additional
+ requirements
+ Non-Network Com-
+ ponent Requirement
+ Not Accept:
+ - component opens or
+ requires network
+ connections that
+ make a network
+ segmentation non-
+ feasible or hard to
+ maintain
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 34
+ CR 5.2
+ Zone boundary protection
+ Network Component
+ Requirement
+ Accept:
+ - capability to monitor
+ and control commu-
+ nication at zone
+ boundaries to enforce
+ compartmentalization
+ defined in risk-based
+ zones and conduits
+ model
+ Not accept:
+ - demonstrate insuffi-
+ cient boundary pro-
+ tection
+ Accept:
+ - capability to deny
+ network traffic by
+ default
+ - allow network traffic
+ by exception
+ Accept:
+ - capability to
+ prevent any
+ communication
+ through the
+ control system
+ boundary (is-
+ land mode)
+ - provide the
+ capability to
+ prevent any
+ communication
+ through the
+ control system
+ boundary when
+ there is an
+ operational
+ failure of the
+ boundary pro-
+ tection mecha-
+ nisms (fail
+ close)
+ CR 5.3
+ General purpose person-
+ to-person communication
+ restrictions
+ Accept:
+ - capability to prevent
+ general purpose,
+ person-to-person
+ messages from being
+ received from us-
+ ers/systems to the
+ control system (email,
+ all forms of social
+ media, message sys-
+ tems)
+ - e.g. filtering traffic
+ with packet filters or
+ application-level
+ gateways
+ Not accepted:
+ - no/insufficient traffic
+ inspection
+ no additional requi-
+ rements
+ no additional
+ requirements
+ Tabelle 10
+ TeleTrusT-Prüfschema nach IEC 62443-4-2 - 2019-05
+ 35
+ 6.7
+ FR-6: Timely Response To Events
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR 6.1
+ Audit log accessibility
+ Accept:
+ - capability for au-
+ thorized humans or
+ tools to access audit
+ logs on a read only
+ basis
+ - web interface (au-
+ dit perspective)
+ - console tools (sep-
+ arate information
+ system for audit
+ access)
+ Not accepted:
+ - audit logs are ac-
+ cessible to unauthor-
+ ized users
+ no additional re-
+ quirements
+ Accept:
+ - programmatic ac-
+ cess to audit records
+ by either using an
+ application pro-
+ gramming interface
+ (API), or
+ - capability to send
+ the audit logs to a
+ centralized system
+ CR 6.2
+ Continuous monitoring
+ no requirements
+ Accept:
+ - capability to pro-
+ vide an active inter-
+ face for continuous
+ monitoring, or
+ - capability to send
+ continuous monitor-
+ ing information to a
+ centralized system
+ no additional requi-
+ rements
+ Tabelle 11
+ 6.8
+ FR-7: Resource Availability
+ ID
+ Requirement
+ SL-1
+ SL-2
+ SL-3
+ CR 7.1
+ Denial of service protection
+ Accept:
+ - capability to op-
+ erate in a degrad-
+ ed mode (essential
+ functions) during a
+ DoS event
+ Accept:
+ - Manage commu-
+ nication load from
+ application or de-
+ vice to mitigate
+ effects of DoS
+ events
+ - e.g. limit network
+ capacity of inter-
+ faces
+ no additional requi-
+ rements

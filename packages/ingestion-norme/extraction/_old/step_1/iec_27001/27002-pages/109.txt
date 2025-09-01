@@ -1,0 +1,49 @@
+ISO/IEC 27002:2022(E)
+c)	
+varying numbers and dates;
+d)	 substitution (changing one value for another to hide sensitive data);
+e)	 replacing values with their hash.
+The following should be considered when implementing data masking techniques:
+a)	 not granting all users access to all data, therefore designing queries and masks in order to show 
+only the minimum required data to the user;
+b)	 there are cases where some data should not be visible to the user for some records out of a set of 
+data; in this case, designing and implementing a mechanism for obfuscation of data (e.g. if a patient 
+does not want hospital staff to be able to see all of their records, even in case of emergency, then the 
+hospital staff are presented with partially obfuscated data and data can only be accessed by staff 
+with specific roles if it contains useful information for appropriate treatment);
+c)	
+when data are obfuscated, giving the PII principal the possibility to require that users cannot see if 
+the data are obfuscated (obfuscation of the obfuscation; this is used in health facilities, for example 
+if the patient does not want personnel to see that sensitive information such as pregnancies or 
+results of blood exams has been obfuscated);
+d)	 any legal or regulatory requirements (e.g. requiring the masking of payment cards' information 
+during processing or storage).
+The following should be considered when using data masking, pseudonymization or anonymization:
+a)	 level of strength of data masking, pseudonymization or anonymization according to the usage of 
+the processed data;
+b)	 access controls to the processed data;
+c)	
+agreements or restrictions on usage of the processed data;
+d)	 prohibiting collating the processed data with other information in order to identify the PII principal;
+e)	 keeping track of providing and receiving the processed data.
+Other information
+Anonymization irreversibly alters PII in such a way that the PII principal can no longer be identified 
+directly or indirectly.
+Pseudonymization replaces the identifying information with an alias. Knowledge of the algorithm 
+(sometimes referred to as the “additional information”) used to perform the pseudonymization allows 
+for at least some form of identification of the PII principal. Such “additional information” should 
+therefore be kept separate and protected.
+While pseudonymization is therefore weaker than anonymization, pseudonymized datasets can be 
+more useful in statistical research.
+Data masking is a set of techniques to conceal, substitute or obfuscate sensitive data items. Data masking 
+can be static (when data items are masked in the original database), dynamic (using automation and 
+rules to secure data in real-time) or on-the-fly (with data masked in an application’s memory).
+Hash functions can be used in order to anonymize PII. In order to prevent enumeration attacks, they 
+should always be combined with a salt function.
+PII in resource identifiers and their attributes [e.g. file names, uniform resource locators (URLs)] should 
+be either avoided or appropriately anonymized.
+Additional controls concerning the protection of PII in public clouds are given in ISO/IEC 27018.
+© ISO/IEC 2022 – All rights reserved	
+﻿
+﻿
+99
