@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF e Markdown Viewer</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.2/marked.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .sync-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .sync-button:hover {
+            background: #2980b9;
+        }
+
+        .sync-button.active {
+            background: #27ae60;
+        }
+
+        .sync-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 70px);
+            gap: 2px;
+            background: #ddd;
+        }
+
+        .panel {
+            width: 50%;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0;
+        }
+
+        .panel-header {
+            background: #34495e;
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid #2c3e50;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+        }
+
+        #pdfViewer {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #f8f9fa;
+        }
+
+        /* Reset di base per il contenuto markdown */
+        .markdown-body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #24292e;
+        background-color: #fff;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        }
+
+        /* Titoli */
+        .markdown-body h1 {
+        font-size: 2em;
+        font-weight: 600;
+        margin: 0.67em 0;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid #eaecef;
+        }
+
+        .markdown-body h2 {
+        font-size: 1.5em;
+        font-weight: 600;
+        margin: 1em 0 0.5em 0;
+        padding-bottom: 0.3em;
+        border-bottom: 1px solid #eaecef;
+        }
+
+        .markdown-body h3 {
+        font-size: 1.25em;
+        font-weight: 600;
+        margin: 1em 0 0.5em 0;
+        }
+
+        .markdown-body h4 {
+        font-size: 1em;
+        font-weight: 600;
+        margin: 1em 0 0.5em 0;
+        }
+
+        .markdown-body h5 {
+        font-size: 0.875em;
+        font-weight: 600;
+        margin: 1em 0 0.5em 0;
+        }
+
+        .markdown-body h6 {
+        font-size: 0.85em;
+        font-weight: 600;
+        margin: 1em 0 0.5em 0;
+        color: #6a737d;
+        }
+
+        /* Paragrafi */
+        .markdown-body p {
+        margin: 1em 0;
+        }
+
+        /* Liste */
+        .markdown-body ul, 
+        .markdown-body ol {
+        margin: 1em 0;
+        padding-left: 2em;
+        }
+
+        .markdown-body li {
+        margin: 0.25em 0;
+        }
+
+        .markdown-body li > p {
+        margin: 0.5em 0;
+        }
+
+        /* Link */
+        .markdown-body a {
+        color: #0366d6;
+        text-decoration: none;
+        }
+
+        .markdown-body a:hover {
+        text-decoration: underline;
+        }
+
+        /* Codice */
+        .markdown-body code {
+        background-color: rgba(27,31,35,0.05);
+        border-radius: 3px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 85%;
+        margin: 0;
+        padding: 0.2em 0.4em;
+        }
+
+        .markdown-body pre {
+        background-color: #f6f8fa;
+        border-radius: 6px;
+        font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+        font-size: 85%;
+        line-height: 1.45;
+        overflow: auto;
+        padding: 16px;
+        margin: 1em 0;
+        }
+
+        .markdown-body pre code {
+        background-color: transparent;
+        border-radius: 0;
+        font-size: 100%;
+        padding: 0;
+        margin: 0;
+        word-break: normal;
+        white-space: pre;
+        overflow-wrap: normal;
+        }
+
+        /* Blockquote */
+        .markdown-body blockquote {
+        border-left: 4px solid #dfe2e5;
+        color: #6a737d;
+        margin: 1em 0;
+        padding: 0 1em;
+        }
+
+        /* Tabelle */
+        .markdown-body table {
+        border-collapse: collapse;
+        margin: 1em 0;
+        width: 100%;
+        }
+
+        .markdown-body table th,
+        .markdown-body table td {
+        border: 1px solid #dfe2e5;
+        padding: 6px 13px;
+        }
+
+        .markdown-body table th {
+        background-color: #f6f8fa;
+        font-weight: 600;
+        }
+
+        .markdown-body table tr:nth-child(even) {
+        background-color: #f6f8fa;
+        }
+
+        /* Linee orizzontali */
+        .markdown-body hr {
+        background-color: #e1e4e8;
+        border: 0;
+        height: 1px;
+        margin: 24px 0;
+        }
+
+        /* Immagini */
+        .markdown-body img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 4px;
+        }
+
+        /* Checkbox per task list */
+        .markdown-body input[type="checkbox"] {
+        margin: 0 0.2em 0.25em -1.6em;
+        vertical-align: middle;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+        .markdown-body {
+            padding: 15px;
+            font-size: 14px;
+        }
+        
+        .markdown-body pre {
+            padding: 12px;
+            overflow-x: auto;
+        }
+        }
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #666;
+            font-size: 16px;
+        }
+
+        .error {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #e74c3c;
+            font-size: 16px;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(52, 73, 94, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            z-index: 100;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📄 PDF e Markdown Viewer</h1>
+        <div class="controls">
+            <button id="syncButton" class="sync-button">🔗 Sincronizza Scroll</button>
+            <button id="refreshPdfButton" class="sync-button">🔄 Ricarica PDF</button>
+            <button id="refreshMdButton" class="sync-button">📝 Ricarica MD</button>
+            <span id="syncStatus">Sync: OFF</span>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="panel">
+            <div class="panel-header">📄 PDF Document</div>
+            <div class="panel-content">
+                <div class="scroll-indicator" id="pdfIndicator">0%</div>
+                <iframe id="pdfViewer" src="http://localhost:3005/test_2.pdf" title="PDF Viewer"></iframe>
+            </div>
+        </div>
+
+        <div class="panel">
+            <div class="panel-header">📝 Markdown Content</div>
+            <div class="panel-content" id="markdownPanel">
+                <div class="scroll-indicator" id="mdIndicator">0%</div>
+                <div id="markdownContent" class="markdown-body">Caricamento Markdown...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class PDFMarkdownViewer {
+            constructor() {
+                this.syncEnabled = false;
+                this.isScrolling = false;
+                this.scrollTimeout = null;
+                
+                this.initializeElements();
+                this.loadMarkdown();
+                this.setupEventListeners();
+            }
+
+            initializeElements() {
+                this.syncButton = document.getElementById('syncButton');
+                this.refreshPdfButton = document.getElementById('refreshPdfButton');
+                this.refreshMdButton = document.getElementById('refreshMdButton');
+                this.syncStatus = document.getElementById('syncStatus');
+                this.pdfViewer = document.getElementById('pdfViewer');
+                this.markdownPanel = document.getElementById('markdownPanel');
+                this.markdownContent = document.getElementById('markdownContent');
+                this.pdfIndicator = document.getElementById('pdfIndicator');
+                this.mdIndicator = document.getElementById('mdIndicator');
+            }
+
+            loadMarkdown() {
+                var self = this;
+                
+                if (this.refreshMdButton) {
+                    this.refreshMdButton.textContent = '⏳ Ricaricando...';
+                    this.refreshMdButton.disabled = true;
+                }
+                
+                this.markdownContent.innerHTML = '<div class="loading">Caricamento Markdown...</div>';
+                
+                var timestamp = new Date().getTime();
+                var url = 'http://localhost:3005/article_505.md?t=' + timestamp + '&cache=' + Math.random();
+                
+                fetch(url, {
+                    cache: 'no-cache',
+                    headers: {
+                        'Cache-Control': 'no-cache',
+                        'Pragma': 'no-cache'
+                    }
+                })
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw new Error('HTTP ' + response.status + ': ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(function(markdownText) {
+                    var htmlContent = marked.parse(markdownText);
+                    self.markdownContent.innerHTML = htmlContent;
+                    // self.markdownContent.innerHTML = markdownText;
+                })
+                .catch(function(error) {
+                    console.error('Errore nel caricamento del Markdown:', error);
+                    self.markdownContent.innerHTML = 
+                        '<div class="error">' +
+                            '<div>' +
+                                '<h3>❌ Errore nel caricamento</h3>' +
+                                '<p>Impossibile caricare il file Markdown da:<br>' +
+                                '<code>http://localhost:3005/article_505.md</code></p>' +
+                                '<p><strong>Dettagli:</strong> ' + error.message + '</p>' +
+                                '<p><em>Assicurati che il server sia attivo e l\'URL sia corretto.</em></p>' +
+                            '</div>' +
+                        '</div>';
+                })
+                .finally(function() {
+                    console.log(htmlContent);
+                    if (self.refreshMdButton) {
+                        self.refreshMdButton.textContent = '📝 Ricarica MD';
+                        self.refreshMdButton.disabled = false;
+                    }
+                });
+            }
+
+            setupEventListeners() {
+                var self = this;
+                
+                // Toggle sincronizzazione
+                this.syncButton.addEventListener('click', function() {
+                    self.toggleSync();
+                });
+
+                // Ricarica PDF
+                this.refreshPdfButton.addEventListener('click', function() {
+                    self.refreshPDF();
+                });
+
+                // Ricarica Markdown
+                this.refreshMdButton.addEventListener('click', function() {
+                    self.loadMarkdown();
+                });
+
+                // Scroll del pannello markdown
+                this.markdownPanel.addEventListener('scroll', function(e) {
+                    self.updateScrollIndicator('md', e.target);
+                    
+                    if (self.syncEnabled && !self.isScrolling) {
+                        self.isScrolling = true;
+                        self.syncPDFScroll(e.target.scrollTop, e.target.scrollHeight - e.target.clientHeight);
+                        
+                        clearTimeout(self.scrollTimeout);
+                        self.scrollTimeout = setTimeout(function() {
+                            self.isScrolling = false;
+                        }, 150);
+                    }
+                });
+
+                // Gestione errori PDF
+                this.pdfViewer.addEventListener('error', function() {
+                    console.error('Errore nel caricamento del PDF');
+                });
+
+                // Gestione caricamento PDF
+                this.pdfViewer.addEventListener('load', function() {
+                    console.log('PDF caricato con successo');
+                });
+            }
+
+            refreshPDF() {
+                var self = this;
+                console.log('Ricaricando PDF...');
+                
+                var timestamp = new Date().getTime();
+                var baseUrl = 'http://localhost:3005/test_2.pdf';
+                var newUrl = baseUrl + '?t=' + timestamp + '&cache=' + Math.random();
+                
+                // Cambia temporaneamente il src per forzare il reload
+                this.pdfViewer.src = '';
+                
+                setTimeout(function() {
+                    self.pdfViewer.src = newUrl;
+                }, 100);
+                
+                // Mostra feedback visivo
+                this.refreshPdfButton.textContent = '⏳ Ricaricando...';
+                this.refreshPdfButton.disabled = true;
+                
+                setTimeout(function() {
+                    self.refreshPdfButton.textContent = '🔄 Ricarica PDF';
+                    self.refreshPdfButton.disabled = false;
+                }, 2000);
+            }
+
+            toggleSync() {
+                this.syncEnabled = !this.syncEnabled;
+                
+                if (this.syncEnabled) {
+                    this.syncButton.textContent = '🔗 Sync Attivo';
+                    this.syncButton.classList.add('active');
+                    this.syncStatus.textContent = 'Sync: ON';
+                    this.syncStatus.style.color = '#27ae60';
+                } else {
+                    this.syncButton.textContent = '🔗 Sincronizza Scroll';
+                    this.syncButton.classList.remove('active');
+                    this.syncStatus.textContent = 'Sync: OFF';
+                    this.syncStatus.style.color = '#95a5a6';
+                }
+            }
+
+            syncPDFScroll(scrollTop, maxScroll) {
+                try {
+                    var scrollPercentage = maxScroll > 0 ? scrollTop / maxScroll : 0;
+                    
+                    // Invia messaggio al PDF iframe (se supporta postMessage)
+                    this.pdfViewer.contentWindow.postMessage({
+                        type: 'scroll',
+                        percentage: scrollPercentage
+                    }, '*');
+                    
+                } catch (error) {
+                    console.warn('Impossibile sincronizzare lo scroll del PDF:', error);
+                }
+            }
+
+            updateScrollIndicator(type, element) {
+                var scrollPercentage = element.scrollHeight > element.clientHeight 
+                    ? Math.round((element.scrollTop / (element.scrollHeight - element.clientHeight)) * 100)
+                    : 0;
+                
+                if (type === 'md') {
+                    this.mdIndicator.textContent = scrollPercentage + '%';
+                } else {
+                    this.pdfIndicator.textContent = scrollPercentage + '%';
+                }
+            }
+        }
+
+        // Inizializza l'applicazione quando la pagina è caricata
+        document.addEventListener('DOMContentLoaded', function() {
+            new PDFMarkdownViewer();
+        });
+
+        // Gestione messaggi da iframe (se il PDF supporta postMessage)
+        window.addEventListener('message', function(event) {
+            if (event.data && event.data.type === 'pdfScroll') {
+                // Gestisci scroll dal PDF se implementato
+                console.log('Scroll dal PDF:', event.data);
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+

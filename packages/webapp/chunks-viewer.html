@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chunks Viewer React</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .header {
+            background: #007bff;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .controls {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        .file-selector {
+            margin-bottom: 15px;
+        }
+        .file-selector select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .search-box {
+            margin-bottom: 15px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+        .stats {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        .stat-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .chunks-list {
+            max-height: 600px;
+            overflow-y: auto;
+        }
+        .chunk-item {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            padding: 15px 20px;
+            transition: background-color 0.2s;
+        }
+        .chunk-item:hover {
+            background-color: #f8f9fa;
+        }
+        .chunk-item:last-child {
+            border-bottom: none;
+        }
+        .section-path {
+            min-width: 80px;
+            font-weight: bold;
+            color: #007bff;
+            margin-right: 20px;
+            font-family: monospace;
+            background: #e3f2fd;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .text-normative {
+            flex: 1;
+            line-height: 1.5;
+            color: #333;
+        }
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #666;
+        }
+        .error {
+            background: #ffe6e6;
+            color: #d8000c;
+            padding: 15px;
+            margin: 20px;
+            border-radius: 4px;
+            border-left: 4px solid #d8000c;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #666;
+        }
+        .refresh-btn {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .refresh-btn:hover {
+            background: #218838;
+        }
+        .filter-controls {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-controls label {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .filter-controls input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .chunk-item.relevant-verb {
+            background-color: #e8f5e8;
+        }
+
+        .chunk-item.relevant-verb:hover {
+            background-color: #d4edda;
+        }        
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useMemo } = React;
+
+        function ChunksViewer() {
+            const [files, setFiles] = useState([]);
+            const [selectedFile, setSelectedFile] = useState('');
+            const [chunks, setChunks] = useState([]);
+            const [searchTerm, setSearchTerm] = useState('');
+            const [showOnlyRelevantVerb, setShowOnlyRelevantVerb] = useState(false);
+            const [loading, setLoading] = useState(false);
+            const [error, setError] = useState('');
+            const [loadingFiles, setLoadingFiles] = useState(true);
+
+            // Filtra i chunks in base al termine di ricerca e al filtro isRelevantVerb
+            const filteredChunks = useMemo(() => {
+                let filtered = chunks;
+                
+                // Filtro per isRelevantVerb
+                if (showOnlyRelevantVerb) {
+                    filtered = filtered.filter(chunk => 
+                        chunk.context && chunk.context.isRelevantVerb === true
+                    );
+                }
+                
+                // Filtro per ricerca testuale
+                if (searchTerm.trim()) {
+                    const search = searchTerm.toLowerCase();
+                    filtered = filtered.filter(chunk => {
+                        const sectionPath = (chunk.section_path || '').toLowerCase();
+                        const textNormative = (chunk.text_normative || '').toLowerCase();
+                        return sectionPath.includes(search) || textNormative.includes(search);
+                    });
+                }
+                
+                return filtered;
+            }, [chunks, searchTerm, showOnlyRelevantVerb]);
+
+            // Conta i chunks con isRelevantVerb = true
+            const relevantVerbCount = useMemo(() => {
+                return chunks.filter(chunk => 
+                    chunk.context && chunk.context.isRelevantVerb === true
+                ).length;
+            }, [chunks]);        
+
+            // Carica la lista dei file all'avvio
+            useEffect(() => {
+                loadFilesList();
+            }, []);
+
+            const loadFilesList = async () => {
+                setLoadingFiles(true);
+                setError('');
+                
+                try {
+                    const response = await fetch('/api/chunks-files');
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        setFiles(data.files);
+                        if (data.files.length > 0) {
+                            setSelectedFile(data.files[0].path);
+                            loadChunks(data.files[0].path);
+                        }
+                    } else {
+                        setError('Errore nel caricare la lista dei file: ' + data.error);
+                    }
+                } catch (err) {
+                    setError('Errore di connessione: ' + err.message);
+                }
+                
+                setLoadingFiles(false);
+            };
+
+            const loadChunks = async (filePath) => {
+                if (!filePath) return;
+                
+                setLoading(true);
+                setError('');
+                setChunks([]);
+                
+                try {
+                    const response = await fetch('/api/chunks-content?path=' + encodeURIComponent(filePath));
+                    const data = await response.json();
+                    
+                    if (data.success) {
+                        const chunksData = data.content.chunks || [];
+                        setChunks(chunksData);
+                    } else {
+                        setError('Errore nel caricare il contenuto: ' + data.error);
+                    }
+                } catch (err) {
+                    setError('Errore nel parsare i dati: ' + err.message);
+                }
+                
+                setLoading(false);
+            };
+
+            const handleFileChange = (event) => {
+                const newFile = event.target.value;
+                setSelectedFile(newFile);
+                setSearchTerm(''); // Reset search when changing file
+                setShowOnlyRelevantVerb(false); // Reset filter when changing file
+                if (newFile) {
+                    loadChunks(newFile);
+                }
+            };            
+
+            const handleSearchChange = (event) => {
+                setSearchTerm(event.target.value);
+            };
+
+            const handleRelevantVerbFilterChange = (event) => {
+                setShowOnlyRelevantVerb(event.target.checked);
+            };
+
+            const clearSearch = () => {
+                setSearchTerm('');
+            };
+
+            const getSelectedFileName = () => {
+                const file = files.find(f => f.path === selectedFile);
+                return file ? file.relativePath : '';
+            };
+
+            const formatText = (text) => {
+                return text || '';
+            };
+
+            if (loadingFiles) {
+                return (
+                    <div className="container">
+                        <div className="header">
+                            <h1>Chunks Viewer</h1>
+                        </div>
+                        <div className="loading">
+                            ⏳ Caricamento lista file...
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="container">
+                    <div className="header">
+                        <h1>📄 Chunks Viewer</h1>
+                        <p>Visualizza i contenuti dei file chunks.json</p>
+                    </div>
+
+                    <div className="controls">
+                        <div className="file-selector">
+                            <label htmlFor="fileSelect"><strong>Seleziona file:</strong></label>
+                            <select 
+                                id="fileSelect"
+                                value={selectedFile} 
+                                onChange={handleFileChange}
+                            >
+                                <option value="">-- Seleziona un file --</option>
+                                {files.map((file, index) => (
+                                    <option key={index} value={file.path}>
+                                        {file.relativePath} ({Math.round(file.size/1024)}KB)
+                                    </option>
+                                ))}
+                            </select>
+                        </div>
+
+                        {selectedFile && (
+                            <div className="search-box">
+                                <label htmlFor="searchInput"><strong>🔍 Cerca:</strong></label>
+                                <input
+                                    id="searchInput"
+                                    type="text"
+                                    placeholder="Cerca in section_path o text_normative..."
+                                    value={searchTerm}
+                                    onChange={handleSearchChange}
+                                />
+                                {searchTerm && (
+                                    <button 
+                                        onClick={clearSearch}
+                                        style={{
+                                            position: 'absolute',
+                                            right: '30px',
+                                            marginTop: '-35px',
+                                            background: 'transparent',
+                                            border: 'none',
+                                            fontSize: '16px',
+                                            cursor: 'pointer',
+                                            color: '#666'
+                                        }}
+                                        title="Cancella ricerca"
+                                    >
+                                        ✕
+                                    </button>
+                                )}
+                            </div>
+                        )}
+
+                        {selectedFile && (
+                            <div className="filter-controls">
+                                <label>
+                                    <input
+                                        type="checkbox"
+                                        checked={showOnlyRelevantVerb}
+                                        onChange={handleRelevantVerbFilterChange}
+                                    />
+                                    🎯 Mostra solo Relevant Verbs
+                                </label>
+                                <span style={{color: '#666', fontSize: '13px'}}>
+                                    ({relevantVerbCount} di {chunks.length} chunks)
+                                </span>
+                            </div>
+                        )}                        
+
+                        {selectedFile && (
+                            <div className="stats">
+                                <div className="stat-item">
+                                    <strong>File:</strong> {getSelectedFileName()}
+                                </div>
+                                <div className="stat-item">
+                                    <strong>Totale chunks:</strong> {chunks.length}
+                                </div>
+                                <div className="stat-item">
+                                    <strong>Relevant Verbs:</strong> {relevantVerbCount}
+                                </div>
+                                {(searchTerm || showOnlyRelevantVerb) && (
+                                    <div className="stat-item">
+                                        <strong>Filtrati:</strong> {filteredChunks.length}
+                                    </div>
+                                )}
+                                <button 
+                                    className="refresh-btn" 
+                                    onClick={() => loadChunks(selectedFile)}
+                                    disabled={loading}
+                                >
+                                    🔄 Ricarica
+                                </button>
+                            </div>                        )}
+                    </div>
+
+                    {error && (
+                        <div className="error">
+                            ❌ {error}
+                        </div>
+                    )}
+
+                    {loading ? (
+                        <div className="loading">
+                            ⏳ Caricamento contenuto...
+                        </div>
+                    ) : filteredChunks.length === 0 && searchTerm ? (
+                        <div className="empty-state">
+                            <h3>🔍 Nessun risultato</h3>
+                            <p>Nessun chunk contiene il termine "<strong>{searchTerm}</strong>"</p>
+                            <button 
+                                onClick={clearSearch}
+                                style={{
+                                    background: '#007bff',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '8px 16px',
+                                    borderRadius: '4px',
+                                    cursor: 'pointer'
+                                }}
+                            >
+                                ✕ Cancella ricerca
+                            </button>
+                        </div>
+                    ) : filteredChunks.length === 0 ? (
+                        <div className="empty-state">
+                            {selectedFile ? (
+                                <>
+                                    <h3>📭 Nessun chunk trovato</h3>
+                                    <p>Il file selezionato non contiene chunks o la struttura è diversa</p>
+                                </>
+                            ) : (
+                                <>
+                                    <h3>👆 Seleziona un file</h3>
+                                    <p>Scegli un file dall'elenco per visualizzarne i chunks</p>
+                                </>
+                            )}
+                        </div>
+                    ) : (
+                        <div className="chunks-list">
+                            {filteredChunks.map((chunk, index) => {
+                                const isRelevantVerb = chunk.context && chunk.context.isRelevantVerb === true;
+                                return (
+                                    <div 
+                                        key={index} 
+                                        className={`chunk-item ${isRelevantVerb ? 'relevant-verb' : ''}`}
+                                    >
+                                        <div className="section-path">
+                                            {chunk.section_path || 'N/A'}
+                                        </div>
+                                        <div className="text-normative">
+                                            {formatText(chunk.text_normative) || 'Nessun testo normativo'}
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>                        
+                    )}
+                </div>
+            );
+        }
+
+        ReactDOM.render(<ChunksViewer />, document.getElementById('root'));
+    </script>
+</body>
+</html>
