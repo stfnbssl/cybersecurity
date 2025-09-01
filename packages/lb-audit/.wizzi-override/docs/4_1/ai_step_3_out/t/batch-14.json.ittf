@@ -1,0 +1,627 @@
+$group
+    {
+        practice "4"
+        code "SI-1"
+        subCode "a) identification of security requirements that were not adequately addressed
+            +b by the implementation;"
+        name "Security implementation review"
+        description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: a)
+            +b identification of security requirements that were not adequately addressed by
+            +b the implementation;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security requirements are adequately addressed in the
+                    +b implementation phase and to identify potential vulnerabilities."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage
+                            +b potential, Reproducibility, Exploitability, Affected users, and
+                            +b Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A case study of a risk assessment for a Distributed Control System (DCS) in a
+                        +b power plant, where STRIDE was used to identify and mitigate threats related to
+                        +b tampering and denial of service."
+            { audit_and_compliance_verification
+                why "To verify that the implementation complies with the identified security
+                    +b requirements and to track any deviations."
+                [ audit_checklist
+                    "Verify that all security requirements from the design phase have been implemented."
+                    "Check for any deviations from the secure design specifications."
+                    "Ensure that all identified security issues have been tracked and resolved."
+                [ metrics
+                    {
+                        kpi "Percentage of security requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved security issues"
+                        target "0"
+                compliance_procedure "Document all security requirements and their implementation status. Review and
+                    +b update the documentation regularly to ensure compliance."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the implementation review have the
+                    +b necessary skills and knowledge."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 certifications"
+                        description "Certifications that provide training on the IEC 62443 standards for ICS
+                            +b security."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification focusing on ICS
+                            +b security."
+                competency_assessment "Annual competency reviews to ensure that personnel maintain the required skills
+                    +b and knowledge for conducting security implementation reviews."
+            { tooling_and_automation_support
+                why "To streamline the implementation review process and ensure consistency."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                automation_strategy "Integrate SAST and DAST tools into the DevSecOps pipeline to automate security
+                    +b testing during the implementation phase."
+            { handling_legacy_systems_and_constraints
+                why "To address security requirements in systems that cannot be updated to meet
+                    +b modern standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network segments to limit their exposure to
+                            +b potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate the risks posed by legacy
+                            +b systems."
+                example_policy "A policy that mandates network segmentation for all legacy ICS components that
+                    +b cannot be updated to meet current security standards."
+            { stakeholder_collaboration_and_governance
+                why "To ensure that all relevant stakeholders are involved in the implementation
+                    +b review process and that conflicts are resolved effectively."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Engineering team"
+                            responsibility "Implement security requirements and address identified issues."
+                        {
+                            role "Security team"
+                            responsibility "Review implementation and identify security issues."
+                        {
+                            role "Management"
+                            responsibility "Oversee the implementation review process and resolve conflicts."
+                conflict_resolution "A documented procedure for resolving conflicts between engineering and security
+                    +b teams, including escalation paths and mediation by management."
+            { continuous_improvement_and_updates
+                why "To ensure that the implementation review process evolves based on new threats
+                    +b and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Update policies"
+                        description "Revise implementation review policies based on new threat intelligence and
+                            +b audit findings."
+                lessons_learned "Incorporate insights from past security incidents and audits into the
+                    +b implementation review process to prevent recurrence of similar issues."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-01"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "b) identification of secure coding standards that were not followed;"
+        name "Security implementation review"
+        description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: b)
+            +b identification of secure coding standards that were not followed;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify deviations from secure coding standards that could introduce
+                    +b vulnerabilities."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model potential threats by categorizing them into Spoofing, Tampering,
+                            +b Repudiation, Information Disclosure, Denial of Service, and Elevation of
+                            +b Privilege."
+                    {
+                        name "DREAD"
+                        description "Provides a risk assessment model by scoring threats based on Damage,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Framework for conducting risk assessments tailored to industrial control
+                            +b systems."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Tool for creating and analyzing threat models to identify potential security
+                            +b issues."
+                { case_study
+                    example "A case study of a DCS in a power plant where implementation reviews identified
+                        +b deviations from secure coding standards, leading to the discovery of a
+                        +b potential tampering vulnerability."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure coding standards and track identified issues to
+                    +b closure."
+                [ audit_checklist
+                    "Verify that secure coding standards are documented and accessible to developers."
+                    "Check for evidence of implementation reviews being conducted."
+                    "Review records of identified issues and their resolution status."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100% compliance with documented secure coding standards."
+                    {
+                        kpi "Number of identified deviations"
+                        target "Zero deviations in critical systems."
+                compliance_procedure "Documentation of review findings, tracking of issues to closure, and periodic
+                    +b reporting to management."
+            { training_and_competency_requirements
+                why "To ensure personnel are knowledgeable about secure coding standards and
+                    +b implementation review processes."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 certifications"
+                        description "Certification programs covering secure coding and implementation review
+                            +b practices."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification focusing on ICS
+                            +b security."
+                competency_assessment "Annual competency reviews to ensure personnel maintain required skills and
+                    +b knowledge."
+            { tooling_and_automation_support
+                why "To automate the identification of deviations from secure coding standards and
+                    +b streamline the review process."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Static code analysis tool to identify coding standard violations."
+                    {
+                        name "Checkmarx"
+                        purpose "Tool for identifying security vulnerabilities in code."
+                automation_strategy "Integration of static code analysis tools into the CI/CD pipeline to
+                    +b automatically flag deviations from secure coding standards."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure coding standards, requiring
+                    +b alternative approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit potential impact of vulnerabilities."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate risks posed by non-compliant
+                            +b legacy code."
+                example_policy "Policy for legacy system integration requiring risk assessment and approval
+                    +b from the security team before deployment."
+            { stakeholder_collaboration_and_governance
+                why "Effective implementation reviews require collaboration between engineering,
+                    +b security, and management teams."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Engineering team"
+                            responsibility "Implement secure coding standards and address identified issues."
+                        {
+                            role "Security team"
+                            responsibility "Conduct implementation reviews and report findings."
+                        {
+                            role "Management"
+                            responsibility "Oversee compliance and allocate resources for issue resolution."
+                conflict_resolution "Procedure for escalating and resolving conflicts between engineering and
+                    +b security priorities through a designated governance committee."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned from past
+                    +b incidents."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Analyze findings from implementation reviews to identify trends and areas for
+                            +b improvement."
+                lessons_learned "Incorporate insights from past security incidents into updated secure coding
+                    +b standards and review processes."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-25"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "c)"
+        name "Security implementation review"
+        description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: c) Static
+            +b Code Analysis (SCA) for source code to determine security coding errors such as
+            +b buffer overflows, null pointer dereferencing, etc. using the secure coding
+            +b standard for the supported programming language. SCA shall be done using a tool
+            +b if one is available for the language used. In addition, static code analysis
+            +b shall be done on all source code changes including new source code."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Static Code Analysis (SCA) helps identify security vulnerabilities early in the
+                    +b development lifecycle, reducing the risk of exploitable code in ICS products."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model potential threats to the codebase, identifying spoofing,
+                            +b tampering, repudiation, information disclosure, denial of service, and
+                            +b elevation of privilege risks."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on ICS-specific threats such as unauthorized access to control logic or
+                            +b manipulation of sensor data."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Static code analysis tool supporting multiple languages, used to detect
+                            +b security vulnerabilities and coding errors."
+                    {
+                        name "Coverity"
+                        purpose "Static analysis tool for identifying security defects in source code."
+                { case_study
+                    example "A power plant's DCS underwent SCA using Coverity, identifying buffer overflow
+                        +b vulnerabilities in legacy PLC code, which were mitigated before deployment."
+            { audit_and_compliance_verification
+                why "Ensures adherence to secure coding standards and IEC 62443-4-1 requirements for
+                    +b secure implementation."
+                [ audit_checklist
+                    "Verify that SCA tools are configured according to secure coding standards."
+                    "Check that all source code changes undergo SCA before deployment."
+                    "Review SCA reports for unresolved high-severity findings."
+                [ metrics
+                    {
+                        kpi "Percentage of code scanned by SCA tools"
+                        target "100%"
+                    {
+                        kpi "Time to remediate critical SCA findings"
+                        target "Within 7 days"
+                compliance_procedure "Document SCA tool configurations, scan results, and remediation actions in a
+                    +b compliance report reviewed quarterly by the security team."
+            { training_and_competency_requirements
+                why "Ensures developers and security personnel are proficient in secure coding
+                    +b practices and SCA tool usage."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certificate Program"
+                        description "Covers secure coding practices and compliance with IEC 62443 standards."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Includes training on secure coding for ICS environments."
+                competency_assessment "Annual review of developers' secure coding knowledge and SCA tool proficiency
+                    +b through practical tests and code reviews."
+            { tooling_and_automation_support
+                why "Automation of SCA ensures consistent application of secure coding standards
+                    +b across all development activities."
+                [ tools
+                    {
+                        name "GitHub Advanced Security"
+                        purpose "Integrates SCA into the CI/CD pipeline for automated code scanning."
+                    {
+                        name "Jenkins"
+                        purpose "Orchestrates automated SCA scans as part of the build process."
+                automation_strategy "Integrate SCA tools into the DevSecOps pipeline to automatically scan code upon
+                    +b commit and block builds with critical vulnerabilities."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may not support modern SCA tools, requiring alternative
+                    +b approaches."
+                [ strategies
+                    {
+                        approach "Manual code review"
+                        description "For legacy systems where SCA tools are unavailable, conduct manual reviews
+                            +b focusing on high-risk code segments."
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit the impact of potential vulnerabilities
+                            +b identified through SCA."
+                example_policy "Legacy systems policy mandates manual code reviews for unsupported languages
+                    +b and network segmentation to mitigate risks."
+            { stakeholder_collaboration_and_governance
+                why "Effective SCA implementation requires coordination between development,
+                    +b security, and operations teams."
+                { governance_model
+                    name "RACI Matrix for SCA"
+                    [ roles
+                        {
+                            role "Developers"
+                            responsibility "Implement code fixes for SCA findings."
+                        {
+                            role "Security Team"
+                            responsibility "Configure SCA tools and review findings."
+                        {
+                            role "Operations"
+                            responsibility "Ensure SCA is integrated into deployment pipelines."
+                conflict_resolution "A cross-functional committee reviews and resolves disputes regarding SCA
+                    +b findings prioritization and remediation timelines."
+            { continuous_improvement_and_updates
+                why "SCA processes must evolve to address new vulnerabilities and coding practices."
+                [ update_process
+                    {
+                        step "Monitor CISA alerts"
+                        description "Incorporate new vulnerability information into SCA tool configurations."
+                    {
+                        step "Annual review"
+                        description "Assess and update secure coding standards and SCA tool settings based on
+                            +b industry trends."
+                lessons_learned "After a SQL injection vulnerability was missed by SCA, the tool's rule set was
+                    +b updated to include additional injection detection patterns."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "d) review of the implementation and its traceability to the security
+            +b capabilities defined to support the security design; and"
+        name "Security implementation review"
+        description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: d) review of
+            +b the implementation and its traceability to the security capabilities defined to
+            +b support the security design; and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security implementation reviews are comprehensive and address
+                    +b potential vulnerabilities introduced during the development lifecycle."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) in the
+                            +b implementation phase."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling approaches that consider the unique aspects of
+                            +b Industrial Control Systems, such as real-time constraints and legacy protocols."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in creating and analyzing threat models for systems and applications."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "Provides a structured approach for conducting risk assessments, adapted for the
+                            +b specific needs of ICS environments."
+                { case_study
+                    example "A power plant's Distributed Control System (DCS) underwent a security
+                        +b implementation review using STRIDE, identifying critical tampering
+                        +b vulnerabilities in firmware update mechanisms."
+            { audit_and_compliance_verification
+                why "To verify that the implementation aligns with the security design and meets IEC
+                    +b 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify traceability between security capabilities and implementation artifacts."
+                    "Review documentation for security-related issues identified during implementation."
+                    "Confirm closure of identified security issues."
+                [ metrics
+                    {
+                        kpi "Percentage of security capabilities traced to implementation"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved security issues"
+                        target "0"
+                compliance_procedure "Documentation must include a traceability matrix linking security capabilities
+                    +b to implementation artifacts, along with records of security issue resolution."
+            { training_and_competency_requirements
+                why "To ensure personnel conducting reviews have the necessary skills and knowledge."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides foundational and advanced training on IEC 62443 standards, including
+                            +b secure implementation practices."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focusing on cybersecurity for industrial control systems."
+                competency_assessment "Annual reviews of personnel competency, including practical assessments of
+                    +b threat modeling and implementation review skills."
+            { tooling_and_automation_support
+                why "To enhance efficiency and consistency in implementation reviews."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "Automatically identify security vulnerabilities in source code during
+                            +b implementation."
+                    {
+                        name "Requirements Traceability Matrix (RTM) tools"
+                        purpose "Track and verify the implementation of security capabilities."
+                automation_strategy "Integrate SAST tools into the CI/CD pipeline to automatically flag security
+                    +b issues during code commits, with findings linked to the RTM."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack modern security features, requiring special
+                    +b consideration during implementation reviews."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy components to limit the impact of potential vulnerabilities."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures (e.g., intrusion detection) to mitigate
+                            +b risks from legacy systems."
+                example_policy "Legacy systems must undergo a dedicated security review, with compensating
+                    +b controls documented and approved by the security team."
+            { stakeholder_collaboration_and_governance
+                why "Effective implementation reviews require collaboration across engineering,
+                    +b security, and management teams."
+                { governance_model
+                    name "RACI Matrix for Security Implementation Reviews"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Accountable for conducting and documenting reviews."
+                        {
+                            role "Engineering Team"
+                            responsibility "Responsible for providing implementation artifacts and addressing findings."
+                        {
+                            role "Management"
+                            responsibility "Consulted for resource allocation and informed of critical issues."
+                conflict_resolution "Disputes between engineering and security teams are escalated to a
+                    +b cross-functional governance board for resolution."
+            { continuous_improvement_and_updates
+                why "To adapt implementation review processes based on new threats and lessons
+                    +b learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Incorporate findings"
+                        description "Update review checklists and methodologies based on new threats."
+                lessons_learned "After a firmware tampering incident, a power plant updated its implementation
+                    +b review process to include stricter verification of firmware integrity checks."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "e) examination of threats and their ability to exploit implementation
+            +b interfaces, trust boundaries and assets."
+        name "Security implementation review"
+        description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: e)
+            +b examination of threats and their ability to exploit implementation interfaces,
+            +b trust boundaries and assets."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential security vulnerabilities in the
+                    +b implementation phase."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A risk assessment for a Distributed Control System (DCS) in a power plant
+                        +b identified vulnerabilities in communication protocols, leading to the
+                        +b implementation of additional encryption and network segmentation."
+            { audit_and_compliance_verification
+                why "To ensure adherence to IEC 62443-4-1 standards and identify gaps in security
+                    +b implementation."
+                [ audit_checklist
+                    "Verify that all identified threats have been documented and addressed."
+                    "Check that trust boundaries and implementation interfaces are clearly defined and secured."
+                    "Review the process for tracking security-related issues to closure."
+                [ metrics
+                    {
+                        kpi "Percentage of identified threats mitigated"
+                        target "100%"
+                    {
+                        kpi "Number of security-related issues closed within the stipulated time"
+                        target "90% within 30 days"
+                compliance_procedure "Document all findings from the implementation review, including threat
+                    +b assessments and mitigation actions, in a compliance report. Regularly review
+                    +b and update the report to reflect current security status."
+            { training_and_competency_requirements
+                why "To ensure personnel are adequately trained to perform security implementation
+                    +b reviews and threat assessments."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certification programs covering the fundamentals and advanced aspects of ICS
+                            +b security."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification focused on securing industrial control systems."
+                competency_assessment "Annual competency reviews to assess the proficiency of personnel in threat
+                    +b modeling and security implementation reviews."
+            { tooling_and_automation_support
+                why "To streamline the security implementation review process and integrate it into
+                    +b the development lifecycle."
+                [ tools
+                    {
+                        name "OWASP ZAP"
+                        purpose "To automate security testing of implementation interfaces."
+                    {
+                        name "Nessus"
+                        purpose "To perform vulnerability scans on assets and trust boundaries."
+                automation_strategy "Integrate security tools into the DevSecOps pipeline to automate threat
+                    +b detection and vulnerability scanning during the implementation phase."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not meet modern security standards, requiring additional
+                    +b measures to mitigate risks."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate network segments to limit exposure to
+                            +b potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures such as firewalls and intrusion
+                            +b detection systems to protect legacy components."
+                example_policy "A policy for integrating legacy PLCs into a modern ICS environment includes
+                    +b network segmentation, regular vulnerability assessments, and the use of
+                    +b compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for successful security implementation."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement security measures as per the design."
+                        {
+                            role "Security Team"
+                            responsibility "Review and validate security implementations."
+                        {
+                            role "Management"
+                            responsibility "Oversee and approve security implementation reviews."
+                conflict_resolution "Establish a formal process for resolving conflicts, such as a review board
+                    +b comprising representatives from engineering, security, and management teams."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned from security
+                    +b incidents."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate findings from security audits into the implementation review
+                            +b process."
+                    {
+                        step "Update policies"
+                        description "Revise security policies based on new threat intelligence and audit results."
+                lessons_learned "After a security incident involving exploited trust boundaries, the
+                    +b implementation review process was updated to include more rigorous testing of
+                    +b interface security."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

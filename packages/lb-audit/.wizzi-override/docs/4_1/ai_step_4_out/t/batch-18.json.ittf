@@ -1,0 +1,351 @@
+$group
+    {
+        practice "3"
+        code "SD-4"
+        subCode "f) all trust boundaries are documented as part of the design; and"
+        [ policies
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Trust Boundary Documentation Policy"
+                description "This policy mandates the documentation of all trust boundaries within the
+                    +b system design, including interfaces between trusted and untrusted zones, as per
+                    +b IEC 62443-4-1 SD-4(f). Documentation must include network segmentation
+                    +b diagrams, protocol specifications, and security controls applied at each
+                    +b boundary."
+                enforcement "Regular audits using network scanning tools (e.g., Wireshark with industrial
+                    +b protocol filters) and automated boundary validation tools (e.g., Rockwell's
+                    +b FactoryTalk AssetCentre) will be conducted to ensure compliance. Non-compliance
+                    +b will trigger a review and update process."
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Boundary Change Management Policy"
+                description "This policy ensures that any changes to system architecture or network
+                    +b segmentation are reflected in the trust boundary documentation. It aligns with
+                    +b IEC 62443-4-1 SD-4(f) by requiring version control and impact assessment for
+                    +b boundary changes."
+                enforcement "Change management systems (e.g., Schneider Electric's EcoStruxure) will track
+                    +b boundary modifications. All changes must be reviewed and approved by the
+                    +b Security Architect before implementation. Unauthorized changes will be flagged
+                    +b and rolled back."
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Legacy System Boundary Policy"
+                description "This policy addresses the documentation and securing of trust boundaries for
+                    +b legacy systems, which may lack inherent security controls. It requires legacy
+                    +b systems to be placed in dedicated network segments with documented boundaries,
+                    +b as per IEC 62443-4-1 SD-4(f)."
+                enforcement "Network segmentation tools (e.g., VLANs, firewalls) will enforce boundaries for
+                    +b legacy systems. Regular traffic analysis will verify compliance. Violations
+                    +b will result in isolation of the legacy system until proper documentation and
+                    +b controls are implemented."
+        [ procedures
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Trust Boundary Identification Procedure"
+                description "This procedure outlines the steps to systematically identify all trust
+                    +b boundaries in the system design, ensuring compliance with IEC 62443-4-1
+                    +b SD-4(f). It includes asset inventory, data flow analysis, and threat modeling."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct an asset inventory to identify all components (e.g., PLCs, HMIs,
+                            +b gateways) and their communication paths."
+                        tools "Asset management tools (e.g., Siemens' Industrial Security Configuration Manual
+                            +b templates)."
+                        expected_outcome "Complete list of system components and their interconnections."
+                    {
+                        step 2
+                        action "Perform data flow analysis to map communication between trusted and untrusted
+                            +b zones."
+                        tools "Network diagramming tools (e.g., Microsoft Visio, Lucidchart)."
+                        expected_outcome "Detailed data flow diagrams highlighting trust boundaries."
+                    {
+                        step 3
+                        action "Apply threat modeling (e.g., STRIDE) to identify potential threats at each
+                            +b trust boundary."
+                        tools "Threat modeling tools (e.g., Microsoft Threat Modeling Tool)."
+                        expected_outcome "List of identified threats and recommended security controls for each boundary."
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Boundary Documentation Update Procedure"
+                description "This procedure ensures that trust boundary documentation is updated whenever
+                    +b system architecture changes, maintaining compliance with IEC 62443-4-1 SD-4(f)."
+                [ steps
+                    {
+                        step 1
+                        action "Review the change request to identify potential impacts on existing trust
+                            +b boundaries."
+                        tools "Change management systems (e.g., Schneider Electric's EcoStruxure)."
+                        expected_outcome "Impact assessment report detailing boundary changes."
+                    {
+                        step 2
+                        action "Update network segmentation diagrams and boundary documentation to reflect the
+                            +b changes."
+                        tools "Documentation tools (e.g., ABB's Industrial Security Documentation Framework
+                            +b templates)."
+                        expected_outcome "Updated trust boundary documentation with version control."
+                    {
+                        step 3
+                        action "Validate the updated boundaries through network scans and traffic analysis."
+                        tools "Network scanning tools (e.g., Wireshark, Nmap)."
+                        expected_outcome "Verification report confirming that documented boundaries match actual traffic
+                            +b flows."
+            {
+                code "SD-4"
+                subCode "f)"
+                title "Boundary Verification and Audit Procedure"
+                description "This procedure outlines the steps to verify and audit documented trust
+                    +b boundaries, ensuring ongoing compliance with IEC 62443-4-1 SD-4(f)."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct regular network scans to detect unauthorized cross-boundary traffic."
+                        tools "Packet capture tools (e.g., Wireshark with industrial protocol filters)."
+                        expected_outcome "Report of detected boundary violations or anomalies."
+                    {
+                        step 2
+                        action "Compare actual traffic flows with documented boundaries to identify
+                            +b discrepancies."
+                        tools "Traffic analysis tools (e.g., Rockwell's FactoryTalk AssetCentre)."
+                        expected_outcome "List of discrepancies between documented and actual boundaries."
+                    {
+                        step 3
+                        action "Update boundary documentation and implement corrective actions for any
+                            +b identified issues."
+                        tools "Documentation and configuration management tools (e.g., Puppet/Chef)."
+                        expected_outcome "Corrected boundary documentation and implemented security controls."
+        last_updated "2023-11-20"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "a) identification of security requirements that were not adequately addressed
+            +b by the implementation;"
+        [ policies
+            {
+                code "SI-1"
+                subCode "a"
+                title "Gap Analysis Policy for Security Requirements"
+                description "This policy mandates the use of automated tools and manual reviews to
+                    +b systematically identify gaps between security requirements and their
+                    +b implementation in ICS environments, as per IEC 62443-4-1. It ensures that all
+                    +b security controls are properly implemented and documented."
+                enforcement "Regular audits using tools like Nessus for vulnerability scanning and manual
+                    +b reviews by cross-functional teams. Non-compliance triggers remediation actions
+                    +b tracked via a centralized system."
+            {
+                code "SI-1"
+                subCode "a"
+                title "Requirement Traceability Matrix Policy"
+                description "This policy requires the creation and maintenance of a traceability matrix that
+                    +b maps each IEC 62443-4-1 security requirement to specific implementation
+                    +b artifacts (e.g., firewall rules, access controls). It ensures accountability
+                    +b and verifiability of security controls."
+                enforcement "Quarterly reviews of the matrix by the security team, with discrepancies
+                    +b flagged for immediate remediation. Automated tools like JIRA or ServiceNow can
+                    +b be used to track compliance."
+            {
+                code "SI-1"
+                subCode "a"
+                title "Continuous Monitoring Policy"
+                description "This policy enforces continuous monitoring of ICS implementations to detect
+                    +b deviations from security requirements. It aligns with IEC 62443-4-1 by ensuring
+                    +b real-time detection and response to security gaps."
+                enforcement "Deployment of SIEM tools (e.g., Splunk, IBM QRadar) to monitor configuration
+                    +b changes and unauthorized access. Alerts are escalated to the SOC for immediate
+                    +b action."
+        [ procedures
+            {
+                code "SI-1"
+                subCode "a"
+                title "Gap Analysis Procedure"
+                description "This procedure outlines the steps to conduct a comprehensive gap analysis
+                    +b between security requirements and their implementation in ICS systems, ensuring
+                    +b compliance with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all security requirements from IEC 62443-4-1 and project-specific
+                            +b documents."
+                        tools "Requirement management tools (e.g., IBM DOORS, Jama Connect)."
+                        expected_outcome "A complete list of security requirements categorized by criticality."
+                    {
+                        step 2
+                        action "Scan the ICS environment using automated tools (e.g., Nessus, Qualys) to assess
+                            +b implemented controls."
+                        tools "Vulnerability scanners, configuration management tools."
+                        expected_outcome "Report highlighting gaps between requirements and current implementation."
+                    {
+                        step 3
+                        action "Document gaps in a traceability matrix and prioritize remediation based on risk
+                            +b assessment."
+                        tools "Spreadsheet or specialized software (e.g., JIRA, ServiceNow)."
+                        expected_outcome "Prioritized list of gaps with assigned remediation owners and timelines."
+            {
+                code "SI-1"
+                subCode "a"
+                title "Remediation Tracking Procedure"
+                description "This procedure defines the process for tracking and resolving identified
+                    +b security gaps, ensuring alignment with IEC 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Log identified gaps in a centralized tracking system with details (e.g.,
+                            +b description, risk level, affected component)."
+                        tools "Issue tracking systems (e.g., JIRA, ServiceNow)."
+                        expected_outcome "All gaps are recorded and visible to stakeholders."
+                    {
+                        step 2
+                        action "Assign remediation tasks to responsible teams (e.g., engineering, security)
+                            +b with deadlines."
+                        tools "Project management tools (e.g., Microsoft Project, Asana)."
+                        expected_outcome "Clear ownership and timelines for each remediation task."
+                    {
+                        step 3
+                        action "Verify fixes through testing and update the traceability matrix to reflect
+                            +b resolved gaps."
+                        tools "Testing tools (e.g., Nessus, manual validation scripts)."
+                        expected_outcome "Closed gaps with documented evidence of resolution."
+            {
+                code "SI-1"
+                subCode "a"
+                title "Configuration Baseline Validation Procedure"
+                description "This procedure ensures that ICS configurations adhere to secure baselines
+                    +b defined in IEC 62443-4-1, addressing gaps in implementation."
+                [ steps
+                    {
+                        step 1
+                        action "Define secure configuration baselines for all ICS components (e.g., PLCs, HMIs)
+                            +b based on IEC 62443-4-1."
+                        tools "Configuration templates (e.g., CIS Benchmarks, vendor guidelines)."
+                        expected_outcome "Approved secure baselines for each component."
+                    {
+                        step 2
+                        action "Compare current configurations against baselines using automated tools (e.g.,
+                            +b SCCM, Ansible)."
+                        tools "Configuration management tools, scripts."
+                        expected_outcome "Report of deviations from secure baselines."
+                    {
+                        step 3
+                        action "Update configurations to align with baselines and document changes in the
+                            +b configuration management system."
+                        tools "Change management tools (e.g., ServiceNow, BMC Remedy)."
+                        expected_outcome "All configurations comply with secure baselines, with audit trails."
+        last_updated "2023-10-01"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "b) identification of secure coding standards that were not followed;"
+        [ policies
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Secure Coding Standards Compliance Policy"
+                description "This policy mandates the use of predefined secure coding standards (e.g.,
+                    +b MISRA-C, CERT-C) for all ICS software development. It requires static analysis
+                    +b tools to be integrated into the CI/CD pipeline to detect deviations, as per IEC
+                    +b 62443-4-1's lifecycle requirements. Non-compliant code must be documented and
+                    +b remediated before deployment."
+                enforcement "Automated static analysis in CI/CD pipelines; manual peer reviews for critical
+                    +b functions; quarterly audits by the security team."
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Third-Party Component Vetting Policy"
+                description "All third-party libraries and components must undergo security reviews against
+                    +b ICS-specific standards (e.g., OPC UA stack security checks) before integration.
+                    +b The policy aligns with IEC 62443-4-1's supply chain requirements (SG-3) and
+                    +b requires a vulnerability assessment using tools like OWASP Dependency-Check."
+                enforcement "Vendor component audits; automated dependency scanning; approval by the
+                    +b security review board."
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Secure Coding Training Policy"
+                description "Developers must complete annual ICS-focused secure coding training covering
+                    +b standards like ISA-62443-4-1 Annex A. Training includes hands-on workshops for
+                    +b PLC ladder logic and RTOS coding, ensuring competency as required by IEC
+                    +b 62443-4-1's SG-3."
+                enforcement "Mandatory training completion tracked via LMS; competency assessments;
+                    +b revocation of commit privileges for non-compliant developers."
+        [ procedures
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Static Code Analysis Procedure"
+                description "Procedure for conducting automated static analysis of ICS software using tools
+                    +b like SonarQube with ICS-specific rule sets (e.g., detecting hardcoded
+                    +b credentials in PLC code). Aligns with IEC 62443-4-1's KA1 (Static Analysis
+                    +b Integration)."
+                [ steps
+                    {
+                        step 1
+                        action "Configure static analysis tools with ICS rule sets (e.g., MISRA-C for RTOS,
+                            +b OWASP SCADA rules)."
+                        tools "SonarQube with ICS plugin, Checkmarx"
+                        expected_outcome "Tool configured to flag ICS-relevant vulnerabilities (e.g., CWE-120 buffer
+                            +b overflows)."
+                    {
+                        step 2
+                        action "Integrate analysis into CI/CD pipeline; trigger scans on every commit."
+                        tools "Jenkins with SonarQube plugin, Git hooks"
+                        expected_outcome "Automated reports generated for each build, blocking deployments with critical
+                            +b issues."
+                    {
+                        step 3
+                        action "Triage findings using a traceability matrix (e.g., map to CWE IDs)."
+                        tools "JIRA with CWE mapping fields, NIST ICS-SRDB"
+                        expected_outcome "Documented vulnerabilities with severity ratings and mitigation timelines."
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Manual Code Review Procedure"
+                description "Process for peer reviews of critical ICS functions (e.g., HMAC implementations
+                    +b in OPC UA servers), as required by IEC 62443-4-1's KA2 (Code Review
+                    +b Documentation)."
+                [ steps
+                    {
+                        step 1
+                        action "Identify critical code segments (e.g., authentication, cryptographic
+                            +b functions)."
+                        tools "Code coverage tools (e.g., gcov), HMI/PLC tag lists"
+                        expected_outcome "List of high-risk modules requiring manual review."
+                    {
+                        step 2
+                        action "Conduct line-by-line reviews using Schneider Electric's template."
+                        tools "Schneider Code Review Template, SecureCRT for PLC code"
+                        expected_outcome "Signed review forms with documented findings."
+                    {
+                        step 3
+                        action "Log deviations in the issue tracking system with SLAs for remediation."
+                        tools "JIRA with IEC 62443-4-1 workflow, Siemens Teamcenter"
+                        expected_outcome "Auditable records of all findings and closures."
+            {
+                code "SI-1"
+                subCode "b)"
+                title "Legacy System Code Assessment Procedure"
+                description "Procedure for evaluating legacy ICS code (e.g., PLC ladder logic) against
+                    +b modern secure coding standards, per IEC 62443-4-1's handling of legacy systems
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory legacy systems using network scanners (e.g., Nmap) and asset
+                            +b management tools."
+                        tools "Rockwell AssetCentre, Wireshark for protocol analysis"
+                        expected_outcome "Documented list of legacy components with code versions."
+                    {
+                        step 2
+                        action "Perform risk assessment using NIST SP 800-82 Rev.2 Appendix F."
+                        tools "NIST ICS Risk Assessment Framework, DREAD scoring"
+                        expected_outcome "Risk-rated legacy components with compensating controls."
+                    {
+                        step 3
+                        action "Implement network segmentation (e.g., VLANs) for non-upgradable systems."
+                        tools "Cisco Industrial Ethernet switches, Tofino firewalls"
+                        expected_outcome "Isolated legacy systems with restricted attack surface."
+        last_updated "2023-10-25"

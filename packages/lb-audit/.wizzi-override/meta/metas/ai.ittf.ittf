@@ -1,0 +1,153 @@
+ittf
+
+    $foreach item in wzCtx.metas.lb_1.items
+        $foreach step in item.steps
+            $file .wizzi-override/meta/.wizziout/${item.name}/ai_step_${step.name}.ittf.ittf
+
+                ittf
+                    ${'$'}
+                        var step_name = '${item.name}.step_${step.name}';
+                        var x_options = {
+                            $if _.isArray(step.injsons) && step.injsons.length > 0
+                                json_integrato: _.stringify({
+                                    $foreach json in step.injsons
+                                        ${json.name}: ${json.sourceVar},
+                                }, null, null),
+                            step_1_JSONSchema: _.stringify(wzCtx.schemas.${step.outschema}, null, null),
+                        }
+                        // var provider = 'chatGPT';
+                        // provider = 'grok';
+                        var provider = 'deepSeek';
+                        var maxNumInBatch = 5;
+                        var batches = [];
+                        var currentBatch = {
+                            id: 1,
+                            items: []
+                        }
+                        var count = 0;
+
+                    ${'$'}foreach aiItem in ${step.sourceItemsVar}
+                        ${'$'} _.log('----> ', step_name, 'aiItem.${step.sourceItemsKey}', aiItem.${step.sourceItemsKey});
+                        ${'$'}if count > maxNumInBatch
+                            ${'$'}
+                                batches.push${'('}currentBatch);
+                                currentBatch = {
+                                    id: currentBatch.id + 1,
+                                    items: [aiItem]
+                                }
+                                count = 1;
+
+                        ${'$'}else
+                            ${'$'}
+                                currentBatch.items.push${'('}aiItem);
+                                count++;
+
+                    ${'$'}if currentBatch.items.length > 0
+                        ${'$'} batches.push(currentBatch);
+
+                    ${'$'} _.log('----> batches.length', batches.length);
+
+                    ${'$'}foreach batch in batches
+                        ${'$'}file .wizzi-override/docs/${item.name}/ai_step_${step.name}_in/batch-${'$'}{batch.id}.ai.ittf
+                    
+                            ai ${'$'}{step_name}
+                                api-url http://localhost:3000
+
+                                ${'$'}foreach batchItem in batch.items
+                                    ${'$'}
+                                        var filterOk = true;
+                                        $if _.isArray(step.filters)
+                                            $foreach f in step.filters
+                                                $if (f.oper == 'equal') 
+                                                    if (batchItem["${f.property}"] != "${f.value}") {
+                                                        filterOk = false;
+                                                    }
+                                    ${'$'}if filterOk
+                                        ${'$'} var batchItemJSONString = _.stringify(batchItem, null, null)
+                                        ${'$'}
+                                            var options = {
+                                                provider: provider,
+                                                id: batchItem.${step.sourceItemsKey},
+                                                inputJSON: batchItem,
+                                                inputJSONString: batchItemJSONString,
+                                                JSONSchema: x_options.step_1_JSONSchema,
+                                                product_supplier_JSON: null, // not used
+                                            }
+
+                                        call ${'$'}{options.id}
+                                            description ${item.name} - ${'$'}{options.id}
+                                            message
+                                                role system
+                                                content 
+                                                    $foreach line in step.systemLines
+                                                        ${'$'}{''}\n ${line}
+                                            message 
+                                                role user
+                                                content
+                                                    $foreach line in step.userLines
+                                                        ${'$'}{''}\n ${line}
+                                                    $if _.isArray(step.injsons) && step.injsons.length > 0
+                                                        <json_integrato>
+                                                        ${'$'}{x_options.json_integrato}
+                                                        </json_integrato>
+                                                    ai/schema_data_return${'('} &options, step )                                                                        
+
+                    ${'$'}{'$'}file .wizzi-override/docs/${item.name}/ai_step_${step.name}_out/index.json.ittf
+                        {
+                            [ items
+                                ${'$'}foreach batch in batches
+                                    ${'$'}{'$'}include batch-${'$'}{batch.id}
+
+        $file .wizzi-override/meta/.wizziout/${item.name}/ai_prompts.ittf.ittf
+            ittf
+                ${'$'}
+                    var x_options = {
+                        $foreach step in item.steps
+                            step_${step.name}_JSONSchema: _.stringify(wzCtx.schemas.${step.outschema}, null, null),
+                    }
+
+                $file .wizzi-override/docs/${item.name}/from_meta/ia_prompts.txt.ittf
+
+                    txt 
+
+                        $foreach step in item.steps
+                            $if _.isArray(step.injsons) && step.injsons.length > 0
+                                ${'$'}
+                                    var json_integrato = _.stringify({
+                                        $foreach json in step.injsons
+                                            ${json.name}: ${json.sourceVar},
+                                    }, null, null);
+                            ==========
+                            step ${step.name}
+                            ${'$'}foreach aiItem in ${step.sourceItemsVar}
+                                ${'$'}
+                                    var filterOk = true;
+                                    $if _.isArray(step.filters)
+                                        $foreach f in step.filters
+                                            $if (f.oper == 'equal') 
+                                                if (aiItem["${f.property}"] != "${f.value}") {
+                                                    filterOk = false;
+                                                }
+
+                                ${'$'}if filterOk
+                                    ${'$'} _.log('----> ', '${step.name}', 'aiItem.${step.sourceItemsKey}', aiItem.${step.sourceItemsKey});
+                                    ${'$'}
+                                        var options = {
+                                            inputJSON: aiItem,
+                                            inputJSONString: _.stringify(aiItem, null, null),
+                                            JSONSchema: x_options.step_${step.name}_JSONSchema,
+                                        }
+                                    ----------
+                                    SYSTEM
+                                    $foreach line in step.systemLines
+                                        ${line}
+                                    USER
+                                    $foreach line in step.userLines
+                                        ${line}
+                                    $if _.isArray(step.injsons) && step.injsons.length > 0
+                                        <json_integrato>
+                                        ${'$'}{json_integrato}
+                                        </json_integrato>
+                                    ai/schema_data_return${'('} &options, prompt )
+
+

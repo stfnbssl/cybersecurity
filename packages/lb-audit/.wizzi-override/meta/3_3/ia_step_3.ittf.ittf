@@ -1,0 +1,76 @@
+ittf
+
+    $*
+        Step 3
+        Utilizza come input il risultato dello step 1 ( std_62443_3_3_ai_step_1_out ).
+        E genera policies a procedures. 
+    *$
+
+    $
+        var product_supplier = wzCtx.Config.ai.product_supplier.name;
+        var x_3_3_options = {
+            product_supplier_JSON: _.stringify(wzCtx.product_supplier.instances[product_supplier], null, null),
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_1, null, null),
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_2, null, null),
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_3, null, null),
+        }        
+        // var provider = 'chatGPT';
+        // var provider = 'deepSeek';
+        var provider = 'grok';
+        var maxNumInBatch = 2;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $ 
+        var srsObj = {};
+
+    $foreach item in std_62443_3_3_ai_step_1_out.items
+        $foreach srPartial in item.requirements
+            $ 
+                _.log('----> srPartial.id', srPartial.id);
+                srsObj[srPartial.id] = Object.assign({}, srsObj[srPartial.id], srPartial);
+
+    $ 
+        var srsItems = Object.values(srsObj);
+
+    $foreach sr in srsItems
+        $if count > maxNumInBatch
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [sr]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(sr);
+                count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/3_3/ai_step_3_in/batch-${batch.id}.ai.ittf
+    
+            ai std_62443_3_3_step_2
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                    $
+                        var options = {
+                            provider: provider,
+                            id: batchItem.id,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_3_3_options.step_2_JSONSchema,
+                            product_supplier_JSON: x_3_3_options.product_supplier_JSON,
+                        }
+                    ia-step-3-item(&options)

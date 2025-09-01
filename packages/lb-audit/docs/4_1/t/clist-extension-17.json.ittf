@@ -1,0 +1,235 @@
+$group
+    {
+        practice "5"
+        code "SVV-2"
+        name "Threat mitigation testing"
+        sub "b) creating and executing plans for attempting to thwart each mitigation."
+        check_description "A process shall be employed for testing the effectiveness of the mitigation for
+            +b the threats identified and validated in the threat model. Activities shall
+            +b include: b) creating and executing plans for attempting to thwart each
+            +b mitigation."
+        requirement_id "IEC 62443-4-1_SVV-2_b"
+        title "Threat Mitigation Testing - Creating and Executing Plans"
+        description "This requirement focuses on developing and implementing plans to test the
+            +b effectiveness of threat mitigations put in place. The primary goal is to ensure
+            +b that each mitigation strategy effectively addresses the identified threats and
+            +b reduces the associated risks. By creating and executing these plans,
+            +b organizations can validate the robustness of their security measures."
+        { key_aspects
+            plan_creation "Developing comprehensive test plans that specifically aim to challenge the
+                +b effectiveness of each mitigation strategy. This involves understanding the
+                +b threat landscape and ensuring that the test scenarios are aligned with
+                +b realistic threat models."
+            execution "Carrying out the test plans in a controlled environment to assess the
+                +b real-world effectiveness of the mitigation measures. This involves simulating
+                +b potential attack scenarios to observe how the system reacts."
+            feedback_loop "Establishing a mechanism to use the results of the tests to refine and improve
+                +b mitigation strategies. This ensures continuous improvement of the security
+                +b posture."
+            documentation "Keeping detailed records of the test plans, execution processes, outcomes, and
+                +b any subsequent actions taken to address identified weaknesses."
+        { related_standards
+            "ISO/IEC 27001" "Annex A.12.6 - Technical Vulnerability Management, which emphasizes the need to
+                +b manage technical vulnerabilities and conduct regular testing."
+            "NIST SP 800-53" "Control CA-8 - Penetration Testing, which highlights the importance of testing
+                +b the effectiveness of security measures through controlled attempts to breach
+                +b them."
+            "ISO/IEC 15408" "Common Criteria for Information Technology Security Evaluation, which includes
+                +b guidance on evaluating the effectiveness of security features in IT products."
+    {
+        practice "5"
+        code "SVV-3"
+        name "Vulnerability testing"
+        sub "a) abuse case or malformed or unexpected input testing focused on uncovering
+            +b security issues (fuzz testing and network traffic load)."
+        check_description "A process shall be employed for performing tests that focus on identifying and
+            +b characterizing potential security vulnerabilities in the product. Known
+            +b vulnerability testing shall be based upon, at a minimum, recent contents of an
+            +b established, industry-recognized, public source for known vulnerabilities.
+            +b Testing shall include: a) abuse case or malformed or unexpected input testing
+            +b focused on uncovering security issues (fuzz testing and network traffic load)."
+        requirement_id "IEC 62443-4-1:SVV-3:a"
+        title "Vulnerability Testing - Abuse Case or Malformed or Unexpected Input Testing"
+        description "This requirement involves conducting vulnerability testing with a focus on
+            +b abuse case scenarios, as well as testing with malformed or unexpected inputs to
+            +b uncover potential security issues in industrial automation and control systems.
+            +b Techniques such as fuzz testing and network traffic load testing are employed
+            +b to identify vulnerabilities that could be exploited by attackers."
+        { key_aspects
+            abuse_case_testing "Testing scenarios that mimic potential attack vectors to uncover
+                +b vulnerabilities that could be exploited by malicious actors."
+            malformed_input_testing "Sending malformed or unexpected data inputs to the system to observe how it
+                +b handles such inputs and to identify potential processing vulnerabilities."
+            fuzz_testing "An automated testing technique that involves sending random, malformed, or
+                +b unexpected inputs to a program to find security vulnerabilities."
+            network_traffic_load_testing "Assessing the system's response to high volumes of network traffic to identify
+                +b potential vulnerabilities in handling traffic loads."
+        [ related_standards
+            {
+                standard "ISO/IEC 29147"
+                title "Information technology — Security techniques — Vulnerability disclosure"
+                description "Provides guidelines for the disclosure of potential vulnerabilities in products
+                    +b and online services, complementing the efforts of identifying vulnerabilities
+                    +b through testing."
+            {
+                standard "ISO/IEC 30111"
+                title "Information technology — Security techniques — Vulnerability handling processes"
+                description "Offers guidance on how to process and remediate vulnerabilities once they are
+                    +b discovered, aligning with the objectives of vulnerability testing to identify
+                    +b such security issues."
+            {
+                standard "OWASP Testing Guide"
+                title "Open Web Application Security Project Testing Guide"
+                description "Contains methodologies for testing the security of web applications, including
+                    +b techniques such as fuzz testing and handling malformed inputs, applicable to
+                    +b industrial systems as well."
+    {
+        practice "5"
+        code "SVV-3"
+        name "Vulnerability testing"
+        sub "b) attack surface."
+        check_description "A process shall be employed for performing tests that focus on identifying and
+            +b characterizing potential security vulnerabilities in the product. Known
+            +b vulnerability testing shall be based upon, at a minimum, recent contents of an
+            +b established, industry-recognized, public source for known vulnerabilities.
+            +b Testing shall include: b) attack surface."
+        requirement_id "IEC 62443-4-1:2018-SVV-3-b"
+        title "Vulnerability Testing - Attack Surface"
+        description "This requirement focuses on identifying and assessing the attack surface of a
+            +b system to determine potential vulnerabilities. The attack surface consists of
+            +b all the points where an unauthorized user can try to enter or extract data from
+            +b the environment. The goal is to minimize and secure these points to protect the
+            +b system from attacks."
+        { key_aspects
+            attack_surface_analysis "Conduct a thorough analysis of the system to identify all potential entry
+                +b points for attacks, including network interfaces, user interfaces, APIs, and
+                +b physical interfaces."
+            vulnerability_identification "Identify vulnerabilities associated with each component of the attack surface
+                +b through testing techniques such as penetration testing, static analysis, and
+                +b dynamic analysis."
+            "risk assessment" "Evaluate the risks posed by each identified vulnerability, considering factors
+                +b such as exploitability, potential impact, and likelihood of occurrence."
+            "mitigation strategies" "Develop strategies to reduce the attack surface by closing unnecessary ports,
+                +b using secure protocols, applying patches, and implementing access controls."
+        { related_standards
+            { "ISO/IEC 27001"
+                title "Information Security Management"
+                reference "ISO/IEC 27001:2013, Control A.12.6.1 - Management of technical vulnerabilities"
+                description "This standard provides guidelines for establishing, implementing, maintaining,
+                    +b and continually improving an information security management system. It
+                    +b emphasizes the need for an organization to identify and manage technical
+                    +b vulnerabilities in a timely manner."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                reference "NIST SP 800-53 Rev. 5, Control RA-5 - Vulnerability Scanning"
+                description "This publication provides a catalog of security and privacy controls for
+                    +b federal information systems and organizations, specifying the need for
+                    +b systematic scanning of systems to discover vulnerabilities."
+            { "OWASP Testing Guide"
+                title "OWASP Testing Guide v4"
+                reference "OWASP Automated Threats to Web Applications"
+                description "The OWASP Testing Guide provides a detailed framework for testing the security
+                    +b of web applications, including methodologies for assessing the attack surface
+                    +b and identifying potential vulnerabilities."
+    {
+        practice "5"
+        code "SVV-3"
+        name "Vulnerability testing"
+        sub "c) black box known vulnerability scanning focused on detecting known
+            +b vulnerabilities in the product hardware, host or software components"
+        check_description "A process shall be employed for performing tests that focus on identifying and
+            +b characterizing potential security vulnerabilities in the product. Known
+            +b vulnerability testing shall be based upon, at a minimum, recent contents of an
+            +b established, industry-recognized, public source for known vulnerabilities.
+            +b Testing shall include: c) black box known vulnerability scanning focused on
+            +b detecting known vulnerabilities in the product hardware, host or software
+            +b components"
+        requirement_id "IEC 62443-4-1:SVV-3:c"
+        title "Black Box Known Vulnerability Scanning"
+        description "This requirement focuses on conducting black box vulnerability scanning to
+            +b detect known vulnerabilities within the product's hardware, host, or software
+            +b components. The aim is to identify weaknesses that could be exploited by
+            +b malicious actors, leveraging external scanning tools and databases of known
+            +b vulnerabilities."
+        [ key_aspects
+            {
+                aspect "Black Box Testing"
+                details "The scanning is performed without any prior knowledge of the internal
+                    +b structures or workings of the product. This simulates an external attacker's
+                    +b perspective, focusing on identifying vulnerabilities that can be exploited from
+                    +b outside the system."
+            {
+                aspect "Known Vulnerability Databases"
+                details "The process involves using databases such as the Common Vulnerabilities and
+                    +b Exposures (CVE) to identify known vulnerabilities. Tools used for scanning
+                    +b should be updated regularly to include the latest vulnerability information."
+            {
+                aspect "Hardware, Host, and Software Components"
+                details "Scanning covers all critical components of the product, including hardware
+                    +b interfaces, operating systems, and application software, ensuring a
+                    +b comprehensive assessment of potential entry points for attacks."
+        [ related_standards
+            {
+                standard "ISO/IEC 27002:2022"
+                reference "Section 14.2.8 - System Security Testing."
+                details "Emphasizes the importance of regular system security testing to identify
+                    +b vulnerabilities, specifically recommending the use of vulnerability scanning
+                    +b tools."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "RA-5 - Vulnerability Scanning."
+                details "Provides guidelines for conducting vulnerability scans, ensuring that scanning
+                    +b tools are updated and capable of identifying known vulnerabilities effectively."
+            {
+                standard "OWASP Testing Guide v4"
+                reference "OTG-INFO-007 - Vulnerability Scanning."
+                details "Outlines procedures for performing vulnerability scans, including the use of
+                    +b automated tools to detect known vulnerabilities in web applications and other
+                    +b software systems."
+    {
+        practice "5"
+        code "SVV-3"
+        name "Vulnerability testing"
+        sub "d) for compiled software, software composition analysis on all binary
+            +b executable files, including embedded firmware, delivered by the supplier to be
+            +b installed for a product."
+        check_description "A process shall be employed for performing tests that focus on identifying and
+            +b characterizing potential security vulnerabilities in the product. Known
+            +b vulnerability testing shall be based upon, at a minimum, recent contents of an
+            +b established, industry-recognized, public source for known vulnerabilities.
+            +b Testing shall include: d) for compiled software, software composition analysis
+            +b on all binary executable files, including embedded firmware, delivered by the
+            +b supplier to be installed for a product."
+        requirement_id "SVV-3"
+        title "Vulnerability Testing"
+        description "This requirement focuses on conducting vulnerability testing as part of the
+            +b Security Verification and Validation practice. Specifically, section d)
+            +b emphasizes the need for performing software composition analysis on all binary
+            +b executable files, including embedded firmware, that are delivered by the
+            +b supplier to be installed for a product. This analysis is crucial for
+            +b identifying known vulnerabilities in third-party components and ensuring the
+            +b security of the compiled software."
+        [ key_aspects
+            "Software Composition Analysis (SCA): This involves identifying and analyzing third-party components within the binary executable files to detect known vulnerabilities."
+            "Binary Executable Files: The focus is on all compiled software, including embedded firmware, that is delivered by the supplier."
+            "Vulnerability Identification: The primary goal is to identify known vulnerabilities in third-party libraries or components within the software."
+            "Security Assurance: Ensuring that the software does not include components with known vulnerabilities, thereby enhancing the overall security posture of the product."
+        [ related_standards
+            {
+                standard "ISO/IEC 27034-1"
+                reference "This standard provides guidelines for application security, which includes the
+                    +b identification and management of vulnerabilities in software components."
+            {
+                standard "OWASP Software Component Verification Standard (SCVS)"
+                reference "This standard outlines practices for verifying the security of software
+                    +b components, including the use of software composition analysis to detect
+                    +b vulnerabilities in third-party components."
+            {
+                standard "NIST SP 800-53"
+                reference "Control SA-11 (Developer Security Testing and Evaluation) of this standard
+                    +b highlights the importance of testing software to identify vulnerabilities,
+                    +b which aligns with the requirement for software composition analysis."
+            {
+                standard "BSIMM (Building Security In Maturity Model)"
+                reference "BSIMM emphasizes the role of software composition analysis in identifying and
+                    +b managing vulnerabilities in third-party software components."

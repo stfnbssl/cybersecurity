@@ -1,0 +1,18 @@
+$group
+    $params &options
+    call std_62443_3_3_step_1_base_${options.id}
+        description Base ai expansion of 62443-3-3 SR requirement ${options.id}
+        ai/call_header( &options )
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ${'\\'}n sei esperto dello standard ISA/IEC 62443,
+                ${'\\'}n in particolare del volume 62443-3-3.
+        message 
+            role user
+            content Popola un database JSON con dati utili per approfondire i system requirement dello IEC 62443-3-3.
+                ai/explanations_guideline( step )
+                    $append base_guide
+                        ${'\\'}n Usa il JSON fornito con dati di input per popolare i campi `id` 
+                        ${'\\'}b `description`, `rationale`, `page`, `enhancements`, `security levels`, and `notes`. 
+                        ${'\\'}n Aggiungi dati coerenti per le proprietà `explanation`, `context`, `challenges`, 
+                        ${'\\'}b `best_practices` e `key_aspects`. 
+                ai/schema_data_return( &options, step )

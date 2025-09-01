@@ -1,0 +1,17 @@
+$group
+    $params &options
+    call std_62443_3_3_step_2_implementation_examples_${options.id}
+        description Implementation examples ai expansion of 62443-3-3 SR requirement ${options.id}
+        ai/call_header( &options )
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ${'\\'}n sei esperto dello standard ISA/IEC 62443,
+                ${'\\'}n in particolare del volume 62443-3-3.
+        message 
+            role user
+            content Popola un database JSON con dati utili per approfondire i system requirement dello IEC 62443-3-3.
+                ${'\\'}n Usa il JSON fornito con dati di input per popolare il campo `id`.
+                ${'\\'}n Aggiungi tre esempi di implementazione per il system requirement e due esempi per ogni
+                ${'\\'}n requirement enhancements (se presenti).
+                ${'\\'}n Ogni implementazione deve includere `context`, `description`, `tools` usati, `challenges` da affrontare,
+                ${'\\'}n e specificare a quale requirement o enhancement si applica.
+                ai/schema_data_return( &options, step )

@@ -1,0 +1,363 @@
+$group
+    {
+        practice "3"
+        code "SD-1"
+        subCode "e)"
+        [ policies
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Interface Threat Modeling Policy"
+                description "Mandates systematic threat modeling for all product interfaces
+                    +b (physical/logical) using methodologies like STRIDE, aligned with IEC
+                    +b 62443-4-1's secure design principles. Requires documentation of threats (e.g.,
+                    +b spoofing, tampering) and mitigation strategies for protocols such as OPC UA and
+                    +b PROFINET."
+                enforcement "Quarterly audits using Microsoft Threat Modeling Tool; non-compliant interfaces
+                    +b are flagged in CI/CD pipelines."
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Protocol Security Enforcement Policy"
+                description "Enforces protocol-specific safeguards (e.g., TLS for Modbus TCP, PN Security
+                    +b for PROFINET) as per IEC 62443-4-1. Requires cryptographic validation and
+                    +b access controls for all industrial communication interfaces in Breton Spa
+                    +b machines."
+                enforcement "Automated protocol analysis via Wireshark; manual reviews for legacy systems
+                    +b (e.g., serial ports)."
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Assumption and Constraint Documentation Policy"
+                description "Mandates explicit recording of security assumptions (e.g., VLAN segmentation)
+                    +b and constraints (e.g., no direct Internet access for HMIs) for all interfaces,
+                    +b referencing IEC 62443-3-3 risk assessment requirements."
+                enforcement "Checklists integrated into design reviews; deviations require CISO approval."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Threat Modeling for CNC Machine Interfaces"
+                description "Procedure to identify and document threats for CNC machining centers'
+                    +b interfaces (e.g., OPC UA, EtherNet/IP) using STRIDE methodology, ensuring
+                    +b compliance with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all interfaces (e.g., OPC UA server, PROFINET controllers) using
+                            +b network scanners like Nmap."
+                        tools "Nmap, Microsoft Threat Modeling Tool"
+                        expected_outcome "Comprehensive list of interfaces with protocol details (e.g., encryption
+                            +b status)."
+                    {
+                        step 2
+                        action "Model threats per interface (e.g., MITM for unencrypted Modbus TCP) via STRIDE
+                            +b framework."
+                        tools "Microsoft Threat Modeling Tool, Rockwell Automation templates"
+                        expected_outcome "Threat matrix with risk ratings (High/Medium/Low) for each interface."
+                    {
+                        step 3
+                        action "Document mitigations (e.g., enable DNP3 Secure Authentication) and residual
+                            +b risks."
+                        tools "Schneider Electric Secure Architecture Guidelines"
+                        expected_outcome "Approved threat model report with mitigation plans, stored in configuration
+                            +b management database (CMDB)."
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Legacy Interface Security Assessment"
+                description "Procedure to evaluate and secure undocumented serial/legacy interfaces in stone
+                    +b cutting machines, adhering to IEC 62443-4-1's compensating controls
+                    +b requirement."
+                [ steps
+                    {
+                        step 1
+                        action "Identify legacy interfaces via physical inspection and PLC configuration files."
+                        tools "RSLogix 5000, Serial port sniffers"
+                        expected_outcome "List of legacy interfaces (e.g., RS-232 for blade sensors)."
+                    {
+                        step 2
+                        action "Assess threats (e.g., tampering with unauthenticated serial commands) using
+                            +b ICS-specific models."
+                        tools "NIST SP 800-82 Rev.3, Honeywell threat libraries"
+                        expected_outcome "Risk assessment report highlighting critical vulnerabilities."
+                    {
+                        step 3
+                        action "Implement compensating controls (e.g., serial-to-IP converters with TLS
+                            +b tunneling)."
+                        tools "Moxa NPort serial device servers, Palo Alto firewalls"
+                        expected_outcome "Legacy interfaces secured per SL-2 requirements; updated network diagrams."
+            {
+                code "SD-1"
+                subCode "e)"
+                title "Third-Party API Security Validation"
+                description "Procedure to validate security assumptions for cloud APIs (e.g., condition
+                    +b monitoring) in composite material processing lines, per IEC 62443-4-1's
+                    +b multi-vendor integration guidelines."
+                [ steps
+                    {
+                        step 1
+                        action "Review API documentation for authentication mechanisms (e.g., OAuth 2.0) and
+                            +b encryption standards."
+                        tools "Postman, OWASP ZAP"
+                        expected_outcome "API security profile report (e.g., supports TLS 1.2+)."
+                    {
+                        step 2
+                        action "Conduct penetration testing for API endpoints (e.g., brute-force attacks on
+                            +b REST APIs)."
+                        tools "Burp Suite, Metasploit"
+                        expected_outcome "Vulnerability report with CVSS scores for identified issues."
+                    {
+                        step 3
+                        action "Enforce least-privilege access via API gateways (e.g., Kong) and document
+                            +b constraints."
+                        tools "Kong Enterprise, Siemens API Security Whitepaper"
+                        expected_outcome "Hardened API configuration with RBAC policies; updated interface documentation."
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "g)"
+        [ policies
+            {
+                code "SD-1"
+                subCode "g)"
+                title "Input Validation Policy for Industrial Interfaces"
+                description "This policy mandates the implementation of strict input validation mechanisms
+                    +b for all physical and logical interfaces in industrial control systems (ICS) to
+                    +b prevent injection attacks and unauthorized command execution. It aligns with
+                    +b IEC 62443-4-1 SD-1g by requiring whitelisting of valid commands for HMIs and
+                    +b PLCs, ensuring only authorized inputs are processed. The policy applies to all
+                    +b Breton Spa CNC machines, stone cutters, and polishing systems, covering
+                    +b protocols like OPC UA, PROFINET, and Modbus TCP."
+                enforcement "Automated static code analysis (SAST) during firmware development; runtime
+                    +b monitoring via ICS-aware intrusion detection systems (e.g., Claroty); quarterly
+                    +b penetration tests focusing on interface validation."
+            {
+                code "SD-1"
+                subCode "g)"
+                title "Secure Error Handling Protocol"
+                description "Defines standardized error message sanitization to prevent information leakage
+                    +b through ICS interfaces per IEC 62443-4-1 SD-1g requirements. Requires generic
+                    +b error responses (e.g., 'Operation Failed') instead of system details in HMI
+                    +b displays, OPC UA servers, and diagnostic interfaces. Specifically addresses
+                    +b Breton's multi-axis CNC controllers where stack traces could reveal control
+                    +b logic vulnerabilities."
+                enforcement "Code reviews with focus on error handling; centralized logging with redaction
+                    +b filters; annual red-team exercises testing error message exploitation."
+            {
+                code "SD-1"
+                subCode "g)"
+                title "Physical Interface Lockdown Directive"
+                description "Enforces disabling of unused physical ports (USB, serial, Ethernet) on all
+                    +b Breton industrial machines through device hardening policies. Complies with
+                    +b SD-1g's interface safeguarding requirements by eliminating unauthorized access
+                    +b vectors. Includes exceptions for maintenance ports with compensating controls
+                    +b like one-time passwords (OTP) for temporary activation."
+                enforcement "Configuration audits using industrial asset management tools (e.g., Armis);
+                    +b physical port inspection during site security assessments; BIOS-level
+                    +b enforcement on control PCs."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "g)"
+                title "OPC UA Input Validation Implementation"
+                description "Step-by-step process to deploy whitelist-based input validation for OPC UA
+                    +b interfaces in Breton CNC systems, ensuring compliance with SD-1g's secure
+                    +b design principles for logical interfaces."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all OPC UA methods and variables exposed by the CNC control system
+                            +b using UA Expert or similar client."
+                        tools "UA Expert, Wireshark with OPC UA dissector"
+                        expected_outcome "Documented list of OPC UA nodes with access levels and data types"
+                    {
+                        step 2
+                        action "Develop XML schema definitions for valid input ranges (e.g., axis movement
+                            +b limits, speed parameters) based on machine specifications."
+                        tools "XMLSpy, Breton Engineering Documentation"
+                        expected_outcome "XSD files validating numerical ranges and command structures"
+                    {
+                        step 3
+                        action "Integrate validation layer into OPC UA server using SDK hooks (e.g., ANSI C
+                            +b stack for embedded controllers), rejecting malformed requests with sanitized
+                            +b errors."
+                        tools "OPC Foundation SDK, GCC compiler"
+                        expected_outcome "Production firmware rejecting invalid OPC UA writes with <1ms latency impact"
+            {
+                code "SD-1"
+                subCode "g)"
+                title "HMI USB Port Securing Process"
+                description "Procedure to disable and monitor USB ports on Breton stone cutting machine
+                    +b HMIs, addressing SD-1g's physical interface security requirements while
+                    +b allowing controlled maintenance access."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy Group Policy to disable USB mass storage class devices on Windows
+                            +b CE-based HMIs, allowing only HID keyboards for authentication."
+                        tools "Windows Embedded Compact Power Shell, Breton HMI Image"
+                        expected_outcome "USB storage devices unrecognized in device manager"
+                    {
+                        step 2
+                        action "Install USB port monitoring software logging insertion events with timestamp
+                            +b and user context to central SIEM."
+                        tools "Splunk Industrial Asset Monitor, Sysmon"
+                        expected_outcome "SIEM alerts on unauthorized USB activity"
+                    {
+                        step 3
+                        action "Implement physical port locks with breakaway seals for maintenance ports;
+                            +b document seal numbers in CMMS."
+                        tools "Tamper-evident USB port locks, SAP Plant Maintenance"
+                        expected_outcome "Auditable record of physical port access"
+            {
+                code "SD-1"
+                subCode "g)"
+                title "PROFINET Output Sanitization Protocol"
+                description "Procedure to ensure sensitive process data (e.g., calibration parameters)
+                    +b transmitted via PROFINET with PN Security doesn't expose system details through
+                    +b verbose errors, per SD-1g output handling requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Configure PROFINET controllers to use PN Security's confidentiality features
+                            +b for all cyclic data containing process parameters."
+                        tools "TIA Portal v18+, Siemens SCALANCE S615"
+                        expected_outcome "Wireshark captures show encrypted PROFINET RT frames"
+                    {
+                        step 2
+                        action "Modify PLC logic to replace detailed fault codes (e.g., 'Axis 3 Overcurrent -
+                            +b Driver IC Temp 125°C') with generic alerts ('Motion Fault - Contact
+                            +b Maintenance')."
+                        tools "CODESYS Development System, Breton PLC Runtime"
+                        expected_outcome "HMI displays show only approved fault messages"
+                    {
+                        step 3
+                        action "Implement protocol-level response padding to prevent timing attacks that could
+                            +b infer system state from response sizes."
+                        tools "PROFINET Stack Configuration Tool"
+                        expected_outcome "Uniform packet sizes for all error responses (±5 bytes)"
+        last_updated "2023-11-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "h)"
+        [ policies
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Third-Party Product Security Assessment Policy"
+                description "This policy mandates a systematic evaluation of all third-party products used
+                    +b in interfaces to ensure they meet IEC 62443-4-1 security requirements. The
+                    +b assessment includes reviewing vendor security documentation, conducting
+                    +b penetration testing, and verifying compliance with relevant security standards.
+                    +b The policy applies to all Breton Spa CNC Machining Centers, Stone Cutting
+                    +b Machines, Polishing Machines, and Composite Material Processing Lines."
+                enforcement "Enforced through mandatory security reviews during procurement, automated
+                    +b Software Composition Analysis (SCA) tools in CI/CD pipelines, and quarterly
+                    +b audits by the Third-Party Security Review Board."
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Vendor Security Documentation Requirement Policy"
+                description "This policy requires all third-party vendors to provide comprehensive security
+                    +b documentation, including Common Criteria certifications, vulnerability history,
+                    +b and secure update mechanisms. Documentation must align with IEC 62443-4-1
+                    +b requirements and be reviewed before product integration. The policy ensures
+                    +b transparency and accountability in vendor security practices."
+                enforcement "Enforced through contractual obligations, procurement checklists, and
+                    +b validation by the Security Lead during vendor onboarding. Non-compliant vendors
+                    +b are excluded from procurement processes."
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Third-Party Patch Management Policy"
+                description "This policy establishes a process for timely deployment of security patches for
+                    +b third-party products, ensuring minimal disruption to ICS operations. It
+                    +b includes impact assessment procedures, patch verification, and rollback plans.
+                    +b The policy aligns with IEC 62443-4-1 requirements for maintaining system
+                    +b integrity and resource availability."
+                enforcement "Enforced through SLAs with vendors, automated patch management tools, and
+                    +b monthly compliance audits. Vendors must provide patches within 72 hours for
+                    +b critical vulnerabilities."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Third-Party Product Security Assessment Procedure"
+                description "This procedure outlines the steps for evaluating the security capabilities of
+                    +b third-party products used in interfaces, ensuring compliance with IEC
+                    +b 62443-4-1. It includes vendor documentation review, penetration testing, and
+                    +b risk assessment."
+                [ steps
+                    {
+                        step 1
+                        action "Request and review vendor security documentation, including certifications and
+                            +b vulnerability history."
+                        tools "CISA ICS Vendor Questionnaire, Microsoft Threat Modeling Tool"
+                        expected_outcome "Complete documentation set received and reviewed for compliance with IEC
+                            +b 62443-4-1."
+                    {
+                        step 2
+                        action "Conduct penetration testing on the third-party product to identify
+                            +b vulnerabilities."
+                        tools "Metasploit, Nessus, ICS-specific penetration testing frameworks"
+                        expected_outcome "Penetration test report identifying vulnerabilities and recommended
+                            +b mitigations."
+                    {
+                        step 3
+                        action "Perform a risk assessment using STRIDE methodology to model potential threats."
+                        tools "Microsoft Threat Modeling Tool, NIST 800-30 (adapted for ICS)"
+                        expected_outcome "Risk assessment report with identified threats and recommended compensating
+                            +b controls."
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Vendor Security Documentation Review Procedure"
+                description "This procedure details the process for reviewing and validating vendor-provided
+                    +b security documentation to ensure alignment with IEC 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Collect all required security documentation from the vendor, including
+                            +b certifications and vulnerability history."
+                        tools "Vendor Security Questionnaire, Procurement Checklist"
+                        expected_outcome "Complete set of security documentation received from the vendor."
+                    {
+                        step 2
+                        action "Verify the authenticity and validity of certifications and security claims."
+                        tools "Certification databases, ICS-CERT vulnerability reports"
+                        expected_outcome "Verified documentation confirming vendor security claims."
+                    {
+                        step 3
+                        action "Document findings and present to the Third-Party Security Review Board for
+                            +b approval."
+                        tools "Security Assessment Report, Review Board Dashboard"
+                        expected_outcome "Approval or rejection of the third-party product based on security
+                            +b documentation."
+            {
+                code "SD-1"
+                subCode "h)"
+                title "Third-Party Patch Deployment Procedure"
+                description "This procedure outlines the steps for deploying security patches to third-party
+                    +b products, ensuring minimal disruption to ICS operations and compliance with IEC
+                    +b 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor vendor security bulletins and ICS-CERT alerts for patch notifications."
+                        tools "ICS-CERT alerts, Vendor Security Portals"
+                        expected_outcome "Timely identification of relevant security patches for third-party products."
+                    {
+                        step 2
+                        action "Assess the impact of the patch on ICS operations and develop a deployment plan."
+                        tools "Impact Assessment Tool, Test Environment"
+                        expected_outcome "Impact assessment report and deployment plan with rollback procedures."
+                    {
+                        step 3
+                        action "Deploy the patch in a controlled manner, monitor for issues, and verify
+                            +b successful installation."
+                        tools "Patch Management Software, Monitoring Tools"
+                        expected_outcome "Successfully deployed patch with no disruption to ICS operations."
+        last_updated "2023-11-15"

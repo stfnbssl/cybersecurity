@@ -1,0 +1,138 @@
+ittf
+    $
+        var product_context_schema = '{"product_context":{"type":"object","properties":{"manufacturer":{"type":"string","description":"Name of the manufacturer","example":"Breton Spa"},"machine_types":{"type":"array","description":"Types of machines with detailed descriptions and supported protocols","items":{"type":"object","properties":{"type":{"type":"string","example":"CNC machining centers"},"description":{"type":"string","example":"High-precision CNC machines for stone and metalworking"},"supported_protocols":{"type":"array","items":{"type":"string","example":"OPC UA"}}},"required":["type","description","supported_protocols"]}},"applications":{"type":"array","description":"Applications of the machines with criticality and description","items":{"type":"object","properties":{"name":{"type":"string","example":"Natural stone processing"},"criticality":{"type":"string","enum":["High","Medium","Low"],"example":"High"},"description":{"type":"string","example":"Processing marble and granite for construction"}},"required":["name","criticality","description"]}},"key_features":{"type":"array","description":"Key features of the machines with cybersecurity support","items":{"type":"object","properties":{"feature":{"type":"string","example":"High-precision CNC control systems"},"description":{"type":"string","example":"PLC-based control systems with sub-millimeter precision"},"security_support":{"type":"array","items":{"type":"string","example":"Firmware signing"}}},"required":["feature","description","security_support"]}},"operational_environment":{"type":"object","description":"Details of the operational environment","properties":{"description":{"type":"string","example":"Industrial facilities for stone and composite processing"},"conditions":{"type":"object","properties":{"temperature_range":{"type":"string","example":"5-40°C"},"dust_level":{"type":"string","example":"High (stone processing environments)"},"network_type":{"type":"string","example":"Segmented industrial networks"}},"required":["temperature_range","dust_level","network_type"]}},"required":["description","conditions"]},"industry_4_0_compliance":{"type":"boolean","description":"Whether the machine supports Industry 4.0 features","example":true},"security_profile":{"type":"object","description":"Cybersecurity profile of the machines","properties":{"supported_sl":{"type":"array","items":{"type":"string","example":"SL 1"}},"certifications":{"type":"array","items":{"type":"string","example":"IEC 62443-4-2"}},"common_threats":{"type":"array","items":{"type":"string","example":"Ransomware"}}},"required":["supported_sl","certifications","common_threats"]},"product_version":{"type":"object","description":"Version and update information","properties":{"current_version":{"type":"string","example":"2025.1"},"last_updated":{"type":"string","example":"2025-06-01"}},"required":["current_version","last_updated"]},"assumptions_justifications":{"type":"array","description":"Assumptions made in populating the JSON and their justifications","items":{"type":"object","properties":{"assumption":{"type":"string","example":"Machines incorporate advanced automation and control systems."},"justification":{"type":"string","example":"Based on Breton’s leadership in CNC machinery and industry standards (ISO 23125)."}},"required":["assumption","justification"]}},"required":["manufacturer","machine_types","applications","key_features","operational_environment","industry_4_0_compliance","security_profile","product_version","assumptions_justifications"]}}}';
+
+    $file .wizzi-override/docs/3_3/from_meta/machine_prompts.txt.ittf
+
+        txt 
+            $foreach pr in std_62443_3_3_json.producers
+                $ var prJSON = _.stringify(pr, null, null)
+                =====
+                producer ${pr.name}
+                -----
+                $if false
+                    I need a JSON database populated with data describing the product and system context of
+                    machines built by a certain producer that i describe below in a JSON string.
+                    The result will be used as context data for creating examples of application
+                    of IEC 62443-3-3 requirements to support secure product and system development.
+                    Here i am not interested in system requirements. I need the best guess on machines features 
+                    and cyber technicalities to give context for following steps.
+                    Below is the JSON with producer data
+                    <producer>
+                    ${prJSON}
+                    </producer>
+                    The JSON schema for the product and system context that you should populate with 
+                    the producer machines details is:
+                    <product_context_schema>
+                    {
+                        "product_context": {
+                            "type": "object",
+                            "properties": {
+                            "manufacturer": {"type": "string", "description": "Name of the manufacturer", "example": "Piovan Group"},
+                            "machine_types": {"type": "array", "description": "Types of plastic treatment machines", "items": {"type": "string", "example": "Granule Receivers"}},
+                            "applications": {"type": "array", "description": "Applications of the machines", "items": {"type": "string", "example": "PET Preform Production"}},
+                            "key_features": {"type": "array", "description": "Key features of the machines", "items": {"type": "string", "example": "Centralized material transport system"}},
+                            "operational_environment": {"type": "string", "description": "Typical operational environment", "example": "Industrial clean rooms for medical plastic production"},
+                            "industry_4_0_compliance": {"type": "boolean", "description": "Whether the machine supports Industry 4.0 features", "example": true}
+                            },
+                            "required": ["manufacturer", "machine_types", "applications", "key_features", "operational_environment"]
+                        }
+                    }            
+                    </product_context_schema>
+                
+                $if false
+                    I need a JSON database populated with detailed data describing the product and system context of machines 
+                    built by a certain producer, described below in a JSON string. 
+                    The result will be used as context data for creating examples of application of IEC 62443-3-3 
+                    and IEC 62443-4-2 requirements to support secure product and system development. 
+                    I am not interested in system requirements but in detailed product features and cybersecurity technicalities 
+                    to provide context for subsequent steps. 
+                    Provide a best guess on machine features, operational environment, and cybersecurity details, 
+                    ensuring alignment with IEC 62443 standards.
+                    Below is the JSON with producer data:
+                    <producer>
+                    ${prJSON}
+                    </producer>
+                    The JSON schema for the product and system context that you should populate with the producer’s 
+                    machine details is:
+                    <product_context_schema>
+                    ${product_context_schema}
+                    </product_context_schema>
+                    Follow these guidelines:  Use a technical and formal tone, suitable for cybersecurity engineers working on ICS.  
+                    For machine_types, include at least 4 machine types with descriptions and 
+                    relevant industrial protocols (e.g., OPC UA, PROFINET).  
+                    For applications, list at least 4 applications, each with a criticality level (High, Medium, Low) 
+                    and a brief description.  
+                    For key_features, provide at least 5 features, each with a description and supported cybersecurity 
+                    mechanisms (e.g., encryption, secure boot).  
+                    For operational_environment, detail physical conditions (e.g., temperature, dust) and 
+                    network type (e.g., segmented or Internet-connected).  
+                    For security_profile, include supported security levels (SL 1-4), certifications, 
+                    and at least 3 common cyber threats.  
+                    For product_version, provide a plausible version and last update date (aligned with today’s date, 
+                    August 6, 2025).  
+                    Ensure all data is consistent with producer profile and IEC 62443-3-3/IEC 62443-4-2 requirements.  
+                    If details are missing from the producer JSON, make plausible assumptions based on the producer 
+                    industry and the provided description.  
+                    Verify that the resulting JSON complies with the schema and is free of errors.
+                    Return the populated JSON.
+                
+                $if true
+                    Populate the JSON database with detailed data describing the product and system context of machines 
+                    built by the producer specified in the provided JSON string. 
+                    The result will be used as context data for creating examples of application of IEC 62443-3-3 
+                    and IEC 62443-4-2 requirements to support secure product and system development. 
+                    Focus on detailed product features and cybersecurity technicalities, excluding system requirements, 
+                    to provide context for subsequent steps. 
+                    Populate the JSON with detailed machine features, operational environment, and cybersecurity technicalities, 
+                    extrapolating from the producer’s description and industry standards for CNC machinery. 
+                    Ensure all assumptions are justified by referencing typical capabilities of advanced industrial machinery 
+                    and IEC 62443 requirements. 
+                    Include references to specific IEC 62443-4-2 technical requirements (e.g., CR1 Identification and 
+                    Authentication Control, CR3 System Integrity) when describing cybersecurity features.  
+                    Below is the JSON with producer data:
+                    <producer>
+                    ${prJSON}
+                    </producer>
+                    The JSON schema for the product and system context that you should populate with the producer’s 
+                    machine details is:
+                    <product_context_schema>
+                    ${product_context_schema}
+                    </product_context_schema>
+                    Guidelines:  
+                    Use a technical and formal tone, suitable for cybersecurity engineers working on ICS.  
+                    For machine_types, include at least 4 machine types with detailed descriptions of their functionality and 
+                    at least 4 industrial protocols per machine type, 
+                    prioritizing secure protocols (e.g., OPC UA with Security Policy Basic256Sha256, PROFINET with PN Security). 
+                    Justify protocol choices based on their relevance to ICS cybersecurity and IEC 62443-4-2.  
+                    For applications, list at least 4 applications, each with a criticality level (High, Medium, Low) and 
+                    a brief description (max 50 words) of their operational impact.  
+                    For key_features, provide at least 5 features, each with a description (max 50 words), 
+                    supported cybersecurity mechanisms (e.g., encryption, secure boot), 
+                    and a brief example of how the mechanism is implemented (e.g., ‘Secure Boot ensures only signed firmware 
+                    is loaded during startup, verified via a trusted platform module’). 
+                    Ensure examples are practical and aligned with IEC 62443-4-2.  
+                    For operational_environment, describe physical conditions (e.g., temperature range, dust levels, humidity) 
+                    and network architecture (e.g., segmented OT networks, DMZ usage, or Internet connectivity). 
+                    Specify how the environment impacts cybersecurity requirements, such as physical access controls or 
+                    network isolation, per IEC 62443-3-3 zone and conduit models.  
+                    For security_profile, include supported security levels (SL 1-4), certifications, 
+                    and at least 3 common cyber threats specific to ICS environments (e.g., ransomware targeting control systems, 
+                    MitM attacks on industrial protocols, data manipulation in HMI interfaces), 
+                    with a brief explanation of their relevance to the machine’s operational context.  
+                    For product_version, provide a plausible version and last update date (aligned with today’s date, 
+                    August 6, 2025).  
+                    For assumptions_justifications, include at least 5 entries, each with a concise assumption (max 50 words) about 
+                    the machine’s capabilities or environment and a justification (max 50 words) referencing 
+                    industry standards (e.g., ISO, NIST) or IEC 62443 requirements. 
+                    Ensure assumptions cover key areas like machine functionality, protocols, cybersecurity features, and environment.
+                    Ensure that descriptions in machine_types, applications, and key_features are distinct, avoiding overlap. 
+                    For example, machine_types should focus on hardware and functionality, key_features on 
+                    specific technical capabilities with cybersecurity relevance, and applications 
+                    on use cases and their operational impact. Keep descriptions concise, 
+                    with a maximum of 50 words per field, unless otherwise specified.  
+                    Validate the resulting JSON against the provided schema using a JSON validator. 
+                    Ensure all fields are populated with realistic and consistent data, 
+                    cross-referencing the producer’s industry and machine types. 
+                    Return the populated JSON, including the assumptions_justifications property, without a separate comment section.
+

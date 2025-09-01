@@ -1,0 +1,488 @@
+$group
+    {
+        id "FR-1"
+        key "IAC"
+        name "Identification and authentication control"
+        page 25
+        purpose "Identify and authenticate all users (humans, software processes and devices) before 
+            +b allowing them to access to the control system."
+        rationale "Asset owners will have to develop a list of all users (humans, software processes and devices) and 
+            +b to determine for each control system component the required level of IAC protection. 
+            +b The goal of IAC is to protect the control system by verifying the identity of any user 
+            +b requesting access to the control system before activating the communication. 
+            +b Recommendations and guidelines should include mechanisms that will operate in mixed modes. 
+            +b For example, some control system components require strong IAC, 
+            +b such as strong authentication mechanisms, and others do not."
+        [ security_levels_descriptions
+            "SL 1 – Identify and authenticate all users (humans, software processes and devices) by mechanisms which protect against casual or coincidental access by unauthenticated entities."
+            "SL 2 – Identify and authenticate all users (humans, software processes and devices) by mechanisms which protect against intentional unauthenticated access by entities using simple means with low resources, generic skills and low motivation."
+            "SL 3 – Identify and authenticate all users (humans, software processes and devices) by mechanisms which protect against intentional unauthenticated access by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation."
+            "SL 4 – Identify and authenticate all users (humans, software processes and devices) by mechanisms which protect against intentional unauthenticated access by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+        [ srs
+            {
+                id "SR 1.1"
+                page 24
+                name "Human user identification and authentication"
+                description "The control system shall provide the capability to identify and authenticate all human users.
+                    +b This capability shall enforce such identification and authentication on all interfaces 
+                    +b which provide human user access to the control system 
+                    +b to support segregation of duties and least privilege 
+                    +b in accordance with applicable security policies and procedures."
+                rationale "All human users need to be identified and authenticated for all access to the control system. 
+                    +b Authentication of the identity of these users should be accomplished by using methods such
+                    +b as passwords, tokens, biometrics or, in the case of multifactor authentication, some combination thereof. 
+                    +b The geographic location of human users can also be used as part of the authentication process. 
+                    +b This requirement should be applied to both local and remote access to the control system. 
+                    +b In addition to identifying and authenticating all human users at the control system level 
+                    +b (for example, at system logon), identification and authentication mechanisms are 
+                    +b often employed at the application level.
+                    +b Where human users function as a single group (such as control room operators), 
+                    +b user identification and authentication may be role-based or group-based. 
+                    +b For some control systems, the capability for immediate operator interaction is critical. 
+                    +b It is essential that local emergency actions as well as control system essential functions 
+                    +b not be hampered by identification or authentication requirements (see Clause 4 for a more complete discussion). 
+                    +b Access to these systems may be restricted by appropriate physical security mechanisms (see IEC 62443‑2‑1). 
+                    +b An example of such a situation is a critical operations room where strict physical access control and monitoring 
+                    +b is in place and where shift plans allocate responsibility to a group of users. 
+                    +b These users may then be using the same user identity. 
+                    +b In addition, the designated operator workstation clients should be authenticated 
+                    +b (see 5.4, SR 1.2 – Software process and device identification and authentication) or 
+                    +b the use of this shared account should be limited to the constrained environment of the control room.
+                    +b In order to support IAC policies, as defined according to IEC 62443‑2‑1, 
+                    +b the control system verifies the identity of all human users as a first step. 
+                    +b In a second step, the permissions assigned to the identified human user are enforced 
+                    +b (see 6.3, SR 2.1 – Authorization enforcement)."
+                [ rhs
+                    {
+                        id "SR 1.1 RE 1"
+                        name "Unique identification and authentication"
+                        description "The control system shall provide the capability to uniquely identify and 
+                            +b authenticate all human users."
+                    {
+                        id "SR 1.1 RE 2"
+                        name "Multifactor authentication for untrusted networks"
+                        description "The control system shall provide the capability to employ multifactor authentication 
+                            +b for human user access to the control system via an untrusted network 
+                            +b (see 5.15, SR 1.13 – Access via untrusted networks)."
+                        note "See 5.7.3.5.7.3.1,SR 1.5 – Authenticator management, RE 5.7.3.1 for 
+                            +b enhanced authenticator management for software processes."
+                    {
+                        id "SR 1.1 RE 3"
+                        name "Multifactor authentication for all networks"
+                        description "The control system shall provide the capability to employ multifactor authentication 
+                            +b for all human user access to the control system."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.1"
+                    "SL-C (IAC, control system) 2: SR 1.1 (1)"
+                    "SL-C (IAC, control system) 3: SR 1.1 (1) (2)"
+                    "SL-C (IAC, control system) 4: SR 1.1 (1) (2) (3)"
+            {
+                id "SR 1.2"
+                page 26
+                name "Software process and device identification and authentication"
+                description "The control system shall provide the capability to identify and authenticate all software processes and devices. 
+                    +b This capability shall enforce such identification and authentication on all interfaces 
+                    +b which provide access to the control system to support least privilege in accordance with 
+                    +b applicable security policies and procedures."
+                rationale "The function of identification and authentication is to map an ID to an unknown software process or 
+                    +b device (henceforth referred to an entity in this sub-clause) so as to make it known before allowing any data exchange. 
+                    +b Allowing rogue entities to send and receive control system specific data can result in detrimental behavior of 
+                    +b the legitimate control system.
+                    +b All entities need to be identified and authenticated for all access to the control system. 
+                    +b Authentication of the identity of such entities should be accomplished by using methods such as passwords, 
+                    +b tokens or location (physical or logical). 
+                    +b This requirement should be applied to both local and remote access to the control system. 
+                    +b However, in some scenarios where individual entities are used to connect to different target systems 
+                    +b (for example, remote vendor support), it may be technically infeasible for an entity to have multiple identities. 
+                    +b In these cases, compensating countermeasures would have to be applied.
+                    +b Identification and authentication mechanisms for all entities are needed to protect against attacks 
+                    +b such as man-in-the-middle or message spoofing. 
+                    +b In some cases, these mechanisms may involve multiple software processes running on the same physical server, 
+                    +b each having their own identity. 
+                    +b In other cases, the identity may be bound to the physical device, such as all processes running on a given PLC.
+                    +b Special attention needs to be made when identifying and authenticating portable and mobile devices. 
+                    +b These types of devices are a known method of introducing undesired network traffic, 
+                    +b malware and/or information exposure to control systems, including otherwise isolated networks.
+                    +b Where entities function as a single group, identification and authentication may be role-based, 
+                    +b group-based or entity-based, it is essential that local emergency actions as well as 
+                    +b control system essential functions not be hampered by identification or authentication requirements 
+                    +b (see Clause 4 for a more complete discussion). 
+                    +b For example, in common protection and control schemes, a group of devices jointly execute 
+                    +b the protection functions and communicate with multicast messages among the devices in the group. 
+                    +b In these cases, group authentication based on shared accounts or shared symmetric keys are commonly used.
+                    +b In order to support identification and authentication control policies as defined according to IEC 62443‑2‑1, 
+                    +b the control system verifies the identity of all entities as a first step. 
+                    +b In a second step, the permissions assigned to the identified entity are enforced 
+                    +b (see 6.3, SR 2.1 – Authorization enforcement)."
+                [ rhs
+                    {
+                        id "SR 1.2 RE 1"
+                        name "Unique identification and authentication"
+                        description "The control system shall provide the capability to uniquely identify and authenticate 
+                            +b all software processes and devices."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: Not Selected"
+                    "SL-C (IAC, control system) 2: SR 1.2"
+                    "SL-C (IAC, control system) 3: SR 1.2 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.2 (1)"
+            {
+                id "SR 1.3"
+                page 27
+                name "Account management"
+                description "The control system shall provide the capability to support the management of all accounts by authorized users, 
+                    +b including adding, activating, modifying, disabling and removing accounts."
+                rationale "Account management may include grouping of accounts (for example, individual, role-based, 
+                    +b device-based and control system), establishment of conditions for group membership and 
+                    +b assignment of associated authorizations. 
+                    +b In certain IACS instances, where individual accounts are determined to be unnecessary from a risk-analysis 
+                    +b and/or regulatory aspect, shared accounts are acceptable as long as adequate compensating countermeasures 
+                    +b (such as limited physical access or organizational measures for approval) are in place and documented.
+                    +b Non-human user accounts (sometimes termed service accounts) that are utilized for 
+                    +b software process-to-process communication (for example, control server to historian and PLC to control server) 
+                    +b typically require different security policies and procedures from human user accounts. 
+                    +b For enhanced security, management of accounts should be done according to unified policies and 
+                    +b deployed locally in the relevant components of the control system. 
+                    +b Unused default system accounts used for the first installation of the system should be removable. 
+                    +b Security enhancement lies in the simplification and consistent application of account management."
+                [ rhs
+                    {
+                        id "SR 1.3 RE 1"
+                        name "Unified account management"
+                        description "The control system shall provide the capability to support unified account management."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.3"
+                    "SL-C (IAC, control system) 2: SR 1.3"
+                    "SL-C (IAC, control system) 3: SR 1.3 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.3 (1)"
+            {
+                id "SR 1.4"
+                page 28
+                name "Identifier management"
+                description "The control system shall provide the capability to support the management of identifiers by user, 
+                    + group, role or control system interface."
+                rationale "Identifiers are distinguished from the privileges which they permit an entity to perform 
+                    +b within a specific control system control domain or zone (see 6.3, SR 2.1 – Authorization enforcement). 
+                    +b Where human users function as a single group (such as control room operators), 
+                    +b user identification may be role-based, group-based or device-based. 
+                    +b For some control systems, the capability for immediate operator interaction is critical. 
+                    +b Local emergency actions for the control system should not be hampered by identification requirements. 
+                    +b Access to these systems may be restricted by appropriate compensating countermeasures. 
+                    +b Identifiers may be required on portions of the control system but not necessarily the entire control system. 
+                    +b For example, wireless devices typically require identifiers, whereas wired devices may not.
+                    +b The management of identifiers will be determined by local policies and procedures established 
+                    +b in compliance with IEC 62443‑2‑1."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.4"
+                    "SL-C (IAC, control system) 2: SR 1.4"
+                    "SL-C (IAC, control system) 3: SR 1.4"
+                    "SL-C (IAC, control system) 4: SR 1.4"
+            {
+                id "SR 1.5"
+                page 28
+                name "Authenticator management"
+                description "The control system shall provide the capability to:
+                    +b h) initialize authenticator content; 
+                    +b i) change all default authenticators upon control system installation; 
+                    +b j) change/refresh all authenticators; and 
+                    +b k) protect all authenticators from unauthorized disclosure and modification when stored and transmitted."
+                rationale "In addition to an identifier (see 5.6, SR 1.4 – Identifier management) 
+                    +b an authenticator is required to prove identity. 
+                    +b Control system authenticators include, but are not limited to, 
+                    +b tokens, symmetric keys, private keys (part of a public/private key pair), biometrics, passwords, 
+                    +b physical keys and key cards. 
+                    +b Human users should take reasonable measures to safeguard authenticators, 
+                    +b including maintaining possession of their individual authenticators, 
+                    +b not loaning or sharing authenticators with others and reporting lost or compromised authenticators immediately.
+                    +b Authenticators have a lifecycle. When an account is created automatically a new authenticator needs to be created, 
+                    +b in order for the account owner to be able to authenticate. For example,
+                    +b in a password-based system, the account has a password associated with it. 
+                    +b Definition of the initial authenticator content could be interpreted as the administrator defining 
+                    +b the initial password which the account management system sets for all new accounts. 
+                    +b Being able to configure these initial values makes it harder for an attacker to guess the password 
+                    +b between account creation and first account use (which should involve the setting of a new password 
+                    +b by the account owner). 
+                    +b Some control systems are installed with unattended installers which create all necessary accounts 
+                    +b with default passwords and some embedded devices are shipped with default passwords. 
+                    +b Over time, these passwords often become general knowledge and are documented on the Internet. 
+                    +b Being able to change the default passwords protects the system against unauthorized users 
+                    +b using default passwords to gain access. 
+                    +b Passwords can be obtained from storage or from transmission when used in network authentication. 
+                    +b The complexity of this can be increased by cryptographic protections such as encryption or 
+                    +b hashing or by handshake protocols which do not require transmission of the password at all. 
+                    +b Still, passwords might be subject to attacks, for example brute force guessing or 
+                    +b breaking the cryptographic protection of passwords in transit or storage. 
+                    +b The window of opportunity can be reduced by changing/refreshing the passwords periodically. 
+                    +b Similar considerations apply to authentication systems based on cryptographic keys. 
+                    +b Enhanced protection can be achieved by using hardware mechanisms such as hardware security modules 
+                    +b like trusted platform modules (TPMs).
+                    +b The management of authenticators should be specified in applicable security policies and procedures, 
+                    +b for example, constraints to change default authenticators, refresh periods, 
+                    +b specification of the protection of authenticators or firecall (see 3.1.24) procedures.
+                    +b Lockout or loss of control due to security measures is not acceptable. 
+                    +b If the control system is required to have a high level of availability, 
+                    +b measures should be taken to maintain this high level of availability (such as compensating physical countermeasures, 
+                    +b duplicate keys and supervisory override).
+                    +b Besides the capabilities for authenticator management specified in this requirement, 
+                    +b the strength of the authentication mechanism depends on the strength of the chosen authenticator 
+                    +b (for example password complexity or key length in public key authentication) and 
+                    +b the policies for validating the authenticator in the authentication process 
+                    +b (for example how long a password is valid or which checks are performed in public key certificate validation). 
+                    +b For the most common authentication mechanisms password-based and public key authentication 5.9, 
+                    +b SR 1.7 – Strength of password-based authentication, 5.10, 
+                    +b SR 1.8 – Public key infrastructure (PKI) certificates and 5.11, 
+                    +b SR 1.9 – Strength of public key authentication provide further requirements."
+                [ rhs
+                    {
+                        id "SR 1.5 RE 1"
+                        name "Hardware security for software process identity credentials"
+                        description "For software process and device users, the control system shall provide the capability to 
+                            +b protect the relevant authenticators via hardware mechanisms."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.5"
+                    "SL-C (IAC, control system) 2: SR 1.5"
+                    "SL-C (IAC, control system) 3: SR 1.5 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.5 (1)"
+            {
+                id "SR 1.6"
+                page 30
+                name "Wireless access management"
+                description "The control system shall provide the capability to identify and authenticate all users 
+                    +b (humans, software processes or devices) engaged in wireless communication."
+                rationale "Any wireless technology can, and in most cases should, be considered just another communication protocol option, 
+                    +b and thus subject to the same IACS security requirements as any other communication type utilized by the IACS. 
+                    +b However, from a security point of view, there is at least one significant difference between 
+                    +b wired and wireless communications: 
+                    +b physical security countermeasures are typically less effective when using wireless. 
+                    +b For this and possibly other reasons (for example regulatory differences), 
+                    +b a risk analysis might legitimately result in a higher SL-T(IAC,control system) for wireless communications 
+                    +b versus a wired protocol being used in an identical use case.
+                    +b Wireless technologies include, but are not limited to, microwave, satellite, packet radio, 
+                    +b Institute of Electrical and Electronics Engineers (IEEE) 802.11x, 
+                    +b IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), 
+                    +b wireless LAN mobile routers, mobile phones with tethering and various infrared technologies."
+                [ rhs
+                    {
+                        id "SR 1.2 RE 1"
+                        name "Unique identification and authentication"
+                        description "The control system shall provide the capability to uniquely identify and authenticate 
+                            +b all users (humans, software processes or devices) engaged in wireless communication."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.6"
+                    "SL-C (IAC, control system) 2: SR 1.6 (1)"
+                    "SL-C (IAC, control system) 3: SR 1.6 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.6 (1)"
+            {
+                id "SR 1.7"
+                page 30
+                name "Strength of public key authentication"
+                description "For control systems utilizing password-based authentication, 
+                    +b the control system shall provide the capability to enforce configurable password strength 
+                    +b based on minimum length and variety of character types."
+                rationale "User authentication based on a username and a secret password is a very commonly used mechanism. 
+                    +b Many attacks on such mechanisms focus on guessing the password 
+                    +b (for example, dictionary attacks or targeted social engineering) or 
+                    +b breaking the cryptographic protection of the stored password representation 
+                    +b (for example, using rainbow tables or brute-forcing a hash collision).
+                    +b Increasing the size of the set of valid passwords by increasing the number of allowed characters 
+                    +b makes such attacks more complex, but only if the increased set size is actually
+                    +b used (generally users would tend to not include special characters in a password as they are 
+                    +b perceived as harder to remember). 
+                    +b Limiting the lifetime of a password decreases the window of opportunity for an attacker to 
+                    +b breach a given password’s secrecy. 
+                    +b In order to prevent users from circumventing this control by once changing their password to a new one 
+                    +b and then immediately changing back to their original password, 
+                    +b a minimum lifetime for a password is commonly enforced as well. 
+                    +b A notification to change the password prior the expiration allows the user to change the password at 
+                    +b a convenient time according to process operations conditions.
+                    +b This protection can be further enhanced by limiting the reuse of passwords 
+                    +b (preventing small sets of alternating passwords), 
+                    +b which further decreases the usefulness of a once-breached password. 
+                    +b Extended protection beyond password based mechanisms can be achieved using multifactor authentication 
+                    +b (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, 
+                    +b SR 1.2 – Software process and device identification and authentication)."
+                [ rhs
+                    {
+                        id "SR 1.7 RE 1"
+                        name "Password generation and lifetime restrictions for human users"
+                        description "The control system shall provide the capability to prevent any given human user account from 
+                            +b reusing a password for a configurable number of generations. 
+                            +b In addition, the control system shall provide the capability to enforce 
+                            +b password minimum and maximum lifetime restrictions for human users. 
+                            +b These capabilities shall conform with commonly accepted security industry practices."
+                        note "It is a commonly accepted good practice that the control system provides 
+                            +b the capability to prompt the user to change his password upon a configurable time prior to expiration."
+                    {
+                        id "SR 1.7 RE 2"
+                        name "Password lifetime restrictions for all users"
+                        description "The control system shall provide the capability to enforce 
+                            +b password minimum and maximum lifetime restrictions for all users."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.7"
+                    "SL-C (IAC, control system) 2: SR 1.7"
+                    "SL-C (IAC, control system) 3: SR 1.7 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.7 (1) (2)"
+            {
+                id "SR 1.8"
+                page 32
+                name "Public key infrastructure (PKI) certificates"
+                description "Where PKI is utilized, the control system shall provide the capability to operate a PKI 
+                    +b according to commonly accepted best practices or obtain public key certificates from an existing PKI."
+                rationale "Registration to receive a public key certificate needs to include authorization by 
+                    +b a supervisor or a responsible official and needs to be accomplished using a 
+                    +b secure process that verifies the identity of the certificate holder and 
+                    +b ensures that the certificate is issued to the intended party. 
+                    +b Any latency induced from the use of public key certificates should not degrade the 
+                    +b operational performance of the control system."
+                    +b The selection of an appropriate PKI should consider the organization’s certificate policy 
+                    +b which should be based on the risk associated with a breach of confidentiality of the protected information. 
+                    +b Guidance on the policy definition can be found in commonly accepted standards and guidelines, 
+                    +b such as the Internet Engineering Task Force (IETF) Request for Comment (RFC) 3647 [29] for X.509-based PKI. 
+                    +b For example, the appropriate location of a certification authority (CA), 
+                    +b whether within the control system versus on the Internet, 
+                    +b and the list of trusted CAs should be considered in the policy and 
+                    +b depends on the network architecture (see also IEC 62443‑2‑1)."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: Not Selected"
+                    "SL-C (IAC, control system) 2: SR 1.8"
+                    "SL-C (IAC, control system) 3: SR 1.8"
+                    "SL-C (IAC, control system) 4: SR 1.8"
+            {
+                id "SR 1.9"
+                page 32
+                name "Strength of public key authentication"
+                description "For control systems utilizing public key authentication, the control system shall provide the capability to:"
+                [ subs
+                    "a) validate certificates by checking the validity of the signature of a given certificate;" 
+                    "b) validate certificates by constructing a certification path to an accepted CA or in the case of
+                        +b self-signed certificates by deploying leaf certificates to all hosts which communicate with the subject 
+                        +b to which the certificate is issued;"
+                    "c) validate certificates by checking a given certificate’s revocation status;" 
+                    "d) establish user (human, software process or device) control of the corresponding private key; and" 
+                    "e) map the authenticated identity to a user (human, software process or device)."
+                rationale "Public/private key cryptography strongly depends on the secrecy of a given subject’s private key and 
+                    +b proper handling of the trust relationships. 
+                    +b When verifying a trust between two entities based on public key authentication, 
+                    +b it is essential to trace the public key certificate to a trusted entity. 
+                    +b A common implementation error in certificate validation is to only check the validity of a certificate’s signature, 
+                    +b but not checking the trust in the signer. 
+                    +b In a PKI setting, a signer is trusted if they are a trusted CA or have a certificate issued by a trusted CA, 
+                    +b thus all verifiers need to trace certificates presented to them back to a trusted CA. 
+                    +b If such a chain of trusted CAs cannot be established, the presented certificate should not be trusted.
+                    +b If self-signed certificates are used instead of a PKI, the certificate subject itself signed its certificate, 
+                    +b thus there never is a trusted third-party or CA. 
+                    +b This should be compensated by deploying the self-signed public key certificates to all peers 
+                    +b that need to validate them via an otherwise secured mechanism 
+                    +b (for example, configuration of all peers in a trusted environment). 
+                    +b Trusted certificates need to be distributed to peers through secure channels. 
+                    +b During the validation process, a self-signed certificate should only be trusted if it is already present 
+                    +b in the list of trusted certificates of the validating peer. 
+                    +b The set of trusted certificates should be configured to the minimum necessary set.
+                    +b In both cases, validation needs to also consider the possibility that a certificate is revoked. 
+                    +b In a PKI setting this is typically done by maintaining certificate revocation lists (CRLs) or 
+                    +b running an online certificate status protocol (OCSP) server. 
+                    +b When revocation checking is not available due to control system constraints, 
+                    +b mechanisms such as a short certificate lifetime can compensate for the lack of timely revocation information. 
+                    +b Note that short lifetime certificates can sometimes create significant operational issues 
+                    +b in a control system environment."
+                [ rhs
+                    {
+                        id "SR 1.9 RE 1"
+                        name "Hardware security for public key authentication"
+                        description "The control system shall provide the capability to protect the relevant private keys 
+                            +b via hardware mechanisms according to commonly accepted security industry practices and recommendations."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: Not Selected"
+                    "SL-C (IAC, control system) 2: SR 1.9"
+                    "SL-C (IAC, control system) 3: SR 1.9 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.9 (1)"
+            {
+                id "SR 1.10"
+                page 33
+                name "Authenticator feedback"
+                description "The control system shall provide the capability to obscure feedback of authentication information 
+                    +b during the authentication process."
+                rationale "Obscuring feedback protects the information from possible exploitation by unauthorized individuals, 
+                    +b for example, displaying asterisks or other random characters when a human user types in a password 
+                    +b obscures feedback of authentication information. 
+                    +b Other examples include the entry of wired equivalent privacy (WEP) keys, secure socket shell (SSH) 
+                    +b token entry and RSA one-time passwords.
+                    +b The authenticating entity should not provide any hint as to the reason for the authentication failure, 
+                    +b such as “unknown user name”."
+                [ rhs
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.10"
+                    "SL-C (IAC, control system) 2: SR 1.10"
+                    "SL-C (IAC, control system) 3: SR 1.10"
+                    "SL-C (IAC, control system) 4: SR 1.10"
+            {
+                id "SR 1.11"
+                page 34
+                name "Unsuccessful login attempts"
+                description "The control system shall provide the capability to enforce a limit of a configurable number of 
+                    +b consecutive invalid access attempts by any user (human, software process or device) during a configurable time period.
+                    +b The control system shall provide the capability to deny access for a specified period of time or 
+                    +b until unlocked by an administrator when this limit has been exceeded.
+                    +b For system accounts on behalf of which critical services or servers are run, 
+                    +b the control system shall provide the capability to disallow interactive logons."
+                rationale "Due to the potential for denial of service, the number of consecutive invalid access attempts may be limited. If enabled, the control system may automatically reset to zero the number of access attempts after a predetermined time period established by the applicable security policies and procedures. Resetting the access attempts to zero will allow users (human, software process or device) to gain access if they have the correct login identifier. Automatic denial of access for control system operator workstations or nodes should not be used when immediate operator responses are required in emergency situations. All lockout mechanisms should consider functional requirements for continuous operations so as to mitigate adverse denial of service operating conditions which could result in total system failure or injury to personnel. Allowing interactive logins to an account used for critical services could provide a potential for denial of service or other abuse."
+                [ rhs
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.11"
+                    "SL-C (IAC, control system) 2: SR 1.11"
+                    "SL-C (IAC, control system) 3: SR 1.11"
+                    "SL-C (IAC, control system) 4: SR 1.11"
+            {
+                id "SR 1.12"
+                page 34
+                name "System use notification"
+                description "The control system shall provide the capability to display a system use notification message 
+                    +b before authenticating. The system use notification message shall be configurable by authorized personnel."
+                rationale "Privacy and security policies and procedures need to be consistent with applicable laws, directives, policies, 
+                    +b regulations, standards and guidance. 
+                    +b Often the main justification for this requirement is legal prosecution of violators and 
+                    +b proving intentional breach. 
+                    +b This capability is thus necessary to support policy requirements, and does not improve IACS security. 
+                    +b System use notification messages can be implemented in the form of warning banners 
+                    +b displayed when individuals log in to the control system. 
+                    +b A warning banner implemented as a posted physical notice in the control system facility 
+                    +b does not protect against remote login issues."
+                [ examples
+                    "Examples of elements for inclusion in the system use notification message are:
+                        +b a) that the individual is accessing a specific control system;
+                        +b b) that system usage may be monitored, recorded and subject to audit; 
+                        +b c) that unauthorized use of the system is prohibited and subject to criminal and/or civil penalties; and 
+                        +b d) that use of the system indicates consent to monitoring and recording."
+                [ rhs
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.12"
+                    "SL-C (IAC, control system) 2: SR 1.12"
+                    "SL-C (IAC, control system) 3: SR 1.12"
+                    "SL-C (IAC, control system) 4: SR 1.12"
+            {
+                id "SR 1.13"
+                page 35
+                name "Access via untrusted networks"
+                description "The control system shall provide the capability to monitor and control all methods of access to 
+                    +b the control system via untrusted networks."
+                rationale "Examples of access to the control system via untrusted networks typically include 
+                    +b remote access methods (such as dial-up, broadband and wireless) as well as 
+                    +b connections from a company’s office (non-control system) network. 
+                    +b The control system should restrict access achieved through dial-up connections 
+                    +b (for example, limiting dial-up access based upon the source of the request) or 
+                    +b protect against unauthorized connections or subversion of authorized connections 
+                    +b (for example, using virtual private network technology). 
+                    +b Access via untrusted networks to geographically remote control system component locations 
+                    +b (for example, control centres and field locations) should only be enabled when necessary and authenticated. 
+                    +b Security policies and procedures may require multifactor authentication for 
+                    +b remote user access to the control system."
+                [ rhs
+                    {
+                        id "SR 1.13 RE 1"
+                        name "Explicit access request approval"
+                        description "The control system shall provide the capability to deny access requests via 
+                            +b untrusted networks unless approved by an assigned role."
+                [ security_levels
+                    "SL-C (IAC, control system) 1: SR 1.13"
+                    "SL-C (IAC, control system) 2: SR 1.13 (1)"
+                    "SL-C (IAC, control system) 3: SR 1.13 (1)"
+                    "SL-C (IAC, control system) 4: SR 1.13 (1)"

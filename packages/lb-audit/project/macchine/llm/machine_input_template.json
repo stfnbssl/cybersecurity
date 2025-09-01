@@ -1,0 +1,87 @@
+{
+  "machine": {
+    "name": "Linea Demo X",
+    "site": "Plant A",
+    "use_case": "Taglio pietra"
+  },
+  "context": {
+    "essential_service": false,
+    "personal_data": true,
+    "safety_critical": true
+  },
+  "targets": {
+    "sl_t": 2
+  },
+  "zones": [
+    {
+      "name": "OT-Core",
+      "critical": true
+    },
+    {
+      "name": "DMZ-OT",
+      "critical": false
+    }
+  ],
+  "conduits": [
+    {
+      "from": "OT-Core",
+      "to": "DMZ-OT",
+      "protocols": [
+        "OPC UA",
+        "Modbus/TCP"
+      ],
+      "direction": "bidirectional"
+    }
+  ],
+  "remote_access": {
+    "exists": true,
+    "method": "VPN\u2192DMZ\u2192Jump",
+    "vendors": [
+      "VendorX"
+    ]
+  },
+  "components": [
+    {
+      "id": "PLC1",
+      "type": "embedded",
+      "vendor": "Siemens",
+      "model": "S7-1500",
+      "zone": "OT-Core",
+      "sl_c": 2,
+      "firmware": "x.y.z",
+      "protocols": [
+        "Profinet"
+      ]
+    },
+    {
+      "id": "FW1",
+      "type": "network",
+      "vendor": "IFirewall",
+      "model": "IFW-5000",
+      "zone": "DMZ-OT",
+      "sl_c": 3
+    },
+    {
+      "id": "HMI1",
+      "type": "host",
+      "vendor": "WinHMI",
+      "zone": "OT-Core",
+      "sl_c": 1,
+      "os": "Win10 LTSC",
+      "legacy_os": true
+    },
+    {
+      "id": "SCADA1",
+      "type": "application",
+      "vendor": "SCADAco",
+      "zone": "DMZ-OT",
+      "sl_c": 2
+    }
+  ],
+  "constraints": {
+    "downtime": "limited",
+    "legacy_os": [
+      "HMI1"
+    ]
+  }
+}

@@ -1,0 +1,232 @@
+$group
+    {
+        id "FSA-CR 2.8A"
+        check_description "Components shall provide the capability to generate audit records relevant to
+            +b security for the following categories: access control, request errors, control
+            +b system events, backup and restore event, configuration changes, and audit log
+            +b events."
+        requirement_id "IEC 62443-4-2: CR 2.8(a)-(f)"
+        title "Auditable Events - Categories"
+        description "This requirement mandates the capability of a component to generate audit
+            +b records for events that are significant to the security of the system. It
+            +b outlines the categories of events that must be auditable to ensure the
+            +b integrity, confidentiality, and availability of the industrial system."
+        [ key_aspects
+            {
+                aspect "Event Categories"
+                details "The requirement specifies categories of events that should be auditable,
+                    +b including but not limited to: user access, use of privileges, system
+                    +b configuration changes, and security function anomalies."
+            {
+                aspect "Audit Record Generation"
+                details "Components must be able to generate audit records automatically for these
+                    +b categories of events. The system should ensure that these records are
+                    +b comprehensive and include necessary details such as time of occurrence, type of
+                    +b event, and the identity of users or systems involved."
+            {
+                aspect "Security Significance"
+                details "The events chosen for auditing should be significant to the security of the
+                    +b system, helping to detect unauthorized activities or anomalies that could
+                    +b jeopardize system integrity or data confidentiality."
+        [ related_standards
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 12.4 - Logging and Monitoring"
+                details "This section emphasizes the importance of logging and monitoring information
+                    +b systems to detect and respond to security incidents. It provides guidelines on
+                    +b logging policies, log management, and the protection of log information."
+            {
+                standard "NIST SP 800-53 Rev 5"
+                reference "AU-2 - Auditable Events"
+                details "This control focuses on the identification of events that require auditing and
+                    +b the development of audit record generation capabilities. It aligns closely with
+                    +b IEC 62443-4-2 CR 2.8 in terms of establishing categories of auditable events."
+            {
+                standard "ISO/IEC 15408-2:2008"
+                reference "Security Functional Requirements - FAU_GEN.1"
+                details "The Common Criteria standard specifies functional requirements for audit data
+                    +b generation, which includes the ability to generate audit records for
+                    +b security-relevant events. It provides a framework similar to the auditing
+                    +b requirements in IEC 62443-4-2."
+    {
+        id "FSA-CR 2.8B"
+        check_description "Individual audit records shall include timestamp, source (originating device,
+            +b software process or human user account), category, type, event ID, and event
+            +b result."
+        requirement_id "IEC 62443-4-2: CR 2.8(a)-(f)"
+        title "Auditable Events - Data Fields"
+        description "This requirement specifies the need to ensure that sufficient data fields are
+            +b included in the logs of auditable events to support the analysis of security
+            +b incidents. It emphasizes capturing relevant information to facilitate audit and
+            +b incident investigation processes."
+        { key_aspects
+            [ data_fields
+                "Timestamp of the event"
+                "Source and destination IP address"
+                "User identity associated with the event"
+                "Type of event and event outcome"
+                "Affected system components"
+                "Additional context or metadata relevant to the event"
+            purpose "To enable comprehensive auditing and forensic analysis in the event of a
+                +b security incident, it is crucial that logs contain adequate and relevant
+                +b information."
+            implementation "Organizations should implement logging mechanisms that capture the specified
+                +b data fields and ensure these logs are protected, retained, and accessible for
+                +b audit purposes."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.12.4"
+                description "Logging and monitoring - emphasizes the importance of event logging and
+                    +b monitoring to detect unauthorized information processing activities."
+            { "NIST SP 800-92"
+                section "Guide to Computer Security Log Management"
+                description "Provides comprehensive guidelines on effective log management, including the
+                    +b selection of key data fields and their role in security event analysis."
+            { "NERC CIP-007-6"
+                section "R4"
+                description "Addresses security event monitoring and logging, highlighting the necessity to
+                    +b log specific data elements to support security assessments."
+            { "PCI DSS"
+                section "10"
+                description "Stipulates the implementation of logging mechanisms to track and monitor all
+                    +b access to network resources and cardholder data, specifying essential data
+                    +b fields to be captured."
+    {
+        id "FSA-CR 2.9A"
+        check_description "Components shall provide the capability to allocate audit record storage
+            +b capacity according to commonly recognized recommendations for log management."
+        requirement_id "IEC 62443-4-2: CR 2.9(a)"
+        title "Audit Storage Capacity - Allocation"
+        description "This requirement focuses on ensuring that sufficient storage capacity is
+            +b allocated for audit records. The aim is to maintain a reliable trail of audit
+            +b data that can be used for subsequent analysis and forensic investigation.
+            +b Proper allocation helps in ensuring that audit data is not lost due to
+            +b insufficient storage capacity."
+        { key_aspects
+            storage_capacity_planning "Organizations must plan and allocate adequate storage capacity based on the
+                +b expected volume of audit records. This involves estimating the volume of audit
+                +b data generated over time and ensuring that storage solutions can accommodate
+                +b this data."
+            scalability "The storage system should be scalable to accommodate increasing volumes of
+                +b audit data as the system grows or as audit requirements evolve."
+            retention_policies "Define and implement retention policies for audit data to manage storage
+                +b capacity efficiently. This includes determining how long audit records need to
+                +b be stored and ensuring that obsolete data is archived or deleted according to
+                +b policy."
+            "real-time monitoring" "Implement real-time monitoring to ensure that storage capacity is not exceeded
+                +b and that audit data is recorded without interruption."
+            "data integrity" "Ensure the integrity of audit records by implementing measures that prevent
+                +b unauthorized changes to stored audit data."
+        { related_standards
+            { "ISO/IEC 27001"
+                clause_12.4.1 "Logging and monitoring, which requires the implementation of logs to record
+                    +b user activities, exceptions, and information security events, relevant to audit
+                    +b storage considerations."
+            { "NIST SP 800-53"
+                AU-4 "Audit Storage Capacity, which emphasizes the need for organizations to allocate
+                    +b sufficient audit record storage capacity and establish a process for managing
+                    +b and modifying the capacity as needed."
+            { "CIS Controls"
+                "Control 6" "Maintenance, Monitoring, and Analysis of Audit Logs, which includes
+                    +b recommendations for ensuring sufficient storage capacity for audit logs."
+    {
+        id "FSA-CR 2.9B"
+        check_description "Components shall provide mechanisms to protect against a failure of the
+            +b component when it reaches or exceeds the audit storage capacity."
+        requirement_id "IEC 62443-4-2: CR 2.9(b)"
+        title "Audit Storage Capacity - Exceeded"
+        description "This requirement focuses on ensuring that systems have the capability to detect
+            +b and respond to situations where the storage capacity for audit logs is
+            +b exceeded. The objective is to maintain the integrity and availability of audit
+            +b logs, which are crucial for security monitoring and forensic analysis."
+        [ key_aspects
+            {
+                aspect_id "1"
+                aspect_title "Monitoring and Alerts"
+                aspect_description "Implement mechanisms to monitor the storage capacity used by audit logs and
+                    +b generate alerts when thresholds are reached. This ensures proactive management
+                    +b of storage resources and prevents potential data loss."
+            {
+                aspect_id "2"
+                aspect_title "Log Rotation and Archiving"
+                aspect_description "Establish procedures for log rotation and archiving to manage storage
+                    +b effectively. This includes automated deletion or transfer of older logs to
+                    +b prevent storage overflow while ensuring logs are preserved for the required
+                    +b retention period."
+            {
+                aspect_id "3"
+                aspect_title "Capacity Planning"
+                aspect_description "Conduct regular capacity planning exercises to predict future storage needs
+                    +b based on system usage and audit log generation rates. This helps in ensuring
+                    +b that adequate storage resources are available to handle audit data without
+                    +b interruption."
+        [ related_standards
+            {
+                standard_name "NIST SP 800-92"
+                reference_title "Guide to Computer Security Log Management"
+                reference_description "This document provides guidelines for effectively managing computer security
+                    +b logs, including aspects related to storage capacity, log retention, and
+                    +b archival procedures."
+            {
+                standard_name "ISO/IEC 27002:2013"
+                reference_title "Information technology — Security techniques — Code of practice for information
+                    +b security controls"
+                reference_description "Clause 12.4.1 discusses logging and monitoring, emphasizing the importance of
+                    +b ensuring logs are stored securely and are available when needed, aligning with
+                    +b the need to manage storage capacity effectively."
+            {
+                standard_name "CIS Controls v8"
+                reference_title "Control 8: Audit Log Management"
+                reference_description "This control outlines key practices for managing audit logs, including the need
+                    +b for monitoring log storage capacity and ensuring that logs are retained
+                    +b according to policy."
+    {
+        id "FSA-CR 2.9 RE(1)"
+        check_description "Components shall provide the capability to issue a warning when the allocated
+            +b audit record storage reaches a configurable threshold."
+        requirement_id "IEC 62443-4-2: CR 2.9 RE(1)"
+        title "Warn When Audit Record Storage Capacity Threshold Reached"
+        description "This requirement mandates that a system should be capable of issuing warnings
+            +b when the storage capacity for audit records approaches a certain predefined
+            +b threshold. This ensures that appropriate actions can be taken to prevent loss
+            +b of audit data, which is critical for maintaining the security and integrity of
+            +b the system."
+        [ key_aspects
+            {
+                aspect "Audit Record Management"
+                details "The system should have a mechanism to monitor the storage capacity dedicated to
+                    +b audit logs and generate warnings as it approaches the set threshold."
+            {
+                aspect "Threshold Configuration"
+                details "Administrators should be able to configure the threshold level at which
+                    +b warnings are triggered, allowing them to tailor the system's response to their
+                    +b specific needs."
+            {
+                aspect "Notification Mechanism"
+                details "The system must support a reliable notification mechanism to alert relevant
+                    +b personnel when the threshold is reached. This could include email alerts,
+                    +b dashboard notifications, or integration with centralized monitoring systems."
+            {
+                aspect "Preventive Measures"
+                details "By warning administrators before audit record storage is exhausted, the system
+                    +b allows for preventive measures such as increasing storage capacity, archiving
+                    +b old logs, or adjusting logging levels."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.4 Logging and Monitoring"
+                description "This control emphasizes the importance of event logging and monitoring, which
+                    +b aligns with the need to manage and maintain sufficient audit record storage to
+                    +b ensure continued logging activities."
+            {
+                standard "NIST SP 800-92"
+                reference "Guide to Computer Security Log Management"
+                description "Provides guidance on the establishment of log management infrastructures,
+                    +b including the need to handle storage limitations and ensure the availability of
+                    +b log records."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "12.4.1 Event Logging"
+                description "Advises on the implementation of event logging, including the necessity of
+                    +b ensuring logs are stored securely and remain available for review, aligning
+                    +b with the need to monitor storage capacity."

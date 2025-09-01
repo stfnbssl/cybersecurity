@@ -1,0 +1,182 @@
+$group
+    {
+        IDD "2.1.1"
+        area "Continuità operativa"
+        category "People"
+        description "La continuità dell'erogazione dei servizi di fornitura è garantita anche in
+            +b situazioni di emergenza (p.e. indisponibilità del personale, guasti tecnici)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del sistema IACS anche in
+                +b condizioni di emergenza, come richiesto dagli standard di sicurezza industriali
+                +b (es. IEC 62443)."
+        { ssdl
+            isRelevant false
+            motivation "La continuità operativa è un requisito operativo più che di sviluppo software,
+                +b pertanto non direttamente pertinente alle fasi di Secure SDL."
+        { system_integration
+            isRelevant true
+            motivation "La verifica della continuità operativa è fondamentale per sistemi IACS
+                +b integrati dove interruzioni possono causare impatti critici su processi
+                +b industriali."
+        { component_production
+            isRelevant false
+            motivation "La continuità operativa è un requisito a livello di sistema più che di singolo
+                +b componente prodotto."
+        note_su_json_risultante "La valutazione di rilevanza per SSDL e component_production è stata impostata a
+            +b false in quanto l'item riguarda principalmente aspetti operativi piuttosto che
+            +b di sviluppo o produzione componenti."
+    {
+        IDD "2.1.2"
+        area "Continuità operativa"
+        category "People"
+        description "In caso di indisponibilità delle persone chiave per l'erogazione dei servizi di
+            +b fornitura, è stato individuato un elenco di specialisti qualificati a supporto
+            +b e sono definiti piani di "call-up" per il contatto tempestivo di queste figure?"
+        { asset_owner
+            isRelevant true
+            motivation "La continuità operativa è fondamentale per un asset owner, che deve garantire
+                +b la disponibilità del sistema IACS. Piani di call-up per personale chiave
+                +b mitigano i rischi di interruzione del servizio."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la gestione operativa delle risorse umane più che
+                +b aspetti specifici dello sviluppo software. Non è direttamente applicabile alle
+                +b fasi del SDLC."
+        { system_integration
+            isRelevant true
+            motivation "I system integrator devono garantire continuità del supporto tecnico. La
+                +b disponibilità di specialisti di backup è cruciale per mantenere operativi i
+                +b sistemi integrati."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware generalmente non richiede piani di call-up
+                +b per personale specifico come controllo critico di produzione. È più rilevante
+                +b per operation che per manufacturing."
+        note_su_json_risultante "La valutazione di rilevanza per component_production è basata sull'assunto che
+            +b si tratti di produzione di hardware. Se invece includesse software embedded, la
+            +b rilevanza per SSDL potrebbe essere rivalutata."
+    {
+        IDD "2.1.3"
+        area "Continuità operativa"
+        category "People"
+        description "Il personale a supporto dell'erogazione dei servizi di fornitura è distribuito
+            +b su sedi diversificate e/o sono presenti procedure per gestire la distribuzione
+            +b del personale in siti alternativi in situazioni di crisi o emergenza (p.e.
+            +b ri-distribuzione del personale, remote working)?"
+        { asset_owner
+            isRelevant true
+            motivation "La continuità operativa del personale è critica per un asset owner per
+                +b garantire la disponibilità del sistema IACS in situazioni di crisi. La
+                +b distribuzione geografica e le procedure di emergenza mitigano i rischi di
+                +b interruzione del servizio."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda la gestione operativa del personale e non è
+                +b direttamente correlato alle fasi di sviluppo software o alle pratiche SSDL."
+        { system_integration
+            isRelevant true
+            motivation "La continuità operativa del personale è rilevante per garantire il supporto
+                +b durante l'integrazione di sistemi IACS o macchine, soprattutto in scenari
+                +b critici dove è necessaria una risposta tempestiva."
+        { component_production
+            isRelevant false
+            motivation "La distribuzione del personale e le procedure di emergenza sono meno rilevanti
+                +b per la produzione di componenti, dove l'attenzione è più focalizzata su
+                +b processi standardizzati e automazione."
+        note_su_json_risultante "Le valutazioni sono basate sull'importanza della continuità operativa per i
+            +b diversi contesti. Per l'asset owner e l'integrazione di sistema, la resilienza
+            +b del personale è critica, mentre per SSDL e produzione di componenti ha un
+            +b impatto limitato."
+    {
+        IDD "2.2.1"
+        area "Continuità operativa"
+        category "Physical infrastructure"
+        description "Le sedi dell'organizzazione sono dotate di adeguati presidi di sicurezza,
+            +b sottoposte a manutenzione periodica contro eventi di carattere ambientale? Sono
+            +b previsti piani di emergenza per gestire i disastri ambientali che potrebbero
+            +b coinvolgere tali edifici?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa delle infrastrutture
+                +b fisiche che ospitano gli IACS. La protezione contro eventi ambientali e la
+                +b pianificazione delle emergenze sono aspetti critici per garantire la
+                +b disponibilità del sistema."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda l'infrastruttura fisica e non è direttamente
+                +b correlato alle attività di sviluppo software o al Secure Software Development
+                +b Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La sicurezza fisica delle sedi dove sono installati i sistemi IACS è
+                +b fondamentale per garantire la continuità operativa. Eventi ambientali
+                +b potrebbero compromettere l'integrità del sistema o della macchina."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo è focalizzato sull'infrastruttura fisica delle sedi
+                +b organizzative e non è direttamente applicabile alla produzione di singoli
+                +b componenti."
+        note_su_json_risultante "La valutazione di rilevanza per le diverse prospettive (asset owner, SSDL,
+            +b system integration, component production) è stata effettuata considerando la
+            +b natura del controllo relativo all'infrastruttura fisica e alla continuità
+            +b operativa. Sono state corrette alcune imprecisioni ortografiche presenti nel
+            +b JSON originale ('organizzazione' e 'emergenza')."
+    {
+        IDD "2.2.2"
+        area "Continuità operativa"
+        category "Physical infrastructure"
+        description "Sono presenti misure di sicurezza volte a controllare e limitare gli accessi
+            +b fisici alle sedi dell'organizzazione (p.e. portineria, videosorveglianza,
+            +b lettori badge)?"
+        { asset_owner
+            isRelevant true
+            motivation "Il controllo degli accessi fisici è fondamentale per un asset owner per
+                +b proteggere le infrastrutture critiche IACS da minacce fisiche e garantire la
+                +b continuità operativa."
+        { ssdl
+            isRelevant false
+            motivation "Le misure di sicurezza fisiche non sono direttamente correlate al Secure
+                +b Software Development Lifecycle, che si concentra su aspetti di sviluppo
+                +b software."
+        { system_integration
+            isRelevant true
+            motivation "Il controllo degli accessi fisici è rilevante per garantire la sicurezza di
+                +b sistemi IACS o macchine integrati, proteggendoli da accessi non autorizzati."
+        { component_production
+            isRelevant false
+            motivation "Le misure di sicurezza fisiche sono generalmente gestite a livello di
+                +b sito/facility e non direttamente correlate alla produzione di singoli
+                +b componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sulla natura del controllo (sicurezza
+            +b fisica) e sul suo impatto nei diversi contesti IACS. La proprietà 'asset_owner'
+            +b è stata aggiunta pur non essendo nel required dello schema per completezza."
+    {
+        IDD "2.3.1"
+        area "Continuità operativa"
+        category "Information and data"
+        description "È presente una procedura aziendale per classificare, etichettare e conservare
+            +b le informazioni sia cartacee che elettroniche?"
+        { asset_owner
+            isRelevant true
+            motivation "La classificazione e conservazione delle informazioni è critica per l'asset
+                +b owner per garantire la continuità operativa e la protezione dei dati sensibili
+                +b dell'IACS."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la gestione delle informazioni sia importante, questa specifica
+                +b procedura non è direttamente correlata alle attività di sviluppo software del
+                +b Secure SDLC."
+        { system_integration
+            isRelevant true
+            motivation "La corretta gestione delle informazioni è essenziale durante l'integrazione di
+                +b sistemi IACS per garantire che i dati critici siano protetti e disponibili."
+        { component_production
+            isRelevant true
+            motivation "La classificazione e conservazione delle informazioni è rilevante nella
+                +b produzione di componenti per garantire la tracciabilità e la protezione dei
+                +b dati sensibili."
+        note_su_json_risultante "Le valutazioni sono state effettuate considerando l'importanza della gestione
+            +b delle informazioni nei diversi contesti IACS. La rilevanza per l'asset owner e
+            +b la produzione di componenti è stata valutata come alta, mentre per il SSDL come
+            +b non direttamente applicabile."

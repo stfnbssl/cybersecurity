@@ -1,0 +1,127 @@
+ittf
+
+    $*
+        AI extension of lbvsa
+        model lbvsa in /.wizzi-override/models/LB Vendor Security Assesment.json
+    *$
+
+    $
+        var step_name = 'lbvsa.step_2';
+        var x_options = {
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.lbvsa_checklist_classification, null, null),
+        } 
+        // var provider = 'chatGPT';
+        var provider = 'deepSeek';
+        // var provider = 'grok';
+        var maxNumInBatch = 5;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+        var ctx = {};
+        var checkListItems = {};
+        function cleanName(name) {
+            var retval = name.indexOf(' ') > -1 ? '"' + name + '"' : name;
+            return _.replace(retval,'(',"$"+"{'('}");
+        }
+
+    $foreach item in lbvsa
+        $
+            checkListItems[item.IDD] = item;
+
+    $foreach dc in wzCtx.Data.classifiers
+        $
+            ctx[dc.name] = {};
+
+    $
+        function add(type, key, value) {
+            var x = ctx[type];
+            if (!_.isObject(x)) {
+                ctx[type] = {}
+                x = ctx[type];
+            }
+            var y = x[key];
+            if (!_.isObject(y)) {
+                x[key] = { items: [] }
+                y = x[key];
+            }
+            // y.items.push(value);
+            y.items.push(value.IDD);
+        }
+
+    $foreach item in lbvsa
+        $foreach dc in wzCtx.Data.classifiers
+            $if item[dc.property] != '-'
+                $
+                    add(dc.name, item[dc.property], item);
+
+    $foreach clItem in lbvsa
+        $ _.log('----> item.IDD', item.IDD);
+        $if count > maxNumInBatch
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [clItem]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(clItem);
+                count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/lbvsa/ai_step_3_in/batch-${batch.id}.ai.ittf
+            $ _.log('batch.id', batch.id)
+            ai lab
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $
+                        var batchItemJSON = {
+                            idd: batchItem.IDD,
+                            area: batchItem.Ambito,
+                            category: batchItem.Categoria,
+                            description: batchItem['Descrizione requisito'],
+                            note: batchItem['Ulteriori note']
+                        };
+                        var batchItemJSONString = _.stringify(batchItemJSON, null, null);
+                        var options = {
+                            name: 'clist-item-' + batchItem.IDD,
+                            description: 'clist extension of item ' + batchItem.IDD,
+                            inputJSON: batchItemJSON,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_options.step_3_JSONSchema,
+                            product_supplier_JSON: null, // not used
+                            provider: provider,
+                        }
+
+                    $foreach dc in wzCtx.Data.classifiers
+                        $if dc.isSpecification
+                            $if _.isNotEmpty(item[dc.property]) && item[dc.property] != '-'
+                                $
+                                    options.inputJSON[''+cleanName(dc.property)] = item[dc.property];
+
+                    call ${options.name}
+                        description ${options.description}
+                        ai/call_header( &options )
+                            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                                ${'\\'}ed assisti gli auditor nel produrre checklist.
+                        message
+                            role user
+                            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                                ${'\\'}n Sotto riporto il JSON schema del database e il JSON di un item della check list. 
+                                ${'\\'}n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                                ${'\\'}n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                                ${'\\'}n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle 
+                                ${'\\'}n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina 
+                                ${'\\'}n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                                ai/schema_data_return( &options, step )

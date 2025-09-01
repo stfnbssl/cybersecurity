@@ -1,0 +1,415 @@
+$group
+    {
+        id "FR-2"
+        key "UC"
+        name "Use control"
+        page 36
+        purpose "Enforce the assigned privileges of an authenticated user (human, software process or device) to 
+            +b perform the requested action on the IACS and monitor the use of these privileges."
+        rationale "Once the user is identified and authenticated, the control system has to restrict the 
+            +b allowed actions to the authorized use of the control system. 
+            +b Asset owners and system integrators will have to assign, to each user (human, software process or device), 
+            +b group, role, etc. (see 5.6, SR 1.4 – Identifier management) the privileges defining the authorized use of the IACS. 
+            +b The goal of use control is to protect against unauthorized actions on the control system resources by 
+            +b verifying that the necessary privileges have been granted before allowing a user to perform the actions. 
+            +b Examples of actions are reading or writing data, downloading programs and setting configurations. 
+            +b Recommendations and guidelines should include mechanisms that will operate in mixed modes. 
+            +b For example, some control system resources require strong use control protection, 
+            +b such as restrictive privileges, and others do not. 
+            +b By extension, use control requirements need to be extended to data at rest. 
+            +b User privileges may vary based on time-of-day/date, location and means by which access is made."
+        [ security_levels_descriptions
+            "SL 1 – Restrict use of the IACS according to specified privileges to protect against casual or coincidental misuse."
+            "SL 2 – Restrict use of the IACS according to specified privileges to protect against circumvention by entities using simple means with low resources, generic skills and low motivation."
+            "SL 3 – Restrict use of the IACS according to specified privileges to protect against circumvention by entities using sophisticated means with moderate resources, IACS specific skills and moderate motivation."
+            "SL 4 – Restrict use of the IACS according to specified privileges to protect against circumvention by entities using sophisticated means with extended resources, IACS specific skills and high motivation."
+        [ srs
+            {
+                id "SR 2.1"
+                page 37
+                name "Authorization enforcement"
+                description "On all interfaces, the control system shall provide the capability to 
+                    +b enforce authorizations assigned to all human users for controlling use of the control system to 
+                    +b support segregation of duties and least privilege."
+                rationale "Use control policies (for example, identity-based policies, 
+                    +b role-based policies and rule-based policies) and associated read/write access enforcement mechanisms 
+                    +b (for example, access control lists, access control matrices and cryptography) 
+                    +b are employed to control usage between users (humans, software processes and devices) and 
+                    +b assets (for example, devices, files, records, software processes, programs and domains).
+                    +b After the control system has verified the identity of a user (human, software process or device) 
+                    +b (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, 
+                    +b SR 1.2 – Software process and device identification and authentication), 
+                    +b it also has to verify that a requested operation is actually permitted according to 
+                    +b the defined security policies and procedures. 
+                    +b For example, in a role-based access control policy, the control system would check 
+                    +b which roles are assigned to a verified user or asset and which privileges are assigned to these roles – 
+                    +b if the requested operation is covered by the permissions, it is executed, otherwise rejected. 
+                    +b This allows the enforcement of segregation of duties and least privileges. 
+                    +b Usage enforcement mechanisms should not be allowed to adversely affect the operational performance of 
+                    +b the control system.
+                    +b Planned or unplanned changes to control system components can have significant effects on the 
+                    +b overall security of the control system. 
+                    +b Accordingly, only qualified and authorized individuals should obtain the use of control system components 
+                    +b for purposes of initiating changes, including upgrades and modifications."
+                [ rhs
+                    {
+                        id "SR 2.1 RE 1"
+                        name "Authorization enforcement for all users"
+                        description "On all interfaces, the control system shall provide the capability to 
+                            +b enforce authorizations assigned to all users (humans, software processes and devices) 
+                            +b for controlling use of the control system to support segregation of duties and least privilege."
+                    {
+                        id "SR 2.1 RE 2"
+                        name "Permission mapping to roles"
+                        description "The control system shall provide the capability for an authorized user or role to 
+                            +b define and modify the mapping of permissions to roles for all human users."
+                        [ notes
+                            "It is a commonly accepted good practice to not limit roles to fixed nested hierarchies 
+                                +b in which a higher level role is a superset of a lesser privileged role. 
+                                +b For example, a system administrator generally does not necessarily encompass operator privileges."
+                            "This RE is applicable to software processes and devices as well."
+                    {
+                        id "SR 2.1 RE 3"
+                        name "Supervisor override"
+                        description "The control system shall support supervisor manual override of the current 
+                            +b human user authorizations for a configurable time or event sequence."
+                        [ notes
+                            "Implementation of a controlled, audited and manual override of automated mechanisms 
+                                +b in the event of emergencies or other serious events is often needed. 
+                                +b This allows a supervisor to enable an operator to quickly react to unusual conditions 
+                                +b without closing the current session and establishing a new session 
+                                +b as a higher privilege human user."
+                    {
+                        id "SR 2.1 RE 4"
+                        name "Dual approval"
+                        description "The control system shall support dual approval where an action 
+                            +b can result in serious impact on the industrial process."
+                        [ notes
+                            "It is a commonly accepted good practice to limit dual approval to actions which require 
+                                +b a very high level of confidence that they will be performed reliably and correctly. 
+                                +b Requiring dual approval provides emphasis to the seriousness of consequences that 
+                                +b would result from failure of a correct action. 
+                                +b An example of a situation in which dual approval is required would be a change to a 
+                                +b set point of a critical industrial process. 
+                                +b It is a commonly accepted good practice to not employ dual approval mechanisms when 
+                                +b an immediate response is necessary to safeguard HSE consequences, for example, 
+                                +b emergency shutdown of an industrial process."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.1"
+                    "SL-C (UC, control system) 2: SR 2.1 (1) (2)"
+                    "SL-C (UC, control system) 3: SR 2.1 (1) (2) (3)"
+                    "SL-C (UC, control system) 4: SR 2.1 (1) (2) (3) (4)"
+
+            {
+                id "SR 2.2"
+                page 37
+                name "Wireless use control"
+                description "The control system shall provide the capability to authorize, 
+                    +b monitor and enforce usage restrictions for wireless connectivity to the control system according to 
+                    +b commonly accepted security industry practices."
+                rationale "Any wireless technology can, and in most cases should, be considered just another 
+                    +b communication protocol option, and thus subject to the same IACS security requirements as 
+                    +b any other communication type utilized by the IACS. 
+                    +b However, a risk analysis may result in a requirement for wireless IACS components to 
+                    +b support higher use control capabilities than are typically required of wired systems 
+                    +b for the same use case and SL-T. 
+                    +b Regulatory differences may also result in different required capabilities between 
+                    +b wired and wireless communications.
+                    +b As noted in 5.8, SR 1.6 – Wireless access management, wireless technologies include, 
+                    +b but are not limited to, microwave, satellite, packet radio, IEEE 802.11x, 
+                    +b IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), 
+                    +b wireless LAN mobile routers, mobile phones with tethering and various infrared technologies."
+                [ rhs
+                    {
+                        id "SR 2.2 RE 1"
+                        name "Identify and report unauthorized wireless devices"
+                        description "The control system shall provide the capability to identify and report 
+                            +b unauthorized wireless devices transmitting within the control system physical environment."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.2"
+                    "SL-C (UC, control system) 2: SR 2.2"
+                    "SL-C (UC, control system) 3: SR 2.2 (1)"
+                    "SL-C (UC, control system) 4: SR 2.2 (1)"
+
+            {
+                id "SR 2.3"
+                page 38
+                name "Use control for portable and mobile devices"
+                description "The control system shall provide the capability to automatically enforce configurable 
+                    +b usage restrictions that include:"
+                [ subs
+                    "a) preventing the use of portable and mobile devices;" 
+                    "b) requiring context specific authorization; and" 
+                    "c) restricting code and data transfer to/from portable and mobile devices."
+                rationale "Portable and mobile devices may introduce undesired network traffic, 
+                    +b malware and/or information exposure, so there should be specific control associated with 
+                    +b their usage in the typical control system environment. 
+                    +b Security policies and procedures may not allow certain functions or activities 
+                    +b via portable and/or mobile devices. 
+                    +b Refer to IEC 62443‑2‑1 for guidance on when and where portable and mobile devices usage should be permitted.
+                    +b Protecting information residing on portable and mobile devices 
+                    +b (for example, employing cryptographic mechanisms to provide confidentiality 
+                    +b and integrity protections during storage and while in transit when outside of controlled areas) 
+                    +b is covered elsewhere (see Clause 8, FR 4 – Data confidentiality)."
+                [ rhs
+                    {
+                        id "SR 2.3 RE 1"
+                        name "Enforcement of security status of portable and mobile devices"
+                        description "The control system shall provide the capability to verify that portable or 
+                            +b mobile devices attempting to connect to a zone comply with the security requirements of that zone."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.3"
+                    "SL-C (UC, control system) 2: SR 2.3"
+                    "SL-C (UC, control system) 3: SR 2.3 (1)"
+                    "SL-C (UC, control system) 4: SR 2.3 (1)"
+
+            {
+                id "SR 2.4"
+                page 39
+                name "Mobile code"
+                description "The control system shall provide the capability to enforce usage restrictions for 
+                    +b mobile code technologies based on the potential to cause damage to the control system that include:"
+                [ subs
+                    "a) preventing the execution of mobile code;" 
+                    "b) requiring proper authentication and authorization for origin of the code;" 
+                    "c) restricting mobile code transfer to/from the control system; and "
+                    "d) monitoring the use of mobile code."
+                rationale "Mobile code technologies include, but are not limited to, Java, JavaScript, ActiveX, 
+                    +b portable document format (PDF), Postscript, Shockwave movies, Flash animations and VBScript. 
+                    +b Usage restrictions apply to both the selection and use of mobile code installed on 
+                    +b servers and mobile code downloaded and executed on individual workstations. 
+                    +b Control procedures should prevent the development, acquisition or introduction of 
+                    +b unacceptable mobile code within the control system. 
+                    +b For example, mobile code exchanges may be disallowed directly with the control system, 
+                    +b but may be allowed in a controlled adjacent environment maintained by IACS personnel."
+                [ rhs
+                    {
+                        id "SR 2.4 RE 1"
+                        name "Mobile code integrity check"
+                        description "The control system shall provide the capability to verify integrity of 
+                            +b the mobile code before allowing code execution."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.4"
+                    "SL-C (UC, control system) 2: SR 2.4"
+                    "SL-C (UC, control system) 3: SR 2.4 (1)"
+                    "SL-C (UC, control system) 4: SR 2.4 (1)"
+
+            {
+                id "SR 2.5"
+                page 40
+                name "Session lock"
+                description "The control system shall provide the capability to prevent further access by 
+                    +b initiating a session lock after a configurable time period of inactivity or by manual initiation. 
+                    +b The session lock shall remain in effect until the human user who owns the session or 
+                    +b another authorized human user re-establishes access using appropriate identification and 
+                    +b authentication procedures."
+                rationale "The entity responsible for a control system should employ session lock to 
+                    +b prevent access to specified workstations or nodes. 
+                    +b The control system should activate session lock mechanisms automatically after a 
+                    +b configurable time period for designated workstations or nodes. 
+                    +b In some cases, session lock for control system operator workstations or nodes 
+                    +b is not advised (for example, sessions which are required for immediate operator responses 
+                    +b in emergency situations). 
+                    +b Session locks are not a substitute for logging out of the control system. 
+                    +b In situations where the control system cannot support session lock, 
+                    +b the responsible entity should employ appropriate compensating countermeasures 
+                    +b (for example, providing increased physical security, personnel security and auditing measures)."
+                [ rhs
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.5"
+                    "SL-C (UC, control system) 2: SR 2.5"
+                    "SL-C (UC, control system) 3: SR 2.5"
+                    "SL-C (UC, control system) 4: SR 2.5"
+
+            {
+                id "SR 2.6"
+                page 40
+                name "Remote session termination"
+                description "The control system shall provide the capability to terminate a remote session 
+                    +b either automatically after a configurable time period of inactivity or manually by 
+                    +b the user who initiated the session."
+                rationale "A remote session is initiated whenever a control system is accessed across 
+                    +b the boundary of a zone defined by the asset owner based on their risk assessment. 
+                    +b This requirement may be limited to sessions that are used for control system monitoring and 
+                    +b maintenance activities (not critical operations) based on the risk assessment of 
+                    +b the control system and security policies and procedures. 
+                    +b Some control systems or components may not allow sessions to be terminated."
+                [ rhs
+                [ security_levels
+                    "SL-C (UC, control system) 1: Not Selected"
+                    "SL-C (UC, control system) 2: SR 2.6"
+                    "SL-C (UC, control system) 3: SR 2.6"
+                    "SL-C (UC, control system) 4: SR 2.6"
+            {
+                id "SR 2.7"
+                page 41
+                name "Concurrent session control"
+                description "The control system shall provide the capability to limit the number of 
+                    +b concurrent sessions per interface for any given user (human, software process or device) to a 
+                    +b configurable number of sessions."
+                rationale "A resource starvation DoS might occur if a limit is not imposed. 
+                    +b There is a trade-off between potentially locking out a specific user versus 
+                    +b locking out all users and services due to a lack of control system resources. 
+                    +b Product supplier and/or system integrator guidance is likely required to provide 
+                    +b sufficient information as to how the number of sessions value should be assigned."
+                [ rhs
+                [ security_levels
+                    "SL-C (UC, control system) 1: Not Selected"
+                    "SL-C (UC, control system) 2: Not Selected"
+                    "SL-C (UC, control system) 3: SR 2.7"
+                    "SL-C (UC, control system) 4: SR 2.7"
+
+            {
+                id "SR 2.8"
+                page 41
+                name "Auditable events"
+                description "The control system shall provide the capability to generate audit records relevant to 
+                    +b security for the following categories: access control, request errors, operating system events, 
+                    +b control system events, backup and restore events, configuration changes, 
+                    +b potential reconnaissance activity and audit log events. 
+                    +b Individual audit records shall include the timestamp, source 
+                    +b (originating device, software process or human user account), category, type, event ID and event result."
+                rationale "The purpose of this requirement is to record the occurrence of important events which need 
+                    +b to be audited as significant and relevant to the security of the control system. 
+                    +b Auditing activity can affect control system performance. 
+                    +b The security audit function is usually coordinated with the network health and status monitoring function 
+                    +b which may be in a different zone. 
+                    +b Commonly recognized and accepted checklists and configuration guides should be considered when 
+                    +b compiling a list of auditable events. 
+                    +b The security policies and procedures should define auditable events that are adequate to 
+                    +b support after-the-fact investigations of security incidents. 
+                    +b In addition, audit records should be sufficient to monitor the effectiveness and proper operation of 
+                    +b the security mechanisms utilized to meet the requirements in this standard.
+                    +b It should be noted that the requirement for event recording is applicable within the 
+                    +b given system functionality, specifically given system security requirements on a given level. 
+                    +b For example, the requirement for recording of authentication events (in the access control category) 
+                    +b on a SL 1 system is only applicable to the level of authentication functionality required for 
+                    +b SL 1 according to the requirements in Clause 5. 
+                    +b Events may occur in any control system component (for example login events) or may be observed 
+                    +b by dedicated monitors. 
+                    +b For example, port scanning might be detected by an intrusion detection system (IDS) or 
+                    +b intrusion prevention system (IPS)."
+                [ rhs
+                    {
+                        id "SR 2.8 RE 1"
+                        name "Centrally managed, system-wide audit trail"
+                        description "The control system shall provide the capability to centrally manage audit events and 
+                            +b to compile audit records from multiple components throughout the control system into a 
+                            +b system-wide (logical or physical), time-correlated audit trail. 
+                            +b The control system shall provide the capability to export these audit records in 
+                            +b industry standard formats for analysis by standard commercial log analysis tools, for example, 
+                            +b security information and event management (SIEM)."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.8"
+                    "SL-C (UC, control system) 2: SR 2.8"
+                    "SL-C (UC, control system) 3: SR 2.8 (1)"
+                    "SL-C (UC, control system) 4: SR 2.8 (1)"
+
+            {
+                id "SR 2.9"
+                page 42
+                name "Audit storage capacity"
+                description "The control system shall allocate sufficient audit record storage capacity according to 
+                    +b commonly recognized recommendations for log management and system configuration. 
+                    +b The control system shall provide auditing mechanisms to reduce the likelihood of such capacity being exceeded."
+                rationale "The control system should provide sufficient audit storage capacity, 
+                    +b taking into account retention policy, 
+                    +b the auditing to be performed and the online audit processing requirements. 
+                    +b Guidelines to be considered could include the NIST Special Publication (SP) 800-92 [27]. 
+                    +b The audit storage capacity should be sufficient to retain logs for a period of time required by 
+                    +b applicable policies and regulations or business requirements."
+                [ rhs
+                    {
+                        id "SR 2.9 RE 1"
+                        name "Warn when audit record storage capacity threshold reached"
+                        description "The control system shall provide the capability to issue a warning when 
+                            +b the allocated audit record storage volume reaches a configurable percentage of 
+                            +b maximum audit record storage capacity."
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.9"
+                    "SL-C (UC, control system) 2: SR 2.9"
+                    "SL-C (UC, control system) 3: SR 2.9 (1)"
+                    "SL-C (UC, control system) 4: SR 2.9 (1)"
+            {
+                id "SR 2.10"
+                page 43
+                name "Response to audit processing failures"
+                description "The control system shall provide the capability to alert personnel and prevent 
+                    +b the loss of essential services and functions in the event of an audit processing failure. 
+                    +b The control system shall provide the capability to support appropriate actions in response to 
+                    +b an audit processing failure according to commonly accepted industry practices and recommendations."
+                rationale "Audit generation typically occurs at the source of the event. 
+                    +b Audit processing involves transmission, possible augmentation (such as the addition of a timestamp) and 
+                    +b persistent storage of the audit records. 
+                    +b Audit processing failures include, for example, software or hardware errors, 
+                    +b failures in the audit capturing mechanisms and audit storage capacity being reached or exceeded. 
+                    +b Guidelines to be considered when designing appropriate response actions may include the NIST SP800-92. 
+                    +b It should be noted that either overwriting the oldest audit records or halting audit log generation are 
+                    +b possible responses to audit storage capacity being exceeded but 
+                    +b imply the loss of potentially essential forensic information."
+                [ rhs
+                [ security_levels
+                    "SL-C (UC, control system) 1: SR 2.10"
+                    "SL-C (UC, control system) 2: SR 2.10"
+                    "SL-C (UC, control system) 3: SR 2.10"
+                    "SL-C (UC, control system) 4: SR 2.10"
+            {
+                id "SR 2.11"
+                page 43
+                name "Timestamps"
+                description "The control system shall provide timestamps for use in audit record generation."
+                rationale "Timestamps (including date and time) of audit records should be generated using internal system clocks. 
+                    +b If system-wide time synchronization is not present (which is typical in many installations), 
+                    +b known offsets would be needed to support analysis of a sequence of events. 
+                    +b In addition, synchronization of internally generated audit records with external events 
+                    +b might require synchronization with a generally recognized external time source 
+                    +b (such as the Global Positioning System (GPS), Global Navigation Satellite System (GLONASS) and Galileo). 
+                    +b The time source should be protected from unauthorized alteration."
+                [ rhs
+                    {
+                        id "SR 2.11 RE 1"
+                        name "Internal time synchronization"
+                        description "The control system shall provide the capability to synchronize internal system clocks at 
+                            +b a configurable frequency."
+                    {
+                        id "SR 2.11 RE 2"
+                        name "Protection of time source integrity"
+                        description "The time source shall be protected from unauthorized alteration and 
+                            +b shall cause an audit event upon alteration."
+                [ security_levels
+                    "SL-C (UC, control system) 1: Not selected"
+                    "SL-C (UC, control system) 2: SR 2.11"
+                    "SL-C (UC, control system) 3: SR 2.11 (1)"
+                    "SL-C (UC, control system) 4: SR 2.11 (1) (2)"
+
+
+            {
+                id "SR 2.12"
+                page 43
+                name "Non-repudiation"
+                description "The control system shall provide the capability to determine whether a given human user 
+                    +b took a particular action."
+                rationale "Examples of particular actions taken by a user include performing operator actions, 
+                    +b changing control system configurations, creating information, sending a message, 
+                    +b approving information (such as indicating concurrence) and receiving a message. 
+                    +b Non-repudiation protects against later false claims by a user of not having taken a specific action, 
+                    +b by an author of not having authored a particular document, 
+                    +b by a sender of not having transmitted a message, 
+                    +b by a receiver of not having received a message or 
+                    +b by a signatory of not having signed a document. 
+                    +b Non-repudiation services can be used to determine if information originated from a user, 
+                    +b if a user took specific actions (for example, sending an email and approving a work order) or 
+                    +b received specific information. 
+                    +b Non-repudiation services are obtained by employing various techniques or mechanisms 
+                    +b (for example, digital signatures, digital message receipts and timestamps)."
+                [ rhs
+                    {
+                        id "SR 2.12 RE 1"
+                        name "Non-repudiation for all users"
+                        description "The control system shall provide the capability to determine whether a given user 
+                            +b (human, software process or device) took a particular action."
+                [ security_levels
+                    "SL-C (UC, control system) 1: Not Selected"
+                    "SL-C (UC, control system) 2: Not Selected"
+                    "SL-C (UC, control system) 3: SR 2.12"
+                    "SL-C (UC, control system) 4: SR 2.12 (1)"

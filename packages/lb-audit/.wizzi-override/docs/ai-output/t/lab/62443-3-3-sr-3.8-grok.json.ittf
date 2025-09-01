@@ -1,0 +1,89 @@
+$group
+    {
+        [ requirements
+            {
+                id "SR 3.8"
+                name "Session integrity"
+                description "The control system shall provide the capability to protect the integrity of
+                    +b sessions. The control system shall reject any usage of invalid session IDs."
+                rationale "This control focuses on communications protection at the session, versus
+                    +b packet, level. The intent of this control is to establish grounds for
+                    +b confidence at each end of a communications session in the ongoing identity of
+                    +b the other party and in the validity of the information being transmitted. For
+                    +b example, this control addresses man-in-the-middle attacks including session
+                    +b hijacking, insertion of false information into a session or replay attacks. Use
+                    +b of session integrity mechanisms can have a significant overhead and therefore
+                    +b their use should be considered in light of requirements for real-time
+                    +b communications."
+                page 51
+                standard "IEC 62443-3-3"
+                category "System Integrity"
+                [ enhancements
+                    {
+                        id "SR 3.8 RE 1"
+                        name "Invalidation of session IDs after session termination"
+                        description "The control system shall provide the capability to invalidate session IDs upon
+                            +b user logout or other session termination (including browser sessions)."
+                    {
+                        id "SR 3.8 RE 2"
+                        name "Unique session ID generation"
+                        description "The control system shall provide the capability to generate a unique session ID
+                            +b for each session and treat all unexpected session IDs as invalid."
+                    {
+                        id "SR 3.8 RE 3"
+                        name "Randomness of session IDs"
+                        description "The control system shall provide the capability to generate unique session IDs
+                            +b with commonly accepted sources of randomness."
+                        [ notes
+                            "Session hijacking and other man-in-the-middle attacks or injections of false information often take advantage of easy-to-guess session IDs (keys or other shared secrets) or use of session IDs which were not properly invalidated after session termination. Therefore the validity of a session authenticator needs to be tightly connected to the lifetime of a session. Employing randomness in the generation of unique session IDs helps to protect against brute-force attacks to determine future session IDs."
+                explanation "This requirement mandates that control systems implement mechanisms to
+                    +b safeguard session integrity, primarily by validating and rejecting invalid
+                    +b session IDs. It addresses threats at the session layer, ensuring that
+                    +b communications remain trustworthy and resistant to interception or
+                    +b manipulation. Enhancements build on this by adding specifics like session
+                    +b invalidation, uniqueness, and randomness to strengthen defenses against
+                    +b advanced attacks."
+                context "In industrial control systems (ICS), session integrity is vital for secure
+                    +b interactions between components such as human-machine interfaces (HMIs),
+                    +b programmable logic controllers (PLCs), and supervisory systems. This
+                    +b requirement applies to environments where real-time data exchange is critical,
+                    +b but security must not be compromised, especially in sectors like manufacturing,
+                    +b energy, and utilities where session tampering could lead to operational
+                    +b failures or safety hazards."
+                [ challenges
+                    "Balancing security mechanisms with real-time performance requirements in ICS, as integrity checks can introduce latency."
+                    "Integrating session integrity features into legacy systems that lack native support for modern cryptographic protocols."
+                    "Ensuring randomness in session ID generation without relying on weak entropy sources, particularly in resource-constrained embedded devices."
+                    "Managing the overhead of session management in distributed systems with high availability needs."
+                [ best_practices
+                    "Implement transport layer security (TLS) protocols to encrypt and authenticate sessions, ensuring integrity checks are performed automatically."
+                    "Use cryptographically secure pseudo-random number generators (CSPRNGs) for session ID creation to prevent predictability."
+                    "Enforce automatic session timeouts and invalidation after inactivity or logout to minimize exposure windows."
+                    "Conduct regular security audits and penetration testing focused on session-related vulnerabilities, such as hijacking or replay attacks."
+                    "Integrate session integrity monitoring into security information and event management (SIEM) systems for anomaly detection."
+                [ security_levels
+                    {
+                        level "SL-C (SI, control system) 1"
+                        applicability "Not Selected"
+                    {
+                        level "SL-C (SI, control system) 2"
+                        applicability "SR 3.8"
+                    {
+                        level "SL-C (SI, control system) 3"
+                        applicability "SR 3.8 (1) (2)"
+                    {
+                        level "SL-C (SI, control system) 4"
+                        applicability "SR 3.8 (1) (2) (3)"
+                { compliance
+                    status "Not Started"
+                    last_audit "2024-10-03T14:00:00Z"
+                    [ testing_requirements
+                        "Penetration testing for session hijacking and man-in-the-middle attacks"
+                        "Verification of session ID invalidation upon termination and rejection of invalid IDs"
+                        "Assessment of session ID randomness using entropy analysis tools"
+                    responsible_team "Security Team"
+                { metadata
+                    version "1.0.0"
+                    created_at "2024-10-03T14:00:00Z"
+                    updated_at "2024-10-03T14:00:00Z"
+                    author "Security Team"

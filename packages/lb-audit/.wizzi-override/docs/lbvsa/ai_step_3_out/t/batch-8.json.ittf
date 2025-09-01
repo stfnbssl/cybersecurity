@@ -1,0 +1,180 @@
+$group
+    {
+        IDD "3.2.1"
+        area "Legal & Compliance"
+        category "Notifica di incidenti di sicurezza"
+        description "I processi di gestione degli incidenti di sicurezza prevedono la segnalazione
+            +b degli incidenti ai CSIRT o autorità competenti entro tempi inferiori alle 72
+            +b ore?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della compliance legale e della gestione degli
+                +b incidenti nel proprio IACS. La tempestiva notifica è critica per adempiere a
+                +b obblighi normativi (es. NIS2) e mitigare impatti operativi."
+        { ssdl
+            isRelevant false
+            motivation "La notifica di incidenti è un processo operativo/post-deployment, non
+                +b direttamente collegato alle fasi di sviluppo software. Tuttavia, il SSDL
+                +b potrebbe includere linee guida per la gestione delle vulnerabilità scoperte
+                +b durante lo sviluppo."
+        { system_integration
+            isRelevant true
+            motivation "I system integrator devono garantire che i sistemi IACS integrati abbiano
+                +b meccanismi per rilevare e segnalare incidenti, conformi ai requisiti legali del
+                +b contesto operativo."
+        { component_production
+            isRelevant false
+            motivation "La notifica di incidenti riguarda la gestione operativa del sistema, non la
+                +b produzione del singolo componente. Fanno eccezione componenti con funzionalità
+                +b native di incident reporting (es. log centralizzati)."
+        note_su_json_risultante "La valutazione SSDL è stata impostata come 'false' poiché l'item riguarda
+            +b processi operativi. Tuttavia, in contesti con SSDL esteso (es. inclusione di
+            +b Security Operations), potrebbe essere parzialmente rilevante."
+    {
+        IDD "3.2.2"
+        area "Legal & Compliance"
+        category "Notifica di incidenti di sicurezza"
+        description "I processi di gestione degli incidenti di sicurezza prevedono la segnalazione
+            +b ai soggetti interessati in caso di incidenti aventi impatto sulla fornitura dei
+            +b servizi fondamentali?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa dei servizi
+                +b fondamentali e deve essere informato tempestivamente di incidenti che
+                +b potrebbero impattare la disponibilità o sicurezza dell'IACS."
+        { ssdl
+            isRelevant false
+            motivation "La notifica di incidenti è una fase operativa/post-deployment più che
+                +b un'attività del ciclo di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "Gli integratori di sistema devono garantire che i propri sistemi includano
+                +b meccanismi per la segnalazione di incidenti agli stakeholder rilevanti."
+        { component_production
+            isRelevant false
+            motivation "Sebbene importante, la notifica di incidenti è tipicamente responsabilità
+                +b dell'operatore del sistema più che del produttore di singoli componenti."
+        note_su_json_risultante "La valutazione SSDL è impostata a false in quanto la notifica di incidenti
+            +b riguarda principalmente l'operatività più che lo sviluppo. Per
+            +b component_production si assume che la responsabilità della notifica ricada
+            +b sull'operatore del sistema integrato."
+    {
+        IDD "3.3.1"
+        area "Legal & Compliance"
+        category "Compliance con altre normative"
+        description "La macchina o il prodotto correlato è stato progettato e costruito in modo da
+            +b evitare situazioni pericolose derivanti dal collegamento di altri dispositivi?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire che l'IACS sia sicuro anche quando interconnesso
+                +b con altri dispositivi, per prevenire rischi operativi e legali."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda principalmente l'integrazione fisica e funzionale della
+                +b macchina piuttosto che aspetti specifici dello sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "Critico per verificare che il sistema/macchina mantenga la sicurezza quando
+                +b interfacciato con dispositivi esterni, come richiesto da normative come la
+                +b Direttiva Macchine."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono garantire che i loro prodotti non introducano
+                +b vulnerabilità quando integrati in sistemi più complessi."
+        note_su_json_risultante "La valutazione SSDL è stata impostata come non rilevante in quanto il controllo
+            +b si focalizza sull'integrazione fisica/sistemistica più che sul ciclo di vita
+            +b del software. Le altre proprietà sono state allineate ai requisiti tipici delle
+            +b normative industriali (es. IEC 62443, Direttiva Macchine)."
+    {
+        IDD "3.3.2"
+        area "Legal & Compliance"
+        category "Compliance con altre normative"
+        description "I componenti hardware che trasmettono segnali o dati sono stati progettati per
+            +b essere adeguatamente protetti da alterazioni accidentali o intenzionali?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire che i componenti hardware critici siano protetti
+                +b da manomissioni, poiché alterazioni potrebbero compromettere la sicurezza
+                +b fisica e logica dell'IACS."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda specificamente la protezione fisica dell'hardware, non
+                +b aspetti legati al ciclo di sviluppo del software."
+        { system_integration
+            isRelevant true
+            motivation "La protezione da alterazioni hardware è essenziale per garantire l'integrità
+                +b del sistema IACS o della macchina durante l'integrazione e il funzionamento."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono implementare misure anti-manomissione (es.
+                +b sigilli, firmware verificato) per garantire la sicurezza intrinseca del
+                +b prodotto."
+        note_su_json_risultante "La valutazione SSDL è 'false' poiché l'item si focalizza sull'hardware. Le
+            +b altre proprietà sono rilevanti per la catena di fornitura IACS."
+    {
+        IDD "3.3.3"
+        area "Legal & Compliance"
+        category "Compliance con altre normative"
+        description "La macchina o il prodotto correlato raccoglie prove in merito a interventi
+            +b legittimi o illegittimi su componenti hardware, quando ciò è importante per il
+            +b collegamento o l'accesso al software critico?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la tracciabilità degli interventi su componenti
+                +b hardware critici per la sicurezza e l'integrità del sistema IACS. La raccolta
+                +b di prove è essenziale per verificare la conformità alle normative e rispondere
+                +b a eventuali incidenti."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda principalmente l'operatività del sistema e non
+                +b direttamente le fasi di sviluppo del software. Tuttavia, potrebbe essere
+                +b indirettamente rilevante se il software deve gestire la registrazione degli
+                +b interventi hardware."
+        { system_integration
+            isRelevant true
+            motivation "La capacità di registrare interventi hardware è cruciale per garantire
+                +b l'integrità del sistema IACS o della macchina, soprattutto in contesti dove
+                +b l'accesso fisico può compromettere la sicurezza."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono garantire che i loro prodotti supportino la
+                +b registrazione di interventi hardware, soprattutto se tali componenti sono
+                +b critici per la sicurezza del sistema in cui sono integrati."
+        note_su_json_risultante "La valutazione di 'ssdl' è stata impostata come 'false' poiché il controllo si
+            +b concentra sull'operatività più che sullo sviluppo. Tuttavia, potrebbe essere
+            +b rivista se il software di gestione degli interventi hardware è sviluppato
+            +b internamente."
+    {
+        IDD "3.3.4"
+        area "Legal & Compliance"
+        category "Compliance con altre normative"
+        description "Il software e i dati critici sono stati individuati come tali e sono
+            +b adeguatamente protetti da alterazioni accidentali o intenzionali?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la protezione dei dati e del software critico per
+                +b prevenire alterazioni che potrebbero compromettere l'integrità dell'IACS.
+                +b Questo controllo è essenziale per assicurare la conformità alle normative e la
+                +b sicurezza operativa."
+        { ssdl
+            isRelevant true
+            motivation "La protezione del software e dei dati critici da alterazioni è un requisito
+                +b fondamentale nel Secure Software Development Lifecycle (SSDLC). Questo
+                +b controllo garantisce che le misure di sicurezza siano integrate fin dalle prime
+                +b fasi dello sviluppo."
+        { system_integration
+            isRelevant true
+            motivation "La protezione da alterazioni accidentali o intenzionali è cruciale per
+                +b garantire l'integrità di un sistema IACS o di una macchina durante
+                +b l'integrazione e il funzionamento. Questo controllo assicura che i componenti
+                +b critici siano adeguatamente protetti."
+        { component_production
+            isRelevant true
+            motivation "Durante la produzione di componenti, è essenziale proteggere il software e i
+                +b dati critici da alterazioni per garantire la qualità e la sicurezza del
+                +b prodotto finale. Questo controllo è rilevante per prevenire vulnerabilità
+                +b introdotte durante la fase di produzione."
+        note_su_json_risultante "Le valutazioni sono state effettuate assumendo che il controllo sia applicabile
+            +b a un contesto industriale (IACS) e che i dati/software critici siano parte
+            +b integrante del sistema. Le motivazioni si basano su best practice di
+            +b cybersecurity industriale e normative come IEC 62443."

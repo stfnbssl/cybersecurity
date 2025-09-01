@@ -1,0 +1,187 @@
+ai lab
+    api-url http://localhost:3000
+    call 8 Security Guidelines
+        description SG-4 - Secure disposal guidelines - b) including recommendations for removing references and configuration data store ed within the environment;
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content You are an expert in industrial cybersecurity, specializing in IEC 62443-4-1. Provide structured and well-explained responses in JSON format, with comprehensive details.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare le practices dello IEC 62443-4-1.
+                \n seguendo il JSON schema fornito.
+                \n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode` e aggiungi dati coerenti per
+                \n le proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`.
+                \n Segui queste linee guida:
+                \n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in
+                \n sistemi di controllo industriale (ICS).
+                \n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                \n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico
+                \n o scenario reale per ciascun elemento.
+                \n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico
+                \n per ogni aspetto.
+                \n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA)
+                \n con una breve descrizione del contenuto.
+                \n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"practice":{"type":"string"},"code":{"type":"string"},"subCode":{"type":"string"},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"key_aspects":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"required":["id","title","description"],"additionalProperties":false}}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"required":["title","url"],"additionalProperties":false}}},"required":["practice","code","subCode","explanation","context","challenges","best_practices","key_aspects","related_links"],"additionalProperties":false}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati della seguente practice.
+                \n <practice_json>
+                \n {"practice":"8","code":"SG-4","name":"Secure disposal guidelines","subCode":"b) including recommendations for removing references and configuration data store ed within the environment;","description":"A process shall be employed to create product user documentation that includes guidelines for removing the product from use. The guidelines shall include, but is not limited to instructions and recommendations for the following: b) including recommendations for removing references and configuration data store ed within the environment;"}
+                \n </practice_json>
+                \n Ritorna il JSON risultante.
+    call 8 Security Guidelines
+        description SG-4 - Secure disposal guidelines - c) secure removal of data stored in the product;
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content You are an expert in industrial cybersecurity, specializing in IEC 62443-4-1. Provide structured and well-explained responses in JSON format, with comprehensive details.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare le practices dello IEC 62443-4-1.
+                \n seguendo il JSON schema fornito.
+                \n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode` e aggiungi dati coerenti per
+                \n le proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`.
+                \n Segui queste linee guida:
+                \n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in
+                \n sistemi di controllo industriale (ICS).
+                \n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                \n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico
+                \n o scenario reale per ciascun elemento.
+                \n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico
+                \n per ogni aspetto.
+                \n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA)
+                \n con una breve descrizione del contenuto.
+                \n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"practice":{"type":"string"},"code":{"type":"string"},"subCode":{"type":"string"},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"key_aspects":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"required":["id","title","description"],"additionalProperties":false}}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"required":["title","url"],"additionalProperties":false}}},"required":["practice","code","subCode","explanation","context","challenges","best_practices","key_aspects","related_links"],"additionalProperties":false}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati della seguente practice.
+                \n <practice_json>
+                \n {"practice":"8","code":"SG-4","name":"Secure disposal guidelines","subCode":"c) secure removal of data stored in the product;","description":"A process shall be employed to create product user documentation that includes guidelines for removing the product from use. The guidelines shall include, but is not limited to instructions and recommendations for the following: c) secure removal of data stored in the product;"}
+                \n </practice_json>
+                \n Ritorna il JSON risultante.
+    call 8 Security Guidelines
+        description SG-4 - Secure disposal guidelines - d) secure disposal of the product to prevent potential disclosure of data contained in the product that could not be removed as described in c) above.
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content You are an expert in industrial cybersecurity, specializing in IEC 62443-4-1. Provide structured and well-explained responses in JSON format, with comprehensive details.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare le practices dello IEC 62443-4-1.
+                \n seguendo il JSON schema fornito.
+                \n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode` e aggiungi dati coerenti per
+                \n le proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`.
+                \n Segui queste linee guida:
+                \n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in
+                \n sistemi di controllo industriale (ICS).
+                \n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                \n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico
+                \n o scenario reale per ciascun elemento.
+                \n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico
+                \n per ogni aspetto.
+                \n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA)
+                \n con una breve descrizione del contenuto.
+                \n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"practice":{"type":"string"},"code":{"type":"string"},"subCode":{"type":"string"},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"key_aspects":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"required":["id","title","description"],"additionalProperties":false}}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"required":["title","url"],"additionalProperties":false}}},"required":["practice","code","subCode","explanation","context","challenges","best_practices","key_aspects","related_links"],"additionalProperties":false}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati della seguente practice.
+                \n <practice_json>
+                \n {"practice":"8","code":"SG-4","name":"Secure disposal guidelines","subCode":"d) secure disposal of the product to prevent potential disclosure of data contained in the product that could not be removed as described in c) above.","description":"A process shall be employed to create product user documentation that includes guidelines for removing the product from use. The guidelines shall include, but is not limited to instructions and recommendations for the following: d) secure disposal of the product to prevent potential disclosure of data contained in the product that could not be removed as described in c) above."}
+                \n </practice_json>
+                \n Ritorna il JSON risultante.
+    call 8 Security Guidelines
+        description SG-5 - Secure operation guidelines - a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content You are an expert in industrial cybersecurity, specializing in IEC 62443-4-1. Provide structured and well-explained responses in JSON format, with comprehensive details.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare le practices dello IEC 62443-4-1.
+                \n seguendo il JSON schema fornito.
+                \n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode` e aggiungi dati coerenti per
+                \n le proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`.
+                \n Segui queste linee guida:
+                \n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in
+                \n sistemi di controllo industriale (ICS).
+                \n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                \n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico
+                \n o scenario reale per ciascun elemento.
+                \n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico
+                \n per ogni aspetto.
+                \n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA)
+                \n con una breve descrizione del contenuto.
+                \n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"practice":{"type":"string"},"code":{"type":"string"},"subCode":{"type":"string"},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"key_aspects":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"required":["id","title","description"],"additionalProperties":false}}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"required":["title","url"],"additionalProperties":false}}},"required":["practice","code","subCode","explanation","context","challenges","best_practices","key_aspects","related_links"],"additionalProperties":false}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati della seguente practice.
+                \n <practice_json>
+                \n {"practice":"8","code":"SG-5","name":"Secure operation guidelines","subCode":"a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and","description":"A process shall be employed to create product user documentation that describes: a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and"}
+                \n </practice_json>
+                \n Ritorna il JSON risultante.
+    call 8 Security Guidelines
+        description SG-5 - Secure operation guidelines - b) assumptions regarding the behavior of the user/administrator and their relationship to the secure operation of the product.
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content You are an expert in industrial cybersecurity, specializing in IEC 62443-4-1. Provide structured and well-explained responses in JSON format, with comprehensive details.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare le practices dello IEC 62443-4-1.
+                \n seguendo il JSON schema fornito.
+                \n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode` e aggiungi dati coerenti per
+                \n le proprietà `explanation`, `context`, `challenges`, `best_practices`, `key_aspects` e `related_links`.
+                \n Segui queste linee guida:
+                \n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in
+                \n sistemi di controllo industriale (ICS).
+                \n - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+                \n - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico
+                \n o scenario reale per ciascun elemento.
+                \n - Per `key_aspects`, fornisci descrizioni tecniche (50-100 parole) con un caso d’uso specifico
+                \n per ogni aspetto.
+                \n - Per `related_links`, includi almeno tre risorse autorevoli (es. standard IEC, NIST, CISA)
+                \n con una breve descrizione del contenuto.
+                \n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1.
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"practice":{"type":"string"},"code":{"type":"string"},"subCode":{"type":"string"},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"key_aspects":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"required":["id","title","description"],"additionalProperties":false}}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"},"required":["title","url"],"additionalProperties":false}}},"required":["practice","code","subCode","explanation","context","challenges","best_practices","key_aspects","related_links"],"additionalProperties":false}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati della seguente practice.
+                \n <practice_json>
+                \n {"practice":"8","code":"SG-5","name":"Secure operation guidelines","subCode":"b) assumptions regarding the behavior of the user/administrator and their relationship to the secure operation of the product.","description":"A process shall be employed to create product user documentation that describes: b) assumptions regarding the behavior of the user/administrator and their relationship to the secure operation of the product."}
+                \n </practice_json>
+                \n Ritorna il JSON risultante.

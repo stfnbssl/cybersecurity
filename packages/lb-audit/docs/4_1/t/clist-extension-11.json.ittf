@@ -1,0 +1,247 @@
+$group
+    {
+        practice "3"
+        code "SD-1"
+        name "Secure design principles"
+        sub "g) the security capabilities and/or compensating mechanisms used to safeguard
+            +b the interface and the assets defined in c) above, including input validation as
+            +b well as output and error handling;"
+        check_description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: g) the security capabilities and/or
+            +b compensating mechanisms used to safeguard the interface and the assets defined
+            +b in c) above, including input validation as well as output and error handling;"
+        requirement_id "SD-1-g"
+        title "Security Capabilities and Compensating Mechanisms"
+        description "This requirement focuses on the implementation of security capabilities and
+            +b compensating mechanisms to protect interfaces and assets. It specifically
+            +b emphasizes input validation, output handling, and error management to ensure
+            +b robust security. These mechanisms are vital for safeguarding the integrity,
+            +b confidentiality, and availability of the system."
+        { key_aspects
+            input_validation "Ensures that all incoming data is checked for correctness, format, and
+                +b completeness to prevent injection attacks and other vulnerabilities."
+            output_handling "Focuses on securely managing data that is leaving the system to prevent data
+                +b leaks and ensure sensitive information is not exposed."
+            error_handling "Involves safely managing errors to prevent leakage of sensitive system
+                +b information and avoid system crashes that could be exploited by attackers."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001"
+                description "Information Security Management Systems - Requirements. It provides a framework
+                    +b for establishing, implementing, maintaining, and continually improving an
+                    +b information security management system."
+                [ related_topics
+                    "Information security risk management"
+                    "Control objectives for information security"
+            {
+                standard_id "NIST SP 800-53"
+                description "Security and Privacy Controls for Information Systems and Organizations. It
+                    +b provides a catalog of security and privacy controls for federal information
+                    +b systems and organizations."
+                [ related_topics
+                    "System and communications protection"
+                    "System and information integrity"
+            {
+                standard_id "OWASP ASVS"
+                description "Application Security Verification Standard. It provides a basis for testing web
+                    +b application technical security controls."
+                [ related_topics
+                    "Input validation"
+                    "Output encoding"
+                    "Error handling and logging"
+            {
+                standard_id "ISO/IEC 27034-1"
+                description "Application security. Provides guidance on specifying, designing, and
+                    +b independently assessing application security."
+                [ related_topics
+                    "Application threat modeling"
+                    "Security requirements for applications"
+    {
+        practice "3"
+        code "SD-1"
+        name "Secure design principles"
+        sub "h) the use of third-party products to implement the interface and their
+            +b security capabilities;"
+        check_description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: h) the use of third-party products to
+            +b implement the interface and their security capabilities;"
+        requirement_id "SD-1-h"
+        title "Use of Third-Party Products and Their Security Capabilities"
+        description "This requirement emphasizes the importance of evaluating and integrating
+            +b third-party products with a focus on their security capabilities when
+            +b implementing interfaces within industrial automation and control systems. It
+            +b highlights the necessity to ensure that third-party components comply with
+            +b secure design principles to maintain the overall security posture of the
+            +b system."
+        [ key_aspects
+            "Evaluation of third-party product security features to ensure compatibility and compliance with security standards."
+            "Integration of third-party components should not introduce vulnerabilities into the system."
+            "Continuous assessment and monitoring of third-party products for security updates and patches."
+            "Consideration of supply chain security when selecting third-party products to prevent tampering or introduction of malicious components."
+            "Documentation of security capabilities and limitations of third-party products used in the system."
+        [ related_standards
+            {
+                standard "NIST SP 800-161"
+                reference "Supply Chain Risk Management Practices for Federal Information Systems and
+                    +b Organizations"
+                description "Provides guidelines for managing supply chain risks, which include the
+                    +b evaluation of third-party products and their security features."
+            {
+                standard "ISO/IEC 27036-1"
+                reference "Information technology — Security techniques — Information security for
+                    +b supplier relationships"
+                description "Focuses on ensuring security in supplier relationships, which is crucial when
+                    +b integrating third-party components."
+            {
+                standard "ISO/IEC 15408"
+                reference "Common Criteria for Information Technology Security Evaluation"
+                description "Outlines a framework for evaluating the security properties of IT products,
+                    +b including third-party components, to ensure they meet required security
+                    +b standards."
+            {
+                standard "OWASP Software Component Verification Standard (SCVS)"
+                reference "A framework for verifying the security of software components"
+                description "Provides methodologies to evaluate and ensure the security of software
+                    +b components, including those from third parties."
+    {
+        practice "3"
+        code "SD-1"
+        name "Secure design principles"
+        sub "i) documentation that describes how to use the interface if it is externally
+            +b accessible ; and"
+        check_description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: i) documentation that describes how to use
+            +b the interface if it is externally accessible ; and"
+        requirement_id "IEC 62443-4-1_SD-1_i"
+        title "Documentation for Externally Accessible Interfaces"
+        description "This requirement emphasizes the need to provide comprehensive documentation for
+            +b any interfaces that are accessible externally. This documentation should guide
+            +b users on how to securely interact with these interfaces, ensuring that security
+            +b is maintained during their use."
+        [ key_aspects
+            "Ensure documentation is clear and concise, providing step-by-step guidance on using the interface."
+            "Include security considerations, such as authentication and encryption, that must be adhered to when interacting with the interface."
+            "Describe potential risks associated with the interface and how to mitigate them."
+            "Update documentation regularly to reflect any changes in the interface or its security features."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "AC-3: Access Enforcement"
+                description "Provides guidelines on controlling access to interfaces through enforcement
+                    +b mechanisms, aligning with documentation that explains authorized use."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.2: User Access Management"
+                description "Focuses on managing user access, which is crucial for understanding how to
+                    +b securely use interfaces, as described in the documentation."
+            {
+                standard "OWASP API Security Top 10"
+                reference "API3:2019 - Excessive Data Exposure"
+                description "Highlights the importance of documenting how data exposure can be minimized,
+                    +b relevant for interfaces that must handle data securely."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1: Access Control"
+                description "Discusses access control measures that should be documented for external
+                    +b interfaces, ensuring secure design and implementation."
+    {
+        practice "3"
+        code "SD-1"
+        name "Secure design principles"
+        sub "j) description of how the design mitigates the threats identified in the threat
+            +b model."
+        check_description "A process shall be employed for developing and documenting a secure design that
+            +b identifies and characterizes each interface of the product, including physical
+            +b and logical interfaces, to include: j) description of how the design mitigates
+            +b the threats identified in the threat model."
+        requirement_id "SD-1"
+        title "Secure Design Principles"
+        description "This requirement focuses on the inclusion of secure design principles in the
+            +b system development lifecycle, particularly emphasizing the need to describe how
+            +b the design addresses and mitigates threats identified in the threat model."
+        { key_aspects
+            threat_modeling "The process involves identifying and evaluating potential vulnerabilities and
+                +b threats to the system, considering both internal and external risks."
+            mitigation_description "The system design must include clear documentation on how identified threats
+                +b are mitigated. This involves detailing specific security controls,
+                +b architectural decisions, and design strategies implemented to address these
+                +b threats."
+            iterative_review "Design mitigation strategies should be reviewed iteratively as part of a
+                +b continuous improvement process, ensuring they remain effective against evolving
+                +b threats."
+            "stakeholder involvement" "Involving relevant stakeholders, such as security experts and system
+                +b architects, is crucial to ensure comprehensive threat mitigation strategies are
+                +b developed and validated."
+        { related_standards
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems — Requirements"
+                relevance "Provides a framework for establishing, implementing, maintaining, and
+                    +b continually improving an information security management system, emphasizing
+                    +b risk assessment and treatment, which aligns with threat modeling and
+                    +b mitigation."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                relevance "Offers a catalog of security and privacy controls for federal information
+                    +b systems, including controls related to system and communications protection
+                    +b that can be used to address specific threats identified in threat models."
+            { "OWASP ASVS"
+                title "Application Security Verification Standard"
+                relevance "Focuses on a set of security requirements that can be used to design, build,
+                    +b and test secure applications, which supports the implementation of design
+                    +b strategies to mitigate threats."
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                relevance "Defines detailed security requirements for industrial control systems,
+                    +b including specific countermeasures that can be applied to mitigate identified
+                    +b threats as part of the secure design process."
+    {
+        practice "3"
+        code "SD-2"
+        name "Defense in depth design"
+        check_description "A process shall be employed to implement multiple layers of defense using a
+            +b risk based approach based on the threat model. This process shall be employed
+            +b for assigning responsibilities to each layer of defense."
+        requirement_id "IEC 62443-4-1:SD-2"
+        title "Defense in Depth Design"
+        description "The 'Defense in Depth Design' requirement under the 'Secure by Design' practice
+            +b emphasizes the necessity of implementing multiple layers of security controls
+            +b throughout the system architecture. This requirement is based on the principle
+            +b that a single security measure may not be sufficient to protect against all
+            +b types of cyber threats. Therefore, a multi-layered approach ensures that if one
+            +b line of defense is compromised, others remain to protect the system."
+        { key_aspects
+            multi-layered_security "Implementing multiple layers of independent security controls to mitigate risks
+                +b and limit damage in case of a breach."
+            risk_assessment "Conducting thorough risk assessments to identify potential threats and
+                +b determine appropriate defense mechanisms."
+            segmentation "Dividing the network into segments to prevent lateral movement of threats and
+                +b to control access between different parts of the system."
+            access_controls "Implementing robust access controls to ensure only authorized users have access
+                +b to critical system components."
+            monitoring_and_detection "Establishing continuous monitoring and detection capabilities to identify and
+                +b respond to threats in a timely manner."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "Security and Privacy Controls for Information Systems and Organizations"
+                relevance "Provides guidelines on security and privacy controls, including the concept of
+                    +b defense in depth through layered security measures."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information Security Management Systems"
+                relevance "Focuses on establishing, implementing, maintaining, and continually improving
+                    +b an information security management system, incorporating defense in depth
+                    +b strategies."
+            {
+                standard "IEC 62443-3-3"
+                reference "System Security Requirements and Security Levels"
+                relevance "Defines detailed security requirements for industrial control systems that
+                    +b align with the defense in depth approach."
+            {
+                standard "NIST Cybersecurity Framework"
+                reference "Framework for Improving Critical Infrastructure Cybersecurity"
+                relevance "Recommends a layered approach to managing cybersecurity risks, aligning with
+                    +b the defense in depth principle."

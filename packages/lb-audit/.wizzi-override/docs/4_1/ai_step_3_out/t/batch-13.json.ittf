@@ -1,0 +1,622 @@
+$group
+    {
+        practice "3"
+        code "SD-4"
+        subCode "c)"
+        name "Secure design best practices"
+        description "A process shall be employed to ensure that secure design best practices are
+            +b documented and applied to the design process. These practices shall be
+            +b periodically reviewed and updated. Secure design practices include but are not
+            +b be limited to: c) economy of mechanism (striving for simple designs);"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify potential security vulnerabilities in the design phase and ensure
+                    +b simplicity does not introduce risks."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems to address unique
+                            +b operational and security requirements."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To conduct risk assessments specific to ICS environments."
+                { case_study
+                    example "A power plant implemented a simplified DCS design using STRIDE threat modeling,
+                        +b reducing attack surface by 30%."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure design best practices and identify gaps in
+                    +b implementation."
+                [ audit_checklist
+                    "Verify documentation of design best practices."
+                    "Check for periodic reviews and updates of design practices."
+                    "Assess simplicity of design mechanisms."
+                [ metrics
+                    {
+                        kpi "Percentage of design reviews completed"
+                        target "100% annually"
+                    {
+                        kpi "Number of design vulnerabilities identified"
+                        target "Reduction by 20% year-over-year"
+                compliance_procedure "Document all design reviews, updates, and justifications for design choices in
+                    +b a secure repository."
+            { training_and_competency_requirements
+                why "To ensure personnel are skilled in applying secure design best practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers fundamental concepts of ICS security, including secure design
+                            +b principles."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides comprehensive training on ICS security, including secure design
+                            +b practices."
+                competency_assessment "Annual reviews of design team competencies, including secure design principles
+                    +b and threat modeling."
+            { tooling_and_automation_support
+                why "To automate and streamline secure design processes."
+                [ tools
+                    {
+                        name "Static Code Analysis Tools (e.g., SonarQube)"
+                        purpose "To identify security vulnerabilities in code early in the design phase."
+                    {
+                        name "Architecture Review Tools (e.g., OWASP Dependency-Check)"
+                        purpose "To analyze dependencies and ensure secure design practices are followed."
+                automation_strategy "Integrate static code analysis and architecture review tools into the CI/CD
+                    +b pipeline to enforce secure design practices automatically."
+            { handling_legacy_systems_and_constraints
+                why "To address security challenges posed by legacy systems that cannot meet modern
+                    +b design standards."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit exposure to potential threats."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional security measures to mitigate risks associated with legacy
+                            +b designs."
+                example_policy "Legacy systems must be documented, and compensating controls must be
+                    +b implemented if they cannot meet current secure design standards."
+            { stakeholder_collaboration_and_governance
+                why "To ensure alignment between engineering, security, and management teams on
+                    +b secure design practices."
+                { governance_model
+                    name "RACI Matrix for Secure Design"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design practices."
+                        {
+                            role "Security Team"
+                            responsibility "Review and approve design practices."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources are allocated for secure design practices."
+                conflict_resolution "A cross-functional committee meets quarterly to resolve conflicts between
+                    +b design simplicity and security requirements."
+            { continuous_improvement_and_updates
+                why "To adapt secure design practices based on emerging threats and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review CISA alerts and other ICS security advisories."
+                    {
+                        step "Review Incidents"
+                        description "Analyze security incidents to identify gaps in design practices."
+                    {
+                        step "Update Practices"
+                        description "Revise design practices based on new threats and incident findings."
+                lessons_learned "After a design flaw led to a minor incident, the team updated practices to
+                    +b include stricter validation of third-party components."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "d) using secure design patterns;"
+        name "Secure design best practices"
+        description "A process shall be employed to ensure that secure design best practices are
+            +b documented and applied to the design process. These practices shall be
+            +b periodically reviewed and updated. Secure design practices include but are not
+            +b be limited to: d) using secure design patterns;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential security threats during the design phase."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems to address unique
+                            +b operational and security requirements."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments."
+                { case_study
+                    example "A power plant implemented STRIDE-based threat modeling for its Distributed
+                        +b Control System (DCS), identifying critical vulnerabilities in communication
+                        +b protocols and mitigating them through secure design patterns."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure design best practices and IEC 62443-4-1
+                    +b requirements."
+                [ audit_checklist
+                    "Verify documentation of secure design patterns used in the design process."
+                    "Check for periodic reviews and updates of secure design practices."
+                    "Ensure that threat modeling results are incorporated into the design."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of design reviews conducted annually"
+                        target "At least 2"
+                compliance_procedure "Documentation of secure design patterns, threat modeling results, and review
+                    +b logs must be maintained and made available for audits."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the design process are knowledgeable about
+                    +b secure design practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Certification covering fundamental concepts of ICS security, including secure
+                            +b design."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focused on securing industrial control systems, including design
+                            +b best practices."
+                competency_assessment "Annual competency reviews to ensure design engineers maintain up-to-date
+                    +b knowledge of secure design patterns and threat modeling techniques."
+            { tooling_and_automation_support
+                why "To integrate secure design practices into the development lifecycle
+                    +b efficiently."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To analyze source code for security vulnerabilities during the design phase."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for security vulnerabilities."
+                automation_strategy "Integrate SAST and DAST tools into the CI/CD pipeline to automatically scan for
+                    +b vulnerabilities during the design and development phases."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure design patterns, requiring
+                    +b alternative strategies."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy components in separate network zones to limit exposure to
+                            +b threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures such as intrusion detection systems
+                            +b (IDS) to monitor legacy systems."
+                example_policy "A policy for integrating legacy PLCs into a modern ICS design includes network
+                    +b segmentation, regular vulnerability assessments, and compensating controls like
+                    +b IDS."
+            { stakeholder_collaboration_and_governance
+                why "Secure design requires collaboration between engineering, security, and
+                    +b management teams."
+                { governance_model
+                    name "RACI matrix for secure design"
+                    [ roles
+                        {
+                            role "Design Engineer"
+                            responsibility "Implement secure design patterns and document design decisions."
+                        {
+                            role "Security Team"
+                            responsibility "Review and approve threat models and secure design practices."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources are allocated for secure design practices and reviews."
+                conflict_resolution "A formal escalation process is used to resolve conflicts between engineering
+                    +b and security priorities, with final decisions made by a cross-functional
+                    +b governance committee."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Conduct post-incident reviews"
+                        description "Analyze security incidents to identify gaps in secure design practices."
+                    {
+                        step "Update design practices"
+                        description "Revise secure design patterns and threat models based on new intelligence and
+                            +b incidents."
+                lessons_learned "After a security incident involving a design flaw, the organization updated its
+                    +b secure design practices to include additional validation steps for
+                    +b communication protocols."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "e) attack surface reduction;"
+        name "Secure design best practices"
+        description "A process shall be employed to ensure that secure design best practices are
+            +b documented and applied to the design process. These practices shall be
+            +b periodically reviewed and updated. Secure design practices include but are not
+            +b be limited to: e) attack surface reduction;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential vulnerabilities in the design phase,
+                    +b ensuring attack surface reduction is systematically addressed."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat models focusing on industrial control systems, addressing
+                            +b operational technology (OT) specific risks."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models based on the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for ICS environments to evaluate threats
+                            +b and vulnerabilities."
+                { case_study
+                    example "A case study of a Distributed Control System (DCS) in a power plant where
+                        +b attack surface reduction was achieved by disabling unnecessary services and
+                        +b implementing strict access controls."
+            { audit_and_compliance_verification
+                why "To ensure that secure design practices, including attack surface reduction, are
+                    +b consistently applied and compliant with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify documentation of secure design best practices."
+                    "Check for evidence of periodic reviews and updates to design practices."
+                    "Assess implementation of attack surface reduction measures."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100% compliance with documented secure design practices."
+                    {
+                        kpi "Number of vulnerabilities identified in design reviews"
+                        target "Reduction over time, trending towards zero."
+                compliance_procedure "Documentation must include design review reports, evidence of secure design
+                    +b practices application, and records of periodic updates."
+            { training_and_competency_requirements
+                why "To ensure personnel involved in the design process are knowledgeable about
+                    +b secure design practices and attack surface reduction."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering secure design and implementation practices for ICS."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Training program focusing on ICS security, including secure design principles."
+                competency_assessment "Annual competency reviews to ensure personnel maintain up-to-date knowledge of
+                    +b secure design practices and attack surface reduction techniques."
+            { tooling_and_automation_support
+                why "To automate and streamline secure design practices, including attack surface
+                    +b reduction, within the development lifecycle."
+                [ tools
+                    {
+                        name "Static Application Security Testing (SAST) tools"
+                        purpose "To identify vulnerabilities in the design phase through code analysis."
+                    {
+                        name "Dynamic Application Security Testing (DAST) tools"
+                        purpose "To test running applications for vulnerabilities that could increase the attack
+                            +b surface."
+                automation_strategy "Integrate SAST and DAST tools into the DevSecOps pipeline to continuously
+                    +b assess and reduce the attack surface during development."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems often cannot meet modern security standards, requiring
+                    +b strategies to mitigate risks associated with their attack surface."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit their exposure and reduce the overall attack
+                            +b surface."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b monitor and protect legacy systems."
+                example_policy "A policy outlining the use of network segmentation and compensating controls
+                    +b for legacy PLCs that cannot be updated to meet current security standards."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for implementing secure design practices."
+                { governance_model
+                    name "RACI Matrix for Secure Design"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design practices and reduce attack surface."
+                        {
+                            role "Security Team"
+                            responsibility "Review and validate secure design practices."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources and support for secure design initiatives."
+                conflict_resolution "A documented procedure for resolving conflicts between engineering and security
+                    +b priorities, including escalation paths and mediation by management."
+            { continuous_improvement_and_updates
+                why "To adapt secure design practices based on new threats, vulnerabilities, and
+                    +b lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review sources such as CISA alerts for new ICS vulnerabilities."
+                    {
+                        step "Conduct post-incident reviews"
+                        description "Analyze security incidents to identify gaps in secure design practices."
+                    {
+                        step "Update documentation"
+                        description "Revise secure design best practices based on new findings and threat
+                            +b intelligence."
+                lessons_learned "Incorporating findings from a recent ICS security incident, the secure design
+                    +b practices were updated to include additional attack surface reduction measures
+                    +b for legacy systems."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "f) all trust boundaries are documented as part of the design; and"
+        name "Secure design best practices"
+        description "A process shall be employed to ensure that secure design best practices are
+            +b documented and applied to the design process. These practices shall be
+            +b periodically reviewed and updated. Secure design practices include but are not
+            +b be limited to: f) all trust boundaries are documented as part of the design;
+            +b and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Identifying and documenting trust boundaries is critical for understanding
+                    +b potential attack vectors and ensuring secure communication between system
+                    +b components."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) across trust
+                            +b boundaries."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as unauthorized
+                            +b access to PLCs or disruption of process control."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in creating and analyzing threat models for systems with documented
+                            +b trust boundaries."
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments, including the
+                            +b identification of trust boundaries in ICS environments."
+                { case_study
+                    example "A power plant's DCS was assessed using STRIDE, revealing undocumented trust
+                        +b boundaries between the control network and corporate IT, leading to
+                        +b unauthorized access risks. Mitigation included network segmentation and proper
+                        +b boundary documentation."
+            { audit_and_compliance_verification
+                why "Ensuring that trust boundaries are properly documented and secured is a key
+                    +b compliance requirement for secure design."
+                [ audit_checklist
+                    "Verify that all trust boundaries are clearly documented in the system design."
+                    "Check that boundary protections (e.g., firewalls, DMZs) are implemented as per design."
+                    "Review updates to boundary documentation after system changes."
+                [ metrics
+                    {
+                        kpi "Percentage of documented trust boundaries"
+                        target "100%"
+                    {
+                        kpi "Number of boundary-related vulnerabilities identified in audits"
+                        target "0"
+                compliance_procedure "Documentation of trust boundaries must be reviewed during design reviews and
+                    +b updated whenever system architecture changes. Evidence includes design
+                    +b documents, network diagrams, and audit logs."
+            { training_and_competency_requirements
+                why "Engineers must understand how to identify and document trust boundaries to
+                    +b comply with secure design practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers secure design principles, including trust boundary identification."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Includes modules on ICS architecture and secure design practices."
+                competency_assessment "Annual reviews of engineers' ability to identify and document trust boundaries,
+                    +b based on participation in design reviews and training completion."
+            { tooling_and_automation_support
+                why "Tools can automate the validation of trust boundaries and ensure consistency in
+                    +b documentation."
+                [ tools
+                    {
+                        name "Tufin"
+                        purpose "Automates network segmentation and trust boundary enforcement."
+                    {
+                        name "Puppet/Chef"
+                        purpose "Ensures configuration compliance across trust boundaries."
+                automation_strategy "Integrate boundary validation checks into CI/CD pipelines to flag undocumented
+                    +b or misconfigured boundaries during deployment."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems often lack proper boundary documentation, requiring compensating
+                    +b controls."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in separate zones to enforce boundaries."
+                    {
+                        approach "Proxy gateways"
+                        description "Use secure gateways to mediate communication across legacy boundaries."
+                example_policy "Legacy systems must be placed in dedicated network segments with documented
+                    +b boundaries, and all cross-boundary communication must be logged and monitored."
+            { stakeholder_collaboration_and_governance
+                why "Clear governance ensures that trust boundaries are consistently documented and
+                    +b enforced across teams."
+                { governance_model
+                    name "RACI Matrix for Trust Boundary Management"
+                    [ roles
+                        {
+                            role "Security Architect"
+                            responsibility "Define and document trust boundaries."
+                        {
+                            role "Network Engineer"
+                            responsibility "Implement boundary controls (e.g., firewalls)."
+                        {
+                            role "Auditor"
+                            responsibility "Verify boundary documentation and controls."
+                conflict_resolution "Disputes over boundary definitions are escalated to a cross-functional security
+                    +b committee for resolution."
+            { continuous_improvement_and_updates
+                why "Threats evolve, and trust boundaries must be reassessed regularly."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Track ICS-specific advisories (e.g., CISA alerts) for new boundary-related
+                            +b vulnerabilities."
+                    {
+                        step "Annual review"
+                        description "Reassess all trust boundaries during the yearly security review cycle."
+                lessons_learned "After a 2021 incident where undocumented boundaries led to a ransomware spread,
+                    +b the company now mandates biannual boundary reviews."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-20"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "g)"
+        name "Secure design best practices"
+        description "A process shall be employed to ensure that secure design best practices are
+            +b documented and applied to the design process. These practices shall be
+            +b periodically reviewed and updated. Secure design practices include but are not
+            +b be limited to: g) removing debug ports, headers and traces from circuit boards
+            +b used during development from production hardware or documenting their presence
+            +b and the need to protect them from unauthorized access."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Identifying and mitigating risks associated with debug ports and headers is
+                    +b critical to prevent unauthorized access and potential exploitation."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats such as Tampering, Information Disclosure,
+                            +b and Elevation of Privilege related to debug ports."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on operational technology (OT) environments to assess risks specific to
+                            +b ICS hardware."
+                [ tools
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments tailored to ICS
+                            +b environments."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in identifying and mitigating threats during the design phase."
+                { case_study
+                    example "A power plant's DCS was assessed using STRIDE, revealing vulnerabilities in
+                        +b debug ports on PLCs. Mitigation included physical removal and network
+                        +b segmentation."
+            { audit_and_compliance_verification
+                why "Ensures adherence to secure design practices and identifies gaps in
+                    +b implementation."
+                [ audit_checklist
+                    "Verify that debug ports and headers are removed or documented in production hardware."
+                    "Check for evidence of periodic reviews of secure design practices."
+                    "Ensure protection mechanisms are in place for documented debug ports."
+                [ metrics
+                    {
+                        kpi "Percentage of production hardware with debug ports removed or documented"
+                        target "100%"
+                    {
+                        kpi "Frequency of secure design practice reviews"
+                        target "Annually"
+                compliance_procedure "Documentation must include a signed review by the security team, evidence of
+                    +b debug port removal, and a risk assessment for any remaining ports."
+            { training_and_competency_requirements
+                why "Ensures personnel are knowledgeable about secure design practices and can
+                    +b implement them effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure design principles for ICS components."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on securing ICS hardware, including debug port management."
+                competency_assessment "Annual reviews of engineers' competency in secure design practices, including
+                    +b practical assessments of debug port handling."
+            { tooling_and_automation_support
+                why "Automation reduces human error and ensures consistent application of secure
+                    +b design practices."
+                [ tools
+                    {
+                        name "Static Code Analysis Tools (e.g., Coverity)"
+                        purpose "Identifies potential security flaws in firmware related to debug
+                            +b functionalities."
+                    {
+                        name "Hardware Security Analysis Tools (e.g., JTAGulator)"
+                        purpose "Detects and analyzes debug ports on circuit boards."
+                automation_strategy "Integrate static code analysis into the CI/CD pipeline to flag insecure debug
+                    +b functionalities early in development."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may have debug ports that cannot be removed due to operational
+                    +b constraints."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy devices with debug ports in a separate network segment to limit
+                            +b access."
+                    {
+                        approach "Physical Security Controls"
+                        description "Implement tamper-evident seals and access controls for devices with debug
+                            +b ports."
+                example_policy "Legacy devices with debug ports must be documented in the asset inventory, and
+                    +b compensating controls (e.g., network segmentation) must be implemented and
+                    +b reviewed annually."
+            { stakeholder_collaboration_and_governance
+                why "Clear governance ensures accountability and alignment between engineering,
+                    +b security, and management teams."
+                { governance_model
+                    name "RACI Matrix for Secure Design"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure design practices and remove debug ports."
+                        {
+                            role "Security Team"
+                            responsibility "Review and approve design practices, conduct audits."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and enforce compliance."
+                conflict_resolution "Disputes between engineering and security teams are escalated to a governance
+                    +b committee for resolution based on risk assessment."
+            { continuous_improvement_and_updates
+                why "Regular updates ensure practices remain effective against evolving threats."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new vulnerabilities
+                            +b related to debug ports."
+                    {
+                        step "Review Incidents"
+                        description "Analyze security incidents involving debug ports to identify gaps in current
+                            +b practices."
+                    {
+                        step "Update Policies"
+                        description "Revise secure design practices based on new threats and lessons learned."
+                lessons_learned "After a breach involving unauthorized debug port access, a company updated its
+                    +b policies to require physical destruction of debug ports in high-risk
+                    +b environments."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

@@ -1,0 +1,10 @@
+$group
+    $params name, description|@@null, example|@@null
+    { ${name}
+        type "string"
+        $if description != null
+            description "${description}"
+        $if example != null
+            example "${example}"
+        [ enum
+            $hook

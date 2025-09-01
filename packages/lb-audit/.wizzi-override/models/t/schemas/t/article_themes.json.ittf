@@ -1,0 +1,17 @@
+$group
+    { article_themes
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        description "JSON schema for blog article themes"
+        { properties
+            array_of_objects( themes ) 
+                $append properties
+                    string( name, Nome del tema. )
+                    array_of_strings( lines ) 
+                $append object
+                    [ required
+                        "name" 
+                        "lines" 
+            note_su_json_risultante()
+            [ required
+                "themes"

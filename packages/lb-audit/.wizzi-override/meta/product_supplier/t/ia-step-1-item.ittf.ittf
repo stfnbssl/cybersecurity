@@ -1,0 +1,13 @@
+$group
+    $params &options
+    call step_1_${options.id}
+        description Raccolta informazione aziende produttori ${options.id}
+        ai/call_header( &options )
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ${'\\'}e conosci le aziende delle varie regioni italiane.
+                ${'\\'}Sei anche esperto dello standard IEC 62443 e in particolare del volume 62443-3-3.
+        message 
+            role user
+            content Popola un database JSON con dati di aziende che producono systemi ICS.
+                ai/product_supplier_search( &options, step )
+                ai/schema_data_return( &options, step )

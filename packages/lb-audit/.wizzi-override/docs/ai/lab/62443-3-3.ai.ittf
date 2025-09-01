@@ -1,0 +1,84 @@
+ai lab
+    api-url http://localhost:3000
+    $if true
+        call Analysis of 62443-3-3 requirement
+            description Analysis of 62443-3-3 requirement
+            $if true
+                llm_service deepSeek
+                llm_model deepseek-chat
+                $$ llm_model deepseek-reasoner
+                max_tokens 8192
+            $if false
+                llm_service grok
+                llm_model grok-4-latest
+                max_tokens 10000
+            temperature 0
+            message 
+                role system
+                content You are an expert in industrial cybersecurity and the ISA/IEC 62443 standards. 
+            message 
+                role user
+                content I need a JSON database populated with data for IEC 62443-3-3 to support secure product and system development.
+                    \n Below are the JSON schema for the database and the JSON data of a system requirement.
+                    \n Populate the schema with the details for the SR, including its description, rationale,
+                    \n page number, enhancements, security levels, and notes as provided in the original JSON.
+                    \n Add explanation, context, challenges, best practices for the requirement.
+                    \n Use the following metadata: version "1.0.0", set to the current
+                    \n timestamp, and author "Security Team". Here is the schema:
+                    \n <database_json_schema> 
+                    \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"object","properties":{"requirements":{"type":"array","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the requirement (e.g., SR 3.8)","example":"SR 3.8"},"name":{"type":"string","description":"Human-readable name of the requirement","example":"Session Integrity"},"description":{"type":"string","description":"Detailed description of the requirement","example":"The control system shall provide the capability to protect the integrity of sessions..."},"rationale":{"type":"string","description":"Purpose and security context of the requirement","example":"This control focuses on communications protection at the session level..."},"page":{"type":"integer","description":"Page number in the IEC 62443-3-3 standard","example":51},"standard":{"type":"string","description":"Standard the requirement belongs to","example":"IEC 62443-3-3"},"category":{"type":"string","description":"Category of the requirement (e.g., System Integrity)","example":"System Integrity"},"enhancements":{"type":"array","description":"List of requirement enhancements","items":{"type":"object","properties":{"id":{"type":"string","description":"Unique identifier for the enhancement","example":"SR 3.8 RE 1"},"name":{"type":"string","description":"Name of the enhancement","example":"Invalidation of session IDs after session termination"},"description":{"type":"string","description":"Description of the enhancement","example":"The control system shall provide the capability to invalidate session IDs upon user logout..."},"notes":{"type":"array","description":"Additional notes or considerations","items":{"type":"string","example":"Session hijacking and other man-in-the-middle attacks..."}}},"required":["id","name","description"]}},"explanation":{"type":"string","description":"Explanation of the requirement","example":"..."},"context":{"type":"string","description":"Context of the requirement","example":"..."},"challenges":{"type":"array","description":"Challenges of the requirement","items":{"type":"string","example":"..."}},"best_practices":{"type":"array","description":"Best practices for the requirement","items":{"type":"string","example":"..."}},"security_levels":{"type":"array","description":"Mapping of security levels to requirement and enhancements","items":{"type":"object","properties":{"level":{"type":"string","description":"Security level (e.g., SL-C 1)","example":"SL-C 1"},"applicability":{"type":"string","description":"Requirement or enhancements applicable at this level","example":"Not Selected"}},"required":["level","applicability"]}},"compliance":{"type":"object","description":"Compliance and testing details","properties":{"status":{"type":"string","description":"Compliance status (e.g., Implemented, In Progress, Not Started)","example":"Not Started"},"last_audit":{"type":"string","format":"date-time","description":"Timestamp of the last compliance audit","example":"2025-08-04T09:49:00Z"},"testing_requirements":{"type":"array","description":"Required tests to verify compliance","items":{"type":"string","example":"Penetration testing for session hijacking"}},"responsible_team":{"type":"string","description":"Team responsible for implementation and compliance","example":"Security Engineering"}}},"metadata":{"type":"object","description":"Metadata for versioning and auditing","properties":{"version":{"type":"string","description":"Version of the requirement entry","example":"1.0.0"},"created_at":{"type":"string","format":"date-time","description":"Timestamp of entry creation","example":"2025-08-04T09:49:00Z"},"updated_at":{"type":"string","format":"date-time","description":"Timestamp of last update","example":"2025-08-04T09:49:00Z"},"author":{"type":"string","description":"Person or team who created/updated the entry","example":"Security Team"}},"required":["version","created_at","updated_at"]}},"required":["id","name","description","rationale","page","standard","explanation","context","challenges","best_practices","security_levels","compliance"]}}},"required":["requirements"]}
+                    \n </database_json_schema> 
+                    \n Populate the schema with the following sr data and return the resulting JSON.
+                    \n <sr_json>{"id":"SR 3.8","page":51,"name":"Session integrity","description":"The control system shall provide the capability to protect the integrity of sessions. The control system shall reject any usage of invalid session IDs.","rationale":"This control focuses on communications protection at the session, versus packet, level. The intent of this control is to establish grounds for confidence at each end of a communications session in the ongoing identity of the other party and in the validity of the information being transmitted. For example, this control addresses man-in-the-middle attacks including session hijacking, insertion of false information into a session or replay attacks. Use of session integrity mechanisms can have a significant overhead and therefore their use should be considered in light of requirements for real-time communications.","rhs":[{"id":"SR 3.8 RE 1","name":"Invalidation of session IDs after session termination","description":"The control system shall provide the capability to invalidate session IDs upon user logout or other session termination (including browser sessions)."},{"id":"SR 3.8 RE 2","name":"Unique session ID generation","description":"The control system shall provide the capability to generate a unique session ID for each session and treat all unexpected session IDs as invalid."},{"id":"SR 3.8 RE 1","name":"Randomness of session IDs","description":"The control system shall provide the capability to generate unique session IDs with commonly accepted sources of randomness.","notes":["Session hijacking and other man-in-the-middle attacks or injections of false information often take advantage of easy-to-guess session IDs (keys or other shared secrets) or use of session IDs which were not properly invalidated after session termination. Therefore the validity of a session authenticator needs to be tightly connected to the lifetime of a session. Employing randomness in the generation of unique session IDs helps to protect against brute-force attacks to determine future session IDs."]}],"security_levels":["SL-C (SI, control system) 1: Not Selected","SL-C (SI, control system) 2: SR 3.8","SL-C (SI, control system) 3: SR 3.8 (1) (2)","SL-C (SI, control system) 4: SR 3.8 (1) (2) (3)"]}</sr_json> 
+    $if false
+        call Analysis of 62443-3-3 requirement
+            description Analysis of 62443-3-3 requirement
+            llm_service deepSeek
+            llm_model deepseek-chat
+            $$ llm_model deepseek-reasoner
+            max_tokens 6000
+            temperature 0
+            message 
+                role system
+                content Sei un esperto di sicurezza informatica industriale e normativa ISA/IEC 62443. Fornisci:\n
+                    \b 1. risposte dettagliate e strutturate sugli standard ISA/IEC 62443, incluso il contesto,\n
+                    \b i contenuti principali e gli utilizzi pratici di ciascun documento.\n
+                    \b 2. Un output in formato JSON, senza caratteri markdown, strutturato come rischiesto nel response_format.\n
+            message 
+                role user
+                json_content 
+                    { 
+                        content "Give a detailed and rich explanation, context, challenges, best practices
+                            +b of this requirement of IEC 62443-3-3 that i wrote in JSON format.
+                            +b I need 3 implementation examples for the system requirement and 2 for any requirement enhancements when present"
+                        { json
+                            id "SR 2.4"
+                            page 39
+                            name "Mobile code"
+                            description "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include: a) preventing the execution of mobile code; b) requiring proper authentication and authorization for origin of the code; c) restricting mobile code transfer to/from the control system; and d) monitoring the use of mobile code."
+                            rationale "Mobile code technologies include, but are not limited to, Java, JavaScript, ActiveX, portable document format (PDF), Postscript, Shockwave movies, Flash animations and VBScript. Usage restrictions apply to both the selection and use of mobile code installed on servers and mobile code downloaded and executed on individual workstations. Control procedures should prevent the development, acquisition or introduction of unacceptable mobile code within the control system. For example, mobile code exchanges may be disallowed directly with the control system, but may be allowed in a controlled adjacent environment maintained by IACS personnel."
+                            [ rhs
+                                { 
+                                    id "SR 2.4 RE 1"
+                                    name "Mobile code integrity check"
+                                    description "The control system shall provide the capability to verify integrity of the mobile code before allowing code execution."
+                            [ security_levels
+                                "SL-C (UC, control system) 1: SR 2.4" 
+                                "SL-C (UC, control system) 2: SR 2.4" 
+                                "SL-C (UC, control system) 3: SR 2.4 (1)" 
+                                "SL-C (UC, control system) 4: SR 2.4 (1)"                     
+                        { json_response
+                            explanation "..."
+                            context "..."
+                            [ challenges
+                                "..."
+                            [ best_practices
+                                "..."
+                            [ implementation_examples
+                                {
+                                    title "..."
+                                    description "..."
+                                    [ steps
+                                        {
+                                            title "..."
+                                            description "..."

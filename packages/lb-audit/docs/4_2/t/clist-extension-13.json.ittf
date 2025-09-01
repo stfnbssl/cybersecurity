@@ -1,0 +1,221 @@
+$group
+    {
+        id "FSA-NDR 2.4 RE(1)"
+        check_description "The network device shall provide the capability to enforce a security policy
+            +b that allows the device to control execution of mobile code based on the results
+            +b of an authenticity check prior to the code being executed."
+        requirement_id "IEC 62443-4-2: NDR 2.4 RE(1)"
+        title "Mobile Code Authenticity Check"
+        description "This requirement mandates that any mobile code executed within the industrial
+            +b control system (ICS) environment must be verified for authenticity to ensure it
+            +b has not been altered or tampered with. This is crucial for preventing
+            +b unauthorized code execution that could compromise system integrity or security."
+        [ key_aspects
+            {
+                aspect "Verification Mechanism"
+                details "Implement mechanisms such as digital signatures or checksums to verify the
+                    +b authenticity of mobile code before execution."
+            {
+                aspect "Code Integrity"
+                details "Ensure the integrity of mobile code by validating it against known, trusted
+                    +b versions to detect unauthorized modifications."
+            {
+                aspect "Source Validation"
+                details "Verify the source of the mobile code to ensure it originates from a trusted
+                    +b provider or repository."
+            {
+                aspect "Execution Environment"
+                details "Restrict mobile code execution to controlled environments where its behavior
+                    +b can be monitored and managed."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3:2013"
+                reference "SR 3.4 - Software and information integrity"
+                details "This standard emphasizes the importance of ensuring the integrity and
+                    +b authenticity of software and information within the ICS, complementing the
+                    +b requirements for mobile code."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.5 - Control of operational software"
+                details "This section covers the management of software to protect its integrity,
+                    +b including controls over installation and execution, which aligns with mobile
+                    +b code authenticity checks."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                details "This provides guidelines for ensuring the integrity of software and
+                    +b information, including mobile code, through authenticity checks and integrity
+                    +b validation."
+            {
+                standard "OWASP Mobile Security Testing Guide"
+                reference "MSTG-CODE-3 - Code integrity and authenticity"
+                details "Offers guidance on verifying the integrity and authenticity of mobile
+                    +b applications, which is relevant for mobile code within ICS environments."
+    {
+        id "FSA-CR 2.5A"
+        check_description "If a component provides a human user interface, whether accessed locally or via
+            +b a network, the component shall provide the capability to protect against
+            +b further access by initiating a session lock after a configurable time period of
+            +b inactivity or by manual initiation by the user (human, software process or
+            +b device)."
+        requirement_id "IEC 62443-4-2: CR 2.5(a)"
+        title "Session Lock - Initiation"
+        description "The requirement mandates that industrial automation and control systems (IACS)
+            +b components must have the capability to initiate a session lock after a defined
+            +b period of inactivity. This is a security feature intended to protect sensitive
+            +b operations and data by preventing unauthorized access when a session is
+            +b unattended."
+        [ key_aspects
+            "Automatic Session Lock: The system must automatically lock the session after a predefined period of user inactivity. This helps in ensuring that unauthorized users cannot access the system if a legitimate user leaves their workstation unattended."
+            "Configurable Time-out: The period of inactivity after which the session lock is initiated should be configurable. This allows organizations to tailor the security settings according to their operational needs and risk assessments."
+            "User Notification: Prior to session lock, the system may provide a warning to the user, allowing them to extend their session if they are still present."
+            "Consistent Implementation: The session lock mechanism should be consistently implemented across all components of the system to ensure uniform security controls."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "AC-11: Session Lock"
+                description "NIST Special Publication 800-53 outlines the requirement for information
+                    +b systems to employ session lock mechanisms after a defined period of inactivity,
+                    +b similar to the requirements of IEC 62443-4-2: CR 2.5(a)."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.11.2.8: Unattended User Equipment"
+                description "ISO/IEC 27001 requires that users ensure their equipment is appropriately
+                    +b secured when left unattended, which aligns with the session lock initiation
+                    +b requirement for enhancing security in industrial environments."
+            {
+                standard "ISA/IEC 62443-3-3"
+                reference "SR 2.6: Session Lock"
+                description "This standard specifies the need for a session lock to be implemented as part
+                    +b of the system requirements for secure operation, emphasizing the importance of
+                    +b session security in industrial settings."
+    {
+        id "FSA-CR 2.5B"
+        check_description "If a component provides a human user interface, whether accessed locally or via
+            +b a network, the component shall provide the capability for the session lock to
+            +b remain in effect until the human user who owns the session, or another
+            +b authorized human user, re-establishes access using appropriate identification
+            +b and authentication procedures."
+        requirement_id "IEC 62443-4-2: CR 2.5(b)"
+        title "Session Lock - Removal"
+        description "This requirement focuses on the capability of a system to remove session locks
+            +b when they are no longer needed or when a session is terminated. It ensures that
+            +b session locks do not persist unnecessarily, which could potentially lead to
+            +b unauthorized access if not managed properly."
+        { key_aspects
+            session_management "The system must be able to manage session locks effectively, ensuring they are
+                +b removed when a session ends or is no longer active."
+            security_control "This requirement acts as a security control to prevent unauthorized access by
+                +b ensuring session locks are not left active indefinitely."
+            automation "Where possible, the removal of session locks should be automated to prevent
+                +b human error and ensure consistent security practices."
+        { related_standards
+            { "ISO/IEC 27001"
+                reference "A.9.2.5 - User log on and log off"
+                description "This control focuses on ensuring user sessions are managed securely, which
+                    +b includes the secure termination of sessions to prevent unauthorized access."
+            { "NIST SP 800-53"
+                reference "AC-11 - Session Lock"
+                description "NIST SP 800-53 provides guidelines on session lock mechanisms, which include
+                    +b the ability to remove or terminate sessions in a secure manner."
+            { "ISO/IEC 27002"
+                reference "9.4.2 - Secure log-on procedures"
+                description "This standard emphasizes the importance of secure log-on procedures, which
+                    +b include the management of session locks to ensure they are not left active
+                    +b unnecessarily."
+    {
+        id "FSA-CR 2.6"
+        check_description "If a component supports remote sessions, the component shall provide the
+            +b capability to terminate a remote session either automatically after a
+            +b configurable time period of inactivity, manually by a local authority, or
+            +b manually by the user (human, software process or device) who initiated the
+            +b session."
+        requirement_id "IEC 62443-4-2: CR 2.6"
+        title "Remote Session Termination"
+        description "This requirement mandates that the component must have the capability to
+            +b terminate remote sessions after a defined period of inactivity or upon user
+            +b request. This is crucial to ensure that unauthorized access is prevented if a
+            +b session remains open without active monitoring."
+        { key_aspects
+            inactive_session_timeout "Implement a mechanism that automatically terminates remote sessions after a
+                +b specified duration of inactivity. This prevents potential unauthorized access
+                +b if a session is left open unintentionally."
+            "user-initiated termination" "Provide users with the capability to manually terminate their remote sessions.
+                +b This allows users to end sessions securely when they no longer require access."
+            "configurable timeout settings" "Allow administrators to configure the inactivity timeout settings. This ensures
+                +b that the timeout period can be tailored to the specific security needs and
+                +b operational requirements of the organization."
+            "logging and monitoring" "Ensure that all session terminations, whether automatic due to inactivity or
+                +b user-initiated, are logged and monitored. This aids in auditing and detecting
+                +b any unusual activities related to session management."
+        { related_standards
+            { "ISO/IEC 27001"
+                section "A.9.4.2"
+                description "The standard emphasizes the need for secure log-on procedures, including the
+                    +b management of user sessions and the termination of inactive sessions to prevent
+                    +b unauthorized access."
+            { "NIST SP 800-53"
+                control "AC-12"
+                description "This control focuses on session termination, recommending automatic session
+                    +b termination after a defined period of inactivity and the capability for users
+                    +b to manually terminate sessions."
+            { "NIST SP 800-82"
+                section "5.1.3"
+                description "Provides guidelines specific to Industrial Control Systems (ICS) that emphasize
+                    +b securing remote access and ensuring that remote sessions are properly managed
+                    +b and terminated."
+            { "CIS Controls"
+                control "Control 16"
+                description "CIS Control 16 deals with account monitoring and control, recommending
+                    +b mechanisms to manage and terminate inactive sessions to reduce the risk of
+                    +b unauthorized access."
+    {
+        id "FSA-CR 2.7"
+        check_description "Components shall provide the capability to limit the number of concurrent
+            +b sessions per interface for any given user (human, software process or device)."
+        requirement_id "CR 2.7"
+        title "Concurrent Session Control"
+        description "This requirement ensures that the control system has mechanisms to manage and
+            +b limit the number of concurrent sessions for a given user or device. The goal is
+            +b to prevent unauthorized access through session sharing or excessive session
+            +b creation that could lead to system resource exhaustion or denial of service."
+        [ key_aspects
+            {
+                aspect "Session Limitation"
+                details "Implement controls to define and enforce the maximum number of concurrent
+                    +b sessions per user or device."
+            {
+                aspect "Session Monitoring"
+                details "Continuously monitor active sessions to detect and address anomalies, such as
+                    +b unusual session activity patterns."
+            {
+                aspect "Resource Management"
+                details "Ensure that the system can handle the allocated number of concurrent sessions
+                    +b without degradation in performance."
+            {
+                aspect "Access Control"
+                details "Integrate session management with access control mechanisms to ensure sessions
+                    +b are appropriately authenticated and authorized."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "AC-10 Session Termination"
+                details "This control focuses on automatically ending sessions after a defined condition
+                    +b or time period to reduce the risk of unauthorized access."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.4.2 Secure log-on procedures"
+                details "This clause emphasizes establishing secure log-on procedures, which are
+                    +b integral to effective session control by ensuring that only authenticated users
+                    +b can initiate sessions."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "Provides guidelines specifically for ICS environments, emphasizing the
+                    +b importance of session management in maintaining operational security."
+            {
+                standard "CIS Controls"
+                reference "Control 16: Account Monitoring and Control"
+                details "This control discusses the need for monitoring account activities, which
+                    +b directly relates to watching over session activities as part of maintaining
+                    +b secure access."

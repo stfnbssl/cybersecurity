@@ -1,0 +1,639 @@
+$group
+    {
+        practice "1"
+        code "SM-11"
+        subCode "e) defect management (see Clause 10, Practice 6 – Management of
+            +b security-related issues)."
+        name "Assessing and addressing security-related issues"
+        description "A process shall be employed for verifying that a product or a patch is not
+            +b released until its security related issues have been addressed and tracked to
+            +b closure (see 10.5, DM-4: Addressing security related issues). This includes
+            +b issues associated with: e) defect management (see Clause 10, Practice 6 –
+            +b Management of security-related issues)."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Identifying and mitigating security-related defects early in the development
+                    +b lifecycle reduces the risk of vulnerabilities in released products."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to categorize security threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) to identify
+                            +b potential defects."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling for Industrial Control Systems to address operational
+                            +b technology (OT) specific risks."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates STRIDE-based threat modeling for identifying security defects."
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "Provides a framework for risk assessment in ICS environments, including defect
+                            +b impact analysis."
+                { case_study
+                    example "A power plant DCS underwent a security assessment using STRIDE, identifying
+                        +b critical defects in patch management processes, leading to improved defect
+                        +b tracking before patch releases."
+            { audit_and_compliance_verification
+                why "Ensures that defect management processes comply with IEC 62443-4-1 requirements
+                    +b and effectively address security issues."
+                [ audit_checklist
+                    "Verify documented procedures for tracking security-related defects."
+                    "Check evidence of defect resolution before product/patch release."
+                    "Review defect management logs for completeness and accuracy."
+                [ metrics
+                    {
+                        kpi "Percentage of security defects resolved before release"
+                        target "100%"
+                    {
+                        kpi "Average time to resolve critical security defects"
+                        target "≤30 days"
+                compliance_procedure "Document all security-related defects in a tracking system, ensure resolution
+                    +b before release, and maintain audit logs for verification."
+            { training_and_competency_requirements
+                why "Ensures personnel are competent in identifying, tracking, and resolving
+                    +b security-related defects."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure development practices, including defect management."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on ICS security, including vulnerability and defect
+                            +b management."
+                competency_assessment "Annual reviews of defect management competency, including mock defect
+                    +b resolution scenarios."
+            { tooling_and_automation_support
+                why "Automation reduces human error and ensures consistent defect tracking and
+                    +b resolution."
+                [ tools
+                    {
+                        name "JIRA with Security Plugins"
+                        purpose "Tracks security defects and ensures they are resolved before release."
+                    {
+                        name "GitLab/GitHub Security Features"
+                        purpose "Integrates defect tracking with CI/CD pipelines to block releases with
+                            +b unresolved security defects."
+                automation_strategy "Integrate defect tracking tools with CI/CD pipelines to automatically verify
+                    +b defect resolution before release."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack modern defect tracking capabilities, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit the impact of unresolved defects."
+                    {
+                        approach "Manual Defect Logging"
+                        description "Use offline logs to track defects if automated tools are unavailable."
+                example_policy "Legacy systems must have a documented manual defect tracking process and
+                    +b compensating controls (e.g., segmentation) if automated tools are not
+                    +b supported."
+            { stakeholder_collaboration_and_governance
+                why "Defect management requires coordination between development, security, and
+                    +b operations teams."
+                { governance_model
+                    name "RACI Matrix for Defect Management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and classify security defects."
+                        {
+                            role "Development Team"
+                            responsibility "Resolve defects and verify fixes."
+                        {
+                            role "Quality Assurance"
+                            responsibility "Verify defect resolution before release."
+                conflict_resolution "Escalate unresolved conflicts to a cross-functional governance board for
+                    +b resolution."
+            { continuous_improvement_and_updates
+                why "Defect management processes must evolve with new threats and lessons learned."
+                [ update_process
+                    {
+                        step "Review CISA Alerts"
+                        description "Incorporate new ICS vulnerability data into defect management criteria."
+                    {
+                        step "Post-Incident Reviews"
+                        description "Update defect tracking procedures based on root cause analysis of security
+                            +b incidents."
+                lessons_learned "After a defect-related incident, update defect severity classifications and
+                    +b resolution timelines."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-20"
+    {
+        practice "1"
+        code "SM-12"
+        subCode "undefined"
+        name "Process verification"
+        description "A process shall be employed for verifying that, prior to product release, all
+            +b applicable security related processes required by this specification (see SM-5:
+            +b Process scoping) have been completed with records documenting the completion of
+            +b each process."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that all security-related processes are thoroughly verified before
+                    +b product release, mitigating potential vulnerabilities."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats in the system by categorizing them into
+                            +b Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service,
+                            +b and Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation and analysis of threat models using the STRIDE
+                            +b methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a framework for conducting risk assessments tailored to ICS
+                            +b environments."
+                { case_study
+                    example "A case study involving a Distributed Control System (DCS) in a power plant
+                        +b where STRIDE was used to identify and mitigate threats before system
+                        +b deployment."
+            { audit_and_compliance_verification
+                why "To verify compliance with IEC 62443-4-1 and ensure all security processes are
+                    +b documented and completed."
+                [ audit_checklist
+                    "Verify that all security-related processes are documented."
+                    "Check that records of process completion are maintained."
+                    "Ensure that all identified vulnerabilities have been addressed."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved vulnerabilities"
+                        target "0"
+                compliance_procedure "Document all security processes and their completion status in a centralized
+                    +b repository. Conduct regular audits to verify compliance."
+            { training_and_competency_requirements
+                why "To ensure personnel are adequately trained to perform process verification
+                    +b tasks."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides training on IEC 62443 standards, including process verification."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focusing on ICS security, including process verification and risk
+                            +b assessment."
+                competency_assessment "Annual competency reviews to ensure personnel maintain the necessary skills and
+                    +b knowledge for process verification."
+            { tooling_and_automation_support
+                why "To streamline the process verification and ensure consistency."
+                [ tools
+                    {
+                        name "JIRA"
+                        purpose "Track and manage security-related processes and their completion status."
+                    {
+                        name "GitLab CI/CD"
+                        purpose "Integrate security checks into the DevSecOps pipeline."
+                automation_strategy "Automate the verification of security processes within the CI/CD pipeline to
+                    +b ensure they are completed before product release."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not meet modern security standards, requiring additional
+                    +b measures."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate risks associated with legacy
+                            +b systems."
+                example_policy "A policy outlining the use of network segmentation and compensating controls
+                    +b for legacy systems to ensure compliance with IEC 62443-4-1."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for successful process verification."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement and document security processes."
+                        {
+                            role "Security Team"
+                            responsibility "Verify and audit security processes."
+                        {
+                            role "Management"
+                            responsibility "Oversee and approve process verification."
+                conflict_resolution "Establish a clear escalation path for resolving conflicts between engineering
+                    +b and security priorities."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and improve security processes."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate lessons learned from audits into process improvements."
+                lessons_learned "Document and analyze security incidents to refine and update process
+                    +b verification procedures."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-25"
+    {
+        practice "1"
+        code "SM-13"
+        subCode "undefined"
+        name "Continuous improvement"
+        description "A process shall be employed for continuously improving the SDL. This process
+            +b shall include the analysis of security defects in component/subsystem/system
+            +b technologies that escape to the field."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate security defects that may have escaped to the field,
+                    +b ensuring continuous improvement in the Secure Development Lifecycle (SDL)."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology used to identify potential security threats in
+                            +b the system design and implementation."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model used to evaluate the severity of identified threats
+                            +b based on Damage, Reproducibility, Exploitability, Affected users, and
+                            +b Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems to address unique
+                            +b operational and security challenges."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for identifying potential security issues
+                            +b early in the development lifecycle."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA systems to evaluate and mitigate
+                            +b risks specific to industrial environments."
+                { case_study
+                    example "A power plant conducted a risk assessment using NIST 800-30 adapted for SCADA
+                        +b systems, identifying critical vulnerabilities in their Distributed Control
+                        +b System (DCS) and implementing mitigations to reduce attack surface."
+            { audit_and_compliance_verification
+                why "To ensure that the continuous improvement process is effectively implemented
+                    +b and compliant with IEC 62443-4-1 standards."
+                [ audit_checklist
+                    "Verify the existence of a documented continuous improvement process."
+                    "Review records of security defect analyses and corrective actions taken."
+                    "Check for integration of lessons learned from field incidents into the SDL."
+                    "Assess the effectiveness of implemented improvements through metrics and KPIs."
+                [ metrics
+                    {
+                        kpi "Percentage of security defects addressed in subsequent releases"
+                        target "≥90% of critical defects addressed within one release cycle"
+                    {
+                        kpi "Time to remediate identified security defects"
+                        target "≤30 days for critical defects"
+                compliance_procedure "Document all security defects, their analyses, and the corrective actions
+                    +b taken. Regularly review and update the SDL based on these findings to ensure
+                    +b continuous improvement."
+            { training_and_competency_requirements
+                why "To ensure that personnel involved in the SDL are adequately trained and
+                    +b competent in continuous improvement practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certification programs covering the standards and best practices for ICS
+                            +b security, including continuous improvement."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification program focusing on the cybersecurity of industrial control
+                            +b systems."
+                competency_assessment "Annual competency reviews to assess the understanding and application of
+                    +b continuous improvement practices in the SDL."
+            { tooling_and_automation_support
+                why "To automate and streamline the continuous improvement process, reducing manual
+                    +b effort and increasing efficiency."
+                [ tools
+                    {
+                        name "JIRA"
+                        purpose "To track security defects and manage corrective actions within the SDL."
+                    {
+                        name "GitHub Advanced Security"
+                        purpose "To automate security scanning and integrate findings into the continuous
+                            +b improvement process."
+                automation_strategy "Integrate security tools into the DevSecOps pipeline to automatically identify,
+                    +b track, and remediate security defects, ensuring continuous feedback and
+                    +b improvement."
+            { handling_legacy_systems_and_constraints
+                why "To address the challenges of integrating continuous improvement practices with
+                    +b legacy ICS components that may not meet modern security standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in segmented networks to limit exposure and reduce
+                            +b attack surface."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate vulnerabilities in legacy
+                            +b systems, such as intrusion detection systems (IDS) and strict access controls."
+                example_policy "A policy outlining the steps to assess and mitigate risks associated with
+                    +b legacy systems, including regular reviews and updates to compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "To ensure effective collaboration and governance in implementing continuous
+                    +b improvement practices across engineering, security, and management teams."
+                { governance_model
+                    name "RACI Matrix for Continuous Improvement"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and analyze security defects, recommend improvements."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement corrective actions and updates to the SDL."
+                        {
+                            role "Management"
+                            responsibility "Oversee the continuous improvement process and allocate necessary resources."
+                conflict_resolution "Establish a cross-functional committee to resolve conflicts between engineering
+                    +b and security priorities, ensuring alignment with overall security goals."
+            { continuous_improvement_and_updates
+                why "To ensure that the continuous improvement process evolves based on new threat
+                    +b intelligence, audit findings, and lessons learned from incidents."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities and
+                            +b threats."
+                    {
+                        step "Incorporate findings"
+                        description "Update the SDL and continuous improvement process based on new threat
+                            +b intelligence and incident analyses."
+                    {
+                        step "Review and validate"
+                        description "Conduct periodic reviews to validate the effectiveness of implemented
+                            +b improvements."
+                lessons_learned "Document and analyze security incidents and defects to identify root causes and
+                    +b prevent recurrence, integrating these lessons into the SDL."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-1"
+        subCode "undefined"
+        name "Product security context"
+        description "A process shall be employed to ensure that the intended product security
+            +b context is documented."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Understanding the security context is essential for identifying relevant
+                    +b threats and vulnerabilities specific to the product's operational environment."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) within the
+                            +b product's security context."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling approaches that consider the unique aspects of
+                            +b Industrial Control Systems (ICS), such as operational technology (OT)
+                            +b environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the creation of threat models based on the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a framework for conducting risk assessments tailored to ICS
+                            +b environments."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant underwent a security
+                        +b context analysis, identifying critical assets and potential threats, leading to
+                        +b enhanced network segmentation and access controls."
+            { audit_and_compliance_verification
+                why "Ensures that the documented security context aligns with organizational
+                    +b policies and regulatory requirements."
+                [ audit_checklist
+                    "Verify that the product security context document includes all relevant operational environments."
+                    "Check for alignment with organizational security policies and IEC 62443-4-1 requirements."
+                    "Review evidence of stakeholder approval for the documented security context."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of unresolved audit findings related to security context"
+                        target "0"
+                compliance_procedure "Documentation must be reviewed and approved by both security and engineering
+                    +b teams, with evidence stored in a centralized compliance repository."
+            { training_and_competency_requirements
+                why "Ensures personnel involved in defining and reviewing the security context have
+                    +b the necessary skills and knowledge."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Provides foundational knowledge on ICS security, including security context
+                            +b documentation."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Covers ICS security best practices, including threat modeling and risk
+                            +b assessment."
+                competency_assessment "Annual reviews of personnel competency, including practical assessments of
+                    +b threat modeling and documentation skills."
+            { tooling_and_automation_support
+                why "Automation can streamline the documentation and review processes, reducing
+                    +b human error and improving efficiency."
+                [ tools
+                    {
+                        name "Confluence"
+                        purpose "Documentation platform for maintaining and versioning the security context."
+                    {
+                        name "JIRA"
+                        purpose "Issue tracking for managing reviews and updates to the security context."
+                automation_strategy "Integrate documentation tools with DevSecOps pipelines to automatically trigger
+                    +b reviews when changes are made to the security context."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not meet modern security standards, requiring tailored
+                    +b approaches to document their security context."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to potential threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional controls (e.g., intrusion detection systems) to mitigate
+                            +b risks associated with legacy systems."
+                example_policy "A policy for legacy system integration mandates that all legacy components be
+                    +b documented in the security context with identified risks and compensating
+                    +b controls."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b critical for accurately defining and maintaining the security context."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define security requirements and review the security context."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement and document the security context."
+                        {
+                            role "Management"
+                            responsibility "Approve the security context and allocate resources."
+                conflict_resolution "A formal escalation process is used to resolve conflicts, with final decisions
+                    +b made by a cross-functional governance board."
+            { continuous_improvement_and_updates
+                why "The security context must evolve to address new threats and changes in the
+                    +b operational environment."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review sources like CISA alerts for new ICS vulnerabilities."
+                    {
+                        step "Review and update"
+                        description "Update the security context document based on new threat intelligence and audit
+                            +b findings."
+                lessons_learned "Incorporating insights from past security incidents into the security context
+                    +b documentation helps prevent recurrence."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "a) correct flow of categorized information throughout the system;"
+        name "Threat model"
+        description "A process shall be employed to ensure that all products shall have a threat
+            +b model specific to the current development scope of the product with the
+            +b following characteristics (where applicable): a) correct flow of categorized
+            +b information throughout the system;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Threat modeling is essential to identify potential security threats and
+                    +b vulnerabilities in the system early in the development lifecycle, ensuring the
+                    +b correct flow of categorized information."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Custom threat models tailored for Industrial Control Systems, focusing on
+                            +b operational technology (OT) environments and specific ICS protocols."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "A tool to create and analyze threat models using the STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A risk assessment framework tailored for SCADA and ICS environments to identify
+                            +b and mitigate risks."
+                { case_study
+                    example "A threat model was developed for a Distributed Control System (DCS) in a power
+                        +b plant, identifying critical vulnerabilities in the communication flow between
+                        +b PLCs and the central control system, leading to enhanced network segmentation
+                        +b and encryption measures."
+            { audit_and_compliance_verification
+                why "Regular audits ensure that threat models are up-to-date and effectively
+                    +b mitigate identified risks, maintaining compliance with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that threat models are documented for all products in scope."
+                    "Ensure threat models are reviewed and updated with each major release or significant change."
+                    "Check that threat models cover all critical components and data flows."
+                    "Confirm that identified threats have corresponding mitigation strategies."
+                [ metrics
+                    {
+                        kpi "Percentage of products with documented threat models"
+                        target "100%"
+                    {
+                        kpi "Number of critical threats identified and mitigated"
+                        target "All critical threats mitigated"
+                compliance_procedure "Documentation of threat models and mitigation strategies must be reviewed
+                    +b annually or after significant system changes. Evidence includes threat model
+                    +b reports, review meeting minutes, and mitigation implementation records."
+            { training_and_competency_requirements
+                why "Ensuring that personnel are trained in threat modeling methodologies and tools
+                    +b is critical for effective implementation and compliance."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications covering ICS security standards, including threat modeling for
+                            +b industrial systems."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Training program focusing on ICS security, including threat modeling and risk
+                            +b assessment."
+                competency_assessment "Annual competency reviews for personnel involved in threat modeling, including
+                    +b practical assessments of threat model creation and review."
+            { tooling_and_automation_support
+                why "Automation and tooling support can streamline the threat modeling process,
+                    +b ensuring consistency and completeness."
+                [ tools
+                    {
+                        name "OWASP Threat Dragon"
+                        purpose "An open-source threat modeling tool that integrates with DevSecOps pipelines."
+                    {
+                        name "IriusRisk"
+                        purpose "A threat modeling and risk management platform that supports automation and
+                            +b integration with development workflows."
+                automation_strategy "Integrate threat modeling tools into the CI/CD pipeline to automatically
+                    +b generate and update threat models with each code change, ensuring continuous
+                    +b security assessment."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern threat modeling techniques, requiring
+                    +b alternative strategies to ensure security."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in segmented networks to limit exposure to potential
+                            +b threats."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b mitigate vulnerabilities in legacy systems."
+                example_policy "A policy for integrating legacy PLCs into a modern ICS environment includes
+                    +b mandatory network segmentation, regular vulnerability assessments, and the use
+                    +b of compensating controls to meet IEC 62443-4-1 requirements."
+            { stakeholder_collaboration_and_governance
+                why "Effective threat modeling requires collaboration between engineering, security,
+                    +b and management teams to ensure comprehensive coverage and alignment with
+                    +b business objectives."
+                { governance_model
+                    name "RACI Matrix for Threat Modeling"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Responsible for creating and maintaining threat models."
+                        {
+                            role "Engineering Team"
+                            responsibility "Accountable for implementing mitigation strategies."
+                        {
+                            role "Management"
+                            responsibility "Consulted for risk acceptance and resource allocation."
+                conflict_resolution "A formal escalation process is used to resolve conflicts between engineering
+                    +b and security priorities, involving senior management for final decisions."
+            { continuous_improvement_and_updates
+                why "Threat models must evolve to address new threats and vulnerabilities, ensuring
+                    +b ongoing protection of the system."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other ICS security advisories for new threats."
+                    {
+                        step "Review and update threat models"
+                        description "Update threat models based on new intelligence, system changes, or audit
+                            +b findings."
+                    {
+                        step "Document lessons learned"
+                        description "Incorporate insights from security incidents into threat modeling practices."
+                lessons_learned "After a ransomware attack on an ICS, the threat model was updated to include
+                    +b additional mitigations for unauthorized access to engineering workstations."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

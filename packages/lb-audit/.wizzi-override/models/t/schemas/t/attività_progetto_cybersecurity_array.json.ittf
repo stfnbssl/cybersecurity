@@ -1,0 +1,19 @@
+$group
+    { attività_progetto_cybersecurity_array
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Attività progetto cybersecurity"
+        description "Schema per dati di un array di attività del progetto cybersecurity."
+        type "object"
+        { properties
+            { metadati
+                type "object"
+                { properties
+                    date( data_estrazione_scadenze )
+                    date( data_integrazione )
+                [ required
+                    "data_estrazione_scadenze" 
+                    "data_integrazione" 
+            { items
+                type "array"
+                { items
+                    $include objects/attività_progetto_cybersecurity

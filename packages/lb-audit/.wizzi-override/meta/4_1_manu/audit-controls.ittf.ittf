@@ -1,0 +1,302 @@
+ittf
+
+    $
+        function cleanItem(text) {
+            var r = _.replace(text, '(','[');
+            return _.replace(r, ')',']');
+        }
+        function cleanDotTrim(text) {
+            var r = _.replace(text, '.','');
+            return cleanTrim(r);
+        }
+        function cleanTrim(text) {
+            return text[0] == '(' ? '$' + '{"("}' + text.substring(1).trim() : text.trim();
+        }
+        function cleanDotTrimArray(texts) {
+            var retval = [];
+            for (var i=0; i<texts.length; i++) {
+                retval.push(cleanDotTrim(texts[i]))
+            }
+            return retval;
+        }
+        function cleanTrimArray(texts) {
+            var retval = [];
+            for (var i=0; i<texts.length; i++) {
+                retval.push(cleanTrim(texts[i]))
+            }
+            return retval;
+        }
+        function getstd_62443_4_1_extra(code) {
+            for (var i=0; i<std_62443_4_1_extra.items.length; i++) {
+                var item = std_62443_4_1_extra.items[i];
+                if (item.code == code) { return item; }
+            }
+            return null;
+        }        
+        function getnist_sp_800_218_table_1(code) {
+            var retval = []
+            for (var i=0; i<nist_sp_800_218_table_1.practices.length; i++) {
+                var practice = nist_sp_800_218_table_1.practices[i];
+                for (var j=0; j<practice.processes.length; j++) {
+                    var process = practice.processes[j];
+                    for (var z=0; z<process.references.length; z++) {
+                        var reference = process.references[z];
+                        if (reference.standard == "IEC62443") { 
+                            if (reference.processes.indexOf(code) > -1) { 
+                                process.practice = practice;
+                                retval.push(process);
+                            }
+                        }
+                    }                    
+                }                
+            }
+            return retval;
+        }
+        function getnist_sp_800_53(code) {
+            for (var i=0; i<nist_sp_800_53.length; i++) {
+                var item = nist_sp_800_53[i];
+                if (item['Control Identifier'] == code) { 
+                    item.controlTypes = cleanTrimArray(item['Control (or Control Enhancement) Name'].split('|'));
+                    item.controlTextLines = cleanTrimArray(item['Control Text'].split('\n'));
+                    item.discussionLines = _.isNotEmpty(item.Discussion) ? cleanTrimArray(item.Discussion.split('\n')) : [];
+                    item.relatedControls = _.isNotEmpty(item['Related Controls']) ? cleanDotTrimArray(item['Related Controls'].split(',')) : [];
+                    return item; 
+                }
+            }
+            return null;
+        }
+        function get62443_4_1_carel_chatgpt(code) {
+            var retval = [];
+            for (var i=0; i<std_62443_4_1_carel_chatgpt.items.length; i++) {
+                var item = std_62443_4_1_carel_chatgpt.items[i];
+                if (item.code == code) { 
+                    retval.push({
+                        gpt_title: item.gpt_title,
+                        sub: item.sub,
+                        gpt_description: item.gpt_description,
+                    });
+                }
+            }
+            return retval;
+        }
+        function getowasp_samm_controls(code) {
+            var retval = [];
+            for (var i=0; i<owasp_samm_controls.length; i++) {
+                var item = owasp_samm_controls[i];
+                var sammCode = item.SAMM_Code.split('.')[0]
+                if (sammCode == code) {
+                    retval.push(item)
+                }
+            }
+            return retval;
+        }        
+
+    $file .wizzi-override/docs/4_1_manu/transformed/audit-controls.json.ittf
+        $
+            var practices = [];
+            var currentPractice = null;
+            var preOutput = {
+                source: {
+                    name: '',
+                    url: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf'
+                },
+                generatedBy: {
+                    meta: __filename
+                },
+                practices: practices,
+            }
+
+        {
+            [ requirements_62443_4_1
+                $foreach practice in std_62443_4_1.practices
+                    $foreach requirement in practice.requirements
+                        {
+                            code "${requirement.code}"
+                            name "${requirement.name}"
+                            page "${requirement.page}"
+                            clause "${requirement.clause}"
+                            requirement "${requirement.requirement}"
+                            rationale "${requirement.rationale}"
+                            $
+                                var extra = getstd_62443_4_1_extra(requirement.code);
+                                var nist = getnist_sp_800_218_table_1(requirement.code)
+                                var carel_chatgpt = get62443_4_1_carel_chatgpt(requirement.code)
+
+                            $if false
+                                $if extra != null
+                                    $if _.isArray(extra.subs)
+                                        [ subs
+                                            $foreach sub in extra.subs
+                                                {
+                                                    code ""
+                                                    value "${sub.description}"
+                            $if carel_chatgpt != null
+                                $if _.isArray(carel_chatgpt)
+                                    [ subcontrols
+                                        $foreach sub in carel_chatgpt
+                                            $if _.isNotEmpty(sub.sub)
+                                                {
+                                                    title "${sub.gpt_title}"
+                                                    value "${sub.sub}"
+                                                    control "${sub.gpt_description}"
+                            $if nist.length > 0
+                                [ nistSP800218 
+                                    $foreach nistProcess in nist
+                                        {
+                                            practice "${nistProcess.practice.practice}"
+                                            tasks "${nistProcess.tasks}"
+                                            [ examples
+                                                $if _.isArray(nistProcess.examples)
+                                                    $foreach example in nistProcess.examples
+                                                        "${example}"
+                                            [ owaspSammPractices
+                                                $foreach reference in nistProcess.references
+                                                    $if reference.standard == 'OWASPSAMM'
+                                                        $foreach refProcess in reference.processes
+                                                            $
+                                                                var sammControls = getowasp_samm_controls(refProcess);
+
+                                                            {
+                                                                code "${refProcess}"
+                                                                [ controls
+                                                                    $if _.isArray(sammControls)
+                                                                        $foreach sammControl in sammControls
+                                                                            {
+                                                                                code "${sammControl.SAMM_Code}"
+                                                                                control "${sammControl.Control}"
+                                                                                description "${sammControl.Description_SAMM}"
+                                                                                definition "${sammControl.Definition}"
+                                                                                action "${sammControl.Action}"
+                                                                                SCADAExample "${sammControl.SCADA_Example}"
+                                                                                evidenceRequired "${sammControl.Evidence_Required}"
+                                                                                usefulTools "${sammControl.Useful_Tools}"
+                                                                                detailedInstructions "${sammControl.Detailed_Instructions}"
+                                            [ nistSP80053Practices
+                                                $foreach reference in nistProcess.references
+                                                    $if reference.standard == 'SP80053'
+                                                        $foreach refProcess in reference.processes
+                                                            $
+                                                                var nist80052Item = getnist_sp_800_53(refProcess)
+
+                                                            $if nist80052Item != null
+                                                                {
+                                                                    code "${refProcess}"
+                                                                    [ controlTypes
+                                                                        $foreach ctl in nist80052Item.controlTypes
+                                                                            "${ctl}"
+                                                                    [ controlText
+                                                                        $foreach ctl in nist80052Item.controlTextLines
+                                                                            "${ctl}"
+                                                                    [ discussion
+                                                                        $foreach dl in nist80052Item.discussionLines
+                                                                            "${dl}"
+                                                                    [ relatedControls
+                                                                        $foreach rc in nist80052Item.relatedControls
+                                                                            "${rc}"
+
+            { 62443_4_1
+                [ practices
+                    $foreach practice in std_62443_4_1.practices
+                        {
+                            code "${practice.code}"
+                            title "${practice.name}"
+                            [ requirements
+                                $foreach requirement in practice.requirements
+                                    {
+                                        code "${requirement.code}"
+                                        title "${requirement.name}"
+            { OWASP
+                [ BusinessPractices
+                    { 
+                        name "Governance"
+                        [ SecurityPractices
+                            { 
+                                name "Strategy & Metrics"
+                                StreamA "Build Security Strategy"
+                                StreamB "Establish Metrics Program"
+                            { 
+                                name "Policy & Compliance"
+                                StreamA "Define Policies"
+                                StreamB "Manage Compliance"
+                            { 
+                                name "Education & Guidance"
+                                StreamA "Provide Role-Based Training"
+                                StreamB "Distribute Security Guidance"
+                    { 
+                        name "Design"
+                        [ SecurityPractices
+                            { 
+                                name "Threat Assessment"
+                                StreamA "Identify Threats"
+                                StreamB "Analyze Risk"
+                            { 
+                                name "Security Requirements"
+                                StreamA "Define Security Requirements"
+                                StreamB "Validate Requirements"
+                            { 
+                                name "Architecture"
+                                StreamA "Assess Architecture"
+                                StreamB "Define Security Architecture"
+                    { 
+                        name "Implementation"
+                        [ SecurityPractices
+                            { 
+                                name "Secure Build"
+                                StreamA "Control Build Process"
+                                StreamB "Manage Dependencies"
+                            { 
+                                name "Secure Deployment"
+                                StreamA "Secure Deployment Process"
+                                StreamB "Validate Deployment"
+                            { 
+                                name "Defect Management"
+                                StreamA "Track Defects"
+                                StreamB "Manage Defect Resolution"
+                    { 
+                        name "Verification"
+                        [ SecurityPractices
+                            { 
+                                name "Design Review"
+                                StreamA "Review Design"
+                                StreamB "Validate Security Controls"
+                            { 
+                                name "Code Review"
+                                StreamA "Perform Code Review"
+                                StreamB "Automate Code Analysis"
+                            { 
+                                name "Security Testing"
+                                StreamA "Conduct Security Testing"
+                                StreamB "Manage Test Results"
+                    { 
+                        name "Operations"
+                        [ SecurityPractices
+                            { 
+                                name "Issue Management"
+                                StreamA "Detect Issues"
+                                StreamB "Respond to Issues"
+                            { 
+                                name "Environment Management"
+                                StreamA "Secure Environment"
+                                StreamB "Monitor Environment"
+                            { 
+                                name "Operational Management"
+                                StreamA "Manage Operations"
+                                StreamB "Analyze Operational Data"
+
+      $*
+      "practice": "Define Security Requirements for Software Development (PO.1): Ensure that security requirements for software development are known at all times so that they can be taken into account throughout the SDLC and duplication of effort can be minimized because the requirements information can be collected once and shared. This includes requirements from internal sources (e.g., the organization’s policies, business objectives, and risk management strategy) and external sources (e.g., applicable laws and regulations).",
+      "processes": [
+        {
+          "tasks": "PO.1.1: Identify and document all security requirements for the organization’s software development infrastructures and processes, and maintain the requirements over time.",
+          "examples": [
+            "Example 1: Define policies for securing software development infrastructures and their components, including development endpoints, throughout the SDLC and maintaining that security.",
+            "Example 2: Define policies for securing software development processes throughout the SDLC and maintaining that security, including for open-source and other third-party software components utilized by software being developed.",
+            "Example 3: Review and update security requirements at least annually, or sooner if there are new requirements from internal or external sources, or a major security incident targeting software development infrastructure has occurred. ",
+            "Example 4: Educate affected individuals on impending changes to requirements."
+          ],
+          "references": [
+            {
+        *$
+        $*
+            $ var output = _.stringify(preOutput, null,2)
+            ${output}    

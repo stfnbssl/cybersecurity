@@ -1,0 +1,252 @@
+$group
+    {
+        id "FSA-CR 2.12"
+        check_description "If a component provides a human user interface, the component shall provide the
+            +b capability to determine whether a given human user took a particular
+            +b action.\nControl elements that are not able to support such capability shall be
+            +b listed in component documents."
+        requirement_id "CR 2.12"
+        title "Non-repudiation"
+        description "The non-repudiation requirement in IEC 62443-4-2 ensures that actions or events
+            +b within an industrial control system (ICS) can be proven and traced back to the
+            +b responsible entity. This requirement is critical to prevent any denial from the
+            +b entity about their involvement in the action or event. It involves maintaining
+            +b evidence that can be used to confirm the origin and integrity of data."
+        [ key_aspects
+            {
+                aspect "Data Integrity"
+                details "Ensures that the information has not been altered or tampered with from its
+                    +b original state, maintaining the authenticity of data."
+            {
+                aspect "Auditability"
+                details "Provides the ability to log and trace actions or transactions back to the
+                    +b entity responsible, which is crucial for investigating incidents and enforcing
+                    +b accountability."
+            {
+                aspect "Authentication"
+                details "Involves confirming the identity of entities involved in transactions or
+                    +b actions to ensure that actions are attributed to legitimate and verified
+                    +b sources."
+            {
+                aspect "Digital Signatures"
+                details "Use of cryptographic methods, such as digital signatures, to verify the origin
+                    +b and integrity of messages or documents exchanged within the system."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                description "Provides a framework for information security management systems (ISMS) that
+                    +b includes similar principles of non-repudiation, focusing on maintaining the
+                    +b confidentiality, integrity, and availability of information."
+            {
+                standard "NIST SP 800-53"
+                description "Offers guidelines for security and privacy controls for federal information
+                    +b systems and organizations, including controls for non-repudiation to ensure
+                    +b actions can be attributed to responsible entities."
+            {
+                standard "ISO/IEC 15408"
+                description "Also known as the Common Criteria for Information Technology Security
+                    +b Evaluation, this standard includes non-repudiation as a security functional
+                    +b requirement, emphasizing the need for evidence of actions and events."
+            {
+                standard "IEC 62351"
+                description "Focuses on power systems management and associated information exchange,
+                    +b addressing security issues including non-repudiation to protect communication
+                    +b protocols used in power systems."
+    {
+        id "FSA-CR 2.12 RE(1)"
+        check_description "Components shall provide the capability to determine whether a given user
+            +b (human, software process or device) took a particular action."
+        requirement_id "IEC 62443-4-2: CR 2.12 RE(1)"
+        title "Non-repudiation for all users"
+        description "This requirement ensures that actions or events can be proven to have taken
+            +b place, preventing users from denying their involvement. Non-repudiation
+            +b involves creating verifiable records of activities, which are crucial for
+            +b accountability and forensic analysis in an industrial control system (ICS)
+            +b environment."
+        [ key_aspects
+            {
+                aspect "Audit Trails"
+                details "Implementing detailed logging mechanisms that record all system activities,
+                    +b including user actions, time stamps, and any relevant context, to maintain a
+                    +b comprehensive audit trail."
+            {
+                aspect "Digital Signatures"
+                details "Utilizing digital signatures to verify the origin and integrity of messages or
+                    +b transactions. This ensures that the sender cannot deny sending the message and
+                    +b that it has not been altered."
+            {
+                aspect "Authentication"
+                details "Ensuring robust authentication mechanisms are in place to verify user
+                    +b identities reliably before allowing access to the system. This helps attribute
+                    +b actions accurately to specific users."
+            {
+                aspect "Secure Timestamping"
+                details "Employing secure timestamping techniques to provide a verifiable time reference
+                    +b for events, which is critical for establishing the chronology of actions."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.4 Logging and monitoring"
+                details "This standard emphasizes the importance of logging and monitoring in
+                    +b maintaining security within information systems, which is essential for
+                    +b establishing non-repudiation."
+            {
+                standard "NIST SP 800-92"
+                reference "Guide to Computer Security Log Management"
+                details "Provides guidelines on effective log management practices, which are crucial
+                    +b for capturing necessary data to support non-repudiation."
+            {
+                standard "NIST SP 800-53"
+                reference "AU-10 Non-repudiation"
+                details "This publication outlines controls related to non-repudiation, providing
+                    +b strategies for ensuring that users cannot deny their actions within a system."
+            {
+                standard "ISO/IEC 29100"
+                reference "Privacy framework"
+                details "Addresses privacy concerns related to logging and monitoring, ensuring that
+                    +b non-repudiation practices also respect user privacy and data protection
+                    +b requirements."
+    {
+        id "FSA-EDR 2.13"
+        check_description "Embedded devices shall protect against unauthorized use of the physical factory
+            +b diagnostic and test interface(s) (e.g. JTAG Debugging)."
+        requirement_id "IEC 62443-4-2:EDR 2.13"
+        title "Use of Physical Diagnostic and Test Interfaces"
+        description "This requirement focuses on the secure management and use of physical
+            +b diagnostic and test interfaces within IACS components. It ensures that these
+            +b interfaces are appropriately protected against unauthorized access and misuse,
+            +b which could lead to security vulnerabilities or disruptions in industrial
+            +b operations."
+        [ key_aspects
+            {
+                aspect "Access Control"
+                detail "Ensure that physical diagnostic and test interfaces are only accessible by
+                    +b authorized personnel. Implement mechanisms to control and monitor access to
+                    +b these interfaces."
+            {
+                aspect "Secure Configuration"
+                detail "Maintain secure configurations for diagnostic and test interfaces to prevent
+                    +b unauthorized modifications or use. This includes disabling unused interfaces
+                    +b and ensuring secure default settings."
+            {
+                aspect "Monitoring and Logging"
+                detail "Implement logging and monitoring of access to diagnostic and test interfaces to
+                    +b detect and respond to unauthorized attempts or suspicious activities."
+            {
+                aspect "Physical Security"
+                detail "Ensure that physical security measures are in place to protect diagnostic and
+                    +b test interfaces from unauthorized physical access or tampering."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1 - System access control"
+                description "This section emphasizes the need for strong access control measures which are
+                    +b also applicable to physical interfaces to protect against unauthorized access."
+            {
+                standard "IEC 62443-2-1"
+                reference "Clause 5.2.4 - Physical and environmental security"
+                description "This clause provides guidelines on securing physical environments, which
+                    +b includes securing physical interfaces against unauthorized access."
+            {
+                standard "IEC 62351"
+                reference "Part 8 - Role-based access control"
+                description "While primarily focused on communications security, this standard provides
+                    +b guidance on role-based access control that can be applied to physical
+                    +b interfaces."
+    {
+        id "FSA-EDR 2.13 RE(1)"
+        check_description "Embedded devices shall provide active monitoring of the device’s diagnostic and
+            +b test interface(s) and generate an audit log entry when attempts to access these
+            +b interface(s) are detected."
+        requirement_id "IEC 62443-4-2:EDR 2.13 RE(1)"
+        title "Active Monitoring"
+        description "This requirement focuses on the necessity for systems to actively monitor for
+            +b security events or anomalies. Active monitoring involves real-time surveillance
+            +b and analysis of network and system activities to detect potential security
+            +b incidents or breaches."
+        { key_aspects
+            real_time_surveillance "Continuous observation of network and system behaviors to ensure immediate
+                +b detection of suspicious activities."
+            anomaly_detection "Mechanisms to identify deviations from normal operations, which could indicate
+                +b potential security threats."
+            event_logging "Systematic recording of security-relevant events to facilitate analysis and
+                +b response in the event of an incident."
+            alerting_mechanisms "Automated notifications to alert relevant personnel upon detection of potential
+                +b security incidents."
+        [ related_standards
+            {
+                standard_id "IEC 62443-3-3:SR 3.2"
+                title "Security Monitoring"
+                description "This standard outlines the need for security monitoring capabilities to detect,
+                    +b log, and respond to security incidents."
+            {
+                standard_id "ISO/IEC 27002:2013 - 12.4"
+                title "Logging and Monitoring"
+                description "Provides guidance on logging and monitoring to ensure that critical information
+                    +b security events are captured and reviewed."
+            {
+                standard_id "NIST SP 800-137"
+                title "Information Security Continuous Monitoring (ISCM) for Federal Information
+                    +b Systems and Organizations"
+                description "Describes a process for maintaining an ongoing awareness of information
+                    +b security, vulnerabilities, and threats to support organizational risk
+                    +b management decisions."
+            {
+                standard_id "CIS Controls v8 - Control 6"
+                title "Maintenance, Monitoring and Analysis of Audit Logs"
+                description "Focuses on collecting, managing, and analyzing audit logs to help detect
+                    +b security incidents."
+    {
+        id "FSA-HDR 2.13"
+        check_description "Host devices shall protect against unauthorized use of the physical factory
+            +b diagnostic and test interface(s) (e.g. JTAG debugging)."
+        requirement_id "IEC 62443-4-2: HDR 2.13"
+        title "Use of Physical Diagnostic and Test Interfaces"
+        description "This requirement addresses the secure management and use of physical diagnostic
+            +b and test interfaces in industrial automation and control systems (IACS). It
+            +b ensures that these interfaces are adequately protected against unauthorized
+            +b access and potential misuse, which could compromise system integrity,
+            +b confidentiality, or availability."
+        [ key_aspects
+            {
+                aspect "Access Control"
+                details "Implementation of strict access control measures to ensure that only authorized
+                    +b personnel have physical access to diagnostic and test interfaces. This may
+                    +b include physical locks, badges, or other access control mechanisms."
+            {
+                aspect "Monitoring and Logging"
+                details "Continuous monitoring and logging of access to the diagnostic and test
+                    +b interfaces to detect and respond to unauthorized access attempts promptly. Logs
+                    +b should be reviewed regularly and maintained securely."
+            {
+                aspect "Interface Design"
+                details "Design of diagnostic and test interfaces should minimize exposure to
+                    +b unauthorized access. This can be achieved through the use of secure hardware
+                    +b designs and the implementation of appropriate security protocols."
+            {
+                aspect "Security Training"
+                details "Regular training and awareness programs for personnel regarding the security
+                    +b requirements and best practices for accessing and using diagnostic and test
+                    +b interfaces."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "System Security Requirements and Security Levels"
+                details "Provides foundational requirements for system security that support secure use
+                    +b and management of diagnostic and test interfaces."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information Security Management Systems"
+                details "Offers comprehensive guidelines on implementing information security controls,
+                    +b which are relevant for securing physical interfaces."
+            {
+                standard "NIST SP 800-53"
+                reference "Security and Privacy Controls for Information Systems and Organizations"
+                details "Includes controls for access control, monitoring, and physical protection,
+                    +b which align with securing diagnostic and test interfaces."
+            {
+                standard "IEC 61508"
+                reference "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems"
+                details "Addresses safety requirements that can overlap with security considerations for
+                    +b diagnostic interfaces in safety-related systems."

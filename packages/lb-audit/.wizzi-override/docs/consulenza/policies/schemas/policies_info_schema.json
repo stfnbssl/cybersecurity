@@ -1,0 +1,195 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schema per la Raccolta di Informazioni per Politiche e Procedure IEC 62443-4-1",
+  "description": "Schema JSON per raccogliere informazioni propedeutiche alla creazione di politiche e procedure per lo sviluppo sicuro di prodotti IACS in conformità con IEC 62443-4-1. Include dati su organizzazione, prodotti, risorse e requisiti per le otto aree di pratica.",
+  "type": "object",
+  "properties": {
+    "organization": {
+      "type": "object",
+      "description": "Informazioni sull'organizzazione che sviluppa i prodotti IACS, utili per contestualizzare le politiche e procedure.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Nome dell'organizzazione (es. 'Azienda XYZ'). Serve per identificare il contesto e personalizzare la documentazione."
+        },
+        "size": {
+          "type": "string",
+          "enum": ["small", "medium", "large"],
+          "description": "Dimensione dell'organizzazione (piccola: <50 dipendenti, media: 50-250, grande: >250). Influisce sulle risorse disponibili e sulla complessità delle procedure."
+        },
+        "existing_standards": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "examples": ["ISO 9001", "ISO 27001", "CMMI"]
+          },
+          "description": "Standard o framework di gestione qualità/sicurezza già adottati (es. ISO 9001, ISO 27001). Permette di identificare sinergie per adattare processi esistenti."
+        },
+        "security_team": {
+          "type": "object",
+          "description": "Dettagli sul team responsabile della sicurezza, fondamentale per definire ruoli (SM-1.2).",
+          "properties": {
+            "size": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "Numero di membri del team di sicurezza."
+            },
+            "expertise": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "examples": ["IEC 62443", "CISSP", "Secure Coding"]
+              },
+              "description": "Competenze o certificazioni del team (es. formazione IEC 62443, CISSP). Serve per valutare la necessità di formazione aggiuntiva."
+            }
+          },
+          "required": ["size", "expertise"]
+        }
+      },
+      "required": ["name", "size", "existing_standards", "security_team"]
+    },
+    "products": {
+      "type": "array",
+      "description": "Elenco dei prodotti IACS sviluppati dall'organizzazione, per definire l'ambito delle politiche e procedure.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Nome del prodotto (es. 'PLC Modelo X', 'Software SCADA Y')."
+          },
+          "type": {
+            "type": "string",
+            "enum": ["embedded_device", "host_device", "network_device", "application"],
+            "description": "Tipo di prodotto secondo IEC 62443-4-2 (dispositivo embedded, dispositivo host, dispositivo di rete, applicazione)."
+          },
+          "intended_use": {
+            "type": "string",
+            "description": "Uso previsto del prodotto (es. 'controllo industriale in impianti chimici'). Serve per contestualizzare i requisiti di sicurezza (SM-2)."
+          },
+          "target_security_level": {
+            "type": "string",
+            "enum": ["SL-C 0", "SL-C 1", "SL-C 2", "SL-C 3", "SL-C 4"],
+            "description": "Livello di sicurezza delle capacità (SL-C) mirato per il prodotto, basato su IEC 62443-3-2. Influisce sui requisiti di sicurezza."
+          }
+        },
+        "required": ["name", "type", "intended_use", "target_security_level"]
+      },
+      "minItems": 1
+    },
+    "resources": {
+      "type": "object",
+      "description": "Risorse disponibili per lo sviluppo di politiche e procedure, inclusi strumenti, template e personale.",
+      "properties": {
+        "tools": {
+          "type": "array",
+          "description": "Strumenti disponibili per supportare le aree di pratica (es. strumenti di analisi statica per SM-4, strumenti di test per SM-5).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Nome dello strumento (es. 'SonarQube', 'OWASP ZAP')."
+              },
+              "purpose": {
+                "type": "string",
+                "enum": ["threat_modeling", "code_analysis", "vulnerability_testing", "issue_tracking", "patch_management", "documentation"],
+                "description": "Scopo dello strumento in relazione alle aree di pratica (es. threat modeling per SM-3, analisi del codice per SM-4)."
+              }
+            },
+            "required": ["name", "purpose"]
+          }
+        },
+        "templates": {
+          "type": "array",
+          "description": "Template o modelli disponibili per politiche e procedure (es. template SANS, OWASP SAMM).",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Nome del template (es. 'SANS Secure Coding Policy')."
+              },
+              "source": {
+                "type": "string",
+                "description": "Fonte del template (es. 'SANS Institute', 'OWASP')."
+              },
+              "applicable_practice_area": {
+                "type": "string",
+                "enum": ["SM-1", "SM-2", "SM-3", "SM-4", "SM-5", "SM-6", "SM-7", "SM-8"],
+                "description": "Area di pratica di IEC 62443-4-1 a cui il template si applica."
+              }
+            },
+            "required": ["name", "source", "applicable_practice_area"]
+          }
+        },
+        "budget": {
+          "type": "string",
+          "description": "Budget disponibile per strumenti, formazione o consulenze (es. '10.000 EUR per strumenti', 'budget limitato'). Aiuta a pianificare risorse."
+        }
+      },
+      "required": ["tools", "templates", "budget"]
+    },
+    "practice_areas": {
+      "type": "array",
+      "description": "Dettagli per ciascuna delle otto aree di pratica di IEC 62443-4-1, per identificare lacune e pianificare politiche/procedure.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "area": {
+            "type": "string",
+            "enum": ["SM-1", "SM-2", "SM-3", "SM-4", "SM-5", "SM-6", "SM-7", "SM-8"],
+            "description": "Area di pratica di IEC 62443-4-1 (es. SM-1: Gestione della Sicurezza)."
+          },
+          "current_status": {
+            "type": "string",
+            "description": "Stato attuale dell'implementazione (es. 'non iniziato', 'parzialmente implementato', 'completo'). Serve per identificare lacune."
+          },
+          "existing_processes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Processi esistenti che possono essere adattati per questa area (es. 'revisioni del codice esistenti per SM-4')."
+            },
+            "description": "Elenco dei processi o pratiche già in atto che possono essere mappati all'area di pratica."
+          },
+          "needs": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "description": "Esigenze specifiche per implementare l'area di pratica (es. 'formazione su threat modeling', 'strumento per analisi statica')."
+            },
+            "description": "Bisogni identificati per sviluppare politiche/procedure (es. formazione, strumenti, consulenze)."
+          },
+          "responsible_role": {
+            "type": "string",
+            "description": "Ruolo responsabile per l'implementazione dell'area di pratica (es. 'Security Manager', 'Development Team')."
+          }
+        },
+        "required": ["area", "current_status", "existing_processes", "needs", "responsible_role"]
+      },
+      "minItems": 8,
+    },
+    "certification_goals": {
+      "type": "object",
+      "description": "Obiettivi relativi alla certificazione (es. ISASecure SDLA) per pianificare audit e conformità.",
+      "properties": {
+        "target_certification": {
+          "type": "string",
+          "enum": ["ISASecure SDLA", "Other", "None"],
+          "description": "Certificazione mirata, se applicabile (es. ISASecure SDLA). 'None' se non si persegue una certificazione."
+        },
+        "timeline": {
+          "type": "string",
+          "description": "Tempistica prevista per la certificazione (es. 'Q4 2025')."
+        },
+        "audit_readiness": {
+          "type": "string",
+          "description": "Stato di preparazione per un audit (es. 'non iniziato', 'in preparazione', 'pronto')."
+        }
+      },
+      "required": ["target_certification", "timeline", "audit_readiness"]
+    }
+  },
+  "required": ["organization", "products", "resources", "practice_areas", "certification_goals"]
+}

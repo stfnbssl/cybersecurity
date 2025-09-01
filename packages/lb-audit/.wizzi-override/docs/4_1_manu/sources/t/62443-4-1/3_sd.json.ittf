@@ -1,0 +1,126 @@
+$group
+    {
+        name "Secure by design"
+        purpose "The processes specified by this practice are used to ensure that the product is secure by design including defense in depth. 
+            +b Defense in depth provides one or more layers of security to thwart security threats. Each layer of the defense in depth strategy 
+            +b is designed to protect the assets from attack in the case that all other layers have been compromised.
+            +b The processes required by this practice are required to be applied to all stages of product design, from conceptual design to detailed design, 
+            +b and to all levels of product design from the overall architecture to the design of individual components."
+        page 30
+        [ requirements
+            {
+                clause "7.2"
+                code "SD-1"
+                name "Secure design principles"
+                page 30
+                requirement "A process shall be employed for developing and documenting a secure design that identifies and characterizes 
+                    +b each interface of the product, including physical and logical interfaces, to include:
+                    +b a) an indication of whether the interface is externally accessible (by other products), or internally accessible (by other components of the product), or both;
+                    +b b) security implications of the product security context (see Clause 6) on the external interface;
+                    +b c) potential users of the interface and the assets that can be accessed through it (directly or indirectly);
+                    +b d) a determination of whether access to the interface crosses a trust boundary;
+                    +b e) security considerations, assumptions and/or constraints associated with the use of the interface within the product security context, including applicable threats;
+                    +b f) the security roles, privileges/rights and access control permissions needed to use the interface and to access the assets defined in c) above;
+                    +b g) the security capabilities and/or compensating mechanisms used to safeguard the interface and the assets defined in c) above, including input validation as well as output and error handling;
+                    +b h) the use of third-party products to implement the interface and their security capabilities;
+                    +b i) documentation that describes how to use the interface if it is externally accessible; and
+                    +b j) description of how the design mitigates the threats identified in the threat model."
+                rationale "This process is required to ensure that security for access to assets is comprehensively addressed from the 
+                    +b perspective of external and internal interfaces of the product through which attacks can be mounted.
+                    +b Having this process means that interfaces of the product are identified and characterized by the interactions that 
+                    +b take place over them (for example, data and control flows), the security mechanisms designed to protect them and the assets 
+                    +b that can be compromised if not adequately protected. Interfaces include physical and wireless connections to networks (for example, 
+                    +b Ethernet) and devices (for example, keyboards, monitors and USB/compact disc [CD]/digital versatile disc [DVD] media). 
+                    +b Logical interfaces support data control flows (for example, application messaging) between product components and include 
+                    +b mechanisms such as application programming interfaces (for example, structured queryl anguage [SQL]) and communications 
+                    +b protocols (for example, the transmission control protocol [TCP]). Protection mechanisms include general hardening 
+                    +b capabilities (for example, security policy settings), user access controls (for example, account management), and security event 
+                    +b detection and reporting, among others.
+                    +b Viewing interfaces within the setting provided by the product security context allows the secure design to focus on the specific 
+                    +b environment in which the product is expected to operate, including both protections offered by the product security context and 
+                    +b vulnerabilities resulting from it (for example, where it can be open to attack). For an internal component of the design, 
+                    +b the concept of the product security context is extended to include the security context provided by surround ing product components. For example, 
+                    +b the product security context of an application program running on a workstation that is part of an industrial control system product includes 
+                    +b the network(s) to which the workstation connects and the software environment of the workstation in which the application runs.
+                    +b Identifying threats, users, assets and trust boundaries associated withinterfaces specifies who is expected to use the interfaces, 
+                    +b and indicates where threats and unknown subjects potentially can ga in access to the interface and the assets that can be accessed 
+                    +b through it. This allows the reduction of the number of interfaces where possible and to provide the appropriate safeguards for the 
+                    +b remaining interfaces and the assets that can be accessed through them. Identifying trust boundaries also supports future definition of zones and 
+                    +b conduits (see IEC 62443-3-2 [9]), and thus is a primary component in the definition of the security architecture of the product. Sample data assets (resources) include:
+                    +b a) databases and database tables;
+                    +b b) configuration files;
+                    +b c) cryptographic key stores;
+                    +b d) access control lists (ACLs);
+                    +b e) registry keys;
+                    +b f) web pages (static and dynamic);
+                    +b g) audit logs;
+                    +b h) network sockets / network media;
+                    +b i) inter-process communications (IPC), services and remote procedure call (RPC) resources;
+                    +b j) any other files and directories; and
+                    +b k) any other memory resource.
+                    +b Based on analysis of the product security requirements, the product security context and trust boundary considerations, the design can be 
+                    +b developed for interfaces that include the definition of user roles, privileges and authorization/access permissions required to use 
+                    +b the interfaces as well as specific security capabilities (for example, authentication, encryption and logging) that provide 
+                    +b additional safeguards. As part of the design of the defense in depth strategy, the expected use of compensating mechanisms and third-party hardware or software components 
+                    +b will aid in the assessment of the adequacy of the defense in depth strategy (see 7.4).
+                    +b Finally, preparing documentation for the use of externally accessible interfaces (for example, by users and third-parties) reduces 
+                    +b the potential for accidental misuse."
+            {
+                clause "7.3"
+                code "SD-2"
+                name "Defense in depth design"
+                page 31
+                requirement "A process shall be employed to implement multiple layers of defense using a risk based approach based on the threat model. This process 
+                    +b shall be employed for assign ing responsibilities to each layer of defense."
+                [ notes
+                    "Each layer provides additional defense mechanisms."
+                    "It is possible for any layer to be compromised; therefore, secure design principles (see 7.2) are applied to each layer."
+                    "The objective is to reduce the attack surface of the subsequent layers."
+                rationale "For example, the TCP/IP s tack could check for i nvalid packets, an HTTP server could authenticate input and then another 
+                    +b layer could validate that the input and audit logs are produced for administrative changes. Each layer provides an additional 
+                    +b "defense mechanism, has a responsibility and provides attack surface reduction for the next layer. Each layer assumes that the 
+                    +b "layer in front of it can be compromised."
+            {
+                clause "7.4"
+                code "SD-3"
+                name "Security design review"
+                page 32
+                requirement "A process shall be employed for conducting design reviews to identify, characterize and track to closure security-related 
+                    +b issues associated with each significant revision of the secure design including but not limited to:
+                    +b a) security requirements (see Clause 6) that were not adequately addressed by the design;
+                    +b b) threats and their ability to exploit product interfaces, trust boundaries, and assets (see 7.2); and
+                    +b c) identification of secure design practices (see 7.5) that were not followed (for example, failure to apply principle of least privilege)."
+                rationale "This process is required to ensure that the secure design addresses the requirements and threats (see Clause 6) defined for 
+                    +b the product, and that design best practices have been followed (see 7.5). All discovered security-related issues are to be 
+                    +b documented and tracked through the processes defined by 7.4 and 10.5."
+                    +b Having this process means that each version of the design is reviewed to determine:
+                    +b a) whether any product security requirements have not been adequately addressed by the defense in depth strategy; and
+                    +b b) whether there are threat vectors (paths for threats to follow) that bypass the defense in depth strategy or that are otherwise capable of breaching the defense in depth strategy.
+                    +b In either case, the threat model is to be updated to reflect security-related issues discovered as a result of the review process."
+                [ notes
+                    "Requirements allocation, including security requirements, is part of typical design processes."
+                    "Characterizing threats and their ability to exploit interfaces is often referred to as threat modelling."
+
+            {
+                clause "7.5"
+                code "SD-4"
+                name "Secure design best practices"
+                page 32
+                requirement "A process shall be employed to ensure that secure design best practices are documented and applied to the design process. 
+                    +b These practices shall be periodically reviewed and updated. Secure design practices include but are not limited to:
+                    +b a) least privilege (granting only the privileges to users/software necessary to perform intended operations);
+                    +b b) using proven secure components/designs where possible;
+                    +b c) economy of mechanism (striving for simple designs);
+                    +b d) using secure design patterns;
+                    +b e) attack surface reduction;
+                    +b f) documenting all trust boundaries as part of the design; and
+                    +b g) removing debug ports, headers and traces from circuit boards used during development from production hardware or 
+                    +b documenting their presence and the need to protect them from unauthorized access."
+                rationale "This process is required to ensure that guidance is provided to developers to help them avoid common pitfalls 
+                    +b during design that could lead to later security issues.
+                    +b Having this process means that the product supplier has a list of security best practices that is maintained and followed 
+                    +b during the development of the secure design for the product. These best practices should be based commonly accepted security 
+                    +b best practices in industry for the type of product being developed. It is completely up to the supplier to determine which 
+                    +b practices they consider to be most appropriate for their design practices. These practices are kept current as a result of 
+                    +b both changes in the industry and the application of lessons learned by the product supplier.
+                    +b Note that these practices apply to both hardware and software design."

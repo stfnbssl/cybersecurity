@@ -1,0 +1,89 @@
+$group 
+    type "object"
+    additionalProperties false
+    { properties
+        { codice
+            type "string"
+            description "Identificativo dell'attività (es. ACT-001)"
+        { nome
+            type "string"
+            description "Nome sintetico dell'attività"
+        { categoria
+            type "string"
+            description "Categoria dell'attività"
+        { dato
+            type "string"
+            description "Descrizione del deliverable/contenuto"
+        { riferimento_documento
+            type "string"
+            description "Riferimento interno al documento o sezione"
+        { utilizzo_in_offerte
+            type "string"
+            description "Modalità d'uso in offerte commerciali"
+        { offerta_collegata
+            type "string"
+            description "Nome dell'offerta collegata"
+        { scadenze
+            type "array"
+            description "Elenco delle scadenze per fasi"
+            { items
+                type "object"
+                additionalProperties false
+                { properties
+                    { fase
+                        type "string"
+                        description "Nome della fase (es. Bozza, Definitivo)"
+                    { data_scadenza
+                        type "string"
+                        format "date"
+                        description "Data di scadenza (YYYY-MM-DD)"
+                    { giorni_mancanti
+                        type "integer"
+                        minimum 0
+                        description "Giorni residui alla scadenza"
+                [ required
+                    "fase" 
+                    "data_scadenza" 
+                    "giorni_mancanti" 
+        { normative_collegate
+            type "array"
+            description "Normative/standard correlate"
+            { items
+                type "string"
+    [ required
+        "codice" 
+        "nome" 
+        "categoria" 
+        "dato" 
+        "riferimento_documento" 
+        "utilizzo_in_offerte" 
+        "offerta_collegata" 
+        "scadenze" 
+        "normative_collegate" 
+    [ examples
+        { 
+            codice "ACT-001"
+            nome "Matrice di Analisi (Excel)"
+            categoria "Attività di Consulenza"
+            dato "Realizzazione di un file Excel contenente una matrice completa di tutti i punti da analizzare durante le consulenze, con riferimento a IEC 62443-3-3, 4-1, 4-2, ISO 27001, NIS2, Direttiva Macchine, Cyber Resilience Act, NIST e NEC-2023."
+            riferimento_documento "Punto 1 (Matrice di Analisi)"
+            utilizzo_in_offerte "Base per l’offerta ‘Consulenza per l’Implementazione della Cybersecurity IEC 62443’, che promuove la conformità normativa e la personalizzazione per clienti come Breton."
+            offerta_collegata "Consulenza per l’Implementazione della Cybersecurity IEC 62443"
+            [ scadenze
+                { 
+                    fase "Bozza"
+                    data_scadenza "2025-09-15"
+                    giorni_mancanti 31
+                { 
+                    fase "Definitivo"
+                    data_scadenza "2025-09-30"
+                    giorni_mancanti 46
+            [ normative_collegate
+                "IEC 62443" 
+                "ISO 27001" 
+                "NIS2" 
+                "Direttiva Macchine (MD)" 
+                "Cyber Resilience Act (CRA)" 
+                "NIST CSF 2" 
+                "CISA Guidelines" 
+                "NEC-2023 (NFPA 70)" 

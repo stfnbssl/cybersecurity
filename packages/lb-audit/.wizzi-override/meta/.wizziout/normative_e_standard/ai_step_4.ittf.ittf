@@ -1,0 +1,80 @@
+ittf 
+    $ 
+        var step_name = 'normative_e_standard.step_4';
+        var x_options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.normative_attuazione_e_strumenti, null, null),
+        } 
+        // var provider = 'chatGPT';
+        // provider = 'grok';
+        var provider = 'deepSeek';
+        var maxNumInBatch = 5;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        } 
+        var count = 0;
+    $foreach aiItem in wzCtx.root_prompts.normative_e_standard.items
+        $ _.log('----> ', step_name, 'aiItem.nome', aiItem.nome);
+        $if count > maxNumInBatch
+            $ 
+                batches.push(currentBatch); 
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [aiItem]
+                } 
+                count = 1;
+        $else 
+            $ 
+                currentBatch.items.push(aiItem); 
+                count++; 
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);
+    $ _.log('----> batches.length', batches.length);
+    $foreach batch in batches
+        $file .wizzi-override/docs/normative_e_standard/ai_step_4_in/batch-${batch.id}.ai.ittf
+            ai ${step_name}
+                api-url http://localhost:3000
+                $foreach batchItem in batch.items
+                    $ 
+                        var filterOk = true;
+                        if (batchItem["tipo"] != "normativa") {
+                            filterOk = false;
+                        } 
+                    $if filterOk
+                        $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                        $ 
+                            var options = {
+                                provider: provider,
+                                id: batchItem.nome,
+                                inputJSON: batchItem,
+                                inputJSONString: batchItemJSONString,
+                                JSONSchema: x_options.step_1_JSONSchema,
+                                product_supplier_JSON: null, // not used
+                            } 
+                        call ${options.id}
+                            description normative_e_standard - ${options.id}
+                            message 
+                                role system
+                                content 
+                                    ${''}\n Sei un esperto di cybersecurity in contesto OT/ICS
+                                    ${''}\n e conosci le principali normative di riferimento
+                            message 
+                                role user
+                                content 
+                                    ${''}\n Produci un JSON con informazioni significative che riguardano normative e standard
+                                    ${''}\n descritte nel JSON fornito nel tag <input_json_data>.
+                                    ${''}\n Il contenuto deve essere conforme allo schema JSON fornito e 
+                                    ${''}\n orientato agli auditor, con un tono tecnico, chiaro e pratico.
+                                    ${''}\n Segui queste istruzioni:
+                                    ${''}\n 1. **Contenuto da Generare**:
+                                    ${''}\n  - `attuazione`: un Array con almeno 5 item di con informazioni su provvedimenti attuativi
+                                    ${''}\n  - `interpretazioni`: Array con con almeno 5 item di interpretazione delle norme espresse da esperti in cybersecurity
+                                    ${''}\n  - `strumenti_opensource`: Array con con almeno 5 item di informazioni su strumenti open source disponibili per l'implementazione da parte delle imprese
+                                    ${''}\n  - `offerte`: Array con con almeno 5 item di informazioni su significative offerte commerciale e strumenti a pagamento per l'implementazione da parte delle imprese
+                                    ai/schema_data_return( &options, step )
+    ${'$'}file .wizzi-override/docs/normative_e_standard/ai_step_4_out/index.json.ittf
+        { 
+            [ items
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

@@ -1,0 +1,182 @@
+$group
+    {
+        IDD "2.8.1"
+        area "Continuità operativa"
+        category "Piani di continuità"
+        description "Esiste un piano per la gestione delle attività di Continuità Operativa e Crisis
+            +b Management?"
+        { asset_owner
+            isRelevant true
+            motivation "Un piano di continuità operativa è fondamentale per un asset owner per
+                +b garantire la resilienza dell'IACS in caso di incidenti, disastri o
+                +b interruzioni. La gestione delle crisi è una responsabilità diretta del
+                +b proprietario degli asset."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la continuità operativa sia importante, questo controllo è più
+                +b focalizzato sulla gestione operativa che sulle fasi di sviluppo del software.
+                +b Non è direttamente rilevante per il Secure Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati devono essere progettati con piani di continuità
+                +b operativa per garantire la resilienza del sistema complessivo. Questo è
+                +b particolarmente importante per macchine o sistemi critici."
+        { component_production
+            isRelevant false
+            motivation "La continuità operativa a livello di singolo componente prodotto è generalmente
+                +b gestita a livello di sistema o impianto. Questo controllo è più rilevante per
+                +b l'infrastruttura complessiva che per i singoli componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sulla tipica applicazione dei piani di
+            +b continuità operativa nel contesto IACS. La rilevanza per l'asset owner e
+            +b l'integrazione di sistema è alta data la natura critica degli impianti
+            +b industriali."
+    {
+        IDD "2.8.2"
+        area "Continuità operativa"
+        category "Piani di continuità"
+        description "I piani che regolano la gestione delle attività di Continuità Operativa, Crisis
+            +b Management e Disaster Recovery sono aggiornati e testati periodicamente?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa dei sistemi IACS sotto
+                +b la sua gestione. Piani aggiornati e testati sono essenziali per garantire la
+                +b resilienza degli asset critici."
+        { ssdl
+            isRelevant false
+            motivation "Questa voce è focalizzata su processi operativi piuttosto che sullo sviluppo
+                +b software. Non è direttamente applicabile al Secure Software Development
+                +b Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati richiedono piani di continuità ben definiti per
+                +b garantire l'operatività durante guasti o disastri. La verifica dei piani è
+                +b cruciale per la resilienza del sistema."
+        { component_production
+            isRelevant false
+            motivation "Sebbene importante per la produzione, questa voce è più rilevante per la
+                +b gestione operativa che per il processo produttivo del componente stesso."
+        note_su_json_risultante "Le valutazioni sono state effettuate considerando la natura operativa del
+            +b controllo, più pertinente alla gestione di sistemi che allo sviluppo o
+            +b produzione di componenti."
+    {
+        IDD "2.9.1"
+        area "Continuità operativa"
+        category "Analisi degli impatti e dei rischi"
+        description "Il processo di Continuità Operativa prevede lo svolgimento periodico di
+            +b attività quali Business Impact Analysis e Risk Assessment?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del sistema IACS. La
+                +b Business Impact Analysis e il Risk Assessment sono fondamentali per
+                +b identificare i processi critici e i rischi associati, permettendo una gestione
+                +b proattiva degli stessi."
+        { ssdl
+            isRelevant false
+            motivation "Sebbene la sicurezza del software sia importante, la Business Impact Analysis e
+                +b il Risk Assessment sono processi più legati alla gestione operativa e alla
+                +b continuità del servizio che non al ciclo di vita dello sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "La continuità operativa è cruciale per un sistema IACS integrato. La
+                +b valutazione degli impatti e dei rischi permette di identificare e mitigare le
+                +b vulnerabilità che potrebbero compromettere il funzionamento del sistema."
+        { component_production
+            isRelevant false
+            motivation "La Business Impact Analysis e il Risk Assessment sono processi più rilevanti a
+                +b livello di sistema o asset operativo che non a livello di singolo componente
+                +b prodotto."
+        note_su_json_risultante "Le valutazioni sono state effettuate considerando la norma IEC 62443 e le best
+            +b practice per la sicurezza industriale. La rilevanza per l'asset owner e il
+            +b system integration è alta data la natura operativa del controllo, mentre è
+            +b bassa per SSDL e component production."
+    {
+        IDD "2.9.2"
+        area "Continuità operativa"
+        category "Analisi degli impatti e dei rischi"
+        description "Le risultanze emerse dalle attività di Business Impact Analysis e Risk
+            +b Assessment sono validate dalla direzione?"
+        { asset_owner
+            isRelevant true
+            motivation "La validazione della direzione è cruciale per l'asset owner per garantire che i
+                +b rischi e gli impatti identificati siano allineati con le priorità aziendali e i
+                +b requisiti di continuità operativa."
+        { ssdl
+            isRelevant false
+            motivation "La validazione della direzione su BIA e Risk Assessment è un'attività di
+                +b governance e non direttamente correlata alle fasi dello Secure Software
+                +b Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La validazione dei risultati di BIA e Risk Assessment è importante per
+                +b garantire che i sistemi integrati rispettino i requisiti di continuità
+                +b operativa e mitigazione dei rischi."
+        { component_production
+            isRelevant false
+            motivation "La validazione della direzione su BIA e Risk Assessment è più rilevante a
+                +b livello di sistema o asset che non a livello di singolo componente prodotto."
+        note_su_json_risultante "Le valutazioni di rilevanza sono state effettuate considerando che la
+            +b validazione della direzione è un'attività di governance strategica, più
+            +b rilevante per asset owner e system integration che non per SSDL o component
+            +b production."
+    {
+        IDD "2.10.1"
+        area "Continuità operativa"
+        category "Riesame direzione"
+        description "Le azioni di rimedio emerse dalle attività di Business Impact Analysis e Risk
+            +b Assessment sono periodicamente monitorate?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile per la continuità operativa dell'IACS. Il
+                +b monitoraggio delle azioni di rimedio è cruciale per garantire che i rischi
+                +b identificati siano mitigati e che l'impatto sul business sia minimizzato."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda principalmente il monitoraggio operativo
+                +b post-deployment piuttosto che attività specifiche del Secure Software
+                +b Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "I system integrator devono garantire che le azioni correttive identificate
+                +b durante l'analisi del rischio siano implementate e monitorate per assicurare la
+                +b continuità operativa del sistema integrato."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo è più rilevante per la gestione operativa che per la
+                +b produzione di componenti specifici. I produttori di componenti tipicamente non
+                +b sono direttamente coinvolti nel monitoraggio delle azioni di rimedio a livello
+                +b di sistema."
+        note_su_json_risultante "La valutazione di rilevanza per 'component_production' è stata impostata su
+            +b false in quanto il controllo si focalizza su attività di monitoraggio operativo
+            +b più che su aspetti di produzione componenti. Le motivazioni fornite sono basate
+            +b sulle best practice per IACS e la norma IEC 62443."
+    {
+        IDD "2.11.1"
+        area "Continuità operativa"
+        category "Digital - High availability & Fault tolerance"
+        description "Gli asset critici (p.e. server, stampanti, personal computer, fax, etc.) che
+            +b supportano l'erogazione dei servizi di fornitura sono ridondati (e.g.
+            +b stoccaggio di forniture aggiuntive in un altro luogo, stoccaggio di materiali
+            +b presso magazzini)?"
+        { asset_owner
+            isRelevant true
+            motivation "La ridondanza degli asset critici è fondamentale per garantire la continuità
+                +b operativa di un IACS gestito da un asset owner, in quanto minimizza i tempi di
+                +b inattività e garantisce la disponibilità del servizio."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda l'infrastruttura operativa piuttosto che il processo
+                +b di sviluppo software, quindi non è direttamente rilevante per il Secure
+                +b Software Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "La ridondanza è cruciale per i sistemi IACS integrati o macchine, in quanto
+                +b garantisce la continuità operativa e la tolleranza ai guasti del sistema
+                +b complessivo."
+        { component_production
+            isRelevant false
+            motivation "Questo controllo si concentra sull'infrastruttura operativa piuttosto che sulla
+                +b produzione di singoli componenti, quindi non è direttamente applicabile."
+        note_su_json_risultante "La valutazione di rilevanza per 'component_production' è stata impostata su
+            +b false in quanto il controllo riguarda principalmente l'infrastruttura operativa
+            +b piuttosto che la produzione di componenti specifici. La proprietà 'note'
+            +b originale è stata omessa in quanto vuota."

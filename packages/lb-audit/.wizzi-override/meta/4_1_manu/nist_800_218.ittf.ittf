@@ -1,0 +1,130 @@
+ittf
+
+    $
+        function clean(text) {
+            return _.replace(text, '«»', ';');
+        }
+        function getReferences(refs) {
+            var retval = []
+            for (var i=0; i<refs.length; i++) {
+                var refItem = refs[i];
+                var ss = refItem.split(':');
+                var refObj = {
+                    standard: ss[0],
+                    processes: ss[1].split(',')
+                }
+                for (var j=0; j<refObj.processes.length; j++) {
+                    refObj.processes[j] = refObj.processes[j].trim();
+                }
+                retval.push(refObj);
+            }
+            return retval;
+        }
+        function updatePracticesItem(practices, extend) {
+            var foundPractice = false;
+            for (var i2=0; i2<practices.length; i2++) {
+                var practice = practices[i2];
+                foundPractice = true;
+                var foundProcess = false;
+                for (var i3=0; i3<practice.processes.length; i3++) {
+                    var process = practice.processes[i3];
+                    if (process.code == extend.taskCode) {
+                        _.log('extend.taskCode', extend.taskCode);
+                        foundProcess = true;
+                        var foundStandard = false;
+                        for (var i4=0; i4<process.references.length; i4++) {
+                            var reference = process.references[i4];
+                            if (reference.standard == extend.standard) {
+                                foundStandard = true;
+                                _.log('extend.standard', extend.standard, reference.processes.indexOf(extend.value));
+                                if (reference.processes.indexOf(extend.value) < 0) {
+                                    reference.processes.push(extend.value);
+                                }
+                            }
+                        }
+                        if (!foundStandard) {
+                            process.references.push({
+                                standard: extend.standard,
+                                processes: [extend.value]
+                            });
+                        }
+                    }
+                    if (!foundProcess) {
+                        practice.processes.push({
+                            code: extend.taskCode,
+                            examples: [],
+                            references: [{
+                                standard: extend.standard,
+                                processes: [extend.value]
+                            }]
+                        });
+                    }
+                }
+            }
+            if (!foundPractice) {
+                practices.push({
+                    code: extend.practice,
+                    processes: [{
+                        code: extend.taskCode,
+                        examples: [],
+                        references: [{
+                            standard: extend.standard,
+                            processes: [extend.value]
+                        }]
+                    }]
+                });
+            }
+        }
+        function updatePractices(practices) {
+            for (var i=0; i<nist_800_218_extend.items.length; i++) {
+                updatePracticesItem(practices, nist_800_218_extend.items[i]);
+            }
+        }
+
+    $file .wizzi-override/docs/4_1_manu/transformed/nist_sp_800_218_table_1.json
+
+        $
+            var practices = [];
+            var currentPractice = null;
+            var preOutput = {
+                source: {
+                    name: 'NIST Special Publication 800-218. Secure Software Development Framework (SSDF) Version 1.1: Recommendations for Mitigating the Risk of Software Vulnerabilities',
+                    url: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-218.pdf'
+                },
+                generatedBy: {
+                    meta: __filename
+                },
+                practices: practices,
+            }
+
+        $foreach item in nist_800_218
+            $
+                var taskCode = item.Tasks.split(':')[0];
+
+            $if item.Practices.length > 0
+                $
+                    currentPractice = {
+                        code: item.Code,
+                        practice: clean(item.Practices),
+                        processes: [{
+                            code: taskCode,
+                            tasks: clean(item.Tasks),
+                            examples: clean(item["Notional Implementation Examples"]).split('\\n'),
+                            references: getReferences(clean(item.References).split('\\n')),
+                        }]
+                    }
+                    practices.push(currentPractice)
+
+            $else
+                $
+                    currentPractice.processes.push({
+                        code: taskCode,
+                        tasks: clean(item.Tasks),
+                        examples: clean(item["Notional Implementation Examples"]).split('\\n'),
+                        references: getReferences(clean(item.References).split('\\n')),
+                    });
+        $ 
+            updatePractices(preOutput.practices);
+            var output = _.stringify(preOutput, null,2)
+
+        ${output}

@@ -1,0 +1,211 @@
+$group
+    {
+        id "FSA-CR 3.3"
+        check_description "Components shall provide the capability to support verification of the intended
+            +b operation of security functions according to IEC 62443?3?3 [11] SR3.3."
+        requirement_id "IEC 62443-4-2:CR 3.3"
+        title "Security Functionality Verification"
+        description "This requirement mandates the verification of security functionality to ensure
+            +b it operates as intended and meets the security objectives of the control
+            +b system. It involves testing, evaluation, and assessment processes to confirm
+            +b that security features are effectively implemented and provide the expected
+            +b level of protection against threats."
+        [ key_aspects
+            "Verification Process: Establish a systematic and repeatable process for verifying security functionalities."
+            "Testing: Conduct rigorous testing of security features to ensure they meet specified security requirements."
+            "Evaluation: Evaluate the effectiveness of security controls in mitigating identified risks."
+            "Documentation: Maintain comprehensive documentation of the verification process, including test results and any issues identified."
+            "Continuous Improvement: Implement a feedback loop to enhance security measures based on verification outcomes."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.3"
+                description "Addresses security functionality verification at the system level, ensuring
+                    +b that security controls are implemented and operational as intended across the
+                    +b entire system."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1"
+                description "Focuses on the management of technical vulnerabilities and the need for regular
+                    +b testing and evaluation of security controls to ensure their effectiveness."
+            {
+                standard "NIST SP 800-53"
+                reference "CA-2"
+                description "Centers on security assessment and authorization, requiring periodic assessment
+                    +b of security controls to determine their effectiveness and compliance with
+                    +b security requirements."
+            {
+                standard "ISO/IEC 15408"
+                reference "Common Criteria"
+                description "Provides a framework for evaluating the security properties of IT products and
+                    +b systems, supporting the verification of security functionalities through
+                    +b rigorous testing and assessment."
+    {
+        id "FSA-CR 3.3 RE(1)"
+        check_description "Components shall provide the capability to support verification of the intended
+            +b operation of security functions during normal operations."
+        requirement_id "IEC 62443-4-2: CR 3.3 RE(1)"
+        title "Security Functionality Verification During Normal Operation"
+        description "This requirement ensures that security functionality is verified periodically
+            +b and consistently during the normal operation of the system. The purpose is to
+            +b maintain the integrity and effectiveness of security measures and controls,
+            +b ensuring they perform as expected over time and under varying conditions."
+        { key_aspects
+            continuous_verification "Security features must be regularly tested to ensure they function correctly
+                +b during regular operations."
+            monitoring "Continuous monitoring should be in place to detect any deviations or failures
+                +b in security functions."
+            reporting "Mechanisms must be in place to report any anomalies or security breaches
+                +b detected during verification processes."
+            maintenance "Regular maintenance checks should be performed to update or patch security
+                +b functions as necessary based on verification findings."
+        { related_standards
+            { "ISO/IEC 27001"
+                reference "A.12.1.2"
+                aspect "Change management procedures to ensure security controls remain effective."
+            { "ISO/IEC 27002"
+                reference "12.6.1"
+                aspect "Control of technical vulnerabilities to ensure systems are protected against
+                    +b known vulnerabilities."
+            { "NIST SP 800-53"
+                reference "CA-7"
+                aspect "Continuous monitoring to maintain ongoing awareness of information security,
+                    +b vulnerabilities, and threats."
+            { "ISA/IEC 62443-3-3"
+                reference "SR 7.2"
+                aspect "System monitoring requirements for detecting cybersecurity events."
+    {
+        id "FSA-CR 3.4"
+        check_description "Components shall provide the capability to perform or support integrity checks
+            +b on software, configuration and other information as well as the recording and
+            +b reporting of the results of these checks or be integrated into a system that
+            +b can perform or support integrity checks."
+        requirement_id "IEC 62443-4-2:CR 3.4"
+        title "Software and Information Integrity"
+        description "This requirement focuses on ensuring the integrity of software and information
+            +b within industrial automation and control systems (IACS). It mandates measures
+            +b to protect against unauthorized modification of software and information,
+            +b ensuring that only legitimate changes are applied."
+        [ key_aspects
+            {
+                aspect "Integrity Protection"
+                details "Mechanisms should be in place to protect software and information from
+                    +b unauthorized alterations, ensuring that integrity is maintained throughout the
+                    +b system's lifecycle."
+            {
+                aspect "Change Management"
+                details "Procedures should be established to manage changes to software and information,
+                    +b including verification and validation of updates."
+            {
+                aspect "Verification Mechanisms"
+                details "Use of cryptographic hash functions, digital signatures, or similar
+                    +b technologies to verify the integrity of software and information."
+            {
+                aspect "Access Control"
+                details "Implement access controls to restrict who can modify software and information,
+                    +b ensuring that only authorized personnel can make changes."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                relevance "Provides guidelines for information security management systems, including
+                    +b controls for maintaining information integrity."
+            {
+                standard "NIST SP 800-53"
+                relevance "Offers a catalog of security and privacy controls, including integrity
+                    +b protection measures for federal information systems."
+            {
+                standard "IEC 61508"
+                relevance "Focuses on functional safety, including ensuring the integrity of
+                    +b safety-related systems and software in industrial applications."
+            {
+                standard "ISO/IEC 15408 (Common Criteria)"
+                relevance "Provides a framework for evaluating the security properties of IT products,
+                    +b including integrity assurance."
+    {
+        id "FSA-CR 3.4 RE(1)"
+        check_description "Components shall provide the capability to perform or support authenticity
+            +b checks on software, configuration and other information as well as the
+            +b recording and reporting of the results of these checks or be integrated into a
+            +b system that can perform or support authenticity checks."
+        requirement_id "IEC 62443-4-2: CR 3.4 RE(1)"
+        title "Authenticity of Software and Information"
+        description "This requirement focuses on ensuring the authenticity of software and
+            +b information used within industrial automation and control systems (IACS).
+            +b Authenticity is critical to protect against unauthorized modifications and to
+            +b verify that the software and information come from a trusted source."
+        [ key_aspects
+            "Verification of the source of software and information to ensure it is legitimate and has not been tampered with."
+            "Implementation of mechanisms to authenticate software updates and patches before installation."
+            "Use of cryptographic techniques, such as digital signatures, to verify the integrity and origin of software and data."
+            "Ensuring that all entities involved in the creation, distribution, and installation of software are validated and trusted."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SA-10 - Developer Configuration Management"
+                description "This control focuses on ensuring that configuration management practices are
+                    +b applied throughout the software development lifecycle to maintain the
+                    +b authenticity of software components."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.5 - Security in Development and Support Processes"
+                description "This section addresses the need for secure development practices, including
+                    +b ensuring the authenticity of code and information through proper validation and
+                    +b verification methods."
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                description "Discusses the importance of ensuring the authenticity and integrity of software
+                    +b used in ICS environments, emphasizing the use of cryptographic methods to
+                    +b protect against unauthorized modifications."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4 - Authenticity of Software and Information"
+                description "This system requirement aligns with CR 3.4 in IEC 62443-4-2, detailing the need
+                    +b for measures to ensure software authenticity at the system level."
+    {
+        id "FSA-CR 3.4 RE(2)"
+        check_description "If the component is performing the integrity check, it shall be capable of
+            +b automatically providing notification to a configurable entity upon discovery of
+            +b an attempt to make an unauthorized change."
+        requirement_id "IEC 62443-4-2: CR 3.4 RE(2)"
+        title "Automated Notification of Integrity Violations"
+        description "This requirement mandates the use of automated mechanisms to notify appropriate
+            +b personnel or systems when integrity violations are detected within the
+            +b industrial control system components. This is crucial in maintaining the
+            +b security and reliability of the system by ensuring that any unauthorized
+            +b changes or corruption of data are promptly addressed."
+        [ key_aspects
+            {
+                aspect "Automation"
+                detail "The requirement emphasizes the need for automated processes to detect and alert
+                    +b for integrity violations, reducing the reliance on manual monitoring and
+                    +b increasing the speed of response."
+            {
+                aspect "Integrity Monitoring"
+                detail "Systems must include mechanisms to continually or periodically check the
+                    +b integrity of critical data and configurations, ensuring any deviations are
+                    +b promptly identified."
+            {
+                aspect "Notification Systems"
+                detail "The requirement specifies that notifications should be sent to predefined
+                    +b personnel or systems capable of responding to the integrity issues, thereby
+                    +b ensuring a swift and coordinated response."
+        [ related_standards
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-7(1) - Software, Firmware, and Information Integrity"
+                description "This control pertains to employing mechanisms for checking the integrity of
+                    +b software, firmware, and information, aligning with the need for automated
+                    +b integrity verification and notification."
+            {
+                standard "ISO/IEC 27002:2013"
+                reference "Section 12.4 - Logging and Monitoring"
+                description "Focuses on monitoring and reviewing logs to detect unauthorized information
+                    +b processing activities, which complements the need for automated notification of
+                    +b integrity violations."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4 - System Integrity"
+                description "Addresses the need for maintaining system integrity through measures like
+                    +b detecting unauthorized changes, which is closely related to the requirement for
+                    +b automated notifications."

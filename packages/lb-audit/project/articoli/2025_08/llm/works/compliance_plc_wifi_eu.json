@@ -1,0 +1,732 @@
+{
+  "version": "1.0",
+  "generated_at": "2025-08-19",
+  "context": {
+    "organization": "Esempio S.p.A.",
+    "product_profile": {
+      "name": "PLC-EDGE-WIFI",
+      "type": "component",
+      "description": "Programmable Logic Controller per automazione industriale con interfacce Ethernet 10/100 e modulo Wi‑Fi 2.4 GHz integrato; supporto OTA; servizi web REST.",
+      "lifecycle_stage": "development",
+      "digital_elements": true,
+      "connectivity": [
+        "ethernet",
+        "wifi"
+      ],
+      "radio": true,
+      "sector": [
+        "industrial_automation"
+      ],
+      "safety_relevant": false,
+      "supply_chain_role": "manufacturer",
+      "cloud_backend": false
+    },
+    "market_profile": {
+      "jurisdictions": [
+        "EU"
+      ],
+      "target_sectors": [
+        "ICS/OT"
+      ],
+      "standards_preference": [
+        "IEC 62443",
+        "ISO/IEC 27001",
+        "ETSI EN 303 645"
+      ],
+      "application_dates_reference": "absolute"
+    }
+  },
+  "enums": {
+    "gap": [
+      "unknown",
+      "compliant",
+      "minor",
+      "major",
+      "not_applicable"
+    ],
+    "priority": [
+      "P0",
+      "P1",
+      "P2",
+      "P3"
+    ],
+    "actor": [
+      "manufacturer",
+      "integrator",
+      "importer",
+      "distributor"
+    ],
+    "evidence_type": [
+      "document",
+      "record",
+      "ticket",
+      "repo",
+      "tool"
+    ],
+    "conformity_path": [
+      "self-assessment",
+      "third-party",
+      "type-approval",
+      "CE"
+    ]
+  },
+  "sources": [
+    {
+      "id": "EU-RED",
+      "title": "Directive 2014/53/EU (Radio Equipment Directive)",
+      "instrument_type": "Directive",
+      "jurisdiction": "EU",
+      "version": "Consolidated 2023-10-01",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj/eng",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "EU-RED-2022-30",
+      "title": "Commission Delegated Regulation (EU) 2022/30 (RED Art. 3(3)(d)(e)(f))",
+      "instrument_type": "Delegated Regulation",
+      "jurisdiction": "EU",
+      "version": "OJ L 7, 12.1.2022",
+      "source_url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32022R0030",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "EU-EMC",
+      "title": "Directive 2014/30/EU (EMC)",
+      "instrument_type": "Directive",
+      "jurisdiction": "EU",
+      "version": "Consolidated 2018-09-11",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/30/oj/eng",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "EU-LVD",
+      "title": "Directive 2014/35/EU (Low Voltage Directive)",
+      "instrument_type": "Directive",
+      "jurisdiction": "EU",
+      "version": "OJ L 96, 29.3.2014",
+      "source_url": "https://eur-lex.europa.eu/eli/dir/2014/35/oj/eng",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "EU-CRA",
+      "title": "Regulation (EU) 2024/2847 (Cyber Resilience Act)",
+      "instrument_type": "Regulation",
+      "jurisdiction": "EU",
+      "version": "OJ L, 18.11.2024",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "EU-MACH",
+      "title": "Regulation (EU) 2023/1230 (Machinery)",
+      "instrument_type": "Regulation",
+      "jurisdiction": "EU",
+      "version": "OJ L 165, 29.6.2023",
+      "source_url": "https://eur-lex.europa.eu/eli/reg/2023/1230/oj/eng",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "IEC-62443",
+      "title": "ISA/IEC 62443 Series",
+      "instrument_type": "Standard",
+      "jurisdiction": "Global",
+      "version": "Series",
+      "source_url": "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards",
+      "retrieved_on": "2025-08-19"
+    },
+    {
+      "id": "ETSI-EN-303-645",
+      "title": "ETSI EN 303 645 V3.1.3 (2024-09) Consumer IoT Baseline",
+      "instrument_type": "Standard",
+      "jurisdiction": "EU/Global",
+      "version": "V3.1.3",
+      "source_url": "https://www.etsi.org/deliver/etsi_en/303600_303699/303645/03.01.03_60/en_303645v030103p.pdf",
+      "retrieved_on": "2025-08-19"
+    }
+  ],
+  "requirements": [
+    {
+      "req_id": "RED-3(1)(a)-Safety",
+      "title": "Sicurezza e salute (RED 3(1)(a), per rinvio a LVD)",
+      "actor": "manufacturer",
+      "obligation": "Garantire che il PLC soddisfi i requisiti essenziali di sicurezza e salute. Applicare norme armonizzate pertinenti (es. sicurezza elettrica) e includere valutazione dei rischi e istruzioni.",
+      "applicability_triggers": [
+        "radio=True",
+        "qualsiasi alimentazione elettrica; tensione entro o fuori campo LVD (rinvio RED)"
+      ],
+      "evidence_required": [
+        "risk_assessment",
+        "test_report_safety",
+        "user_manual",
+        "declaration_of_conformity"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2016-06-13",
+      "deadline": null,
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 7.x (device hardening contextual)"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-RED",
+        "article": "3(1)(a)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Requisito essenziale per marcatura CE.",
+        "owner": "",
+        "due_date": "2025-12-31",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-3(1)(b)-EMC",
+      "title": "Compatibilità elettromagnetica (RED 3(1)(b) / EMC)",
+      "actor": "manufacturer",
+      "obligation": "Dimostrare la conformità ai requisiti EMC per garantire che il PLC non introduca disturbi e sia immune a disturbi ragionevoli.",
+      "applicability_triggers": [
+        "tutti i dispositivi elettrici/elettronici"
+      ],
+      "evidence_required": [
+        "test_report_emc",
+        "assessment_plan",
+        "user_manual_emc"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2016-06-13",
+      "deadline": null,
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 3.1 (System robustness - indirectly)"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-EMC",
+        "article": "",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/dir/2014/30/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Essenziale per CE.",
+        "owner": "",
+        "due_date": "2025-12-31",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-3(2)-Spectrum",
+      "title": "Uso efficiente dello spettro (RED 3(2))",
+      "actor": "manufacturer",
+      "obligation": "Assicurare che il modulo Wi‑Fi usi in modo efficiente lo spettro e non causi interferenze dannose (prove radio).",
+      "applicability_triggers": [
+        "radio=True",
+        "wifi"
+      ],
+      "evidence_required": [
+        "test_report_radio (es. EN 300 328)",
+        "antenna_spec",
+        "user_manual_rf"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2016-06-13",
+      "deadline": null,
+      "penalties": null,
+      "maps_to_controls": [],
+      "source_ref": {
+        "id": "EU-RED",
+        "article": "3(2)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Requisito essenziale per radio.",
+        "owner": "",
+        "due_date": "2025-12-31",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-3(3)(d)-Cyber-Network",
+      "title": "Protezione delle reti di comunicazione (RED 3(3)(d) via 2022/30)",
+      "actor": "manufacturer",
+      "obligation": "Il dispositivo deve incorporare salvaguardie per evitare danni alle reti di comunicazione e contro l'uso improprio delle risorse di rete (es. mitigazione botnet, controlli di autenticazione).",
+      "applicability_triggers": [
+        "radio=True",
+        "capace di comunicare via Internet"
+      ],
+      "evidence_required": [
+        "security_architecture",
+        "threat_model",
+        "pentest_report",
+        "secure_config_guide"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2025-08-01",
+      "deadline": "2025-08-01",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-4-1",
+          "control": "Secure by design (all practices)"
+        },
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 1.1, SR 7.6, SR 3.x"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-RED-2022-30",
+        "article": "Art. 3(3)(d)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32022R0030"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P0",
+        "risk_rationale": "Applicazione obbligatoria dal 01/08/2025.",
+        "owner": "",
+        "due_date": "2025-07-15",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-3(3)(e)-Privacy",
+      "title": "Protezione dei dati personali e della privacy (RED 3(3)(e) via 2022/30)",
+      "actor": "manufacturer",
+      "obligation": "Implementare misure per proteggere i dati personali e la privacy degli utenti, incluse impostazioni di sicurezza predefinite, gestione credenziali, minimizzazione dati.",
+      "applicability_triggers": [
+        "radio=True",
+        "capace di comunicare via Internet"
+      ],
+      "evidence_required": [
+        "DPIA/assessment",
+        "data_flow_diagram",
+        "security_tests_privacy"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2025-08-01",
+      "deadline": "2025-08-01",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 1.2 (Account management), SR 7.2 (Audit)"
+        },
+        {
+          "framework": "ETSI EN 303 645",
+          "control": "No default passwords; secure storage; data protection"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-RED-2022-30",
+        "article": "Art. 3(3)(e)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32022R0030"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P0",
+        "risk_rationale": "Applicazione obbligatoria dal 01/08/2025.",
+        "owner": "",
+        "due_date": "2025-07-15",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-3(3)(f)-Fraud",
+      "title": "Protezione da frodi (RED 3(3)(f) via 2022/30)",
+      "actor": "manufacturer",
+      "obligation": "Ridurre il rischio di frodi legate a pagamenti o trasferimenti di valore quando applicabile (autenticazione forte, integrità software).",
+      "applicability_triggers": [
+        "radio=True",
+        "capace di comunicare via Internet",
+        "funzionalità con transazioni di valore"
+      ],
+      "evidence_required": [
+        "threat_model",
+        "auth_design",
+        "secure_boot_attestation"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2025-08-01",
+      "deadline": "2025-08-01",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 1.1, SR 1.5, SR 2.x"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-RED-2022-30",
+        "article": "Art. 3(3)(f)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX%3A32022R0030"
+      },
+      "status": {
+        "applicable": false,
+        "gap": "not_applicable",
+        "priority": "P3",
+        "risk_rationale": "PLC tipicamente non gestisce pagamenti.",
+        "owner": "",
+        "due_date": "",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "RED-Art10-TechnicalFile",
+      "title": "Documentazione tecnica, DoC e marcatura CE (RED Art. 10)",
+      "actor": "manufacturer",
+      "obligation": "Predisporre fascicolo tecnico completo (prove EMC, RF, safety e cyber), Dichiarazione UE di Conformità e marcatura CE; includere istruzioni e info di sicurezza.",
+      "applicability_triggers": [
+        "tutti i prodotti soggetti a RED"
+      ],
+      "evidence_required": [
+        "technical_file",
+        "EU_DoC",
+        "labeling_artwork",
+        "instructions"
+      ],
+      "conformity_path": "CE",
+      "applies_from": "2016-06-13",
+      "deadline": null,
+      "penalties": null,
+      "maps_to_controls": [],
+      "source_ref": {
+        "id": "EU-RED",
+        "article": "Art. 10",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/dir/2014/53/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Obbligo formale per immissione sul mercato.",
+        "owner": "",
+        "due_date": "2025-12-31",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "CRA-Essential-Req",
+      "title": "Requisiti essenziali di cybersecurity (CRA Allegato I)",
+      "actor": "manufacturer",
+      "obligation": "Progettare e sviluppare il PLC secondo i requisiti di sicurezza by design/by default, incluse: protezione contro accessi non autorizzati, gestione credenziali, logging, protezione dati, secure update, hardening.",
+      "applicability_triggers": [
+        "prodotto con elementi digitali"
+      ],
+      "evidence_required": [
+        "policy_SDL",
+        "secure_coding_guidelines",
+        "threat_model",
+        "security_test_reports"
+      ],
+      "conformity_path": "CE/self-assessment (salvo classi importanti/critiche)",
+      "applies_from": "2027-12-11",
+      "deadline": "2027-12-11",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-4-1",
+          "control": "tutti i practice 1–8"
+        },
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 1.x, SR 2.x, SR 3.x, SR 7.x"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-CRA",
+        "article": "Annex I",
+        "annex": "Annex I",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Diventa obbligatorio dal 11/12/2027.",
+        "owner": "",
+        "due_date": "2027-09-30",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "CRA-VulnMgmt-Updates",
+      "title": "Gestione vulnerabilità e aggiornamenti di sicurezza (CRA)",
+      "actor": "manufacturer",
+      "obligation": "Stabilire processo documentato di gestione vulnerabilità (CVD), correzioni e aggiornamenti di sicurezza per l'intero ciclo di vita supportato; fornire SBOM/VEX quando rilevante.",
+      "applicability_triggers": [
+        "prodotto con elementi digitali"
+      ],
+      "evidence_required": [
+        "policy_CVD",
+        "SBOM",
+        "VEX",
+        "update_policy",
+        "release_notes",
+        "risk_acceptance_register"
+      ],
+      "conformity_path": "self-assessment/CE",
+      "applies_from": "2027-12-11",
+      "deadline": "2027-12-11",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-4-1",
+          "control": "TVM (Vulnerability Mgmt)"
+        },
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 7.6 (Security update)"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-CRA",
+        "article": "Art. 10, Annex I",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P1",
+        "risk_rationale": "Richiede capacità operative continue.",
+        "owner": "",
+        "due_date": "2027-09-30",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "CRA-Reporting-Article14",
+      "title": "Obblighi di notifica vulnerabilità/incidenti (CRA Art. 14)",
+      "actor": "manufacturer",
+      "obligation": "Notificare vulnerabilità attivamente sfruttate e incidenti gravi al CSIRT designato e a ENISA tramite la piattaforma unica (early warning entro 24h; report entro 72h; report finale entro 14 giorni dalla disponibilità della correzione). Informare gli utenti interessati.",
+      "applicability_triggers": [
+        "prodotto con elementi digitali"
+      ],
+      "evidence_required": [
+        "incident_response_plan",
+        "playbook_reporting",
+        "registro_notifiche",
+        "accordo con CSIRT coordinatore"
+      ],
+      "conformity_path": "self-assessment/CE",
+      "applies_from": "2026-09-11",
+      "deadline": "2026-09-11",
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-2-1",
+          "control": "IR procedures (for integrators/operators)"
+        }
+      ],
+      "source_ref": {
+        "id": "EU-CRA",
+        "article": "Art. 14; Art. 71(2)",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/reg/2024/2847/oj/eng"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P0",
+        "risk_rationale": "Obbligo in anticipo rispetto agli altri (11/09/2026).",
+        "owner": "",
+        "due_date": "2026-07-31",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "MACH-SafetyComponent",
+      "title": "Applicabilità Regolamento Macchine (solo componenti di sicurezza)",
+      "actor": "manufacturer",
+      "obligation": "Se il PLC svolge funzioni di sicurezza (safety PLC), applicare il Regolamento Macchine 2023/1230 (valutazione conformità, documentazione e, se pertinente, organismo notificato).",
+      "applicability_triggers": [
+        "safety_relevant=True",
+        "funzioni PL/SIL"
+      ],
+      "evidence_required": [
+        "risk_assessment_safety",
+        "functional_safety_tests",
+        "DoC_Machinery"
+      ],
+      "conformity_path": "CE (possibile terza parte)",
+      "applies_from": "2027-01-20",
+      "deadline": "2027-01-20",
+      "penalties": null,
+      "maps_to_controls": [],
+      "source_ref": {
+        "id": "EU-MACH",
+        "article": "",
+        "annex": "",
+        "url": "https://eur-lex.europa.eu/eli/reg/2023/1230/oj/eng"
+      },
+      "status": {
+        "applicable": false,
+        "gap": "not_applicable",
+        "priority": "P3",
+        "risk_rationale": "Non safety PLC nel profilo di base; impostare True se safety.",
+        "owner": "",
+        "due_date": "",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    },
+    {
+      "req_id": "Integr-Deployment-Hardening",
+      "title": "Hardening e integrazione sicura in sito (per System Integrator)",
+      "actor": "integrator",
+      "obligation": "Applicare linee guida di hardening, segmentazione, gestione patch, account e logging per l'integrazione del PLC in architettura ICS/OT.",
+      "applicability_triggers": [
+        "progetti di integrazione ICS/OT"
+      ],
+      "evidence_required": [
+        "as-built_docs",
+        "hardening_checklist",
+        "backup_restore_procedure",
+        "network_diagrams"
+      ],
+      "conformity_path": "n/a",
+      "applies_from": null,
+      "deadline": null,
+      "penalties": null,
+      "maps_to_controls": [
+        {
+          "framework": "IEC 62443-3-3",
+          "control": "SR 1.x, SR 2.x, SR 3.x, SR 5.x, SR 7.x"
+        }
+      ],
+      "source_ref": {
+        "id": "IEC-62443",
+        "article": "",
+        "annex": "",
+        "url": "https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+      },
+      "status": {
+        "applicable": true,
+        "gap": "unknown",
+        "priority": "P2",
+        "risk_rationale": "Richiesto dai clienti soggetti a 62443/NIS2.",
+        "owner": "",
+        "due_date": "",
+        "work_items": [],
+        "evidence_links": [],
+        "review": {
+          "last_check": "",
+          "reviewer": "",
+          "notes": ""
+        }
+      }
+    }
+  ],
+  "traceability": {
+    "controls_catalog": [
+      {
+        "id": "62443-4-1",
+        "name": "Product Security Development Life-Cycle Requirements"
+      },
+      {
+        "id": "62443-3-3",
+        "name": "System Security Requirements and Security Levels"
+      },
+      {
+        "id": "ETSI-EN-303-645",
+        "name": "Consumer IoT baseline (se usato come riferimento)"
+      }
+    ],
+    "assurance_packages": [
+      {
+        "name": "IEC 62443 assurance pack",
+        "includes_reqs": [
+          "CRA-Essential-Req",
+          "CRA-VulnMgmt-Updates",
+          "RED-3(3)(d)-Cyber-Network"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,123 @@
+Wizzi schema
+
+## Definition
+
+A Wizzi schema describes the semantics of the node hierarchy of a ITTF document.
+A Wizzi schema defines the type of a ITTF document.
+
+## An example
+The example in the file `ITTF format.md` has three entities: 
+1. order
+2. supplier
+3. product
+each with their attributes:
+
+order has attributes:
+1. number of type number
+2. data of type data
+
+supplier has attributes:
+1. name of type string
+2. address of type string
+3. town of type string
+4. CAP of type string
+5. country of type string
+
+et cetera.
+
+The node hierarchy also imply relations:
+
+1) supplier is related with order, one supplier many orders
+2) order is related with product, one order many products
+
+A wizzi schema, that is written itself using the ITTF format describes entities and relations in this way:
+
+```ittf
+    e supplier
+        a name
+            type string
+        a address
+            type string
+        a town
+            type string
+        a CAP
+            type string
+        a country
+            type string
+        r order/s
+            one-to-many
+
+    e order
+        a number
+            type number
+        a data
+            type data
+        r product/s
+            one-to-many
+
+    e product
+        a code P001
+            type string 
+        a description
+            type string
+        a quantity
+            type integer
+        a price
+            type decimal
+```            
+
+## Notation
+.1 The node with name `e` means `entity`.
+.2 The node with name `r` means `relation`.
+.3 The node with name `a` means `attribute`.
+.4 The node with name `type` means the type of the attribute.
+.5 Cardinalities are `one-to-many` and `one-to-one`.
+.6 The cardinality `one-to-many` is the default and can be omitted.
+
+### Rules
+
+.1 Fixed Structure of the Wizzi Schema:
+- The schema must always follow the established structure:
+    - Use `e` for entities.
+    - Use `a` for attributes.
+    - Use `r` for relationships.
+
+.2 Handling Complex Attributes:
+- If an attribute cannot be expressed as a scalar value (e.g., `string`, `number`, `date`), it must be promoted to its own entity.
+- Define the new entity with the required attributes in the schema.
+- Establish a relationship between the parent entity and the new entity using the `r` node.
+
+.3 Naming Conventions:
+- The name of the new entity should be based on the complex attribute's name, ensuring clarity and logical consistency.
+- Relationships should be named appropriately to reflect the connection between the parent and the new entity (e.g., `r attributeName/s`).
+
+### Example of handling of a complex attribute
+
+Before we have an entity with a complex attributes that breaks the rules.
+After we have the correct definition of two entities, where the complex attribute has become an entity.
+
+.1 Before:
+
+```ittf
+e parentEntity
+    a simpleAttribute
+        type string
+    a complexAttribute
+        type object
+```
+
+.2 After:
+
+```ittf
+e parentEntity
+    a simpleAttribute
+        type string
+    r complexAttribute/1
+
+e complexAttribute
+    a subAttribute1
+        type string
+    a subAttribute2
+        type number
+```
+

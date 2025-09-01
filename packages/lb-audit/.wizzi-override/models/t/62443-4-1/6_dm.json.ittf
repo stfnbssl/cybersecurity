@@ -1,0 +1,156 @@
+$group
+    {
+        code "DM"
+        name "Practice 6 – Management of security-related issues"
+        purpose "The processes specified by this practice are used for handling security-related issues of a product that has been configured 
+            +b to employ its defense in depth strategy (see Clause 7) within the product security context (see Clause 6)."
+        [ requirements
+            {
+                clause "10.2"
+                code "DM-1"
+                name "Receiving notifications of security-related issues"
+                page 32
+                requirement "A process shall exist for receiving and tracking to closure security-related issues in the product reported 
+                    +b by internal and external sources including at a minimum:
+                    +b a) security verification and validation testers;
+                    +b b) suppliers of third-party components used in the product;
+                    +b c) product developers and testers; and
+                    +b d) product users including integrators, asset owners, and maintenance personnel."
+                rationale "This process is required to ensure that security-related issues/defects discovered by any organization within 
+                    +b the product supplier or external organizations (for example, product users and security researchers) can be reported to 
+                    +b the product supplier and tracked to closure.
+                    +b Having this process means that the product supplier defined instructions for reporting security-related 
+                    +b issues (see ISO/IEC 30111[23]) to it. For reports from external entities, the product supplier will have incident 
+                    +b response processes such as those identified in ISO/IEC 291 47 [22] for receiving vulnerability reports about supported 
+                    +b products and interacting with the entity that reported the issue.
+                    +b Guidelines for reporting security-related issues are to be readily accessible to each of the potential internal and 
+                    +b external sources of these reports. Awareness training, product documentation and support websites are all potential 
+                    +b ways to communicate this information. These guidelines include:
+                    +b a) in formation needed to facilitate validation;
+                    +b b) how to protect the confidential ity of and access to the in formation being reported;
+                    +b c) the degree of communications with the enti ty that reported the security-related issue;
+                    +b d) timelines for reporting internally d i scovered security-related issues in released products; and
+                    +b e) a strategy for handling third-party component vulnerabilities discovered internally."
+                [ notes 
+                    "External security verification and validation testers in cl ude researchers."
+            {
+                clause "10.3"
+                code "DM-2"
+                name "Reviewing security-related issues"
+                page 32
+                requirement "A process shall exist for ensuring that reported security-related issues are investigated in a timely manner to determine their:
+                    +b a) applicability to the product;
+                    +b b) verifiability; and
+                    +b c) threats that trigger the issue."
+                [ notes
+                    "Timeliness is driven by market forces."
+                rationale "This process is required to ensure that security-related issues reported to the product supplier are examined to 
+                    +b determine that they are applicable to the product, are verifiable, and that the cause of the issue (such as the threat(s)) is understood.
+                    +b Having this process means that the product supplier verifies all security issues reported to it. Perceived security-related issues can be unsubstan tiated or not applicable to the product, so there needs to be a process to verify and exam ine reported vulnerabilities (see ISO/IEC 301 1 1).
+                    +b For security-related issues in components maintained by the product developer, this process can involve such activities as attempting to reproduce the reported vulnerability or examining the third-party embedded source code’s usage within the product. For security-related issues in components maintained by a third-party, this process can be as stra igh tforward as comparing the version of the third-party binary with the versions to which the patch applies."
+            {
+                clause "10.4"
+                code "DM-3"
+                name "Assessing security-related issues"
+                page 32
+                requirement "A process shall be employed for analysing security-related issues in the product to include:
+                    +b a) assessing their impact with respect to:
+                    +b 1) the actual security context in which they were discovered;
+                    +b 2) the product’s security context (see Clause 6); and
+                    +b 3) the product’s defense in depth strategy (see Clause 7);
+                    +b b) severity as defined by a vulnerability scoring system (for example, CVSS);
+                    +b c) identifying all other products/product versions containing the security-related issue (if any);
+                    +b d) identifying the root causes of the issue; and
+                    +b e) identifying related security issues.
+                    +b For root cause analysis, a methodical approach such as that described in IEC 62740 [25] may be employed."
+                rationale "This process is required to ensure that the potential impact of security-related design issues is examined and 
+                    +b understood to support decis ions related to how they will be addressed.
+                    +b Having this process means that the product supplier assesses the potential impact and severity of each security-related issue, 
+                    +b determines whether the issues exist in other products or versions (for example, by using the same or similar components) and identifies 
+                    +b the root causes of the issue. Completing such an assessment provides the basis for determining how to address the issue (see 1 0.5), 
+                    +b and which development life-cycle processes, such as redesign activi ti es and threat model updates, may be involved in the resolution.
+                    +b Verifiable security-related issues can vary widely in their security impact and their distribution within the product, 
+                    +b so there needs to be a process for characterizing each issue so that an appropriate resolution can be determined.
+                    +b It is recommended that the process identify conditions that would exit the security defect management process such as duplicate, 
+                    +b non-security, and third-party security-related issues (see ISO/IEC 301 1 1). The impact assessment should also take into 
+                    +b consideration additional factors such as the scope of affected product users, the potential for collateral damage, 
+                    +b the availability of exploits and (for control systems) the potential impact to essential functions (see IEC 62443-3-3).
+                    +b The impact assessment may be as simple as a qualitative rating (for example, low, medium and high), a more quantitative method 
+                    +b based on likelihood and consequence or a standardized method such as the CVSS. A security-related issue that is associated with a 
+                    +b widely used design pattern or implementation method can be symptomatic of a larger problem. 
+                    +b In such a situation, the impact assessment associated with the vulnerability should address the combined impact of all instances 
+                    +b rather than dealing with each instance in isolation."
+                [ notes
+                    "Risk assessments can be used in this evaluation of security-related issues."
+            {
+                clause "10.5"
+                code "DM-4"
+                name "Addressing security-related issues"
+                page 32
+                requirement "A process shall be employed for addressing security-related issues and determining whether to report them based on the 
+                    +b results of the impact assessment (see 1 0.4). The supplier shall establish an acceptable level of residual risk that shall 
+                    +b be applied when determining an appropriate way to address each issue. Options include one or more of the following:
+                    +b a) fixing the issue through one or more of the following:
+                    +b 1) defense in depth strategy or design change;
+                    +b 2) addition of one or more security requirements and /or capabilities;
+                    +b 3) use of compensating mechanisms; and/or
+                    +b 4) disabling or removing features;
+                    +b b) creating a remediation p lan to fix the problem;
+                    +b c) deferring the problem for future resolution (reapply this requirement at some time in the future) and specifying the reason(s) and associated risk(s);
+                    +b d) not fixing the problem if the residual risk is below the establ ished acceptable level of residual risk.
+                    +b In all cases, the following shall be done as well:
+                    +b a) in form other processes of the issue or related issue(s), including processes for other products/product revisions; and
+                    +b b) in form third parties if problems found in included third-party source code.
+                    +b When security-related issues are resolved recommendations to prevent similar errors from occurring in the future shall be evaluated.
+                    +b This process shall include a periodic review of open security-related issues to ensure that issues are being addressed appropriately. 
+                    +b This periodic review shall at a minimum occur during each release or iteration cycle."
+                rationale "This process is required to ensure that a determination is made for how to handle (address) each security-related issue and 
+                    +b that no security-related issue is inadvertently overlooked or ignored.
+                    +b Having this process means that the product supplier reviews the potential residual risk of each security-related issue 
+                    +b and makes a justifiable decision for how to handle (address) it.
+                    +b Residual risk can be determined using many different methods. An example would be to start with CVSS score, but then add other security controls and countermeasures 
+                    +b not accounted for in CVSS such as whether the issue is applicable to the product’s security context.
+                    +b The process for deciding upon and implementing a resolution to a security-related issue needs to address these 
+                    +b considerations (see ISO/IEC 301 1 1) because of their potential impact:
+                    +b a) a proposed resolution can violate a premise of the secure design that other aspects of the product rely upon;
+                    +b b) a proposed resolution can be unnecessary because of a m ismatch between the reporting entity’ s security context and the product security context;
+                    +b c) a proposed resolution can only partially reduce the impact of the security-related issue, may take an unacceptably long time to implement because of its complexi ty, or may be so unusable that it is likely to be disabled; and
+                    +b d) a proposed resolution can introduce side-effects that are unacceptable.
+                    +b Timeliness for determining and implementing a resolution based on the impact of the security-related issue will typically align 
+                    +b with market forces and may drive establishment of clear interfaces to related organizational processes (for example, legal, 
+                    +b customer service and public relations) to avoid unnecessary delays."
+                [ notes
+                    "When the resolution decision is to fix the security-related issue in the product implementation, the timing of the release of the fix can result in a patch (see Clause 12) or the fix can be deferred until the next release."
+            {
+                clause "10.6"
+                code "DM-5"
+                name "Disclosing security-related issues"
+                page 32
+                requirement "A process shall be employed for informing product users about reportable security-related issues (see 1 0.5) in 
+                    +b supported products in a timely manner with content that includes but is not limited to the following in formation:
+                    +b a) issue description, vulnerability score as per CVSS or a s im i lar system for ranking vulnerabilities, and affected product version(s); and
+                    +b b) description of the resolution.
+                    +b The strategy for handling third-party component vulnerabilities discovered by the product developer should take in to account the possibility 
+                    +b of premature public disclosure by the third-party component supplier."
+                rationale "This process is required to ensure that product users are in formed of resolved security-related issues that have been 
+                    +b designated as reportable. Reportable resolutions are typically those that are related to released products and whose issue severity 
+                    +b is deemed high enough to report by the product supplier. Product users need this in formation to make in formed security assessments 
+                    +b about their operations, and service providers use this in formation to handle vulnerabilities as part of their event management capability (see IEC 62443-2-4).
+                    +b Having this process means that the product supplier has procedures for determining which security issues are reportable, 
+                    +b and reporting resolutions for reportable issues to the users of the product. The disclosure process will typically include provisions for informational alerts in addition to vulnerability notices. 
+                    +b For example, in formational alerts can be used to notify product users of compensating mechanisms in response to current cybersecurity activity 
+                    +b or to inform product users that the product is not susceptible to a highly publicized vulnerability. See IEC 291 47 [22] for in formation regarding 
+                    +b content of notifications."
+                [ notes
+                    "The description of the resolution can include references to installation of patches (see Clause 12)."
+                    "Timeliness is driven by market forces."
+            {
+                clause "10.7"
+                code "DM-6"
+                name "Periodic review of security defect management practice"
+                page 32
+                requirement "A process shall be employed for conducting periodic reviews of the security-related issue management process. 
+                    +b Periodic reviews of the process shall, at a minimum, examine security-related issues managed through the process since the 
+                    +b last periodic review to determine if the management process was complete, efficient, and led to the resolution of each security-related issue. 
+                    +b Periodic reviews of the security-related issue management process shall be conducted at least annually."
+                rationale "This process is required for continuous improvement of the issue management practice."

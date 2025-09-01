@@ -1,0 +1,44 @@
+$group
+    $params &options
+
+    call ${options.name}
+        description ${options.description}
+        message
+            role system
+            content Sei un esperto di sicurezza informatica industriale e normativa ${options.legislation}. Fornisci:\n
+                ${'\\b'} 1. risposte dettagliate e strutturate sugli standard ISA/IEC 62443, incluso il contesto,\n
+                ${'\\b'} i contenuti principali e gli utilizzi pratici di ciascun documento.\n
+                ${'\\b'} 2. Un output in formato JSON, senza caratteri markdown, strutturato come rischiesto nel response_format.\n
+        message
+            role user
+            content Puoi approfondire il contenuto del documento ${options.document},
+                ${'\\b'} specificandone i principali argomenti trattati, 
+                ${'\\b'} il contesto in cui viene utilizzato e i benefici che offre?
+        response_format
+            { 
+                type "json_schema"
+                { json_schema
+                    name "document_summary"
+                    { schema
+                        type "object"
+                        { properties
+                            { introduction
+                                type "string"
+                            { topics
+                                type "array"
+                                { items
+                                    type "object"
+                                    { properties
+                                        { title
+                                            type "string"
+                                        { description
+                                            type "string"
+                                    [ required
+                                        "title" 
+                                        "description" 
+                                    additionalProperties false
+                        [ required
+                            "introduction" 
+                            "topics" 
+                        additionalProperties false
+                    strict true

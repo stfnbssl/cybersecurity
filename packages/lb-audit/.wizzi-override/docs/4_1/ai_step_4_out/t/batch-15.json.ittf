@@ -1,0 +1,380 @@
+$group
+    {
+        practice "3"
+        code "SD-1"
+        subCode "i) documentation that describes how to use the interface if it is externally
+            +b accessible ; and"
+        [ policies
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Interface Documentation Policy"
+                description "This policy mandates comprehensive documentation for all externally accessible
+                    +b interfaces in Breton Spa's CNC and stone cutting machines. Documentation must
+                    +b include protocol specifications (e.g., OPC UA with Basic256Sha256), access
+                    +b control matrices, and threat models per IEC 62443-4-1 SD-1 requirements.
+                    +b Applied to all products supporting SL 2+ security levels."
+                enforcement "Quarterly audits using automated documentation validation tools (e.g., OPC UA
+                    +b Configuration Analyzer) and cross-functional reviews with the security team."
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Secure Interface Change Management Policy"
+                description "Requires version-controlled documentation updates for all interface
+                    +b modifications in composite material processing lines. Aligns with IEC 62443-4-1
+                    +b KA4 (Change Management Logs), capturing approval trails, test results, and
+                    +b backward compatibility checks for protocol changes (e.g., PROFINET with PN
+                    +b Security updates)."
+                enforcement "Automated git-based documentation workflows with mandatory peer reviews.
+                    +b Non-compliant changes trigger system lockdown via PLC security modules."
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Role-Based Interface Access Documentation Policy"
+                description "Specifies documentation requirements for role-based interface access in
+                    +b polishing machines' HMI systems. Must detail authentication methods (e.g.,
+                    +b certificate-based access for OPC UA), privilege levels, and session timeouts
+                    +b per IEC 62443-4-1 KA2 (Access Control Matrix)."
+                enforcement "Annual penetration testing validating documented access controls. Non-compliant
+                    +b systems are isolated in a quarantined network segment."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Externally Accessible Interface Documentation Procedure"
+                description "Step-by-step process for creating and maintaining interface documentation for
+                    +b Breton's CNC Machining Centers, covering physical (RS-485) and logical (OPC UA)
+                    +b interfaces as per IEC 62443-4-1 SD-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all interfaces using protocol analyzers (Wireshark with ICS
+                            +b dissectors) and physical port mapping tools."
+                        tools "Wireshark ICS Plugin, Nmap with NSE scripts for industrial protocols"
+                        expected_outcome "Complete list of interfaces with protocol types (e.g., Modbus TCP/TLS) and
+                            +b accessibility status (internal/external)."
+                    {
+                        step 2
+                        action "Generate threat models for each external interface using STRIDE methodology,
+                            +b focusing on CNC-specific risks like G-code injection."
+                        tools "Microsoft Threat Modeling Tool with ICS templates, Breton-specific attack tree
+                            +b templates"
+                        expected_outcome "Threat assessment report per IEC 62443-4-1 KA3, listing mitigations (e.g.,
+                            +b input validation for OPC UA methods)."
+                    {
+                        step 3
+                        action "Publish documentation in the secure repository with version control, including
+                            +b protocol state diagrams and sample secure configurations."
+                        tools "GitLab with IEC 62443-4-1 documentation templates, PlantUML for protocol
+                            +b diagrams"
+                        expected_outcome "Versioned interface documentation package accessible to authorized maintenance
+                            +b personnel via encrypted channels."
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Secure Remote Access Interface Validation Procedure"
+                description "Procedure for documenting and validating secure remote access interfaces in
+                    +b stone cutting machines, ensuring compliance with IEC 62443-4-1 CR4 (Data
+                    +b Confidentiality) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Verify cryptographic implementations for all remote access protocols (e.g.,
+                            +b MQTT with TLS 1.3) using testing tools."
+                        tools "OpenSSL s_client, ICS protocol fuzzers (Peach Fuzzer with PROFINET profiles)"
+                        expected_outcome "Cryptographic validation report confirming algorithm strengths and key
+                            +b management practices."
+                    {
+                        step 2
+                        action "Document access control procedures including multi-factor authentication
+                            +b integration for remote engineers."
+                        tools "Breton Access Control Matrix Generator, Yubikey PIV configuration guides"
+                        expected_outcome "Role-based access control documentation with privilege escalation safeguards."
+                    {
+                        step 3
+                        action "Conduct live validation by simulating maintenance scenarios while monitoring
+                            +b network traffic for policy violations."
+                        tools "Industrial IDS (Darktrace Industrial), Protocol-aware firewalls (Tofino Xenon)"
+                        expected_outcome "Verified documentation matching actual interface behavior under operational
+                            +b conditions."
+            {
+                code "SD-1"
+                subCode "i)"
+                title "Multi-Vendor Interface Harmonization Procedure"
+                description "Process for documenting and securing interfaces between Breton machines and
+                    +b third-party systems (e.g., Siemens PLCs) in composite material lines,
+                    +b addressing IEC 62443-4-1 challenges in multivendor environments."
+                [ steps
+                    {
+                        step 1
+                        action "Map all cross-vendor communication paths using network taps and industrial
+                            +b protocol analyzers."
+                        tools "PROFINET diagnostics tools (Wireshark with PROFINET dissector), OPC UA Stack
+                            +b Trace"
+                        expected_outcome "Interconnection diagram showing all data flows between Breton and third-party
+                            +b systems."
+                    {
+                        step 2
+                        action "Coordinate with vendors to obtain and validate protocol specifications for
+                            +b non-standard implementations."
+                        tools "Vendor security documentation portals (Siemens Support), NDA templates for
+                            +b confidential specifications"
+                        expected_outcome "Consolidated protocol documentation covering all multivendor interface aspects."
+                    {
+                        step 3
+                        action "Implement and document compensating controls (e.g., protocol gateways) for
+                            +b interfaces lacking native security features."
+                        tools "Industrial protocol converters (Hilscher netTAP), Deep packet inspection
+                            +b firewalls"
+                        expected_outcome "Secure interface documentation package with approved workarounds for legacy
+                            +b protocol limitations."
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "j) description of how the design mitigates the threats identified in the threat
+            +b model."
+        [ policies
+            {
+                code "SD-1"
+                subCode "j"
+                title "Threat-to-Control Traceability Policy"
+                description "This policy mandates that all identified threats in the threat model must have
+                    +b corresponding documented mitigations within the product design. It ensures
+                    +b compliance with IEC 62443-4-1 by systematically linking security controls to
+                    +b specific threats, particularly critical for ICS environments where operational
+                    +b continuity and security must be balanced. The policy references MITRE ATT&CK
+                    +b for ICS and vendor-specific guidelines for threat mapping."
+                enforcement "Regular audits using checklists to verify threat-to-control mappings; automated
+                    +b tools like ThreatModeler integrated into CI/CD pipelines for continuous
+                    +b validation."
+            {
+                code "SD-1"
+                subCode "j"
+                title "Interface Security Documentation Policy"
+                description "Requires comprehensive documentation of security controls for all physical and
+                    +b logical interfaces (e.g., OPC UA, PROFINET) in ICS products. Aligns with IEC
+                    +b 62443-4-1's emphasis on interface protection to prevent unauthorized access.
+                    +b The policy leverages NIST IR 8183 and OPC UA Security Model for
+                    +b interface-specific controls."
+                enforcement "Design reviews with cross-functional teams; automated interface scanning tools
+                    +b (e.g., Wireshark with ICS plugins) to validate controls."
+            {
+                code "SD-1"
+                subCode "j"
+                title "Mitigation Validation Testing Policy"
+                description "Mandates red team exercises and penetration testing to validate the
+                    +b effectiveness of threat mitigations in real-world ICS attack scenarios (e.g.,
+                    +b ransomware simulations). Supports IEC 62443-4-1's requirement for mitigation
+                    +b effectiveness validation, referencing SANS ICS Cyber Kill Chain methodologies."
+                enforcement "Annual red team exercises; automated logging of test results in SIEM systems
+                    +b for audit trails."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "j"
+                title "Threat Modeling Procedure for CNC Machining Centers"
+                description "Step-by-step process to document threat mitigations for Breton Spa's CNC
+                    +b machines, focusing on multi-axis control systems and supported protocols (OPC
+                    +b UA, PROFINET). Aligns with STRIDE methodology and IEC 62443-4-1's secure design
+                    +b principles."
+                [ steps
+                    {
+                        step 1
+                        action "Identify threats using Microsoft Threat Modeling Tool, focusing on CNC-specific
+                            +b risks (e.g., manipulation of G-code files)."
+                        tools "Microsoft Threat Modeling Tool, MITRE ATT&CK for ICS matrix."
+                        expected_outcome "Documented list of threats with severity ratings (e.g., 'Tampering with
+                            +b toolpath data: High risk')."
+                    {
+                        step 2
+                        action "Map mitigations to threats (e.g., firmware signing for CR3 integrity, network
+                            +b segmentation for CR5 data flow)."
+                        tools "Vendor hardening guides (Siemens/Rockwell), ISA/IEC 62443-3-2 zone/conduit
+                            +b models."
+                        expected_outcome "Traceability matrix linking threats to controls (e.g., 'Threat T1 → Firmware
+                            +b signing + OPC UA encryption')."
+                    {
+                        step 3
+                        action "Validate mitigations via protocol fuzzing (e.g., PROFINET PN Security tests
+                            +b with Wurldtech Achilles)."
+                        tools "Wurldtech Achilles, OPC UA SDK test harness."
+                        expected_outcome "Test report confirming mitigation effectiveness (e.g., 'No unauthorized access
+                            +b via PROFINET after segmentation')."
+            {
+                code "SD-1"
+                subCode "j"
+                title "Legacy System Mitigation Procedure"
+                description "Process to address threats in legacy PLCs within stone cutting machines, where
+                    +b modern controls may not be feasible. Implements compensating controls per IEC
+                    +b 62443-4-1's handling of legacy constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy PLCs in separate VLANs with firewall rules restricting MODBUS
+                            +b TCP traffic."
+                        tools "Network segmentation tools (Cisco Industrial Ethernet switches), Nessus for
+                            +b vulnerability scanning."
+                        expected_outcome "Network diagrams showing legacy zones with ACLs (e.g., 'VLAN 10: Legacy PLCs,
+                            +b ingress only from HMI')."
+                    {
+                        step 2
+                        action "Deploy OT-specific IDS (e.g., Darktrace Industrial) to monitor legacy protocol
+                            +b anomalies."
+                        tools "Darktrace Industrial, Suricata with ICS rulesets."
+                        expected_outcome "IDS alerts for suspicious MODBUS traffic (e.g., 'Function code 0x05 (Write
+                            +b Coil) from unauthorized IP')."
+                    {
+                        step 3
+                        action "Document compensating controls in threat model (e.g., 'Legacy Mitigation L1:
+                            +b IDS + Network ACLs')."
+                        tools "ThreatModeler, Confluence documentation templates."
+                        expected_outcome "Updated threat model with legacy mitigations traceable to ISA/IEC 62443-2-1
+                            +b requirements."
+            {
+                code "SD-1"
+                subCode "j"
+                title "Cross-Functional Documentation Review Procedure"
+                description "Ensures threat mitigation documentation is usable by both security teams and
+                    +b engineers, per IEC 62443-4-1's KA4 requirement. Tailored for composite material
+                    +b processing lines with complex interfaces."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct joint review sessions with security and engineering teams, using
+                            +b annotated HMI screenshots to explain mitigations."
+                        tools "Zoom/Teams for collaboration, Visio for network diagrams."
+                        expected_outcome "Signed review minutes confirming mutual understanding (e.g., 'HMI
+                            +b authentication controls approved by both teams')."
+                    {
+                        step 2
+                        action "Translate technical controls into operator checklists (e.g., 'Daily
+                            +b verification of OPC UA certificate validity')."
+                        tools "MadCap Flare for documentation, Jira for task tracking."
+                        expected_outcome "Operator manuals with actionable security steps (e.g., 'Section 4.2: TLS
+                            +b Certificate Checks')."
+                    {
+                        step 3
+                        action "Archive documentation in version-controlled repository (e.g., GitLab) with
+                            +b access for audits."
+                        tools "GitLab, HashiCorp Vault for sensitive data."
+                        expected_outcome "Audit-ready documentation trail (e.g., 'Git commit history shows SD-1(j)
+                            +b updates on 2025-03-15')."
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-2"
+        subCode "undefined"
+        [ policies
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Network Segmentation Policy"
+                description "This policy mandates the implementation of network segmentation to isolate
+                    +b critical ICS components, ensuring that each segment acts as a distinct security
+                    +b layer. It aligns with IEC 62443-4-1 by enforcing defense in depth through
+                    +b logical separation of networks, reducing the attack surface and limiting
+                    +b lateral movement of threats. VLANs and firewalls are to be used to enforce
+                    +b segmentation, with strict access controls between zones."
+                enforcement "Regular network audits using tools like Wireshark and Nessus to verify
+                    +b segmentation integrity. Automated firewall rule validation via SIEM systems."
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Multi-Factor Authentication (MFA) Policy"
+                description "Requires MFA for all access to critical ICS systems, including operator
+                    +b consoles and engineering workstations. This policy supports IEC 62443-4-1 by
+                    +b adding an authentication layer to prevent unauthorized access. Smart cards and
+                    +b biometrics are the preferred methods, with fallback to OTP-based solutions
+                    +b where hardware tokens are impractical."
+                enforcement "Quarterly access control reviews and log analysis via tools like Splunk or IBM
+                    +b QRadar to detect MFA bypass attempts."
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Patch Management Policy"
+                description "Defines procedures for timely patching of ICS components, prioritizing
+                    +b vulnerabilities identified in threat models. Complies with IEC 62443-4-1 by
+                    +b maintaining system integrity across defense layers. Patches must be tested in a
+                    +b staging environment and deployed during planned maintenance windows to minimize
+                    +b operational disruption."
+                enforcement "Automated vulnerability scanning with Tenable.sc and manual verification of
+                    +b patch logs. Non-compliance triggers incident response procedures."
+        [ procedures
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Threat Modeling Procedure"
+                description "Step-by-step process to create and update threat models for ICS components, as
+                    +b required by IEC 62443-4-1. Uses STRIDE methodology to identify threats and
+                    +b assign defense layers."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all ICS components and communication protocols using tools like
+                            +b Lansweeper or Claroty."
+                        tools "Lansweeper, Claroty"
+                        expected_outcome "Comprehensive asset list with network mappings."
+                    {
+                        step 2
+                        action "Conduct STRIDE analysis via Microsoft Threat Modeling Tool, focusing on
+                            +b OT-specific threats (e.g., manipulation of sensor data)."
+                        tools "Microsoft Threat Modeling Tool"
+                        expected_outcome "Documented threat matrix with risk ratings."
+                    {
+                        step 3
+                        action "Map threats to defense layers (e.g., network segmentation for MitM attacks,
+                            +b firmware signing for tampering)."
+                        tools "Visio or draw.io for diagrams"
+                        expected_outcome "Defense layer assignment matrix approved by security team."
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Network Segmentation Implementation"
+                description "Procedure to implement and validate network segmentation per IEC 62443-4-1
+                    +b requirements. Ensures alignment with zone/conduit models."
+                [ steps
+                    {
+                        step 1
+                        action "Define zones based on criticality (e.g., CNC control VLAN, HMI DMZ) using
+                            +b industrial firewall rule templates."
+                        tools "Cisco Firepower, Palo Alto NGFW"
+                        expected_outcome "Zone design document with IP ranges and allowed protocols."
+                    {
+                        step 2
+                        action "Configure switch VLANs and firewall rules to enforce segmentation, blocking
+                            +b unnecessary cross-zone traffic (e.g., PROFINET only within control VLAN)."
+                        tools "CLI for Cisco IOS, Panorama for Palo Alto"
+                        expected_outcome "Operational network with traffic isolation verified via packet captures."
+                    {
+                        step 3
+                        action "Test segmentation by attempting lateral movement with ICS-aware penetration
+                            +b testing tools like Modbuspal."
+                        tools "Modbuspal, Kali Linux"
+                        expected_outcome "Penetration test report confirming isolation effectiveness."
+            {
+                code "SD-2"
+                subCode "undefined"
+                title "Defense Layer Audit"
+                description "Procedure to verify compliance of all defense layers with IEC 62443-4-1
+                    +b requirements. Conducted biannually or after significant changes."
+                [ steps
+                    {
+                        step 1
+                        action "Review threat models and zone diagrams to confirm all documented layers are
+                            +b implemented."
+                        tools "Document management systems (e.g., SharePoint)"
+                        expected_outcome "Gap analysis report showing missing controls."
+                    {
+                        step 2
+                        action "Verify technical controls (e.g., firewall rules, MFA logs) match design
+                            +b specifications using configuration management tools."
+                        tools "SolarWinds NCM, Chef InSpec"
+                        expected_outcome "Configuration compliance report with deviations."
+                    {
+                        step 3
+                        action "Interview personnel to validate understanding of layer responsibilities via
+                            +b structured questionnaires."
+                        tools "Custom checklists aligned with ISA/IEC 62443 training"
+                        expected_outcome "Training needs assessment and updated RACI matrix."
+        last_updated "2023-11-15"

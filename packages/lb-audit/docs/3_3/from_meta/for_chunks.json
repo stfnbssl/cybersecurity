@@ -1,0 +1,2484 @@
+{
+    "chunks": [
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.1[p24]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to identify and authenticate all human users. This capability shall enforce such identification and authentication on all interfaces which provide human user access to the control system to support segregation of duties and least privilege in accordance with applicable security policies and procedures.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "f2dd0eb13253f0f15d11612b9e70f88b75722d2202c43c089f5789c00b4d91c4",
+            "context": {
+                "name": "Human user identification and authentication",
+                "rationale": "All human users need to be identified and authenticated for all access to the control system. Authentication of the identity of these users should be accomplished by using methods such as passwords, tokens, biometrics or, in the case of multifactor authentication, some combination thereof. The geographic location of human users can also be used as part of the authentication process. This requirement should be applied to both local and remote access to the control system. In addition to identifying and authenticating all human users at the control system level (for example, at system logon), identification and authentication mechanisms are often employed at the application level. Where human users function as a single group (such as control room operators), user identification and authentication may be role-based or group-based. For some control systems, the capability for immediate operator interaction is critical. It is essential that local emergency actions as well as control system essential functions not be hampered by identification or authentication requirements (see Clause 4 for a more complete discussion). Access to these systems may be restricted by appropriate physical security mechanisms (see IEC 62443‑2‑1). An example of such a situation is a critical operations room where strict physical access control and monitoring is in place and where shift plans allocate responsibility to a group of users. These users may then be using the same user identity. In addition, the designated operator workstation clients should be authenticated (see 5.4, SR 1.2 – Software process and device identification and authentication) or the use of this shared account should be limited to the constrained environment of the control room. In order to support IAC policies, as defined according to IEC 62443‑2‑1, the control system verifies the identity of all human users as a first step. In a second step, the permissions assigned to the identified human user are enforced (see 6.3, SR 2.1 – Authorization enforcement).",
+                "page": "24"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.1",
+            "group_id": "IEC-62443-3-3:2013/SR 1.1 RE 1[p24]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to uniquely identify and authenticate all human users.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "564c9f0a66a4bacd952582044dbacc0f9be1fab96b2a94d347ca06a324b8d4ed",
+            "context": {
+                "name": "Unique identification and authentication",
+                "rationale": null,
+                "page": "24"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.1 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.1",
+            "group_id": "IEC-62443-3-3:2013/SR 1.1 RE 2[p24]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ multifactor authentication for human user access to the control system via an untrusted network (see 5.15, SR 1.13 – Access via untrusted networks).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "a868a336e631ff3b7e20452346c443bbf3ac3a4203c0f7114c60cfdf4dc255dd",
+            "context": {
+                "name": "Multifactor authentication for untrusted networks",
+                "rationale": null,
+                "page": "24"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.1 RE 3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.1 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.1",
+            "group_id": "IEC-62443-3-3:2013/SR 1.1 RE 3[p24]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ multifactor authentication for all human user access to the control system.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "2a3d2c08a4640f8c56e718cad4c1361012701a63ed6487c34168a8193c3f30ea",
+            "context": {
+                "name": "Multifactor authentication for all networks",
+                "rationale": null,
+                "page": "24"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.2[p26]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to identify and authenticate all software processes and devices. This capability shall enforce such identification and authentication on all interfaces which provide access to the control system to support least privilege in accordance with applicable security policies and procedures.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "3144f3f87c67ba5878960b8872dffbae289bcd9c8e0097f7027f7d5c55238070",
+            "context": {
+                "name": "Software process and device identification and authentication",
+                "rationale": "The function of identification and authentication is to map an ID to an unknown software process or device (henceforth referred to an entity in this sub-clause) so as to make it known before allowing any data exchange. Allowing rogue entities to send and receive control system specific data can result in detrimental behavior of the legitimate control system. All entities need to be identified and authenticated for all access to the control system. Authentication of the identity of such entities should be accomplished by using methods such as passwords, tokens or location (physical or logical). This requirement should be applied to both local and remote access to the control system. However, in some scenarios where individual entities are used to connect to different target systems (for example, remote vendor support), it may be technically infeasible for an entity to have multiple identities. In these cases, compensating countermeasures would have to be applied. Identification and authentication mechanisms for all entities are needed to protect against attacks such as man-in-the-middle or message spoofing. In some cases, these mechanisms may involve multiple software processes running on the same physical server, each having their own identity. In other cases, the identity may be bound to the physical device, such as all processes running on a given PLC. Special attention needs to be made when identifying and authenticating portable and mobile devices. These types of devices are a known method of introducing undesired network traffic, malware and/or information exposure to control systems, including otherwise isolated networks. Where entities function as a single group, identification and authentication may be role-based, group-based or entity-based, it is essential that local emergency actions as well as control system essential functions not be hampered by identification or authentication requirements (see Clause 4 for a more complete discussion). For example, in common protection and control schemes, a group of devices jointly execute the protection functions and communicate with multicast messages among the devices in the group. In these cases, group authentication based on shared accounts or shared symmetric keys are commonly used. In order to support identification and authentication control policies as defined according to IEC 62443‑2‑1, the control system verifies the identity of all entities as a first step. In a second step, the permissions assigned to the identified entity are enforced (see 6.3, SR 2.1 – Authorization enforcement).",
+                "page": "26"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.2",
+            "group_id": "IEC-62443-3-3:2013/SR 1.2 RE 1[p26]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to uniquely identify and authenticate all software processes and devices.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0c7a3601d7953e03e1f3aefad9642a053ab2a6d62f65053be0d20b5310bed6d0",
+            "context": {
+                "name": "Unique identification and authentication",
+                "rationale": null,
+                "page": "26"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.3[p27]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support the management of all accounts by authorized users, including adding, activating, modifying, disabling and removing accounts.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "a58afb9517110e014f8c3bab4707c011b1faec4690a7008e3ec045cd1d9aacd2",
+            "context": {
+                "name": "Account management",
+                "rationale": "Account management may include grouping of accounts (for example, individual, role-based, device-based and control system), establishment of conditions for group membership and assignment of associated authorizations. In certain IACS instances, where individual accounts are determined to be unnecessary from a risk-analysis and/or regulatory aspect, shared accounts are acceptable as long as adequate compensating countermeasures (such as limited physical access or organizational measures for approval) are in place and documented. Non-human user accounts (sometimes termed service accounts) that are utilized for software process-to-process communication (for example, control server to historian and PLC to control server) typically require different security policies and procedures from human user accounts. For enhanced security, management of accounts should be done according to unified policies and deployed locally in the relevant components of the control system. Unused default system accounts used for the first installation of the system should be removable. Security enhancement lies in the simplification and consistent application of account management.",
+                "page": "27"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.3 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.3 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.3",
+            "group_id": "IEC-62443-3-3:2013/SR 1.3 RE 1[p27]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support unified account management.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "9acd380ee34261d002db0a33bc44199b1429604fd4ae810269a5636f7e4c37dd",
+            "context": {
+                "name": "Unified account management",
+                "rationale": null,
+                "page": "27"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.4",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.4[p28]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support the management of identifiers by user,group, role or control system interface.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "45fbca3bd8c61440edd2d439fa5bf06336cc535d0b904a153504939db4811219",
+            "context": {
+                "name": "Identifier management",
+                "rationale": "Identifiers are distinguished from the privileges which they permit an entity to perform within a specific control system control domain or zone (see 6.3, SR 2.1 – Authorization enforcement). Where human users function as a single group (such as control room operators), user identification may be role-based, group-based or device-based. For some control systems, the capability for immediate operator interaction is critical. Local emergency actions for the control system should not be hampered by identification requirements. Access to these systems may be restricted by appropriate compensating countermeasures. Identifiers may be required on portions of the control system but not necessarily the entire control system. For example, wireless devices typically require identifiers, whereas wired devices may not. The management of identifiers will be determined by local policies and procedures established in compliance with IEC 62443‑2‑1.",
+                "page": "28"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.5",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.5",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.5[p28]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to: h) initialize authenticator content; i) change all default authenticators upon control system installation; j) change/refresh all authenticators; and k) protect all authenticators from unauthorized disclosure and modification when stored and transmitted.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0479462a0dafc4b94081ecff602efc9e1508d309125a5cda341ac44af6ee67bd",
+            "context": {
+                "name": "Authenticator management",
+                "rationale": "In addition to an identifier (see 5.6, SR 1.4 – Identifier management) an authenticator is required to prove identity. Control system authenticators include, but are not limited to, tokens, symmetric keys, private keys (part of a public/private key pair), biometrics, passwords, physical keys and key cards. Human users should take reasonable measures to safeguard authenticators, including maintaining possession of their individual authenticators, not loaning or sharing authenticators with others and reporting lost or compromised authenticators immediately. Authenticators have a lifecycle. When an account is created automatically a new authenticator needs to be created, in order for the account owner to be able to authenticate. For example, in a password-based system, the account has a password associated with it. Definition of the initial authenticator content could be interpreted as the administrator defining the initial password which the account management system sets for all new accounts. Being able to configure these initial values makes it harder for an attacker to guess the password between account creation and first account use (which should involve the setting of a new password by the account owner). Some control systems are installed with unattended installers which create all necessary accounts with default passwords and some embedded devices are shipped with default passwords. Over time, these passwords often become general knowledge and are documented on the Internet. Being able to change the default passwords protects the system against unauthorized users using default passwords to gain access. Passwords can be obtained from storage or from transmission when used in network authentication. The complexity of this can be increased by cryptographic protections such as encryption or hashing or by handshake protocols which do not require transmission of the password at all. Still, passwords might be subject to attacks, for example brute force guessing or breaking the cryptographic protection of passwords in transit or storage. The window of opportunity can be reduced by changing/refreshing the passwords periodically. Similar considerations apply to authentication systems based on cryptographic keys. Enhanced protection can be achieved by using hardware mechanisms such as hardware security modules like trusted platform modules (TPMs). The management of authenticators should be specified in applicable security policies and procedures, for example, constraints to change default authenticators, refresh periods, specification of the protection of authenticators or firecall (see 3.1.24) procedures. Lockout or loss of control due to security measures is not acceptable. If the control system is required to have a high level of availability, measures should be taken to maintain this high level of availability (such as compensating physical countermeasures, duplicate keys and supervisory override). Besides the capabilities for authenticator management specified in this requirement, the strength of the authentication mechanism depends on the strength of the chosen authenticator (for example password complexity or key length in public key authentication) and the policies for validating the authenticator in the authentication process (for example how long a password is valid or which checks are performed in public key certificate validation). For the most common authentication mechanisms password-based and public key authentication 5.9, SR 1.7 – Strength of password-based authentication, 5.10, SR 1.8 – Public key infrastructure (PKI) certificates and 5.11, SR 1.9 – Strength of public key authentication provide further requirements.",
+                "page": "28"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.5 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.5 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.5",
+            "group_id": "IEC-62443-3-3:2013/SR 1.5 RE 1[p28]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "For software process and device users, the control system shall provide the capability to protect the relevant authenticators via hardware mechanisms.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "37389f76bec7365d656ff8ed99e229f1180f68d8610a2f3f814ffef85fef39de",
+            "context": {
+                "name": "Hardware security for software process identity credentials",
+                "rationale": null,
+                "page": "28"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.6",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.6",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.6[p30]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to identify and authenticate all users (humans, software processes or devices) engaged in wireless communication.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "1cb607e89965d380cda4853b4d0eb8da59337ff8fe29d532d00d825dd83aff07",
+            "context": {
+                "name": "Wireless access management",
+                "rationale": "Any wireless technology can, and in most cases should, be considered just another communication protocol option, and thus subject to the same IACS security requirements as any other communication type utilized by the IACS. However, from a security point of view, there is at least one significant difference between wired and wireless communications: physical security countermeasures are typically less effective when using wireless. For this and possibly other reasons (for example regulatory differences), a risk analysis might legitimately result in a higher SL-T(IAC,control system) for wireless communications versus a wired protocol being used in an identical use case. Wireless technologies include, but are not limited to, microwave, satellite, packet radio, Institute of Electrical and Electronics Engineers (IEEE) 802.11x, IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), wireless LAN mobile routers, mobile phones with tethering and various infrared technologies.",
+                "page": "30"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.6",
+            "group_id": "IEC-62443-3-3:2013/SR 1.2 RE 1[p30]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to uniquely identify and authenticate all users (humans, software processes or devices) engaged in wireless communication.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "a149076c35d8c225aeb41a402aa84bbed217da17b8712e53578175297380d5f9",
+            "context": {
+                "name": "Unique identification and authentication",
+                "rationale": null,
+                "page": "30"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.7",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.7",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.7[p30]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "For control systems utilizing password-based authentication, the control system shall provide the capability to enforce configurable password strength based on minimum length and variety of character types.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "46acd27236a0d62e1d7b3855cf58c6bfefba337993c6b74cb91cea1351a8241d",
+            "context": {
+                "name": "Strength of public key authentication",
+                "rationale": "User authentication based on a username and a secret password is a very commonly used mechanism. Many attacks on such mechanisms focus on guessing the password (for example, dictionary attacks or targeted social engineering) or breaking the cryptographic protection of the stored password representation (for example, using rainbow tables or brute-forcing a hash collision). Increasing the size of the set of valid passwords by increasing the number of allowed characters makes such attacks more complex, but only if the increased set size is actually used (generally users would tend to not include special characters in a password as they are perceived as harder to remember). Limiting the lifetime of a password decreases the window of opportunity for an attacker to breach a given password’s secrecy. In order to prevent users from circumventing this control by once changing their password to a new one and then immediately changing back to their original password, a minimum lifetime for a password is commonly enforced as well. A notification to change the password prior the expiration allows the user to change the password at a convenient time according to process operations conditions. This protection can be further enhanced by limiting the reuse of passwords (preventing small sets of alternating passwords), which further decreases the usefulness of a once-breached password. Extended protection beyond password based mechanisms can be achieved using multifactor authentication (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, SR 1.2 – Software process and device identification and authentication).",
+                "page": "30"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.7 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.7 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.7",
+            "group_id": "IEC-62443-3-3:2013/SR 1.7 RE 1[p30]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent any given human user account from reusing a password for a configurable number of generations. In addition, the control system shall provide the capability to enforce password minimum and maximum lifetime restrictions for human users. These capabilities shall conform with commonly accepted security industry practices.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8f6ad7303414ff730538d8e2b78e80cf2a116a09cac8fdca00c2ccfd2ccd3df7",
+            "context": {
+                "name": "Password generation and lifetime restrictions for human users",
+                "rationale": null,
+                "page": "30"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.7 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.7 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.7",
+            "group_id": "IEC-62443-3-3:2013/SR 1.7 RE 2[p30]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to enforce password minimum and maximum lifetime restrictions for all users.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "593912f8456056d43eb0a0d9f69e6c1f3363cd01333e741241785aad84e94120",
+            "context": {
+                "name": "Password lifetime restrictions for all users",
+                "rationale": null,
+                "page": "30"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.8",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.8",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.8[p32]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "Where PKI is utilized, the control system shall provide the capability to operate a PKI according to commonly accepted best practices or obtain public key certificates from an existing PKI.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "798e5440a9daf4767d78bf46e09bb210e50e88f8de8cf50e9ecc53ea2e942e88",
+            "context": {
+                "name": "Public key infrastructure (PKI) certificates",
+                "rationale": "Registration to receive a public key certificate needs to include authorization by a supervisor or a responsible official and needs to be accomplished using a secure process that verifies the identity of the certificate holder and ensures that the certificate is issued to the intended party. Any latency induced from the use of public key certificates should not degrade the operational performance of the control system.\" The selection of an appropriate PKI should consider the organization’s certificate policy which should be based on the risk associated with a breach of confidentiality of the protected information. Guidance on the policy definition can be found in commonly accepted standards and guidelines, such as the Internet Engineering Task Force (IETF) Request for Comment (RFC) 3647 [29] for X.509-based PKI. For example, the appropriate location of a certification authority (CA), whether within the control system versus on the Internet, and the list of trusted CAs should be considered in the policy and depends on the network architecture (see also IEC 62443‑2‑1).",
+                "page": "32"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 1,
+            "normative": false,
+            "informative": false,
+            "role": "preamble",
+            "scope_condition": "For control systems utilizing public key authentication, the control system shall provide the capability to:",
+            "modal_verb": "in scope_condition (TODO: split)",
+            "aggregation": "all_of",
+            "sha256": "f223f5051ad49e2f0e4128957f885bec5d94861e4e92928fdb41e62ba7837b14"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9/a",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 2,
+            "normative": true,
+            "text_normative": "For control systems utilizing public key authentication, the control system shall provide the capability to: a) validate certificates by checking the validity of the signature of a given certificate;",
+            "ordinal": "a",
+            "inherits_from": "IEC-62443-3-3:2013/SR 1.9",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "9fb57daf3a3a08048c99c613502318928b93150f486b01b5b1e5b5906fd5b47c"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9/b",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 3,
+            "normative": true,
+            "text_normative": "For control systems utilizing public key authentication, the control system shall provide the capability to: b) validate certificates by constructing a certification path to an accepted CA or in the case of self-signed certificates by deploying leaf certificates to all hosts which communicate with the subject to which the certificate is issued;",
+            "ordinal": "b",
+            "inherits_from": "IEC-62443-3-3:2013/SR 1.9",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "27dd42161ee3dc1fa0079113b2267acbbba857014055907a164d6bdd8ec7508e"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9/c",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 4,
+            "normative": true,
+            "text_normative": "For control systems utilizing public key authentication, the control system shall provide the capability to: c) validate certificates by checking a given certificate’s revocation status;",
+            "ordinal": "c",
+            "inherits_from": "IEC-62443-3-3:2013/SR 1.9",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "714cbae72ccd5995964245a04786c592d2561d1d88560e972385270b844955a0"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9/d",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 5,
+            "normative": true,
+            "text_normative": "For control systems utilizing public key authentication, the control system shall provide the capability to: d) establish user (human, software process or device) control of the corresponding private key; and",
+            "ordinal": "d",
+            "inherits_from": "IEC-62443-3-3:2013/SR 1.9",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "390008e9bfe2a59e186099a337bf21101c30bee26daa82c2808d3f2ed80a0339"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9/e",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9[p32]",
+            "seq": 6,
+            "normative": true,
+            "text_normative": "For control systems utilizing public key authentication, the control system shall provide the capability to: e) map the authenticated identity to a user (human, software process or device).",
+            "ordinal": "e",
+            "inherits_from": "IEC-62443-3-3:2013/SR 1.9",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "ec0238bafb24675740fe49752eefd3838c1db70a2ab7ec09a119ab45dba151f2"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.9 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.9 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.9",
+            "group_id": "IEC-62443-3-3:2013/SR 1.9 RE 1[p32]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the relevant private keys via hardware mechanisms according to commonly accepted security industry practices and recommendations.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "b20c8b72958f6377e46f1ca99e605756fa27d817fba80d00c67f4d7c41a47d32",
+            "context": {
+                "name": "Hardware security for public key authentication",
+                "rationale": null,
+                "page": "32"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.10",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.10",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.10[p33]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to obscure feedback of authentication information during the authentication process.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "b5fee28ef282e68820dde6e03d378b75c6139809ee9e20ebb0750d9b188616a7",
+            "context": {
+                "name": "Authenticator feedback",
+                "rationale": "Obscuring feedback protects the information from possible exploitation by unauthorized individuals, for example, displaying asterisks or other random characters when a human user types in a password obscures feedback of authentication information. Other examples include the entry of wired equivalent privacy (WEP) keys, secure socket shell (SSH) token entry and RSA one-time passwords. The authenticating entity should not provide any hint as to the reason for the authentication failure, such as “unknown user name”.",
+                "page": "33"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.11",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.11",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.11[p34]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to enforce a limit of a configurable number of consecutive invalid access attempts by any user (human, software process or device) during a configurable time period. The control system shall provide the capability to deny access for a specified period of time or until unlocked by an administrator when this limit has been exceeded. For system accounts on behalf of which critical services or servers are run, the control system shall provide the capability to disallow interactive logons.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "b9cd89eafde8491ce4872d367c36294d684b3517b73ba05560076886118040fc",
+            "context": {
+                "name": "Unsuccessful login attempts",
+                "rationale": "Due to the potential for denial of service, the number of consecutive invalid access attempts may be limited. If enabled, the control system may automatically reset to zero the number of access attempts after a predetermined time period established by the applicable security policies and procedures. Resetting the access attempts to zero will allow users (human, software process or device) to gain access if they have the correct login identifier. Automatic denial of access for control system operator workstations or nodes should not be used when immediate operator responses are required in emergency situations. All lockout mechanisms should consider functional requirements for continuous operations so as to mitigate adverse denial of service operating conditions which could result in total system failure or injury to personnel. Allowing interactive logins to an account used for critical services could provide a potential for denial of service or other abuse.",
+                "page": "34"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.12",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.12",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.12[p34]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to display a system use notification message before authenticating. The system use notification message shall be configurable by authorized personnel.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "2252b18aa053e51b6c95e2f2f4601e23e824b1a1bb2e67360b4c429fb933fd20",
+            "context": {
+                "name": "System use notification",
+                "rationale": "Privacy and security policies and procedures need to be consistent with applicable laws, directives, policies, regulations, standards and guidance. Often the main justification for this requirement is legal prosecution of violators and proving intentional breach. This capability is thus necessary to support policy requirements, and does not improve IACS security. System use notification messages can be implemented in the form of warning banners displayed when individuals log in to the control system. A warning banner implemented as a posted physical notice in the control system facility does not protect against remote login issues.",
+                "page": "34"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.13",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.13",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 1.13[p35]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to monitor and control all methods of access to the control system via untrusted networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "c9e3c17b0c240724e3a7a39f8143680fa4549b4f129b717336bdc11cac229f76",
+            "context": {
+                "name": "Access via untrusted networks",
+                "rationale": "Examples of access to the control system via untrusted networks typically include remote access methods (such as dial-up, broadband and wireless) as well as connections from a company’s office (non-control system) network. The control system should restrict access achieved through dial-up connections (for example, limiting dial-up access based upon the source of the request) or protect against unauthorized connections or subversion of authorized connections (for example, using virtual private network technology). Access via untrusted networks to geographically remote control system component locations (for example, control centres and field locations) should only be enabled when necessary and authenticated. Security policies and procedures may require multifactor authentication for remote user access to the control system.",
+                "page": "35"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 1.13 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 1.13 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 1.13",
+            "group_id": "IEC-62443-3-3:2013/SR 1.13 RE 1[p35]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to deny access requests via untrusted networks unless approved by an assigned role.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "99b6ade2635e2e1b943cc6d20092d1d01c42e72d3d6ee7d8a4e47f370f6e5b65",
+            "context": {
+                "name": "Explicit access request approval",
+                "rationale": null,
+                "page": "35"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.1[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "On all interfaces, the control system shall provide the capability to enforce authorizations assigned to all human users for controlling use of the control system to support segregation of duties and least privilege.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0c2d2c2b1d78ee5cc96b82c16135609309ead69a83c54f613c4d088f23aa6a59",
+            "context": {
+                "name": "Authorization enforcement",
+                "rationale": "Use control policies (for example, identity-based policies, role-based policies and rule-based policies) and associated read/write access enforcement mechanisms (for example, access control lists, access control matrices and cryptography) are employed to control usage between users (humans, software processes and devices) and assets (for example, devices, files, records, software processes, programs and domains). After the control system has verified the identity of a user (human, software process or device) (see 5.3, SR 1.1 – Human user identification and authentication and 5.4, SR 1.2 – Software process and device identification and authentication), it also has to verify that a requested operation is actually permitted according to the defined security policies and procedures. For example, in a role-based access control policy, the control system would check which roles are assigned to a verified user or asset and which privileges are assigned to these roles – if the requested operation is covered by the permissions, it is executed, otherwise rejected. This allows the enforcement of segregation of duties and least privileges. Usage enforcement mechanisms should not be allowed to adversely affect the operational performance of the control system. Planned or unplanned changes to control system components can have significant effects on the overall security of the control system. Accordingly, only qualified and authorized individuals should obtain the use of control system components for purposes of initiating changes, including upgrades and modifications.",
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 1[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "On all interfaces, the control system shall provide the capability to enforce authorizations assigned to all users (humans, software processes and devices) for controlling use of the control system to support segregation of duties and least privilege.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "1229ee5c61e16c9c6dacbeb03e47411878771fc1107caee3d66462062978a0a3",
+            "context": {
+                "name": "Authorization enforcement for all users",
+                "rationale": null,
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability for an authorized user or role to define and modify the mapping of permissions to roles for all human users.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "3b929dd7554c0f452bfb13264710532fbbfefdd8d92469424bcee9e94be8faa1",
+            "context": {
+                "name": "Permission mapping to roles",
+                "rationale": null,
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[p37]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "It is a commonly accepted good practice to not limit roles to fixed nested hierarchies in which a higher level role is a superset of a lesser privileged role. For example, a system administrator generally does not necessarily encompass operator privileges.",
+            "context_note": null,
+            "sha256": "db9b6777c288eb545f7de87f4aec698cc38810c43609dd3704f35a03030b4aff",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "37"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[note-2]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[p37]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "This RE is applicable to software processes and devices as well.",
+            "context_note": null,
+            "sha256": "4df506dd08dd1f3a1df5403c8bd7523db5715e264338c60bd2c679c48384c0de",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "37"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2[note-2]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 3[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall support supervisor manual override of the current human user authorizations for a configurable time or event sequence.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "a9e35a0c8988294c07065cf3d3502bddb2a37394cd50a1b9daa064d62cf6f796",
+            "context": {
+                "name": "Supervisor override",
+                "rationale": null,
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 3[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 3[p37]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Implementation of a controlled, audited and manual override of automated mechanisms in the event of emergencies or other serious events is often needed. This allows a supervisor to enable an operator to quickly react to unusual conditions without closing the current session and establishing a new session as a higher privilege human user.",
+            "context_note": null,
+            "sha256": "9d9d04ab9fecc90782412cd9cff5feee5288f7713e9732f52a677f578b4a5936",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "37"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 3[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 3",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 4[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall support dual approval where an action can result in serious impact on the industrial process.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "f2868e6ee187a17d54a391c2756db9888f62b3faa0c75986e1a1005a05fa901f",
+            "context": {
+                "name": "Dual approval",
+                "rationale": null,
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 4[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.1 RE 4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.1",
+            "group_id": "IEC-62443-3-3:2013/SR 2.1 RE 4[p37]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "It is a commonly accepted good practice to limit dual approval to actions which require a very high level of confidence that they will be performed reliably and correctly. Requiring dual approval provides emphasis to the seriousness of consequences that would result from failure of a correct action. An example of a situation in which dual approval is required would be a change to a set point of a critical industrial process. It is a commonly accepted good practice to not employ dual approval mechanisms when an immediate response is necessary to safeguard HSE consequences, for example, emergency shutdown of an industrial process.",
+            "context_note": null,
+            "sha256": "58f0ab76193b847d224cdedfd6646a4defd62814fed48b0c2e1279712edfbef2",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "37"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 4[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 2.1 RE 4",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.2[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to authorize, monitor and enforce usage restrictions for wireless connectivity to the control system according to commonly accepted security industry practices.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "104e1feac13101415fd2983d41c7bea83b159ac945468fb0b735a6fa45a43b12",
+            "context": {
+                "name": "Wireless use control",
+                "rationale": "Any wireless technology can, and in most cases should, be considered just another communication protocol option, and thus subject to the same IACS security requirements as any other communication type utilized by the IACS. However, a risk analysis may result in a requirement for wireless IACS components to support higher use control capabilities than are typically required of wired systems for the same use case and SL-T. Regulatory differences may also result in different required capabilities between wired and wireless communications. As noted in 5.8, SR 1.6 – Wireless access management, wireless technologies include, but are not limited to, microwave, satellite, packet radio, IEEE 802.11x, IEEE 802.15.4 (ZigBee, IEC 62591 – WirelessHART®, ISA-100.11a), IEEE 802.15.1 (Bluetooth), wireless LAN mobile routers, mobile phones with tethering and various infrared technologies.",
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.2",
+            "group_id": "IEC-62443-3-3:2013/SR 2.2 RE 1[p37]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to identify and report unauthorized wireless devices transmitting within the control system physical environment.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7f98d1f94bf994450bce16d8a3ca252ba78c9a3e2cef08a8e318ae601d43d521",
+            "context": {
+                "name": "Identify and report unauthorized wireless devices",
+                "rationale": null,
+                "page": "37"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.3[p38]",
+            "seq": 1,
+            "normative": false,
+            "informative": false,
+            "role": "preamble",
+            "scope_condition": "The control system shall provide the capability to automatically enforce configurable usage restrictions that include:",
+            "modal_verb": "in scope_condition (TODO: split)",
+            "aggregation": "all_of",
+            "sha256": "676038e37135940cdaeb064d957e08de5b49470db0543b167a09ad4883d50f39"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.3/a",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.3",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.3",
+            "group_id": "IEC-62443-3-3:2013/SR 2.3[p38]",
+            "seq": 2,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to automatically enforce configurable usage restrictions that include: a) preventing the use of portable and mobile devices;",
+            "ordinal": "a",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.3",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "300f8a183b271efb9a4edb30358fc571c9b5f36fd6509168c256b4ffe5e8970c"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.3/b",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.3",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.3",
+            "group_id": "IEC-62443-3-3:2013/SR 2.3[p38]",
+            "seq": 3,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to automatically enforce configurable usage restrictions that include: b) requiring context specific authorization; and",
+            "ordinal": "b",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.3",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "d021d481ca4fa74e9d574eab28ccf4b17b41278c218b1b8725826ce239299279"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.3/c",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.3",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.3",
+            "group_id": "IEC-62443-3-3:2013/SR 2.3[p38]",
+            "seq": 4,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to automatically enforce configurable usage restrictions that include: c) restricting code and data transfer to/from portable and mobile devices.",
+            "ordinal": "c",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.3",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "fa603dd238aa0942228735aedf52a81568f8aee7df36d43e5566847fce7e5b16"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.3 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.3 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.3",
+            "group_id": "IEC-62443-3-3:2013/SR 2.3 RE 1[p38]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to verify that portable or mobile devices attempting to connect to a zone comply with the security requirements of that zone.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8e793c42fd8e473c75e18877410af43189a9ab9f9d4cd1aa02fb88aa52a9b926",
+            "context": {
+                "name": "Enforcement of security status of portable and mobile devices",
+                "rationale": null,
+                "page": "38"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.4[p39]",
+            "seq": 1,
+            "normative": false,
+            "informative": false,
+            "role": "preamble",
+            "scope_condition": "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include:",
+            "modal_verb": "in scope_condition (TODO: split)",
+            "aggregation": "all_of",
+            "sha256": "ce44ae87c6f1b5f36e1ed8d29743bb3e00ab041462c529674bc52b99e46016e2"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4/a",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.4",
+            "group_id": "IEC-62443-3-3:2013/SR 2.4[p39]",
+            "seq": 2,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include: a) preventing the execution of mobile code;",
+            "ordinal": "a",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.4",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "8bb307b7ba5e0589a84fc749d0fcf702e2b16ffc1b10eb011f0d7617faebaa5e"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4/b",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.4",
+            "group_id": "IEC-62443-3-3:2013/SR 2.4[p39]",
+            "seq": 3,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include: b) requiring proper authentication and authorization for origin of the code;",
+            "ordinal": "b",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.4",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "4190cb5a181ae340de9929a9ebdb65f0a10e62aeb9532f18dc6efe6258ae4c75"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4/c",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.4",
+            "group_id": "IEC-62443-3-3:2013/SR 2.4[p39]",
+            "seq": 4,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include: c) restricting mobile code transfer to/from the control system; and ",
+            "ordinal": "c",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.4",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "9f4e796ad4d57ee18a674cc29634942ff03f28f6291a14985507a04e47187eb0"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4/d",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.4",
+            "group_id": "IEC-62443-3-3:2013/SR 2.4[p39]",
+            "seq": 5,
+            "normative": true,
+            "text_normative": "The control system shall provide the capability to enforce usage restrictions for mobile code technologies based on the potential to cause damage to the control system that include: d) monitoring the use of mobile code.",
+            "ordinal": "d",
+            "inherits_from": "IEC-62443-3-3:2013/SR 2.4",
+            "inherited_fields": [
+                "scope_condition",
+                "modal_verb"
+            ],
+            "sha256": "456e5fc3c6a406838ceda54fc41bed67bca489dd5e7636308b49c62a0a129ae2"
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.4 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.4 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.4",
+            "group_id": "IEC-62443-3-3:2013/SR 2.4 RE 1[p39]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to verify integrity of the mobile code before allowing code execution.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "bf8685d77890f219cdec6b6a351a821e9610b36bd6716088560f6a4b3c8cdba5",
+            "context": {
+                "name": "Mobile code integrity check",
+                "rationale": null,
+                "page": "39"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.5",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.5",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.5[p40]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent further access by initiating a session lock after a configurable time period of inactivity or by manual initiation. The session lock shall remain in effect until the human user who owns the session or another authorized human user re-establishes access using appropriate identification and authentication procedures.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "c2d2efb01e060d929ef76df6e811b5257d722fe545ad85fca8a3532986069c4a",
+            "context": {
+                "name": "Session lock",
+                "rationale": "The entity responsible for a control system should employ session lock to prevent access to specified workstations or nodes. The control system should activate session lock mechanisms automatically after a configurable time period for designated workstations or nodes. In some cases, session lock for control system operator workstations or nodes is not advised (for example, sessions which are required for immediate operator responses in emergency situations). Session locks are not a substitute for logging out of the control system. In situations where the control system cannot support session lock, the responsible entity should employ appropriate compensating countermeasures (for example, providing increased physical security, personnel security and auditing measures).",
+                "page": "40"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.6",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.6",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.6[p40]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to terminate a remote session either automatically after a configurable time period of inactivity or manually by the user who initiated the session.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "9d8182efcb48aee9cbd5746cab6d50ed47f22472143373c99a99802e2fcfb717",
+            "context": {
+                "name": "Remote session termination",
+                "rationale": "A remote session is initiated whenever a control system is accessed across the boundary of a zone defined by the asset owner based on their risk assessment. This requirement may be limited to sessions that are used for control system monitoring and maintenance activities (not critical operations) based on the risk assessment of the control system and security policies and procedures. Some control systems or components may not allow sessions to be terminated.",
+                "page": "40"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.7",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.7",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.7[p41]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to limit the number of concurrent sessions per interface for any given user (human, software process or device) to a configurable number of sessions.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7a16d30060b311d7e922fdb698b4811ff55840c94621be86d5ebfe67448f9cd0",
+            "context": {
+                "name": "Concurrent session control",
+                "rationale": "A resource starvation DoS might occur if a limit is not imposed. There is a trade-off between potentially locking out a specific user versus locking out all users and services due to a lack of control system resources. Product supplier and/or system integrator guidance is likely required to provide sufficient information as to how the number of sessions value should be assigned.",
+                "page": "41"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.8",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.8",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.8[p41]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to generate audit records relevant to security for the following categories: access control, request errors, operating system events, control system events, backup and restore events, configuration changes, potential reconnaissance activity and audit log events. Individual audit records shall include the timestamp, source (originating device, software process or human user account), category, type, event ID and event result.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8eefb21ccfa72f0bce873c4a8f1e9473ce734ce5c35ae1378322efd179f78ac1",
+            "context": {
+                "name": "Auditable events",
+                "rationale": "The purpose of this requirement is to record the occurrence of important events which need to be audited as significant and relevant to the security of the control system. Auditing activity can affect control system performance. The security audit function is usually coordinated with the network health and status monitoring function which may be in a different zone. Commonly recognized and accepted checklists and configuration guides should be considered when compiling a list of auditable events. The security policies and procedures should define auditable events that are adequate to support after-the-fact investigations of security incidents. In addition, audit records should be sufficient to monitor the effectiveness and proper operation of the security mechanisms utilized to meet the requirements in this standard. It should be noted that the requirement for event recording is applicable within the given system functionality, specifically given system security requirements on a given level. For example, the requirement for recording of authentication events (in the access control category) on a SL 1 system is only applicable to the level of authentication functionality required for SL 1 according to the requirements in Clause 5. Events may occur in any control system component (for example login events) or may be observed by dedicated monitors. For example, port scanning might be detected by an intrusion detection system (IDS) or intrusion prevention system (IPS).",
+                "page": "41"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.8 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.8 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.8",
+            "group_id": "IEC-62443-3-3:2013/SR 2.8 RE 1[p41]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to centrally manage audit events and to compile audit records from multiple components throughout the control system into a system-wide (logical or physical), time-correlated audit trail. The control system shall provide the capability to export these audit records in industry standard formats for analysis by standard commercial log analysis tools, for example, security information and event management (SIEM).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "74cf1432bd960e56e5b1dc01cc58e36fed7c58f7dd1d632454834dc78e7d77c5",
+            "context": {
+                "name": "Centrally managed, system-wide audit trail",
+                "rationale": null,
+                "page": "41"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.9",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.9",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.9[p42]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall allocate sufficient audit record storage capacity according to commonly recognized recommendations for log management and system configuration. The control system shall provide auditing mechanisms to reduce the likelihood of such capacity being exceeded.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "617316caf05bd1503eab6ce6c7697e46c22ea009b2f2d72d537e1b6a989da665",
+            "context": {
+                "name": "Audit storage capacity",
+                "rationale": "The control system should provide sufficient audit storage capacity, taking into account retention policy, the auditing to be performed and the online audit processing requirements. Guidelines to be considered could include the NIST Special Publication (SP) 800-92 [27]. The audit storage capacity should be sufficient to retain logs for a period of time required by applicable policies and regulations or business requirements.",
+                "page": "42"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.9 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.9 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.9",
+            "group_id": "IEC-62443-3-3:2013/SR 2.9 RE 1[p42]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to issue a warning when the allocated audit record storage volume reaches a configurable percentage of maximum audit record storage capacity.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "64412dabd7534e5e15b3a6fdf07a3aa9d0ed795e90cff16b4f2a579a9ee387e0",
+            "context": {
+                "name": "Warn when audit record storage capacity threshold reached",
+                "rationale": null,
+                "page": "42"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.10",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.10",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.10[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to alert personnel and prevent the loss of essential services and functions in the event of an audit processing failure. The control system shall provide the capability to support appropriate actions in response to an audit processing failure according to commonly accepted industry practices and recommendations.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "926ce3245071d709aa3507647109f1a56ec02523235156034ad95fe4e87ffdf3",
+            "context": {
+                "name": "Response to audit processing failures",
+                "rationale": "Audit generation typically occurs at the source of the event. Audit processing involves transmission, possible augmentation (such as the addition of a timestamp) and persistent storage of the audit records. Audit processing failures include, for example, software or hardware errors, failures in the audit capturing mechanisms and audit storage capacity being reached or exceeded. Guidelines to be considered when designing appropriate response actions may include the NIST SP800-92. It should be noted that either overwriting the oldest audit records or halting audit log generation are possible responses to audit storage capacity being exceeded but imply the loss of potentially essential forensic information.",
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.11",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.11",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.11[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide timestamps for use in audit record generation.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7d4b843c83f8a88a1932e3973bf684266554a69efbb8c00a117adde3f2ded413",
+            "context": {
+                "name": "Timestamps",
+                "rationale": "Timestamps (including date and time) of audit records should be generated using internal system clocks. If system-wide time synchronization is not present (which is typical in many installations), known offsets would be needed to support analysis of a sequence of events. In addition, synchronization of internally generated audit records with external events might require synchronization with a generally recognized external time source (such as the Global Positioning System (GPS), Global Navigation Satellite System (GLONASS) and Galileo). The time source should be protected from unauthorized alteration.",
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.11 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.11 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.11",
+            "group_id": "IEC-62443-3-3:2013/SR 2.11 RE 1[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to synchronize internal system clocks at a configurable frequency.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "c21f0b66fd07c54451c94009c38617ee3ace8f974c1399fae672759140bfc084",
+            "context": {
+                "name": "Internal time synchronization",
+                "rationale": null,
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.11 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.11 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.11",
+            "group_id": "IEC-62443-3-3:2013/SR 2.11 RE 2[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The time source shall be protected from unauthorized alteration and shall cause an audit event upon alteration.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "36f1304199f6cd2f39cb948b99f86ceace16d1d56d057e90a190e79dec0d3f82",
+            "context": {
+                "name": "Protection of time source integrity",
+                "rationale": null,
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.12",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.12",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 2.12[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to determine whether a given human user took a particular action.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "9a41ec9e838ad1f4ead529d25cdff0a297106e2860438042edfeeef9cd775a7f",
+            "context": {
+                "name": "Non-repudiation",
+                "rationale": "Examples of particular actions taken by a user include performing operator actions, changing control system configurations, creating information, sending a message, approving information (such as indicating concurrence) and receiving a message. Non-repudiation protects against later false claims by a user of not having taken a specific action, by an author of not having authored a particular document, by a sender of not having transmitted a message, by a receiver of not having received a message or by a signatory of not having signed a document. Non-repudiation services can be used to determine if information originated from a user, if a user took specific actions (for example, sending an email and approving a work order) or received specific information. Non-repudiation services are obtained by employing various techniques or mechanisms (for example, digital signatures, digital message receipts and timestamps).",
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 2.12 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 2.12 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 2.12",
+            "group_id": "IEC-62443-3-3:2013/SR 2.12 RE 1[p43]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to determine whether a given user (human, software process or device) took a particular action.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "caf66fc5135383ef359038a7d7c6e418498b2bfea8d733ac47f413655dbb7916",
+            "context": {
+                "name": "Non-repudiation for all users",
+                "rationale": null,
+                "page": "43"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.1[p46]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the integrity of transmitted information.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "80a500e2032e39116b44954f855fd7c60d1babc87c453d9f0eb1f92df00c98c7",
+            "context": {
+                "name": "Communication integrity",
+                "rationale": "Many common network attacks are based on the manipulation of data in transmission, for example manipulation of network packets. Switched or routed networks provide a greater opportunity for attackers to manipulate packets as undetected access to these networks is generally easier and the switching and routing mechanisms themselves can also be manipulated in order to get more access to transmitted information. Manipulation in the context of a control system could include the change of measurement values communicated from a sensor to a receiver or the alteration of command parameters sent from a control application to an actuator. Depending on the context (for example transmission within a local network segment versus transmission via untrusted networks) and the network type used in the transmission (for example transmission control protocol (TCP) / internet protocol (IP) versus local serial links), feasible and appropriate mechanisms will vary. On a small network with direct links (point-to-point), physical access protection to all nodes may be sufficient on lower SLs if the endpoints’ integrity is protected as well (see 7.6, SR 3.4 – Software and information integrity), while on a network distributed in areas with regular physical presence of staff or on a wide area network physical access is likely not enforceable. If a commercial service is used to provide communication services as a commodity item rather than a fully dedicated service (for example a leased line versus a T1 link), it may be more difficult to obtain the necessary assurances regarding the implementation of needed security controls for communication integrity (for example because of legal restrictions). When it is infeasible or impractical to meet the necessary security requirements it may be appropriate to implement either appropriate compensating countermeasures or explicitly accept the additional risk. Industrial equipment is often subject to environmental conditions that can lead to integrity issues and/or false positive incidents. Many times the environment contains particulates, liquids, vibration, gases, radiation, and electromagnetic interference (EMI) that can cause conditions that affect the integrity of the communication wiring and signals. The network infrastructure should be designed to minimize these physical/environmental effects on communication integrity. For example, when particulate, liquids, and/or gases are an issue, it may be necessary to use a sealed registered jack 45 (RJ-45) or M12 connector instead of a commercial-grade RJ-45 connector on the wire. The cable itself may need to use a different jacket instead to handle the particulate, liquid, and/or gas as well. In cases where vibration is an issue, M12 connectors may be necessary to prevent the spring pins on an RJ-45 connector from disconnecting during use. In cases where radiation and/or EMI are an issue, it may be necessary to use shielded twisted pair or fiber cables to prevent any effect on the communication signals. It may also be necessary to perform a wireless spectrum analysis in these areas if wireless networking is planned to verify that it is a viable solution.",
+                "page": "46"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.1",
+            "group_id": "IEC-62443-3-3:2013/SR 3.1 RE 1[p46]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ cryptographic mechanisms to recognize changes to information during communication.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "5ad6ce915a04aa3eb59daea63b570e7da6b73042296ce34066709a9348835524",
+            "context": {
+                "name": "Cryptographic integrity protection",
+                "rationale": null,
+                "page": "46"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.1 RE 1[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.1",
+            "group_id": "IEC-62443-3-3:2013/SR 3.1 RE 1[p46]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "It is a commonly accepted good practice to determine the appropriate use of cryptographic mechanisms for message authentication and integrity after careful consideration of the security needs and the potential ramifications on system performance and capability to recover from system failure.",
+            "context_note": null,
+            "sha256": "ef1372585b068dbd7b824c49add36c3d6a86379661f5da7f42cdffd3fab547be",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "46"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 3.1 RE 1[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 3.1 RE 1",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.2[p46]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ protection mechanisms to prevent, detect, report and mitigate the effects of malicious code or unauthorized software. The control system shall provide the capability to update the protection mechanisms.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "fd909c732fdb422f8c79952622b29269ac9f3312d156bddd64e8765e256cd79a",
+            "context": {
+                "name": "Malicious code protection",
+                "rationale": "The control system should use protection mechanisms to prevent, detect, mitigate and report instances of detected malicious code (for example, viruses, worms, Trojan horses and spyware) transported by electronic mail, electronic mail attachments, Internet access, removable media (for example, universal serial bus (USB) devices, diskettes or compact disks), PDF documents, web services, network connections and infected laptops or other common means. Detection mechanisms should be able to detect integrity violations of application binaries and data files. Techniques may include, but are not limited to, binary integrity and attributes monitoring, hashing and signature techniques. Mitigation techniques may include, but are not limited to, file cleaning, quarantining, file deletion, host communication restriction and IPSs. Prevention techniques may include, but are not limited to, application blacklisting and whitelisting techniques, removable media control, sandbox techniques and specific computing platforms mechanisms such as restricted firmware update capabilities, No Execute (NX) bit, data execution prevention (DEP), address space layout randomization (ASLR), stack corruption detection and mandatory access controls. See 10.4, SR 6.2 – Continuous monitoring for an associated requirement involving control system monitoring tools and techniques. Prevention and mitigation mechanisms may include those designed for host elements (such as computers and servers) and network-based mechanisms (such as IDSs and IPSs) and those mechanisms focused on control system specific components (such as PLCs and HMIs).",
+                "page": "46"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.2",
+            "group_id": "IEC-62443-3-3:2013/SR 3.2 RE 1[p46]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ malicious code protection mechanisms at all entry and exit points.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "d11016edf6170314f4fb3317c6ebd0172d0c85be69a4a44aadc0c0dc56a08732",
+            "context": {
+                "name": "Malicious code protection on entry and exit points",
+                "rationale": null,
+                "page": "46"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 1[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.2",
+            "group_id": "IEC-62443-3-3:2013/SR 3.2 RE 1[p46]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Such mechanisms are commonly provided on removable media, firewalls, unidirectional gateways, web servers, proxy servers or remote-access servers.",
+            "context_note": null,
+            "sha256": "db3b71c4e34df28c6f9b3677a63cd37be5baa1046d554f53a4e10214ee75203b",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "46"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 1[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 1",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.2 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.2",
+            "group_id": "IEC-62443-3-3:2013/SR 3.2 RE 2[p46]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to manage malicious code protection mechanisms.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "66e9c6e181ae62a1b0ce14100f856ff9303f6fa3468a903f0ffbdfdb0b86e2b6",
+            "context": {
+                "name": "Central management and reporting for malicious code protection",
+                "rationale": null,
+                "page": "46"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 2[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.2 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.2",
+            "group_id": "IEC-62443-3-3:2013/SR 3.2 RE 2[p46]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Such mechanisms are commonly provided by endpoint infrastructure centralized management or SIEM solutions.",
+            "context_note": null,
+            "sha256": "6437d2e30d896af020631896712ca87c34910b1d083d7e55cb8f53ff1a5077d0",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "46"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 2[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 3.2 RE 2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.3[p47]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support verification of the intended operation of security functions and report when anomalies are discovered during FAT, SAT and scheduled maintenance. These security functions shall include all those necessary to support the security requirements specified in this standard.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0a68e3734235a3028a67f94cf472671710b0a7f29a051a2af195b4149a6416dd",
+            "context": {
+                "name": "Security functionality verification",
+                "rationale": "The product supplier and/or system integrator should provide guidance on how to test the designed security controls. Asset owners need to be aware of the possible ramifications of running these verification tests during normal operations. Details of the execution of these verifications need to be specified with careful consideration of the requirements for continuous operations (for example, scheduling or prior notification). Examples of security verification functions include: • Verification of antivirus measures by European Institute for Computer Antivirus Research (EICAR) testing of the control system file system. Antivirus software should detect this and appropriate incident handling procedures should be triggered. • Verification of the identification, authentication and use control measures by attempting access with an unauthorized account (for some functionality this could be automated). • Verification of IDSs as a security control by including a rule in the IDS that triggers on irregular, but known non-malicious traffic. The test could then be performed by introducing traffic that triggers this rule and the appropriate IDS monitoring and incident handling procedures. • Confirmation that audit logging is occurring as required by security policies and procedures and has not been disabled by an internal or external entity.",
+                "page": "47"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.3 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.3 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.3",
+            "group_id": "IEC-62443-3-3:2013/SR 3.3 RE 1[p47]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to employ automated mechanisms to support management of security verification during FAT, SAT and scheduled maintenance.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "4f639a809c7ee25af47cd23eba549007cf05e7ffc7950fbc7f60c2faf5a0f6f5",
+            "context": {
+                "name": "Automated mechanisms for security functionality verification",
+                "rationale": null,
+                "page": "47"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.3 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.3 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.3",
+            "group_id": "IEC-62443-3-3:2013/SR 3.3 RE 2[p47]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support verification of the intended operation of security functions during normal operations.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "52b2b55fd8fb0c1cea62fa01634bc0c519976d4f8c782c281aed3b62d3ec09c1",
+            "context": {
+                "name": "Security functionality verification during normal operation",
+                "rationale": null,
+                "page": "47"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.3 RE 2[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.3 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.3",
+            "group_id": "IEC-62443-3-3:2013/SR 3.3 RE 2[p47]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "It is a commonly accepted good practice to carefully implement this requirement as it can lead to detrimental effects. It is often not considered suitable for safety systems.",
+            "context_note": null,
+            "sha256": "d2c95f3e4880daaf1c60939247076c44716245e7be078e85fb0ce96e033b753b",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "47"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 3.3 RE 2[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 3.3 RE 2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.4",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.4[p48]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to detect, record, report and protect against unauthorized changes to software and information at rest.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "89c2c4208061733250da881aff3835ecf92340cc70598e0eea921c95077aa735",
+            "context": {
+                "name": "Software and information integrity",
+                "rationale": "Unauthorized changes are changes for which the entity attempting the change does not have the required privileges. This SR complements related SRs from FRs 1 and 2. FRs 1 and 2 involve enforcing the roles, privileges and use patterns as designed. Integrity verification methods are employed to detect, record, report and protect against software and information tampering that may occur if other protection mechanisms (such as authorization enforcement) have been circumvented. The control system should employ formal or recommended integrity mechanisms (such as cryptographic hashes). For example, such mechanisms could be used to monitor field devices for their latest configuration information to detect security breaches (including unauthorized changes).",
+                "page": "48"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.4 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.4 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.4",
+            "group_id": "IEC-62443-3-3:2013/SR 3.4 RE 1[p48]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to use automated tools that provide notification to a configurable set of recipients upon discovering discrepancies during integrity verification.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "71af630c04827293d3ae6c0ed62a933ed64ab57a3686b9b08b78958ba5e48d39",
+            "context": {
+                "name": "Automated notification about integrity violations",
+                "rationale": null,
+                "page": "48"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.5",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.5",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.5[p49]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall validate the syntax and content of any input which is used as an industrial process control input or input that directly impacts the action of the control system.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8535bcb1c1e39fa151b8e982096e0c0705e80538be78155ce011af2b972b11cc",
+            "context": {
+                "name": "Input validation",
+                "rationale": "Rules for checking the valid syntax of control system inputs such as set points should be in place to verify that this information has not been tampered with and is compliant with the specification. Inputs passed to interpreters should be pre-screened to prevent the content from being unintentionally interpreted as commands. Note that this is a security SR, thus it does not address human error, for example supplying a legitimate integer number which is outside the expected range. Generally accepted industry practices for input data validation include out-of-range values for a defined field type, invalid characters in data fields, missing or incomplete data and buffer overflow. Additional examples where invalid inputs lead to system security issues include SQL injection attacks, cross-site scripting or malformed packets (as commonly generated by protocol fuzzers). Guidelines to be considered could include the Open Web Application Security Project (OWASP) [31] Code Review Guide.",
+                "page": "49"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.6",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.6",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.6[p50]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to set outputs to a predetermined state if normal operation cannot be maintained as a result of an attack.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "d74d9655e1c615e2d04aa7f0de2b439dbe0c9f66ad665965810841f32a7c3a81",
+            "context": {
+                "name": "Deterministic output",
+                "rationale": "The deterministic behavior of control system outputs as a result of threat actions against the control system is an important characteristic to ensure the integrity of normal operations. Ideally, the control system continues to operate normally while under attack, but if the control system cannot maintain normal operation, then the control system outputs need to fail to a predetermined state. The appropriate predetermined state of control system outputs is application dependent and could be one of the following user configurable options: • Unpowered – the outputs fail to the unpowered state • Hold – the outputs fail to the last-known good value • Fixed – the outputs fail to a fixed value that is determined by the asset owner or an application",
+                "page": "50"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.7",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.7",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.7[p50]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall identify and handle error conditions in a manner such that effective remediation can occur. This shall be done in a manner which does not provide information that could be exploited by adversaries to attack the IACS unless revealing this information is necessary for the timely troubleshooting of problems.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "fc9a7f573d34325d9443158e116f0c89fa7feea9bd61bb19a5b82a33d6664700",
+            "context": {
+                "name": "Error handling",
+                "rationale": "The structure and content of error messages should be carefully considered by the product supplier and/or system integrator. Error messages generated by the control system should provide timely and useful information without revealing potentially harmful information that could be used by adversaries to exploit the IACS. Since it may be unclear whether a particular error condition is due to a security event, all error messages may need to be easily accessible during incident response. Disclosure of this information should be justified by the necessity for timely resolution of error conditions. Guidelines to be considered could include the OWASP Code Review Guide [31].",
+                "page": "50"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.8",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.8",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.8[p51]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the integrity of sessions. The control system shall reject any usage of invalid session IDs.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "83653b772c4333b2fe9a951722965edef4877bcf7ef5f3ee670750be81ca5e0b",
+            "context": {
+                "name": "Session integrity",
+                "rationale": "This control focuses on communications protection at the session, versus packet, level. The intent of this control is to establish grounds for confidence at each end of a communications session in the ongoing identity of the other party and in the validity of the information being transmitted. For example, this control addresses man-in-the-middle attacks including session hijacking, insertion of false information into a session or replay attacks. Use of session integrity mechanisms can have a significant overhead and therefore their use should be considered in light of requirements for real-time communications.",
+                "page": "51"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.8 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.8",
+            "group_id": "IEC-62443-3-3:2013/SR 3.8 RE 1[p51]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to invalidate session IDs upon user logout or other session termination (including browser sessions).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "60c66ab0e7a2f96a3040175ea41901fcf778feb0a6de87d7efa3d2054e65c479",
+            "context": {
+                "name": "Invalidation of session IDs after session termination",
+                "rationale": null,
+                "page": "51"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.8 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.8",
+            "group_id": "IEC-62443-3-3:2013/SR 3.8 RE 2[p51]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to generate a unique session ID for each session and treat all unexpected session IDs as invalid.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "fa56ed64ef455fafcca5a6ab2b473938eb484908d3646d3875608001c019c218",
+            "context": {
+                "name": "Unique session ID generation",
+                "rationale": null,
+                "page": "51"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.8 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.8",
+            "group_id": "IEC-62443-3-3:2013/SR 3.8 RE 1[p51]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to generate unique session IDs with commonly accepted sources of randomness.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7102f567629d5a0f3af2c17c41f4c883c286598208e3d25181b54ccc60419d85",
+            "context": {
+                "name": "Randomness of session IDs",
+                "rationale": null,
+                "page": "51"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 1[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.8 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.8",
+            "group_id": "IEC-62443-3-3:2013/SR 3.8 RE 1[p51]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Session hijacking and other man-in-the-middle attacks or injections of false information often take advantage of easy-to-guess session IDs (keys or other shared secrets) or use of session IDs which were not properly invalidated after session termination. Therefore the validity of a session authenticator needs to be tightly connected to the lifetime of a session. Employing randomness in the generation of unique session IDs helps to protect against brute-force attacks to determine future session IDs.",
+            "context_note": null,
+            "sha256": "d810a87db515f210d342af7545749efcb332ab9b4c2beb8fb9094da677948798",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "51"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 1[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 3.8 RE 1",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.9",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.9",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 3.9[p52]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall protect audit information and audit tools (if present) from unauthorized access, modification and deletion.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "77d4fab817800b024efb80efe3bd7233e254cb0c9d840fdd0a34ecbfbbb17c88",
+            "context": {
+                "name": "Protection of audit information",
+                "rationale": "Audit information includes all information (for example, audit records, audit settings and audit reports) needed to successfully audit control system activity. The audit information is important for error correction, security breach recovery, investigations and related efforts. Mechanisms for enhanced protection against modification and deletion include the storage of audit information to hardware-enforced write-once media.",
+                "page": "52"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 3.9 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 3.9 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 3.9",
+            "group_id": "IEC-62443-3-3:2013/SR 3.9 RE 1[p52]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to produce audit records on hardware-enforced write-once media.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "5ce1f478e470927dedbecb64d366f1bd288dd438c71b7b892c1603eb9834d1cf",
+            "context": {
+                "name": "Audit records on write-once media",
+                "rationale": null,
+                "page": "52"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 4.1[p53]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the confidentiality of information for which explicit read authorization is supported, whether at rest or in transit.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "c5bc50a3a3927e6954851ef174d168d32831faae96082f04312047698bdcc346",
+            "context": {
+                "name": "Information confidentiality",
+                "rationale": "Protection of information, at rest or in transit, can be maintained through physical means, compartmentalization or encryption, among other techniques. It is crucial that the technique chosen considers the potential ramifications on control system performance and the capability to recover from system failure or attack. The decision whether the confidentiality of a given piece of information should be protected or not depends on the context and cannot be made at product design. However, the fact that an organization limits access to information by configuring explicit read authorizations in the control system is an indicator that this information is considered confidential by the organization. Thus, all information for which the control system supports the capability to assign explicit read authorizations should be considered potentially confidential and thus the control system should also provide the capability to protect it. Different organizations and industries may require different levels of encryption strength for different categories of information, based on the sensitivity of the information as well as industry standards and regulatory requirements (see 8.5, SR 4.3 – Use of cryptography). In some situations network configuration information stored and processed in switches and routers may be considered as confidential. Communications involving exposed information transfer may be vulnerable to eavesdropping or tampering. If the control system is depending upon an external communications service provider, it may be more difficult to obtain the necessary assurances regarding the implementation of needed security requirements for communication confidentiality. In such cases, it may be appropriate to implement compensating countermeasures or explicitly accept the additional risk. Entities should also be cognizant of information confidentiality when portable and mobile devices are utilized (for example, engineering laptops and USB sticks). As required by 5.7, SR 1.5 – Authenticator management, authentication information, such as passwords, should be considered confidential, and thus never be sent in the clear.",
+                "page": "53"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 4.1",
+            "group_id": "IEC-62443-3-3:2013/SR 4.1 RE 1[p53]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the confidentiality of information at rest and remote access sessions traversing an untrusted network.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "24161227ca7656fffdcfe4ff0f785432c0c54b6ae58b9e2d38f514b5183ecebb",
+            "context": {
+                "name": "Protection of confidentiality at rest or in transit via untrusted networks",
+                "rationale": null,
+                "page": "53"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.1 RE 1[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 4.1",
+            "group_id": "IEC-62443-3-3:2013/SR 4.1 RE 1[p53]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Cryptography is a common mechanism for ensuring information confidentiality.",
+            "context_note": null,
+            "sha256": "49f35abb6bcf04b4948b0ba9840e0788b26311704d4fa28c53c26b7f5d161254",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "53"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 4.1 RE 1[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 4.1 RE 1",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.1 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 4.1",
+            "group_id": "IEC-62443-3-3:2013/SR 4.1 RE 2[p53]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to protect the confidentiality of information traversing any zone boundary.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0eeb364bc258d59c8699d7fbdc51f6736241691900c665010052622774cdf86b",
+            "context": {
+                "name": "Protection of confidentiality across zone boundaries",
+                "rationale": null,
+                "page": "53"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 4.2[p54]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to purge all information for which explicit read authorization is supported from components to be released from active service and/or decommissioned.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8f0538449487b76aaa23ec8987be6959420430900151aca5814fe29e119fd714",
+            "context": {
+                "name": "Information persistence",
+                "rationale": "Removal of a control system component from active service should not provide the opportunity for unintentional release of information for which explicit read authorization is supported. An example of such information would include ‘join keys’ (in the case of some wireless field devices) stored in non-volatile storage or other cryptographic information that would facilitate unauthorized or malicious activity. Information produced by the actions of a user or role (or the actions of a software process acting on behalf of a user or role) should not be disclosed to a different user or role in an uncontrolled fashion. Control of control system information or data persistence prevents information stored on a shared resource from being unintentionally disclosed after that resource has been released back to the control system.",
+                "page": "54"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 4.2",
+            "group_id": "IEC-62443-3-3:2013/SR 4.2 RE 1[p54]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent unauthorized and unintended information transfer via volatile shared memory resources.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "1e5cb8a3b0cd952e6ecf85c09f75a5791154b92623e6b5c437d5cf14f99f143e",
+            "context": {
+                "name": "Purging of shared memory resources",
+                "rationale": null,
+                "page": "54"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.2 RE 1[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 4.2",
+            "group_id": "IEC-62443-3-3:2013/SR 4.2 RE 1[p54]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Volatile memory resources are those that typically do not retain information after being released to memory management. However, there are attacks against random access memory (RAM) that have the potential to extract key material or other confidential data before it is actually over-written. Therefore, it is a commonly accepted practice to purge all unique data and connections to unique data from volatile shared memory when that memory is released back to the control system for use by a different user, such that this data is not visible or accessible to the new user.",
+            "context_note": null,
+            "sha256": "a8e27cb6f7374a2ff700498adb8dbffab4dab447d177742ceaed7eae13449c87",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "54"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 4.2 RE 1[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 4.2 RE 1",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 4.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 4.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 4.3[p54]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "If cryptography is required, the control system shall use cryptographic algorithms, key sizes and mechanisms for key establishment and management according to commonly accepted security industry practices and recommendations.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "299901e9fb8ccaa7cb618f03e7e1970757f8a237a47f1e7814b2c4ead036d3d5",
+            "context": {
+                "name": "Use of cryptography",
+                "rationale": "The selection of cryptographic protection should match the value of the information being protected, the consequences of the confidentiality of the information being breached, the time period during which the information is confidential and control system operating constraints. This can involve either information at rest, in transit, or both. Note that backups are an example of information at rest, and should be considered as part of a data confidentiality assessment process. The control system product supplier should document the practices and procedures relating to cryptographic key establishment and management. The control system should utilize established and tested encryption and hash algorithms, such as the advanced encryption standard (AES) and the secure hash algorithm (SHA) series, and key sizes based on an assigned standard. Key generation needs to be performed using an effective random number generator. The security policies and procedures for key management need to address periodic key changes, key destruction, key distribution and encryption key backup in accordance with defined standards. Generally accepted practices and recommendations can be found in documents such as NIST SP800-57 [25]. Implementation requirements can be found for example in ISO/IEC 19790 [12]. This SR, along with 5.10, SR 1.8 – Public key infrastructure (PKI) certificates may be applicable when meeting many other requirements defined within this standard.",
+                "page": "54"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 5.1[p56]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to logically segment control system networks from non-control system networks and to logically segment critical control system networks from other control system networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "cab0d82412a02e945ec88bc92fe03aaa919fab0199c147b6152abe48ec6f7293",
+            "context": {
+                "name": "Network segmentation",
+                "rationale": "Network segmentation is used by organizations for a variety of purposes, including cyber security. The main reasons for segmenting networks are to reduce the exposure, or ingress, of network traffic into a control system and reduce the spread, or egress, of network traffic from a control system. This improves overall system response and reliability as well as provides a measure of cyber security protection. It also allows different network segments within the control system, including critical control systems and safety-related systems, to be segmented from other systems for an additional level of protection. Access from the control system to the World Wide Web should be clearly justified based on control system operational requirements. Network segmentation and the level of protection it provides will vary greatly depending on the overall network architecture used by an asset owner in their facility and even system integrators within their control systems. Logically segmenting networks based on their functionality provides some measure of protection, but may still lead to single-points-of-failure if a network device is compromised. Physically segmenting networks provides another level of protection by removing that single-point-of-failure case, but will lead to a more complex and costly network design. These trade-offs will need to be evaluated during the network design process (see IEC 62443‑2‑1). In response to an incident, it may be necessary to break the connections between different network segments. In that event, the services necessary to support essential operations should be maintained in such a way that the devices can continue to operate properly and/or shutdown in an orderly manner. This may require that some servers may need to be duplicated on the control system network to support normal network features, for example dynamic host configuration protocol (DHCP), domain name service (DNS) or local CAs. It may also mean that some critical control systems and safety-related systems be designed from the beginning to be completely isolated from other networks.",
+                "page": "56"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.1",
+            "group_id": "IEC-62443-3-3:2013/SR 5.1 RE 1[p56]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to physically segment control system networks from non-control system networks and to physically segment critical control system networks from non-critical control system networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "d07c94a4df6e5bcad50667f6ad7ad7d893b201cb74a6a4ee312f1279641cc93a",
+            "context": {
+                "name": "Physical network segmentation",
+                "rationale": null,
+                "page": "56"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.1 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.1",
+            "group_id": "IEC-62443-3-3:2013/SR 5.1 RE 2[p56]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall have the capability to provide network services to control system networks, critical or otherwise, without a connection to non-control system networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "67bc5f571accec85391693164dd25fad20a59886fca4e77d0e04f27f0fc3e386",
+            "context": {
+                "name": "Independence from non-control system networks",
+                "rationale": null,
+                "page": "56"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.1 RE 3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.1 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.1",
+            "group_id": "IEC-62443-3-3:2013/SR 5.1 RE 3[p56]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to logically and physically isolate critical control system networks from non-critical control system networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "f219e90fb399aaa71de34fc15d4c0b25bd94c54d7b62e1072f1a59d8c3cbe98d",
+            "context": {
+                "name": "Logical and physical isolation of critical networks",
+                "rationale": null,
+                "page": "56"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 5.2[p57]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to monitor and control communications at zone boundaries to enforce the compartmentalization defined in the risk-based zones and conduits model.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "355248577861c79af5e024a635bfbedf82404491884c0f7c31ba8bf09bab7414",
+            "context": {
+                "name": "Zone boundary protection",
+                "rationale": "Any connections to external networks or other control systems should occur through managed interfaces consisting of appropriate boundary protection devices (for example, proxies, gateways, routers, firewalls, unidirectional gateways, guards and encrypted tunnels) arranged in an effective architecture (for example, firewalls protecting application gateways residing in a DMZ). Control system boundary protections at any designated alternate processing sites should provide the same levels of protection as that of the primary site. As part of a defense-in-depth protection strategy, higher impact control systems should be partitioned into separate zones utilizing conduits to restrict or prohibit network access in accordance with security policies and procedures and an assessment of risk. SL-T(system) categorization guides the selection of appropriate candidates for zone partitioning (see IEC 62443‑3‑2 [8]).",
+                "page": "57"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.2",
+            "group_id": "IEC-62443-3-3:2013/SR 5.2 RE 1[p57]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to deny network traffic by default and allow network traffic by exception (also termed deny all, permit by exception).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "f90f59d94bb773aaf6be39dcb18d27d2947587b6552fe64efb0133f84a15c22b",
+            "context": {
+                "name": "Deny by default, allow by exception",
+                "rationale": null,
+                "page": "57"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.2",
+            "group_id": "IEC-62443-3-3:2013/SR 5.2 RE 2[p57]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent any communication through the control system boundary (also termed island mode).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8b7fc280b3a72210f544effdc41e903600ca808df40db1832c73f011b2bc4d34",
+            "context": {
+                "name": "Island mode",
+                "rationale": null,
+                "page": "57"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 2[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.2",
+            "group_id": "IEC-62443-3-3:2013/SR 5.2 RE 2[p57]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Examples of when this capability may be used include where a security violation and/or breach has been detected within the control system, or an attack is occurring at the enterprise level (see also 4.2, Support of essential functions).",
+            "context_note": null,
+            "sha256": "c01ff892565b6930f72afe8386c5b2c7e8ae9f7eb2c32b9d1792a485053ae577",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "57"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 2[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.2",
+            "group_id": "IEC-62443-3-3:2013/SR 5.2 RE 3[p57]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent any communication through the control system boundary when there is an operational failure of the boundary protection mechanisms (also termed fail close). This ‘fail close’ functionality shall be designed such that it does not interfere with the operation of a SIS or other safety-related functions.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "6efa94a9f82b7450d0d341d4202676671e345b290c935dc9c2670b831b090b8c",
+            "context": {
+                "name": "Fail close",
+                "rationale": null,
+                "page": "57"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 3[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.2 RE 3",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.2",
+            "group_id": "IEC-62443-3-3:2013/SR 5.2 RE 3[p57]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Examples of when this capability may be used include scenarios where a hardware failure or power failure causes boundary protection devices to function in a degraded mode or fail entirely (see also 4.2, Support of essential functions).",
+            "context_note": null,
+            "sha256": "864e50fa61946bb629dd6c0732ed8c3896144e99732a7b6ae5869d7384c4b89d",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "57"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 3[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 5.2 RE 3",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 5.3[p58]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent general purpose person-to-person messages from being received from users or systems external to the control system.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "8c43e22c0b1089b3a160cce959f7778282f36f06ef610e8dbf5123d0ab58f2ab",
+            "context": {
+                "name": "General purpose person-to-person communication restrictions",
+                "rationale": "General purpose person-to-person communications systems include but are not limited to: email systems, forms of social media (Twitter, Facebook, picture galleries, etc.) or any message systems that permit the transmission of any type of executable file. These systems are usually utilized for private purposes which are not related to control system operations, and therefore the risks imposed by these systems normally outweigh any perceived benefit. These types of general purpose communications systems are commonly used attack vectors to introduce malware to the control system, pass information for which read authorization exists to locations external to the control system, and introduce excessive network loading that can be used to create security problems or launch attacks on the control system. Application of a broad range of other system requirements covering, for example, usage restrictions and limiting data flow as described elsewhere in this standard to general purpose person-to-person communication systems can provide adequate compensating countermeasures to meet this requirement. The control system may provide the capability to utilize these types of two-way communication systems, but only between servers and/or workstations within the control system. Note that this SR needs to support the requirements associated with 8.3, SR 5.1 – Information confidentiality. The control system may also restrict email or other messaging solutions that provide internal computer-to-external computer communications using outbound messages. These internal-to-external communications may be limited to the purpose of sending system alerts or other computer generated information messages to users or systems external to the control system. To prevent the passing of information for which explicit read authorization is supported, pre-configured messages (perhaps with the ability to include some limited text) should be used to transmit the alerts or status information. Users may not be given the ability to attach files or other information to these outbound-only messages at the time the messages are created by the system.",
+                "page": "58"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.3 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.3 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 5.3",
+            "group_id": "IEC-62443-3-3:2013/SR 5.3 RE 1[p58]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to prevent both transmission and receipt of general purpose person-to-person messages.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "477b9e8ba3da2ef58d4d4b9813956fafa3524d6d553c6e3991a42e3b8f238290",
+            "context": {
+                "name": "Prohibit all general purpose person-to-person communications",
+                "rationale": null,
+                "page": "58"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 5.4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 5.4",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 5.4[p59]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to support partitioning of data, applications and services based on criticality to facilitate implementing a zoning model.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "b358dce245315f13a3841fd5dc3b5db9528dc5c818bd0788745593abbd6adbb1",
+            "context": {
+                "name": "Application partitioning",
+                "rationale": "Partitioning may be accomplished via physical or logical means through the use of different computers, different central processing units, different instances of the operating system, different network addresses and combinations of these methods or other methods as appropriate. Examples of applications and services that could be considered for different partitions include, but are not limited to, emergency and/or safety systems, closed-loop control applications, operator workstations and engineering workstations.",
+                "page": "59"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 6.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 6.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 6.1[p60]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7f0f741b815fb2c99de785de23fc19193ec73079eb16a6e3d62a3a233dbedfcf",
+            "context": {
+                "name": "Audit log accessibility",
+                "rationale": "The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.",
+                "page": "60"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 6.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 6.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 6.1",
+            "group_id": "IEC-62443-3-3:2013/SR 6.1 RE 1[p60]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide programmatic access to audit records using an application programming interface (API).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "798132f583cd4a6202ad9ef7982b70f30ec03987b09db5baa5045c6a3117458a",
+            "context": {
+                "name": "Programmatic access to audit logs",
+                "rationale": null,
+                "page": "60"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 6.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 6.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 6.2[p60]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to continuously monitor all security mechanism performance using commonly accepted security industry practices and recommendations to detect, characterize and report security breaches in a timely manner.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "ea51db608f55f7695ccdf6b6a031e68951791b10f38099573bf74052adbbcc1d",
+            "context": {
+                "name": "Continuous monitoring",
+                "rationale": "Control system monitoring capability can be achieved through a variety of tools and techniques (for example, IDS, IPS, malicious code protection mechanisms and network monitoring mechanisms). As attacks become more sophisticated, these monitoring tools and techniques will need to become more sophisticated as well, including for example behavior-based IDS/IPS. Monitoring devices should be strategically deployed within the control system (for example, at selected perimeter locations and near server farms supporting critical applications) to collect essential information. Monitoring mechanisms may also be deployed at ad hoc locations within the control system to track specific transactions. Monitoring should include appropriate reporting mechanisms to allow for a timely response to events. To keep the reporting focused and the amount of reported information to a level that can be processed by the recipients, mechanisms such as SIEM are commonly applied to correlate individual events into aggregate reports which establish a larger context in which the raw events occurred. Additionally, these mechanisms can be used to track the effect of security changes to the control system (see 6.10, SR 2.8 – Auditable events). Having forensic tools pre-installed can facilitate incident analysis.",
+                "page": "60"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 6.2[note-1]",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 6.2",
+            "parent_id": "IEC-62443-3-3:2013/SR 6.2",
+            "group_id": "IEC-62443-3-3:2013/SR 6.2[p60]",
+            "seq": 2,
+            "normative": false,
+            "informative": true,
+            "informative_type": "note",
+            "text_normative": null,
+            "text_informative": "Response time is a local matter outside the scope of this standard.",
+            "context_note": null,
+            "sha256": "fb269969f275b0a6bb3b3e0ba61b3c09817d6df3748ecd4ec500b74e703cfdc1",
+            "context": {
+                "name": null,
+                "rationale": null,
+                "page": "60"
+            },
+            "chunk_relation": {
+                "src_chunk_id": "IEC-62443-3-3:2013/SR 6.2[note-1]",
+                "dst_chunk_id": "IEC-62443-3-3:2013/SR 6.2",
+                "relation": "note_of"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.1[p60]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability for authorized humans and/or tools to access audit logs on a read-only basis.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "7f0f741b815fb2c99de785de23fc19193ec73079eb16a6e3d62a3a233dbedfcf",
+            "context": {
+                "name": "Audit log accessibility",
+                "rationale": "The control system generates audit records about events occurring in the system (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary to support filtering audit logs, identifying and removing information that is redundant, reviewing and reporting activity during after-the-fact investigations of security incidents. This access should not alter the original audit records. In general, audit reduction and report generation should be performed on a separate information system. Manual access to the audit records (such as screen views or printouts) is sufficient for meeting the base requirement, but is insufficient for higher SLs. Programmatic access is commonly used to provide the audit log information to analysis mechanisms such as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of, protection of and access to audit logs.",
+                "page": "60"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.1",
+            "group_id": "IEC-62443-3-3:2013/SR 7.1 RE 1[p60]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide programmatic access to audit records using an application programming interface (API).",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "798132f583cd4a6202ad9ef7982b70f30ec03987b09db5baa5045c6a3117458a",
+            "context": {
+                "name": "Programmatic access to audit logs",
+                "rationale": null,
+                "page": "60"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.1",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.1[p62]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to operate in a degraded mode during a DoS event.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "0e0607f1a7d2e5704c8988e63f048c7665151653b338dcaca27d5c957a2c8391",
+            "context": {
+                "name": "Denial of service protection",
+                "rationale": "A variety of technologies exist to limit, or in some cases, eliminate the effects of DoS situations. For example, boundary protection devices can filter certain types of packets to protect devices on an internal, trusted network from being directly affected by DoS events or restricting the information flow to be unidirectional outbound. Specifically, as noted in Clause 4, a DoS event on the control system should not adversely impact any safety-related systems.",
+                "page": "62"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.1 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.1 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.1",
+            "group_id": "IEC-62443-3-3:2013/SR 7.1 RE 1[p62]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to manage communication loads (such as using rate limiting) to mitigate the effects of information flooding types of DoS events.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "de4c755c918aefd6b27dd51d6a750f33e84747a28a714ad31f9f496aa4541e2d",
+            "context": {
+                "name": "Manage communication loads",
+                "rationale": null,
+                "page": "62"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.1 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.1 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.1",
+            "group_id": "IEC-62443-3-3:2013/SR 7.1 RE 2[p62]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to restrict the ability of all users (humans, software processes and devices) to cause DoS events which affect other control systems or networks.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "3750a164a5c37a42009a8ffb3443a3c73550ee9d208a53ff9b01801dfc03efc8",
+            "context": {
+                "name": "Limit DoS effects to other systems or networks",
+                "rationale": null,
+                "page": "62"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.2",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.2[p62]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to limit the use of resources by security functions to prevent resource exhaustion.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "ee8392ae3d583e7c901f1e2d98bbd2ab49eb584969c9ec14c17d34f2788092b6",
+            "context": {
+                "name": "Resource management",
+                "rationale": "Resource management (for example, network segmentation or priority schemes) prevents a lower-priority software process from delaying or interfering with the control system servicing any higher-priority software process. For example, initiating network scans, patching and/or antivirus checks on an operating system can cause severe disruption to normal operations. Traffic rate limiting schemes should be considered as a mitigation technique.",
+                "page": "62"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.3",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.3",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.3[p63]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The identity and location of critical files and the ability to conduct backups of user-level and system-level information (including system state information) shall be supported by the control system without affecting normal plant operations.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "5a3395801569167ed51624bb52bd38ef716ebb439b8bd6fb194756e24b190b64",
+            "context": {
+                "name": "Control system backup",
+                "rationale": "The availability of up-to-date backups is essential for recovery from a control system failure and/or mis-configuration. Automating this function ensures that all required files are captured, reducing operator overhead. Although not usually required for control system recovery, information required for post-incident forensic activity (for example, audit logs) should be specifically included in the backup (see 10.4, SR 6.2 – Continuous monitoring). If the resulting backups contain confidential information, encryption should be considered (see 8.5, SR 4.3 – Use of cryptography).",
+                "page": "63"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.3 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.3 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.3",
+            "group_id": "IEC-62443-3-3:2013/SR 7.3 RE 1[p63]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to verify the reliability of backup mechanisms.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "41fc34e213b4e98e3f31c85ef615419174940f0932dee6db3afafb2004f6d606",
+            "context": {
+                "name": "Backup verification",
+                "rationale": null,
+                "page": "63"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.3 RE 2",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.3 RE 2",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.3",
+            "group_id": "IEC-62443-3-3:2013/SR 7.3 RE 2[p63]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to automate the backup function based on a configurable frequency.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "e07f8205e9dcdcd2770358791b4f6b0e16bc469375e29bde4442144cf53f75fa",
+            "context": {
+                "name": "Backup automation",
+                "rationale": null,
+                "page": "63"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.4",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.4",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.4[p63]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to recover and reconstitute to a known secure state after a disruption or failure.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "b745dfb24afb13295b27cd958fc4a87fc485ca7644638107c3c935405c349a7b",
+            "context": {
+                "name": "Control system recovery and reconstitution",
+                "rationale": "Control system recovery and reconstitution to a known secure state means that all system parameters (either default or configurable) are set to secure values, security-critical patches are reinstalled, security-related configuration settings are reestablished, system documentation and operating procedures are available, application and system software is reinstalled and configured with secure settings, information from the most recent, known secure backups is loaded and the system is fully tested and functional.",
+                "page": "63"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.5",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.5",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.5[p64]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to switch to and from an emergency power supply without affecting the existing security state or a documented degraded mode.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "abe4b3a78da37d9f1a70a9d4315dfe6aad9f5d2bafb76dbc45cb6396604a04af",
+            "context": {
+                "name": "Emergency power",
+                "rationale": "There may be instances where compensating countermeasures such as physical door access control may be affected by loss of base power supply, in which case the emergency power supply should cover those associated systems. If this is not possible, other compensating countermeasures may be needed during such an emergency situation.",
+                "page": "64"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.6",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.6",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.6[p64]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to be configured according to recommended network and security configurations as described in guidelines provided by the control system supplier. The control system shall provide an interface to the currently deployed network and security configuration settings.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "d341ece0336891bd7b0c294b110cdb72524b3c2973a627044c346582ef24af0a",
+            "context": {
+                "name": "Network and security configuration settings",
+                "rationale": "These configuration settings are the adjustable parameters of the control system components. In order to be able to detect and correct any deviations from the approved and/or recommended configuration settings, the control system needs to support monitoring and control of changes to the configuration settings in accordance with security policies and procedures. For enhanced security, an automated check may be performed where the current settings are automatically collected by an agent and compared to approved settings.",
+                "page": "64"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.6 RE 1",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.6 RE 1",
+            "parent_id": "IEC-62443-3-3:2013/SR 7.6",
+            "group_id": "IEC-62443-3-3:2013/SR 7.6 RE 1[p64]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to generate a report listing the currently deployed security settings in a machine-readable format.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "27aa769c918c59393c63ae2f2d7209ac14696212b1b3059994c48d3bbea82a32",
+            "context": {
+                "name": "Machine-readable reporting of current security settings",
+                "rationale": null,
+                "page": "64"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.7",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.7",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.7[p65]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to specifically prohibit and/or restrict the use of unnecessary functions, ports, protocols and/or services.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "976c2f548c5217003255ecedf27ae486411c06c8dfaa085c60d42ead8cf21537",
+            "context": {
+                "name": "Least functionality",
+                "rationale": "Control systems are capable of providing a wide variety of functions and services. Some of the functions and services provided may not be necessary to support essential functions. Therefore, by default, functions beyond a baseline configuration should be disabled. Additionally, it is sometimes convenient to provide multiple services from a single component of a control system, but doing so increases risk over limiting the services provided by any one component. Many functions and services commonly provided by commercial-off-the-shelf (COTS) equipment may be candidates for elimination, for example, email, voice over internet protocol (VoIP), instant messaging (IM), file transfer protocol (FTP), hypertext transfer protocol (HTTP) and file sharing.",
+                "page": "65"
+            }
+        },
+        {
+            "chunk_id": "IEC-62443-3-3:2013/SR 7.8",
+            "doc_id": "IEC-62443-3-3:2013",
+            "section_path": "SR 7.8",
+            "parent_id": null,
+            "group_id": "IEC-62443-3-3:2013/SR 7.8[p66]",
+            "seq": 1,
+            "normative": true,
+            "informative": false,
+            "text_normative": "The control system shall provide the capability to report the current list of installed components and their associated properties.",
+            "text_informative": null,
+            "context_note": null,
+            "sha256": "d813952d1c0474a448e2431f94db933c44bbc1d5618f5238e1db1e11d0df5b08",
+            "context": {
+                "name": "Control system component inventory",
+                "rationale": "A control system component inventory may include but is not limited to component ID, capability and revision level. The component inventory should be consistent with the SuC. A formal process of configuration management should be deployed to keep control of the changes in the component inventory baseline (see IEC 62443‑2‑1).",
+                "page": "66"
+            }
+        }
+    ]
+}

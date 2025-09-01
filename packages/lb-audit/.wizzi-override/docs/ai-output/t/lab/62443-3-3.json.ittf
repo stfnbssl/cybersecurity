@@ -1,0 +1,90 @@
+$group
+    {
+        [ requirements
+            {
+                id "SR 3.8"
+                name "Session integrity"
+                description "The control system shall provide the capability to protect the integrity of
+                    +b sessions. The control system shall reject any usage of invalid session IDs."
+                rationale "This control focuses on communications protection at the session, versus
+                    +b packet, level. The intent of this control is to establish grounds for
+                    +b confidence at each end of a communications session in the ongoing identity of
+                    +b the other party and in the validity of the information being transmitted. For
+                    +b example, this control addresses man-in-the-middle attacks including session
+                    +b hijacking, insertion of false information into a session or replay attacks. Use
+                    +b of session integrity mechanisms can have a significant overhead and therefore
+                    +b their use should be considered in light of requirements for real-time
+                    +b communications."
+                page 51
+                standard "IEC 62443-3-3"
+                category "System Integrity"
+                [ enhancements
+                    {
+                        id "SR 3.8 RE 1"
+                        name "Invalidation of session IDs after session termination"
+                        description "The control system shall provide the capability to invalidate session IDs upon
+                            +b user logout or other session termination (including browser sessions)."
+                        [ notes
+                    {
+                        id "SR 3.8 RE 2"
+                        name "Unique session ID generation"
+                        description "The control system shall provide the capability to generate a unique session ID
+                            +b for each session and treat all unexpected session IDs as invalid."
+                        [ notes
+                    {
+                        id "SR 3.8 RE 3"
+                        name "Randomness of session IDs"
+                        description "The control system shall provide the capability to generate unique session IDs
+                            +b with commonly accepted sources of randomness."
+                        [ notes
+                            "Session hijacking and other man-in-the-middle attacks or injections of false information often take advantage of easy-to-guess session IDs (keys or other shared secrets) or use of session IDs which were not properly invalidated after session termination. Therefore the validity of a session authenticator needs to be tightly connected to the lifetime of a session. Employing randomness in the generation of unique session IDs helps to protect against brute-force attacks to determine future session IDs."
+                explanation "Session integrity ensures that communication sessions between devices or users
+                    +b and systems remain secure and unaltered. It prevents attackers from hijacking
+                    +b sessions, injecting false data, or replaying captured sessions. This is
+                    +b achieved through secure session ID generation, proper session termination, and
+                    +b validation mechanisms."
+                context "In industrial control systems (ICS), maintaining session integrity is critical
+                    +b for secure operations. Many ICS protocols were not originally designed with
+                    +b security in mind, making session protection mechanisms essential. This
+                    +b requirement is particularly important for remote access scenarios and operator
+                    +b interfaces where session hijacking could lead to unauthorized control of
+                    +b critical processes."
+                [ challenges
+                    "Balancing security overhead with real-time performance requirements in industrial systems"
+                    "Implementing secure session management in legacy systems not designed for modern security"
+                    "Ensuring proper session invalidation across distributed systems"
+                    "Generating truly random session IDs in embedded systems with limited entropy sources"
+                [ best_practices
+                    "Use cryptographically secure random number generators for session ID creation"
+                    "Implement session timeouts based on risk assessment"
+                    "Store session tokens securely (e.g., HTTP-only, Secure cookies for web applications)"
+                    "Implement proper session termination on both client and server sides"
+                    "Consider using hardware security modules (HSMs) for critical systems"
+                    "Regularly audit session management implementations"
+                [ security_levels
+                    {
+                        level "SL-C (SI, control system) 1"
+                        applicability "Not Selected"
+                    {
+                        level "SL-C (SI, control system) 2"
+                        applicability "SR 3.8"
+                    {
+                        level "SL-C (SI, control system) 3"
+                        applicability "SR 3.8 (1) (2)"
+                    {
+                        level "SL-C (SI, control system) 4"
+                        applicability "SR 3.8 (1) (2) (3)"
+                { compliance
+                    status "Not Started"
+                    last_audit "2025-08-04T09:49:00Z"
+                    [ testing_requirements
+                        "Session hijacking penetration testing"
+                        "Session ID randomness analysis"
+                        "Session termination validation testing"
+                        "Session replay attack testing"
+                    responsible_team "Security Engineering"
+                { metadata
+                    version "1.0.0"
+                    created_at "2025-08-04T09:49:00Z"
+                    updated_at "2025-08-04T09:49:00Z"
+                    author "Security Team"

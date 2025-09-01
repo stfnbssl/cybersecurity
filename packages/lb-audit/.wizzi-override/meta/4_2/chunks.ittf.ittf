@@ -1,0 +1,39 @@
+ittf
+    $
+        function sha256(data) {
+            return crypto
+                .createHash('sha256')
+                .update(data, typeof data === 'string' ? 'utf8' : undefined)
+                .digest('hex');
+        } 
+
+    $file .wizzi-override/docs/4_2/from_meta/for_chunks.json.ittf
+
+        { 
+            [ chunks
+                $foreach cr in std_62443_4_2_grok.items
+                    {
+                        chunk_id "IEC-62443-4-2:2018/${cr.id}"
+                        doc_id "IEC-62443-4-2:2018"
+                        section_path "${cr.id}"
+                        parent_id null
+                        group_id "IEC-62443-4-2:2018/${cr.id}[pUnknown]"
+                        seq 1     
+                        normative true
+                        informative false
+                        text_normative "${cr.description}"
+                        context_note null
+                        { context
+                            name "${cr.reference}"
+                            software_application ${cr.software_application ? 'true' : 'false'}
+                            host_device ${cr.host_device ? 'true' : 'false'}
+                            embedded_device ${cr.embedded_device ? 'true' : 'false'}
+                            network_device ${cr.network_device ? 'true' : 'false'}
+                            capability_sl "${cr.capability_sl}"
+                            page "pUnknown"
+                        sha256 "${sha256(cr.description)}"
+
+
+
+
+

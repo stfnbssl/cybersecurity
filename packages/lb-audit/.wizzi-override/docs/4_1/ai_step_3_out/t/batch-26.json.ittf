@@ -1,0 +1,601 @@
+$group
+    {
+        practice "7"
+        code "SUM-2"
+        subCode "e)"
+        name "Security update documentation"
+        description "A process shall be employed to ensure that documentation about product security
+            +b updates is made available to product users that includes but is not limited to:
+            +b e) risks of not applying the patch and mediations that can be used for patches
+            +b that are not approved or deployed by the asset owner."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Understanding the risks of not applying patches helps prioritize updates and
+                    +b justify mitigation strategies."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model threats by categorizing them into Spoofing, Tampering,
+                            +b Repudiation, Information Disclosure, Denial of Service, and Elevation of
+                            +b Privilege."
+                    {
+                        name "DREAD"
+                        description "Helps quantify risk by assessing Damage, Reproducibility, Exploitability,
+                            +b Affected Users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a structured approach to risk assessment, tailored for ICS
+                            +b environments."
+                { case_study
+                    example "A power plant's DCS system had an unpatched vulnerability. A risk assessment
+                        +b using STRIDE identified potential tampering risks, leading to temporary network
+                        +b segmentation as a compensating control."
+            { audit_and_compliance_verification
+                why "Ensures that the documentation process for security updates is consistently
+                    +b followed and effective."
+                [ audit_checklist
+                    "Verify that all security updates are documented with associated risks and mitigations."
+                    "Check if the documentation is accessible to all relevant stakeholders."
+                    "Review the process for updating documentation when new patches are released."
+                [ metrics
+                    {
+                        kpi "Percentage of documented patches with risk assessments"
+                        target "100%"
+                    {
+                        kpi "Time to document new patches"
+                        target "Within 7 days of patch release"
+                compliance_procedure "Documentation must be reviewed quarterly by the security team, with evidence
+                    +b stored in a centralized repository."
+            { training_and_competency_requirements
+                why "Ensures personnel understand the importance of patch documentation and can
+                    +b execute the process effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure development and maintenance practices for ICS, including patch
+                            +b management."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides foundational knowledge in ICS security, including risk assessment and
+                            +b patch management."
+                competency_assessment "Annual reviews of personnel competency, including mock patch documentation
+                    +b exercises."
+            { tooling_and_automation_support
+                why "Automation reduces human error and ensures timely documentation of security
+                    +b updates."
+                [ tools
+                    {
+                        name "SIEM (Security Information and Event Management)"
+                        purpose "Automates the tracking and documentation of patch deployments and associated
+                            +b risks."
+                    {
+                        name "Vulnerability Management Tools (e.g., Qualys, Tenable)"
+                        purpose "Identifies unpatched vulnerabilities and generates risk reports."
+                automation_strategy "Integrate patch management tools with SIEM to automatically generate
+                    +b documentation for each patch, including risks and mitigations."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern patching mechanisms, requiring
+                    +b alternative mitigations."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit the impact of unpatched vulnerabilities."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional security measures (e.g., IDS/IPS) to mitigate risks when
+                            +b patches cannot be applied."
+                example_policy "Legacy systems must be documented with a risk assessment and compensating
+                    +b controls if patches are unavailable. Reviews are conducted biannually."
+            { stakeholder_collaboration_and_governance
+                why "Clear governance ensures accountability and effective collaboration between
+                    +b teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Document risks and mitigations for patches."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement patches and provide technical details for documentation."
+                        {
+                            role "Management"
+                            responsibility "Approve documentation and allocate resources."
+                conflict_resolution "Disputes are escalated to a cross-functional governance committee for
+                    +b resolution."
+            { continuous_improvement_and_updates
+                why "Policies must evolve to address new threats and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Subscribe to CISA alerts and ICS-CERT advisories for new vulnerabilities."
+                    {
+                        step "Review Incidents"
+                        description "Analyze security incidents to identify gaps in patch documentation."
+                    {
+                        step "Update Policies"
+                        description "Revise documentation procedures based on new threats and feedback."
+                lessons_learned "After a 2023 incident involving an unpatched PLC, the policy was updated to
+                    +b require quarterly reviews of legacy system mitigations."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "7"
+        code "SUM-3"
+        subCode "a)"
+        name "Dependent component or operating system security update documentation"
+        description "A process shall be employed to ensure that documentation about dependent
+            +b component or operating system security updates is made available to product
+            +b users that includes but is not limited to: a) stating whether the product is
+            +b compatible with the dependent component or operating system security update;
+            +b and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security updates for dependent components or operating systems
+                    +b do not introduce vulnerabilities or compatibility issues in the ICS product."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats to the system when applying security
+                            +b updates, focusing on Spoofing, Tampering, Repudiation, Information Disclosure,
+                            +b Denial of Service, and Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as disruption of
+                            +b operational processes or unauthorized access to control functions."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for systems undergoing security updates."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a framework for assessing risks associated with security updates in
+                            +b ICS environments."
+                { case_study
+                    example "A case study of a power plant DCS where a security update for a dependent
+                        +b operating system caused compatibility issues, leading to a temporary shutdown.
+                        +b The incident was mitigated by prior documentation and rollback procedures."
+            { audit_and_compliance_verification
+                why "To verify that the documentation process for security updates is consistently
+                    +b followed and meets IEC 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify that documentation includes compatibility statements for all dependent components and operating systems."
+                    "Check that the documentation is accessible to all relevant users."
+                    "Ensure that the documentation process is reviewed and updated regularly."
+                [ metrics
+                    {
+                        kpi "Percentage of security updates with documented compatibility statements"
+                        target "100%"
+                    {
+                        kpi "Time taken to publish documentation after a security update is released"
+                        target "Within 7 days"
+                compliance_procedure "Documentation reviews should be conducted quarterly, with evidence of
+                    +b compliance recorded in a centralized repository. Non-compliance should trigger
+                    +b corrective actions."
+            { training_and_competency_requirements
+                why "To ensure that personnel responsible for documentation are knowledgeable about
+                    +b security updates and compatibility issues."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers fundamental principles of ICS security, including handling security
+                            +b updates."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on securing industrial control systems, including update
+                            +b management."
+                competency_assessment "Annual competency reviews should assess understanding of security update
+                    +b documentation requirements and ability to apply them."
+            { tooling_and_automation_support
+                why "To streamline the documentation process and ensure consistency."
+                [ tools
+                    {
+                        name "GitHub Actions"
+                        purpose "Automate the generation and publishing of documentation when security updates
+                            +b are released."
+                    {
+                        name "Confluence"
+                        purpose "Centralized platform for maintaining and updating documentation."
+                automation_strategy "Integrate documentation generation into the CI/CD pipeline, triggering
+                    +b automated checks for completeness and accuracy."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security updates, requiring alternative
+                    +b approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to vulnerabilities when updates are
+                            +b not available."
+                    {
+                        approach "Virtual patching"
+                        description "Use intrusion prevention systems to mitigate vulnerabilities in lieu of
+                            +b updates."
+                example_policy "A policy for legacy systems mandates documentation of compensating controls
+                    +b when security updates are not feasible, including risk acceptance forms signed
+                    +b by management."
+            { stakeholder_collaboration_and_governance
+                why "Effective documentation requires coordination between engineering, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI matrix for security update documentation"
+                    [ roles
+                        {
+                            role "Engineering"
+                            responsibility "Assess compatibility of security updates and generate initial documentation."
+                        {
+                            role "Security"
+                            responsibility "Review documentation for accuracy and completeness."
+                        {
+                            role "Management"
+                            responsibility "Approve documentation and allocate resources for updates."
+                conflict_resolution "Conflicts between engineering and security teams regarding compatibility
+                    +b assessments should be escalated to a cross-functional review board for
+                    +b resolution."
+            { continuous_improvement_and_updates
+                why "To adapt documentation processes based on new threats, vulnerabilities, and
+                    +b lessons learned."
+                [ update_process
+                    {
+                        step "Monitor CISA alerts"
+                        description "Regularly review alerts for new ICS vulnerabilities that may impact dependent
+                            +b components."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate findings from compliance audits into the documentation process."
+                lessons_learned "After an incident where undocumented compatibility issues caused downtime, the
+                    +b process was updated to include pre-release testing of security updates in a
+                    +b staging environment."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "7"
+        code "SUM-3"
+        subCode "b)"
+        name "Dependent component or operating system security update documentation"
+        description "A process shall be employed to ensure that documentation about dependent
+            +b component or operating system security updates is made available to product
+            +b users that includes but is not limited to: b) for security updates that are
+            +b unapproved by the product vendor, the mitigations that can be used in lieu of
+            +b not applying the update."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify vulnerabilities in dependent components or operating systems and
+                    +b assess the risk of unapproved security updates."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model potential threats to dependent components, focusing on Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "ICS-specific threat models"
+                        description "Tailored threat modeling for Industrial Control Systems to address unique
+                            +b operational and security challenges."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for dependent components and operating
+                            +b systems."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To conduct risk assessments specific to ICS environments."
+                { case_study
+                    example "A power plant's DCS was assessed for vulnerabilities in its dependent
+                        +b components, leading to the identification of mitigations for unapproved
+                        +b updates."
+            { audit_and_compliance_verification
+                why "To ensure that documentation for unapproved security updates and mitigations is
+                    +b accurate and compliant with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify the existence of documentation for unapproved security updates."
+                    "Check that mitigations are clearly described and feasible."
+                    "Ensure that the documentation is accessible to product users."
+                [ metrics
+                    {
+                        kpi "Percentage of documented unapproved updates with mitigations"
+                        target "100%"
+                    {
+                        kpi "Number of audit findings related to update documentation"
+                        target "0"
+                compliance_procedure "Documentation must be reviewed quarterly and updated as new unapproved updates
+                    +b or mitigations are identified."
+            { training_and_competency_requirements
+                why "To ensure personnel are capable of documenting and implementing mitigations for
+                    +b unapproved security updates."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides foundational knowledge on ICS security standards and practices."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification covers ICS
+                            +b security, including update management."
+                competency_assessment "Annual reviews of personnel competency in documenting and managing unapproved
+                    +b security updates."
+            { tooling_and_automation_support
+                why "To streamline the documentation and management of unapproved security updates
+                    +b and mitigations."
+                [ tools
+                    {
+                        name "SIEM systems"
+                        purpose "To monitor and alert on unapproved updates in dependent components."
+                    {
+                        name "Vulnerability management tools"
+                        purpose "To track and document vulnerabilities and mitigations."
+                automation_strategy "Integrate vulnerability management tools with DevSecOps pipelines to
+                    +b automatically document and suggest mitigations for unapproved updates."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security updates, requiring alternative
+                    +b mitigations."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to reduce the attack surface."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures to mitigate vulnerabilities."
+                example_policy "A policy outlining the use of network segmentation and compensating controls
+                    +b for legacy systems that cannot receive security updates."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management is
+                    +b essential for managing unapproved updates."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and document mitigations for unapproved updates."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement mitigations and ensure system functionality."
+                        {
+                            role "Management"
+                            responsibility "Approve documentation and allocate resources."
+                conflict_resolution "A formal process for resolving conflicts between engineering and security
+                    +b priorities, including escalation to management if necessary."
+            { continuous_improvement_and_updates
+                why "To adapt to new threats and vulnerabilities in dependent components and
+                    +b operating systems."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new vulnerabilities."
+                    {
+                        step "Update documentation"
+                        description "Revise documentation to include new mitigations for unapproved updates."
+                lessons_learned "Incorporate insights from ICS security incidents to improve the documentation
+                    +b and mitigation strategies for unapproved updates."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-25"
+    {
+        practice "7"
+        code "SUM-4"
+        subCode "undefined"
+        name "Security update delivery"
+        description "A process shall be employed to ensure that security updates for all supported
+            +b products and product versions are made available to product users in a manner
+            +b that facilitates verification that the security patch is authentic."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify vulnerabilities that require security updates and prioritize
+                    +b patches based on risk."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to model threats such as spoofing, tampering, repudiation, information
+                            +b disclosure, denial of service, and elevation of privilege that could affect
+                            +b update delivery mechanisms."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on operational technology (OT) environments to address unique threats
+                            +b to ICS update processes."
+                [ tools
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "Provides a structured approach to risk assessment for ICS environments,
+                            +b including update delivery processes."
+                { case_study
+                    example "A power plant's DCS received a security update that was verified using digital
+                        +b signatures to ensure authenticity, preventing potential tampering during
+                        +b delivery."
+            { audit_and_compliance_verification
+                why "To ensure that security updates are delivered in compliance with IEC 62443-4-1
+                    +b requirements."
+                [ audit_checklist
+                    "Verify that all security updates are digitally signed."
+                    "Check that update delivery mechanisms are secure (e.g., HTTPS, secure FTP)."
+                    "Ensure that users can verify the authenticity of updates."
+                [ metrics
+                    {
+                        kpi "Percentage of updates delivered with verifiable authenticity"
+                        target "100%"
+                    {
+                        kpi "Time to deliver critical security updates"
+                        target "Within 7 days of patch availability"
+                compliance_procedure "Document the update delivery process, including verification steps, and review
+                    +b annually or after significant changes."
+            { training_and_competency_requirements
+                why "To ensure personnel understand the importance of secure update delivery and can
+                    +b implement it effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides foundational knowledge on secure update processes in ICS environments."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification covers secure
+                            +b update delivery practices."
+                competency_assessment "Annual reviews of personnel competency in secure update delivery processes,
+                    +b including hands-on testing."
+            { tooling_and_automation_support
+                why "To streamline and secure the update delivery process."
+                [ tools
+                    {
+                        name "Secure update servers"
+                        purpose "Host and distribute updates securely with integrity checks."
+                    {
+                        name "Digital signature tools"
+                        purpose "Ensure updates are authentic and tamper-proof."
+                automation_strategy "Integrate update delivery into DevSecOps pipelines to automate verification and
+                    +b distribution, reducing human error."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure update mechanisms."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to reduce exposure while providing updates through
+                            +b secure gateways."
+                    {
+                        approach "Manual verification"
+                        description "For systems that cannot automate update verification, implement manual checks."
+                example_policy "Legacy systems must receive updates via a secured, segmented network with
+                    +b manual verification steps documented and enforced."
+            { stakeholder_collaboration_and_governance
+                why "Effective update delivery requires coordination across teams."
+                { governance_model
+                    name "RACI matrix for update delivery"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Verify and sign updates."
+                        {
+                            role "Engineering Team"
+                            responsibility "Develop and test updates."
+                        {
+                            role "Management"
+                            responsibility "Approve update rollout schedules."
+                conflict_resolution "A cross-functional committee reviews and resolves conflicts, prioritizing
+                    +b security over convenience."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and improve update delivery processes."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate lessons from audits into update delivery procedures."
+                lessons_learned "After an incident where an unverified update caused downtime, the process was
+                    +b updated to require dual verification for critical systems."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "7"
+        code "SUM-5"
+        subCode "a) The potential impact of the vulnerability;"
+        name "Timely delivery of security patches"
+        description "A process shall be employed to define a policy that specifies the timeframes
+            +b for delivering and qualifying security updates to product users and to ensure
+            +b that this policy is followed. At a minimum, this policy shall consider the
+            +b following factors: a) The potential impact of the vulnerability;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To prioritize patches based on the severity of vulnerabilities and their
+                    +b potential impact on ICS operations."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to classify threats and assess the impact of vulnerabilities in ICS
+                            +b components."
+                    {
+                        name "DREAD"
+                        description "Helps in quantifying the risk associated with vulnerabilities to prioritize
+                            +b patching."
+                [ tools
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments tailored to ICS
+                            +b environments."
+                    {
+                        name "ICS-specific threat modeling tools"
+                        purpose "Tools designed to model threats specific to ICS, aiding in vulnerability impact
+                            +b assessment."
+                { case_study
+                    example "A power plant used STRIDE to assess vulnerabilities in their DCS, leading to
+                        +b prioritized patching of critical systems within 48 hours of vulnerability
+                        +b disclosure."
+            { audit_and_compliance_verification
+                why "Ensures adherence to the defined patch delivery policy and verifies that
+                    +b patches are delivered within specified timeframes."
+                [ audit_checklist
+                    "Verify documented patch delivery policy."
+                    "Check records of patch deliveries and their timeliness."
+                    "Review vulnerability impact assessments used for prioritization."
+                [ metrics
+                    {
+                        kpi "Percentage of critical patches delivered within the defined timeframe."
+                        target "100% for critical vulnerabilities."
+                    {
+                        kpi "Average time from vulnerability disclosure to patch delivery."
+                        target "≤7 days for critical vulnerabilities."
+                compliance_procedure "Document the patch delivery process, including impact assessment and
+                    +b prioritization. Regularly review and update the policy based on audit findings."
+            { training_and_competency_requirements
+                why "Ensures personnel are capable of assessing vulnerabilities and managing patch
+                    +b delivery effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides training on ICS security standards, including patch management."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Covers ICS security practices, including vulnerability and patch management."
+                competency_assessment "Annual reviews of personnel competency in vulnerability assessment and patch
+                    +b management, including practical evaluations."
+            { tooling_and_automation_support
+                why "Automates patch delivery processes and integrates them into DevSecOps pipelines
+                    +b for efficiency."
+                [ tools
+                    {
+                        name "Patch management systems (e.g., WSUS, SCCM adapted for ICS)"
+                        purpose "Automates the deployment of patches to ICS components."
+                    {
+                        name "Vulnerability scanners (e.g., Nessus, Qualys)"
+                        purpose "Identifies vulnerabilities requiring patches."
+                automation_strategy "Integrate vulnerability scanners with patch management systems to automate the
+                    +b identification and deployment of patches, ensuring timely delivery."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may not support modern patching mechanisms, requiring
+                    +b alternative approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to vulnerabilities."
+                    {
+                        approach "Virtual patching"
+                        description "Use intrusion prevention systems to mitigate vulnerabilities without modifying
+                            +b legacy systems."
+                example_policy "For legacy PLCs unable to receive patches, implement network segmentation and
+                    +b monitor for anomalous behavior as compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "Ensures alignment between security, engineering, and management teams on patch
+                    +b delivery priorities."
+                { governance_model
+                    name "RACI Matrix for Patch Management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Assess vulnerabilities and recommend patches."
+                        {
+                            role "Engineering Team"
+                            responsibility "Test and deploy patches."
+                        {
+                            role "Management"
+                            responsibility "Approve patch deployment schedules."
+                conflict_resolution "Establish a governance committee to resolve conflicts between security and
+                    +b operational priorities, ensuring timely patch delivery without disrupting
+                    +b operations."
+            { continuous_improvement_and_updates
+                why "To adapt patch delivery policies based on emerging threats and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate findings from audits into the patch delivery policy."
+                lessons_learned "After a patch-related incident, conduct a root cause analysis and update the
+                    +b patch delivery policy to prevent recurrence."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

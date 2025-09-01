@@ -1,0 +1,191 @@
+{
+  "product_context": {
+    "type": "object",
+    "properties": {
+      "manufacturer": {
+        "type": "string",
+        "description": "Name of the manufacturer",
+        "example": "Breton Spa"
+      },
+      "machine_types": {
+        "type": "array",
+        "description": "Types of machines with detailed descriptions and supported protocols",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "example": "CNC machining centers"
+            },
+            "description": {
+              "type": "string",
+              "example": "High-precision CNC machines for stone and metalworking"
+            },
+            "supported_protocols": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "OPC UA"
+              }
+            }
+          },
+          "required": ["type", "description", "supported_protocols"]
+        }
+      },
+      "applications": {
+        "type": "array",
+        "description": "Applications of the machines with criticality and description",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "example": "Natural stone processing"
+            },
+            "criticality": {
+              "type": "string",
+              "enum": ["High", "Medium", "Low"],
+              "example": "High"
+            },
+            "description": {
+              "type": "string",
+              "example": "Processing marble and granite for construction"
+            }
+          },
+          "required": ["name", "criticality", "description"]
+        }
+      },
+      "key_features": {
+        "type": "array",
+        "description": "Key features of the machines with cybersecurity support",
+        "items": {
+          "type": "object",
+          "properties": {
+            "feature": {
+              "type": "string",
+              "example": "High-precision CNC control systems"
+            },
+            "description": {
+              "type": "string",
+              "example": "PLC-based control systems with sub-millimeter precision"
+            },
+            "security_support": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "example": "Firmware signing"
+              }
+            }
+          },
+          "required": ["feature", "description", "security_support"]
+        }
+      },
+      "operational_environment": {
+        "type": "object",
+        "description": "Details of the operational environment",
+        "properties": {
+          "description": {
+            "type": "string",
+            "example": "Industrial facilities for stone and composite processing"
+          },
+          "conditions": {
+            "type": "object",
+            "properties": {
+              "temperature_range": {
+                "type": "string",
+                "example": "5-40°C"
+              },
+              "dust_level": {
+                "type": "string",
+                "example": "High (stone processing environments)"
+              },
+              "network_type": {
+                "type": "string",
+                "example": "Segmented industrial networks"
+              }
+            },
+            "required": ["temperature_range", "dust_level", "network_type"]
+          }
+        },
+        "required": ["description", "conditions"]
+      },
+      "industry_4_0_compliance": {
+        "type": "boolean",
+        "description": "Whether the machine supports Industry 4.0 features",
+        "example": true
+      },
+      "security_profile": {
+        "type": "object",
+        "description": "Cybersecurity profile of the machines",
+        "properties": {
+          "supported_sl": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "SL 1"
+            }
+          },
+          "certifications": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "IEC 62443-4-2"
+            }
+          },
+          "common_threats": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "Ransomware"
+            }
+          }
+        },
+        "required": ["supported_sl", "certifications", "common_threats"]
+      },
+      "product_version": {
+        "type": "object",
+        "description": "Version and update information",
+        "properties": {
+          "current_version": {
+            "type": "string",
+            "example": "2025.1"
+          },
+          "last_updated": {
+            "type": "string",
+            "example": "2025-06-01"
+          }
+        },
+        "required": ["current_version", "last_updated"]
+      },
+      "assumptions_justifications": {
+        "type": "array",
+        "description": "Assumptions made in populating the JSON and their justifications",
+        "items": {
+          "type": "object",
+          "properties": {
+            "assumption": {
+              "type": "string",
+              "example": "Machines incorporate advanced automation and control systems."
+            },
+            "justification": {
+              "type": "string",
+              "example": "Based on Breton’s leadership in CNC machinery and industry standards (ISO 23125)."
+            }
+          },
+          "required": ["assumption", "justification"]
+        }
+      }
+    },
+    "required": [
+      "manufacturer",
+      "machine_types",
+      "applications",
+      "key_features",
+      "operational_environment",
+      "industry_4_0_compliance",
+      "security_profile",
+      "product_version",
+      "assumptions_justifications"
+    ]
+  }
+}

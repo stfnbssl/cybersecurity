@@ -1,0 +1,381 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        subCode "d) data stores;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Data-at-Rest Encryption Policy"
+                description "This policy mandates the encryption of all sensitive data stored within ICS
+                    +b environments, including historian databases and configuration files, to protect
+                    +b against unauthorized access and data exfiltration. Aligned with IEC 62443-4-1
+                    +b SR-2d, it ensures compliance with data confidentiality requirements (CR4)."
+                enforcement "Regular audits using tools like VeraCrypt or BitLocker for encryption
+                    +b verification, and automated checks in CI/CD pipelines to ensure encryption is
+                    +b applied before deployment."
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Role-Based Access Control (RBAC) Policy"
+                description "Defines strict access controls for ICS data stores, limiting write/modify
+                    +b permissions to authorized personnel only. Supports IEC 62443-4-1 SR-2d by
+                    +b mitigating insider threats and ensuring data integrity (CR3). Contextualized
+                    +b for Breton Spa's CNC machines, where recipe databases require granular access
+                    +b tiers."
+                enforcement "Quarterly access reviews using Active Directory or LDAP logs, combined with
+                    +b SIEM alerts for anomalous access patterns (e.g., Splunk or IBM QRadar)."
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Data Integrity Verification Policy"
+                description "Requires checksums or digital signatures for critical operational data (e.g.,
+                    +b CNC machining parameters) to detect tampering. Implements IEC 62443-4-1 SR-2d's
+                    +b threat modeling for data corruption, addressing CR3 (System Integrity) in
+                    +b Breton's high-precision systems."
+                enforcement "Automated integrity checks via tools like Tripwire or OSSEC, with alerts
+                    +b integrated into the SOC dashboard. Mandatory pre-deployment validation in
+                    +b DevSecOps pipelines."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Threat Modeling for Industrial Data Stores"
+                description "Step-by-step process to identify and mitigate threats to ICS data stores (e.g.,
+                    +b CNC machine recipe databases), following STRIDE methodology per IEC 62443-4-1
+                    +b SR-2d. Tailored for Breton's stone cutting machines' OPC UA data historians."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all data stores in the ICS environment, including legacy systems
+                            +b (e.g., SQL databases for CNC parameters, binary logs in PLCs)."
+                        tools "Network scanners (Nmap), asset management tools (ServiceNow CMDB), and protocol
+                            +b analyzers (Wireshark for PROFINET)."
+                        expected_outcome "Comprehensive list of data storage locations with ownership and criticality
+                            +b tags (e.g., 'High' for marble cutting recipes)."
+                    {
+                        step 2
+                        action "Apply STRIDE threat categorization to each data store, focusing on ICS-specific
+                            +b risks (e.g., tampering with polishing machine calibration data)."
+                        tools "Microsoft Threat Modeling Tool with ICS templates, or manual diagrams using
+                            +b draw.io."
+                        expected_outcome "Threat matrix documenting potential attacks (e.g., MitM on OPC UA data) with
+                            +b risk ratings (Likelihood × Impact)."
+                    {
+                        step 3
+                        action "Implement mitigations prioritized by risk level (e.g., encrypt composite
+                            +b material curing profiles, add HMAC to sensor data streams)."
+                        tools "Encryption libraries (OpenSSL), ICS-aware firewalls (Tofino), and SIEM rules
+                            +b (Splunk ES)."
+                        expected_outcome "Verified controls reducing all high-risk threats to acceptable levels,
+                            +b documented in the system's security case."
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Secure Data Archiving Procedure"
+                description "Process for archiving historical ICS data (e.g., metalworking tolerances) with
+                    +b integrity preservation, per IEC 62443-4-1 SR-2d's KA2 (Secure Data Archiving).
+                    +b Addresses Breton's need for forensic-ready archives in aerospace composite
+                    +b production."
+                [ steps
+                    {
+                        step 1
+                        action "Classify data by retention requirements (e.g., 7 years for aerospace part
+                            +b machining logs vs. 1 year for decorative stone polish settings)."
+                        tools "Data classification software (Varonis) or manual tagging in SQL databases."
+                        expected_outcome "Metadata-tagged archives with clear retention periods and access controls."
+                    {
+                        step 2
+                        action "Generate cryptographic hashes (SHA-256) for archived files and store in
+                            +b write-protected media (e.g., WORM drives)."
+                        tools "Hash generators (sha256sum), secure storage appliances (NetApp SnapLock)."
+                        expected_outcome "Immutable archives with verifiable integrity checksums."
+                    {
+                        step 3
+                        action "Validate archive integrity annually by re-computing hashes and comparing
+                            +b against baseline."
+                        tools "Custom scripts (Python with hashlib) or commercial tools (Veritas Enterprise
+                            +b Vault)."
+                        expected_outcome "Audit report confirming no unauthorized modifications to archived data."
+            {
+                code "SR-2"
+                subCode "d) data stores;"
+                title "Vulnerability Assessment for ICS Data Systems"
+                description "Procedure to regularly scan and patch vulnerabilities in data storage
+                    +b components (e.g., SQL servers for DCS), fulfilling IEC 62443-4-1 SR-2d's
+                    +b requirement for continuous threat model updates. Specific to Breton's segmented
+                    +b OT networks."
+                [ steps
+                    {
+                        step 1
+                        action "Perform authenticated scans of data servers (e.g., OSIsoft PI Historian) using
+                            +b ICS-safe tools."
+                        tools "Qualys ICS Scanner or Tenable.ot with credentials for deep inspection."
+                        expected_outcome "List of CVEs ranked by severity (e.g., CVE-2025-1234 in SQL Server affecting
+                            +b stone cutting logs)."
+                    {
+                        step 2
+                        action "Test patches in a staging environment mirroring production (e.g., duplicate CNC
+                            +b control network segment)."
+                        tools "Virtualization platforms (VMware vSphere) with network replay (Keysight Ixia)."
+                        expected_outcome "Validation report confirming patches don't disrupt real-time data operations
+                            +b (e.g., <1ms latency increase)."
+                    {
+                        step 3
+                        action "Deploy patches during maintenance windows with rollback plans, prioritizing
+                            +b critical vulnerabilities (CVSS ≥7.0)."
+                        tools "Patch management systems (WSUS for Windows, YUM for Linux) with OT-approved
+                            +b schedules."
+                        expected_outcome "Updated systems with evidence of patched vulnerabilities in the configuration
+                            +b management database (CMDB)."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "e) interacting external entities;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "e)"
+                title "External Entity Inventory and Risk Classification Policy"
+                description "This policy mandates the maintenance of a comprehensive inventory of all
+                    +b external entities interacting with the ICS, including third-party systems,
+                    +b devices, and services. Each entity must be classified based on its criticality
+                    +b and potential attack surface (e.g., cloud APIs vs. sensors) to prioritize
+                    +b mitigation efforts. The policy aligns with IEC 62443-4-1 SR-2e by ensuring
+                    +b systematic identification and risk assessment of external interactions."
+                enforcement "Enforced through quarterly audits using automated asset discovery tools (e.g.,
+                    +b Claroty, Nozomi Networks) and manual validation by security teams.
+                    +b Non-compliant entities are flagged for remediation or isolation."
+            {
+                code "SR-2"
+                subCode "e)"
+                title "Vendor Security Requirements Policy"
+                description "Requires all third-party vendors to adhere to contractual security clauses,
+                    +b including mandatory penetration testing, vulnerability disclosure, and
+                    +b compliance with IEC 62443-4-1 SL 2 or higher. Applies to devices like Breton
+                    +b Spa’s CNC machines that use PROFINET with PN Security. Supports SR-2e’s focus
+                    +b on mitigating risks from interacting entities."
+                enforcement "Enforced via pre-procurement security assessments and annual vendor audits.
+                    +b Tools like ServiceNow GRC track compliance status. Non-compliant vendors are
+                    +b barred from network integration."
+            {
+                code "SR-2"
+                subCode "e)"
+                title "API Gateway and Boundary Defense Policy"
+                description "Defines controls for monitoring and filtering external communications via API
+                    +b gateways (e.g., Kong, Apigee) and industrial firewalls (e.g., Cisco ISA3000).
+                    +b Targets protocols like OPC UA and MQTT used in Breton Spa’s polishing machines.
+                    +b Implements SR-2e’s requirement for secure interaction points."
+                enforcement "Enforced through real-time traffic analysis with IDS/IPS (e.g., Darktrace, Palo
+                    +b Alto ICS) and monthly rule-set reviews. Violations trigger automated alerts and
+                    +b connection termination."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "e)"
+                title "Threat Modeling Workshop for External Entities"
+                description "A structured process to conduct collaborative threat modeling sessions with
+                    +b vendors and internal teams, focusing on external entity interactions. Aligns
+                    +b with IEC 62443-4-1 SR-2e’s emphasis on dynamic threat assessment."
+                [ steps
+                    {
+                        step 1
+                        action "Invite stakeholders (vendor reps, security team, engineers) and share entity
+                            +b diagrams."
+                        tools "Microsoft Threat Modeling Tool, Lucidchart"
+                        expected_outcome "Documented interaction map of all external entities (e.g., cloud services,
+                            +b vendor PLCs)."
+                    {
+                        step 2
+                        action "Apply STRIDE methodology to identify threats (e.g., spoofing in OPC UA
+                            +b connections)."
+                        tools "OWASP Threat Dragon, NIST SP 800-30 templates"
+                        expected_outcome "List of prioritized threats with risk scores (e.g., 'Tampering in MQTT TLS:
+                            +b High')."
+                    {
+                        step 3
+                        action "Agree on mitigations (e.g., API rate-limiting, firmware signing) and assign
+                            +b owners."
+                        tools "Jira, IriusRisk"
+                        expected_outcome "Updated threat model with mitigation timelines, integrated into the DevSecOps
+                            +b pipeline."
+            {
+                code "SR-2"
+                subCode "e)"
+                title "Vendor Device Onboarding Procedure"
+                description "Step-by-step process to securely integrate third-party devices (e.g., stone
+                    +b cutting machines) into the ICS network, ensuring SR-2e compliance."
+                [ steps
+                    {
+                        step 1
+                        action "Verify device certification (IEC 62443-4-2) and firmware integrity via
+                            +b checksums."
+                        tools "HashCalc, Vendor-provided manifests"
+                        expected_outcome "Signed attestation of device compliance and unaltered firmware."
+                    {
+                        step 2
+                        action "Isolate the device in a test VLAN and conduct vulnerability scans."
+                        tools "Tenable.ot, Wireshark with ICS plugins"
+                        expected_outcome "Scan report with no critical vulnerabilities (CVSS ≥ 7.0)."
+                    {
+                        step 3
+                        action "Configure network segmentation (e.g., Tofino firewall) and least-privilege
+                            +b access."
+                        tools "Siemens SCALANCE, Cisco Cyber Vision"
+                        expected_outcome "Device operational in production with restricted communication paths."
+            {
+                code "SR-2"
+                subCode "e)"
+                title "External Entity Monitoring and Response Procedure"
+                description "Defines actions to detect and respond to malicious activity from external
+                    +b entities (e.g., unauthorized API calls to SCADA), per SR-2e requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy anomaly detection rules for external protocols (e.g., EtherNet/IP with
+                            +b CIP Security)."
+                        tools "Darktrace Industrial, Splunk ES"
+                        expected_outcome "Baseline of normal traffic patterns for alert tuning."
+                    {
+                        step 2
+                        action "Investigate alerts (e.g., unexpected Modbus TCP traffic) using packet captures."
+                        tools "Moloch, ICS-specific SIEM correlations"
+                        expected_outcome "Confirmed incident report with IOC extraction (e.g., malicious IPs)."
+                    {
+                        step 3
+                        action "Enforce containment via dynamic firewall rules and vendor notifications."
+                        tools "Palo Alto NGFW, ServiceNow incident workflows"
+                        expected_outcome "Blocked malicious entity and updated threat model with new TTPs."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "f) internal and external communication protocols implemented in the product;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "f"
+                title "Protocol Whitelisting Policy"
+                description "This policy mandates the use of a whitelist for all communication protocols
+                    +b within the product, ensuring only approved and secure protocols are enabled. It
+                    +b aligns with IEC 62443-4-1 by mitigating risks associated with unauthorized or
+                    +b insecure protocols. Example: Only OPC UA with Basic256Sha256 and PROFINET with
+                    +b PN Security are permitted for CNC Machining Centers."
+                enforcement "Regular audits using protocol analyzers (e.g., Wireshark with ICS plugins) and
+                    +b automated checks during firmware updates to verify compliance with the
+                    +b whitelist."
+            {
+                code "SR-2"
+                subCode "f"
+                title "Mutual Authentication Enforcement Policy"
+                description "This policy requires mutual authentication for all communication protocols to
+                    +b prevent unauthorized access and ensure data integrity. It supports IEC
+                    +b 62443-4-1 by addressing threats like spoofing and tampering. Example: OPC UA
+                    +b certificates must be used for client/server validation in Stone Cutting
+                    +b Machines."
+                enforcement "Automated checks during system startup and periodic certificate validation
+                    +b audits to ensure all devices comply with mutual authentication requirements."
+            {
+                code "SR-2"
+                subCode "f"
+                title "Network Segmentation Policy"
+                description "This policy enforces network segmentation based on protocol criticality to
+                    +b isolate high-risk traffic and protect critical control functions. It aligns
+                    +b with IEC 62443-4-1 by restricting data flow and reducing attack surfaces.
+                    +b Example: PROFINET real-time traffic must be isolated from HTTP traffic in
+                    +b Polishing Machines."
+                enforcement "Network configuration audits and real-time monitoring using industrial IDS/IPS
+                    +b solutions to detect and prevent unauthorized cross-segment communication."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "f"
+                title "Protocol Risk Assessment Procedure"
+                description "This procedure outlines the steps to systematically evaluate vulnerabilities in
+                    +b communication protocols used within the product, ensuring compliance with IEC
+                    +b 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all communication protocols used in the product, including internal
+                            +b and external protocols."
+                        tools "Vendor documentation, protocol analyzers (e.g., Wireshark)"
+                        expected_outcome "A comprehensive list of protocols with their configurations and use cases."
+                    {
+                        step 2
+                        action "Perform a threat assessment for each protocol using methodologies like STRIDE
+                            +b or ICS-specific threat models."
+                        tools "Microsoft Threat Modeling Tool, NIST 800-30 adapted for SCADA systems"
+                        expected_outcome "Documented threats and vulnerabilities for each protocol, including potential
+                            +b impact on operations."
+                    {
+                        step 3
+                        action "Develop mitigation strategies for identified threats, such as enabling
+                            +b encryption or disabling insecure features."
+                        tools "Vendor security guides (e.g., OPC UA Security Whitepaper, Rockwell Automation
+                            +b Protocol Hardening)"
+                        expected_outcome "A mitigation plan with specific actions to address each identified threat,
+                            +b approved by the security team."
+            {
+                code "SR-2"
+                subCode "f"
+                title "Secure Protocol Configuration Procedure"
+                description "This procedure details the steps to configure communication protocols securely,
+                    +b ensuring compliance with IEC 62443-4-1 and minimizing exposure to threats."
+                [ steps
+                    {
+                        step 1
+                        action "Review vendor documentation for secure configuration settings of each protocol
+                            +b (e.g., disabling SNMP v1/v2c)."
+                        tools "Vendor-supplied protocol specifications (e.g., Siemens S7 comms, ABB Protocol
+                            +b Implementation Guides)"
+                        expected_outcome "A list of recommended secure settings for each protocol."
+                    {
+                        step 2
+                        action "Apply secure configurations to all devices and systems using the protocols,
+                            +b ensuring consistency across the product line."
+                        tools "Configuration management tools (e.g., Ansible, Puppet), vendor-specific
+                            +b configuration utilities"
+                        expected_outcome "All devices are configured with secure protocol settings, verified through
+                            +b automated checks."
+                    {
+                        step 3
+                        action "Document all configurations and deviations, including justifications for any
+                            +b non-standard settings."
+                        tools "Configuration management databases (CMDB), version control systems (e.g., Git)"
+                        expected_outcome "A complete and auditable record of protocol configurations, accessible for
+                            +b future reviews and updates."
+            {
+                code "SR-2"
+                subCode "f"
+                title "Protocol Monitoring and Anomaly Detection Procedure"
+                description "This procedure defines the process for real-time monitoring of protocol traffic
+                    +b to detect and respond to anomalies, supporting IEC 62443-4-1 requirements for
+                    +b timely response to events."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy protocol analyzers and IDS/IPS solutions to monitor all communication
+                            +b channels for anomalies (e.g., malformed packets, unauthorized access attempts)."
+                        tools "Wireshark with ICS plugins, Belden ICS IDS Solutions, Yokogawa Network
+                            +b Monitoring tools"
+                        expected_outcome "Continuous monitoring of protocol traffic with alerts for suspicious
+                            +b activities."
+                    {
+                        step 2
+                        action "Establish baseline traffic patterns for each protocol to identify deviations
+                            +b that may indicate threats."
+                        tools "Traffic analysis tools (e.g., Splunk, ELK Stack), machine learning-based
+                            +b anomaly detection systems"
+                        expected_outcome "Defined baselines for normal protocol behavior, used to flag anomalies."
+                    {
+                        step 3
+                        action "Implement automated response mechanisms for critical anomalies, such as
+                            +b blocking malicious traffic or alerting security personnel."
+                        tools "SIEM systems (e.g., IBM QRadar, Splunk ES), custom scripts for automated
+                            +b responses"
+                        expected_outcome "Reduced response time to protocol-based threats, minimizing potential impact on
+                            +b operations."
+        last_updated "2023-10-15"

@@ -1,0 +1,39 @@
+ittf
+
+    $
+        var practices = []
+
+    $foreach prItem in std_62443_4_1_extra.items
+        $if _.isArray(prItem.subs) == false || prItem.subs.length == 0
+            $
+                practices.push(prItem);
+
+        $else
+            $foreach prItemSub in prItem.subs
+                $
+                    practices.push({
+                        practice: prItem.practice,
+                        code: prItem.code,
+                        name: prItem.name,
+                        description: prItem.description + ' ' + prItemSub.description,
+                    });    
+
+    $file .wizzi-override/docs/4_1/from_meta/practice_list.txt.ittf
+
+        txt 
+            $ var count = 1; var itemCount = 1;
+
+            $foreach prItem in std_62443_4_1_extra.items
+                ${prItem.practice}.${prItem.code} ${std_62443_4_1_extra.practices[prItem.practice].name} - ${prItem.name} (${itemCount})
+                $ itemCount++;
+
+                $if _.isArray(prItem.subs) == false || prItem.subs.length == 0
+                    ----- ${itemCount} / ${count}
+                    $ count++;
+
+                ${prItem.description}
+                $if _.isArray(prItem.subs) && prItem.subs.length > 0
+                    $foreach prItemSub in prItem.subs
+                        ----- ${itemCount} / ${count}
+                        ${prItemSub.description}
+                        $ count++;                

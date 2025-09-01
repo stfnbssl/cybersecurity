@@ -1,0 +1,221 @@
+$group
+    {
+        id "FSA-CR 2.10A"
+        check_description "Components shall provide the capability to protect against the loss of
+            +b essential services and functions in the event of an audit processing failure."
+        requirement_id "IEC 62443-4-2: CR 2.10(a)"
+        title "Response to Audit Processing Failures - Maintain Essential Functions"
+        description "This requirement ensures that the system is designed to maintain essential
+            +b functions even when there are failures in audit processing. It emphasizes the
+            +b need for continuity in critical operations despite any issues that may arise
+            +b during the auditing process, thus ensuring the reliability and security of the
+            +b system."
+        [ key_aspects
+            {
+                aspect "Continuity of Essential Functions"
+                details "The system must have mechanisms in place to ensure that critical operations
+                    +b continue even if audit processing fails. This involves designing systems with
+                    +b redundancy and failover capabilities."
+            {
+                aspect "Audit Processing Resilience"
+                details "The design and implementation of the system should account for potential
+                    +b failures in audit processing and include strategies for quick recovery or
+                    +b alternative auditing methods to ensure minimal impact on system functionality."
+            {
+                aspect "Incident Response"
+                details "Implement a robust incident response plan that addresses audit failures,
+                    +b including notification to relevant stakeholders and steps to restore normal
+                    +b audit functions without compromising essential services."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.16.1 - Management of Information Security Incidents and Improvements"
+                description "Focuses on the establishment of a comprehensive incident management process,
+                    +b which includes handling failures in audit processing as part of overall
+                    +b incident response."
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "AU-5 - Response to Audit Processing Failures"
+                description "Similar requirement that mandates organizations to take corrective actions in
+                    +b response to audit processing failures to ensure continued operation of critical
+                    +b functions."
+            {
+                standard "IEC 61508"
+                reference "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems"
+                description "Provides guidelines for ensuring the safety and reliability of systems, which
+                    +b is critical when considering the maintenance of essential functions during
+                    +b audit processing failures."
+    {
+        id "FSA-CR 2.10B"
+        check_description "Components shall provide the capability to support appropriate actions in
+            +b response to an audit processing failure according to commonly accepted industry
+            +b practices and recommendations."
+        requirement_id "IEC 62443-4-2:CR 2.10(b)"
+        title "Response to Audit Processing Failures - Actions Taken"
+        description "This requirement mandates that a component should be capable of taking
+            +b predefined actions in the event of an audit processing failure. Such failures
+            +b may include errors in the auditing process or the inability to generate audit
+            +b records. The actions taken should ensure the integrity and availability of
+            +b audit records and logs, which are critical for security monitoring and
+            +b compliance."
+        [ key_aspects
+            {
+                aspect "Predefined Actions"
+                details "Components must have predefined actions that are automatically triggered during
+                    +b audit processing failures. These actions can include alerting administrators,
+                    +b switching to alternate logging mechanisms, or stopping operations that rely on
+                    +b auditing."
+            {
+                aspect "Integrity and Availability"
+                details "The requirement emphasizes the need to protect the integrity and availability
+                    +b of audit logs even in the case of processing failures. This ensures that
+                    +b security incidents can be properly analyzed and traced."
+            {
+                aspect "Error Detection and Handling"
+                details "Components should have mechanisms to detect audit processing errors and handle
+                    +b them appropriately to minimize the impact on security monitoring and
+                    +b operations."
+        [ related_standards
+            {
+                standard "NIST SP 800-92"
+                title "Guide to Computer Security Log Management"
+                details "This standard provides guidelines for managing and ensuring the integrity and
+                    +b availability of logs, which aligns with the need for predefined actions in case
+                    +b of audit processing failures."
+            {
+                standard "ISO/IEC 27002:2013"
+                title "Information technology — Security techniques — Code of practice for information
+                    +b security controls"
+                details "Section 12.4.1 of this standard discusses the protection of log information,
+                    +b including ensuring that logging is performed correctly and that logs are
+                    +b adequately protected against unauthorized access and tampering."
+            {
+                standard "IEC 62443-3-3:2013"
+                title "System Security Requirements and Security Levels"
+                details "This part of the IEC 62443 series outlines system-level security requirements,
+                    +b including those related to audit logs and their availability and integrity,
+                    +b which support the component-level requirements in IEC 62443-4-2."
+    {
+        id "FSA-CR 2.11"
+        check_description "Components shall provide the capability to create timestamps (including date
+            +b and time) for use in audit records."
+        requirement_id "IEC 62443-4-2: CR 2.11"
+        title "Timestamps"
+        description "This requirement focuses on ensuring that all security-relevant events are
+            +b timestamped to facilitate accurate time correlation and forensic analysis.
+            +b Timestamps are crucial for maintaining the integrity of event logs and ensuring
+            +b that recorded events can be accurately sequenced and analyzed."
+        { key_aspects
+            timestamp_accuracy "Timestamps must be precise enough to support the analysis and correlation of
+                +b events. This involves synchronization with a reliable time source to prevent
+                +b discrepancies."
+            "time synchronization" "Systems should leverage protocols like NTP (Network Time Protocol) to achieve
+                +b and maintain time synchronization across all devices and components."
+            "log integrity" "Accurate timestamps are vital for maintaining the integrity of system logs,
+                +b allowing for effective incident response and forensic investigations."
+            "time zone awareness" "Systems should be able to handle events occurring in different time zones,
+                +b either by logging in a standard time zone (e.g., UTC) or by clearly indicating
+                +b the time zone used."
+        [ related_standards
+            {
+                standard "NIST SP 800-92"
+                reference "Guide to Computer Security Log Management"
+                relevance "NIST SP 800-92 provides guidance on log management, emphasizing the importance
+                    +b of accurate timestamps for log integrity and event correlation."
+            {
+                standard "RFC 5905"
+                reference "Network Time Protocol Version 4: Protocol and Algorithms Specification"
+                relevance "RFC 5905 specifies NTP, a protocol used to synchronize clocks of computer
+                    +b systems, ensuring accurate timestamps across networked systems."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "Information technology - Security techniques - Information security management
+                    +b systems - Requirements"
+                relevance "ISO/IEC 27001 includes controls for ensuring the accuracy and integrity of
+                    +b time-related data, aligning with the need for precise timestamps."
+            {
+                standard "IEC 61508"
+                reference "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems"
+                relevance "This standard addresses the importance of reliable system operation, where
+                    +b accurate timestamping can be critical for safety and incident analysis."
+    {
+        id "FSA-CR 2.11 RE(1)"
+        check_description "Components shall provide the capability to create timestamps that are
+            +b synchronized with a system wide time source."
+        requirement_id "IEC 62443-4-2: CR 2.11 RE(1)"
+        title "Time Synchronization"
+        description "This requirement mandates that components in an industrial control system (ICS)
+            +b environment must have mechanisms to ensure accurate and consistent timekeeping
+            +b across the system. This is critical for functioning, auditing, and
+            +b troubleshooting within the system."
+        { key_aspects
+            importance "Accurate time synchronization is essential for logging events, security audits,
+                +b and ensuring the proper sequence of operations within the ICS."
+            mechanisms "The system should employ standardized protocols such as Network Time Protocol
+                +b (NTP) or Precision Time Protocol (PTP) to achieve synchronized time across all
+                +b components."
+            security "Time synchronization mechanisms should be secure to prevent manipulation by
+                +b unauthorized entities, which could lead to erroneous logging and security
+                +b breaches."
+        [ related_standards
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                relevance "This standard outlines the importance of time synchronization in the context of
+                    +b ICS security, detailing how it supports security controls and incident
+                    +b response."
+            {
+                standard "IEEE 1588"
+                reference "Precision Time Protocol (PTP)"
+                relevance "IEEE 1588 provides the technical framework for time synchronization in
+                    +b networked measurement and control systems, ensuring high precision and
+                    +b accuracy."
+            {
+                standard "ISO/IEC 27001"
+                reference "Information Security Management"
+                relevance "While not specific to time synchronization, ISO/IEC 27001 emphasizes the
+                    +b importance of maintaining accurate records and logs, which underpins the need
+                    +b for synchronized time."
+    {
+        id "FSA-CR 2.11 RE(2)"
+        check_description "The time synchronization mechanism shall provide the capability to detect
+            +b unauthorized alteration and cause an audit event upon alteration."
+        requirement_id "IEC 62443-4-2: CR 2.11 RE(2)"
+        title "Protection of Time Source Integrity"
+        description "This requirement focuses on ensuring the integrity of the time source used
+            +b within the industrial automation and control system (IACS). It mandates that
+            +b the time synchronization mechanisms are protected against unauthorized
+            +b modification and that systems are resilient to any potential time-based
+            +b attacks. Accurate and reliable timekeeping is essential for the correct
+            +b functioning and coordination of various processes and security measures within
+            +b an IACS."
+        [ key_aspects
+            "Ensures that time sources are secure and resistant to tampering or spoofing."
+            "Requires mechanisms to verify the authenticity and integrity of time data."
+            "Mandates the use of secure protocols for time synchronization (e.g., NTP with authentication)."
+            "Includes measures to detect and respond to anomalies in time data, such as sudden jumps or drifts."
+            "Ensures that incorrect time information does not propagate through the system and affect operations."
+        [ related_standards
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "Discusses the importance of time synchronization in ICS environments and
+                    +b provides guidelines for securing time services."
+            {
+                standard "IEC 61508"
+                reference "Functional Safety of Electrical/Electronic/Programmable Electronic
+                    +b Safety-related Systems"
+                details "Emphasizes the need for reliable timekeeping in safety-critical systems and
+                    +b outlines measures for ensuring time source integrity."
+            {
+                standard "IEEE 1588"
+                reference "Precision Time Protocol (PTP)"
+                details "Defines a protocol for precise clock synchronization in networked measurement
+                    +b and control systems, highlighting security considerations."
+            {
+                standard "RFC 5905"
+                reference "Network Time Protocol Version 4: Protocol and Algorithms Specification"
+                details "Specifies the Network Time Protocol (NTP), including security features and best
+                    +b practices for protecting time synchronization."

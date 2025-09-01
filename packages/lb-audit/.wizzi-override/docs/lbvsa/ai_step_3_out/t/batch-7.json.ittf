@@ -1,0 +1,170 @@
+$group
+    {
+        IDD "3.1.4"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Sono adottate tecniche volte a garantire la confidenzialità del dato personale
+            +b (p.e. pseudonimizzazione / tokenizzazione)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità al GDPR nella gestione dei dati
+                +b personali, inclusa la protezione della confidenzialità tramite tecniche come
+                +b pseudonimizzazione o tokenizzazione, specialmente in contesti OT/ICS dove i
+                +b dati potrebbero includere informazioni sensibili su processi o personale."
+        { ssdl
+            isRelevant true
+            motivation "Il Secure Software Development Lifecycle deve includere la protezione dei dati
+                +b personali fin dalla fase di progettazione (Privacy by Design). Tecniche come
+                +b pseudonimizzazione/tokenizzazione sono rilevanti per garantire la
+                +b confidenzialità dei dati trattati dal software."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi integrati IACS spesso elaborano dati personali (es. dati di operatori
+                +b o manutentori). La verifica dell'applicazione di tecniche di protezione della
+                +b confidenzialità è essenziale per garantire la conformità al GDPR."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware generalmente non implica il trattamento
+                +b diretto di dati personali. Tuttavia, potrebbe essere rilevante se il componente
+                +b include firmware/software che processa tali dati."
+        note_su_json_risultante "La valutazione per 'component_production' è impostata su 'false' in quanto
+            +b tipicamente la produzione di componenti non coinvolge dati personali. Tuttavia,
+            +b se il componente include capacità di elaborazione dati, questa valutazione
+            +b dovrebbe essere riconsiderata."
+    {
+        IDD "3.1.5"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Durante le attività di test, sono utilizzati dati personali reali appartenenti
+            +b a persone fisiche?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità al GDPR nella gestione dei dati
+                +b personali, anche durante le fasi di test. L'uso di dati reali in test potrebbe
+                +b esporre a rischi di violazione della privacy."
+        { ssdl
+            isRelevant true
+            motivation "Nello sviluppo software è essenziale evitare l'uso di dati personali reali in
+                +b ambienti di test. Il controllo è rilevante per garantire che il SDLC includa
+                +b pratiche per la protezione dei dati."
+        { system_integration
+            isRelevant false
+            motivation "La gestione dei dati personali durante i test è più legata a processi di
+                +b sviluppo e gestione dati che all'integrazione di sistemi o macchine
+                +b industriali."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware generalmente non coinvolge l'elaborazione
+                +b di dati personali durante i test funzionali."
+        note_su_json_risultante "La valutazione di rilevanza per system_integration e component_production è
+            +b impostata a false in quanto il controllo riguarda principalmente aspetti di
+            +b gestione dati e privacy, più pertinenti per asset owner e SDLC."
+    {
+        IDD "3.1.6"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "I dati personali sono trattati all'interno dell'Unione Europea? Se all'esterno,
+            +b specificare in quale Paese."
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità al GDPR per i dati personali
+                +b trattati nel sistema IACS, soprattutto se coinvolge dati di operatori o
+                +b personale."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda la gestione dei dati personali in fase operativa, non
+                +b direttamente lo sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "L'integrazione di sistemi IACS può coinvolgere trasferimenti di dati personali
+                +b tra componenti, richiedendo valutazioni sulla localizzazione dei dati."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware raramente coinvolge il trattamento di dati
+                +b personali, a meno che non includa software con funzionalità di gestione dati."
+        note_su_json_risultante "La valutazione di rilevanza per 'component_production' assume che il componente
+            +b non includa software con gestione dati personali. Se il componente avesse
+            +b firmware/software con tali funzionalità, la rilevanza potrebbe cambiare."
+    {
+        IDD "3.1.7"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Sono definite ed attuate procedure di privacy by design nell'ambito dei
+            +b processi di sviluppo dei sistemi o servizi?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità al GDPR per i dati personali gestiti
+                +b dall'IACS, soprattutto in contesti con interazione umana (es. operatori) o dati
+                +b sensibili"
+        { ssdl
+            isRelevant true
+            motivation "Il privacy by design è un requisito fondamentale nello sviluppo software
+                +b conforme al GDPR, particolarmente rilevante nelle fasi di progettazione e
+                +b implementazione"
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati devono rispettare i principi di privacy by design
+                +b quando elaborano dati personali (es. credenziali operatori, dati biometrici)"
+        { component_production
+            isRelevant false
+            motivation "La privacy by design riguarda principalmente i processi di sviluppo
+                +b software/sistemi, non la produzione fisica di componenti hardware"
+        note_su_json_risultante "La valutazione per 'component_production' è stata impostata a false in quanto
+            +b la privacy by design è tipicamente associata a processi software/sistemi.
+            +b Potrebbe diventare rilevante solo per componenti con embedded software che
+            +b processa dati personali"
+    {
+        IDD "3.1.8"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "I dati personali del titolare del trattamento sono conservati in accordo con i
+            +b requisiti previsti da Nomina del Responsabile?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la conformità al GDPR per i dati personali gestiti
+                +b nell'IACS, inclusa la corretta nomina del responsabile del trattamento."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda la gestione dei dati personali e non direttamente il
+                +b processo di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS possono elaborare dati personali (es. dati operatori), quindi la
+                +b conformità GDPR è rilevante durante l'integrazione."
+        { component_production
+            isRelevant false
+            motivation "La nomina del responsabile del trattamento è un aspetto organizzativo che
+                +b tipicamente non riguarda la produzione di singoli componenti."
+        note_su_json_risultante "Il controllo è particolarmente rilevante per asset owner e system integrator in
+            +b contesti UE. La valutazione SSDL è negativa in quanto il GDPR non è tipicamente
+            +b applicato a livello di sviluppo software ma di gestione dati."
+    {
+        IDD "3.1.9"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        description "Sono previsti e formalizzati appositi requisiti in materia di data protection e
+            +b sicurezza verso le terze parti che agiscono come sub-responsabili del
+            +b trattamento in linea con quanto previsto dalla Nomina a Responsabile?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire che i sub-responsabili del trattamento rispettino
+                +b i requisiti di data protection, poiché è responsabile per la compliance
+                +b complessiva del sistema IACS."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda principalmente gli aspetti legali e contrattuali
+                +b della data protection, non direttamente il processo di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "I system integrator spesso coinvolgono terze parti nel trattamento dei dati; è
+                +b essenziale verificare che tali relazioni siano regolate da accordi conformi al
+                +b GDPR."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware generalmente non coinvolge direttamente il
+                +b trattamento di dati personali, rendendo meno rilevante questo aspetto."
+        note_su_json_risultante "La valutazione di rilevanza per SSDL e component_production è basata
+            +b sull'assunto che il controllo riguardi principalmente relazioni contrattuali
+            +b piuttosto che processi tecnici. L'asset owner e system integration sono
+            +b considerati rilevanti per la gestione della compliance lungo la catena di
+            +b fornitura."

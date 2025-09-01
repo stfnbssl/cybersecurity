@@ -1,0 +1,1549 @@
+ittf
+
+    $
+        function clean(text) {
+            return _.replace(text, '«»', ';');
+        }
+        function getReferences(refs) {
+            var retval = []
+            for (var i=0; i<refs.length; i++) {
+                var refItem = refs[i];
+                var ss = refItem.split(':');
+                var refObj = {
+                    standard: ss[0],
+                    processes: ss[1].split(',')
+                }
+                for (var j=0; j<refObj.processes.length; j++) {
+                    refObj.processes[j] = refObj.processes[j].trim();
+                }
+                retval.push(refObj);
+            }
+            return retval;
+        }
+
+    $file .wizzi-override/docs/4_1_manu/transformed/ht_27001_all.json
+
+        $
+            var processes = [];
+            var process = null;
+
+        $foreach page in ht_27001_all.pages
+            $foreach c in page.content
+                $if c.level == 1
+                    $foreach c1 in c.children
+                        $if c1.level == 2
+                            $if c1.heading.indexOf("What is") > -1
+                                $
+                                    var xid = page.source.substr("https://hightable.io/iso-27001-annex-".length);
+                                    var xid_ss = xid.split('-');
+                                    var id = xid_ss[1] + '.' + xid_ss[2];
+                                    process = {
+                                        process: id,
+                                        url: page.source,
+                                        name: c1.heading,
+                                        topics: []
+                                    }
+                                    processes.push(process);
+
+                            $foreach c2 in c1.children
+                                $if c2.level == 3 && c2.heading.indexOf("2022 Clauses") < 0 && c2.heading.endsWith("Controls") == false
+                                    $
+                                        var topic = {
+                                            name: c2.heading,
+                                            lines: []
+                                        }
+                                        process.topics.push(topic)
+
+                                    $foreach c3 in c2.children
+                                        $if _.isNotEmpty(c3.text)
+                                            $ topic.lines.push(c3.text)
+
+
+        $ var output = _.stringify(processes, null,2)
+
+        ${output}
+
+$*
+    
+
+{
+  "scrapedAt": "2025-03-05T14:29:38.844Z",
+  "pages": [
+    {
+      "source": "https://hightable.io/iso-27001-annex-a-5-1-policies/",
+      "dateScraped": "2025-03-05T14:29:41.712Z",
+      "content": [
+        {
+          "text": "ISO 27001 Toolkit"
+        },
+        {
+          "text": "Pricing"
+        },
+        {
+          "text": "ISO 27001 Templates"
+        },
+        {
+          "text": "Resources\n\n\tISO 27001 Reference Guide\n\tISO 27001 Annex A Reference Guide\n\tBlog\n\tISO 27001 Strategy Session\n\tISO 27001 Clinic"
+        },
+        {
+          "text": "ISO 27001 Reference Guide"
+        },
+        {
+          "text": "ISO 27001 Annex A Reference Guide"
+        },
+        {
+          "text": "Blog"
+        },
+        {
+          "text": "ISO 27001 Strategy Session"
+        },
+        {
+          "text": "ISO 27001 Clinic"
+        },
+        {
+          "text": "About\n\n\tContact\n\tMeet The Team\n\tTestimonials\n\tMy Account"
+        },
+        {
+          "text": "Contact"
+        },
+        {
+          "text": "Meet The Team"
+        },
+        {
+          "text": "Testimonials"
+        },
+        {
+          "text": "My Account"
+        },
+        {
+          "text": "ISO 27001 Toolkit"
+        },
+        {
+          "text": "Pricing"
+        },
+        {
+          "text": "ISO 27001 Templates"
+        },
+        {
+          "text": "Resources\n\n\tISO 27001 Reference Guide\n\tISO 27001 Annex A Reference Guide\n\tBlog\n\tISO 27001 Strategy Session\n\tISO 27001 Clinic"
+        },
+        {
+          "text": "ISO 27001 Reference Guide"
+        },
+        {
+          "text": "ISO 27001 Annex A Reference Guide"
+        },
+        {
+          "text": "Blog"
+        },
+        {
+          "text": "ISO 27001 Strategy Session"
+        },
+        {
+          "text": "ISO 27001 Clinic"
+        },
+        {
+          "text": "About\n\n\tContact\n\tMeet The Team\n\tTestimonials\n\tMy Account"
+        },
+        {
+          "text": "Contact"
+        },
+        {
+          "text": "Meet The Team"
+        },
+        {
+          "text": "Testimonials"
+        },
+        {
+          "text": "My Account"
+        },
+        {
+          "text": "Contact"
+        },
+        {
+          "text": "Login"
+        },
+        {
+          "text": "Contact"
+        },
+        {
+          "text": "Login"
+        },
+        {
+          "heading": "ISO 27001 Annex A 5.1 Policies for Information Security",
+          "level": 1,
+          "children": [
+            {
+              "heading": "ISO 27001 Policies",
+              "level": 2,
+              "children": [
+                {
+                  "text": "In this ultimate guide to the ISO 27001 Annex A 5.1 Policies for Information Security you will learn"
+                },
+                {
+                  "text": "What is Policies for Information Security"
+                },
+                {
+                  "text": "What information security policies you need"
+                },
+                {
+                  "text": "How to write policies for ISO 27001"
+                },
+                {
+                  "text": "ISO 27001 policy templates you can download and use straight away"
+                },
+                {
+                  "text": "An implementation guide"
+                },
+                {
+                  "text": "An implementation checklist"
+                },
+                {
+                  "text": "An audit checklist"
+                }
+              ]
+            },
+            {
+              "heading": "Table of contents",
+              "level": 2,
+              "children": [
+                {
+                  "text": "ISO 27001 Policies"
+                },
+                {
+                  "text": "What is ISO 27001 Annex A 5.1?"
+                },
+                {
+                  "text": "Purpose"
+                },
+                {
+                  "text": "Definition"
+                },
+                {
+                  "text": "Implementation Guide"
+                },
+                {
+                  "text": "ISO 27001 Policy Templates"
+                },
+                {
+                  "text": "Implementation Checklist"
+                },
+                {
+                  "text": "Audit Checklist"
+                },
+                {
+                  "text": "Watch the Tutorial"
+                },
+                {
+                  "text": "How to comply"
+                },
+                {
+                  "text": "What the auditor will check"
+                },
+                {
+                  "text": "Mistakes People Make"
+                },
+                {
+                  "text": "ISO 27001 Templates"
+                },
+                {
+                  "text": "Changes and Differences to ISO 27002:2013"
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 FAQ"
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 Attributes Table"
+                },
+                {
+                  "text": "ISO 27002:2022 Control 5.1"
+                }
+              ]
+            },
+            {
+              "heading": "What is ISO 27001 Annex A 5.1?",
+              "level": 2,
+              "children": [
+                {
+                  "text": "ISO 27001 Annex A 5.1 Policies for Information Security is an ISO 27001 Annex A control that requires an organisation to have an information security policy and topic specific policies in place, communicated, reviewed and acknowledged."
+                },
+                {
+                  "text": "I like this change from the old ISO 27001:2013 version as it calls out explicitly now that a pack or suite of policies will be required rather than just the headline information security policy."
+                },
+                {
+                  "text": "ISO 27001 policies are statements of what you do for information security and are used to communicate to staff what must be done and to customers what you do."
+                }
+              ]
+            },
+            {
+              "heading": "Purpose",
+              "level": 2,
+              "children": [
+                {
+                  "text": "The purpose of the Annex A 5.1 Policies for Information Security is to ensure the suitability, adequacy and effectiveness of managements direction and support for information security."
+                }
+              ]
+            },
+            {
+              "heading": "Definition",
+              "level": 2,
+              "children": [
+                {
+                  "text": "ISO 27001 defines ISO 27001 Annex A 5.1 as:"
+                },
+                {
+                  "text": "Information security policy and topic-specific policies should be defined, approved by management, published, communicated to and acknowledged by relevant personnel and relevant interested parties, and reviewed at planned intervals and if significant changes occur."
+                },
+                {
+                  "text": "DO IT YOURSELF ISO 27001"
+                },
+                {
+                  "text": "All the templates, tools, support and knowledge you need to do it yourself."
+                }
+              ]
+            },
+            {
+              "heading": "Implementation Guide",
+              "level": 2,
+              "children": [
+                {
+                  "heading": "General Guidance",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "You are going to"
+                    },
+                    {
+                      "text": "work out what policies you actually require"
+                    },
+                    {
+                      "text": "write them"
+                    },
+                    {
+                      "text": "sign them off"
+                    },
+                    {
+                      "text": "publish them"
+                    },
+                    {
+                      "text": "have them acknowledged by staff"
+                    },
+                    {
+                      "text": "review them at regular intervals"
+                    },
+                    {
+                      "text": "The absolute best way to do this is download the prewritten ISO 27001 Policy Pack and follow the guide on How To Implement Policies."
+                    }
+                  ]
+                },
+                {
+                  "heading": "ISO 27001 Policies Ultimate Reference Guide",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "In this ultimate guide to the ISO 27001 policies I show you what the requirement is for ISO 27001 and the detailed requirements for the new ISO 27001 standard of controls."
+                    }
+                  ]
+                },
+                {
+                  "heading": "How to deploy and implement ISO 27001 Policies Tutorial",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "In this ISO 27001 Policy Implementation Guide I show you exactly how to deploy and implement the ISO 27001 Policies."
+                    },
+                    {
+                      "text": "If you are resolutely dead set on going through the pain of this yourself you are going to need copies of the relevant standards for information security, about 1 to 2 months of your life dedicated to this and a lot, and I mean a lot, of patience."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "ISO 27001 Policy Templates",
+              "level": 2,
+              "children": [
+                {
+                  "text": "ISO 27001 Annex A 5.1 Policy Templates are already fully populated and ready to go."
+                }
+              ]
+            },
+            {
+              "heading": "Implementation Checklist",
+              "level": 2,
+              "children": [
+                {
+                  "text": "Policies for Information Security ISO 27001 Annex A 5.1 Implementation Checklist:"
+                },
+                {
+                  "heading": "Establish Information Security Policy",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Defining the scope and objectives of the policy in a way that aligns with business needs and risk appetite."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Conduct a thorough ISO 27001 risk assessment to identify key threats and vulnerabilities. Involve senior management and key stakeholders in the policy development process."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Develop Supporting Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Ensuring that supporting policies (e.g., access control, data classification, incident response) are comprehensive, consistent, and aligned with the overarching information security policy."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Use a standardised ISO 27001 template for developing supporting policies. Conduct regular reviews of existing policies to ensure they remain relevant and effective."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Communicate and Disseminate Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Ensuring that all employees are aware of and understand the information security policies."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Utilise various communication channels (e.g., intranet, email, workshops) to disseminate policies. Provide clear and concise summaries of key policies."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Obtain Acknowledgement of Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Ensuring that all employees acknowledge their understanding and commitment to complying with information security policies."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Implement a system for tracking and recording employee acknowledgements of policies. Consider using electronic signatures or online training modules."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Integrate Policies into Business Processes",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Ensuring that information security policies are integrated into all relevant business processes and activities."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Develop clear procedures and workflows that incorporate security controls and requirements. Provide regular training and guidance to employees on how to implement policies in their daily work."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Review and Update Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Keeping information security policies up-to-date with changes in technology, threats, and regulatory requirements."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Conduct regular reviews of all information security policies. Establish a clear process for updating and approving policy changes."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Address Policy Exceptions",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Handling requests for exceptions to information security policies in a consistent and controlled manner."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Establish a clear process for evaluating and approving requests for policy exceptions. Ensure that all exceptions are properly documented and justified."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Monitor Compliance with Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Ensuring that employees are complying with information security policies on an ongoing basis."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Implement monitoring and auditing procedures to identify and address any instances of non-compliance. Conduct regular internal audits to assess the effectiveness of information security controls."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Promote a Culture of Security Awareness:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Creating a culture where employees are aware of and committed to information security."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Lead by example and demonstrate a commitment to information security from senior management. Conduct regular security awareness campaigns and training."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Continual Improvement:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Challenge:"
+                    },
+                    {
+                      "text": "Continuously improving the information security policy framework based on feedback, lessons learned, and changes in the threat landscape."
+                    },
+                    {
+                      "text": "Solution:"
+                    },
+                    {
+                      "text": "Regularly gather feedback from employees and stakeholders on the effectiveness of information security policies. Conduct periodic reviews of the policy framework and make necessary adjustments."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "Audit Checklist",
+              "level": 2,
+              "children": [
+                {
+                  "text": "Policies for Information Security ISO 27001 Annex A 5.1 Audit Checklist:"
+                },
+                {
+                  "heading": "Review the Information Security Policy",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Examine: The policy’s scope, objectives, and commitment to information security."
+                    },
+                    {
+                      "text": "Verify: That it addresses confidentiality, integrity, and availability of information."
+                    },
+                    {
+                      "text": "Check: For alignment with organisational goals, risk assessments, and legal/regulatory requirements."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Assess Supporting Policies",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Review: Supporting policies (e.g., access control, data classification, incident response)."
+                    },
+                    {
+                      "text": "Ensure: Consistency and alignment with the overarching information security policy."
+                    },
+                    {
+                      "text": "Check: For completeness, clarity, and relevance to the organisation’s specific needs."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Evaluate Policy Communication and Dissemination",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Verify: Methods used to communicate and disseminate policies to employees (e.g., intranet, email, workshops)."
+                    },
+                    {
+                      "text": "Assess: The effectiveness of communication channels in reaching all relevant personnel."
+                    },
+                    {
+                      "text": "Check: For evidence of employee acknowledgement of policy understanding."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Examine Policy Implementation and Enforcement:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Observe: How policies are integrated into daily business processes and activities."
+                    },
+                    {
+                      "text": "Interview: Employees to understand their awareness and adherence to policies."
+                    },
+                    {
+                      "text": "Check: For evidence of consistent enforcement of policies across the organisation."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Review Policy Exception Handling:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Assess: The process for evaluating and approving requests for exceptions to policies."
+                    },
+                    {
+                      "text": "Verify: That exceptions are properly documented, justified, and reviewed."
+                    },
+                    {
+                      "text": "Check: For consistency and fairness in the handling of exception requests."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Analyse Policy Review and Updates:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Examine: The frequency and effectiveness of policy reviews."
+                    },
+                    {
+                      "text": "Verify: That policies are updated to address changes in technology, threats, and business needs."
+                    },
+                    {
+                      "text": "Check: For documentation of policy changes and approvals."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Assess Policy Compliance Monitoring:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Review: Methods used to monitor compliance with information security policies (e.g., audits, reviews, incident reports)."
+                    },
+                    {
+                      "text": "Evaluate: The effectiveness of monitoring activities in identifying and addressing non-compliance."
+                    },
+                    {
+                      "text": "Check: For corrective and preventive actions taken to address identified issues."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Interview Key Personnel:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Conduct interviews: With key personnel involved in policy development, implementation, and enforcement (e.g., senior management, information security officers, employees)."
+                    },
+                    {
+                      "text": "Gather: Their perspectives on the effectiveness and relevance of information security policies."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Check for Compliance with Legal and Regulatory Requirements:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Verify: That information security policies comply with all applicable laws and regulations."
+                    },
+                    {
+                      "text": "Assess: The organisation’s ability to demonstrate compliance with relevant legal and regulatory requirements."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Evaluate Overall Effectiveness:",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Assess: The overall effectiveness of the information security policy framework in achieving its objectives."
+                    },
+                    {
+                      "text": "Identify: Areas for improvement and make recommendations for enhancing the effectiveness of the policy framework."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "Watch the Tutorial",
+              "level": 2,
+              "children": [
+                {
+                  "text": "Watch ISO 27001 Annex A 5.1 Policies for Information Security Explained Simply"
+                }
+              ]
+            },
+            {
+              "heading": "How to comply",
+              "level": 2,
+              "children": [
+                {
+                  "text": "To comply with ISO 27001 Annex A 5.1 you are going to implement the ‘how’ to the ‘what’ the control is expecting. In short measure you are going to"
+                },
+                {
+                  "text": "Write an ISO 27001 information security policy"
+                },
+                {
+                  "text": "Supplement that information security policy with topic specific policies"
+                },
+                {
+                  "text": "Ensure your policies are classified and have document mark up"
+                },
+                {
+                  "text": "Have the policies approved by management and have evidence of that happening"
+                },
+                {
+                  "text": "Publish the policies to a place everyone that needs to see them can see them"
+                },
+                {
+                  "text": "Tell those people where those policies are"
+                },
+                {
+                  "text": "Communicate your policies as part of your communication plan and document you did it"
+                },
+                {
+                  "text": "Get people to acknowledge the policies and keep evidence that they have"
+                },
+                {
+                  "text": "Plan to review your policies at least annually or if significant change occurs"
+                },
+                {
+                  "text": "Keep records of your policy review and the changes"
+                }
+              ]
+            },
+            {
+              "heading": "What the auditor will check",
+              "level": 2,
+              "children": [
+                {
+                  "text": "The audit is going to check a number of areas for compliance with Annex A 5.1. Lets go through them"
+                },
+                {
+                  "heading": "1. That you can link policy to requirements",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "What this means is that you need to show that your policies are linked"
+                    },
+                    {
+                      "text": "to the business strategy, which you recorded and evidenced in the ISO 27001 organisation overview template."
+                    },
+                    {
+                      "text": "to the law, regulations and contracts , which you recorded in the ISO 27001 legal register."
+                    },
+                    {
+                      "text": "to risks, which you recorded in your ISO 27001 risk register."
+                    }
+                  ]
+                },
+                {
+                  "heading": "2. That your policy includes required statements",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "For the main ISO 27001 information security policy there are some required statements that need to be included. You need to"
+                    },
+                    {
+                      "text": "define information security and the confidentiality, integrity and availability definition"
+                    },
+                    {
+                      "text": "include your information security objectives"
+                    },
+                    {
+                      "text": "include principles that will guide on information security activities activities"
+                    },
+                    {
+                      "text": "include a commitment to satisfy applicable requirements related to information security"
+                    },
+                    {
+                      "text": "have a commitment to continually improving your information security management system"
+                    },
+                    {
+                      "text": "assign responsibilities for information security management to defined roles"
+                    },
+                    {
+                      "text": "cover how you handle exemptions and exceptions."
+                    }
+                  ]
+                },
+                {
+                  "heading": "3. That top management approved the policy",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "The audit will look to see that the main ISO 27001 information security policy and the topic specific policies have been approved and signed off by top management. The level will have been defined in your ISO 27001 Roles and Responsibilities Template document in line with ISO 27001 Annex A 5.2 Roles and Responsibilities"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "Mistakes People Make",
+              "level": 2,
+              "children": [
+                {
+                  "text": "In my experience, the top 3 mistakes people make for ISO 27001 Annex A 5.1 are"
+                },
+                {
+                  "heading": "You have no evidence that anything actually happened",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "You need to keep records and minutes of everything. You need a paper trail to show it was done. Make sure you have updated communication plans, minutes of meetings, records of acknowledgement, records of approval. If it isn’t written down it didn’t happen."
+                    }
+                  ]
+                },
+                {
+                  "heading": "One or more members of your team haven’t done what they should have done",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Prior to the audit check that all members of the team have done what they should have. Do they know where the policies are? Have they acknowledged them? Did someone join last month and forget to do it? Check!"
+                    }
+                  ]
+                },
+                {
+                  "heading": "Your document and version control is wrong",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Keeping your document version control up to date, making sure that version numbers match where used, having a review evidenced in the last 12 months, having documents that have no comments in are all good practices."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "ISO 27001 Templates",
+              "level": 2,
+              "children": [
+                {
+                  "text": "Implementing ISO 27001 can be a significant undertaking and incur significant ISO 27001 Costs. To streamline the process and potentially save valuable time and resources, consider utilising pre-written ISO 27001 templates. This ISO 27001 Toolkit offers a comprehensive set of resources specifically designed for those seeking to achieve ISO 27001 certification independently. With this toolkit, you can potentially build your Information Security Management System (ISMS) within a week and be ready for certification within 30 days."
+                }
+              ]
+            },
+            {
+              "heading": "Changes and Differences to ISO 27002:2013",
+              "level": 2,
+              "children": [
+                {
+                  "text": "While the 2022 version of ISO 27001 retains many similarities to its predecessor, distinctions emerge:"
+                },
+                {
+                  "text": "Control 5.1 “Information Security Policies” in ISO 27001:2022 consolidates two controls (5.1.1 and 5.1.2) from the 2013 version. While the core principle remains the same – establishing and maintaining an information security policy – the 2022 version provides a more comprehensive and structured approach."
+                },
+                {
+                  "heading": "Key Enhancements in ISO 27001:2022",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Expanded Guidance: Control 5.1 now includes a detailed description of its purpose and expanded implementation guidance."
+                    },
+                    {
+                      "text": "Attributes Table: The inclusion of an attributes table facilitates easier mapping of controls to industry-specific terminologies."
+                    },
+                    {
+                      "text": "Enhanced Requirements: The policy requirements are more comprehensive, encompassing:Clear definition of information security.\n\nEstablishment of information security objectives.\n\nCommitment to continuous improvement of the ISMS."
+                    },
+                    {
+                      "text": "Clear definition of information security."
+                    },
+                    {
+                      "text": "Establishment of information security objectives."
+                    },
+                    {
+                      "text": "Commitment to continuous improvement of the ISMS."
+                    },
+                    {
+                      "text": "Redefined Topic-Specific Policies: The scope of topic-specific policies has been revised, with a focus on key areas like incident management, asset management, and secure development."
+                    }
+                  ]
+                },
+                {
+                  "heading": "Key Differences",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "Consolidation of Controls: The 2013 controls for “Policies for Information Security” and “Review of Policies for Information Security” are merged into a single control in the 2022 version."
+                    },
+                    {
+                      "text": "Emphasis on Regular Review: The 2022 version explicitly emphasises the need for regular policy reviews, particularly in response to changes in the information security environment."
+                    },
+                    {
+                      "text": "Comprehensive Policy Requirements: The 2022 version includes more detailed requirements for the information security policy, such as a commitment to continual improvement."
+                    },
+                    {
+                      "text": "Overall, Control 5.1 in ISO 27001:2022 provides a more robust and comprehensive framework for establishing and managing information security policies within an organisation."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "ISO 27001 Annex A 5.1 FAQ",
+              "level": 2,
+              "children": [
+                {
+                  "text": "The list of policies you need can be found here in the High Table Ultimate Guide to ISO 27001 Policies."
+                },
+                {
+                  "text": "The primary purpose is to establish a framework for managing information security within an organisation. It outlines the organisation’s commitment to protecting its information assets from various threats."
+                },
+                {
+                  "text": "You decide what policies you need by first completing your ISO 27001 Statement of Applicability and then identify in conjunction with the ISO 27001 standard the required policies for your implementation."
+                },
+                {
+                  "text": "The list of policies you need can be found here in the High Table Ultimate Guide to ISO 27001 Policies."
+                },
+                {
+                  "text": "There are policy templates for ISO 27001 Annex A 5.1 located in the High Table ISO 27001 Policy Templates Toolkit."
+                },
+                {
+                  "text": "All of the ISO 27001 Policies have free, example PDF’s that you can download in the the High Table ISO 27001 Policy Templates Toolkit."
+                },
+                {
+                  "text": "Yes. Whilst the ISO 27001 Annex A clauses are for consideration to be included in your ISO 27001 Statement of Applicability there is no reason we can think of that would allow you to exclude ISO 27001 Annex A 5.1. Policies are a fundamental part of any governance, risk and compliance framework. They are a fundamental part of any information security management system. They are explicitly required for ISO 27001."
+                },
+                {
+                  "text": "Yes. You can write the policies for ISO 27001 Annex A 5.1 yourself. You will need a copy of the standard and approximately 3 months of time to do it. It would be advantageous to have a background in information security management systems. Alternatively you can download the ISO 27001 Policy Templates Toolkit."
+                },
+                {
+                  "text": "ISO 27001 templates for ISO 27001 Annex A 5.1 are located in the High Table ISO 27001 Policy Templates Toolkit."
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 is not particularly hard. It can take a lot of time if you are doing it yourself but it is not technically very hard. Policies are statements of what you do so as long as you know what you do, or will do, you are in a good place. We would recommend templates to fast track your implementation."
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 will take approximately 3 months to complete if you are starting from nothing and doing it yourself. With an ISO 27001 Policy Template bundle it should take you less than 1 day."
+                },
+                {
+                  "text": "The cost of ISO 27001 Annex A 5.1 will depend how you go about it. If you do it yourself it will be free but will take you about 3 months so the cost is lost opportunity cost as you tie up resource doing something that can easily be downloaded. If you download an ISO Policy Template toolkit then you are looking at a couple of hundred pounds / dollars."
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 Information Security Policies is important because people need to know what is expected of them. Policies are statements of what you do. They are not statements of how you do it. How you do it is covered in process documents.The policies tell people what is expected of them and what they should do.From a HR perspective you have no come back if someone does something wrong unless you have told them what they should do right and the consequences for getting it wrong.If you don’t tell me, I don’t know.No matter how simple, straightforward, obvious or common sense YOU think it is, someone, somewhere will disagree and there is nothing you can do about it unless you have told them."
+                },
+                {
+                  "text": "The senior leadership team is responsible for the information security policies. As the policies set out the direction and what must be done it is the responsibility of the senior leadership to set and agree that direction."
+                },
+                {
+                  "text": "Other than your ISO 27001 certification requiring it, the following are benefits of implementing ISO 27001 Annex A 5.1:Improved security: People will know what is expected of them reducing the likelihood and impact of an attackReduced risk: Having direction on how you do things will reduce riskImproved compliance: Standards and regulations require information security policies to be in placeReputation Protection: In the event of a breach having effective policies will reduce the potential for fines and reduce the PR impact of an event"
+                },
+                {
+                  "text": "Scope: Defines the boundaries of the policy (e.g., which parts of the organisation, types of information).Objectives: States the desired outcomes of the information security program (e.g., confidentiality, integrity, availability).Responsibilities: Clearly defines the roles and responsibilities of management, employees, and other stakeholders.Compliance: Outlines compliance with relevant laws, regulations, and standards (e.g., GDPR, PCI DSS)."
+                },
+                {
+                  "text": "Number of Policies: ISO 27001 doesn’t specify a specific number of policies. It requires an overarching Information Security Policy and supporting policies as needed to address identified risks."
+                },
+                {
+                  "text": "Examples:Access Control PolicyData Classification PolicyIncident Response PolicyRemote Access PolicyBring Your Own Device (BYOD) PolicyEmail Security PolicySocial Media Policy"
+                },
+                {
+                  "text": "IntranetEmailWorkshops/Training SessionsEmployee HandbooksMeetingsPostersSecurity Awareness Campaigns"
+                },
+                {
+                  "text": "Require employees to sign acknowledgement forms.Incorporate policy awareness into training programs.Use online training modules with quizzes to test understanding."
+                },
+                {
+                  "text": "Regularly: At least annually, or more frequently if there are significant changes (e.g., new technologies, regulatory updates, security incidents)."
+                },
+                {
+                  "text": "Disciplinary action may be taken, depending on the severity of the violation. Consequences can range from warnings to termination of employment."
+                },
+                {
+                  "text": "Develop standard operating procedures (SOPs) that incorporate security controls.Provide regular training and guidance to employees on how to implement policies in their daily work.Conduct regular audits and assessments to monitor compliance."
+                },
+                {
+                  "text": "Reduced risk of data breaches and cyberattacksImproved data protection and complianceEnhanced organisational reputation and trustIncreased employee awareness and security-conscious behaviourImproved operational efficiency and productivity"
+                },
+                {
+                  "text": "ISO 27001 Annex A 5.1 is the information security control requirement of the ISO 27001 standard for ISO 27001 certification. ISO 27002 Control 5.1 is the implementation guidance for the control."
+                },
+                {
+                  "text": "Yes, Policies for Information Security is a required information security control for ISO 27001 certification."
+                }
+              ]
+            },
+            {
+              "heading": "ISO 27001 Annex A 5.1 Attributes Table",
+              "level": 2,
+              "children": []
+            },
+            {
+              "heading": "ISO 27002:2022 Control 5.1",
+              "level": 2,
+              "children": [
+                {
+                  "text": "ISO 27002:2022 Control 5.1 provides implementation guidance for Policies for Information Security ISO 27001."
+                },
+                {
+                  "text": "ISO 27001 Toolkit"
+                },
+                {
+                  "text": "Stop Spanking £10,000s on consultants and ISMS online-tools"
+                },
+                {
+                  "heading": "ISO 27001:2022 Clauses",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "ISO 27001 Clause 4.1 Understanding The Organisation And Its Context"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 4.2 Understanding The Needs And Expectations of Interested Parties"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 4.3 Determining The Scope Of The Information Security Management System"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 4.4 Information Security Management System"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 5.1 Leadership and Commitment"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 5.3 Organisational Roles, Responsibilities and Authorities"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 6.1.1 Planning General"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 6.1.2 Information Security Risk Assessment"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 6.1.3 Information Security Risk Treatment"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 6.2 Information Security Objectives and Planning to Achieve Them"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.1 Resources"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.2 Competence"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.3 Awareness"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.4 Communication"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.5.1 Documented Information"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.5.2 Creating and Updating Documented Information"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 7.5.3 Control of Documented Information"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 8.1 Operational Planning and Control"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 8.2 Information Security Risk Assessment"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 8.3 Information Security Risk Treatment"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 9.1 Monitoring, Measurement, Analysis, Evaluation"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 9.2 Internal Audit"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 9.3 Management Review"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 10.1 Continual Improvement"
+                    },
+                    {
+                      "text": "ISO 27001 Clause 10.2 Nonconformity and Corrective Action"
+                    }
+                  ]
+                },
+                {
+                  "heading": "ISO 27001:2022 Annex A 5 - Organisational Controls",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "ISO 27001 Annex A 5.1 Policies for information security"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.2 Information Security Roles and Responsibilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.3 Segregation of duties"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.4 Management responsibilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.5 Contact with authorities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.6 Contact with special interest groups"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.7 Threat intelligence – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.8 Information security in project management"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.9 Inventory of information and other associated assets – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.10 Acceptable use of information and other associated assets – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.11 Return of assets"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.11 Return of assets"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.13 Labelling of information"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.14 Information transfer"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.15 Access control"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.16 Identity management"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.17 Authentication information – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.18 Access rights – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.19 Information security in supplier relationships"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.20 Addressing information security within supplier agreements"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.21 Managing information security in the ICT supply chain – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.22 Monitoring, review and change management of supplier services – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.23 Information security for use of cloud services – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.24 Information security incident management planning and preparation – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.25 Assessment and decision on information security events"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.26 Response to information security incidents"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.27 Learning from information security incidents"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.28 Collection of evidence"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.29 Information security during disruption – change"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.30 ICT readiness for business continuity – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.31 Identification of legal, statutory, regulatory and contractual requirements"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.32 Intellectual property rights"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.33 Protection of records"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.34 Privacy and protection of PII"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.35 Independent review of information security"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.36 Compliance with policies and standards for information security"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 5.37 Documented operating procedures"
+                    }
+                  ]
+                },
+                {
+                  "heading": "ISO 27001:2022  Annex A 6 - People Controls",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "ISO 27001 Annex A 6.1 Screening"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.2 Terms and conditions of employment"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.3 Information security awareness, education and training"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.4 Disciplinary process"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.5 Responsibilities after termination or change of employment"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.6 Confidentiality or non-disclosure agreements"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.7 Remote working – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 6.8 Information security event reporting"
+                    }
+                  ]
+                },
+                {
+                  "heading": "ISO 27001:2022  Annex A 7 - Physical Controls",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "ISO 27001 Annex A 7.1 Physical security perimeter"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.2 Physical entry controls"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.3 Securing offices, rooms and facilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.4 Physical security monitoring"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.5 Protecting against physical and environmental threats"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.6 Working in secure areas"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.7 Clear desk and clear screen"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.8 Equipment siting and protection"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.9 Security of assets off-premises"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.10 Storage media – new"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.11 Supporting Utilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.12 Cabling Security"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.13 Equipment Maintenance"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 7.14 Secure Disposal or Re-Use of Equipment"
+                    }
+                  ]
+                },
+                {
+                  "heading": "ISO 27001:2022  Annex A 8 - Technology Controls",
+                  "level": 3,
+                  "children": [
+                    {
+                      "text": "ISO 27001 Annex A 8.1 User Endpoint Devices"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.2 Privileged Access Rights"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.3 Information Access Restriction"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.4 Access To Source Code"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.5 Secure Authentication"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.6 Capacity Management"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.7 Protection Against Malware"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.8 Management of Technical Vulnerabilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.9 Configuration Management"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.10 Information Deletion"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.11 Data Masking"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.12 Data Leakage Prevention"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.13 Information Backup"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.14 Redundancy of Information Processing Facilities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.15 Logging"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.16 Monitoring Activities"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.17 Clock Synchronisation"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.18 Use of Privileged Utility Programs"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.19 Installation of Software on Operational Systems"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.20 Network Security"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.21 Security of Network Services"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.22 Segregation of Networks"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.23 Web Filtering"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.24 Use of CryptographyISO27001 Annex A 8.25 Secure Development Life Cycle"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.26 Application Security Requirements"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.27 Secure Systems Architecture and Engineering Principles"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.28 Secure Coding"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.29 Security Testing in Development and Acceptance"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.30 Outsourced Development"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.31 Separation of Development, Test and Production Environments"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.32 Change Management"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.33 Test Information"
+                    },
+                    {
+                      "text": "ISO 27001 Annex A 8.34 Protection of information systems during audit testing"
+                    },
+                    {
+                      "text": "Do It Yourself ISO 27001"
+                    },
+                    {
+                      "text": "All the templates, tools, support and knowledge you need to do it yourself."
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "heading": "Free 30 minute ISO 27001 strategy session.",
+              "level": 2,
+              "children": [
+                {
+                  "text": "Claim your 100% FREE no-obligation 30 minute strategy session call (£1,000 value)."
+                },
+                {
+                  "text": "This is strictly for people who are hungry to get ISO 27001 certified 10x faster and 30x cheaper."
+                },
+                {
+                  "text": "Terms of Use | Privacy Policy | Cookie Policy | Refund and Returns Policy | Delivery Policy"
+                },
+                {
+                  "text": "Follow"
+                },
+                {
+                  "text": "Follow"
+                },
+                {
+                  "text": "High Table is the home of the Ultimate ISO 27001 Toolkit."
+                },
+                {
+                  "text": "DIY your ISO 27001 certification with all the"
+                },
+                {
+                  "text": "ISO 27001 documents"
+                },
+                {
+                  "text": "ISO 27001 policies"
+                },
+                {
+                  "text": "and ISO 27001 controls you need for"
+                },
+                {
+                  "text": "ISO 27001 certification."
+                },
+                {
+                  "heading": "We value your privacy",
+                  "level": 5,
+                  "children": []
+                },
+                {
+                  "heading": "Privacy Overview",
+                  "level": 4,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "source": "https://hightable.io/iso-27001-annex-a-5-2-information-security-roles-and-responsibilities/",
+      "dateScraped": "2025-03-05T14:29:43.295Z",
+      "content": [
+        {
+          "text": "ISO 27001 Toolkit"
+        },
+        {
+          "text": "Pricing"
+        },
+        {
+          "text": "ISO 27001 Templates"
+        },
+        {
+          "text": "Resources\n\n\tISO 27001 Reference Guide\n\tISO 27001 Annex A Reference Guide\n\tBlog\n\tISO 27001 Strategy Session\n\tISO 27001 Clinic"
+        },
+        {
+          "text": "ISO 27001 Reference Guide"
+        },
+        {
+          "text": "ISO 27001 Annex A Reference Guide"
+        },
+        {
+          "text": "Blog"
+        },
+        {
+          "text": "ISO 27001 Strategy Session"
+        },
+        {
+          "text": "ISO 27001 Clinic"
+        },
+        {
+          "text": "About\n\n\tContact\n\tMeet The Team\n\tTestimonials\n\tMy Account"
+        },
+        {
+          "text": "Contact"
+        },
+        {
+          "text": "Meet The Team"
+        },
+        {
+          "text": "Testimonials"
+        },
+        {
+          "text": "My Account"
+        },
+        {
+          "text": "ISO 27001 Toolkit"
+        },
+        {
+          "text": "Pricing"
+        },
+        {
+          "text": "ISO 27001 Templates"
+        },
+        {
+          "text": "Resources\n\n\tISO 27001 Reference Guide\n\tISO 27001 Annex A Reference Guide\n\tBlog\n\tISO 27001 Strategy Session\n\tISO 27001 Clinic"
+        },
+        {
+          "text": "ISO 27001 Reference Guide"
+        },
+        {
+          "text": "ISO 27001 Annex A Reference Guide"
+        },
+        {
+          "text": "Blog"
+        },
+        {
+          "text": "ISO 27001 Strategy Session"
+        },
+        {
+          "text": "ISO 27001 Clinic"
+        },
+        {
+          "text": "About\n\n\tContact\n\tMeet The Team\n\tTestimonials\n\tMy Account"
+        },
+        {
+          "text": "Contact"
+        },
+*$

@@ -1,0 +1,259 @@
+$group
+    {
+        practice "7"
+        code "SUM-5"
+        subCode "d) The volume of deployed products that are affected; and"
+        [ policies
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Patch Deployment Volume Assessment Policy"
+                description "This policy mandates the assessment of the volume of deployed products affected
+                    +b by security patches to prioritize and schedule patch deployments effectively.
+                    +b It aligns with IEC 62443-4-1 SUM-5 requirements by ensuring that patch
+                    +b management processes account for the scale of deployment, minimizing
+                    +b operational disruptions. The policy applies to all Breton Spa CNC Machining
+                    +b Centers, Stone Cutting Machines, Polishing Machines, and Composite Material
+                    +b Processing Lines."
+                enforcement "Regular audits using ICS-aware asset management tools (e.g., Siemens
+                    +b Xcelerator) to verify patch deployment coverage. Automated tracking systems
+                    +b will log patch status per device, with non-compliance flagged for remediation."
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Phased Patch Rollout Policy"
+                description "Defines a risk-based approach to deploying patches in phases, starting with
+                    +b non-critical systems (e.g., Surface Finishing Machines) before high-criticality
+                    +b systems (e.g., CNC Machining Centers). Complies with IEC 62443-4-1 SUM-5 by
+                    +b mitigating risks associated with large-scale deployments. Includes vendor
+                    +b coordination for patch validation (e.g., Rockwell Automation’s Patch Impact
+                    +b Assessment)."
+                enforcement "Enforced via change management protocols requiring sign-off for each phase. ICS
+                    +b network segmentation tools (e.g., Tofino Firewalls) isolate test beds for
+                    +b pre-deployment validation."
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Legacy System Patch Mitigation Policy"
+                description "Addresses patches for legacy systems (e.g., older PLCs) that cannot support
+                    +b standard deployment processes. Implements compensating controls (e.g., network
+                    +b segmentation, enhanced monitoring) per IEC 62443-4-1 SUM-5. Includes protocols
+                    +b for vendor collaboration (e.g., Mitsubishi’s ICS Patch Collaboration) to
+                    +b develop custom patches."
+                enforcement "Audits via manual logs and network traffic analysis tools (e.g., Wireshark with
+                    +b ICS plugins). Compliance verified during annual security reviews."
+        [ procedures
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Asset Inventory Update for Patch Management"
+                description "Procedure to maintain an accurate inventory of deployed products affected by
+                    +b patches, ensuring compliance with IEC 62443-4-1 SUM-5. Integrates with Breton
+                    +b Spa’s CNC and stone cutting machine fleets."
+                [ steps
+                    {
+                        step 1
+                        action "Run automated discovery scans using ICS asset tools (e.g., ABB Asset
+                            +b Intelligence)."
+                        tools "ABB Asset Intelligence, Nmap with ICS profiles"
+                        expected_outcome "Updated inventory list with device types, firmware versions, and locations."
+                    {
+                        step 2
+                        action "Tag affected devices based on patch bulletins (e.g., CISA ICS advisories)."
+                        tools "CISA ICS Advisory Database, Siemens Xcelerator"
+                        expected_outcome "Inventory annotated with patch applicability and criticality levels."
+                    {
+                        step 3
+                        action "Export inventory to patch management system (e.g., EcoStruxure Patch Manager)."
+                        tools "EcoStruxure Patch Manager API, CSV exports"
+                        expected_outcome "Patch deployment queues populated with targeted devices."
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Patch Qualification Testing"
+                description "Validates patches in isolated environments before deployment to production
+                    +b systems, per IEC 62443-4-1 SUM-5. Focuses on Breton Spa’s high-criticality
+                    +b applications (e.g., Metalworking CNC)."
+                [ steps
+                    {
+                        step 1
+                        action "Set up test bed with mirrored configurations of production systems (e.g.,
+                            +b S7-1500 PLCs)."
+                        tools "Siemens PLCSIM, Virtualized HMI"
+                        expected_outcome "Test environment replicating production network segments."
+                    {
+                        step 2
+                        action "Apply patches and monitor for system integrity issues (e.g., using CR3 checks)."
+                        tools "Wireshark with PROFINET dissector, SIEM (e.g., Splunk ICS)"
+                        expected_outcome "Validation report confirming patch stability and protocol compatibility."
+                    {
+                        step 3
+                        action "Document results and obtain vendor sign-off (e.g., Rockwell’s Patch Impact
+                            +b Assessment)."
+                        tools "Vendor portals, PDF documentation"
+                        expected_outcome "Approved patch package ready for phased rollout."
+            {
+                code "SUM-5"
+                subCode "d)"
+                title "Geographically Dispersed Patch Deployment"
+                description "Procedure for deploying patches to remote sites (e.g., oil/gas pipeline Breton
+                    +b machines) with limited connectivity, adhering to IEC 62443-4-1 SUM-5 deployment
+                    +b volume requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Pre-load patches onto secure USB drives encrypted with AES-256."
+                        tools "VeraCrypt, Hardware Security Modules (HSMs)"
+                        expected_outcome "Encrypted media containing validated patches."
+                    {
+                        step 2
+                        action "Dispatch field technicians with tamper-evident logs for manual installation."
+                        tools "OT-specific mobile work orders (e.g., GE Digital Field Service)"
+                        expected_outcome "Patches installed on target devices with installation timestamps."
+                    {
+                        step 3
+                        action "Verify deployment via signed checksums uploaded during next connectivity
+                            +b window."
+                        tools "SHA-256 checksum validators, Satellite comms"
+                        expected_outcome "Centralized patch dashboard updated with remote deployment status."
+        last_updated "2023-11-20"
+    {
+        practice "7"
+        code "SUM-5"
+        subCode "e) The availability of an effective mitigation in lieu of the patch."
+        [ policies
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Risk-Based Mitigation Prioritization Policy"
+                description "This policy defines the process for prioritizing mitigations based on the risk
+                    +b posed by vulnerabilities when patches are unavailable. It aligns with IEC
+                    +b 62443-4-1 by ensuring that mitigations are evaluated for effectiveness and
+                    +b operational impact before deployment. The policy mandates the use of CVSS
+                    +b scores and ICS-specific risk assessments to prioritize actions."
+                enforcement "Enforced through quarterly audits by the cybersecurity team, who verify that
+                    +b mitigations are documented, risk-assessed, and approved by the cross-functional
+                    +b security committee. Automated tools like Tenable.sc are used to track
+                    +b vulnerability severity and mitigation status."
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Mitigation Validation and Documentation Policy"
+                description "Requires all mitigations to be tested in a staging environment that mirrors
+                    +b production ICS configurations before deployment. Documentation must include the
+                    +b mitigation's rationale, implementation steps, limitations, and monitoring
+                    +b requirements, per IEC 62443-4-1's documentation standards. Applies to Breton
+                    +b Spa's CNC and stone cutting machines, where unvalidated mitigations could
+                    +b disrupt precision operations."
+                enforcement "Enforced via change management workflows in ServiceNow, requiring sign-off from
+                    +b OT security leads. Random post-deployment reviews validate that mitigations
+                    +b perform as documented, with non-compliance triggering incident response
+                    +b procedures."
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Compensating Controls Maintenance Policy"
+                description "Governs the ongoing monitoring and lifecycle management of mitigations until
+                    +b patches are available. For Breton's SL3 systems (e.g., composite material
+                    +b processing lines), mandates weekly effectiveness checks via SIEM alerts and
+                    +b network traffic analysis. Requires fallback plans for mitigations that degrade
+                    +b over time, ensuring continuous protection per IEC 62443-4-1's availability
+                    +b requirements."
+                enforcement "Enforced through centralized logging (Graylog) and monthly reviews by the ICS
+                    +b security operations center. Automated dashboards track mitigation expiration
+                    +b dates, with escalation to plant managers for overdue patches."
+        [ procedures
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Procedure for Implementing Network Segmentation as Mitigation"
+                description "Detailed steps to isolate vulnerable ICS components when patches cannot be
+                    +b applied, ensuring compliance with IEC 62443-4-1's data flow control
+                    +b requirements (CR5). Specifically designed for Breton's OPC UA and
+                    +b PROFINET-enabled machines where segmentation must maintain process
+                    +b communication while blocking exploit paths."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct traffic analysis using Wireshark Industrial to map legitimate
+                            +b communication paths between PLCs, HMIs, and CNC controllers."
+                        tools "Wireshark Industrial, Network segmentation diagrams"
+                        expected_outcome "Documented baseline of required network flows for operational continuity."
+                    {
+                        step 2
+                        action "Configure firewall rules (Palo Alto OT Security Platform) to block all
+                            +b non-essential traffic to/from vulnerable systems while allowing whitelisted
+                            +b PROFINET/OPC UA flows."
+                        tools "Palo Alto Panorama, Industrial protocol whitelists"
+                        expected_outcome "Firewall policy deployed with 0% disruption to stone cutting machine
+                            +b operations."
+                    {
+                        step 3
+                        action "Validate segmentation effectiveness by simulating attack traffic (Metasploit
+                            +b Industrial) while monitoring process stability via SCADA alarms."
+                        tools "Metasploit Industrial, SCADA HMI alarm logs"
+                        expected_outcome "Attack traffic blocked with no false positives triggering emergency stops in
+                            +b polishing machines."
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Procedure for Firmware Workaround Implementation"
+                description "Standardized process to deploy temporary firmware configurations that mitigate
+                    +b vulnerabilities in Breton's PLCs when vendor patches are delayed. Aligns with
+                    +b IEC 62443-4-1's system integrity requirements (CR3) by including rollback plans
+                    +b and cryptographic verification of modified firmware."
+                [ steps
+                    {
+                        step 1
+                        action "Extract current firmware from target PLC (Siemens S7-1500) using signed vendor
+                            +b tools and create checksum-verified backup."
+                        tools "Siemens TIA Portal, SHA-256 checksum utility"
+                        expected_outcome "Immutable backup stored in secure repository with cryptographic integrity
+                            +b proof."
+                    {
+                        step 2
+                        action "Apply mitigation firmware configuration (e.g., disabling vulnerable web
+                            +b services) using digitally signed update packages."
+                        tools "Siemens S7-PLCSIM Advanced for validation, Hardware security modules (HSM) for
+                            +b signing"
+                        expected_outcome "Vulnerable services disabled while maintaining critical axis control functions
+                            +b in CNC machines."
+                    {
+                        step 3
+                        action "Verify operational parameters via 72-hour monitored run in production,
+                            +b comparing sensor telemetry against historical baselines."
+                        tools "OSIsoft PI System for telemetry analysis, Statistical process control charts"
+                        expected_outcome "All machining tolerances within ±0.01mm specification during mitigation period."
+            {
+                code "SUM-5"
+                subCode "e)"
+                title "Procedure for Compensating Control Sunsetting"
+                description "Structured decommissioning of mitigations upon patch availability, ensuring no
+                    +b residual configuration drift in Breton's systems. Meets IEC 62443-4-1's
+                    +b lifecycle requirements by including formal validation that patches fully
+                    +b address vulnerabilities before mitigation removal."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct side-by-side penetration testing on patched and mitigated systems using
+                            +b ICS-specific tools (e.g., Claroty CTD) to verify patch effectiveness."
+                        tools "Claroty Continuous Threat Detection, CVE-specific exploit scripts"
+                        expected_outcome "Penetration test report showing patched systems resist all exploits that the
+                            +b mitigation addressed."
+                    {
+                        step 2
+                        action "Phase out mitigations during planned maintenance windows, starting with
+                            +b non-critical systems (e.g., decorative stone polishing) before
+                            +b high-availability CNC lines."
+                        tools "SAP Plant Maintenance module, Change advisory board (CAB) approvals"
+                        expected_outcome "Zero unplanned downtime during mitigation removal across all machine types."
+                    {
+                        step 3
+                        action "Update asset management records (IBM Maximo) to reflect patch status and
+                            +b archive mitigation documentation with 7-year retention for audit compliance."
+                        tools "IBM Maximo for EAM, Document control systems"
+                        expected_outcome "Complete audit trail showing patch compliance per IEC 62443-4-1 requirements."
+        last_updated "2023-10-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Bad control character in string literal in JSON at
+            +b position 3827"

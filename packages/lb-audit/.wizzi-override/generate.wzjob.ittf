@@ -1,0 +1,437 @@
+wzjob lb-audit/job
+    $
+        var jobCtx = {
+            ittf_root_folder: path.join(__dirname, 'root'),
+            ittf_models_folder: path.join(__dirname, 'models'),
+            ittf_meta_folder: path.join(__dirname, 'meta'),
+            ittf_docs_folder: path.join(__dirname, 'docs'),
+            dest_folder: path.join(__dirname, '..'),
+            job_model: 'wzCtx'
+        }
+        var maps = [
+            { name: "bsimm_14_xref_samm", path: "maps/bsimm_14_xref_samm.json" },
+            { name: "bsimm_14", path: "maps/bsimm_14.json" },
+            { name: "iec_62443_4_1_xref_samm", path: "maps/iec_62443_4_1_xref_samm.json" },
+            { name: "iec_62443_4_1", path: "maps/iec_62443_4_1.json" },
+            { name: "microsoft_sdl_xref_samm", path: "maps/microsoft_sdl_xref_samm.json" },
+            { name: "microsoft_sdl", path: "maps/microsoft_sdl.json" },
+            { name: "nist_csf_2_0_xref_samm", path: "maps/nist_csf_2_0_xref_samm.json" },
+            { name: "nist_csf_2_0", path: "maps/nist_csf_2_0.json" },
+            { name: "nist_ssdf_xref_samm", path: "maps/nist_ssdf_xref_samm.json" },
+            { name: "nist_ssdf", path: "maps/nist_ssdf.json" },
+            { name: "samm", path: "maps/samm.json" },
+            { name: "samm_streams", path: "maps/samm_streams.json" },
+            { name: "tmc_xref_samm", path: "maps/tmc_xref_samm.json" },
+            { name: "tmc", path: "maps/tmc.json" },
+        ];
+    
+    model ${jobCtx.job_model}
+        schema json
+        src ${jobCtx.ittf_models_folder}/wzctx.json.ittf
+
+    model lbvsa
+        format json
+        src ${jobCtx.ittf_models_folder}/LB Vendor Security Assesment.json
+    
+    model std_62443_4_1
+        schema json
+        src ${jobCtx.ittf_models_folder}/62443-4-1.json.ittf
+
+    model std_62443_4_1_extra
+        schema json
+        src ${jobCtx.ittf_models_folder}/62443-4-1-extra.json.ittf
+
+    model std_62443_4_1_extra_ex
+        schema json
+        src ${jobCtx.dest_folder}/docs/4_1/clist.json.ittf        
+
+    model std_62443_4_1_extra_ex_json
+        format json
+        src ${jobCtx.dest_folder}/docs/4_1/clist_ex.json        
+
+    model std_62443_4_2_grok
+        schema json
+        src ${jobCtx.ittf_models_folder}/62443-4-2-grok.json.ittf
+
+    model 62443_4_2_extra_ex
+        schema json
+        src ${jobCtx.dest_folder}/docs/4_2/clist.json.ittf
+
+    model 62443_4_2_extra_ex_json
+        format json
+        src ${jobCtx.dest_folder}/docs/4_2/clist_ex.json        
+    
+    model std_62443_3_3_json
+        format json
+        src ${jobCtx.dest_folder}/docs/3_3/sources/62443-3-3.json 
+    
+    model nist_800_218
+        schema json
+        src ${jobCtx.ittf_docs_folder}/4_1_manu/sources/nist_800_218.json.ittf
+
+    model nist_800_218_extend
+        schema json
+        src ${jobCtx.ittf_docs_folder}/4_1_manu/sources/nist_800_218_extend.json.ittf
+    
+    model std_62443_4_1_carel_chatgpt
+        format json
+        src ${jobCtx.ittf_models_folder}/62443-4-1-carel-chatgpt.json
+
+    model ht_27001_all
+        format json
+        src ${jobCtx.ittf_models_folder}/ht_27001_all.json
+
+    model x_grok_samm
+        format json
+        src ${jobCtx.ittf_models_folder}/x_grok_samm_2.json
+
+    model nist_sp_800_53
+        format json
+        src ${jobCtx.ittf_models_folder}/nist_sp_800_53.json
+
+    model nist_sp_800_218_table_1
+        format json
+        src ${jobCtx.ittf_models_folder}/nist_sp_800_218_table_1.json
+
+    model owasp_samm_controls
+        schema json
+        src ${jobCtx.ittf_models_folder}/owasp-samm-controls.json.ittf
+
+    model all_opencre
+        format json
+        src ${jobCtx.ittf_models_folder}/all_opencre.json
+
+    model product_supplier_ai_step_1_out
+        schema json
+        src ${jobCtx.ittf_docs_folder}/product_supplier/ai_step_1_out/index.json.ittf
+
+    model std_62443_3_3_ai_step_1_out
+        schema json
+        src ${jobCtx.ittf_docs_folder}/3_3/ai_step_1_out/index.json.ittf
+
+    model ai_4_1_step_2_out
+        schema json
+        src ${jobCtx.ittf_docs_folder}/4_1/ai_step_2_out/index.json.ittf
+
+    model ai_4_1_step_3_out
+        schema json
+        src ${jobCtx.ittf_docs_folder}/4_1/ai_step_3_out/index.json.ittf
+
+    model specific_practices
+        schema json
+        src ${jobCtx.ittf_docs_folder}/specific_practices/sources/sp_items.json.ittf        
+
+    $foreach map in maps
+        model ${map.name}
+            format json
+            src ${jobCtx.ittf_models_folder}/${map.path}
+
+    line ittf-models
+        cwd-folder ${jobCtx.ittf_models_folder}
+        wzjobs(any_json, &jobCtx)
+    
+    line ittf-root
+        cwd-folder ${jobCtx.ittf_root_folder}
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_js, &jobCtx)
+        wzjobs(any_ts, &jobCtx)
+        wzjobs(any_tsx, &jobCtx)
+        wzjobs(any_json, &jobCtx)
+        wzjobs(any_xml, &jobCtx)
+        wzjobs(any_html, &jobCtx)
+        wzjobs(any_css, &jobCtx)
+        wzjobs(any_md, &jobCtx)
+        wzjobs(any_text_no_extension, &jobCtx)
+        wzjobs(.gitignore, &jobCtx)
+    
+    line ittf-meta
+        cwd-folder ${jobCtx.ittf_meta_folder}/maps
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref lbvsa
+                export-name lbvsa
+            model-ref std_62443_4_1
+                export-name std_62443_4_1
+            model-ref std_62443_4_1_extra
+                export-name std_62443_4_1_extra
+            model-ref 62443_4_2_grok
+                export-name 62443_4_2_grok
+            model-ref std_62443_4_1_extra_ex_json
+                export-name std_62443_4_1_extra_ex_json
+            model-ref 62443_4_2_extra_ex_json
+                export-name 62443_4_2_extra_ex_json
+            model-ref std_62443_4_1_carel_chatgpt
+                export-name std_62443_4_1_carel_chatgpt
+            model-ref nist_800_218
+                export-name nist_800_218
+            model-ref nist_800_218_extend
+                export-name nist_800_218_extend 
+            model-ref nist_sp_800_218_table_1
+                export-name nist_sp_800_218_table_1
+            model-ref nist_sp_800_53
+                export-name nist_sp_800_53
+            model-ref ht_27001_all
+                export-name ht_27001_all
+            model-ref x_grok_samm
+                export-name x_grok_samm
+            model-ref owasp_samm_controls
+                export-name owasp_samm_controls
+            model-ref all_opencre
+                export-name all_opencre
+            $foreach map in maps
+                model-ref ${map.name}
+                    export-name ${map.name}
+
+    line ittf-meta-metas
+        cwd-folder ${jobCtx.ittf_meta_folder}/metas
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+
+    line ittf-meta-normative_e_standard
+        cwd-folder ${jobCtx.ittf_meta_folder}/normative_e_standard
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+
+    line ittf-meta-articles
+        cwd-folder ${jobCtx.ittf_meta_folder}/articles
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+
+    line ittf-meta-product-supplier
+        cwd-folder ${jobCtx.ittf_meta_folder}/product_supplier
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref product_supplier_ai_step_1_out
+                export-name product_supplier_ai_step_1_out
+    
+    line ittf-meta-3-3
+        cwd-folder ${jobCtx.ittf_meta_folder}/3_3
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref std_62443_3_3_json
+                export-name std_62443_3_3_json
+            model-ref std_62443_3_3_ai_step_1_out                
+                export-name std_62443_3_3_ai_step_1_out                
+    
+    line ittf-meta-4-1
+        cwd-folder ${jobCtx.ittf_meta_folder}/4_1
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref std_62443_4_1
+                export-name std_62443_4_1
+            model-ref std_62443_4_1_extra
+                export-name std_62443_4_1_extra
+            model-ref std_62443_4_1_extra_ex_json
+                export-name std_62443_4_1_extra_ex_json
+            model-ref ai_4_1_step_2_out
+                export-name ai_4_1_step_2_out
+            model-ref ai_4_1_step_3_out
+                export-name ai_4_1_step_3_out
+
+    line ittf-meta-4-2
+        cwd-folder ${jobCtx.ittf_meta_folder}/4_2
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref std_62443_4_2_grok
+                export-name std_62443_4_2_grok
+
+
+    line ittf-meta-lbvsa
+        cwd-folder ${jobCtx.ittf_meta_folder}/lbvsa
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref lbvsa
+                export-name lbvsa
+
+    line ittf-meta-specific-practices
+        cwd-folder ${jobCtx.ittf_meta_folder}/specific_practices
+        dest-folder ${jobCtx.dest_folder}
+        wzjobs(any_ittf_meta, &jobCtx)
+            model-ref specific_practices
+                export-name specific_practices
+
+    line ittf-docs
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1_manu
+        dest-folder ${jobCtx.dest_folder}/docs/4_1_manu
+        wzjobs(any_html, &jobCtx)
+            model-ref audit_controls
+                export-name audit_controls
+        wzjobs(any_pdf, &jobCtx)
+        wzjobs(any_docx, &jobCtx)
+        wzjobs(any_json, &jobCtx)
+            model-ref std_62443_4_1_extra_ex
+                export-name std_62443_4_1_extra_ex
+            model-ref 62443_4_2_extra_ex
+                export-name 62443_4_2_extra_ex
+            model-ref audit_controls
+                export-name audit_controls
+        wzjobs(any_ai, &jobCtx)
+        
+    line ittf-docs-62443-3-3-sources
+        cwd-folder ${jobCtx.ittf_docs_folder}/3_3/sources
+        dest-folder ${jobCtx.dest_folder}/docs/3_3/sources
+        wzjobs(any_json, &jobCtx)
+
+    line ittf-docs-ai
+        cwd-folder ${jobCtx.ittf_docs_folder}/ai
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/ai-output/clist/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-ai-documents
+        cwd-folder ${jobCtx.ittf_docs_folder}/ai/documents
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/ai-output/documents/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-ai-output
+        cwd-folder ${jobCtx.ittf_docs_folder}/ai-output
+        dest-folder ${jobCtx.dest_folder}/docs/ai-output
+        wzjobs(any_json, &jobCtx)
+
+    line ittf-docs-ai-lab
+        cwd-folder ${jobCtx.ittf_docs_folder}/ai/lab
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/ai-output/t/lab
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-product-supplier-ai-step-1
+        cwd-folder ${jobCtx.ittf_docs_folder}/product_supplier/ai_step_1_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/product_supplier/ai_step_1_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-product-supplier-ai-step-2
+        cwd-folder ${jobCtx.ittf_docs_folder}/product_supplier/ai_step_2_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/product_supplier/ai_step_2_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-3-3-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/3_3/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/3_3/from_meta
+        wzjobs(any_json, &jobCtx)
+
+    line ittf-docs-3-3-ai-step-1
+        cwd-folder ${jobCtx.ittf_docs_folder}/3_3/ai_step_1_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/3_3/ai_step_1_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-1-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/4_1/from_meta
+        wzjobs(any_json, &jobCtx)
+
+    line ittf-docs-4-1-ai-step-2
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1/ai_step_2_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/4_1/ai_step_2_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-1-ai-step-3
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1/ai_step_3_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/4_1/ai_step_3_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-1-ai-step-4
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_1/ai_step_4_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/4_1/ai_step_4_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-4-2-from-meta
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_2/from_meta
+        dest-folder ${jobCtx.dest_folder}/docs/4_2/from_meta
+        wzjobs(any_json, &jobCtx)
+
+    line ittf-docs-4-2-ai-step-1
+        cwd-folder ${jobCtx.ittf_docs_folder}/4_2/ai_step_1_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/4_2/ai_step_1_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-3-3-ai-step-2
+        cwd-folder ${jobCtx.ittf_docs_folder}/3_3/ai_step_2_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/3_3/ai_step_2_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-lbvsa-step-1
+        cwd-folder ${jobCtx.ittf_docs_folder}/lbvsa/ai_step_1_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/lbvsa/ai_step_1_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-lbvsa-step-2
+        cwd-folder ${jobCtx.ittf_docs_folder}/lbvsa/ai_step_2_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/lbvsa/ai_step_2_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-lbvsa-step-3
+        cwd-folder ${jobCtx.ittf_docs_folder}/lbvsa/ai_step_3_in
+        dest-folder ${jobCtx.dest_folder}/.wizzi-override/docs/lbvsa/ai_step_3_out/t
+        wzjobs(any_ai, &jobCtx)
+
+    line ittf-docs-masterdeck
+        cwd-folder ${jobCtx.ittf_docs_folder}/masterdeck
+        dest-folder ${jobCtx.dest_folder}/masterdeck
+        wzjobs(any_text, &jobCtx)
+        wzjobs(any_json, &jobCtx)
+
+    production
+        dest-folder ${jobCtx.dest_folder}
+        $if false
+            line-ref ittf-root
+        $if false
+            line-ref ittf-models
+        $if false
+            line-ref ittf-meta
+        $if false
+            line-ref ittf-meta-metas
+        $if false
+            line-ref ittf-meta-normative_e_standard
+        $if false
+            line-ref ittf-meta-articles
+        $if false
+            line-ref ittf-meta-product-supplier
+        $if false
+            line-ref ittf-meta-3-3
+        $if false
+            line-ref ittf-meta-4-1
+        $if true
+            line-ref ittf-meta-4-2
+        $if false
+            line-ref ittf-meta-lbvsa 
+        $if false
+            line-ref ittf-meta-specific-practices           
+        $if false
+            line-ref ittf-docs
+        $if false
+            line-ref ittf-docs-62443-3-3-sources
+        $if false
+            line-ref ittf-docs-product-supplier-ai-step-1
+        $if false
+            line-ref ittf-docs-product-supplier-ai-step-2
+        $if true
+            line-ref ittf-docs-3-3-from-meta
+        $if false
+            line-ref ittf-docs-3-3-ai-step-1
+        $if false
+            line-ref ittf-docs-3-3-ai-step-2
+        $if true
+            line-ref ittf-docs-4-1-from-meta
+        $if false
+            line-ref ittf-docs-4-1-ai-step-2
+        $if false
+            line-ref ittf-docs-4-1-ai-step-3
+        $if true
+            line-ref ittf-docs-4-2-from-meta
+        $if false
+            line-ref ittf-docs-4-1-ai-step-4
+        $if false
+            line-ref ittf-docs-4-2-ai-step-1
+        $if false
+            line-ref ittf-docs-lbvsa-step-1
+        $if false
+            line-ref ittf-docs-lbvsa-step-2
+        $if false
+            line-ref ittf-docs-lbvsa-step-3
+        $if false
+            line-ref ittf-docs-ai-output
+            line-ref ittf-docs-ai
+        $if false
+            line-ref ittf-docs-ai-documents
+        $if false
+            line-ref ittf-docs-ai-lab
+        $if false
+            line-ref ittf-docs-masterdeck

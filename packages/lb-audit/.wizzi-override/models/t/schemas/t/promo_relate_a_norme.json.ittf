@@ -1,0 +1,117 @@
+$group
+    { promo_relate_a_norme
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        title "Schema per Contenuto Promozionale Logbot"
+        description "Schema JSON per contenuti promozionali di Logbot relativi a normative di cybersecurity, come slide, post LinkedIn o articoli, con focus su conformità, innovazione e semplicità."
+        { properties
+            { slide_promozionale
+                type "object"
+                description "Oggetto principale che contiene il contenuto promozionale per una specifica normativa."
+                { properties
+                    { normativa
+                        type "string"
+                        description "Nome della normativa o standard (es. 'NEC-2023 (NFPA 70)', 'IEC 62443')."
+                        minLength 1
+                    { metadata
+                        type "object"
+                        description "Metadati relativi alla generazione del contenuto."
+                        { properties
+                            { data_generazione
+                                type "string"
+                                format "date-time"
+                                description "Data e ora di generazione del contenuto in formato ISO 8601 (es. '2025-08-15T08:35:00+02:00')."
+                            { lingua
+                                type "string"
+                                [ enum
+                                    "inglese" 
+                                    "italiano" 
+                                description "Lingua del contenuto, limitata a 'inglese' o 'italiano'."
+                            { target
+                                type "string"
+                                description "Destinatari del contenuto (es. 'produttori manifatturieri nordamericani', 'system integrator')."
+                                minLength 1
+                            { formato
+                                type "string"
+                                [ enum
+                                    "slide" 
+                                    "post LinkedIn" 
+                                    "articolo tecnico" 
+                                    "brochure" 
+                                description "Formato del contenuto (es. 'slide', 'post LinkedIn')."
+                            { lunghezza_approssimativa
+                                type "string"
+                                description "Lunghezza approssimativa del contenuto (es. '120 parole')."
+                                minLength 1
+                        [ required
+                            "data_generazione" 
+                            "lingua" 
+                            "target" 
+                            "formato" 
+                            "lunghezza_approssimativa" 
+                    { contenuto
+                        type "object"
+                        description "Contenuto promozionale strutturato."
+                        { properties
+                            { titolo
+                                type "string"
+                                description "Titolo accattivante che collega la normativa ai servizi di Logbot (es. 'Secure Your Industrial Systems with NEC-2023 and Logbot’s IoT Solutions')."
+                                minLength 1
+                            { introduzione
+                                type "string"
+                                description "Breve descrizione della normativa e della sua importanza per i servizi di Logbot."
+                                minLength 1
+                            { benefici
+                                type "array"
+                                description "Elenco di benefici specifici dei servizi Logbot legati alla normativa."
+                                { items
+                                    type "string"
+                                    description "Singolo beneficio (es. 'Achieve NEC-2023 compliance for safe, reliable electrical systems')."
+                                    minLength 1
+                                minItems 3
+                                maxItems 5
+                            { attivita_correlate
+                                type "array"
+                                description "Elenco di attività correlate alla normativa, con codici univoci e descrizioni."
+                                { items
+                                    type "object"
+                                    { properties
+                                        { codice_attivita
+                                            type "string"
+                                            description "Codice univoco dell’attività (es. 'ACT-011')."
+                                            pattern "^ACT-\\d{3}$"
+                                        { nome_attivita
+                                            type "string"
+                                            description "Nome dell’attività (es. 'Master Deck Promozionale')."
+                                            minLength 1
+                                        { descrizione
+                                            type "string"
+                                            description "Descrizione del collegamento tra l’attività e la normativa."
+                                            minLength 1
+                                    [ required
+                                        "codice_attivita" 
+                                        "nome_attivita" 
+                                        "descrizione" 
+                                minItems 1
+                                maxItems 3
+                            { mercato_nordamericano
+                                type "string"
+                                description "Descrizione dell’importanza della normativa per il mercato nordamericano, se rilevante. Può essere vuoto per normative non rilevanti."
+                                minLength 0
+                            { call_to_action
+                                type "string"
+                                description "Invito diretto a contattare Logbot o approfondire, con un link significativo (es. 'Contact Logbot to secure your systems today! Learn more at https://www.nfpa.org.')."
+                                minLength 1
+                        [ required
+                            "titolo" 
+                            "introduzione" 
+                            "benefici" 
+                            "attivita_correlate" 
+                            "mercato_nordamericano" 
+                            "call_to_action" 
+                [ required
+                    "normativa" 
+                    "metadata" 
+                    "contenuto" 
+        [ required
+            "slide_promozionale" 

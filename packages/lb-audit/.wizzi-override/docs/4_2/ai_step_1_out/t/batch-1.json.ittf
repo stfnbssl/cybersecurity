@@ -1,0 +1,305 @@
+$group
+    {
+        id "FSA-CR 1.1"
+        explanation "This requirement mandates the ability for components to identify and
+            +b authenticate human users at all access interfaces. It ensures that access
+            +b control is enforced to support segregation of duties and least privilege
+            +b principles, aligning with security policies."
+        context "In industrial environments, ensuring that only authorized personnel can access
+            +b critical systems is vital. The requirement applies across software
+            +b applications, host, embedded, and network devices, supporting security levels 1
+            +b to 4."
+        [ challenges
+            "Implementing consistent user authentication across diverse interfaces in industrial environments."
+            "Balancing usability with stringent authentication requirements without disrupting operations."
+            "Integrating legacy systems lacking built-in authentication capabilities with modern security systems."
+            "Maintaining up-to-date user credentials and managing access rights dynamically."
+            "Ensuring compliance with evolving security standards and policies."
+        [ best_practices
+            "Deploy multi-factor authentication (MFA) to enhance security, as seen in a CNC machining center using MFA for remote diagnostics."
+            "Regularly review and update access control lists to ensure only necessary personnel have access, exemplified in stone cutting operations."
+            "Utilize centralized authentication services like LDAP or Active Directory for consistent policy enforcement across all devices."
+            "Conduct periodic security training for employees to recognize and prevent unauthorized access attempts."
+            "Implement strong password policies and use password managers to maintain secure credentials."
+        [ key_aspects
+            {
+                id "KA-1"
+                title "Multi-Factor Authentication (MFA)"
+                description "Enhances user verification by requiring multiple credentials. In a composite
+                    +b material processing line, MFA prevents unauthorized access to control systems,
+                    +b ensuring operational integrity and security."
+            {
+                id "KA-2"
+                title "Centralized Authentication Management"
+                description "Facilitates consistent user access policies across systems. This is crucial in
+                    +b metalworking for precision parts, where centralized control reduces the risk of
+                    +b unauthorized changes."
+            {
+                id "KA-3"
+                title "Role-Based Access Control (RBAC)"
+                description "Assigns permissions based on roles, minimizing access to essential functions.
+                    +b In polishing machines, RBAC ensures only qualified personnel can modify process
+                    +b parameters."
+            {
+                id "KA-4"
+                title "Audit and Logging"
+                description "Tracks access attempts and modifications, aiding in incident response. Logging
+                    +b in stone processing machines provides traceability for unauthorized access
+                    +b attempts."
+            {
+                id "KA-5"
+                title "Integration with Legacy Systems"
+                description "Ensures older systems comply with modern authentication standards. In network
+                    +b devices, this integration is vital to maintain a secure environment while
+                    +b upgrading authentication mechanisms."
+        [ related_links
+            {
+                title "IEC 62443-3-3: System Security Requirements and Security Levels"
+                url "https://webstore.iec.ch/publication/70314"
+            {
+                title "NIST SP 800-63: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/"
+            {
+                title "CISA: Industrial Control Systems Cybersecurity"
+                url "https://www.cisa.gov/industrial-control-systems-cybersecurity"
+    {
+        id "FSA-CR 1.1 RE(1)"
+        explanation "This requirement mandates that all components must have the capability to
+            +b uniquely identify and authenticate human users, ensuring that only authorized
+            +b personnel can access the system."
+        context "In industrial environments, where multiple users may interact with control
+            +b systems, it's crucial to have a robust identification and authentication
+            +b mechanism to prevent unauthorized access and ensure accountability."
+        [ challenges
+            "Implementing unique identification in legacy systems that lack modern authentication methods."
+            "Ensuring compatibility with various protocols like OPC UA and PROFINET used in CNC Machining Centers."
+            "Maintaining user authentication data securely in environments with high dust levels and network segmentation."
+            "Balancing ease of use with security to avoid user workarounds in high-precision manufacturing lines."
+            "Handling authentication in systems with intermittent connectivity or remote access requirements."
+        [ best_practices
+            "Utilize multi-factor authentication (MFA) for critical systems to enhance security, such as combining badges and passwords."
+            "Implement role-based access control (RBAC) to ensure users have access only to necessary system functions."
+            "Regularly audit user accounts and permissions to detect and remove outdated or unauthorized access."
+            "Use encryption technologies like TLS for secure transmission of authentication data across networks."
+            "Deploy centralized identity management systems to streamline user authentication across different devices."
+        [ key_aspects
+            {
+                id "KA-1"
+                title "Unique Identification"
+                description "Ensure each user can be distinctly identified within the system, preventing
+                    +b impersonation. Use unique user IDs associated with personal credentials,
+                    +b particularly in systems like Composite Material Processing Lines, where
+                    +b precision and accountability are critical."
+            {
+                id "KA-2"
+                title "Authentication Mechanisms"
+                description "Deploy robust authentication mechanisms, such as biometrics or smart cards, to
+                    +b ensure only verified users gain access. This is vital in environments like
+                    +b Natural Stone Processing, where unauthorized access could lead to significant
+                    +b material waste."
+            {
+                id "KA-3"
+                title "Integration with Existing Protocols"
+                description "Ensure authentication processes are compatible with industrial protocols like
+                    +b EtherNet/IP and Modbus TCP, used in Metalworking applications, to maintain
+                    +b seamless operation across diverse systems."
+        [ related_links
+            {
+                title "IEC 62443-4-2 Standard"
+                url "https://webstore.iec.ch/publication/33645"
+            {
+                title "NIST SP 800-63B: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/sp800-63b.html"
+            {
+                title "CISA: Securing Industrial Control Systems"
+                url "https://www.cisa.gov/securing-industrial-control-systems"
+    {
+        id "FSA-CR 1.1 RE(2)"
+        explanation "This requirement mandates the implementation of multifactor authentication
+            +b (MFA) for all human user access to components, enhancing security by requiring
+            +b multiple forms of verification."
+        context "In environments like CNC machining centers and stone cutting machines, ensuring
+            +b secure access is critical to prevent unauthorized manipulation of sensitive
+            +b industrial processes."
+        [ challenges
+            "Integrating MFA with legacy systems that lack native support."
+            "Balancing usability with security to avoid user frustration."
+            "Ensuring availability and reliability of authentication systems."
+            "Addressing potential resistance from operators unfamiliar with MFA."
+            "Configuring MFA systems to work in high-dust industrial environments."
+        [ best_practices
+            "Use hardware tokens for authentication, minimizing reliance on networked devices. Example: CNC operators use tokens to access control panels."
+            "Implement biometric authentication where feasible, offering ease of use. Example: Fingerprint scanners on polishing machines."
+            "Regularly update MFA software to protect against vulnerabilities. Example: Monthly updates on composite material processing lines."
+            "Conduct user training to familiarize operators with MFA processes. Example: Workshops for CNC machine operators."
+            "Deploy redundant MFA systems to ensure availability during hardware failures. Example: Backup token readers in stone cutting facilities."
+        [ key_aspects
+            {
+                id "KA-1"
+                title "Integration with Existing Systems"
+                description "Ensure MFA solutions integrate seamlessly with existing protocols such as OPC
+                    +b UA and PROFINET. For instance, a CNC machining center might require integration
+                    +b with OPC UA for secure remote diagnostics."
+            {
+                id "KA-2"
+                title "User Experience"
+                description "Design MFA processes to be intuitive for operators, reducing operational
+                    +b friction. In high-precision metalworking, the MFA should not disrupt workflow."
+            {
+                id "KA-3"
+                title "Environmental Suitability"
+                description "Select MFA devices that function reliably in industrial conditions, such as
+                    +b high dust levels. For example, robust fingerprint scanners are ideal for stone
+                    +b processing environments."
+            {
+                id "KA-4"
+                title "Scalability"
+                description "MFA solutions should accommodate growth in users and systems, especially in
+                    +b expanding facilities. For instance, new polishing machines can be added without
+                    +b extensive reconfiguration."
+            {
+                id "KA-5"
+                title "Compliance"
+                description "Ensure MFA implementations meet industry standards such as IEC 62443 for
+                    +b security levels 3 and 4. This is crucial for maintaining certifications
+                    +b required in aerospace composite fabrication."
+        [ related_links
+            {
+                title "IEC 62443-4-2 Standard"
+                url "https://webstore.iec.ch/publication/70298"
+            {
+                title "NIST Special Publication 800-63B: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/sp800-63b.html"
+            {
+                title "CISA Guidelines on Multifactor Authentication"
+                url "https://www.cisa.gov/mfa"
+    {
+        id "FSA-CR 1.2"
+        explanation "This requirement mandates that components must be capable of identifying and
+            +b authenticating themselves to other components, including software applications,
+            +b embedded devices, host devices, and network devices. This ensures secure
+            +b communication and interaction within industrial environments."
+        context "Within industrial control systems, secure identification and authentication are
+            +b critical for preventing unauthorized access. This requirement aligns with IEC
+            +b 62443-3-3 SR1.2 and involves ensuring both machine-to-machine and
+            +b user-to-machine authentication processes."
+        [ challenges
+            "Ensuring compatibility with existing authentication protocols such as OPC UA and PROFINET."
+            "Implementing robust authentication mechanisms in resource-constrained devices."
+            "Maintaining up-to-date authentication credentials amidst frequent firmware updates."
+            "Balancing security needs with operational efficiency to avoid production delays."
+            "Mitigating risks of identity spoofing and unauthorized access in mixed-vendor environments."
+        [ best_practices
+            "Utilize multi-factor authentication (MFA) for user identification, enhancing security beyond password-based systems."
+            "Deploy certificate-based authentication for device-to-device communication to prevent unauthorized access."
+            "Regularly update authentication protocols and credentials to counteract emerging threats."
+            "Incorporate authentication logs to monitor and audit access attempts, enhancing traceability."
+            "Implement role-based access control (RBAC) to ensure users have appropriate access levels based on their roles."
+        [ key_aspects
+            {
+                id "KA-01"
+                title "Device Authentication Mechanisms"
+                description "Implementing secure device authentication mechanisms, such as X.509
+                    +b certificates, to ensure devices within the network can verify each other's
+                    +b identity. For instance, in a CNC machining center, each device must
+                    +b authenticate before data exchange to prevent unauthorized access."
+            {
+                id "KA-02"
+                title "User Identification and Authentication"
+                description "Ensuring user identities are verified through strong authentication methods
+                    +b such as biometrics or smart cards. In a stone cutting machine scenario,
+                    +b operators should authenticate using personal badges to access control systems."
+            {
+                id "KA-03"
+                title "Interoperability with Existing Protocols"
+                description "Ensuring that authentication mechanisms are compatible with existing industrial
+                    +b protocols like OPC UA and PROFINET. This is crucial in composite material
+                    +b processing lines where multiple protocol interactions occur."
+            {
+                id "KA-04"
+                title "Scalability of Authentication Systems"
+                description "Designing authentication systems that can scale with the addition of new
+                    +b devices and users. This is particularly important in environments such as
+                    +b metalworking facilities where new equipment is frequently integrated."
+            {
+                id "KA-05"
+                title "Security vs. Usability Balance"
+                description "Finding the right balance between stringent security measures and operational
+                    +b usability to avoid disruptions. In natural stone processing, overly complex
+                    +b authentication could slow down operations, impacting productivity."
+        [ related_links
+            {
+                title "IEC 62443-3-3: System Security Requirements and Security Levels"
+                url "https://webstore.iec.ch/publication/70305"
+            {
+                title "NIST SP 800-63: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/"
+            {
+                title "CISA: Industrial Control Systems Security"
+                url "https://www.cisa.gov/ics"
+    {
+        id "FSA-CR 1.2 RE(1)"
+        explanation "This requirement mandates that components must be able to uniquely identify and
+            +b authenticate themselves to other components, ensuring secure interactions and
+            +b preventing unauthorized access."
+        context "In industrial environments, especially with interconnected systems, unique
+            +b identification and authentication are critical to maintaining system integrity
+            +b and preventing unauthorized access or data breaches."
+        [ challenges
+            "Ensuring compatibility across diverse protocols like OPC UA and PROFINET."
+            "Maintaining secure authentication methods under high dust and noise conditions."
+            "Adapting authentication methods to different device types, from CNC machines to network devices."
+            "Balancing security with performance, especially in real-time systems."
+            "Preventing spoofing attacks in environments using legacy systems."
+        [ best_practices
+            "Implement multi-factor authentication (MFA) to enhance security, especially in remote access scenarios."
+            "Use strong cryptographic algorithms, such as those defined in Basic256Sha256 for OPC UA."
+            "Regularly update firmware and software to patch vulnerabilities, as seen in the Breton Spa's firmware signing feature."
+            "Segment networks to isolate critical systems, reducing risk from compromised components."
+            "Conduct regular audits and penetration tests to identify and mitigate potential authentication weaknesses."
+        [ key_aspects
+            {
+                id "1"
+                title "Multi-Protocol Compatibility"
+                description "The system must support secure authentication across multiple protocols, such
+                    +b as OPC UA, PROFINET, and EtherNet/IP. This ensures interoperability and
+                    +b security in environments with mixed protocol usage, like Breton Spa's machining
+                    +b centers."
+            {
+                id "2"
+                title "Robust Authentication Mechanisms"
+                description "Implementing robust authentication mechanisms, such as certificate-based
+                    +b authentication, prevents unauthorized access. This is crucial in
+                    +b high-criticality applications like natural stone processing where precision and
+                    +b security are paramount."
+            {
+                id "3"
+                title "Real-Time Authentication Performance"
+                description "Authentication processes must not hinder system performance, especially in
+                    +b real-time environments like CNC machining. Techniques like hardware
+                    +b acceleration for cryptographic operations can help balance security and
+                    +b performance."
+            {
+                id "4"
+                title "Legacy System Integration"
+                description "Ensuring that authentication mechanisms are compatible with legacy systems is
+                    +b critical in industrial settings where older devices are still in operation.
+                    +b This can involve implementing gateway devices that bridge modern security
+                    +b protocols with legacy systems."
+            {
+                id "5"
+                title "Threat Monitoring and Response"
+                description "Continuous monitoring for authentication anomalies, such as repeated failed
+                    +b login attempts, allows for timely response and mitigation. This is aligned with
+                    +b the incident logging feature in Breton Spa's systems, ensuring traceability and
+                    +b response to unauthorized access."
+        [ related_links
+            {
+                title "IEC 62443-4-2 Standard"
+                url "https://webstore.iec.ch/publication/33772"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "CISA ICS Security"
+                url "https://www.cisa.gov/ics"

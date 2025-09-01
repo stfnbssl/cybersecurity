@@ -1,0 +1,63 @@
+{
+    "type": "json_schema",
+    "json_schema": {
+        "name": "checklist_explanation",
+        "schema": {
+            "type": "object",
+            "properties": {
+                "detailed_explanation": {
+                    "type": "string"
+                },
+                "glossary": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "term": {
+                                "type": "string"
+                            },
+                            "definition": {
+                                "type": "string"
+                            },
+                            "link": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "term",
+                            "definition",
+                            "link"
+                        ],
+                        "additionalProperties": false
+                    }
+                },
+                "related_links": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "title": {
+                                "type": "string"
+                            },
+                            "url": {
+                                "type": "string"
+                            }
+                        },
+                        "required": [
+                            "title",
+                            "url"
+                        ],
+                        "additionalProperties": false
+                    }
+                }
+            },
+            "required": [
+                "detailed_explanation",
+                "glossary",
+                "related_links"
+            ],
+            "additionalProperties": false
+        },
+        "strict": true
+    }
+}

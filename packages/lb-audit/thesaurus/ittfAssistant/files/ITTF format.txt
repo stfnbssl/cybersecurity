@@ -1,0 +1,61 @@
+ITTF format 
+
+A Brief Introduction
+
+We present a simple text-based formatt called ITTF, designed to represent complex information nodes 
+by using indentation to express hierarchical relationships. 
+
+Here are the basic rules:
+
+1) Keyword and Value
+Each line begins with a keyword that indicates the meaning of the data, followed by its value, separated by a space or a tab. For example:
+
+```ittf
+address Via E.torricelli
+```
+
+2) Hierarchy Through Indentation
+Any lines that are indented relative to the line above are considered its “child” nodes.
+
+3) Complex Entities
+Every node describing a complex entity has exactly one parent node that provides the entity’s name and, optionally, its ID. 
+The child nodes under it contain the other attributes and their values.
+
+4) Child Nodes
+A child node can represent either a single attribute or another complex entity.
+
+Below is an example of how to represent a product order to a supplier using the ITTF format
+    
+```ittf
+supplier
+    name ABC S.p.A.
+    address Via Roma 10
+    town Milano
+    CAP 20100
+    country Italia
+    order
+        number 12345
+        data 2023-10-05
+        product
+            code P001
+            description Laptop
+            quantity 10
+            price 1500.00
+        product
+            code P002
+            description Mouse
+            quantity 50
+            price 40.00
+        total 15200.00
+```
+
+We guess that between supplier and order there is a one-to-many relationship and the same is between order and product.
+But an ITTF document do not express relations and neither any schema information.
+It will be the Wizzi Schema that will be applied to the document that will express the meaning of node names
+indicating entities, attributes and relations.
+
+The Wizzi schema is described in the file `Wizzi schema.txt`
+
+Wizzi schemas are applied to ITTF document through the name of the file that stores it:
+- a file `profile.html.ittf` has a wizzi schema named `html`.
+All ITTF document have extension `*.ittf`, the file name segment before the extension is the name of the wizzi schema.

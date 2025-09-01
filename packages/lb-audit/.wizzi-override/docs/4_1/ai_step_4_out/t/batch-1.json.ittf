@@ -1,0 +1,353 @@
+$group
+    {
+        practice "1"
+        code "SM-1"
+        subCode "a) configuration management with change controls and audit logging;"
+        [ policies
+            {
+                code "SM-1"
+                subCode "a"
+                title "Automated Change Detection Policy"
+                description "This policy mandates the use of automated tools to detect and log changes to
+                    +b ICS configurations in real-time, ensuring compliance with IEC 62443-4-1
+                    +b requirements for configuration management. It applies to all Breton Spa CNC
+                    +b Machining Centers and Stone Cutting Machines, leveraging protocols like OPC UA
+                    +b and PROFINET with security features enabled."
+                enforcement "Regular audits using SIEM tools to verify that all changes are logged and
+                    +b alerts are generated for unauthorized modifications. Non-compliance triggers a
+                    +b security review."
+            {
+                code "SM-1"
+                subCode "a"
+                title "Role-Based Access Control (RBAC) for Configuration Changes"
+                description "This policy enforces RBAC to restrict configuration changes to authorized
+                    +b personnel only, aligning with IEC 62443-4-1's emphasis on controlled access. It
+                    +b covers all PLC programming and firmware updates across Breton Spa's product
+                    +b lines, including Polishing Machines and Composite Material Processing Lines."
+                enforcement "Access logs are reviewed quarterly, and unauthorized access attempts are
+                    +b investigated. Violations result in access revocation and disciplinary action."
+            {
+                code "SM-1"
+                subCode "a"
+                title "Centralized Audit Log Repository Policy"
+                description "This policy requires the storage of all audit logs in a centralized,
+                    +b tamper-proof repository with WORM (Write-Once-Read-Many) capabilities, as per
+                    +b IEC 62443-4-1's audit logging requirements. It applies to all ICS components in
+                    +b Breton Spa's operational environment, ensuring traceability for forensic
+                    +b analysis."
+                enforcement "Log integrity checks are performed monthly using cryptographic hashing. Missing
+                    +b or altered logs trigger an immediate security incident response."
+        [ procedures
+            {
+                code "SM-1"
+                subCode "a"
+                title "Change Request and Approval Procedure"
+                description "This procedure outlines the steps for requesting, approving, and implementing
+                    +b configuration changes in Breton Spa's ICS environments, ensuring compliance
+                    +b with IEC 62443-4-1's change control requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Submit a change request via the centralized change management system, detailing
+                            +b the nature of the change, affected components, and justification."
+                        tools "Change management software (e.g., ServiceNow, JIRA)"
+                        expected_outcome "A documented change request with all required fields completed."
+                    {
+                        step 2
+                        action "Review the change request by the security team to assess potential risks and
+                            +b impacts, referencing IEC 62443-4-1 guidelines."
+                        tools "Risk assessment tools (e.g., NIST SP 800-30, STRIDE)"
+                        expected_outcome "A risk assessment report and approval/rejection decision."
+                    {
+                        step 3
+                        action "Implement the approved change during a scheduled maintenance window, with all
+                            +b actions logged in the audit system."
+                        tools "Configuration management tools (e.g., Ansible, Puppet)"
+                        expected_outcome "A successfully implemented change with a complete audit trail."
+            {
+                code "SM-1"
+                subCode "a"
+                title "Configuration Baseline Audit Procedure"
+                description "This procedure defines the process for auditing ICS configurations against
+                    +b established baselines, ensuring alignment with IEC 62443-4-1's configuration
+                    +b management standards."
+                [ steps
+                    {
+                        step 1
+                        action "Retrieve the current configuration of the target ICS component (e.g., PLC, HMI)
+                            +b using secure protocols."
+                        tools "Configuration extraction tools (e.g., Rockwell Automation's Studio 5000,
+                            +b Siemens TIA Portal)"
+                        expected_outcome "A snapshot of the current configuration settings."
+                    {
+                        step 2
+                        action "Compare the current configuration against the approved baseline using automated
+                            +b comparison tools."
+                        tools "File integrity monitoring (FIM) tools (e.g., Tripwire, OSSEC)"
+                        expected_outcome "A report highlighting discrepancies between current and baseline
+                            +b configurations."
+                    {
+                        step 3
+                        action "Document all discrepancies and initiate corrective actions if unauthorized
+                            +b changes are detected."
+                        tools "Incident management systems (e.g., IBM QRadar, Splunk)"
+                        expected_outcome "A resolved incident report with restored baseline configuration."
+            {
+                code "SM-1"
+                subCode "a"
+                title "Vendor Patch Integration Procedure"
+                description "This procedure ensures that third-party vendor patches are integrated into
+                    +b Breton Spa's ICS environments without compromising security, in compliance with
+                    +b IEC 62443-4-1's vendor change coordination requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Receive and verify the vendor patch using cryptographic signatures to ensure
+                            +b authenticity."
+                        tools "Digital signature verification tools (e.g., GnuPG, OpenSSL)"
+                        expected_outcome "A verified vendor patch with valid cryptographic signatures."
+                    {
+                        step 2
+                        action "Test the patch in an isolated environment to assess its impact on system
+                            +b functionality and security."
+                        tools "Sandbox environments (e.g., VMware, Docker)"
+                        expected_outcome "A test report detailing the patch's performance and any identified issues."
+                    {
+                        step 3
+                        action "Deploy the patch to production systems following the change request and
+                            +b approval procedure, with all steps logged."
+                        tools "Patch management tools (e.g., WSUS, SCCM)"
+                        expected_outcome "A successfully deployed patch with a complete audit trail."
+        last_updated "2023-10-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "b) product description and requirements definition with requirements
+            +b traceability;"
+        [ policies
+            {
+                code "SM-1"
+                subCode "b)"
+                title "Requirements Traceability Policy"
+                description "This policy mandates the use of a Requirements Traceability Matrix (RTM) to
+                    +b ensure all security requirements are linked to product features and validated
+                    +b throughout the development lifecycle. The RTM must align with IEC 62443-4-1 and
+                    +b be version-controlled to track changes. Applicable to all Breton Spa CNC and
+                    +b stone cutting machines, this policy ensures compliance with SL 2 and SL 3
+                    +b security levels."
+                enforcement "Automated audits via Jenkins pipelines to validate RTM completeness; quarterly
+                    +b manual reviews by the security team."
+            {
+                code "SM-1"
+                subCode "b)"
+                title "Secure Documentation Policy"
+                description "All product descriptions and requirements must be stored in a
+                    +b version-controlled repository (e.g., GitLab) with access restricted to
+                    +b authorized personnel. Documentation must include threat-model alignment (e.g.,
+                    +b MITRE ATT&CK ICS) and cryptographic signatures for firmware updates. This
+                    +b policy supports IEC 62443-4-1 CR3 (System Integrity) and CR6 (Timely Response
+                    +b to Events)."
+                enforcement "Git commit hooks to enforce documentation standards; annual access reviews and
+                    +b audit logs."
+            {
+                code "SM-1"
+                subCode "b)"
+                title "Dynamic Requirements Update Policy"
+                description "Requires bi-weekly reviews of security requirements to incorporate new threats
+                    +b (e.g., ransomware targeting OPC UA) and regulatory changes. Changes must be
+                    +b documented in the RTM and approved by the CISO. Applies to Breton Spa’s
+                    +b high-criticality applications (e.g., Natural Stone Processing)."
+                enforcement "Change management workflows in JIRA; automated alerts for untraced
+                    +b requirements."
+        [ procedures
+            {
+                code "SM-1"
+                subCode "b)"
+                title "RTM Creation and Maintenance"
+                description "Procedure to create and update a Requirements Traceability Matrix for Breton
+                    +b Spa’s CNC Machining Centers, ensuring compliance with IEC 62443-4-1 KA1
+                    +b (Requirements Traceability Matrix)."
+                [ steps
+                    {
+                        step 1
+                        action "Extract security requirements from product descriptions and map to IEC
+                            +b 62443-4-1 controls (e.g., CR1, CR3)."
+                        tools "IBM Rational DOORS or Siemens Polarion"
+                        expected_outcome "Initial RTM draft with 100% coverage of security requirements."
+                    {
+                        step 2
+                        action "Link requirements to design artifacts (e.g., PLC code, HMI interfaces) and test
+                            +b cases in the CI/CD pipeline."
+                        tools "Jenkins with ICS plugins, GitHub Actions"
+                        expected_outcome "Automated validation of requirement coverage during builds."
+                    {
+                        step 3
+                        action "Conduct bi-weekly audits to verify RTM accuracy against current threats (e.g.,
+                            +b MITRE ATT&CK ICS T0836)."
+                        tools "Custom Python scripts, Rockwell Automation’s CIP Security Framework"
+                        expected_outcome "Zero untraced requirements in audit reports."
+            {
+                code "SM-1"
+                subCode "b)"
+                title "Legacy System Documentation Retrofit"
+                description "Procedure to retroactively document requirements for Breton Spa’s legacy
+                    +b polishing machines lacking formal traceability, per IEC 62443-4-1 KA2
+                    +b (Version-Controlled Requirements)."
+                [ steps
+                    {
+                        step 1
+                        action "Reverse-engineer functional requirements from operational manuals and PLC code."
+                        tools "Siemens STEP 7, Wireshark for protocol analysis"
+                        expected_outcome "Baseline requirements document for legacy systems."
+                    {
+                        step 2
+                        action "Isolate legacy systems in a dedicated network zone with strict access controls
+                            +b (per IEC 62443-3-3)."
+                        tools "Cisco Industrial Network Director, VLAN configurations"
+                        expected_outcome "Reduced attack surface for undocumented systems."
+                    {
+                        step 3
+                        action "Upload retrofitted documentation to GitLab with cryptographic signatures."
+                        tools "GitLab ICS repository, GPG signing"
+                        expected_outcome "Version-controlled legacy requirements traceable to SL 1."
+            {
+                code "SM-1"
+                subCode "b)"
+                title "Threat-Model-Aligned Requirements Update"
+                description "Procedure to update security requirements for Breton Spa’s composite material
+                    +b lines based on MITRE ATT&CK ICS tactics, per IEC 62443-4-1 KA4 (Threat-Model
+                    +b Alignment)."
+                [ steps
+                    {
+                        step 1
+                        action "Map existing requirements to MITRE ATT&CK ICS tactics (e.g., T0801 for OPC UA
+                            +b exploitation)."
+                        tools "MITRE ATT&CK Navigator, Yokogawa’s Threat-Based Requirements Template"
+                        expected_outcome "Gap analysis report identifying uncovered attack vectors."
+                    {
+                        step 2
+                        action "Revise requirements to address gaps (e.g., mandate Basic256Sha256 for all OPC
+                            +b UA communications)."
+                        tools "Microsoft Threat Modeling Tool, Siemens Polarion"
+                        expected_outcome "Updated RTM with 100% threat coverage."
+                    {
+                        step 3
+                        action "Validate updated requirements via penetration testing (e.g., PROFINET PN
+                            +b Security tests)."
+                        tools "Tenable.ot, Wurldtech Achilles"
+                        expected_outcome "Penetration test report confirming mitigation of identified threats."
+        last_updated "2023-11-15"
+    {
+        practice "1"
+        code "SM-1"
+        subCode "d) repeatable testing verification and validation process;"
+        [ policies
+            {
+                code "SM-1"
+                subCode "d"
+                title "Automated Security Testing Policy"
+                description "Mandates the use of automated security testing tools within the CI/CD pipeline
+                    +b for all firmware and software updates. Ensures consistent application of
+                    +b security tests across development cycles, aligning with IEC 62443-4-1
+                    +b requirements for repeatable validation processes. Includes protocol-specific
+                    +b fuzzing for supported industrial protocols (OPC UA, PROFINET, etc.)."
+                enforcement "Enforced via Git commit hooks requiring successful security test results.
+                    +b Quarterly audits by the ICS Security Team verify test coverage and tool
+                    +b configurations."
+            {
+                code "SM-1"
+                subCode "d"
+                title "Test Environment Replication Policy"
+                description "Requires hardware-in-the-loop (HIL) testbeds that replicate production network
+                    +b segmentation and device configurations for all security validation. Addresses
+                    +b IEC 62443-4-1 KA3 (Environment Replication) by ensuring test validity for
+                    +b multi-axis CNC controllers and stone cutting machine PLCs."
+                enforcement "Enforced through asset management system checks before test execution. Annual
+                    +b topology reviews compare production vs. test environments."
+            {
+                code "SM-1"
+                subCode "d"
+                title "Threat-Adaptive Test Case Policy"
+                description "Mandates quarterly updates to test cases based on ICS-CERT advisories and MITRE
+                    +b ATT&CK for ICS. Covers emerging threats to Breton's supported protocols (e.g.,
+                    +b Modbus TCP TLS downgrade attacks). Implements IEC 62443-4-1 KA2 (Threat-Based
+                    +b Validation) through scenario-based testing."
+                enforcement "Enforced via version-controlled test scripts in Git. Security Operations Center
+                    +b monitors for unaddressed CVEs in test coverage."
+        [ procedures
+            {
+                code "SM-1"
+                subCode "d"
+                title "Firmware Security Validation Procedure"
+                description "Standardized process for verifying signed firmware updates on Breton CNC
+                    +b controllers against IEC 62443-4-1 CR3 (System Integrity) requirements. Includes
+                    +b protocol-specific checks for OPC UA and PROFINET security features."
+                [ steps
+                    {
+                        step 1
+                        action "Verify digital signature using manufacturer's public key"
+                        tools "OpenSSL CLI, Hardware Security Module (HSM)"
+                        expected_outcome "Firmware signature matches Breton's certificate with valid chain of trust"
+                    {
+                        step 2
+                        action "Execute protocol conformance tests for all enabled industrial protocols"
+                        tools "Wireshark with ICS dissectors, PROFINET test suite"
+                        expected_outcome "All active protocols enforce encryption (Basic256Sha256 for OPC UA, PN Security
+                            +b for PROFINET)"
+                    {
+                        step 3
+                        action "Validate runtime integrity through checksum verification"
+                        tools "PLC memory validation tool, CRC32 calculator"
+                        expected_outcome "Runtime memory checksums match signed firmware manifest values"
+            {
+                code "SM-1"
+                subCode "d"
+                title "ICS Network Segmentation Test Procedure"
+                description "Validates implementation of network segmentation controls per IEC 62443-4-1 CR5
+                    +b (Restricted Data Flow) for Breton's polishing machines and composite material
+                    +b lines."
+                [ steps
+                    {
+                        step 1
+                        action "Verify zone boundary firewall rules using predefined test packets"
+                        tools "Industrial protocol fuzzer, Network tap"
+                        expected_outcome "Unauthorized cross-zone communication attempts are blocked (e.g., MQTT traffic
+                            +b between Cell/Area zones)"
+                    {
+                        step 2
+                        action "Test failover behavior during simulated network segmentation events"
+                        tools "Network emulator (GNS3), PLC simulator"
+                        expected_outcome "Critical control functions maintain operation within safety tolerances during
+                            +b segmentation"
+                    {
+                        step 3
+                        action "Validate logging of segmentation violations in central SIEM"
+                        tools "SIEM query interface, Log collector"
+                        expected_outcome "All test violations appear in SIEM within 5 seconds with correct zone
+                            +b identifiers"
+            {
+                code "SM-1"
+                subCode "d"
+                title "Secure Remote Access Validation Procedure"
+                description "Tests implementation of encrypted remote access channels for maintenance
+                    +b operations, per IEC 62443-4-1 CR4 (Data Confidentiality) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Verify TLS 1.2+ enforcement on all remote access endpoints"
+                        tools "Nmap with NSE scripts, SSL/TLS tester"
+                        expected_outcome "No legacy protocols (SSLv3, TLS 1.0) are negotiable on OPC UA and EtherNet/IP
+                            +b interfaces"
+                    {
+                        step 2
+                        action "Test certificate-based authentication for VPN connections"
+                        tools "OpenVPN test client, Certificate Authority logs"
+                        expected_outcome "Only Breton-issued client certificates with valid OCSP status establish
+                            +b connections"
+                    {
+                        step 3
+                        action "Validate session timeout and inactivity disconnect"
+                        tools "Network traffic generator, Session timer"
+                        expected_outcome "All remote sessions terminate after 15 minutes of inactivity per security
+                            +b policy"
+        last_updated "2023-10-15"

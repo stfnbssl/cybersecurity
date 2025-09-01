@@ -1,0 +1,39 @@
+$group
+    { x_4_1_process_ai_step_2
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        description "JSON schema for IEC 62443-4-1 Processes - Base plus ia extensions explanation, context, challenges, ecc.."
+        { properties
+            { practice
+                type "string"
+            { code
+                type "string"
+            { subCode
+                type "string"
+            { explanation
+                type "string"
+                description "Explanation of the requirement"
+                example "..."
+            { context
+                type "string"
+                description "Context of the requirement"
+                example "..."
+            { challenges
+                type "array"
+                description "Challenges of the requirement"
+                { items
+                    type "string"
+                    example "..."
+            best_practices( process )
+            key_aspects( process )
+            note_su_json_risultante()            
+        [ required
+            "practice" 
+            "code" 
+            "subCode" 
+            "explanation" 
+            "context" 
+            "challenges" 
+            "best_practices" 
+            "key_aspects" 
+        additionalProperties false

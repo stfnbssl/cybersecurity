@@ -1,0 +1,29 @@
+$group
+    { note_su_json_risultante
+        type "object"
+        description "Notes on the resulting JSON structure and implementation details"
+        { properties
+            { description
+                type "string"
+                description "General description of the notes section"
+                example "Notes on the resulting JSON structure and implementation details"
+            { notes
+                type "array"
+                description "List of specific notes on the JSON and implementations"
+                { items
+                    type "object"
+                    { properties
+                        { note_id
+                            type "string"
+                            description "Unique identifier for the note"
+                            example "N1"
+                        { description
+                            type "string"
+                            description "Detailed description of the note"
+                            example "The implementations were tailored to Breton Spa’s machine types..."
+                    [ required
+                        "note_id" 
+                        "description" 
+        [ required
+            "description" 
+            "notes"

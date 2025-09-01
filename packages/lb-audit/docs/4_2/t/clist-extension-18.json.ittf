@@ -1,0 +1,225 @@
+$group
+    {
+        id "FSA-SAR 3.2"
+        check_description "The application product supplier shall qualify and document which protection
+            +b from malicious code mechanisms are compatible with the application and note any
+            +b special configuration requirements."
+        requirement_id "IEC 62443-4-2: SAR 3.2"
+        title "Protection from Malicious Code"
+        description "This requirement focuses on implementing measures to protect industrial
+            +b automation and control systems (IACS) from the introduction and effects of
+            +b malicious code. The aim is to ensure the integrity and availability of the
+            +b system by preventing, detecting, and responding to malware threats."
+        [ key_aspects
+            {
+                aspect "Preventive Measures"
+                details "Implement mechanisms such as antivirus software, application whitelisting, and
+                    +b secure coding practices to prevent the introduction of malicious code."
+            {
+                aspect "Detection Mechanisms"
+                details "Deploy detection tools that can identify the presence of malicious code, like
+                    +b intrusion detection systems (IDS) and continuous monitoring solutions."
+            {
+                aspect "Response and Recovery"
+                details "Establish procedures to respond to detected malicious code, including
+                    +b quarantine, removal, and recovery to a known safe state."
+            {
+                aspect "Regular Updates"
+                details "Ensure regular updates of detection tools and preventive mechanisms to protect
+                    +b against the latest threats."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.2 - Protection from Malware"
+                description "This section of ISO/IEC 27001 provides guidelines for the protection of systems
+                    +b from malware, emphasizing the need for controls to detect and prevent such
+                    +b threats."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-3 - Malicious Code Protection"
+                description "This standard outlines requirements for implementing malicious code protection
+                    +b measures, including the use of antivirus and anti-spyware tools."
+            {
+                standard "NERC CIP"
+                reference "CIP-007-6 R3 - Malicious Code Prevention"
+                description "This requirement mandates procedures and controls to protect against malicious
+                    +b code, focusing on the context of critical infrastructure protection."
+    {
+        id "FSA-EDR 3.2"
+        check_description "The embedded device shall provide the capability to protect from installation
+            +b and execution of unauthorized software."
+        requirement_id "EDR 3.2"
+        title "Protection from Malicious Code"
+        description "This requirement ensures that components are protected against malicious code
+            +b that could compromise their integrity, confidentiality, or availability. The
+            +b requirement encompasses mechanisms and practices to detect, prevent, and
+            +b respond to the presence and execution of such code."
+        [ key_aspects
+            {
+                aspect "Detection"
+                details "Mechanisms should be in place to identify malicious code. This can include
+                    +b signature-based detection, anomaly detection, and behavior analysis."
+            {
+                aspect "Prevention"
+                details "Implement measures to prevent the execution of malicious code. This includes
+                    +b whitelisting, sandboxing, and enforcing strict access controls."
+            {
+                aspect "Response"
+                details "Establish procedures for responding to detected malicious code, including
+                    +b isolation, removal, and recovery processes."
+            {
+                aspect "Regular Updates"
+                details "Ensure that detection and prevention tools are regularly updated to address new
+                    +b threats and vulnerabilities."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7: Software, Firmware, and Information Integrity"
+                description "This control focuses on employing integrity verification tools to detect
+                    +b unauthorized changes to software, firmware, and information."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.2: Protection from Malware"
+                description "This section of ISO/IEC 27001 outlines the need for controls to detect and
+                    +b prevent malware, including the implementation of appropriate user awareness and
+                    +b training."
+            {
+                standard "CIS Controls"
+                reference "Control 8: Malware Defenses"
+                description "This control emphasizes the implementation of automated tools to continuously
+                    +b monitor workstations, servers, and mobile devices for malware."
+    {
+        id "FSA-HDR 3.2"
+        check_description "There shall be mechanisms on host devices that are qualified by the IACS
+            +b product supplier to provide protection from malicious code. The IACS product
+            +b supplier shall document any special configuration requirements related to
+            +b protection from malicious code."
+        requirement_id "IEC 62443-4-2: HDR 3.2"
+        title "Protection from Malicious Code"
+        description "This requirement mandates cybersecurity capabilities in industrial automation
+            +b and control systems (IACS) components to prevent, detect, and respond to
+            +b malicious code. It ensures that components are robust against threats like
+            +b viruses, worms, and other forms of malware that could compromise the system's
+            +b integrity, availability, and confidentiality."
+        { key_aspects
+            prevention_mechanisms "Implementing robust antivirus and anti-malware solutions to prevent the
+                +b introduction of malicious code."
+            detection_mechanisms "Establishing real-time monitoring and detection systems to identify malicious
+                +b activities promptly."
+            response_capabilities "Developing procedures to effectively respond to detected malicious code,
+                +b including containment, eradication, and recovery measures."
+            "update and patch management" "Ensuring that all software components are up-to-date with the latest security
+                +b patches to mitigate vulnerabilities."
+            "user awareness and training" "Educating users on safe practices to minimize the risk of introducing malicious
+                +b code through human error."
+        { related_standards
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                reference "Annex A.12.2 - Protection from Malware"
+                description "This section outlines controls to protect against malware, emphasizing
+                    +b preventive measures, user education, and the use of detection and recovery
+                    +b tools."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Federal Information Systems and Organizations"
+                reference "SI-3 - Malicious Code Protection"
+                description "This control focuses on implementing measures to detect and prevent malicious
+                    +b code at various entry points in an information system."
+            { "ISA/IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                reference "SR 7.1 - Protection from Malware"
+                description "This requirement provides guidelines for implementing protection mechanisms
+                    +b against malware at the system level, complementing component-level
+                    +b requirements."
+    {
+        id "FSA-HDR 3.2 RE(1)"
+        check_description "The host device shall automatically report the software and file versions of
+            +b protection from malicious code in use (as part of overall logging function)."
+        requirement_id "IEC 62443-4-2: HDR 3.2 RE(1)"
+        title "Report Version of Code Protection"
+        description "This requirement focuses on the ability of a component to report the version of
+            +b its code protection mechanisms. Code protection mechanisms are essential to
+            +b ensure that the software and firmware running on a component are safeguarded
+            +b against unauthorized access, modification, or tampering. Reporting the version
+            +b of these mechanisms is crucial for auditing, compliance, and maintaining the
+            +b integrity of the component's security posture."
+        [ key_aspects
+            {
+                aspect "Code Protection Mechanisms"
+                details "These are techniques and processes implemented to safeguard code from
+                    +b unauthorized access or tampering, such as encryption, access controls, and
+                    +b integrity checks."
+            {
+                aspect "Version Reporting"
+                details "The component must be able to disclose the version information of its code
+                    +b protection mechanisms, enabling stakeholders to verify that the latest and most
+                    +b secure versions are in use."
+            {
+                aspect "Auditing and Compliance"
+                details "By reporting the version of code protection, components facilitate auditing
+                    +b processes and compliance checks with cybersecurity standards, ensuring that
+                    +b vulnerabilities are minimized."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.5.1 - Installation of software on operational systems"
+                details "This control emphasizes the importance of controlling software installations,
+                    +b which includes monitoring and reporting the versions of software and protection
+                    +b mechanisms."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                details "This control stresses the need for integrity checks and protections for
+                    +b software and firmware, aligning with the necessity of version reporting for
+                    +b protection mechanisms."
+            {
+                standard "IEC 62351"
+                reference "Part 8: Role-Based Access Control"
+                details "Focuses on security for power system management, which includes mechanisms for
+                    +b safeguarding and reporting control software, relevant to code protection
+                    +b version reporting."
+    {
+        id "FSA-NDR 3.2"
+        check_description "The network device shall provide for protection from malicious code."
+        requirement_id "IEC 62443-4-2:NDR 3.2"
+        title "Protection from Malicious Code"
+        description "This requirement mandates that industrial control system components must be
+            +b safeguarded against the introduction and execution of unauthorized or malicious
+            +b code. This includes ensuring that mechanisms are in place to detect, prevent,
+            +b and respond to potential threats posed by malicious software."
+        { key_aspects
+            detection "Implement mechanisms to detect the presence of malicious code within the
+                +b system. This may include the use of antivirus software, intrusion detection
+                +b systems (IDS), and regular system scans."
+            prevention "Establish controls to prevent the introduction of malicious code, such as
+                +b restricting software installation permissions, using code signing, and
+                +b employing whitelisting techniques."
+            response "Develop and implement procedures to effectively respond to incidents involving
+                +b malicious code. This includes isolating affected systems, performing forensic
+                +b analysis, and maintaining an incident response plan."
+            "updating and patching" "Ensure that systems are regularly updated and patched to fix vulnerabilities
+                +b that could be exploited by malicious code."
+            "user awareness" "Conduct regular training and awareness programs for users to recognize and
+                +b avoid potential malicious code threats."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001"
+                relevance "Provides a framework for establishing, implementing, maintaining, and
+                    +b continually improving an information security management system (ISMS) which
+                    +b includes managing risks related to malicious code."
+            {
+                standard_id "NIST SP 800-53 Rev. 5"
+                relevance "Offers guidelines on security and privacy controls for federal information
+                    +b systems and organizations, including controls for preventing and responding to
+                    +b malicious code."
+            {
+                standard_id "IEC 62443-3-3"
+                relevance "Details system security requirements and security levels, including
+                    +b requirements for protection against malware at an organizational level."
+            {
+                standard_id "CIS Controls v8"
+                relevance "Provides best practices for securing systems and data against cyber threats,
+                    +b including specific controls aimed at managing malicious code risks."
+            {
+                standard_id "ISO/IEC 27002"
+                relevance "Focuses on code of practice for information security controls, including
+                    +b guidelines for protecting against malicious software."

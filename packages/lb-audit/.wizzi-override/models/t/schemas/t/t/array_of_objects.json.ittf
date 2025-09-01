@@ -1,0 +1,12 @@
+$group
+    $params name, description|@@null
+    { ${name}
+        type "array"
+        $if description != null
+            description "${description}"
+        { items
+            type "object"
+            { properties
+                $hook properties
+            $hook object
+        $hook

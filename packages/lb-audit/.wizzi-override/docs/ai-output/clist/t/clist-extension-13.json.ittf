@@ -1,0 +1,524 @@
+$group
+    {
+        idd "12.2.2"
+        area "Operational Security"
+        category "Patch management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.11.02_n_SP.11.03"
+        "NIST CSF" "DE.CM-8_n_RS.MI-3"
+        EuCRA "Art. 10.9_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le patch di sicurezza pubblicate sono costantemente controllate e ne viene
+            +b verificata l'autenticità e l'applicabilità?"
+        detailed_explanation "La gestione delle patch è un processo critico nella sicurezza operativa che
+            +b assicura che tutte le vulnerabilità note siano rapidamente e correttamente
+            +b corrette. Le patch di sicurezza sono aggiornamenti rilasciati dai fornitori di
+            +b software per risolvere vulnerabilità note. È essenziale che le organizzazioni
+            +b monitorino costantemente le patch rilasciate per i software utilizzati e
+            +b verifichino la loro autenticità per evitare l'applicazione di patch malevole.
+            +b Inoltre, bisogna valutare l'applicabilità di una patch nel contesto specifico
+            +b dell'organizzazione, poiché non tutte le patch potrebbero essere rilevanti o
+            +b compatibili con le configurazioni esistenti. Questo processo deve essere parte
+            +b di una strategia di gestione delle patch ben definita, che include la
+            +b pianificazione, il test, l'implementazione e la documentazione di ogni
+            +b aggiornamento."
+        { glossary
+            { Patch
+                definition "Un aggiornamento software progettato per risolvere problemi di sicurezza o
+                    +b migliorare la funzionalità di un programma."
+                source "https://en.wikipedia.org/wiki/Patch_(computing)"
+            { Vulnerabilità
+                definition "Una debolezza in un sistema informatico che può essere sfruttata per
+                    +b compromettere la sicurezza del sistema."
+                source "https://en.wikipedia.org/wiki/Vulnerability_(computing)"
+            { "Autenticità delle patch"
+                definition "La verifica che una patch provenga da una fonte legittima e non sia stata
+                    +b alterata."
+                source "https://owasp.org/www-community/Patching"
+        { standards_and_best_practices
+            "NIST Special Publication 800-40" "https://csrc.nist.gov/publications/detail/sp/800-40/rev-3/final"
+            "ISO/IEC 27002:2022" "https://www.iso.org/standard/75652.html"
+            "CIS Controls - Control 3" "https://www.cisecurity.org/controls/vulnerability-management"
+    {
+        idd "12.2.3"
+        area "Operational Security"
+        category "Patch management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.03.09_n_SP.11.02"
+        "NIST CSF" "DE.CM-8_n_RS.MI-3"
+        EuCRA "Art. 10.9_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le patch di sicurezza sono classificate sulla base della criticità e testate
+            +b prima del rilascio?"
+        detailed_explanation "La gestione delle patch è un processo fondamentale per mantenere la sicurezza
+            +b dei sistemi informatici. Le patch sono aggiornamenti software progettati per
+            +b correggere vulnerabilità di sicurezza, migliorare le prestazioni o aggiungere
+            +b nuove funzionalità. Per garantire che queste patch non introducano nuovi
+            +b problemi, è essenziale classificarle in base alla criticità, testarle in un
+            +b ambiente controllato e solo successivamente distribuirle nei sistemi di
+            +b produzione. La classificazione della criticità si basa su una valutazione del
+            +b rischio, che considera fattori come l'impatto della vulnerabilità, la
+            +b probabilità di sfruttamento e i potenziali danni. Testare le patch prima del
+            +b rilascio aiuta a verificare che l'aggiornamento non interferisca con altre
+            +b applicazioni o componenti del sistema, evitando interruzioni del servizio o
+            +b malfunzionamenti. Questo processo è una parte importante delle best practice di
+            +b sicurezza e aiuta a mantenere l'integrità, la disponibilità e la riservatezza
+            +b dei dati aziendali."
+        [ glossary
+            {
+                term "Patch"
+                definition "Aggiornamenti software progettati per correggere vulnerabilità di sicurezza,
+                    +b migliorare le prestazioni o aggiungere nuove funzionalità."
+                link "https://it.wikipedia.org/wiki/Patch_(informatica)"
+            {
+                term "Criticità"
+                definition "Valutazione del livello di rischio associato a una vulnerabilità, basata
+                    +b sull'impatto potenziale e sulla probabilità di sfruttamento."
+                link "https://www.cisecurity.org/controls/vulnerability-management/"
+            {
+                term "Ambiente di test"
+                definition "Un ambiente controllato in cui le patch vengono applicate e testate per
+                    +b garantire che non causino problemi prima di essere implementate nei sistemi di
+                    +b produzione."
+                link "https://www.redhat.com/en/topics/devops/what-is-a-development-environment"
+        [ related_links
+            {
+                title "NIST Special Publication 800-40 Revision 3, Guide to Enterprise Patch
+                    +b Management Technologies"
+                url "https://csrc.nist.gov/publications/detail/sp/800-40/rev-3/final"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "OWASP Patch Management Guide"
+                url "https://owasp.org/www-project-patch-management-guide/"
+    {
+        idd "12.2.4"
+        area "Operational Security"
+        category "Patch management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.11.02_n_SP.11.05_n_SP.11.06"
+        "NIST CSF" "DE.CM-8_n_RS.MI-3"
+        EuCRA "Art. 10.9_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e (iv)"
+        description "Viene garantito un supporto tramite la release di patch/versioni aggiornate
+            +b volte a indirizzare eventuali vulnerabilità di sicurezza e proteggere il
+            +b prodotto fornito?"
+        detailed_explanation "Patch management is a critical aspect of operational security that involves the
+            +b regular update of software to address identified vulnerabilities and protect
+            +b systems against potential exploits. This process ensures that any security
+            +b flaws discovered in software are quickly rectified by applying patches released
+            +b by the software vendors. Patches can also include updates to improve
+            +b functionality, usability, or performance of the software. Effective patch
+            +b management requires a well-defined process for identifying, acquiring, testing,
+            +b and deploying patches in a timely manner to mitigate risks associated with
+            +b unpatched systems. This process not only helps in protecting the product
+            +b provided but also in maintaining compliance with various security standards and
+            +b regulations."
+        [ glossary
+            {
+                term "Patch Management"
+                definition "The process of managing a network of computers by regularly performing patch
+                    +b deployment to keep systems up to date and secure from vulnerabilities."
+                link "https://en.wikipedia.org/wiki/Patch_management"
+            {
+                term "Vulnerability"
+                definition "A weakness in a system that can be exploited by threats to gain unauthorized
+                    +b access to or perform unauthorized actions on a system."
+                link "https://csrc.nist.gov/glossary/term/vulnerability"
+            {
+                term "Exploit"
+                definition "A piece of software, data, or sequence of commands that takes advantage of a
+                    +b bug or vulnerability to cause unintended or unanticipated behavior to occur on
+                    +b computer software, hardware, or something electronic (usually computerized)."
+                link "https://en.wikipedia.org/wiki/Exploit_(computer_security)"
+        [ related_links
+            {
+                title "NIST Special Publication 800-40: Guide to Enterprise Patch Management
+                    +b Technologies"
+                url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-40r3.pdf"
+            {
+                title "ISO/IEC 27001:2013 - Information security management systems - Requirements"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "CIS Controls v8 - Control 7: Continuous Vulnerability Management"
+                url "https://www.cisecurity.org/controls/v8/"
+            {
+                title "European Union Agency for Cybersecurity (ENISA) Guidelines on Patch Management"
+                url "
+                    +b https://www.enisa.europa.eu/publications/guidelines-for-securing-the-internet-of-things/patch-management"
+    {
+        idd "12.3.1"
+        area "Operational Security"
+        category "Vulnerability management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        "NIST CSF" "PR.IP-12"
+        EuCRA "Art. 10.6_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e (iv)"
+        description "Sono periodicamente effettuate attività di Vulnerability Assessment e
+            +b Penetration Test su tutti i sistemi informativi esposti?"
+        detailed_explanation "Vulnerability Assessment e Penetration Test (VA/PT) sono processi critici nella
+            +b gestione delle vulnerabilità, parte essenziale della sicurezza operativa. Il
+            +b Vulnerability Assessment è un'attività che identifica, quantifica e dà priorità
+            +b alle vulnerabilità in un sistema, attraverso scansioni automatiche e manuali.
+            +b Il Penetration Test, invece, simula un attacco reale per individuare le
+            +b vulnerabilità sfruttabili da un attaccante, testando l'efficacia delle misure
+            +b di sicurezza. Effettuare queste attività periodicamente su tutti i sistemi
+            +b informativi esposti aiuta a mitigare i rischi associati alle vulnerabilità,
+            +b assicurando che le difese siano aggiornate e pronte a fronteggiare le minacce
+            +b più recenti. È essenziale che queste attività siano pianificate e condotte
+            +b regolarmente, non solo per conformità normativa ma anche per la continua
+            +b protezione dei dati e delle risorse aziendali."
+        [ glossary
+            {
+                term "Vulnerability Assessment"
+                definition "Processo di identificazione, quantificazione e prioritizzazione delle
+                    +b vulnerabilità in un sistema."
+                link "https://en.wikipedia.org/wiki/Vulnerability_assessment"
+            {
+                term "Penetration Test"
+                definition "Simulazione di un attacco informatico per testare l'efficacia delle misure di
+                    +b sicurezza di un sistema informatico."
+                link "https://en.wikipedia.org/wiki/Penetration_test"
+            {
+                term "Vulnerabilità"
+                definition "Punto debole in un sistema che può essere sfruttato per compromettere la
+                    +b sicurezza."
+                link "
+                    +b https://www.cisa.gov/uscert/bsi/articles/knowledge/vulnerability-management/vulnerabilities"
+        [ related_links
+            {
+                title "NIST Special Publication 800-115: Technical Guide to Information Security
+                    +b Testing and Assessment"
+                url "https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-115.pdf"
+            {
+                title "OWASP Testing Guide"
+                url "https://owasp.org/www-project-web-security-testing-guide/"
+            {
+                title "ISO/IEC 27001:2013 Information Security Management"
+                url "https://www.iso.org/standard/54534.html"
+    {
+        idd "12.3.2"
+        area "Operational Security"
+        category "Vulnerability management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.02.02_n_SP.03.03"
+        "NIST CSF" "PR.IP-12"
+        EuCRA "Art. 10.6_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e (iv)"
+        description "Sono periodicamente effettuate attività di Vulnerability Assessment e
+            +b Penetration Test sia a livello applicativo che infrastrutturale?"
+        detailed_explanation "L'item richiede che siano effettuate regolarmente attività di Vulnerability
+            +b Assessment e Penetration Testing sia a livello applicativo che
+            +b infrastrutturale. Questo è fondamentale per identificare vulnerabilità
+            +b sfruttabili da attori malintenzionati e per garantire che le difese di
+            +b sicurezza siano adeguate. Il Vulnerability Assessment è un processo sistematico
+            +b di identificazione, analisi e classificazione delle vulnerabilità nei sistemi
+            +b informatici e nelle reti. Il Penetration Testing, invece, è un attacco simulato
+            +b autorizzato a un sistema informatico, eseguito per valutare la sicurezza del
+            +b sistema stesso. Entrambi i processi sono cruciali per mantenere la sicurezza
+            +b operativa di un'organizzazione, prevenendo possibili attacchi e garantendo che
+            +b le misure di sicurezza siano aggiornate ed efficaci."
+        [ glossary
+            {
+                term "Vulnerability Assessment"
+                definition "Un processo di identificazione, quantificazione e prioritizzazione (o
+                    +b classificazione) delle vulnerabilità in un sistema. È un passo importante nella
+                    +b gestione delle vulnerabilità."
+                link "
+                    +b https://www.csoonline.com/article/3565588/what-is-a-vulnerability-assessment-a-key-to-network-security.html"
+            {
+                term "Penetration Testing"
+                definition "Un test di sicurezza informatica condotto simulando un attacco da parte di un
+                    +b hacker malevolo per identificare e correggere eventuali vulnerabilità."
+                link "https://www.synopsys.com/glossary/what-is-penetration-testing.html"
+            {
+                term "Sicurezza applicativa"
+                definition "Misure di sicurezza implementate a livello di applicazioni per proteggere i
+                    +b dati e prevenire l'accesso non autorizzato."
+                link "https://owasp.org/www-project-top-ten/"
+            {
+                term "Sicurezza infrastrutturale"
+                definition "Misure di sicurezza implementate per proteggere reti e infrastrutture fisiche e
+                    +b virtuali da attacchi o accessi non autorizzati."
+                link "
+                    +b https://www.cisco.com/c/en/us/products/security/what-is-infrastructure-security.html"
+        [ related_links
+            {
+                title "NIST Cybersecurity Framework (CSF)"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "ISO/IEC 27001:2013 Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "OWASP Testing Guide"
+                url "https://owasp.org/www-project-web-security-testing-guide/"
+    {
+        idd "12.3.3"
+        area "Operational Security"
+        category "Vulnerability management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        ISA_n_62443_n_${'('}2-4) "SP.02.02_n_SP.03.03"
+        "NIST CSF" "PR.IP-12"
+        EuCRA "Art. 10.6_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e (iv)"
+        description "Sono adottate soluzioni tecnologiche che consentono di automatizzare
+            +b l'identificazione e la classificazione delle vulnerabilità sui sistemi (p.e.
+            +b Vulnerability Management Detection Response, Breach Attack & Simulation)?"
+        detailed_explanation "L'adozione di soluzioni tecnologiche per automatizzare l'identificazione e la
+            +b classificazione delle vulnerabilità è essenziale per mantenere la sicurezza
+            +b operativa di un'organizzazione. Questo processo, noto come gestione delle
+            +b vulnerabilità, coinvolge l'uso di strumenti avanzati per la rilevazione,
+            +b l'analisi e la mitigazione delle vulnerabilità nei sistemi informatici. Tali
+            +b strumenti includono spesso tecnologie come la Vulnerability Management
+            +b Detection Response (VMDR) e le simulazioni di attacchi e violazioni (Breach
+            +b Attack & Simulation, BAS). La VMDR aiuta a identificare e catalogare
+            +b automaticamente le vulnerabilità nei sistemi, fornendo un approccio sistematico
+            +b per la loro gestione. Le soluzioni BAS consentono di simulare attacchi
+            +b informatici per valutare l'efficacia delle misure di sicurezza esistenti e
+            +b identificare potenziali falle prima che vengano sfruttate da attori malevoli.
+            +b L'automazione di questi processi consente di migliorare l'efficienza, ridurre
+            +b il tempo di risposta alle minacce e garantire che le vulnerabilità siano
+            +b risolte in modo tempestivo, minimizzando il rischio di incidenti di sicurezza."
+        [ glossary
+            {
+                term "Vulnerability Management Detection Response (VMDR)"
+                definition "Un insieme di processi e strumenti progettati per identificare, classificare, e
+                    +b gestire le vulnerabilità nei sistemi informatici."
+                link "https://www.qualys.com/apps/vulnerability-management-detection-response/"
+            {
+                term "Breach Attack & Simulation (BAS)"
+                definition "Tecnologie che simulano attacchi informatici per testare l'efficacia delle
+                    +b misure di sicurezza e identificare vulnerabilità."
+                link "
+                    +b https://www.gartner.com/en/documents/3889055/market-guide-for-breach-and-attack-simulation-solutions"
+        [ related_links
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "IEC 62443 - Industrial communication networks - Network and system security"
+                url "https://webstore.iec.ch/publication/33649"
+            {
+                title "NIS Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016L1148"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "12.3.4"
+        area "Operational Security"
+        category "Vulnerability management"
+        NIS2 "Art. 21, par. 2, comma e, g"
+        "NIST CSF" "PR.IP-12"
+        EuCRA "Art. 10.6_n_Allegato I.2"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e (iv)"
+        description "E' prevista l'adozione di un sistema di WAF a presidio della sicurezza delle
+            +b web application?"
+        detailed_explanation "Un Web Application Firewall (WAF) è una soluzione di sicurezza progettata per
+            +b proteggere le applicazioni web filtrando e monitorando il traffico HTTP tra
+            +b un'applicazione web e Internet. Il WAF può proteggere le applicazioni web da
+            +b vari attacchi, quali SQL injection, XSS (Cross-Site Scripting), e altre minacce
+            +b a livello di applicazione. L'adozione di un sistema WAF è fondamentale per il
+            +b controllo e la protezione delle applicazioni web, poiché può prevenire accessi
+            +b non autorizzati e bloccare tentativi di sfruttamento delle vulnerabilità note.
+            +b Il WAF analizza il traffico in entrata e in uscita attraverso regole
+            +b predefinite o personalizzate per identificare e bloccare attività malevoli.
+            +b L'implementazione di un WAF può essere parte di una strategia più ampia di
+            +b gestione delle vulnerabilità, che include anche l'identificazione, la
+            +b classificazione e la risoluzione delle vulnerabilità nelle applicazioni web."
+        [ glossary
+            {
+                term "Web Application Firewall (WAF)"
+                definition "Un sistema di sicurezza che monitora, filtra o blocca il traffico HTTP verso e
+                    +b dalle applicazioni web per proteggere da attacchi come SQL injection e XSS."
+                link "https://www.cloudflare.com/learning/ddos/glossary/web-application-firewall-waf/"
+            {
+                term "SQL Injection"
+                definition "Un tipo di attacco che sfrutta una vulnerabilità nel codice SQL delle
+                    +b applicazioni per eseguire comandi arbitrari sul database."
+                link "https://www.owasp.org/index.php/SQL_Injection"
+            {
+                term "Cross-Site Scripting (XSS)"
+                definition "Una vulnerabilità di sicurezza che consente a un aggressore di iniettare script
+                    +b dannosi in contenuti visualizzati da altri utenti."
+                link "https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)"
+        [ related_links
+            {
+                title "OWASP Top Ten"
+                url "https://owasp.org/www-project-top-ten/"
+            {
+                title "NIST Special Publication 800-53 Revision 5"
+                url "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+    {
+        idd "13.1.1"
+        area "Security Incident Management"
+        category "Security continuous detection & prevetion"
+        NIS2 "Art. 21, par. 2, comma b"
+        ISA_n_62443_n_${'('}2-4) "SP.02.02_n_SP.08.01"
+        "NIST CSF" "DE.CM-1"
+        description "Sono definiti ed implementati processi e misure tecnologiche per la detection e
+            +b prevention di eventi di sicurezza nel proprio ambiente?"
+        detailed_explanation "La gestione degli incidenti di sicurezza è cruciale per mantenere l'integrità,
+            +b la disponibilità e la riservatezza delle informazioni in un'organizzazione. La
+            +b detection (rilevamento) e la prevention (prevenzione) di eventi di sicurezza
+            +b consistono nell'avere processi e tecnologie in atto per identificare
+            +b tempestivamente i potenziali incidenti e prendere provvedimenti per prevenirli
+            +b o mitigarne gli effetti. Questo implica l'implementazione di sistemi di
+            +b monitoraggio continuo come intrusion detection systems (IDS) e intrusion
+            +b prevention systems (IPS), oltre alla definizione di procedure operative
+            +b standardizzate per rispondere a eventi di sicurezza. L'obiettivo è garantire
+            +b che le minacce vengano individuate rapidamente e che le risposte siano
+            +b tempestive ed efficaci per ridurre i rischi associati agli incidenti di
+            +b sicurezza."
+        [ glossary
+            {
+                term "Detection"
+                definition "Il processo di identificazione di eventi potenzialmente pericolosi o non
+                    +b conformi all'interno di un sistema informativo."
+                link "https://en.wikipedia.org/wiki/Intrusion_detection_system"
+            {
+                term "Prevention"
+                definition "L'insieme delle misure implementate per impedire o ridurre la probabilità che
+                    +b si verifichino eventi di sicurezza indesiderati."
+                link "https://en.wikipedia.org/wiki/Intrusion_prevention_system"
+            {
+                term "Intrusion Detection System (IDS)"
+                definition "Un dispositivo o software applicativo che monitora una rete o sistemi per
+                    +b attività malevole o violazioni delle policy."
+                link "
+                    +b https://www.cisco.com/c/en/us/products/security/intrusion-detection-system-ids/index.html"
+            {
+                term "Intrusion Prevention System (IPS)"
+                definition "Un sistema di sicurezza di rete che monitora le attività di rete per attività
+                    +b malevole e può intervenire automaticamente per bloccare o prevenire tali
+                    +b attività."
+                link "
+                    +b https://www.paloaltonetworks.com/cyberpedia/what-is-an-intrusion-prevention-system-ips"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016L1148"
+            {
+                title "IEC 62443 Standard"
+                url "https://webstore.iec.ch/publication/34475"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "13.1.2"
+        area "Security Incident Management"
+        category "Security continuous detection & prevetion"
+        NIS2 "Art. 21, par. 2, comma b"
+        ISA_n_62443_n_${'('}2-4) "SP.02.02_n_SP.10.03_n_SP.08.01"
+        "NIST CSF" "DE.CM-2"
+        description "Sono adottati strumenti volti al monitoraggio degli eventi di sicurezza a
+            +b livello host e rete quali EDR/NDR/XDR/antimalware?"
+        detailed_explanation "Questo item della checklist riguarda l'adozione e l'implementazione di
+            +b strumenti tecnologici che monitorano continuamente gli eventi di sicurezza sia
+            +b a livello del singolo dispositivo (host) che a livello dell'intera rete. Questi
+            +b strumenti includono soluzioni di Endpoint Detection and Response (EDR), Network
+            +b Detection and Response (NDR), Extended Detection and Response (XDR), e software
+            +b antimalware. EDR si concentra sulla protezione e rilevazione delle minacce sui
+            +b dispositivi finali come computer, laptop e smartphone, fornendo visibilità
+            +b approfondita su questi endpoint e consentendo risposte rapide agli incidenti.
+            +b NDR si occupa del monitoraggio del traffico di rete per identificare attività
+            +b sospette o anomale che potrebbero indicare una compromissione della sicurezza.
+            +b XDR rappresenta un approccio integrato che combina dati provenienti da diversi
+            +b silos di sicurezza (endpoint, rete, server, email, ecc.) per fornire una
+            +b visione unificata e migliorata delle minacce. Gli strumenti antimalware,
+            +b invece, sono progettati per prevenire, rilevare e rimuovere software maligni,
+            +b come virus e trojan. L'implementazione di questi strumenti è fondamentale per
+            +b garantire che le minacce vengano rilevate in modo tempestivo e che le risposte
+            +b agli incidenti siano efficaci, riducendo il rischio di danni gravi a causa di
+            +b attacchi informatici."
+        [ glossary
+            {
+                term "Endpoint Detection and Response (EDR)"
+                definition "Una soluzione di sicurezza che monitora costantemente i dispositivi finali per
+                    +b rilevare e rispondere a minacce avanzate."
+                link "
+                    +b https://www.csoonline.com/article/3401096/what-is-endpoint-detection-and-response-edr-how-these-tools-improve-security.html"
+            {
+                term "Network Detection and Response (NDR)"
+                definition "Una tecnologia di sicurezza che analizza il traffico di rete per individuare
+                    +b attività sospette o anomale."
+                link "
+                    +b https://www.gartner.com/en/information-technology/glossary/network-detection-and-response-ndr"
+            {
+                term "Extended Detection and Response (XDR)"
+                definition "Un approccio alla sicurezza informatica che integra dati e analisi da endpoint,
+                    +b rete, server e altre fonti per migliorare la rilevazione e la risposta agli
+                    +b incidenti."
+                link "
+                    +b https://www.forbes.com/sites/forbestechcouncil/2021/02/23/the-rise-of-xdr-what-is-extended-detection-and-response/"
+            {
+                term "Antimalware"
+                definition "Software progettato per rilevare, prevenire e rimuovere programmi software
+                    +b dannosi."
+                link "https://www.kaspersky.com/resource-center/definitions/what-is-malware"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52020PC0823"
+            {
+                title "ISA/IEC 62443"
+                url "https://www.isa.org/standards-and-publications/isa-62443-series"
+            {
+                title "NIST Cybersecurity Framework (CSF)"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "13.1.3"
+        area "Security Incident Management"
+        category "Security continuous detection & prevetion"
+        NIS2 "Art. 21, par. 2, comma b"
+        ISA_n_62443_n_${'('}2-4) "SP.08.01"
+        "NIST CSF" "DE.CM-3"
+        description "Sono adottati presidi di sicurezza quali IDS / IPS?"
+        detailed_explanation "Intrusion Detection Systems (IDS) and Intrusion Prevention Systems (IPS) are
+            +b critical components of a robust security infrastructure. IDS are systems
+            +b designed to monitor network traffic for suspicious activity and potential
+            +b threats. Once these threats are identified, alerts are generated for further
+            +b analysis. IPS, on the other hand, not only detect but also prevent identified
+            +b threats from succeeding. IPS can take actions such as dropping malicious
+            +b packets or blocking traffic from suspicious IP addresses. Implementing these
+            +b systems helps an organization continuously monitor and protect their network
+            +b from unauthorized access and other cyber threats. The adoption of IDS/IPS is
+            +b crucial in creating a proactive security posture, allowing organizations to
+            +b respond to threats in real-time, thereby minimizing potential damage."
+        [ glossary
+            {
+                term "Intrusion Detection System (IDS)"
+                definition "A system that monitors network traffic for suspicious activity and issues
+                    +b alerts when such activity is discovered."
+                link "https://www.cisco.com/c/en/us/products/security/firepower-ngipsv/index.html"
+            {
+                term "Intrusion Prevention System (IPS)"
+                definition "A system that not only detects intrusions but also takes action to prevent them
+                    +b from succeeding."
+                link "
+                    +b https://www.cisco.com/c/en/us/products/security/intrusion-prevention-system-ips/index.html"
+            {
+                term "Network Traffic"
+                definition "Data moving across a network at any given time, including all the packets sent
+                    +b and received by users."
+                link "https://www.cloudflare.com/learning/network-layer/what-is-network-traffic/"
+            {
+                term "Threat"
+                definition "Any circumstance or event with the potential to adversely impact organizational
+                    +b operations, organizational assets, individuals, or other organizations."
+                link "https://csrc.nist.gov/glossary/term/threat"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32019L1024"
+            {
+                title "IEC 62443 Standards"
+                url "https://webstore.iec.ch/publication/33697"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"

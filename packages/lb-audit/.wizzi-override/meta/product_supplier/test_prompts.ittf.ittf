@@ -1,0 +1,42 @@
+ittf
+    $
+        var x_options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.product_supplier_ai_step_1, null, null),
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.product_supplier_ai_step_2, null, null),
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.llm_assisted_threat_modeling, null, null),
+        }        
+
+    $file .wizzi-override/docs/product_supplier/from_meta/product_supplier_search_prompts.txt.ittf
+
+        txt 
+            $foreach aiItem in wzCtx.root_prompts.product_supplier_search.items
+                $ 
+                    var options = {
+                        inputJSON: aiItem,
+                        inputJSONString: _.stringify(aiItem, null, null),
+                        JSONSchema: x_options.step_1_JSONSchema,
+                    }
+                =====
+                search product supplier of location ${aiItem.location}
+                -----
+                ai/product_supplier_search( &options, prompt )
+                ai/schema_data_return( &options, prompt )
+
+    $file .wizzi-override/docs/product_supplier/from_meta/product_supplier_audited_machines_prompts.txt.ittf
+        txt 
+            $foreach aiItem in wzCtx.product_supplier.audited_machines
+                $ 
+                    var options = {
+                        inputJSON: aiItem,
+                        inputJSONString: _.stringify(aiItem, null, null),
+                        product_supplier_JSON: null,
+                        JSONSchema: x_options.step_3_JSONSchema,
+                    }
+                =====
+                manufacturer ${aiItem.manufacturer}
+                -----
+                Popola un database JSON con dati dettagliati che descrivano i componenti e il contesto di sistema
+                della macchina descritta nel JSON fornito con dati di input.
+                Il risultato sarà utilizzato come dato di contesto per una verifica di sicurezza della macchina
+                in applicazione dei requisiti IEC 62443-3-3 e IEC 62443-4-2.
+                ai/schema_data_return( &options, prompt )

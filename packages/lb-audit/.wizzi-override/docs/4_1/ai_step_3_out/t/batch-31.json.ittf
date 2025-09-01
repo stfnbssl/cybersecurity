@@ -1,0 +1,531 @@
+$group
+    {
+        practice "8"
+        code "SG-4"
+        subCode "b)"
+        name "Secure disposal guidelines"
+        description "A process shall be employed to create product user documentation that includes
+            +b guidelines for removing the product from use. The guidelines shall include, but
+            +b is not limited to instructions and recommendations for the following: b)
+            +b including recommendations for removing references and configuration data stored
+            +b within the environment;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that sensitive data is not exposed during disposal, which could lead
+                    +b to security breaches."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to data exposure during disposal."
+                [ tools
+                    {
+                        name "NIST SP 800-88"
+                        purpose "Guidelines for media sanitization to ensure secure disposal."
+                { case_study
+                    example "A case study involving the disposal of a DCS in a power plant, where
+                        +b configuration data was securely erased to prevent unauthorized access."
+            { audit_and_compliance_verification
+                why "To verify compliance with secure disposal guidelines and ensure no residual
+                    +b data remains."
+                [ audit_checklist
+                    "Verify that all configuration data has been removed."
+                    "Check documentation for completeness of disposal guidelines."
+                    "Ensure that disposal procedures are followed as per the guidelines."
+                [ metrics
+                    {
+                        kpi "Percentage of disposal procedures followed correctly"
+                        target "100%"
+                compliance_procedure "Documentation review and on-site verification of disposal procedures."
+            { training_and_competency_requirements
+                why "To ensure personnel are aware of and competent in secure disposal practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers secure disposal practices as part of the curriculum."
+                competency_assessment "Annual reviews of personnel competency in secure disposal procedures."
+            { tooling_and_automation_support
+                why "To automate and streamline secure disposal processes, reducing human error."
+                [ tools
+                    {
+                        name "Blancco"
+                        purpose "Data erasure tool for secure disposal of configuration data."
+                automation_strategy "Integration of data erasure tools into the disposal workflow to ensure
+                    +b consistent application of secure disposal practices."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure disposal methods, requiring
+                    +b alternative approaches."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems during disposal to minimize exposure."
+                example_policy "Policy for the secure disposal of legacy PLCs, including manual verification of
+                    +b data removal."
+            { stakeholder_collaboration_and_governance
+                why "Secure disposal requires coordination between engineering, security, and
+                    +b management teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Engineering"
+                            responsibility "Execute disposal procedures."
+                        {
+                            role "Security"
+                            responsibility "Verify disposal procedures."
+                        {
+                            role "Management"
+                            responsibility "Approve disposal procedures."
+                conflict_resolution "Regular meetings to address and resolve conflicts between engineering and
+                    +b security priorities."
+            { continuous_improvement_and_updates
+                why "To adapt disposal practices based on new threats and lessons learned."
+                [ update_process
+                    {
+                        step "Review new threat intelligence"
+                        description "Incorporate updates from CISA alerts into disposal procedures."
+                lessons_learned "Incorporating findings from incidents where disposal procedures were not
+                    +b followed, leading to data exposure."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-4"
+        subCode "c) secure removal of data stored in the product;"
+        name "Secure disposal guidelines"
+        description "A process shall be employed to create product user documentation that includes
+            +b guidelines for removing the product from use. The guidelines shall include, but
+            +b is not limited to instructions and recommendations for the following: c) secure
+            +b removal of data stored in the product;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that sensitive data is not exposed during disposal or decommissioning
+                    +b of ICS products."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to data disposal, such as
+                            +b information disclosure."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as residual data
+                            +b in PLCs."
+                [ tools
+                    {
+                        name "NIST SP 800-88"
+                        purpose "Guidelines for media sanitization, applicable to ICS data disposal."
+                    {
+                        name "ICS-specific data sanitization tools"
+                        purpose "Tools designed to securely erase data from ICS devices like PLCs and RTUs."
+                { case_study
+                    example "A power plant decommissioned an old DCS system; using NIST SP 800-88
+                        +b guidelines, they ensured all sensitive operational data was securely erased
+                        +b before disposal."
+            { audit_and_compliance_verification
+                why "To verify that secure disposal procedures are followed and documented."
+                [ audit_checklist
+                    "Verify documentation includes secure data removal procedures."
+                    "Check logs for evidence of secure data removal."
+                    "Ensure personnel are trained on disposal guidelines."
+                [ metrics
+                    {
+                        kpi "Percentage of disposed products with documented secure data removal"
+                        target "100%"
+                    {
+                        kpi "Number of disposal-related security incidents"
+                        target "0"
+                compliance_procedure "Documentation must include step-by-step procedures for secure data removal, and
+                    +b evidence of compliance must be reviewed annually."
+            { training_and_competency_requirements
+                why "To ensure personnel are capable of securely disposing of ICS products."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Includes modules on secure disposal practices for ICS."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification covers secure
+                            +b disposal."
+                competency_assessment "Annual reviews of personnel competency in secure disposal procedures, including
+                    +b practical assessments."
+            { tooling_and_automation_support
+                why "To automate and streamline secure data removal processes."
+                [ tools
+                    {
+                        name "Secure erase software"
+                        purpose "Automates the secure deletion of data from ICS devices."
+                    {
+                        name "Configuration management tools"
+                        purpose "Tracks device decommissioning and ensures compliance with disposal policies."
+                automation_strategy "Integrate secure erase tools into the DevSecOps pipeline for automated data
+                    +b removal during decommissioning."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may not support modern secure disposal methods."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure during disposal."
+                    {
+                        approach "Physical destruction"
+                        description "For legacy devices that cannot be securely erased, physical destruction may be
+                            +b necessary."
+                example_policy "Legacy devices must be physically destroyed if secure data removal is not
+                    +b possible, with destruction certified by a third party."
+            { stakeholder_collaboration_and_governance
+                why "Secure disposal requires coordination between engineering, security, and
+                    +b management teams."
+                { governance_model
+                    name "RACI matrix for secure disposal"
+                    [ roles
+                        {
+                            role "Engineering"
+                            responsibility "Execute secure data removal procedures."
+                        {
+                            role "Security"
+                            responsibility "Verify compliance with disposal policies."
+                        {
+                            role "Management"
+                            responsibility "Approve disposal procedures and allocate resources."
+                conflict_resolution "Disputes over disposal methods are resolved by a cross-functional committee
+                    +b with final approval from the CISO."
+            { continuous_improvement_and_updates
+                why "To adapt disposal practices to new threats and technologies."
+                [ update_process
+                    {
+                        step "Monitor CISA alerts"
+                        description "Review alerts for new ICS vulnerabilities related to data disposal."
+                    {
+                        step "Annual policy review"
+                        description "Update disposal guidelines based on new threats and technologies."
+                lessons_learned "After a disposal-related incident, update procedures to prevent recurrence and
+                    +b train personnel on new methods."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-4"
+        subCode "d"
+        name "Secure disposal guidelines"
+        description "A process shall be employed to create product user documentation that includes
+            +b guidelines for removing the product from use. The guidelines shall include, but
+            +b is not limited to instructions and recommendations for the following: d) secure
+            +b disposal of the product to prevent potential disclosure of data contained in
+            +b the product that could not be removed as described in c) above."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Secure disposal is critical to prevent data leakage from decommissioned ICS
+                    +b products, which could be exploited by malicious actors."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to information disclosure during
+                            +b disposal."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as residual
+                            +b configuration data in PLCs."
+                [ tools
+                    {
+                        name "NIST SP 800-88"
+                        purpose "Guidelines for media sanitization, applicable to ICS storage components."
+                    {
+                        name "ISA/IEC 62443-4-2"
+                        purpose "Provides security requirements for IACS product disposal."
+                { case_study
+                    example "A power plant decommissioned its DCS system without proper data sanitization,
+                        +b leading to exposure of sensitive network configurations."
+            { audit_and_compliance_verification
+                why "To ensure compliance with secure disposal requirements and prevent regulatory
+                    +b penalties."
+                [ audit_checklist
+                    "Verify documented disposal procedures exist"
+                    "Check evidence of data sanitization for disposed devices"
+                    "Review training records for personnel handling disposal"
+                [ metrics
+                    {
+                        kpi "Percentage of disposed devices with sanitization records"
+                        target "100%"
+                    {
+                        kpi "Number of disposal policy violations"
+                        target "0"
+                compliance_procedure "Maintain a disposal log with device serial numbers, sanitization method used,
+                    +b and responsible personnel. Review quarterly."
+            { training_and_competency_requirements
+                why "Proper disposal requires specific technical knowledge to prevent data leaks."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers secure lifecycle management including disposal."
+                    {
+                        name "NIST Media Sanitization Training"
+                        description "Focuses on proper data destruction techniques."
+                competency_assessment "Annual practical test on proper disposal procedures using sample devices."
+            { tooling_and_automation_support
+                why "Automation reduces human error in the disposal process."
+                [ tools
+                    {
+                        name "Blancco Drive Eraser"
+                        purpose "Automated data sanitization for storage media."
+                    {
+                        name "ICS-specific configuration wipers"
+                        purpose "Removes proprietary configuration data from PLCs and RTUs."
+                automation_strategy "Integrate sanitization tools with asset management systems to automatically
+                    +b trigger disposal workflows when devices are marked for decommissioning."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS devices often lack modern sanitization capabilities."
+                [ strategies
+                    {
+                        approach "Physical destruction"
+                        description "When sanitization isn't possible, physically destroy storage components
+                            +b following NIST SP 800-88 guidelines."
+                    {
+                        approach "Secure storage"
+                        description "For devices that cannot be sanitized or destroyed immediately, store in
+                            +b access-controlled areas until proper disposal can occur."
+                example_policy "All legacy PLCs must be either: 1) physically destroyed with certificate of
+                    +b destruction, or 2) stored in the secure disposal vault until destruction can be
+                    +b arranged."
+            { stakeholder_collaboration_and_governance
+                why "Disposal processes require coordination between operations, IT, and security
+                    +b teams."
+                { governance_model
+                    name "ICS Disposal Committee"
+                    [ roles
+                        {
+                            role "Plant Manager"
+                            responsibility "Final approval for equipment disposal"
+                        {
+                            role "Security Officer"
+                            responsibility "Verify compliance with disposal policies"
+                        {
+                            role "Maintenance Supervisor"
+                            responsibility "Execute physical disposal procedures"
+                conflict_resolution "Disputes about disposal methods are escalated to the CISO, who makes final
+                    +b determinations based on risk assessment."
+            { continuous_improvement_and_updates
+                why "New threats and technologies require updates to disposal methods."
+                [ update_process
+                    {
+                        step "Monitor CISA alerts"
+                        description "Review new ICS vulnerabilities that might affect disposal procedures."
+                    {
+                        step "Annual policy review"
+                        description "Evaluate effectiveness of current disposal methods."
+                lessons_learned "After discovering residual data on 'sanitized' drives, we implemented mandatory
+                    +b verification checks using forensic tools."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "8"
+        code "SG-5"
+        subCode "a) responsibilities and actions necessary for users, including administrators,
+            +b to securely operate the product; and"
+        name "Secure operation guidelines"
+        description "A process shall be employed to create product user documentation that
+            +b describes: a) responsibilities and actions necessary for users, including
+            +b administrators, to securely operate the product; and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that secure operation guidelines address potential threats and
+                    +b vulnerabilities specific to the ICS environment."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify threats such as Spoofing, Tampering, Repudiation, Information
+                            +b Disclosure, Denial of Service, and Elevation of Privilege in the context of
+                            +b secure operations."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on threats unique to industrial control systems, such as unauthorized
+                            +b access to control loops or manipulation of sensor data."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for secure operation guidelines."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "To assess risks associated with secure operation in ICS environments."
+                { case_study
+                    example "A power plant implemented secure operation guidelines after a risk assessment
+                        +b revealed vulnerabilities in operator authentication processes, reducing
+                        +b unauthorized access incidents by 70%."
+            { audit_and_compliance_verification
+                why "To verify that secure operation guidelines are effectively implemented and
+                    +b adhered to."
+                [ audit_checklist
+                    "Verify that all user roles and responsibilities are clearly documented."
+                    "Check that secure operation procedures are regularly reviewed and updated."
+                    "Ensure that administrators have received appropriate training on secure operations."
+                [ metrics
+                    {
+                        kpi "Percentage of documented secure operation procedures"
+                        target "100%"
+                    {
+                        kpi "Frequency of secure operation training sessions"
+                        target "Annually"
+                compliance_procedure "Documentation reviews and interviews with administrators to verify adherence to
+                    +b secure operation guidelines."
+            { training_and_competency_requirements
+                why "To ensure that users and administrators have the necessary skills to follow
+                    +b secure operation guidelines."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers secure operation practices for ICS environments."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on secure operations in industrial control systems."
+                competency_assessment "Annual reviews of administrator competencies, including practical tests on
+                    +b secure operation procedures."
+            { tooling_and_automation_support
+                why "To streamline the implementation and monitoring of secure operation guidelines."
+                [ tools
+                    {
+                        name "SIEM (Security Information and Event Management)"
+                        purpose "To monitor and alert on deviations from secure operation guidelines."
+                    {
+                        name "Configuration Management Tools"
+                        purpose "To enforce secure configurations as per operation guidelines."
+                automation_strategy "Integration of SIEM tools with ticketing systems to automatically flag and
+                    +b remediate deviations from secure operation guidelines."
+            { handling_legacy_systems_and_constraints
+                why "To address challenges in implementing secure operation guidelines on legacy ICS
+                    +b components."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure and enforce secure operation
+                            +b guidelines at the network boundary."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and logging for legacy systems to compensate
+                            +b for lack of native secure operation features."
+                example_policy "Legacy systems must be documented with specific secure operation procedures,
+                    +b including manual checks and balances where automated controls are not feasible."
+            { stakeholder_collaboration_and_governance
+                why "To ensure alignment between engineering, security, and management teams on
+                    +b secure operation guidelines."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define secure operation guidelines."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure operation guidelines in product design."
+                        {
+                            role "Management"
+                            responsibility "Approve and enforce secure operation guidelines."
+                conflict_resolution "Monthly cross-functional meetings to address conflicts between operational
+                    +b efficiency and security requirements."
+            { continuous_improvement_and_updates
+                why "To adapt secure operation guidelines based on evolving threats and operational
+                    +b feedback."
+                [ update_process
+                    {
+                        step "Review incident reports"
+                        description "Analyze security incidents to identify gaps in secure operation guidelines."
+                    {
+                        step "Update documentation"
+                        description "Revise secure operation guidelines based on lessons learned and new threat
+                            +b intelligence."
+                lessons_learned "Incorporated feedback from a phishing attack simulation to enhance
+                    +b administrator authentication procedures in the secure operation guidelines."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-5"
+        subCode "b)"
+        name "Secure operation guidelines"
+        description "A process shall be employed to create product user documentation that
+            +b describes: b) assumptions regarding the behavior of the user/administrator and
+            +b their relationship to the secure operation of the product."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Understanding user behavior assumptions is critical for identifying potential
+                    +b security risks and ensuring secure operation."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to user behavior assumptions, such
+                            +b as spoofing or tampering."
+                    {
+                        name "DREAD"
+                        description "Helps assess the risk level of threats identified through STRIDE, focusing on
+                            +b user behavior."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in creating threat models that include user behavior assumptions."
+                { case_study
+                    example "A case study involving a DCS in a power plant where incorrect user behavior
+                        +b assumptions led to unauthorized access."
+            { audit_and_compliance_verification
+                why "Ensures that user behavior assumptions are documented and adhered to in secure
+                    +b operation guidelines."
+                [ audit_checklist
+                    "Verify that user behavior assumptions are clearly documented."
+                    "Check that training programs address these assumptions."
+                    "Ensure that compliance evidence is reviewed annually."
+                [ metrics
+                    {
+                        kpi "Percentage of documented user behavior assumptions reviewed"
+                        target "100% annually"
+                compliance_procedure "Documentation must be reviewed and updated annually, with evidence stored in a
+                    +b secure repository."
+            { training_and_competency_requirements
+                why "Ensures that users and administrators understand their role in secure
+                    +b operation."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers secure operation guidelines and user behavior assumptions."
+                competency_assessment "Annual reviews of user and administrator competency in adhering to secure
+                    +b operation guidelines."
+            { tooling_and_automation_support
+                why "Automation can help enforce secure operation guidelines and monitor compliance."
+                [ tools
+                    {
+                        name "SIEM tools"
+                        purpose "Monitor user behavior against documented assumptions."
+                automation_strategy "Integrate SIEM tools with DevSecOps pipelines to continuously monitor and alert
+                    +b on deviations from expected user behavior."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure operation guidelines, requiring
+                    +b compensating controls."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit the impact of insecure user behavior."
+                example_policy "A policy for legacy systems that includes additional monitoring and restricted
+                    +b access to compensate for lack of modern secure operation guidelines."
+            { stakeholder_collaboration_and_governance
+                why "Clear governance ensures that all stakeholders understand and adhere to secure
+                    +b operation guidelines."
+                { governance_model
+                    name "RACI matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define and enforce secure operation guidelines."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement guidelines in product design."
+                conflict_resolution "A documented process for resolving conflicts between security and engineering
+                    +b priorities, involving senior management if necessary."
+            { continuous_improvement_and_updates
+                why "Regular updates ensure that secure operation guidelines remain effective
+                    +b against evolving threats."
+                [ update_process
+                    {
+                        step "Review incident reports"
+                        description "Analyze incidents related to user behavior to identify gaps in guidelines."
+                    {
+                        step "Update documentation"
+                        description "Revise secure operation guidelines based on incident analysis and new threat
+                            +b intelligence."
+                lessons_learned "Incorporating feedback from audits and incidents into guideline updates to
+                    +b improve security posture."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

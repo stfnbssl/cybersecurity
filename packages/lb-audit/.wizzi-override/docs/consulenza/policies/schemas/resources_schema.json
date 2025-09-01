@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Schema per Estrazione di Tools, Standard, Best Practices e Metodologie per IEC 62443-4-1",
+  "description": "Schema JSON che definisce la struttura per l'elenco di tools, standard, best practices e metodologie per implementare politiche e procedure conformi a IEC 62443-4-1, con riferimenti espliciti alle practice areas (SM-1 a SM-8). Include una proprietà 'type' per distinguere metodologie nelle best practices.",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Titolo del documento JSON."
+    },
+    "description": {
+      "type": "string",
+      "description": "Descrizione generale del contenuto del JSON."
+    },
+    "resources": {
+      "type": "array",
+      "description": "Elenco delle categorie di risorse (Tools, Standard, Best Practices, Methodologies).",
+      "items": {
+        "type": "object",
+        "properties": {
+          "category": {
+            "type": "string",
+            "enum": ["Tools", "Standard", "Best Practices", "Methodologies"],
+            "description": "Nome della categoria di risorse."
+          },
+          "items": {
+            "type": "array",
+            "description": "Elenco degli elementi all'interno della categoria.",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Nome dell'elemento (es. nome del tool, standard, best practice o metodologia)."
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Descrizione dell'elemento e del suo utilizzo."
+                },
+                "practice_areas": {
+                  "type": "array",
+                  "description": "Aree di pratica di IEC 62443-4-1 a cui l'elemento è rilevante (SM-1 a SM-8).",
+                  "items": {
+                    "type": "string",
+                    "enum": ["SM-1", "SM-2", "SM-3", "SM-4", "SM-5", "SM-6", "SM-7", "SM-8"]
+                  },
+                  "minItems": 1
+                },
+                "reference": {
+                  "type": "string",
+                  "description": "URL o riferimento per accedere all'elemento o a ulteriori informazioni."
+                },
+                "research_guidance": {
+                  "type": "string",
+                  "description": "Indicazioni per proseguire le ricerche o implementare l'elemento."
+                },
+                "type": {
+                  "type": "string",
+                  "enum": ["Methodology", "Framework", "Resource"],
+                  "description": "Tipo di elemento, applicabile solo nella categoria 'Best Practices' o 'Methodologies' per distinguere metodologie da framework o risorse generiche."
+                }
+              },
+              "required": ["name", "description", "practice_areas", "reference", "research_guidance"],
+              "if": {
+                "properties": {
+                  "category": {
+                    "const": "Best Practices"
+                  }
+                }
+              },
+              "then": {
+                "required": ["type"]
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "required": ["category", "items"],
+        "additionalProperties": false
+      }
+    },
+    "additional_guidance": {
+      "type": "object",
+      "description": "Consigli pratici aggiuntivi per l'implementazione.",
+      "properties": {
+        "practical_tip": {
+          "type": "string",
+          "description": "Suggerimenti pratici per utilizzare le risorse elencate."
+        }
+      },
+      "required": ["practical_tip"],
+      "additionalProperties": false
+    }
+  },
+  "required": ["title", "description", "resources", "additional_guidance"],
+  "additionalProperties": false
+}

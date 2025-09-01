@@ -1,0 +1,252 @@
+$group
+    {
+        id "FSA-SAR 2.4A"
+        check_description "In the event that a software application utilizes mobile code technologies,
+            +b that application shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the software application,
+            +b action to control execution of mobile code."
+        requirement_id "IEC 62443-4-2: SAR 2.4(a)"
+        title "Mobile Code - Control Execution"
+        description "This requirement focuses on controlling the execution of mobile code within a
+            +b system. Mobile code refers to software that is transferred from one system to
+            +b another and executed on a local system without explicit installation. The
+            +b objective is to ensure that the execution of such code does not compromise the
+            +b security of the system."
+        [ key_aspects
+            "Identification of mobile code types that are permitted to execute within the system."
+            "Implementation of mechanisms to restrict execution of unauthorized mobile code."
+            "Regular updates and patches to the mobile code execution environment to address vulnerabilities."
+            "Monitoring and logging of mobile code execution activities to detect and respond to unauthorized actions."
+        { related_standards
+            { "IEC 62443-3-3"
+                reference "SR 3.2 - Malicious Code Protection"
+                description "Focuses on protection mechanisms against malware that could include mobile
+                    +b code, ensuring that systems are safeguarded against unauthorized code
+                    +b execution."
+            { "NIST SP 800-53"
+                reference "SI-7 - Software, Firmware, and Information Integrity"
+                description "Provides guidelines for ensuring the integrity of software, including mobile
+                    +b code, by implementing controls to detect and prevent unauthorized changes."
+            { "ISO/IEC 27001"
+                reference "A.12.2.1 - Controls against malware"
+                description "Emphasizes the need for controls to detect and prevent the introduction of
+                    +b malicious code, which encompasses mobile code management and execution
+                    +b controls."
+            { "CIS Controls"
+                reference "Control 8: Malware Defenses"
+                description "Includes recommendations for managing the risk associated with mobile code by
+                    +b deploying appropriate defenses and monitoring mechanisms."
+    {
+        id "FSA-SAR 2.4B"
+        check_description "In the event that a software application utilizes mobile code technologies,
+            +b that application shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the software application,
+            +b action to control which users (human, software process, or device) are allowed
+            +b to transfer mobile code to/from the application."
+        requirement_id "IEC 62443-4-2: SAR 2.4(b)"
+        title "Mobile Code - Control Transfer by User"
+        description "This requirement mandates the control and management of mobile code execution
+            +b within industrial control systems (ICS), ensuring that the transfer and
+            +b execution of such code are explicitly controlled by the user. The aim is to
+            +b prevent unauthorized or unintended mobile code from executing, which could
+            +b potentially compromise system security."
+        [ key_aspects
+            {
+                aspect "User Control"
+                details "The user must have explicit control over the transfer and execution of mobile
+                    +b code. This could involve user prompts, explicit permissions, or settings that
+                    +b allow users to approve or deny such actions."
+            {
+                aspect "Mobile Code Definition"
+                details "Mobile code refers to code that can be transmitted across a network and
+                    +b executed on a remote system. Examples include Java applets, ActiveX controls,
+                    +b and scripts embedded in web pages."
+            {
+                aspect "Security Risks"
+                details "Uncontrolled execution of mobile code can introduce security vulnerabilities,
+                    +b such as unauthorized access, privilege escalation, or data exfiltration."
+            {
+                aspect "Implementation Mechanisms"
+                details "Organizations can implement control mechanisms like whitelisting, code signing,
+                    +b and runtime restrictions to ensure only authorized mobile code is executed."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7 (12), SC-18"
+                details "NIST Special Publication 800-53 addresses the control and monitoring of mobile
+                    +b code through security controls SI-7 (12) and SC-18, emphasizing the need for
+                    +b explicit management and control mechanisms."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.2.1"
+                details "This control within ISO/IEC 27001 focuses on the restrictions on software
+                    +b installation, which includes managing and controlling mobile code execution to
+                    +b prevent unauthorized actions."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.4"
+                details "As part of the broader IEC 62443 series, this standard provides guidelines for
+                    +b ensuring system integrity and addresses the management of mobile code execution
+                    +b in ICS environments."
+    {
+        id "FSA-SAR 2.4C"
+        check_description "In the event that a software application utilizes mobile code technologies,
+            +b that application shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the software application,
+            +b action to control the execution of mobile code based on the results of an
+            +b integrity check prior to the code being executed."
+        requirement_id "IEC 62443-4-2: SAR 2.4(c)"
+        title "Mobile Code - Integrity Check"
+        description "This requirement focuses on ensuring the integrity of mobile code used within
+            +b industrial control systems (ICS). Mobile code refers to software transferred
+            +b across a network and executed on a local system. The integrity check ensures
+            +b that the mobile code has not been altered or tampered with during transmission,
+            +b thereby protecting the system from potential threats such as malware or
+            +b unauthorized code execution."
+        [ key_aspects
+            {
+                aspect "Integrity Verification"
+                details "Implement mechanisms to verify the integrity of mobile code before execution,
+                    +b typically through cryptographic techniques such as digital signatures or
+                    +b checksums."
+            {
+                aspect "Secure Transmission"
+                details "Ensure that mobile code is transmitted over secure channels to prevent
+                    +b interception and manipulation by unauthorized entities."
+            {
+                aspect "Access Control"
+                details "Restrict the execution of mobile code to authorized personnel and systems only,
+                    +b using robust access control measures."
+            {
+                aspect "Regular Updates"
+                details "Regularly update the integrity verification mechanisms and signatures to
+                    +b address new vulnerabilities and threats."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "SI-7(1) - Software, Firmware, and Information Integrity"
+                description "This control emphasizes the need for integrity verification of software,
+                    +b including mobile code, to protect against unauthorized changes."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.5.1 - Installation of Software on Operational Systems"
+                description "Addresses the control of software installation to ensure that unauthorized or
+                    +b malicious code is not introduced into systems."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.5 - System integrity"
+                description "Part of the broader IEC 62443 series, this requirement focuses on maintaining
+                    +b the integrity of the control system's operational environment."
+            {
+                standard "OWASP Application Security Verification Standard (ASVS)"
+                reference "V8.2 - Verify that all code downloaded for execution is first checked for
+                    +b integrity."
+                description "This requirement is part of the ASVS guidelines ensuring that mobile code is
+                    +b checked for integrity before execution to prevent security vulnerabilities."
+    {
+        id "FSA-SAR 2.4 RE(1)"
+        check_description "The application shall provide the capability to enforce a security policy that
+            +b allows the device to control execution of mobile code based on the results of
+            +b an authenticity check prior to the code being executed."
+        requirement_id "IEC 62443-4-2: SAR 2.4 RE(1)"
+        title "Mobile Code Authenticity Check"
+        description "This requirement mandates the implementation of measures to verify the
+            +b authenticity of mobile code (such as scripts, applets, or other executable
+            +b code) before it is executed within the system. The objective is to ensure that
+            +b only authorized and trusted code is executed, thereby protecting the system
+            +b from potentially malicious or compromised code that could lead to unauthorized
+            +b access or other security breaches."
+        [ key_aspects
+            {
+                aspect "Verification"
+                details "Implement mechanisms to verify the digital signature or hash of mobile code to
+                    +b ensure it has not been tampered with and is from a trusted source."
+            {
+                aspect "Source Validation"
+                details "Ensure that the code originates from a trusted publisher or source, using
+                    +b certification or whitelisting techniques."
+            {
+                aspect "Execution Control"
+                details "Restrict the execution of mobile code to environments that support authenticity
+                    +b verification, preventing execution if verification fails."
+            {
+                aspect "Logging and Monitoring"
+                details "Log events related to mobile code execution and authenticity checks for audit
+                    +b purposes and to identify potential security incidents."
+        [ related_standards
+            {
+                standard "NIST SP 800-53 Rev. 5"
+                reference "SI-7: Software, Firmware, and Information Integrity"
+                details "This control addresses the integrity of software, firmware, and information,
+                    +b requiring integrity checks and authenticity verification similar to mobile code
+                    +b authenticity checks."
+            {
+                standard "ISO/IEC 27001:2013"
+                reference "A.12.5: Control of Operational Software"
+                details "This section emphasizes the control of software installation, which includes
+                    +b ensuring that only authorized and verified software, including mobile code, is
+                    +b used."
+            {
+                standard "OWASP ASVS"
+                reference "V10: Malicious Code Verification"
+                details "This section of the Application Security Verification Standard (ASVS) covers
+                    +b the verification of code to prevent malicious code execution, aligning with the
+                    +b need for authenticity checks."
+    {
+        id "FSA-EDR 2.4A"
+        check_description "In the event that an embedded device utilizes mobile code technologies, the
+            +b embedded device shall provide the capability to enforce a security policy for
+            +b the usage of mobile code technologies. The security policy shall allow, at a
+            +b minimum, for each mobile code technology used on the embedded device, action to
+            +b control execution of mobile code."
+        requirement_id "IEC 62443-4-2:EDR 2.4(a)"
+        title "Mobile Code - Control Execution"
+        description "This requirement focuses on the control and management of mobile code execution
+            +b within industrial automation and control systems (IACS). It aims to ensure that
+            +b mobile code, such as scripts, applets, or other portable code objects, is
+            +b executed in a controlled manner to prevent unauthorized or harmful actions."
+        [ key_aspects
+            {
+                aspect "Execution Control"
+                details "The system must have mechanisms to control the execution of mobile code,
+                    +b ensuring it is only executed when authorized and necessary."
+            {
+                aspect "Authorization and Authentication"
+                details "Before execution, mobile code should be validated and authenticated to ensure
+                    +b it is from a trusted source."
+            {
+                aspect "Sandboxing"
+                details "Utilize sandboxing techniques to execute mobile code in isolated environments,
+                    +b limiting its access to critical system resources and data."
+            {
+                aspect "Logging and Monitoring"
+                details "All instances of mobile code execution should be logged and monitored to detect
+                    +b and respond to unauthorized or suspicious activities."
+            {
+                aspect "Policy Enforcement"
+                details "Develop and enforce policies that specify what types of mobile code can be
+                    +b executed and under what conditions."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "CM-7, SI-7"
+                details "These controls address configuration management and software, firmware, and
+                    +b information integrity, which are relevant to managing mobile code execution."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.2.1"
+                details "Deals with the control of software installation, which is pertinent to the safe
+                    +b execution of mobile code."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 4.4"
+                details "Focuses on system management, including software and information integrity,
+                    +b which supports the control of mobile code."
+            {
+                standard "OWASP Application Security Verification Standard (ASVS)"
+                reference "V8 - Data Protection Verification Requirements"
+                details "This standard includes requirements for protecting data, which can intersect
+                    +b with ensuring secure execution of mobile code."

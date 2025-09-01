@@ -1,0 +1,58 @@
+$group
+    $params &options, kind|step
+    $
+        var prefix_n = kind == 'step' ? '\\n ' : ''
+        var prefix_b = kind == 'step' ? '\\b ' : ''
+
+    $if true
+
+        ${prefix_n}Trova un elenco di aziende con sede e fatturato annuo specificati nei dati di input JSON qui sotto.
+        ${prefix_n}Le aziende devono essere fornitori di prodotti o integratori di sistemi coinvolti nella produzione o integrazione di macchine con sistemi di automazione e controllo industriale (IACS) a cui si applicano i requisiti di cybersicurezza IEC 62443-3-3.
+        ${prefix_n}La risposta deve essere in formato JSON, conforme allo schema fornito, e includere:  name: Il nome completo dell'azienda.  
+        ${prefix_n}sales_eur: Fatturato annuo in euro (specificare cifre esatte se disponibili; se non disponibili, indicare “Sconosciuto” e giustificare l'assunzione di >€100M in base alla rilevanza nel settore o alla scala aziendale).  
+        ${prefix_n}description: Una breve descrizione delle attività dell'azienda, con focus sul loro ruolo nella produzione o integrazione di macchine con sistemi di automazione.  
+        ${prefix_n}machine_types: Un elenco dei tipi di macchine prodotte o integrate, rilevanti per IACS (es. macchine CNC, sistemi controllati da PLC, apparecchiature abilitate IoT).  
+        ${prefix_n}iec_62443: Un'analisi dettagliata di come lo standard IEC 62443-3-3 si applica alle macchine o ai sistemi dell'azienda, 
+        ${prefix_b}facendo riferimento ai sette requisiti fondamentali (FR1–FR7) e spiegando le esigenze di cybersicurezza (es. protezione dei controlli in rete, integrità dei dati, garanzia della disponibilità del sistema).  
+        ${prefix_n}contact_details: Un oggetto contenente:  address: Indirizzo fisico completo.  
+        ${prefix_n}phone: Numero di telefono di contatto principale.  
+        ${prefix_n}email: Email di contatto principale (se non disponibile, indicare “Non disponibile”).  
+        ${prefix_n}website: URL del sito web dell'azienda (se non disponibile, indicare “Non disponibile”).
+        ${prefix_n}source: Le fonti dei dati (es. sito web aziendale, rapporti finanziari, elenchi aziendali).
+        ${prefix_n}Segui queste linee guida:  Includi esclusivamente aziende con sede nella località specificata.  
+        ${prefix_n}Se le cifre esatte del fatturato non sono disponibili, giustifica l'assunzione in base alla leadership di mercato, presenza globale o scala industriale.  
+        ${prefix_n}Assicurati che i tipi di macchine siano specifici del portfolio aziendale e rilevanti per IACS che richiedono conformità a IEC 62443-3-3 (es. sistemi con PLC, SCADA o integrazione IoT).  
+        ${prefix_n}Fornisci un'analisi dettagliata di IEC 62443-3-3, spiegando come i requisiti dello standard (es. controllo di identificazione e autenticazione, integrità del sistema, flusso di dati ristretto) si applicano alle operazioni dell'azienda.  
+        ${prefix_n}Ottieni i dettagli di contatto da fonti affidabili (es. siti web aziendali, Registro delle Imprese Italiano, Crunchbase o elenchi aziendali come Listcompany.org). Se i contatti specifici non sono disponibili, fornisci i dettagli della sede legale o indica “Non disponibile”.  
+        ${prefix_n}Valuta criticamente le fonti per garantire accuratezza ed evita dati speculativi.  
+        ${prefix_n}Se meno di 10 aziende soddisfano i criteri, spiega la limitazione e includi quante più aziende qualificate possibile.
+    
+    $if false
+        ${prefix_n}Find a list of ${options.number_of_firms_to_extract} firms with location and annual sales specified in a JSON input data below.
+        ${prefix_n}Firms must be product suppliers or system integrators involved in manufacturing or 
+        ${prefix_n}integrating machines with industrial automation and control systems (IACS) 
+        ${prefix_n}where IEC 62443-3-3 cybersecurity requirements could apply. 
+        
+        ${prefix_n}The response must be in JSON format, adhering to the schema below, and include:
+        ${prefix_n}name: The company’s full name.
+        ${prefix_n}sales_eur: Annual sales in euros (specify exact figures if available; if unavailable, note “Unknown” and justify assumption of >€100M based on industry prominence or scale).
+        ${prefix_n}description: A brief description of the company’s activities, focusing on their role in manufacturing or integrating machines with automation systems.
+        ${prefix_n}machine_types: A list of machine types produced or integrated, relevant to IACS (e.g., CNC machines, PLC-controlled systems, IoT-enabled equipment).
+        ${prefix_n}iec_62443_relevance: A detailed analysis of how IEC 62443-3-3 applies to the company’s machines or systems, referencing the seven foundational requirements (FR1–FR7) and explaining cybersecurity needs (e.g., securing networked controls, protecting data integrity, ensuring system availability).
+        ${prefix_n}contact_details: An object containing:
+        ${prefix_n}address: Full physical address.
+        ${prefix_n}phone: Primary contact phone number.
+        ${prefix_n}email: Primary contact email (if unavailable, note “Not available”).
+        ${prefix_n}website: Company website URL (if unavailable, note “Not available”).
+        ${prefix_n}source: The source(s) of the data (e.g., company website, financial reports, business directories).
+
+        ${prefix_n}Follow these guidelines:
+        ${prefix_n}Strictly include only firms headquartered in the specified location.
+        ${prefix_n}If exact sales figures are unavailable, justify the assumption based on market leadership, global presence, or industry scale.
+        ${prefix_n}Ensure machine types are specific to the company’s portfolio and relevant to IACS requiring IEC 62443-3-3 compliance (e.g., systems with PLCs, SCADA, or IoT integration).
+        ${prefix_n}Provide a detailed IEC 62443-3-3 analysis, explaining how the standard’s requirements (e.g., identification and authentication control, system integrity, restricted data flow) apply to the company’s operations.
+        ${prefix_n}Source contact details from credible sources (e.g., company websites, Italian Business Register, Crunchbase, or business directories like Listcompany.org). If specific contacts are unavailable, provide registered office details or note “Not available.”
+        ${prefix_n}Critically evaluate sources for accuracy and avoid speculative data. 
+        ${prefix_n}If fewer than 10 firms meet the criteria, explain the limitation and include as many qualifying firms as possible.
+
+

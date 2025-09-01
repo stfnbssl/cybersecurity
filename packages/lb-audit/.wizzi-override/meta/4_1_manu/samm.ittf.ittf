@@ -1,0 +1,186 @@
+ittf
+
+    $file .wizzi-override/docs/4_1_manu/transformed/x_grok_samm.json
+
+        $
+            var processes = [];
+            var process = {
+              name: null,
+              definizione: [],
+              samm: [],
+              iec62443: [],
+              obiettivoComune: [],
+              obiettivoScada: [],
+              strumentiUtili: [],
+              comeUsare: [],
+              applicazionePratica: [],
+              checks: []
+            }             
+            var definizioneOn = false;
+            var sammOn = false;
+            var iec62443On = false;
+            var obiettivoComuneOn = false;
+            var obiettivoScadaOn = false;
+            var strumentiUtiliOn = false;
+            var comeUsareOn = false;
+            var applicazionePraticaOn = false;
+
+        $foreach item in x_grok_samm
+            $if item.type == "text"
+                $if item.value.startsWith("Contesto:")
+                    $
+                      process = {
+                        name: item.value.substring("Contesto:".length + 1).trim(),
+                        definizione: [],
+                        samm: [],
+                        iec62443: [],
+                        obiettivoComune: [],
+                        obiettivoScada: [],
+                        strumentiUtili: [],
+                        comeUsare: [],
+                        applicazionePratica: [],
+                        checks: []
+                      } 
+                      processes.push(process);
+                      obiettivoComuneOn = false;
+                      definizioneOn = false;
+
+                $elif item.value.startsWith("Definizione")
+                    $
+                      definizioneOn = true;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.indexOf("(SAMM)") > -1
+                    $
+                      definizioneOn = false;
+                      sammOn = true;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.indexOf("62443-4-1") > -1
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = true;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.startsWith("Obiettivo comune")
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = true;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.startsWith("Obiettivo per SCADA")
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = true;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.startsWith("Strumenti utili")
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = true;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.startsWith("Come usare")
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = true;
+                      applicazionePraticaOn = false;
+
+                $elif item.value.startsWith("Applicazione pratica")
+                    $
+                      definizioneOn = false;
+                      sammOn = false;
+                      iec62443On = false;
+                      obiettivoComuneOn = false;
+                      obiettivoScadaOn = false;
+                      strumentiUtiliOn = false;
+                      comeUsareOn = false;
+                      applicazionePraticaOn = true;
+
+                $elif definizioneOn
+                    $
+                      process.definizione.push(item.value)
+
+                $elif sammOn
+                    $
+                      process.samm.push(item.value)
+
+                $elif iec62443On
+                    $
+                      process.iec62443.push(item.value)
+
+                $elif obiettivoComuneOn
+                    $
+                      process.obiettivoComune.push(item.value)
+
+                $elif obiettivoScadaOn
+                    $
+                      process.obiettivoScada.push(item.value)
+
+                $elif strumentiUtiliOn
+                    $
+                      process.strumentiUtili.push(item.value)
+
+                $elif comeUsareOn
+                    $
+                      process.comeUsare.push(item.value)
+
+                $elif applicazionePraticaOn
+                    $
+                      process.applicazionePratica.push(item.value)
+
+            $elif item.type == "table"
+              $
+                  process.checks = item.data
+                  definizioneOn = false;
+                  sammOn = false;
+                  iec62443On = false;
+                  obiettivoComuneOn = false;
+                  obiettivoScadaOn = false;
+                  strumentiUtiliOn = false;
+                  comeUsareOn = false;
+                  applicazionePraticaOn = false;
+
+        $ var output = _.stringify(processes, null, 2)
+
+        ${output}
+
+$*
+
+*$

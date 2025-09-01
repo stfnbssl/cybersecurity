@@ -1,0 +1,584 @@
+$group
+    {
+        idd "8.2.2"
+        area "Cloud security"
+        category "Security Integrations"
+        NIS2 "Art. 21, par. 2, comma e"
+        GDPR "Art. 25"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "AIS-04"
+        ISO27017 "14.2.1"
+        description "Le API sono configurate in modo da non memorizzare informazioni personali
+            +b all'interno dei log (p.e. passwords, indirizzi email, etc..)?"
+        details "La configurazione delle API è fondamentale per garantire che i dati personali
+            +b non siano inappropriatamente memorizzati nei log dei sistemi, prevenendo rischi
+            +b di esposizione."
+        { glossary
+            API "Un insieme di definizioni e protocolli per costruire e integrare software
+                +b applicativo."
+            Log "Registrazioni automatiche di eventi, operazioni e messaggi generati da sistemi
+                +b informatici."
+            "Informazioni personali" "Dati che identificano un individuo, come nome, indirizzo, email."
+        { links
+            NIS2 "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52020PC0823"
+            GDPR "https://gdpr-info.eu/art-25-gdpr/"
+            ISO_27001 "https://www.iso.org/standard/54534.html"
+            NIST_CSF "https://www.nist.gov/cyberframework"
+            CSA_CAIQ "
+                +b https://cloudsecurityalliance.org/artifacts/consensus-assessments-initiative-questionnaire-v3-1/"
+            ISO_27017 "https://www.iso.org/standard/43757.html"
+    {
+        idd "8.2.3"
+        area "Cloud security"
+        category "Security Integrations"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "AIS-04"
+        ISO27017 "14.2.1"
+        EuCRA "Allegato I.1"
+        description "In caso di API, gli ID memorizzati nell'oggetto sessione vengono utilizzati al
+            +b posto degli ID inviati dal client? Vengono utilizzati ID casuali che non
+            +b possono essere forzati (UUID)?"
+        detailed_explanation "In ambito di sicurezza cloud, il corretto utilizzo degli ID nelle sessioni API
+            +b è fondamentale per prevenire attacchi come la session fixation o session
+            +b hijacking. Quando si stabilisce una sessione tra un client e un server tramite
+            +b API, è importante che gli ID di sessione siano generati in modo sicuro e non
+            +b siano facilmente prevedibili. Utilizzare ID casuali, come UUID, aiuta a
+            +b garantire che gli ID non possano essere forzati o indovinati da attaccanti.
+            +b Inoltre, è importante che l'ID utilizzato per la gestione della sessione sia
+            +b memorizzato sul server piuttosto che essere inviato e gestito dal client. Ciò
+            +b riduce il rischio che un attaccante possa intercettare e utilizzare l'ID di
+            +b sessione per assumere l'identità del client."
+        [ glossary
+            {
+                term "API"
+                definition "Interfaccia di programmazione delle applicazioni, un insieme di regole che
+                    +b consente a diversi programmi software di comunicare tra loro."
+                link "https://en.wikipedia.org/wiki/API"
+            {
+                term "Session Fixation"
+                definition "Una vulnerabilità che consente a un attaccante di fissare una sessione
+                    +b conosciuta su un utente, permettendo poi di prendere il controllo della
+                    +b sessione una volta che l'utente è autenticato."
+                link "https://owasp.org/www-community/attacks/Session_fixation"
+            {
+                term "Session Hijacking"
+                definition "Un tipo di attacco informatico in cui l'attaccante prende il controllo della
+                    +b sessione di comunicazione tra due parti."
+                link "https://owasp.org/www-community/attacks/Session_hijacking"
+            {
+                term "UUID"
+                definition "Identificatore univoco universale, un numero a 128 bit utilizzato per
+                    +b identificare informazioni in sistemi informatici."
+                link "https://en.wikipedia.org/wiki/Universally_unique_identifier"
+        [ related_links
+            {
+                title "OWASP Session Management Cheat Sheet"
+                url "
+                    +b https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+            {
+                title "NIST Special Publication 800-63B: Digital Identity Guidelines"
+                url "https://pages.nist.gov/800-63-3/sp800-63b.html"
+            {
+                title "ISO/IEC 27017:2015 - Code of practice for information security controls based
+                    +b on ISO/IEC 27002 for cloud services"
+                url "https://www.iso.org/standard/43757.html"
+    {
+        idd "8.2.4"
+        area "Cloud security"
+        category "Security Integrations"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "AIS-04"
+        ISO27017 "14.2.1"
+        EuCRA "Allegato I.1"
+        description "Sono previste ed attuate logiche di API-rate limiting volte ad assicurare la
+            +b protezione della disponibilità del servizio?"
+        detailed_explanation "API rate limiting is a strategy used to control the amount of incoming and
+            +b outgoing traffic to or from a network. It is a crucial component in cloud
+            +b security as it helps in maintaining the availability and reliability of
+            +b services by preventing overloads and potential Denial-of-Service (DoS) attacks.
+            +b By setting a limit on the number of requests a user or a system can make in a
+            +b given time frame, organizations can ensure that their services remain available
+            +b to legitimate users while mitigating the risk of abuse and service degradation.
+            +b Implementing API rate limiting involves configuring rules that specify the
+            +b maximum number of API calls that can be made within a certain period. This is
+            +b essential for maintaining service performance and preventing malicious
+            +b activities that could lead to service outages or data breaches. It also allows
+            +b for better resource management by ensuring that resources are allocated
+            +b efficiently and are not overwhelmed by excessive demands."
+        [ glossary
+            {
+                term "API (Application Programming Interface)"
+                definition "A set of rules and protocols for building and interacting with software
+                    +b applications. APIs allow different software systems to communicate with each
+                    +b other."
+                link "https://en.wikipedia.org/wiki/API"
+            {
+                term "Rate Limiting"
+                definition "A technique used to control the rate of traffic sent or received on a network
+                    +b interface, often used to prevent abuse of APIs and to manage service
+                    +b availability."
+                link "https://www.cloudflare.com/learning/bots/what-is-rate-limiting/"
+            {
+                term "Denial-of-Service (DoS) attack"
+                definition "A cyber-attack in which the perpetrator seeks to make a machine or network
+                    +b resource unavailable to its intended users by temporarily or indefinitely
+                    +b disrupting services of a host connected to the Internet."
+                link "https://en.wikipedia.org/wiki/Denial-of-service_attack"
+        [ related_links
+            {
+                title "NIST Special Publication 800-207 - Zero Trust Architecture"
+                url "https://csrc.nist.gov/publications/detail/sp/800-207/final"
+            {
+                title "Cloud Security Alliance - Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+            {
+                title "RFC 7231: Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content"
+                url "https://tools.ietf.org/html/rfc7231"
+    {
+        idd "8.2.5"
+        area "Cloud security"
+        category "Security Integrations"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.DS-6_n_PR.DS-7_n_PR.IP-2"
+        "CSA CAIQ" "AIS-04"
+        ISO27017 "14.2.1"
+        EuCRA "Allegato I.1"
+        description "Il servizio Cloud supporta i connettori necessari per log ingestion su
+            +b tecnologie SIEM-SOAR?"
+        detailed_explanation "La capacità di un servizio Cloud di supportare connettori per l'ingestione dei
+            +b log verso tecnologie come SIEM (Security Information and Event Management) e
+            +b SOAR (Security Orchestration, Automation, and Response) è cruciale per la
+            +b gestione della sicurezza nell'ambiente cloud. I connettori sono essenziali per
+            +b garantire che i dati di log generati dai servizi cloud possano essere
+            +b facilmente trasferiti e integrati nei sistemi SIEM e SOAR, dove possono essere
+            +b analizzati per identificare potenziali minacce e rispondere agli incidenti di
+            +b sicurezza. Questa integrazione consente una visibilità continua e centralizzata
+            +b sugli eventi di sicurezza, migliorando così la capacità di un'organizzazione di
+            +b monitorare, rilevare e rispondere alle minacce. Inoltre, l'automazione offerta
+            +b dai sistemi SOAR permette di ridurre i tempi di risposta e minimizzare
+            +b l'impatto degli incidenti. È fondamentale che i servizi cloud supportino
+            +b un'ampia gamma di connettori per assicurare la compatibilità con i diversi
+            +b strumenti di sicurezza utilizzati dall'organizzazione, e che siano configurati
+            +b correttamente per evitare lacune nella sicurezza."
+        [ glossary
+            {
+                term "Cloud"
+                definition "Una piattaforma di servizi informatici fornita tramite internet che consente
+                    +b l'accesso on-demand a risorse computazionali come server, storage e
+                    +b applicazioni."
+                link "https://en.wikipedia.org/wiki/Cloud_computing"
+            {
+                term "SIEM"
+                definition "Acronimo di Security Information and Event Management, è una soluzione di
+                    +b gestione della sicurezza che combina la gestione delle informazioni di
+                    +b sicurezza (SIM) e la gestione degli eventi di sicurezza (SEM) per fornire
+                    +b analisi in tempo reale delle allerta di sicurezza generate dalle applicazioni e
+                    +b dall'hardware di rete."
+                link "https://en.wikipedia.org/wiki/Security_information_and_event_management"
+            {
+                term "SOAR"
+                definition "Acronimo di Security Orchestration, Automation, and Response, è una categoria
+                    +b di soluzioni software progettate per aiutare le organizzazioni a raccogliere
+                    +b dati su minacce alla sicurezza, automatizzare le risposte e coordinare le
+                    +b attività di sicurezza."
+                link "
+                    +b https://www.gartner.com/en/information-technology/glossary/security-orchestration-automation-response-soar"
+            {
+                term "Log Ingestion"
+                definition "Il processo di raccolta, normalizzazione e caricamento dei dati di log da varie
+                    +b fonti in un sistema centralizzato per l'analisi."
+                link "https://techmonitor.ai/what-is/what-is-log-ingestion"
+        [ related_links
+            {
+                title "NIST Special Publication 800-92"
+                url "https://csrc.nist.gov/publications/detail/sp/800-92/final"
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "Cloud Security Alliance - Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+    {
+        idd "8.3.1"
+        area "Cloud security"
+        category "Cloud virtualization"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.AC-7_n_PR.PT-4"
+        "CSA CAIQ" "IVS-03"
+        ISO27017 "CLD.9.5.1_n_CLD.9.5.2"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Le politiche e le procedure di sicurezza per l'infrastruttura e la
+            +b virtualizzazione sono stabilite, documentate, approvate, comunicate, applicate,
+            +b valutate e mantenute?"
+        detailed_explanation "Questo controllo si riferisce alla gestione delle politiche e delle procedure
+            +b relative alla sicurezza dell'infrastruttura cloud e della virtualizzazione. In
+            +b un ambiente cloud, gli elementi di virtualizzazione sono fondamentali, poiché
+            +b permettono di creare e gestire risorse computazionali virtuali che possono
+            +b essere scalate e distribuite in modo efficiente. Le politiche di sicurezza
+            +b devono essere ben definite, documentate e approvate dalle autorità competenti
+            +b per garantire che tutti i processi siano conformi agli standard di sicurezza. È
+            +b fondamentale che queste politiche siano comunicate chiaramente a tutti i membri
+            +b del personale per garantirne la corretta applicazione. Inoltre, devono essere
+            +b regolarmente valutate e aggiornate per rispondere a nuove minacce e cambiamenti
+            +b nell'ambiente IT. Il mantenimento continuo di queste politiche assicura che
+            +b l'organizzazione sia sempre allineata con le best practices di sicurezza."
+        [ glossary
+            {
+                term "Virtualizzazione"
+                definition "Tecnologia che consente la creazione di una versione virtuale di una risorsa
+                    +b fisica, come un server, un dispositivo di archiviazione o una rete."
+                link "https://en.wikipedia.org/wiki/Virtualization"
+            {
+                term "Cloud Computing"
+                definition "Modello di erogazione di servizi IT che consente l'accesso a risorse condivise
+                    +b e configurabili (come reti, server e applicazioni) tramite Internet."
+                link "https://en.wikipedia.org/wiki/Cloud_computing"
+            {
+                term "Politiche di sicurezza"
+                definition "Insieme di regole e linee guida che definiscono come un'organizzazione gestisce
+                    +b e protegge le sue informazioni e risorse tecnologiche."
+                link "https://www.sans.org/security-resources/policies/"
+            {
+                term "ISO 27001"
+                definition "Standard internazionale per la gestione della sicurezza delle informazioni, che
+                    +b specifica i requisiti per stabilire, implementare, mantenere e migliorare un
+                    +b sistema di gestione della sicurezza delle informazioni (ISMS)."
+                link "https://www.iso.org/isoiec-27001-information-security.html"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013 Information technology — Security techniques — Information
+                    +b security management systems — Requirements"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "CSA Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+            {
+                title "Executive Order on Improving the Nation's Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "8.3.2"
+        area "Cloud security"
+        category "Cloud virtualization"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.AC-7_n_PR.PT-4"
+        "CSA CAIQ" "IVS-03"
+        ISO27017 "CLD.9.5.1_n_CLD.9.5.2"
+        EuCRA "Allegato I.1"
+        description "Le politiche e le procedure di sicurezza per l'infrastruttura e la
+            +b virtualizzazione sono esaminate e aggiornate almeno annualmente?"
+        detailed_explanation "La virtualizzazione nel cloud consente di eseguire più istanze virtuali su un
+            +b singolo hardware fisico, ottimizzando l'uso delle risorse. Tuttavia, questo può
+            +b introdurre rischi di sicurezza che devono essere gestiti attentamente. Le
+            +b politiche e le procedure di sicurezza legate all'infrastruttura e alla
+            +b virtualizzazione devono essere riesaminate e aggiornate almeno una volta
+            +b all'anno per garantire che siano allineate con le migliori pratiche correnti e
+            +b che rispondano a nuovi rischi o cambiamenti tecnologici. Questo include la
+            +b valutazione delle configurazioni di sicurezza, la gestione delle vulnerabilità,
+            +b la separazione delle risorse e la protezione dei dati sensibili. È cruciale
+            +b perché le minacce evolvono e le tecnologie cambiano, richiedendo un approccio
+            +b dinamico e aggiornato alla sicurezza."
+        [ glossary
+            {
+                term "Virtualizzazione"
+                definition "Processo di creazione di una versione virtuale di una risorsa fisica, come un
+                    +b server, un dispositivo di storage o una rete."
+                link "https://it.wikipedia.org/wiki/Virtualizzazione"
+            {
+                term "Cloud Computing"
+                definition "Modello di erogazione di servizi che consente di accedere a risorse
+                    +b informatiche (come server, storage e applicazioni) via Internet."
+                link "https://it.wikipedia.org/wiki/Cloud_computing"
+            {
+                term "Politiche di sicurezza"
+                definition "Linee guida e regole stabilite per proteggere le informazioni e le risorse di
+                    +b un'organizzazione."
+                link "https://www.sans.org/security-resources/policies/"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32022L2555"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management Systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Cloud Security Alliance (CSA) Consensus Assessments Initiative Questionnaire
+                    +b (CAIQ)"
+                url "https://cloudsecurityalliance.org/research/caiq/"
+            {
+                title "ISO/IEC 27017:2015 - Code of practice for information security controls based
+                    +b on ISO/IEC 27002 for cloud services"
+                url "https://www.iso.org/standard/43757.html"
+    {
+        idd "8.3.3"
+        area "Cloud security"
+        category "Cloud virtualization"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.IP-1_n_PR.PT-3"
+        "CSA CAIQ" "IVS-04"
+        ISO27017 "CLD.9.5.1_n_CLD.9.5.2"
+        EuCRA "Allegato I.1"
+        description "La disponibilità, la qualità e la capacità delle risorse sono pianificate e
+            +b monitorate in modo tale da garantire le prestazioni di sistema richieste?"
+        detailed_explanation "La disponibilità, la qualità e la capacità delle risorse in un ambiente cloud
+            +b devono essere gestite in modo efficace per assicurare che i sistemi operino con
+            +b le prestazioni richieste. Questo implica la pianificazione e il monitoraggio
+            +b continuo delle risorse computazionali, di archiviazione e di rete, per
+            +b rispondere alle esigenze attuali e future. La gestione delle risorse riguarda
+            +b l'allocazione dinamica delle risorse per ottimizzare l'efficienza e minimizzare
+            +b i costi, garantendo che i servizi critici abbiano sempre le risorse necessarie
+            +b per funzionare senza interruzioni. Inoltre, un monitoraggio costante aiuta a
+            +b identificare e risolvere eventuali colli di bottiglia o problemi di performance
+            +b prima che questi possano influenzare negativamente le operazioni aziendali."
+        [ glossary
+            {
+                term "Cloud computing"
+                definition "Modello di fornitura di servizi IT basato su Internet che fornisce risorse
+                    +b computazionali e archiviazione su richiesta."
+                link "https://en.wikipedia.org/wiki/Cloud_computing"
+            {
+                term "Virtualizzazione"
+                definition "Tecnologia che consente di creare versioni virtuali di risorse fisiche, come
+                    +b server e dispositivi di archiviazione, per ottimizzare la gestione e l'utilizzo
+                    +b delle risorse."
+                link "https://en.wikipedia.org/wiki/Virtualization"
+            {
+                term "Monitoraggio delle risorse"
+                definition "Processo di osservazione e analisi delle risorse del sistema per garantire che
+                    +b funzionino a livelli ottimali."
+                link "https://www.techtarget.com/searchitoperations/definition/resource-monitoring"
+            {
+                term "Capacità delle risorse"
+                definition "Quantità di risorse disponibile per l'uso, come CPU, memoria e larghezza di
+                    +b banda di rete."
+                link "https://en.wikipedia.org/wiki/Capacity_management"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013 Information security management systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Cloud Security Alliance - Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+    {
+        idd "8.3.4"
+        area "Cloud security"
+        category "Cloud virtualization"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.23"
+        "NIST CSF" "PR.IP-1_n_PR.PT-3"
+        "CSA CAIQ" "IVS-04"
+        ISO27017 "CLD.9.5.1_n_CLD.9.5.2"
+        EuCRA "Allegato I.1"
+        description "Ogni host e guest OS, hypervisor o piano di controllo dell'infrastruttura è
+            +b configurato con sicurezza (secondo le rispettive linee guida) e supportato da
+            +b controlli tecnici di sicurezza?"
+        detailed_explanation "La configurazione sicura di ogni host e guest OS (sistema operativo),
+            +b hypervisor o piano di controllo dell'infrastruttura è fondamentale per
+            +b proteggere un ambiente virtualizzato. Gli hypervisor sono software che creano e
+            +b gestiscono macchine virtuali, e la loro sicurezza è critica perché un
+            +b compromesso potrebbe permettere a un attaccante di accedere a tutte le macchine
+            +b virtuali ospitate. La configurazione sicura implica l'adozione di best practice
+            +b come la disabilitazione di servizi non necessari, l'applicazione di patch di
+            +b sicurezza regolarmente, e l'utilizzo di meccanismi di autenticazione forti.
+            +b Inoltre, i controlli tecnici di sicurezza devono essere implementati per
+            +b ridurre il rischio di accesso non autorizzato e proteggere l'integrità e la
+            +b riservatezza dei dati."
+        [ glossary
+            {
+                term "Host OS"
+                definition "Il sistema operativo che gira direttamente sull'hardware fisico di un server,
+                    +b che supporta uno o più hypervisor o macchine virtuali."
+                link "https://en.wikipedia.org/wiki/Host_operating_system"
+            {
+                term "Guest OS"
+                definition "Il sistema operativo che gira su una macchina virtuale all'interno di un
+                    +b ambiente virtualizzato."
+                link "https://en.wikipedia.org/wiki/Guest_operating_system"
+            {
+                term "Hypervisor"
+                definition "Software che crea e gestisce macchine virtuali, permettendo a più sistemi
+                    +b operativi di condividere un singolo hardware fisico."
+                link "https://en.wikipedia.org/wiki/Hypervisor"
+            {
+                term "Piano di controllo"
+                definition "Componente dell'infrastruttura che gestisce l'interazione e la gestione delle
+                    +b risorse virtualizzate, come la creazione e la configurazione delle macchine
+                    +b virtuali."
+                link "https://www.redhat.com/en/topics/cloud-computing/what-is-cloud-infrastructure"
+            {
+                term "Controlli tecnici di sicurezza"
+                definition "Misure implementate attraverso la tecnologia per proteggere i dati e le risorse
+                    +b IT, come firewall, antivirus, e sistemi di rilevamento delle intrusioni."
+                link "https://csrc.nist.gov/glossary/term/security_controls"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52020PC0823"
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "CSA Cloud Controls Matrix"
+                url "https://cloudsecurityalliance.org/research/cloud-controls-matrix/"
+            {
+                title "ISO/IEC 27017:2015"
+                url "https://www.iso.org/standard/43757.html"
+    {
+        idd "8.4.1"
+        area "Cloud security"
+        category "Data protection"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "PR.DS-1_n_PR.DS-2_n_PR.DS-5"
+        "CSA CAIQ" "DSP-17"
+        ISO27017 "A.15.2.1_n_A.15.2.2_n_A.18.1.3"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "Il Cloud Service Provider consente di estrarre i dati strutturati e non
+            +b strutturati dell'organizzazione su richiesta in un formato standard del settore
+            +b (p.e. .doc, .xls, xml, .pdf, registri e file flat)?"
+        detailed_explanation "For an organization utilizing cloud services, it is crucial that the Cloud
+            +b Service Provider (CSP) allows the extraction of both structured and
+            +b unstructured data in a format that is widely recognized and used across the
+            +b industry. This capability ensures data portability, which is essential for
+            +b avoiding vendor lock-in, complying with data protection regulations, and
+            +b maintaining operational continuity. Structured data refers to organized data,
+            +b often stored in databases with defined fields; examples include data in .xls or
+            +b .xml formats. Unstructured data, on the other hand, includes information that
+            +b doesn't have a pre-defined model or isn't organized in a predefined manner,
+            +b such as documents (.doc, .pdf), images, videos, and emails. By providing data
+            +b in standard formats, the CSP ensures that the organization can easily migrate
+            +b its data to another service provider or maintain its records efficiently,
+            +b thereby enhancing flexibility and control over its data assets."
+        [ glossary
+            {
+                term "Cloud Service Provider (CSP)"
+                definition "A third-party company that offers a cloud-based platform, infrastructure,
+                    +b application, or storage services. CSPs are responsible for the management and
+                    +b maintenance of cloud services."
+                link "https://en.wikipedia.org/wiki/Cloud_service_provider"
+            {
+                term "Structured Data"
+                definition "Data that resides in a fixed field within a record or file, such as data in
+                    +b databases or spreadsheets. It is easily searchable by simple, straightforward
+                    +b search engine algorithms or other search operations."
+                link "https://www.ibm.com/cloud/learn/structured-data"
+            {
+                term "Unstructured Data"
+                definition "Information that does not have a pre-defined data model or is not organized in
+                    +b a pre-defined manner, often consisting of text-heavy files like documents,
+                    +b emails, and social media posts."
+                link "https://www.ibm.com/cloud/learn/unstructured-data"
+            {
+                term "Data Portability"
+                definition "The ability to easily transfer data from one IT environment to another without
+                    +b being subjected to vendor lock-in. This involves transferring data in a format
+                    +b that is widely accepted and standardized."
+                link "https://en.wikipedia.org/wiki/Data_portability"
+            {
+                term "Vendor Lock-in"
+                definition "A situation where a customer is dependent on a vendor for products and services
+                    +b and cannot move to another vendor without substantial costs or inconvenience."
+                link "https://en.wikipedia.org/wiki/Vendor_lock-in"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013 Information security management systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Cloud Security Alliance (CSA) Consensus Assessments Initiative Questionnaire
+                    +b (CAIQ)"
+                url "https://cloudsecurityalliance.org/research/caiq/"
+    {
+        idd "8.4.2"
+        area "Cloud security"
+        category "Data protection"
+        NIS2 "Art. 21, par. 2, comma e"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "PR.DS-1_n_PR.DS-2_n_PR.DS-5"
+        "CSA CAIQ" "DSP-17"
+        ISO27017 "A.15.2.1_n_A.15.2.2_n_A.18.1.3"
+        EuCRA "Allegato I.1"
+        description "Le applicazioni e le infrastrutture sono progettate, sviluppate, implementate e
+            +b configurate in modo tale che l'accesso dei CSP (Cloud Service Provider) e dei
+            +b Cloud Service Customer (tenant) sia appropriatamente segmentato, segregato,
+            +b monitorato e limitato rispetto agli altri tenant?"
+        detailed_explanation "La sicurezza nel cloud richiede un'attenzione particolare alla segmentazione e
+            +b segregazione degli accessi tra diversi tenant che condividono le risorse di un
+            +b cloud. I Cloud Service Providers (CSP) devono garantire che l'accesso sia
+            +b rigorosamente controllato e limitato per prevenire accessi non autorizzati tra
+            +b tenant diversi. Questo implica che le infrastrutture e le applicazioni siano
+            +b progettate con principi di multi-tenancy sicuri, che includono anche il
+            +b monitoraggio continuo delle attività per identificare e rispondere prontamente
+            +b a eventuali anomalie o violazioni. L'implementazione di tali misure è
+            +b fondamentale per proteggere i dati e assicurare che ogni tenant abbia accesso
+            +b solo alle proprie risorse, mantenendo una chiara separazione tra i dati e le
+            +b operazioni di ciascun cliente del cloud."
+        [ glossary
+            {
+                term "Cloud Service Provider (CSP)"
+                definition "Un fornitore di servizi che offre servizi di cloud computing, come server,
+                    +b storage, database, networking, software, e analytics, attraverso internet."
+                link "https://en.wikipedia.org/wiki/Cloud_computing_provider"
+            {
+                term "Tenant"
+                definition "Un'entità che possiede o gestisce i dati e le applicazioni all'interno di un
+                    +b ambiente condiviso di cloud computing, utilizzando le risorse del provider."
+                link "https://en.wikipedia.org/wiki/Multi-tenancy"
+            {
+                term "Segmentazione"
+                definition "Il processo di divisione di una rete o sistema in parti più piccole per
+                    +b migliorare la sicurezza e la gestione delle risorse."
+                link "
+                    +b https://www.cisco.com/c/en/us/products/security/what-is-network-segmentation.html"
+            {
+                term "Segregazione"
+                definition "La pratica di separare i dati e le operazioni di vari tenant per garantire che
+                    +b non vi sia alcun accesso non autorizzato tra di essi."
+                link "https://www.ibm.com/cloud/learn/cloud-security"
+            {
+                term "Monitoraggio"
+                definition "Il processo continuo di osservazione e analisi delle attività di sistema per
+                    +b rilevare comportamenti anomali o potenziali minacce alla sicurezza."
+                link "
+                    +b https://www.splunk.com/en_us/blog/security/monitoring-cloud-infrastructure-what-you-need-to-know.html"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Cloud Security Alliance (CSA) CAIQ"
+                url "https://cloudsecurityalliance.org/artifacts/caiq-v3-0-1/"
+            {
+                title "ISO/IEC 27017:2015"
+                url "https://www.iso.org/standard/43757.html"
+            {
+                title "NIS Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016L1148"

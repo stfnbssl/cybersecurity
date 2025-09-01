@@ -1,0 +1,168 @@
+$group
+    { x_3_3_system_requirement_ai_step_3
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        description "JSON schema for IEC 62443-3-3 System Requirements
+            +b - Key properties plus ia extensions `policy_template` end `procedure_template`"
+        { properties
+            { policy_template
+                type "object"
+                description "Template for Security Policy."
+                { properties
+                    { title
+                        type "string"
+                        description "Title of the policy."
+                        example "Deterministic Output Security Policy"
+                    { purpose
+                        type "string"
+                        description "Purpose of the policy, outlining its objective."
+                        example "To define the requirements for ensuring ..."
+                    { scope
+                        type "string"
+                        description "Scope of the policy, specifying applicable systems."
+                        example "Applies to all ..."
+                    { policy_statements
+                        type "array"
+                        description "List of policy statements defining requirements for SR compliance."
+                        { items
+                            type "object"
+                            { properties
+                                { id
+                                    type "string"
+                                    description "Unique identifier for the policy statement."
+                                    example "PS1"
+                                { name
+                                    type "string"
+                                    description "Human-readable name of the policy statement."
+                                    example "Fail-Safe Configuration"
+                                { description
+                                    type "array"
+                                    description "Detailed description of the policy statement, including placeholders for engineering input."
+                                    { items
+                                        type "string"
+                                        example "All control systems shall be configured to ..."
+                            [ required
+                                "id" 
+                                "name" 
+                                "description" 
+                    { approval
+                        type "object"
+                        description "Details for policy approval and review process."
+                        { properties
+                            { policy_owner
+                                type "string"
+                                description "Placeholder for the policy owner."
+                                example "[Engineering Team to specify: e.g., Head of Engineering]"
+                            { review_frequency
+                                type "string"
+                                description "Placeholder for the frequency of policy review."
+                                example "[Engineering Team to specify: e.g., annually or upon system updates]"
+                            { last_reviewed
+                                type "string"
+                                description "Placeholder for the date of the last review."
+                                example "[Engineering Team to insert: date]"
+                        [ required
+                            "policy_owner" 
+                            "review_frequency" 
+                            "last_reviewed" 
+                    { verification_checklist
+                        type "array"
+                        description "Checklist of tasks for engineers to verify and complete the policy."
+                        { items
+                            type "string"
+                            example "Confirm predetermined output states (unpowered, hold, fixed) for each machine type."
+                [ required
+                    "title" 
+                    "purpose" 
+                    "scope" 
+                    "policy_statements" 
+                    "approval" 
+                    "verification_checklist" 
+            { procedure_template
+                type "object"
+                description "Template for Procedure."
+                { properties
+                    { title
+                        type "string"
+                        description "Title of the procedure."
+                        example "Deterministic Output Implementation and Testing Procedure"
+                    { purpose
+                        type "string"
+                        description "Purpose of the procedure, outlining its objective."
+                        example "To provide a step-by-step process for ..."
+                    { scope
+                        type "string"
+                        description "Scope of the procedure, specifying applicable systems."
+                        example "Applies to the ..."
+                    { prerequisites
+                        type "array"
+                        description "List of prerequisites needed before executing the procedure."
+                        { items
+                            type "string"
+                            example "Control system firmware updated to [Engineering Team to specify: e.g., latest version]."
+                    { procedure_steps
+                        type "array"
+                        description "List of steps to implement and test deterministic output behavior."
+                        { items
+                            type "object"
+                            { properties
+                                { step_id
+                                    type "string"
+                                    description "Unique identifier for the procedure step."
+                                    example "S1"
+                                { name
+                                    type "string"
+                                    description "Human-readable name of the procedure step."
+                                    example "Define Predetermined Output States"
+                                { description
+                                    type "array"
+                                    description "Detailed description of the procedure step, including placeholders for engineering input."
+                                    { items
+                                        type "string"
+                                        example "Identify the appropriate ..."
+                            [ required
+                                "step_id" 
+                                "name" 
+                                "description" 
+                    { tools_required
+                        type "array"
+                        description "List of tools required for the procedure, with placeholders for specific tools."
+                        { items
+                            type "object"
+                            { properties
+                                { name
+                                    type "string"
+                                    description "Name of the tool category."
+                                    example "Control System Software"
+                                { description
+                                    type "string"
+                                    description "Placeholder for specific tool details."
+                                    example "[Engineering Team to specify: e.g., Siemens SINUMERIK, Beckhoff TwinCAT]"
+                            [ required
+                                "name" 
+                                "description" 
+                    { challenges_addressed
+                        type "array"
+                        description "List of challenges addressed by the procedure."
+                        { items
+                            type "string"
+                            example "Ensures equipment and operator safety during cyberattacks."
+                    { verification_checklist
+                        type "array"
+                        description "Checklist of tasks for engineers to verify and complete the procedure."
+                        { items
+                            type "string"
+                            example "Define and document fail-safe states for each machine type."
+                [ required
+                    "title" 
+                    "purpose" 
+                    "scope" 
+                    "prerequisites" 
+                    "procedure_steps" 
+                    "tools_required" 
+                    "challenges_addressed" 
+                    "verification_checklist" 
+        note_su_json_risultante()
+        [ required
+            "policy_template" 
+            "procedure_template"

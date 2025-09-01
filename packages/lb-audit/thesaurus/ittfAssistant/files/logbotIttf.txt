@@ -1,0 +1,15 @@
+Formato ITTF Logbot
+
+Utilizzazndo il formato di rappresentazione ITTF descritto nel file `formatoITTF.txt`
+possiamo descrivere un sistema di gestione di processi industriali
+con queste caratteristiche.
+L'entità root è `organizzazione`, con attributi: 
+`id` e `descrizione`.
+Una `organizzazione` può avere N (molti) `impianti` con attributi:
+`id` e `descrizione`.
+Un `impianto` può avere N (molti) `gateway` con attributi:
+`id`, `descrizione` e `iot_id`.
+Un `gateway` può avere collegati N (molti) `plc` con attributi:
+`id`, `descrizione` e `plc_id` e `protocollo` (uno tra 's7', 'modbustcp' e 'modbusrtu').
+Un `plc` può trasmettere N (molti) `metriche` con attributi:
+`id`, `nome`, `tipo`, `descrizione`. 

@@ -1,0 +1,376 @@
+$group
+    {
+        practice "7"
+        code "SUM-1"
+        subCode "(1) security updates created by the product developer address the intended
+            +b security vulnerabilities"
+        [ policies
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Security Update Verification Policy"
+                description "This policy mandates that all security updates developed by Breton Spa must
+                    +b undergo a rigorous verification process to ensure they effectively address the
+                    +b intended vulnerabilities without introducing new risks. The process includes
+                    +b vulnerability mapping, compatibility testing, and impact assessment, as
+                    +b specified in IEC 62443-4-1 SUM-1. Updates must be tested in an environment that
+                    +b replicates production conditions to validate their effectiveness."
+                enforcement "Compliance is enforced through automated vulnerability scanning tools (e.g.,
+                    +b Tenable.ot), manual review by the ICS Update Review Board, and quarterly audits
+                    +b of update qualification logs."
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Legacy System Update Policy"
+                description "This policy outlines the procedures for handling security updates for legacy
+                    +b systems that cannot support modern update mechanisms. It requires a risk
+                    +b assessment documenting vulnerability impact, compensating controls (e.g.,
+                    +b network segmentation, virtual patching), and a scheduled replacement timeline.
+                    +b The policy aligns with IEC 62443-4-1 SUM-1 by ensuring that all systems,
+                    +b regardless of age, have documented security measures."
+                enforcement "Enforcement includes annual reviews of legacy system risk assessments, network
+                    +b segmentation audits, and monitoring of virtual patching effectiveness through
+                    +b ICS-capable firewalls."
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Rollback Procedure Policy"
+                description "This policy defines the requirements for establishing and testing rollback
+                    +b procedures for security updates. It ensures that if an update causes
+                    +b operational issues, systems can be reverted to their previous state with
+                    +b minimal downtime. The policy references IEC 62443-4-1 SUM-1's emphasis on
+                    +b maintaining system integrity and availability during update processes."
+                enforcement "Rollback procedures are tested during the update qualification phase, and
+                    +b compliance is verified through documented test results and post-update reviews."
+        [ procedures
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Security Update Verification Procedure"
+                description "This procedure details the steps for verifying that security updates address
+                    +b the intended vulnerabilities. It includes vulnerability mapping, compatibility
+                    +b testing, and impact assessment, ensuring compliance with IEC 62443-4-1 SUM-1."
+                [ steps
+                    {
+                        step 1
+                        action "Map the vulnerabilities addressed by the update to the corresponding CVEs and
+                            +b update contents."
+                        tools "SBOM analysis tools (e.g., Dependency-Track), vulnerability scanners (e.g.,
+                            +b Tenable.ot)"
+                        expected_outcome "A documented vulnerability mapping report showing the CVEs addressed by the
+                            +b update."
+                    {
+                        step 2
+                        action "Test the update in a controlled environment that replicates production
+                            +b conditions, including network configurations and legacy devices."
+                        tools "ICS-aware vulnerability scanners, automated testing tools (e.g., GitLab
+                            +b Ultimate)"
+                        expected_outcome "Test results confirming the update's effectiveness and compatibility with all
+                            +b system components."
+                    {
+                        step 3
+                        action "Assess the potential impact of the update on system performance, security, and
+                            +b safety."
+                        tools "Impact analysis tools (e.g., Honeywell ICS Update Impact Analysis), performance
+                            +b monitoring tools"
+                        expected_outcome "An impact assessment report detailing any potential risks or performance
+                            +b degradation caused by the update."
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Legacy System Update Procedure"
+                description "This procedure outlines the steps for managing security updates for legacy
+                    +b systems that cannot support modern update mechanisms. It ensures compliance
+                    +b with IEC 62443-4-1 SUM-1 by implementing compensating controls and documenting
+                    +b risk assessments."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a risk assessment to evaluate the impact of unpatched vulnerabilities
+                            +b on the legacy system."
+                        tools "Risk assessment frameworks (e.g., NIST 800-30 adapted for ICS), threat modeling
+                            +b tools (e.g., Microsoft Threat Modeling Tool)"
+                        expected_outcome "A risk assessment report documenting the vulnerability impact and recommended
+                            +b compensating controls."
+                    {
+                        step 2
+                        action "Implement compensating controls, such as network segmentation or virtual
+                            +b patching, to mitigate the vulnerabilities."
+                        tools "ICS-capable firewalls (e.g., Palo Alto Networks), intrusion prevention systems
+                            +b (e.g., Cisco Firepower)"
+                        expected_outcome "Documented implementation of compensating controls and verification of their
+                            +b effectiveness."
+                    {
+                        step 3
+                        action "Establish a scheduled replacement timeline for the legacy system and monitor
+                            +b its progress."
+                        tools "Asset management tools (e.g., Honeywell's asset management system), project
+                            +b management software"
+                        expected_outcome "A documented replacement timeline and periodic progress reports."
+            {
+                code "SUM-1"
+                subCode "(1)"
+                title "Rollback Procedure Execution"
+                description "This procedure provides detailed steps for executing rollback procedures if a
+                    +b security update causes operational issues. It ensures minimal downtime and
+                    +b system disruption, aligning with IEC 62443-4-1 SUM-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Identify the operational issues caused by the update and document their impact."
+                        tools "Incident logging tools (e.g., Splunk), system monitoring tools"
+                        expected_outcome "A documented incident report detailing the issues and their impact on
+                            +b operations."
+                    {
+                        step 2
+                        action "Execute the predefined rollback procedure to revert the system to its previous
+                            +b state."
+                        tools "Backup and restore tools (e.g., Veeam), configuration management tools"
+                        expected_outcome "Successful reversion of the system to its pre-update state with minimal
+                            +b downtime."
+                    {
+                        step 3
+                        action "Conduct a post-rollback review to identify the root cause of the issues and
+                            +b update the qualification process accordingly."
+                        tools "Root cause analysis tools (e.g., Fishbone diagrams), lessons learned databases"
+                        expected_outcome "A post-rollback review report with recommendations for improving future update
+                            +b qualifications."
+        last_updated "2023-11-15"
+    {
+        practice "7"
+        code "SUM-1"
+        subCode "(2) security updates do not introduce regressions, including but not limited to
+            +b patches created by:"
+        [ policies
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Security Update Qualification Policy"
+                description "This policy mandates that all security updates must undergo rigorous
+                    +b qualification testing in a controlled sandbox environment that mirrors
+                    +b production systems before deployment. The testing must include automated
+                    +b regression testing to verify that updates do not introduce regressions or new
+                    +b vulnerabilities. This aligns with IEC 62443-4-1 SUM-1 requirements to ensure
+                    +b operational integrity and security."
+                enforcement "Compliance is enforced through quarterly audits by the security team, reviewing
+                    +b documented test plans, results, and approval records. Automated tools are used
+                    +b to track update deployments and ensure 100% of security updates are tested for
+                    +b regressions."
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Rollback Procedure Policy"
+                description "This policy requires the establishment of predefined rollback procedures for
+                    +b all security updates to mitigate risks associated with failed deployments.
+                    +b Rollback plans must be tested and documented before any update is applied to
+                    +b production systems. This ensures quick recovery in case of update failures,
+                    +b supporting IEC 62443-4-1 SUM-1 compliance."
+                enforcement "Enforcement is achieved through mandatory rollback testing during the
+                    +b qualification phase and post-deployment monitoring. Incident logs are reviewed
+                    +b to verify adherence to rollback procedures."
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Vendor Collaboration Policy"
+                description "This policy mandates close coordination with vendors to obtain detailed
+                    +b documentation and support for security updates. Vendor-provided information
+                    +b must be incorporated into the qualification process to enhance accuracy and
+                    +b reliability. This aligns with IEC 62443-4-1 SUM-1 by ensuring comprehensive
+                    +b update qualification."
+                enforcement "Compliance is enforced through documented vendor communications and integration
+                    +b of vendor-provided test plans into the qualification process. Vendor support
+                    +b logs are reviewed during audits."
+        [ procedures
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Security Update Qualification Procedure"
+                description "This procedure outlines the steps for qualifying security updates to ensure
+                    +b they do not introduce regressions or vulnerabilities. It includes sandbox
+                    +b testing, automated regression testing, and documentation of results."
+                [ steps
+                    {
+                        step 1
+                        action "Set up a sandbox environment that replicates production systems, including all
+                            +b relevant ICS components and network configurations."
+                        tools "Virtualization tools (e.g., VMware, Hyper-V), ICS configuration management
+                            +b tools."
+                        expected_outcome "A fully functional sandbox environment ready for update testing."
+                    {
+                        step 2
+                        action "Deploy the security update to the sandbox environment and execute automated
+                            +b regression tests to verify functionality and security."
+                        tools "Automated testing tools (e.g., Rockwell Automation Studio 5000, Siemens TIA
+                            +b Portal)."
+                        expected_outcome "Comprehensive test results confirming no regressions or vulnerabilities
+                            +b introduced by the update."
+                    {
+                        step 3
+                        action "Document the test results, including any identified issues and mitigation
+                            +b steps, and obtain approval from the security team."
+                        tools "Documentation tools (e.g., Confluence, SharePoint), approval workflows."
+                        expected_outcome "Approved security update ready for deployment to production systems."
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Rollback Procedure Execution"
+                description "This procedure details the steps to execute a rollback in case a security
+                    +b update fails or introduces issues in production systems."
+                [ steps
+                    {
+                        step 1
+                        action "Identify the failed update and assess the impact on production systems."
+                        tools "Incident management tools (e.g., ServiceNow, JIRA), ICS monitoring tools."
+                        expected_outcome "Clear understanding of the issue and its impact."
+                    {
+                        step 2
+                        action "Execute the predefined rollback plan to revert the system to its previous
+                            +b state."
+                        tools "Backup and restore tools (e.g., Veeam, Acronis), ICS configuration management
+                            +b tools."
+                        expected_outcome "System restored to its pre-update state with minimal downtime."
+                    {
+                        step 3
+                        action "Document the rollback process, including root cause analysis and lessons
+                            +b learned, and update the rollback plan if necessary."
+                        tools "Documentation tools (e.g., Confluence, SharePoint), incident management tools."
+                        expected_outcome "Updated rollback plan and improved procedures for future updates."
+            {
+                code "SUM-1"
+                subCode "(2)"
+                title "Vendor Collaboration Procedure"
+                description "This procedure outlines the steps for collaborating with vendors to obtain and
+                    +b integrate detailed update documentation into the qualification process."
+                [ steps
+                    {
+                        step 1
+                        action "Contact the vendor to request detailed documentation for the security update,
+                            +b including potential impacts and testing recommendations."
+                        tools "Communication tools (e.g., email, vendor portals), documentation management
+                            +b tools."
+                        expected_outcome "Received vendor documentation with comprehensive update details."
+                    {
+                        step 2
+                        action "Review the vendor-provided documentation and integrate it into the
+                            +b qualification test plan."
+                        tools "Documentation tools (e.g., Confluence, SharePoint), test planning tools."
+                        expected_outcome "Updated qualification test plan incorporating vendor recommendations."
+                    {
+                        step 3
+                        action "Collaborate with the vendor to resolve any identified issues or ambiguities in
+                            +b the update documentation."
+                        tools "Communication tools (e.g., email, vendor portals), issue tracking tools."
+                        expected_outcome "Resolved issues and clarified documentation, ensuring accurate qualification
+                            +b testing."
+        last_updated "2023-11-15"
+    {
+        practice "7"
+        code "SUM-1"
+        subCode "a) the product developer;"
+        [ policies
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Security Update Verification Policy"
+                description "This policy mandates a formal process for verifying security updates by the
+                    +b product developer to ensure they meet security criteria before deployment. It
+                    +b includes checks for digital signatures, compatibility matrices, and regression
+                    +b testing to prevent disruptions or vulnerabilities in operational technology
+                    +b (OT) systems. Reference: IEC 62443-4-1, Section SUM-1."
+                enforcement "Regular audits of update verification logs, automated checks for digital
+                    +b signatures, and compliance reviews during internal security assessments."
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Impact Assessment Policy"
+                description "This policy requires a documented methodology for evaluating potential
+                    +b operational impacts of updates, including safety and availability
+                    +b considerations specific to OT environments. It ensures that updates do not
+                    +b introduce new vulnerabilities or affect system functionality. Reference: IEC
+                    +b 62443-4-1, Section SUM-1."
+                enforcement "Impact assessment reports must be reviewed and approved by the security team
+                    +b before deployment. Non-compliance results in update rejection."
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Developer Credential Verification Policy"
+                description "This policy establishes a process for authenticating update sources, including
+                    +b certificate validation and chain of custody documentation for all code changes.
+                    +b It ensures that updates originate from trusted sources and have not been
+                    +b tampered with. Reference: IEC 62443-4-1, Section SUM-1."
+                enforcement "Automated checks for developer certificates and manual review of chain of
+                    +b custody documentation. Updates without valid credentials are blocked."
+        [ procedures
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Security Update Verification Procedure"
+                description "This procedure outlines the steps for verifying security updates to ensure they
+                    +b meet security criteria before deployment in ICS environments. It includes
+                    +b checks for digital signatures, compatibility, and regression testing."
+                [ steps
+                    {
+                        step 1
+                        action "Download the security update from the vendor's official portal."
+                        tools "Secure download manager, vendor portal access."
+                        expected_outcome "Update package is downloaded and stored in a secure location."
+                    {
+                        step 2
+                        action "Verify the digital signature of the update package using the vendor's public
+                            +b key."
+                        tools "Cryptographic verification tools (e.g., OpenSSL, GnuPG)."
+                        expected_outcome "Digital signature is validated, confirming the update's authenticity."
+                    {
+                        step 3
+                        action "Perform regression testing in a sandbox environment that mirrors production."
+                        tools "Virtualized ICS network, testing frameworks (e.g., Siemens TIA Portal)."
+                        expected_outcome "Update is confirmed to not introduce new vulnerabilities or disrupt system
+                            +b functionality."
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Impact Assessment Procedure"
+                description "This procedure details the steps for evaluating the potential operational
+                    +b impacts of security updates, including safety and availability considerations
+                    +b in OT environments."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a risk assessment using ICS-specific threat models (e.g., STRIDE)."
+                        tools "Threat modeling tools (e.g., Microsoft Threat Modeling Tool)."
+                        expected_outcome "Identified potential threats and risks associated with the update."
+                    {
+                        step 2
+                        action "Assess compatibility with legacy systems and third-party components."
+                        tools "Compatibility matrices, vendor documentation."
+                        expected_outcome "Confirmed compatibility or identified necessary compensating controls."
+                    {
+                        step 3
+                        action "Document the impact assessment results and obtain approval from the security
+                            +b team."
+                        tools "Documentation templates, approval workflows."
+                        expected_outcome "Approved impact assessment report ready for deployment decision."
+            {
+                code "SUM-1"
+                subCode "a) the product developer;"
+                title "Developer Credential Verification Procedure"
+                description "This procedure outlines the steps for authenticating update sources and
+                    +b ensuring the integrity of the update chain of custody."
+                [ steps
+                    {
+                        step 1
+                        action "Verify the developer's certificate against the vendor's public key
+                            +b infrastructure (PKI)."
+                        tools "PKI validation tools (e.g., OpenSSL, vendor-specific tools)."
+                        expected_outcome "Developer's certificate is validated as trusted."
+                    {
+                        step 2
+                        action "Review the chain of custody documentation for the update package."
+                        tools "Documentation review checklists, secure logging systems."
+                        expected_outcome "Chain of custody is confirmed as unbroken and secure."
+                    {
+                        step 3
+                        action "Log all verification steps and outcomes in the secure update management system."
+                        tools "Secure logging systems (e.g., SIEM, CMDB)."
+                        expected_outcome "Complete and tamper-proof record of the verification process."
+        last_updated "2023-11-15"

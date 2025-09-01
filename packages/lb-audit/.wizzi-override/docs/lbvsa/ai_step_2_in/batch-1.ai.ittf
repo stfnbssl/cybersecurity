@@ -1,0 +1,137 @@
+ai lab
+    api-url http://localhost:3000
+    call clist-item-1.1.1
+        description clist extension of item 1.1.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.1.1","area":"Governance","category":"Policy e procedure","description":"Esiste un framework di policy, procedure e istruzioni operative definito, formalizzato ed approvato?","note":"","NIS2":"Art. 21, par. 2, comma f","ISA_n_62443_n_${'('}2-4)":"SP.01.01_n_SP.01.02_n_SP.01.03","\"NIST CSF\"":"ID.GV-1"}
+                \n </sr_json>
+    call clist-item-1.1.2
+        description clist extension of item 1.1.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.1.2","area":"Governance","category":"Policy e procedure","description":"Esiste un framework di governance rivisto annualmente in relazione agli obiettivi di business ed agli aggiornamenti del landscape di minacce?","note":"","NIS2":"Art. 21, par. 2, comma f","\"NIST CSF\"":"ID.GV-1"}
+                \n </sr_json>
+    call clist-item-1.2.1
+        description clist extension of item 1.2.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.2.1","area":"Governance","category":"Ruoli e responsabilità","description":"Sono identificati e formalizzati appositi ruoli nell'ambito della cybersecurity, le responsabilità sono assegnate?","note":"","NIS2":"Art. 21, par. 2, comma f","ISA_n_62443_n_${'('}2-4)":"SP.01.05","\"NIST CSF\"":"ID.GV-1"}
+                \n </sr_json>
+    call clist-item-1.2.2
+        description clist extension of item 1.2.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.2.2","area":"Governance","category":"Ruoli e responsabilità","description":"E' definito un modello organizzativo di cybersecurity strutturato che prevede il coinvolgimento del top management (p.e. Comitato controllo rischi)?","note":"","NIS2":"Art. 21, par. 2, comma f","\"NIST CSF\"":"ID.GV-4"}
+                \n </sr_json>
+    call clist-item-1.3.1
+        description clist extension of item 1.3.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.3.1","area":"Governance","category":"Gestione dei rischi","description":"Viene svolto periodicamente (almeno annualmente) un'analisi dei rischi cyber in accordo con un processo definito e formalizzato?","note":"","NIS2":"Art. 21, par. 2, comma f","ISA_n_62443_n_${'('}2-4)":"SP.03.01_n_SP.05.01","\"NIST CSF\"":"ID.RA-4"}
+                \n </sr_json>

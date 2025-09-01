@@ -1,0 +1,118 @@
+ittf 
+    $ 
+        var step_name = 'normative_e_standard.step_1';
+        var x_options = {
+            json_integrato: _.stringify({
+                attivita: wzCtx.root_prompts.attività_progetto_cybersecurity_in_corso,
+                normative_analizzate: wzCtx.root_prompts.normative_e_standard,
+            }, null, null),
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.promo_relate_a_norme, null, null),
+        } 
+        // var provider = 'chatGPT';
+        // provider = 'grok';
+        var provider = 'deepSeek';
+        var maxNumInBatch = 5;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        } 
+        var count = 0;
+    $foreach aiItem in wzCtx.root_prompts.normative_e_standard_extraction_1.items
+        $ _.log('----> ', step_name, 'aiItem.title', aiItem.title);
+        $if count > maxNumInBatch
+            $ 
+                batches.push(currentBatch); 
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [aiItem]
+                } 
+                count = 1;
+        $else 
+            $ 
+                currentBatch.items.push(aiItem); 
+                count++; 
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);
+    $ _.log('----> batches.length', batches.length);
+    $foreach batch in batches
+        $file .wizzi-override/docs/normative_e_standard/ai_step_1_in/batch-${batch.id}.ai.ittf
+            ai ${step_name}
+                api-url http://localhost:3000
+                $foreach batchItem in batch.items
+                    $ 
+                        var filterOk = true;
+                    $if filterOk
+                        $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                        $ 
+                            var options = {
+                                provider: provider,
+                                id: batchItem.title,
+                                inputJSON: batchItem,
+                                inputJSONString: batchItemJSONString,
+                                JSONSchema: x_options.step_1_JSONSchema,
+                                product_supplier_JSON: null, // not used
+                            } 
+                        call ${options.id}
+                            description normative_e_standard - ${options.id}
+                            message 
+                                role system
+                                content 
+                                    ${''}\n Sei un esperto di cybersecurity in contesto OT/ICS
+                                    ${''}\n Riconosci la grande importanza della digitalizzazione nelle imprese
+                                    ${''}\n e quanto la cybersecurity è fondamentale per una digitalizzazione affidabile
+                                    ${''}\n Sei consapevole dei costi della applicazione di standardi di sicurezza come IEC 62443,
+                                    ${''}\n IEC 2700, Nis2, CRA e Registro Macchine e di quanto è importante
+                                    ${''}\n per le imprese trovare soluzioni efficaci e anche economiche
+                                    ${''}\n Hai una grande fiducia che il lavoro concettuale e di analisi svolto da chi ha redatto
+                                    ${''}\n standard e norme è di grande valore e sia la strada giusta da seguire,
+                                    ${''}\n il problema è come rendere economiche le realizzazioni
+                                    ${''}\n Sei impegnato con una attività di pubblicista ad elaborare e proporre idee
+                                    ${''}\n e possibili soluzioni documentandoti, anche on line, e pubblicando articoli
+                                    ${''}\n su blog e riviste
+                            message 
+                                role user
+                                content 
+                                    ${''}\n Utilizzando il JSON integrato fornito, genera un contenuto promozionale in formato JSON per i servizi di Logbot relativi a una specifica normativa o standard di cybersecurity (es. [NORMATIVA_SPECIFICA]). Il contenuto deve essere allineato allo stile di comunicazione di Logbot: professionale, tecnico ma accessibile, con enfasi su innovazione, semplicità, conformità normativa e risultati concreti.
+                                    ${''}\n Segui queste istruzioni:
+                                    ${''}\n 1. **Dati di Input**:
+                                    ${''}\n  - Usa il JSON integrato che contiene:
+                                    ${''}\n  - Un array `attivita` con codici univoci, nome, categoria, dato, riferimento_documento, utilizzo_in_offerte, offerta_collegata, scadenze e normative_collegate.
+                                    ${''}\n  - Un array `normative_analizzate` con nome, descrizione, rilevanza_per_logbot (contesto, applicazioni, allineamento_temi_logbot), collegamento_attivita, mercato_nordamericano e link_significativi.
+                                    ${''}\n  - Filtra le informazioni relative alla normativa specificata ([NORMATIVA_SPECIFICA], es. IEC 62443, NEC-2023) o a tutte le normative, se non specificato.
+                                    ${''}\n 2. **Contenuto da Generare**:
+                                    ${''}\n  - **Formato di Output**: JSON conforme allo schema fornito.
+                                    ${''}\n  - **Struttura JSON**:
+                                    ${''}\n  - `normativa`: Nome della normativa (es. 'NEC-2023 (NFPA 70)').
+                                    ${''}\n  - `metadata`: Oggetto con:
+                                    ${''}\n  - `data_generazione`: Data e ora in formato ISO 8601 (es. '2025-08-15T08:35:00+02:00').
+                                    ${''}\n  - `lingua`: Lingua del contenuto (es. 'inglese', 'italiano').
+                                    ${''}\n  - `target`: Destinatari (es. 'produttori manifatturieri nordamericani').
+                                    ${''}\n  - `formato`: Formato del contenuto (es. 'slide', 'post LinkedIn').
+                                    ${''}\n  - `lunghezza_approssimativa`: Lunghezza stimata (es. '100-150 parole').
+                                    ${''}\n  - `contenuto`:
+                                    ${''}\n  - `titolo`: Titolo accattivante che collega la normativa ai servizi di Logbot.
+                                    ${''}\n  - `introduzione`: Breve descrizione della normativa e della sua importanza, basata su `normative_analizzate.descrizione` e `rilevanza_per_logbot.contesto`.
+                                    ${''}\n  - `benefici`: Array di 3-5 benefici specifici, tratti da `rilevanza_per_logbot.applicazioni` e `allineamento_temi_logbot`.
+                                    ${''}\n  - `attivita_correlate`: Array di 1-3 attività (con codici univoci) da `collegamento_attivita`, con descrizione del collegamento.
+                                    ${''}\n  - `mercato_nordamericano`: Paragrafo basato su `mercato_nordamericano`, obbligatorio se rilevante, altrimenti vuoto.
+                                    ${''}\n  - `call_to_action`: Invito diretto con un link significativo da `link_significativi`.
+                                    ${''}\n  - **Tono e Stile**: Professionale, tecnico ma chiaro, con enfasi su innovazione (es. AI, IoT), semplicità (es. plug-and-play), conformità e risultati concreti (es. riduzione costi, continuità operativa).
+                                    ${''}\n  - **Lunghezza**: [LUNGHEZZA] (es. 100-150 parole per una slide, 300-500 parole per un articolo).
+                                    ${''}\n 3. **Parametri Personalizzabili**:
+                                    ${''}\n  - **Normativa**: [NORMATIVA_SPECIFICA] o “tutte” per un contenuto generale.
+                                    ${''}\n  - **Formato**: Specifica il formato (es. slide, post LinkedIn, articolo tecnico, brochure).
+                                    ${''}\n  - **Target**: [TARGET] (es. produttori manifatturieri, system integrator, clienti nordamericani).
+                                    ${''}\n  - **Lingua**: [LINGUA] (es. inglese per mercato USA, italiano per mercato europeo).
+                                    ${''}\n Utilizzando il JSON integrato di seguito fornito, estrai dati utili popolando il JSON Schema anch'esso fornito di seguito estraendo in base ai Parametri Personalizzabili indicati nel JSON `input_json_data` anch'esso fornito di seguito.
+                                    ${''}\n Genera un JSON con un database di articoli principali,
+                                    ${''}\n con dettagli utili per gli auditor.
+                                    <json_integrato> 
+                                    ${x_options.json_integrato} 
+                                    </json_integrato> 
+                                    ai/schema_data_return( &options, step )
+    ${'$'}file .wizzi-override/docs/normative_e_standard/ai_step_1_out/index.json.ittf
+        { 
+            [ items
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

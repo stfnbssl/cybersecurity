@@ -1,0 +1,82 @@
+$group
+    {
+        code "SUM"
+        name "Practice 7 – Security update management"
+        purpose "The processes specified by this practice are used to ensure that security updates associated with the product are tested for regressions 
+            +b and made avai lable to product users in a timely manner."
+        [ requirements
+            {
+                clause "11.2"
+                code "SUM-1"
+                name "Security update qualification"
+                page 32
+                requirement "A process shall be employed for verifying that
+                    +b 1) security updates created by the product developer address the intended security vulnerabilities;
+                    +b 2) security updates do not introduce regressions, including but not limited to patches created by:
+                    +b a) the product developer;
+                    +b b) suppliers of components used in the product; and
+                    +b c) suppliers of components or platforms on which the product depends.
+                    +b The process should include a confirmation that update is not contradicting other operational, safety or legal constraints."
+                rationale "This process is required to ensure that patches applicable to the product are evaluated to ensure that they 
+                    +b do not adversely affect operation of the product.
+                    +b Having this process means that qualification of patches (typically via testing) is performed to verify that patches applicable 
+                    +b to the product do not directly or indirectly (for example, via side effects) compromise the product’s operation or 
+                    +b defense in depth strategy (see Clause 7). Documentation about this process may be used by the service provider to address 
+                    +b the patch management requirements of IEC 62443-2-4."
+            {
+                clause "11.3"
+                code "SUM-2"
+                name "Security update documentation"
+                page 32
+                requirement "A process shall be employed to ensure that documentation about product security updates is made available to 
+                    +b product users that includes but is not limited to:
+                    +b a) the product version number(s) to which the security patch applies;
+                    +b b) instructions on how to apply approved patches manually and via an automated process;
+                    +b c) description of any impacts that applying the patch to the product can have, including reboot;
+                    +b d) instructions on how to verify that an approved patch has been applied; and
+                    +b e) risks of not applying the patch and mediations that can be used for patches that are not approved or deployed by the asset owner."
+                rationale "This process is required to ensure that security patches are documented to allow approved patches to be installed and 
+                    +b non-approved patches to be remediated.
+                    +b Having this process means that the product supplier provides or otherwise makes documentation available that identifies and 
+                    +b describes applicable security patches, how to install approved patches, how to determine patch status (whether a patch 
+                    +b has been applied) of components and how to mediate non-approved patches. See the patch management requirements of IEC 62443-2-4 
+                    +b for more in formation."
+            {
+                clause "11.4"
+                code "SUM-3"
+                name "Dependent component or operating system security update documentation"
+                page 32
+                requirement "A process shall be employed to ensure that documentation about dependent component or operating system security updates is 
+                    +b made available to product users that includes but is not limited to:
+                    +b a) stating whether the product is compatib le with the dependent component or operating system security update; and
+                    +b b) for security updates that are unapproved by the product vendor, the mitigations that can be used in lieu of not applying the update."
+                rationale "End users are hesitant to install software in an IACS that might upset operations. As a result, vendors need 
+                    +b to provide in formation to the users about whether a particular security update of the operating system is compatible with the product."
+            {
+                clause "11.5"
+                code "SUM-4"
+                name "Security update delivery"
+                page 32
+                requirement "A process shall be employed to ensure that security updates for all supported products and product versions 
+                    +b are made available to product users in a manner that facilitates verification that the security patch is authentic."
+                rationale "This process is required to ensure that product users can obtain applicable security patches for the product 
+                    +b in a timely manner and to reduce the possibility that the security patches are fraudulent (see Clause 1 1).
+                    +b Having this process means that the product supplier provides a mechanism or technique that allows product users 
+                    +b to verify the authenticity of patches. Concurrent release of patches for all supported versions can reduce the 
+                    +b time window between awareness of the vulnerability and the availability of patches."
+            {
+                clause "11.6"
+                code "SUM-5"
+                name "Timely delivery of security patches"
+                page 32
+                requirement "A process shall be employed to define a policy that specifies the timeframes for delivering and qualifying (see 11.2) 
+                    +b security updates to product users and to ensure that this policy is followed. At a minimum, this policy shall 
+                    +b consider the following factors:
+                    +b a) the potential impact of the vulnerability;
+                    +b b) public knowledge of the vulnerability;
+                    +b c) whether published exploits exist for the vulnerability;
+                    +b d) the volume of deployed products that are affected; and
+                    +b e) the availability of an effective mitigation in lieu of the patch."
+                rationale "Security updates typically have target release timing which is based on the factors listed in this requirement. For example, 
+                    +b some companies classify patches as required to be addressed within 30 days, 60 days or 90 days or longer of being found."
+

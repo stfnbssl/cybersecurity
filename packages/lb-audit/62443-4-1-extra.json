@@ -1,0 +1,864 @@
+{
+    "source": {
+        "generatedBy": "Manualmente da 62443-4-1.json.ittf e grok per practices key activities"
+    },
+    "practices": {
+        "1": {
+            "name": "Security Management",
+            "description": "Establishes policies, processes, and governance for secure development.",
+            "key_activities": [
+                "Define security roles and responsibilities.",
+                "Establish secure development policies and processes.",
+                "Ensure compliance with security standards."
+            ]
+        },
+        "2": {
+            "name": "Specification of Security Requirements",
+            "description": "Defines security requirements for products based on risk analysis.",
+            "key_activities": [
+                "Perform threat modeling and risk assessment.",
+                "Specify security requirements for product design and implementation."
+            ]
+        },
+        "3": {
+            "name": "Secure by Design",
+            "description": "Integrates security into the design phase.",
+            "key_activities": [
+                "Apply security design principles.",
+                "Use secure architecture patterns.",
+                "Define security boundaries and trust zones."
+            ]
+        },
+        "4": {
+            "name": "Secure Implementation",
+            "description": "Ensures that secure coding practices are followed during development.",
+            "key_activities": [
+                "Use secure coding standards.",
+                "Perform static and dynamic code analysis.",
+                "Avoid known security vulnerabilities."
+            ]
+        },
+        "5": {
+            "name": "Security Verification and Validation",
+            "description": "Tests and verifies security aspects of the product.",
+            "key_activities": [
+                "Perform security testing (e.g., penetration testing, fuzz testing).",
+                "Verify compliance with security requirements.",
+                "Analyze test results and address vulnerabilities."
+            ]
+        },
+        "6": {
+            "name": "Management of Security-Related Issues",
+            "description": "Manages security defects and vulnerabilities throughout the product lifecycle.",
+            "key_activities": [
+                "Establish a process for handling security incidents.",
+                "Maintain a vulnerability management program.",
+                "Issue security patches and updates."
+            ]
+        },
+        "7": {
+            "name": "Security Update Management",
+            "description": "Ensures secure updates and patch management.",
+            "key_activities": [
+                "Develop and distribute security updates.",
+                "Authenticate and verify software updates.",
+                "Ensure update integrity and rollback mechanisms."
+            ]
+        },
+        "8": {
+            "name": "Security Guidelines",
+            "description": "Provides security guidance for users and system integrators.",
+            "key_activities": [
+                "Develop security deployment guidelines.",
+                "Provide secure configuration recommendations.",
+                "Educate stakeholders on security best practices."
+            ]
+        }
+    },
+    "items": [
+        {
+            "practice": "1",
+            "code": "SM-1",
+            "name": "Development process",
+            "description": "A general product development/maintenance/support process shall be documented and enforced that is consistent and integrated with commonly accepted product development processes that include, but are not limited to:",
+            "subs": [
+                {
+                    "description": "a) configuration management with change controls and audit logging;"
+                },
+                {
+                    "description": "b) product description and requirements definition with requirements traceability;"
+                },
+                {
+                    "description": "c) software or hardware design and implementation practices, such as modular design;"
+                },
+                {
+                    "description": "d) repeatable testing verification and validation process;"
+                },
+                {
+                    "description": "e) review and approval of all development process records;"
+                },
+                {
+                    "description": "f) life-cycle support."
+                }
+            ]
+        },
+        {
+            "practice": "1",
+            "code": "SM-2",
+            "name": "Identification of responsibilities",
+            "description": "A process shall be employed that identifies the organizational roles and personnel responsible for each of the processes required by this standard."
+        },
+        {
+            "practice": "1",
+            "code": "SM-3",
+            "name": "Identification of applicability",
+            "description": "A process shall be employed for identifying products (or parts of products) to which this standard applies."
+        },
+        {
+            "practice": "1",
+            "code": "SM-4",
+            "name": "Security expertise",
+            "description": "A process shall be employed for identifying and providing security training and assessment programs to ensure that personnel assigned to the organizational roles and duties specified in 5.3, SM-2: Identification of responsibilities, have demonstrated security expertise appropriate for those processes."
+        },
+        {
+            "practice": "1",
+            "code": "SM-5",
+            "name": "Process scoping",
+            "description": "A process, that includes justification by documented security analysis, shall be employed to identify the parts of this standard that are applicable to a selected product development project.",
+            "notes": [
+                "Justification for scoping the level of compliance of a project to this standard shall be subject to review and approval by personnel with the appropriate security expertise (see SM-4: Security expertise)."
+            ]
+        },
+        {
+            "practice": "1",
+            "code": "SM-6",
+            "name": "File integrity",
+            "description": "A process shall be employed to provide an integrity verification mechanism for all scripts, executables and other important files included in a product."
+        },
+        {
+            "practice": "1",
+            "code": "SM-7",
+            "name": "Development environment security",
+            "description": "A process that includes procedural and technical controls shall be employed for protecting the product during development, production and delivery. This includes protecting the product or product update (patch) during design, implementation, testing and release."
+        },
+        {
+            "practice": "1",
+            "code": "SM-8",
+            "name": "Controls for private keys",
+            "description": "The supplier shall have procedural and technical controls in place to protect private keys used for code signing from unauthorized access or modification."
+        },
+        {
+            "practice": "1",
+            "code": "SM-9",
+            "name": "Security requirements for externally provided components",
+            "description": "A process shall be employed to identify and manage the security risks of all externally provided components used within the product."
+        },
+        {
+            "practice": "1",
+            "code": "SM-10",
+            "name": "Custom developed components from third-party",
+            "description": "A process shall be employed to ensure that product development life-cycle processes for components from a third-party supplier conform to the requirements used in this document when they meet the following criteria:",
+            "subs": [
+                {
+                    "description": "a) the components are developed specifically for a single supplier for a specific purpose; and"
+                },
+                {
+                    "description": "b) the components can have an impact on security."
+                }
+            ]
+        },
+        {
+            "practice": "1",
+            "code": "SM-11",
+            "name": "Assessing and addressing security-related issues",
+            "description": "A process shall be employed for verifying that a product or a patch is not released until its security related issues have been addressed and tracked to closure (see 10.5, DM-4: Addressing security related issues). This includes issues associated with:",
+            "subs": [
+                {
+                    "description": "a) requirements (see Clause 6, Practice 2 – Specification of security requirements);"
+                },
+                {
+                    "description": "b) secure by design (see Clause 7, Practice 3 – Secure by design);"
+                },
+                {
+                    "description": "c) implementation (see Clause 8, Practice 4 – Secure implementation);"
+                },
+                {
+                    "description": "d) verification/validation (see Clause 9, Practice 5 – Security verification and validation testing);"
+                },
+                {
+                    "description": "e) defect management (see Clause 10, Practice 6 – Management of security-related issues)."
+                }
+            ]
+        },
+        {
+            "practice": "1",
+            "code": "SM-12",
+            "name": "Process verification",
+            "description": "A process shall be employed for verifying that, prior to product release, all applicable security related processes required by this specification (see SM-5: Process scoping) have been completed with records documenting the completion of each process."
+        },
+        {
+            "practice": "1",
+            "code": "SM-13",
+            "name": "Continuous improvement",
+            "description": "A process shall be employed for continuously improving the SDL. This process shall include the analysis of security defects in component/subsystem/system technologies that escape to the field."
+        },
+        {
+            "practice": "2",
+            "code": "SR-1",
+            "name": "Product security context",
+            "description": "A process shall be employed to ensure that the intended product security context is documented."
+        },
+        {
+            "practice": "2",
+            "code": "SR-2",
+            "name": "Threat model",
+            "description": "A process shall be employed to ensure that all products shall have a threat model specific to the current development scope of the product with the following characteristics (where applicable):",
+            "notes": [
+                "The threat model shall be reviewed and verified by the development team to ensure that it is correct and understood.",
+                "The threat model shall be reviewed periodically (at least once a year) for released products and updated if required in response to the emergence of new threats to the product even if the design does not change.",
+                "Any issues identified in the threat model shall be addressed as defined in 10.4, DM-3: Assessing security-related issues, and 10.5, DM-4: Addressing security-related issues."
+            ],
+            "subs": [
+                {
+                    "description": "a) correct flow of categorized information throughout the system;"
+                },
+                {
+                    "description": "b) trust boundaries;"
+                },
+                {
+                    "description": "c) processes;"
+                },
+                {
+                    "description": "d) data stores;"
+                },
+                {
+                    "description": "e) interacting external entities;"
+                },
+                {
+                    "description": "f) internal and external communication protocols implemented in the product;"
+                },
+                {
+                    "description": "g) externally accessible physical ports including debug ports;"
+                },
+                {
+                    "description": "h) circuit board connections such as Joint Test Action Group (JTAG) connections or debug headers which might be used to attack the hardware;"
+                },
+                {
+                    "description": "i) potential attack vectors including attacks on the hardware, if applicable;"
+                },
+                {
+                    "description": "j) potential threats and their severity as defined by a vulnerability scoring system (for example, CVSS);"
+                },
+                {
+                    "description": "k) mitigations and/or dispositions for each threat;"
+                },
+                {
+                    "description": "l) security-related issues identified; and"
+                },
+                {
+                    "description": "m) external dependencies in the form of drivers or third-party applications (code that is not developed by the supplier) that are linked into the application."
+                }
+            ]
+        },
+        {
+            "practice": "2",
+            "code": "SR-3",
+            "name": "Product security requirements",
+            "description": "A process shall be employed for ensuring that security requirements are documented for the product/feature under development including requirements for security capabilities related to installation, operation, maintenance and decommissioning."
+        },
+        {
+            "practice": "2",
+            "code": "SR-4",
+            "name": "Product security requirements content",
+            "description": "A process shall be employed for ensuring that security requirements include the following information:",
+            "subs": [
+                {
+                    "description": "a) the scope and boundaries of the component or system, in general terms in both a physical and a logical way; and"
+                },
+                {
+                    "description": "b) the required capability security level (SL-C) of the product."
+                }
+            ]
+        },
+        {
+            "practice": "2",
+            "code": "SR-5",
+            "name": "Security requirements review",
+            "description": "A process shall be employed to ensure that security requirements are reviewed, updated as necessary and approved to ensure clarity, validity, alignment with the threat model (discussed in 6.3 SR-2: Threat model), and their ability to be verified. Each of the following representative disciplines shall participate in this process. Personnel may be assigned to more than one discipline except for testers, who shall remain independent.",
+            "subs": [
+                {
+                    "description": "a) architects/developers (those who will implement the requirements);"
+                },
+                {
+                    "description": "b) testers (those who will validate that the requirements have been met);"
+                },
+                {
+                    "description": "c) customer advocate (such as sales, marketing, product management or customer support); and"
+                },
+                {
+                    "description": "d) security advisor"
+                }
+            ]
+        },
+        {
+            "practice": "3",
+            "code": "SD-1",
+            "name": "Secure design principles",
+            "description": "A process shall be employed for developing and documenting a secure design that identifies and characterizes each interface of the product, including physical and logical interfaces, to include:",
+            "subs": [
+                {
+                    "description": "a) an indication of whether the interface is externally accessible (by other products), or internally accessible (by other components of the product), or both;"
+                },
+                {
+                    "description": "b) security implications of the product security context (see Clause 6, Practice 2 – Specification of security requirements) on the external interface;"
+                },
+                {
+                    "description": "c) potential users of the interface and the assets that can be accessed through it (directly or indirectly);"
+                },
+                {
+                    "description": "d) a determination of whether access to the interface crosses a trust boundary;"
+                },
+                {
+                    "description": "e) security considerations, assumptions and/or constraints associated with the use of the interface within the product security context, including applicable threats;"
+                },
+                {
+                    "description": "f) the security roles, privileges/rights and access control permissions needed to use the interface and to access the assets defined in c) above;"
+                },
+                {
+                    "description": "g) the security capabilities and/or compensating mechanisms used to safeguard the interface and the assets defined in c) above, including input validation as well as output and error handling;"
+                },
+                {
+                    "description": "h) the use of third-party products to implement the interface and their security capabilities;"
+                },
+                {
+                    "description": "i) documentation that describes how to use the interface if it is externally accessible ; and"
+                },
+                {
+                    "description": "j) description of how the design mitigates the threats identified in the threat model."
+                }
+            ]
+        },
+        {
+            "practice": "3",
+            "code": "SD-2",
+            "name": "Defense in depth design",
+            "description": "A process shall be employed to implement multiple layers of defense using a risk based approach based on the threat model. This process shall be employed for assigning responsibilities to each layer of defense."
+        },
+        {
+            "practice": "3",
+            "code": "SD-3",
+            "name": "Security design review",
+            "description": "A process shall be employed for conducting design reviews to identify, characterize and track to closure security-related issues associated with each significant revision of the secure design including but not limited to:",
+            "subs": [
+                {
+                    "description": "a) security requirements (see Clause 6, Practice 2 – Specification of security requirements) that were not adequately addressed by the design;"
+                },
+                {
+                    "description": "b) threats and their ability to exploit product interfaces, trust boundaries, and assets ( see 7.2, SD-1: Secure design principles); and"
+                },
+                {
+                    "description": "c) identification of secure design practices (see 7.5, SD-4: Secure design best practices) that were not followed (for example, failure to apply principle of least privilege)."
+                }
+            ]
+        },
+        {
+            "practice": "3",
+            "code": "SD-4",
+            "name": "Secure design best practices",
+            "description": "A process shall be employed to ensure that secure design best practices are documented and applied to the design process. These practices shall be periodically reviewed and updated. Secure design practices include but are not be limited to:",
+            "subs": [
+                {
+                    "description": "a) least privilege (granting only the privileges to users/software necessary to perform intended operations)"
+                },
+                {
+                    "description": "b) using proven secure components/designs where possible;"
+                },
+                {
+                    "description": "c) economy of mechanism (striving for simple designs);"
+                },
+                {
+                    "description": "d) using secure design patterns;"
+                },
+                {
+                    "description": "e) attack surface reduction;"
+                },
+                {
+                    "description": "f) all trust boundaries are documented as part of the design; and"
+                },
+                {
+                    "description": "g) removing debug ports, headers and traces from circuit boards used during development from production hardware or documenting their presence and the need to protect them from unauthorized access."
+                }
+            ]
+        },
+        {
+            "practice": "4",
+            "code": "SI-1",
+            "name": "Security implementation review",
+            "description": "A process shall be employed to ensure that implementation reviews are performed for identifying, characterizing and tracking to closure security-related issues associated with the implementation of the secure design including:",
+            "subs": [
+                {
+                    "description": "a) identification of security requirements that were not adequately addressed by the implementation;"
+                },
+                {
+                    "description": "b) identification of secure coding standards that were not followed;"
+                },
+                {
+                    "description": "c) Static Code Analysis (SCA) for source code to determine security coding errors such as buffer overflows, null pointer dereferencing, etc. using the secure coding standard for the supported programming language. SCA shall be done using a tool if one is available for the language used. In addition, static code analysis shall be done on all source code changes including new source code."
+                },
+                {
+                    "description": "d) review of the implementation and its traceability to the security capabilities defined to support the security design; and"
+                },
+                {
+                    "description": "e) examination of threats and their ability to exploit implementation interfaces, trust boundaries and assets."
+                }
+            ]
+        },
+        {
+            "practice": "4",
+            "code": "SI-2",
+            "name": "Secure coding standards",
+            "description": "The implementation processes shall incorporate security coding standards that are periodically reviewed and updated and include at a minimum:",
+            "subs": [
+                {
+                    "description": "a) avoidance of potentially exploitable implementation constructs – implementation design patterns that are known to have security weaknesses;"
+                },
+                {
+                    "description": "b) avoidance of banned functions and coding constructs/design patterns – software functions and design patterns that should not be used because they have known security weaknesses;"
+                },
+                {
+                    "description": "c) automated tool use and settings (for example, for static analysis tools);"
+                },
+                {
+                    "description": "d) secure coding practices;"
+                },
+                {
+                    "description": "e) validation of all inputs that cross trust boundary."
+                },
+                {
+                    "description": "f) error handling"
+                }
+            ]
+        },
+        {
+            "practice": "5",
+            "code": "SVV-1",
+            "name": "Security requirements testing",
+            "description": "A process shall be employed for verifying the product security functions meet the security requirements and that the product handles error scenarios and invalid input correctly. Types of testing shall include:",
+            "subs": [
+                {
+                    "description": "a) functional testing of security requirements;"
+                },
+                {
+                    "description": "b) performance and scalability testing;"
+                },
+                {
+                    "description": "c) boundary/edge condition, stress and malformed or unexpected input tests not specifically targeted at security."
+                }
+            ]
+        },
+        {
+            "practice": "5",
+            "code": "SVV-2",
+            "name": "Threat mitigation testing",
+            "description": "A process shall be employed for testing the effectiveness of the mitigation for the threats identified and validated in the threat model. Activities shall include:",
+            "subs": [
+                {
+                    "description": "a) creating and executing plans to ensure that each mitigation implemented to address a specific threat has been adequately tested to ensure the mitigation works as designed and"
+                },
+                {
+                    "description": "b) creating and executing plans for attempting to thwart each mitigation."
+                }
+            ]
+        },
+        {
+            "practice": "5",
+            "code": "SVV-3",
+            "name": "Vulnerability testing",
+            "description": "A process shall be employed for performing tests that focus on identifying and characterizing potential security vulnerabilities in the product. Known vulnerability testing shall be based upon, at a minimum, recent contents of an established, industry-recognized, public source for known vulnerabilities. Testing shall include:",
+            "subs": [
+                {
+                    "description": "a) abuse case or malformed or unexpected input testing focused on uncovering security issues (fuzz testing and network traffic load)."
+                },
+                {
+                    "description": "b) attack surface."
+                },
+                {
+                    "description": "c) black box known vulnerability scanning focused on detecting known vulnerabilities in the product hardware, host or software components"
+                },
+                {
+                    "description": "d) for compiled software, software composition analysis on all binary executable files, including embedded firmware, delivered by the supplier to be installed for a product."
+                },
+                {
+                    "description": "e) dynamic runtime resource management testing that detects flaws not visible under static code analysis, including but not limited to denial of service conditions (e.g., memory leaks)."
+                }
+            ]
+        },
+        {
+            "practice": "5",
+            "code": "SVV-4",
+            "name": "Penetration testing",
+            "description": "A process shall be employed to identify and characterize security-related issues via tests that focus on discovering and exploiting security vulnerabilities in the product."
+        },
+        {
+            "practice": "5",
+            "code": "SVV-5",
+            "name": "Independence of testers",
+            "description": "TABLE C.2 – REQUIRED LEVEL OF INDEPENDENCE OF TESTERS FROM DEVELOPERS"
+        },
+        {
+            "practice": "6",
+            "code": "DM-1",
+            "name": "Receiving notifications of security-related issues",
+            "description": "A process shall exist for receiving and tracking to closure security-related issues in the product reported by internal and external sources including at a minimum:",
+            "subs": [
+                {
+                    "description": "a) security verification and validation testers;"
+                },
+                {
+                    "description": "b) suppliers of third-party components used in the product;"
+                },
+                {
+                    "description": "c) product developers and testers; and"
+                },
+                {
+                    "description": "d) product users including integrators, asset owners, and maintenance personnel."
+                }
+            ]
+        },
+        {
+            "practice": "6",
+            "code": "DM-2",
+            "name": "Reviewing security-related issues",
+            "description": "A process shall exist for ensuring that reported security-related issues are investigated in a timely manner to determine their:",
+            "subs": [
+                {
+                    "description": "a) applicability to the product;"
+                },
+                {
+                    "description": "b) verifiability; and"
+                },
+                {
+                    "description": "c) threats that trigger the issue."
+                }
+            ]
+        },
+        {
+            "practice": "6",
+            "code": "DM-3",
+            "name": "Assessing security-related issues",
+            "description": "A process shall be employed for analysing security-related issues in the product to include:",
+            "notes": [
+                "For root cause analysis, a methodical approach such as that described in IEC 62740 may be employed."
+            ],
+            "subs": [
+                {
+                    "description": "a) assessing their impact with respect to:"
+                },
+                {
+                    "description": "1) the actual security context in which they were discovered;"
+                },
+                {
+                    "description": "2) the product’s security context; and"
+                },
+                {
+                    "description": "3) the product’s defense in depth strategy ;"
+                },
+                {
+                    "description": "b) severity as defined by a vulnerability scoring system (for example, CVSS);"
+                },
+                {
+                    "description": "c) identifying all other products/product versions containing the security-related issue (if any);"
+                },
+                {
+                    "description": "d) identifying the root causes of the issue; and"
+                },
+                {
+                    "description": "e) identifying related security issues."
+                }
+            ]
+        },
+        {
+            "practice": "6",
+            "code": "DM-4",
+            "name": "Addressing security-related issues",
+            "description": "A process shall be employed for addressing security-related issues and determining whether to report them based on the results of the impact assessment. The supplier shall establish an acceptable level of residual risk that shall be applied when determining appropriate way to address each issue. Options include one or more of the following:",
+            "notes": [
+                "When security-related issues are resolved recommendations to prevent similar errors from occurring in the future shall be evaluated.",
+                "This process shall include a periodic review of open security-related issues to ensure that issues are being addressed appropriately. This periodic review shall at a minimum occur during each release or iteration cycle."
+            ],
+            "subs": [
+                {
+                    "description": "a) fixing the issue through one or more of the following:"
+                },
+                {
+                    "description": "1) defense in depth strategy or design change;"
+                },
+                {
+                    "description": "2) addition of one or more security requirements and/or capabilities;"
+                },
+                {
+                    "description": "3) use of compensating mechanisms; and/or"
+                },
+                {
+                    "description": "4) disabling or removing features;"
+                },
+                {
+                    "description": "b) creating a remediation plan to fix the problem;"
+                },
+                {
+                    "description": "c) deferring the problem for future resolution (reapply this requirement at some time in the future) and specifying the reason(s) and associated risk(s);"
+                },
+                {
+                    "description": "d) not fixing the problem if the residual risk is below the established acceptable level of residual risk."
+                },
+                {
+                    "description": "e.a) inform other processes of the issue or related issue(s), including processes for other products/product revisions;"
+                },
+                {
+                    "description": "e.b) Inform third parties if problems found in included third-party source code"
+                }
+            ]
+        },
+        {
+            "practice": "6",
+            "code": "DM-5",
+            "name": "Disclosing security-related issues",
+            "description": "A process shall be employed for informing product users about reportable security-related issues in supported products in a timely manner with content that includes but is not limited to the following information:",
+            "subs": [
+                {
+                    "description": "a) issue description, vulnerability score as per CVSS or a similar system for ranking vulnerabilities, and affected product version(s); and"
+                },
+                {
+                    "description": "b) description of the resolution."
+                }
+            ]
+        },
+        {
+            "practice": "6",
+            "code": "DM-6",
+            "name": "Periodic review of security defect management practice",
+            "description": "A process shall be employed for conducting periodic reviews of the security-related issue management process. Periodic reviews of the process shall, at a minimum, examine security related issues managed through the process since the last periodic review to determine if the management process was complete, efficient, and led to the resolution of each security-related issue. Periodic reviews of the security-related issue management process shall be conducted at least annually."
+        },
+        {
+            "practice": "7",
+            "code": "SUM-1",
+            "name": "Security update qualification",
+            "description": "A process shall be employed for verifying",
+            "notes": [
+                "The process should include a confirmation that update is not contradicting other operational, safety or legal constraints."
+            ],
+            "subs": [
+                {
+                    "description": "(1) security updates created by the product developer address the intended security vulnerabilities"
+                },
+                {
+                    "description": "(2) security updates do not introduce regressions, including but not limited to patches created by:"
+                },
+                {
+                    "description": "a) the product developer;"
+                },
+                {
+                    "description": "b) suppliers of components used in the product; and"
+                },
+                {
+                    "description": "c) suppliers of components or platforms on which the product depends ."
+                }
+            ]
+        },
+        {
+            "practice": "7",
+            "code": "SUM-2",
+            "name": "Security update documentation",
+            "description": "A process shall be employed to ensure that documentation about product security updates is made available to product users that includes but is not limited to:",
+            "subs": [
+                {
+                    "description": "a) the product version number(s) to which the security patch applies;"
+                },
+                {
+                    "description": "b) instructions on how to apply approved patches manually and via an automated process;"
+                },
+                {
+                    "description": "c) description of any impacts that applying the patch to the product, including reboot;"
+                },
+                {
+                    "description": "d) instructions on how to verify that an approved patch has been applied; and"
+                },
+                {
+                    "description": "e) risks of not applying the patch and mediations that can be used for patches that are not approved or deployed by the asset owner."
+                }
+            ]
+        },
+        {
+            "practice": "7",
+            "code": "SUM-3",
+            "name": "Dependent component or operating system security update documentation",
+            "description": "A process shall be employed to ensure that documentation about dependent component or operating system security updates is made available to product users that includes but is not limited to:",
+            "subs": [
+                {
+                    "description": "a) stating whether the product is compatible with the dependent com ponent or operating system security update; and"
+                },
+                {
+                    "description": "b) for security updates that are unapproved by the product vendor, the mitigations that can be used in lieu of not applying the update."
+                }
+            ]
+        },
+        {
+            "practice": "7",
+            "code": "SUM-4",
+            "name": "Security update delivery",
+            "description": "A process shall be employed to ensure that security updates for all supported products and product versions are made available to product users in a manner that facilitates verification that the security patch is authentic."
+        },
+        {
+            "practice": "7",
+            "code": "SUM-5",
+            "name": "Timely delivery of security patches",
+            "description": "A process shall be employed to define a policy that specifies the timeframes for delivering and qualifying security updates to product users and to ensure that this policy is followed. At a minimum, this policy shall consider the following factors:",
+            "subs": [
+                {
+                    "description": "a) The potential impact of the vulnerability;"
+                },
+                {
+                    "description": "b) Public knowledge of the vulnerability;"
+                },
+                {
+                    "description": "c) Whether published exploits exist for the vulnerability;"
+                },
+                {
+                    "description": "d) The volume of deployed products that are affected; and"
+                },
+                {
+                    "description": "e) The availability of an effective mitigation in lieu of the patch."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-1",
+            "name": "Product defense in depth",
+            "description": "A process shall exist to create product user documentation that describes the security defense in depth strategy for the product to support installation, operation and maintenance that includes:",
+            "subs": [
+                {
+                    "description": "a) security capabilities implemented by the product and their role in the defense in depth strategy;"
+                },
+                {
+                    "description": "b) threats addressed by the defense in depth strategy; and"
+                },
+                {
+                    "description": "c) product user mitigation strategies for known security risks associated with the product, including risks associated with legacy code."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-2",
+            "name": "Defense in depth measures expected in the environment",
+            "description": "A process shall be employed to create product user documentation that describes the security defense in depth measures expected to be provided by the external environment in which the product is to be used ."
+        },
+        {
+            "practice": "8",
+            "code": "SG-3",
+            "name": "Security hardening guidelines",
+            "description": "A process shall be employed to create product user documentation that includes guidelines for hardening the product when installing and maintaining the product. The guidelines shall include, but are not limited to, instructions, rationale and recommendations for the following:",
+            "subs": [
+                {
+                    "description": "a) integration of the product, including third-party components, with its product security context;"
+                },
+                {
+                    "description": "b) integration of the product’s application programming interfaces/protocols with user applications;"
+                },
+                {
+                    "description": "c) applying and maintaining the product’s defense in depth strategy;"
+                },
+                {
+                    "description": "d) configuration and use of security options/capabilities in support of local security policies, and for each security option/capability:"
+                },
+                {
+                    "description": "1) its contribution to the product’s defense in depth strategy;"
+                },
+                {
+                    "description": "2) descriptions of configurable and default values that includes how each affects security along with any potential impact each has on work practices;"
+                },
+                {
+                    "description": "3) setting/changing/deleting its value;"
+                },
+                {
+                    "description": "e) instructions and recommendations for the use of all security-related tools and utilities that support administration, monitoring, incident handling and evaluation of the security of the product;"
+                },
+                {
+                    "description": "f) instructions and recommendations for periodic security maintenance activities;"
+                },
+                {
+                    "description": "g) instructions for reporting security incidents for the product to the product supplier; and"
+                },
+                {
+                    "description": "h) description of the security best practices for maintenance and administration of the product."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-4",
+            "name": "Secure disposal guidelines",
+            "description": "A process shall be employed to create product user documentation that includes guidelines for removing the product from use. The guidelines shall include, but is not limited to instructions and recommendations for the following:",
+            "subs": [
+                {
+                    "description": "a) removing the product from its intended environment;"
+                },
+                {
+                    "description": "b) including recommendations for removing references and configuration data store ed within the environment;"
+                },
+                {
+                    "description": "c) secure removal of data stored in the product;"
+                },
+                {
+                    "description": "d) secure disposal of the product to prevent potential disclosure of data contained in the product that could not be removed as described in c) above."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-5",
+            "name": "Secure operation guidelines",
+            "description": "A process shall be employed to create product user documentation that describes:",
+            "subs": [
+                {
+                    "description": "a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and"
+                },
+                {
+                    "description": "b) assumptions regarding the behavior of the user/administrator and their relationship to the secure operation of the product."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-6",
+            "name": "Account management guidelines",
+            "description": "A process shall be employed to create product user documentation that defines user account requirements and recommendations associated with the use of the product that includes, but is not limited to:",
+            "subs": [
+                {
+                    "description": "a) user account permissions (access control) and privileges (user rights) needed to use the product, including, but not limited to operating system accounts, control system accounts and data base accounts; and"
+                },
+                {
+                    "description": "b) default accounts used by the product (for example, service accounts) and instructions for changing default account names and passwords."
+                }
+            ]
+        },
+        {
+            "practice": "8",
+            "code": "SG-7",
+            "name": "Documentation review",
+            "description": "A process shall be employed to identify, characterize and track to closure errors and omissions in all user manuals including the security guidelines to include:",
+            "subs": [
+                {
+                    "description": "a) coverage of the product’s security capabilities;"
+                },
+                {
+                    "description": "b) integration of the product with its intended environment; and"
+                },
+                {
+                    "description": "c) assurance that all documented practices are secure."
+                }
+            ]
+        }
+    ]
+}

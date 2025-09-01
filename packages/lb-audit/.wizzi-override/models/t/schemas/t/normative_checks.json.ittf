@@ -1,0 +1,47 @@
+$group
+    { normative_checks
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Schema per Database Articoli Normative"
+        description "Schema JSON per un database di articoli o sezioni principali di normative per supportare i controlli di audit nella Matrice di Analisi di Logbot."
+        type "object"
+        { properties
+            { database_articoli
+                type "array"
+                description "Elenco di articoli o sezioni principali delle normative."
+                { items
+                    type "object"
+                    { properties
+                        { normativa
+                            type "string"
+                            description "Nome della normativa (es. 'NIS2', 'NEC-2023 (NFPA 70)')."
+                            minLength 1
+                        { articolo_sezione
+                            type "string"
+                            description "Identificatore dell’articolo o sezione (es. 'Articolo 21', 'Articolo 625')."
+                            minLength 1
+                        { descrizione
+                            type "string"
+                            description "Sintesi del contenuto e del requisito dell’articolo o sezione."
+                            minLength 1
+                        { controlli_audit
+                            type "array"
+                            description "Azioni specifiche per verificare la conformità dell’articolo o sezione."
+                            { items
+                                type "string"
+                                description "Singolo controllo di audit (es. 'Verifica delle policy di sicurezza')."
+                                minLength 1
+                            minItems 1
+                            maxItems 5
+                        { link_risorse
+                            type "string"
+                            description "URL al testo ufficiale o guida pertinente per l’articolo o sezione."
+                            format "uri"
+                    [ required
+                        "normativa" 
+                        "articolo_sezione" 
+                        "descrizione" 
+                        "controlli_audit" 
+                        "link_risorse" 
+                minItems 1
+        [ required
+            "database_articoli" 

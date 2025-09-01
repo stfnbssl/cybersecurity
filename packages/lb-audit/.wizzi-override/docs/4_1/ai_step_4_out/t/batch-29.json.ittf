@@ -1,0 +1,359 @@
+$group
+    {
+        practice "6"
+        code "DM-4"
+        subCode "b) creating a remediation plan to fix the problem;"
+        [ policies
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Risk-Based Remediation Prioritization Policy"
+                description "This policy mandates the use of risk matrices to prioritize security issues
+                    +b based on their impact and likelihood, in alignment with IEC 62443-4-1's risk
+                    +b assessment requirements. It ensures that critical vulnerabilities in ICS
+                    +b products, such as those affecting CNC Machining Centers, are addressed before
+                    +b less critical ones. The policy references IEC 62443-4-1's emphasis on
+                    +b risk-based decision-making and requires documentation of prioritization
+                    +b criteria and decisions."
+                enforcement "Enforced through quarterly audits of remediation logs and risk assessment
+                    +b documentation. Tools like Tenable.io are used to automate vulnerability scoring
+                    +b and prioritization."
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Phased Patch Deployment Policy"
+                description "This policy requires that patches and updates for ICS components, such as those
+                    +b in Stone Cutting Machines, be deployed in phases to minimize operational
+                    +b disruption. Initial testing must occur in a non-production environment,
+                    +b followed by a controlled rollout. The policy aligns with IEC 62443-4-1's
+                    +b guidance on system integrity and operational continuity."
+                enforcement "Enforced through change management logs and pre-deployment validation reports.
+                    +b Automated tools like JIRA with ICS Security Plugins track patch deployment
+                    +b stages and approvals."
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Remediation Verification and Validation Policy"
+                description "This policy mandates that all remediation actions be verified and validated in
+                    +b a test environment before deployment to production systems. It applies to all
+                    +b Breton Spa machines, ensuring that fixes do not disrupt high-precision
+                    +b operations. The policy reflects IEC 62443-4-1's requirements for verification
+                    +b testing and system integrity."
+                enforcement "Enforced through testbed validation reports and post-deployment monitoring
+                    +b logs. Tools like Yokogawa ICS Testbed Design are recommended for creating
+                    +b secure test environments."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Remediation Plan Development Procedure"
+                description "This procedure outlines the steps for developing a remediation plan for
+                    +b identified security issues in ICS products, ensuring compliance with IEC
+                    +b 62443-4-1. It includes risk assessment, stakeholder coordination, and
+                    +b documentation requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a risk assessment using STRIDE or DREAD methodologies to evaluate the
+                            +b impact and likelihood of the security issue."
+                        tools "NIST 800-30 (adapted for ICS), Microsoft Threat Modeling Tool"
+                        expected_outcome "A documented risk assessment report with prioritized security issues."
+                    {
+                        step 2
+                        action "Coordinate with stakeholders (engineering, security, management) to define
+                            +b remediation actions and timelines."
+                        tools "RACI Matrix for ICS Security"
+                        expected_outcome "A remediation plan with assigned responsibilities and deadlines."
+                    {
+                        step 3
+                        action "Document the remediation plan, including risk acceptance levels and
+                            +b verification methods."
+                        tools "JIRA with ICS Security Plugins"
+                        expected_outcome "A finalized and approved remediation plan stored in the change management
+                            +b system."
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Patch Deployment Procedure"
+                description "This procedure details the steps for deploying patches to ICS components,
+                    +b ensuring minimal disruption to operations and compliance with IEC 62443-4-1. It
+                    +b includes testing, phased rollout, and validation."
+                [ steps
+                    {
+                        step 1
+                        action "Test the patch in a mirrored testbed environment to identify potential issues."
+                        tools "Yokogawa ICS Testbed Design"
+                        expected_outcome "A test report confirming patch compatibility and functionality."
+                    {
+                        step 2
+                        action "Deploy the patch to a small subset of non-critical systems in the production
+                            +b environment."
+                        tools "ABB Patch Validation Protocol"
+                        expected_outcome "Successful patch deployment with no operational disruptions."
+                    {
+                        step 3
+                        action "Monitor the patched systems for stability and performance before full rollout."
+                        tools "Tenable.io, SIEM tools"
+                        expected_outcome "Validation report confirming system stability post-patch."
+            {
+                code "DM-4"
+                subCode "b)"
+                title "Remediation Verification Procedure"
+                description "This procedure ensures that remediation actions are effective and do not
+                    +b introduce new vulnerabilities, in line with IEC 62443-4-1 requirements. It
+                    +b includes testing, validation, and documentation steps."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct functional and security testing of the remediated system in a
+                            +b controlled environment."
+                        tools "ICS-specific testbeds, vulnerability scanners"
+                        expected_outcome "Test results confirming the remediation's effectiveness."
+                    {
+                        step 2
+                        action "Validate that the remediation does not disrupt critical operations or introduce
+                            +b new risks."
+                        tools "Operational monitoring tools, SIEM"
+                        expected_outcome "Validation report with no adverse effects noted."
+                    {
+                        step 3
+                        action "Document the verification results and update the remediation plan with lessons
+                            +b learned."
+                        tools "JIRA with ICS Security Plugins, blockchain for audit trails"
+                        expected_outcome "Updated remediation documentation and audit trail."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "c)"
+        [ policies
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Deferred Security Issue Risk Assessment Policy"
+                description "This policy mandates a formal risk assessment process for deferring
+                    +b security-related issues, including documentation of risk scores, mitigation
+                    +b controls, and scheduled review dates. It aligns with IEC 62443-4-1 requirements
+                    +b for explicit risk reasoning and periodic reassessment. Applicable to Breton
+                    +b Spa's CNC and stone cutting machines where operational constraints may delay
+                    +b patching."
+                enforcement "Automated tracking via GRC tools (e.g., IBM Maximo) with quarterly audits by
+                    +b the security governance team to verify risk register completeness."
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Compensating Controls Implementation Policy"
+                description "Requires deployment of interim controls (e.g., network micro-segmentation, IDS
+                    +b rules) for deferred vulnerabilities in legacy systems like unpatched PLCs.
+                    +b Supports IEC 62443-4-1's CR5 (Restricted Data Flow) by isolating high-risk
+                    +b deferred issues. Specifically targets Breton's polishing machines with S7comm
+                    +b protocols."
+                enforcement "SIEM monitoring of control effectiveness and bi-annual penetration testing to
+                    +b validate segmentation integrity."
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Deferral Communication and Approval Policy"
+                description "Standardizes stakeholder reporting for deferred issues through dashboards
+                    +b (e.g., AVEVA PI System) and requires CISO approval for deferrals exceeding 6
+                    +b months. Complies with IEC 62443-4-1's transparency requirements for
+                    +b high-criticality applications like metalworking CNC systems."
+                enforcement "Mandatory sign-off in JIRA tickets and audit trails of deferral decisions
+                    +b retained for 5 years."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Quarterly Deferred Issue Review Procedure"
+                description "Cross-functional review process for reassessing deferred security issues in
+                    +b Breton's industrial control systems, incorporating threat intelligence updates
+                    +b and operational changes."
+                [ steps
+                    {
+                        step 1
+                        action "Extract deferred items from the risk register (e.g., IBM Maximo) filtered by
+                            +b due date and risk score ≥ Medium."
+                        tools "GRC platform with ICS security plugins"
+                        expected_outcome "Prioritized list of issues requiring reassessment, annotated with original risk
+                            +b scores."
+                    {
+                        step 2
+                        action "Conduct STRIDE threat modeling session with OT/IT teams to evaluate changes in
+                            +b threat landscape (e.g., new PLC exploits)."
+                        tools "Microsoft Threat Modeling Tool adapted for ICS protocols like PROFINET"
+                        expected_outcome "Updated threat matrix with likelihood/impact scores for each deferred item."
+                    {
+                        step 3
+                        action "Document reassessment decisions in the risk register, adjusting review dates or
+                            +b escalating for immediate remediation."
+                        tools "NIST IR 8179-compliant templates"
+                        expected_outcome "Auditable record of review outcomes with CISO approval for extended deferrals."
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Compensating Control Deployment Procedure"
+                description "Step-by-step process for implementing interim protections for deferred
+                    +b vulnerabilities in Breton's stone cutting machines with EtherCAT protocols."
+                [ steps
+                    {
+                        step 1
+                        action "Identify required controls per IEC 62443-4-1 CR3 (e.g., host-based firewall for
+                            +b unpatched Windows HMIs)."
+                        tools "ICS-specific hardening guides (e.g., CIS Benchmarks for Industrial Systems)"
+                        expected_outcome "Control implementation plan mapped to deferred vulnerability CVE IDs."
+                    {
+                        step 2
+                        action "Deploy controls in test environment (e.g., segmented network zone) and validate
+                            +b operational impact."
+                        tools "OPC UA test clients, Wireshark with ICS dissectors"
+                        expected_outcome "Verification report showing no disruption to stone cutting precision or cycle
+                            +b times."
+                    {
+                        step 3
+                        action "Roll out to production with change management approval and update asset
+                            +b inventory with control metadata."
+                        tools "PAS Cyber Integrity for ICS CMDB updates"
+                        expected_outcome "Compensating controls active with documented ownership and monitoring rules."
+            {
+                code "DM-4"
+                subCode "c)"
+                title "Deferral Documentation Procedure"
+                description "Standardized method for recording deferred security issues in Breton's
+                    +b composite material processing lines, ensuring IEC 62443-4-1 audit compliance."
+                [ steps
+                    {
+                        step 1
+                        action "Complete deferral request form with: vulnerability details, business
+                            +b justification, residual risk score (DREAD model)."
+                        tools "Custom templates aligned with NIST IR 8179"
+                        expected_outcome "Consistently structured deferral requests with all required fields."
+                    {
+                        step 2
+                        action "Obtain approvals from operations manager, security lead, and plant manager for
+                            +b criticality-based thresholds."
+                        tools "Digital signature workflow in Documentum for OT"
+                        expected_outcome "Audit trail of approvals with timestamps and role-based comments."
+                    {
+                        step 3
+                        action "Register deferred item in central risk database with automatic reminders set
+                            +b for review date."
+                        tools "SAP GRC integrated with Breton's MES"
+                        expected_outcome "Deferred issues visible in enterprise risk dashboards with SLA tracking."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "e.a)"
+        [ policies
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Cross-Product Vulnerability Communication Policy"
+                description "Mandates systematic reporting of identified vulnerabilities across all affected
+                    +b product lines and revisions, ensuring consistent risk mitigation. Aligns with
+                    +b IEC 62443-4-1 requirements for coordinated issue management in ICS environments
+                    +b with shared components (e.g., OPC UA libraries across CNC machines). Requires
+                    +b impact assessment using ICS-adapted CVSS scoring."
+                enforcement "Automated alerts in JIRA Security Hub for cross-product dependencies, quarterly
+                    +b PSIRT audits verifying communication logs, and SBOM validation during release
+                    +b cycles."
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Residual Risk Acceptance Policy"
+                description "Defines standardized risk thresholds (SL1-SL3) for vulnerability remediation
+                    +b across product teams, preventing inconsistent patching. References IEC
+                    +b 62443-4-1's requirement for supplier-defined acceptable risk levels. Applies
+                    +b specifically to legacy systems (e.g., 10-year-old RTUs) where full mitigation
+                    +b may be impractical."
+                enforcement "Risk acceptance forms signed by CISO for high-severity issues, automated risk
+                    +b scoring in ThreatConnect platform, and annual tabletop exercises validating
+                    +b threshold applications."
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Third-Party Component Vulnerability Policy"
+                description "Establishes protocols for coordinated response with external vendors when
+                    +b vulnerabilities affect shared libraries (e.g., OpenSSL in 20+ controllers).
+                    +b Complies with IEC 62443-4-1's KA4 (Third-Party Coordination) requirements,
+                    +b including 72-hour vendor notification SLA for critical issues."
+                enforcement "Automated SBOM analysis via Dependency-Track, contractual penalties for
+                    +b non-responsive vendors, and ICS-CERT reporting integration for critical supply
+                    +b chain vulnerabilities."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Multi-Product Vulnerability Impact Assessment"
+                description "Procedure for evaluating how vulnerabilities propagate across product lines
+                    +b through shared protocols (e.g., PROFINET vulnerabilities affecting both CNC and
+                    +b polishing machines). Implements IEC 62443-4-1's KA1 (Cross-Product Impact
+                    +b Assessment) using attack path analysis."
+                [ steps
+                    {
+                        step 1
+                        action "Generate product lineage map using Syft SBOM tool"
+                        tools "Syft, Grafeas metadata store"
+                        expected_outcome "Visualized dependency tree showing vulnerable components across product
+                            +b versions"
+                    {
+                        step 2
+                        action "Conduct STRIDE threat modeling for affected protocols"
+                        tools "Microsoft Threat Modeling Tool, ICS-specific STRIDE templates"
+                        expected_outcome "Threat matrix identifying tampering/spoofing risks in shared industrial
+                            +b protocols"
+                    {
+                        step 3
+                        action "Calculate ICS-adapted CVSS scores using NIST SP 800-82 guidelines"
+                        tools "FIRST CVSS Calculator, ICS impact modifier checklist"
+                        expected_outcome "Prioritized vulnerability list with SL-specific risk scores for each affected
+                            +b product"
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Legacy System Vulnerability Notification"
+                description "Process for communicating vulnerabilities to customers using unsupported
+                    +b product revisions (e.g., stone cutting machines with discontinued controllers).
+                    +b Addresses IEC 62443-4-1 KA3 requirements through alternative mitigation
+                    +b strategies."
+                [ steps
+                    {
+                        step 1
+                        action "Query product lifecycle database for active installations"
+                        tools "Siemens PLM, custom EOL tracking system"
+                        expected_outcome "List of affected customer sites with contact details"
+                    {
+                        step 2
+                        action "Develop compensating controls (e.g., network segmentation rules)"
+                        tools "Cisco Industrial Network Director, Tofino firewall configs"
+                        expected_outcome "Deployable network policies for legacy device isolation"
+                    {
+                        step 3
+                        action "Issue security advisory via encrypted customer portal"
+                        tools "Salesforce Service Cloud with PGP encryption"
+                        expected_outcome "Auditable delivery of mitigation guidance to 100% of affected customers within
+                            +b SLA"
+            {
+                code "DM-4"
+                subCode "e.a)"
+                title "Vendor Coordination for Shared Library Vulnerabilities"
+                description "Protocol for collaborating with third-party component suppliers (e.g., OPC
+                    +b Foundation for UA stack flaws) per IEC 62443-4-1 KA4. Includes 90-day
+                    +b coordinated disclosure timelines and joint patch validation."
+                [ steps
+                    {
+                        step 1
+                        action "Identify affected vendors through SBOM analysis"
+                        tools "CycloneDX, OWASP Dependency-Check"
+                        expected_outcome "Vendor contact list with component version mapping"
+                    {
+                        step 2
+                        action "Initiate ICS-CERT Vendor Coordination Protocol"
+                        tools "CISA ICS-VCRP templates, encrypted email"
+                        expected_outcome "Signed joint disclosure agreement with remediation timeline"
+                    {
+                        step 3
+                        action "Conduct patch validation in testbed with vendor participation"
+                        tools "Breton Test Farm (physical machines), Keysight Threat Simulator"
+                        expected_outcome "Validated mitigation with regression testing report"
+        last_updated "2023-10-15"

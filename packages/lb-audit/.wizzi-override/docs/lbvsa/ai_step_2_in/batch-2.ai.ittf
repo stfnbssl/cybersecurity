@@ -1,0 +1,137 @@
+ai lab
+    api-url http://localhost:3000
+    call clist-item-1.3.2
+        description clist extension of item 1.3.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"1.3.2","area":"Governance","category":"Gestione dei rischi","description":"Viene mantenuta traccia in modo strutturato di un registro dei rischi cyber con evidenza della strategia di risposta?","note":"","NIS2":"Art. 21, par. 2, comma f","\"NIST CSF\"":"ID.RA-4"}
+                \n </sr_json>
+    call clist-item-2.1.1
+        description clist extension of item 2.1.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"2.1.1","area":"Continuità operativa","category":"People","description":"La continuità dell'erogazione dei servizi di fornitura è garantita anche in situazioni di emergenza (p.e. indisponibilità del personale, guasti tecnici)?","note":"","NIS2":"Art. 21, par. 2, comma c"}
+                \n </sr_json>
+    call clist-item-2.1.2
+        description clist extension of item 2.1.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"2.1.2","area":"Continuità operativa","category":"People","description":"In caso di indisponibilità delle persone chiave per l'erogazione dei servizi di fornitura, è stato individuato un elenco di specialisti qualificati a supporto e sono definiti piani di \"call-up\" per il contatto tempestivo di queste figure?","note":"","NIS2":"Art. 21, par. 2, comma c"}
+                \n </sr_json>
+    call clist-item-2.1.3
+        description clist extension of item 2.1.3
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"2.1.3","area":"Continuità operativa","category":"People","description":"Il personale a supporto dell'erogazione dei servizi di fornitura è distribuito su sedi diversificate e/o sono presenti procedure per gestire la distribuzione del personale in siti alternativi in situazioni di crisi o emergenza (p.e. ri-distribuzione del personale, remote working)?","note":"","NIS2":"Art. 21, par. 2, comma c"}
+                \n </sr_json>
+    call clist-item-2.2.1
+        description clist extension of item 2.2.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto di CyberSecurity nel contesto OT ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi
+                \n 1) una spiegazione dettagliata,
+                \n 2) un glossario dei termini più tecnici, ciascuno con una definizione e un link a risorse rileveanti sul web per rapprofondimenti,
+                \n 3) links rilevanti a standards, best practices, o documentazione correlata all'item.
+                \n Per risorse, glossario e links non considerare standards come 62443 e 27001, o le norme
+                \n più note, intendo rilevanti tematicamente e concettualmente per approfondire il contenuto dell'item.
+                \n Usa il seguente JSON schema.
+                \n <database_json_schema>
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}
+                \n </database_json_schema>
+                \n Popola lo schema con i dati del seguente item e ritorna il JSON risultante.
+                \n <sr_json>
+                \n {"idd":"2.2.1","area":"Continuità operativa","category":"Physical infrastructure","description":"Le sedi dell'organizzazione sono dotate di adeguati presidi di sicurezza, sottoposte a manutenzione periodica contro eventi di carattere ambientale? Sono previsti piani di emergenza per gestire i disastri ambientali che potrebbero coinvolgere tali edifici?","note":"","NIS2":"Art. 21, par. 2, comma c","ISO22301":"8.3.4","ISO_n_27001":"A.5.15","\"NIST CSF\"":"PR.AC-4"}
+                \n </sr_json>

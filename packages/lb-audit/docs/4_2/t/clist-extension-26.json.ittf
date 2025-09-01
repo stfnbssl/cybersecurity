@@ -1,0 +1,202 @@
+$group
+    {
+        id "FSA-EDR 3.14"
+        check_description "Embedded devices shall verify the integrity of the firmware, software, and
+            +b configuration data needed for component’s boot and runtime processes prior to
+            +b use."
+        requirement_id "IEC 62443-4-2:EDR 3.14"
+        title "Integrity of the Boot Process"
+        description "This requirement ensures that the integrity of the boot process is maintained
+            +b to protect industrial control systems from unauthorized modifications. The
+            +b objective is to verify that the system boots using only trusted and verified
+            +b software components, preventing the execution of malicious code during system
+            +b start-up."
+        [ key_aspects
+            {
+                aspect "Secure Boot"
+                detail "Implementation of secure boot mechanisms to ensure that only trusted and
+                    +b verified firmware and software are loaded during the boot process."
+            {
+                aspect "Boot Verification"
+                detail "Regular verification of boot components to detect any unauthorized changes or
+                    +b tampering."
+            {
+                aspect "Integrity Checks"
+                detail "Utilization of cryptographic techniques to ensure the integrity and
+                    +b authenticity of the boot process components."
+            {
+                aspect "Recovery Mechanisms"
+                detail "Establishment of recovery procedures to restore the system to a secure state in
+                    +b case of boot integrity failures."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                reference "This standard provides guidelines for BIOS security, focusing on ensuring the
+                    +b integrity of the BIOS and secure updating processes."
+            {
+                standard "NIST SP 800-193"
+                title "Platform Firmware Resiliency Guidelines"
+                reference "Outlines strategies to enhance firmware resiliency against unauthorized
+                    +b changes, including secure boot processes and integrity verification."
+            {
+                standard "IEEE 802.1AR"
+                title "Secure Device Identity"
+                reference "Defines mechanisms for secure device identity, which can support the integrity
+                    +b of device boot processes by ensuring devices are authenticated before network
+                    +b access."
+            {
+                standard "Trusted Computing Group (TCG) Specifications"
+                title "Trusted Platform Module (TPM)"
+                reference "The TPM specifications provide for secure storage and reporting of security
+                    +b metrics, which can be used to validate the boot process integrity."
+    {
+        id "FSA-EDR 3.14 RE(1)"
+        check_description "Embedded devices shall use the component’s product supplier roots of trust to
+            +b verify the authenticity of the firmware, software, and configuration data
+            +b needed for the component’s boot process prior to it being used in the boot
+            +b process."
+        requirement_id "IEC 62443-4-2: EDR 3.14 RE(1)"
+        title "Authenticity of the Boot Process"
+        description "This requirement ensures that the boot process of a device is secure and that
+            +b the integrity and authenticity of the boot sequence are verified. It protects
+            +b against unauthorized modifications and ensures that only verified firmware and
+            +b software are loaded during the startup process."
+        [ key_aspects
+            "Verification of Boot Code: Ensuring that the bootloader and other initial code segments are authentic and have not been tampered with."
+            "Cryptographic Techniques: Use of digital signatures and cryptographic hash functions to verify the integrity and authenticity of the boot process."
+            "Secure Boot Mechanism: Implementation of a secure boot mechanism that checks each stage of the boot process to ensure authenticity before execution."
+            "Tamper Detection: Mechanisms to detect and respond to unauthorized modifications in the boot sequence."
+            "Firmware and Software Integrity: Protecting the integrity of firmware and software through verification processes before loading them into memory."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "Provides guidelines on protecting the BIOS from unauthorized modifications and
+                    +b ensuring its integrity during the boot process."
+            {
+                standard "Trusted Computing Group (TCG) Specifications"
+                title "Trusted Platform Module (TPM)"
+                description "Describes the use of TPM for secure boot processes, providing root of trust and
+                    +b cryptographic functionalities to ensure boot integrity."
+            {
+                standard "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                description "Includes broader system security requirements that relate to secure boot
+                    +b processes and the integrity of system startup."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "Provides general information security management practices that complement
+                    +b specific boot process security requirements."
+    {
+        id "FSA-HDR 3.14"
+        check_description "Host devices shall verify the integrity of the firmware, software, and
+            +b configuration data needed for component’s boot process prior to it being used
+            +b in the boot process."
+        requirement_id "IEC 62443-4-2: HDR 3.14"
+        title "Integrity of the Boot Process"
+        description "This requirement focuses on ensuring that the boot process of an industrial
+            +b control system (ICS) component is secure and that its integrity is maintained.
+            +b It involves verifying that the system boot sequence is not tampered with and
+            +b that it executes only trusted software during startup."
+        [ key_aspects
+            "Verification of Boot Integrity: Ensures that only authorized and verified boot components are executed during the startup sequence."
+            "Secure Boot Mechanisms: Utilizes cryptographic techniques to authenticate and validate the boot loader and operating system before execution."
+            "Tamper Detection: Implements mechanisms to detect any unauthorized changes to the boot process or boot images."
+            "Rollback and Recovery: Provides the ability to revert to a known secure state in case of integrity violations during the boot process."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "This standard provides guidelines for securing the BIOS firmware to ensure a
+                    +b secure boot process, focusing on preventing unauthorized changes to the BIOS
+                    +b and ensuring the integrity of the boot firmware."
+            {
+                standard "Trusted Computing Group (TCG) Specifications"
+                title "Trusted Platform Module (TPM)"
+                description "The TCG specifications utilize TPM technology to provide secure generation and
+                    +b storage of cryptographic keys, enabling secure boot processes through platform
+                    +b integrity measurements."
+            {
+                standard "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                description "This standard outlines the security requirements for ICS at the system level,
+                    +b including the integrity of the boot process as part of broader system integrity
+                    +b and security controls."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "While not specific to industrial systems, this standard provides a framework
+                    +b for managing information security risks, including those associated with system
+                    +b integrity and secure boot processes."
+    {
+        id "FSA-HDR 3.14"
+        check_description "Host devices shall verify the integrity of the firmware, software, and
+            +b configuration data needed for component’s boot process prior to it being used
+            +b in the boot process."
+        requirement_id "IEC 62443-4-2: HDR 3.14"
+        title "Integrity of the Boot Process"
+        description "This requirement focuses on ensuring that the boot process of an industrial
+            +b control system (ICS) component is secure and that its integrity is maintained.
+            +b It involves verifying that the system boot sequence is not tampered with and
+            +b that it executes only trusted software during startup."
+        [ key_aspects
+            "Verification of Boot Integrity: Ensures that only authorized and verified boot components are executed during the startup sequence."
+            "Secure Boot Mechanisms: Utilizes cryptographic techniques to authenticate and validate the boot loader and operating system before execution."
+            "Tamper Detection: Implements mechanisms to detect any unauthorized changes to the boot process or boot images."
+            "Rollback and Recovery: Provides the ability to revert to a known secure state in case of integrity violations during the boot process."
+        [ related_standards
+            {
+                standard "NIST SP 800-147"
+                title "BIOS Protection Guidelines"
+                description "This standard provides guidelines for securing the BIOS firmware to ensure a
+                    +b secure boot process, focusing on preventing unauthorized changes to the BIOS
+                    +b and ensuring the integrity of the boot firmware."
+            {
+                standard "Trusted Computing Group (TCG) Specifications"
+                title "Trusted Platform Module (TPM)"
+                description "The TCG specifications utilize TPM technology to provide secure generation and
+                    +b storage of cryptographic keys, enabling secure boot processes through platform
+                    +b integrity measurements."
+            {
+                standard "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                description "This standard outlines the security requirements for ICS at the system level,
+                    +b including the integrity of the boot process as part of broader system integrity
+                    +b and security controls."
+            {
+                standard "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                description "While not specific to industrial systems, this standard provides a framework
+                    +b for managing information security risks, including those associated with system
+                    +b integrity and secure boot processes."
+    {
+        id "FSA-HDR 3.14 RE(1)"
+        check_description "Host devices shall use the component’s product supplier roots of trust to
+            +b verify the authenticity of the firmware, software, and configuration data
+            +b needed for component’s boot process prior to it being used in the boot process."
+        requirement_id "IEC 62443-4-2: HDR 3.14 RE(1)"
+        title "Authenticity of the Boot Process"
+        description "This requirement ensures that the boot process of a system is secure and has
+            +b not been tampered with. It involves verifying the integrity and authenticity of
+            +b the initial code that runs upon startup, to prevent unauthorized code from
+            +b executing."
+        { key_aspects
+            integrity_verification "Mechanisms must be in place to validate the integrity of the bootloader and
+                +b other initial code that executes at startup."
+            authentication_mechanisms "The system should use cryptographic techniques to authenticate the boot code,
+                +b ensuring it originates from a trusted source."
+            "secure boot" "Implementation of secure boot processes that only allow signed and verified
+                +b code to run, preventing execution of malicious or unauthorized code."
+            "root of trust" "Establishment of a hardware or software-based root of trust that serves as a
+                +b secure starting point for the boot process."
+        { related_standards
+            "NIST SP 800-147" "This standard provides guidelines for BIOS protection, including mechanisms for
+                +b ensuring the authenticity and integrity of the boot firmware."
+            "NIST SP 800-193" "This document outlines platform firmware resiliency guidelines, emphasizing
+                +b mechanisms for protecting, detecting, and recovering firmware."
+            "ISO/IEC 19790" "This standard specifies security requirements for cryptographic modules, which
+                +b may be used to ensure the authenticity and integrity of the boot process."
+            "TPM 2.0 ${'('}Trusted Platform Module)" "A specification for a secure crypto-processor that can be used to enforce
+                +b secure boot processes by securely storing cryptographic keys and measurements."

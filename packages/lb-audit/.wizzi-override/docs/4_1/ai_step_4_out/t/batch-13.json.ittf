@@ -1,0 +1,247 @@
+$group
+    {
+        practice "2"
+        code "SR-5"
+        subCode "d) security advisor"
+        [ policies
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Security Requirements Review Policy"
+                description "This policy mandates the regular review and update of security requirements to
+                    +b ensure alignment with the current threat model, as per IEC 62443-4-1. The
+                    +b security advisor is responsible for overseeing this process, ensuring that all
+                    +b requirements are clear, valid, and verifiable. The policy applies to all
+                    +b industrial control systems (ICS) within Breton Spa's product line, including
+                    +b CNC Machining Centers and Stone Cutting Machines."
+                enforcement "Compliance is enforced through quarterly audits conducted by an independent
+                    +b third-party, using automated tools like JIRA with Security Plugins to track
+                    +b requirement changes and approvals."
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Threat Model Alignment Policy"
+                description "This policy ensures that all security requirements are continuously aligned
+                    +b with the threat model, as specified in IEC 62443-4-1. The security advisor must
+                    +b review and update the threat model biannually or whenever a new threat is
+                    +b identified. The policy covers all protocols supported by Breton Spa's machines,
+                    +b including OPC UA with Basic256Sha256 and PROFINET with PN Security."
+                enforcement "Enforcement is achieved through automated threat modeling tools like Microsoft
+                    +b Threat Modeling Tool, with regular reports submitted to management for review."
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Independent Verification Policy"
+                description "This policy requires that all security requirements be independently verified
+                    +b by testers who are separate from the development and review teams, in
+                    +b compliance with IEC 62443-4-1. The security advisor ensures that verification
+                    +b processes are documented and traceable, with clear metrics for success."
+                enforcement "Enforcement mechanisms include mandatory use of GitLab Ultimate for tracking
+                    +b verification steps and annual competency assessments for testers."
+        [ procedures
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Security Requirements Review Procedure"
+                description "This procedure outlines the steps for reviewing and updating security
+                    +b requirements to ensure they align with the threat model and are verifiable, as
+                    +b per IEC 62443-4-1. The security advisor leads this process, involving input
+                    +b from IT, OT, and security teams."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a preliminary review of existing security requirements against the
+                            +b current threat model."
+                        tools "Microsoft Threat Modeling Tool, JIRA with Security Plugins"
+                        expected_outcome "A documented list of gaps between security requirements and the threat model."
+                    {
+                        step 2
+                        action "Update security requirements to address identified gaps, ensuring clarity and
+                            +b verifiability."
+                        tools "GitLab Ultimate, Rockwell Automation’s security software"
+                        expected_outcome "Updated security requirements document approved by the security advisor."
+                    {
+                        step 3
+                        action "Submit the updated requirements for independent verification by testers."
+                        tools "ISA-62443-4-1 Verification Guide, Honeywell Security Playbook"
+                        expected_outcome "Verification report confirming that all requirements are testable and aligned
+                            +b with the threat model."
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Threat Model Update Procedure"
+                description "This procedure details the process for updating the threat model to reflect new
+                    +b threats and vulnerabilities, ensuring continuous alignment with security
+                    +b requirements as per IEC 62443-4-1. The security advisor coordinates this
+                    +b effort, leveraging threat intelligence and interdisciplinary collaboration."
+                [ steps
+                    {
+                        step 1
+                        action "Gather threat intelligence from sources like CISA alerts and ICS-CERT
+                            +b advisories."
+                        tools "NIST 800-30 (adapted for SCADA), Siemens Industrial Security Services"
+                        expected_outcome "A compiled list of new threats relevant to Breton Spa's ICS products."
+                    {
+                        step 2
+                        action "Update the threat model to incorporate new threats, using methodologies like
+                            +b STRIDE and DREAD."
+                        tools "Microsoft Threat Modeling Tool, Schneider Electric ICS Security framework"
+                        expected_outcome "An updated threat model document approved by the security advisor."
+                    {
+                        step 3
+                        action "Communicate the updated threat model to all relevant teams and update security
+                            +b requirements accordingly."
+                        tools "Cisco ICS Documentation Best Practices, Honeywell technical note on ICS threat
+                            +b modeling"
+                        expected_outcome "Security requirements that reflect the updated threat model, documented and
+                            +b traceable."
+            {
+                code "SR-5"
+                subCode "d) security advisor"
+                title "Independent Verification Procedure"
+                description "This procedure defines the steps for independently verifying security
+                    +b requirements to ensure they are measurable and enforceable, in line with IEC
+                    +b 62443-4-1. The security advisor oversees the process, ensuring testers remain
+                    +b independent and their inputs are considered."
+                [ steps
+                    {
+                        step 1
+                        action "Develop a verification plan outlining the methods and tools to be used for
+                            +b testing security requirements."
+                        tools "ISA-62443-4-1 Verification Guide, Rockwell Automation Testing tools"
+                        expected_outcome "A detailed verification plan approved by the security advisor."
+                    {
+                        step 2
+                        action "Execute the verification plan, testing each security requirement for clarity,
+                            +b validity, and alignment with the threat model."
+                        tools "GitLab Ultimate, JIRA with Security Plugins"
+                        expected_outcome "A verification report documenting test results and any identified issues."
+                    {
+                        step 3
+                        action "Review and address any issues identified during verification, updating security
+                            +b requirements as needed."
+                        tools "Honeywell Security Playbook, Siemens ICS Security Whitepaper"
+                        expected_outcome "Finalized security requirements that have passed independent verification,
+                            +b ready for implementation."
+        last_updated "2023-11-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 2330"
+    {
+        practice "3"
+        code "SD-1"
+        subCode "d) a determination of whether access to the interface crosses a trust boundary;"
+        [ policies
+            {
+                code "SD-1"
+                subCode "d"
+                title "Interface Trust Boundary Analysis Policy"
+                description "This policy mandates the identification and documentation of all interfaces
+                    +b (physical and logical) within industrial control systems to determine if they
+                    +b cross trust boundaries. It aligns with IEC 62443-4-1 by ensuring that security
+                    +b controls are applied at boundary crossings to prevent unauthorized access or
+                    +b data leakage. The policy applies to all Breton Spa CNC, stone cutting,
+                    +b polishing, and composite material processing machines."
+                enforcement "Compliance is enforced through quarterly audits using network scanning tools
+                    +b (e.g., Nmap for port inventory) and manual reviews of interface documentation.
+                    +b Non-compliance triggers remediation actions within 30 days."
+            {
+                code "SD-1"
+                subCode "d"
+                title "Network Segmentation Enforcement Policy"
+                description "Requires the use of VLANs, firewalls, or hardware segmentation (e.g., TSN
+                    +b switches) to enforce trust boundaries between IT/OT networks and
+                    +b critical/non-critical zones in Breton Spa equipment. Referenced in IEC
+                    +b 62443-4-1 CR5 (Restricted Data Flow) and CR7 (Resource Availability)."
+                enforcement "Automated checks via network monitoring tools (e.g., Cisco Cyber Vision)
+                    +b validate segmentation rules. Configuration changes require approval from the
+                    +b Industrial Security Team."
+            {
+                code "SD-1"
+                subCode "d"
+                title "Dynamic Interface Monitoring Policy"
+                description "Mandates real-time monitoring of interfaces crossing trust boundaries in Breton
+                    +b Spa machines, with alerts for unauthorized access attempts (e.g., via OPC UA or
+                    +b PROFINET interfaces). Supports IEC 62443-4-1 CR6 (Timely Response to Events)."
+                enforcement "SIEM tools (e.g., Splunk ICS) correlate logs from PLCs and network devices.
+                    +b Monthly reports verify alert responsiveness and false-positive rates."
+        [ procedures
+            {
+                code "SD-1"
+                subCode "d"
+                title "Interface Inventory and Boundary Mapping Procedure"
+                description "Step-by-step process to catalog interfaces and map trust boundaries for Breton
+                    +b Spa industrial machines, ensuring compliance with IEC 62443-4-1 SD-1(d)."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct physical inspection of all machine interfaces (e.g., USB ports, serial
+                            +b connectors) using checklists."
+                        tools "Checklist templates, barcode scanners for asset tagging."
+                        expected_outcome "Documented inventory of physical interfaces with location and zone assignment."
+                    {
+                        step 2
+                        action "Perform network scans to identify logical interfaces (e.g., OPC UA endpoints,
+                            +b PROFINET nodes) using protocol-aware tools."
+                        tools "Wireshark with ICS dissectors, Nmap scripts for industrial protocols."
+                        expected_outcome "List of active network interfaces with IPs, protocols, and connected systems."
+                    {
+                        step 3
+                        action "Analyze data flows between interfaces to identify trust boundary crossings
+                            +b (e.g., corporate network to CNC control VLAN)."
+                        tools "Network flow analyzers (e.g., Nozomi Networks), zone diagrams."
+                        expected_outcome "Trust boundary map with risk ratings (high/medium/low) per IEC 62443-4-1
+                            +b guidelines."
+            {
+                code "SD-1"
+                subCode "d"
+                title "Secure Remote Access Configuration Procedure"
+                description "Defines steps to secure interfaces used for remote maintenance (e.g., VPNs,
+                    +b jump hosts) in Breton Spa equipment, addressing trust boundary risks per IEC
+                    +b 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Configure multi-factor authentication (MFA) for all remote access interfaces
+                            +b (e.g., FortiGate VPN with YubiKey support)."
+                        tools "VPN concentrators, MFA servers."
+                        expected_outcome "Unauthorized access prevented via stolen credentials."
+                    {
+                        step 2
+                        action "Implement session logging for all remote connections, capturing user actions
+                            +b and timestamps."
+                        tools "Session recording tools (e.g., CyberArk), syslog servers."
+                        expected_outcome "Auditable records of remote activities for incident investigation."
+                    {
+                        step 3
+                        action "Enforce automatic session termination after 15 minutes of inactivity on
+                            +b interfaces crossing trust boundaries."
+                        tools "Firewall session timeout settings, SCADA user management consoles."
+                        expected_outcome "Reduced exposure window for unauthorized access."
+            {
+                code "SD-1"
+                subCode "d"
+                title "Legacy Interface Hardening Procedure"
+                description "Mitigates risks from legacy interfaces (e.g., Modbus TCP without TLS) in older
+                    +b Breton Spa machines that cross trust boundaries, per IEC 62443-4-1 compensatory
+                    +b controls."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy protocol gateways to encapsulate legacy traffic (e.g., Modbus-to-OPC UA
+                            +b converters with TLS)."
+                        tools "Hardened protocol converters (e.g., Kepware with FIPS 140-2 validation)."
+                        expected_outcome "Legacy protocols secured via modern encryption at trust boundaries."
+                    {
+                        step 2
+                        action "Apply physical port locks to unused interfaces on legacy machines (e.g., RS-232
+                            +b ports)."
+                        tools "Tamper-evident port blockers, asset tags."
+                        expected_outcome "Prevention of unauthorized physical access to legacy interfaces."
+                    {
+                        step 3
+                        action "Monitor legacy interface traffic for anomalies using signature-based IDS tuned
+                            +b for industrial protocols."
+                        tools "Snort with ICS rule sets, Zeek (Bro) with PROFINET parsing."
+                        expected_outcome "Detection of suspicious activity (e.g., unexpected function codes in Modbus)."
+        last_updated "2023-10-15"

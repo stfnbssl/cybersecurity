@@ -1,0 +1,378 @@
+$group
+    {
+        practice "2"
+        code "SR-5"
+        subCode "a) architects/developers (those who will implement the requirements);"
+        [ policies
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Security Requirements Review Policy"
+                description "This policy mandates a structured process for reviewing and validating security
+                    +b requirements to ensure they are clear, aligned with the threat model, and
+                    +b verifiable. Architects and developers must actively participate in this
+                    +b process, as per IEC 62443-4-1 SR-5. The policy applies to all phases of the
+                    +b product lifecycle, from design to deployment."
+                enforcement "Compliance is enforced through regular audits, automated requirement tracking
+                    +b tools (e.g., JIRA with security plugins), and mandatory participation in
+                    +b cross-functional review workshops. Non-compliance results in project hold until
+                    +b requirements are properly reviewed and approved."
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Threat Model Alignment Policy"
+                description "This policy ensures that all security requirements are derived from and
+                    +b consistent with the threat model, as specified in IEC 62443-4-1 SR-5. It
+                    +b requires the use of threat modeling tools (e.g., Microsoft Threat Modeling
+                    +b Tool) and regular updates to the threat model based on evolving threats."
+                enforcement "Enforcement is achieved through automated checks in the CI/CD pipeline to
+                    +b verify requirement-threat model alignment, and periodic reviews by the security
+                    +b team. Deviations are flagged and must be resolved before proceeding to the next
+                    +b development phase."
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Stakeholder Collaboration Policy"
+                description "This policy mandates collaboration between all relevant disciplines (e.g., OT,
+                    +b IT, safety) during the security requirements review process, as per IEC
+                    +b 62443-4-1 SR-5. It ensures that requirements are feasible and comprehensive,
+                    +b with input from all stakeholders."
+                enforcement "Enforcement is ensured through documented evidence of stakeholder participation
+                    +b in review meetings, and a RACI matrix to define roles and responsibilities.
+                    +b Non-participation results in escalation to the security review board."
+        [ procedures
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Security Requirements Review Procedure"
+                description "This procedure outlines the steps for reviewing and validating security
+                    +b requirements to ensure they are clear, aligned with the threat model, and
+                    +b verifiable, as per IEC 62443-4-1 SR-5. It involves cross-functional
+                    +b collaboration and documentation of review outcomes."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a preliminary review of security requirements with architects and
+                            +b developers."
+                        tools "JIRA with security plugins, Microsoft Threat Modeling Tool"
+                        expected_outcome "Initial alignment of security requirements with the threat model, documented in
+                            +b the requirement tracking system."
+                    {
+                        step 2
+                        action "Organize a cross-functional workshop to validate requirements with all
+                            +b stakeholders (e.g., OT, IT, safety)."
+                        tools "Collaboration tools (e.g., Microsoft Teams, Miro), Threat modeling tools"
+                        expected_outcome "Validated security requirements with input from all disciplines, documented in
+                            +b the meeting minutes."
+                    {
+                        step 3
+                        action "Update the security requirements based on feedback and obtain formal approval."
+                        tools "Requirement management tools (e.g., IBM DOORS), Digital signature tools"
+                        expected_outcome "Approved security requirements stored in a centralized repository, ready for
+                            +b implementation."
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Threat Model Update Procedure"
+                description "This procedure details the process for updating the threat model based on new
+                    +b threats and vulnerabilities, ensuring that security requirements remain
+                    +b aligned, as per IEC 62443-4-1 SR-5."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor threat intelligence sources (e.g., CISA alerts, ICS-specific
+                            +b vulnerability reports)."
+                        tools "Threat intelligence platforms (e.g., Recorded Future), Vulnerability scanners"
+                        expected_outcome "List of new threats and vulnerabilities relevant to the ICS environment."
+                    {
+                        step 2
+                        action "Update the threat model using threat modeling tools to incorporate new threats."
+                        tools "Microsoft Threat Modeling Tool, STRIDE methodology"
+                        expected_outcome "Updated threat model reflecting current threat landscape, documented and
+                            +b version-controlled."
+                    {
+                        step 3
+                        action "Review and update security requirements to align with the updated threat model."
+                        tools "Requirement management tools (e.g., JIRA, IBM DOORS)"
+                        expected_outcome "Revised security requirements that address new threats, approved by the
+                            +b security team."
+            {
+                code "SR-5"
+                subCode "a)"
+                title "Requirement Verification Procedure"
+                description "This procedure defines the steps for verifying that security requirements are
+                    +b implemented as intended, ensuring traceability from design to testing, as per
+                    +b IEC 62443-4-1 SR-5."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a design review to ensure security requirements are correctly
+                            +b implemented in the architecture."
+                        tools "Enterprise Architect, Design review checklists"
+                        expected_outcome "Design documents showing traceability to security requirements, with any gaps
+                            +b identified and addressed."
+                    {
+                        step 2
+                        action "Perform code reviews and static analysis to verify security requirements in the
+                            +b implementation."
+                        tools "Static code analysis tools (e.g., SonarQube), Peer review tools"
+                        expected_outcome "Code that complies with security requirements, with vulnerabilities flagged and
+                            +b resolved."
+                    {
+                        step 3
+                        action "Execute penetration testing and dynamic analysis to validate security
+                            +b requirements in the deployed system."
+                        tools "Penetration testing tools (e.g., Metasploit), Dynamic analysis tools"
+                        expected_outcome "Test reports confirming that security requirements are met, with any deviations
+                            +b documented and addressed."
+        last_updated "2023-11-15"
+    {
+        practice "2"
+        code "SR-5"
+        subCode "b) testers (those who will validate that the requirements have been met);"
+        [ policies
+            {
+                code "SR-5"
+                subCode "b"
+                title "Independent Tester Assignment Policy"
+                description "This policy mandates the assignment of independent testers to validate security
+                    +b requirements, ensuring no conflict of interest with the development team.
+                    +b Testers must be separate from the requirement development process to maintain
+                    +b objectivity, as per IEC 62443-4-1 SR-5(b). The policy applies to all Breton Spa
+                    +b CNC and stone cutting machines, where unbiased validation is critical for
+                    +b operational security."
+                enforcement "Enforced through quarterly audits of tester assignments and validation reports.
+                    +b Non-compliance triggers a review by the security governance committee."
+            {
+                code "SR-5"
+                subCode "b"
+                title "ICS-Specific Tester Competency Policy"
+                description "Requires testers validating security requirements for Breton Spa industrial
+                    +b machines to demonstrate proficiency in ICS protocols (e.g., OPC UA, PROFINET)
+                    +b and threats. Aligns with IEC 62443-4-1's emphasis on domain-specific expertise
+                    +b (KA2). Applies to all product lines, particularly high-criticality applications
+                    +b like Natural Stone Processing."
+                enforcement "Verified via annual competency assessments and training records. Automated
+                    +b tools (e.g., ICS protocol analyzers) are used to validate tester outputs."
+            {
+                code "SR-5"
+                subCode "b"
+                title "Dynamic Test Case Update Policy"
+                description "Mandates quarterly updates to security requirement test cases based on emerging
+                    +b ICS threats (e.g., ransomware variants targeting CNC systems). Reflects IEC
+                    +b 62443-4-1 KA3 on dynamic test management. Covers all Breton Spa machines with
+                    +b networked control systems."
+                enforcement "Enforced through version-controlled test repositories and integration with
+                    +b CISA's ICS threat feeds. Deviations flagged in monthly security dashboards."
+        [ procedures
+            {
+                code "SR-5"
+                subCode "b"
+                title "Tester Independence Verification Procedure"
+                description "Outlines steps to ensure testers validating security requirements for Breton
+                    +b Spa equipment are operationally independent from development teams, per IEC
+                    +b 62443-4-1 SR-5(b) and KA1."
+                [ steps
+                    {
+                        step 1
+                        action "Review organizational charts and reporting lines for all personnel involved in
+                            +b security requirement validation."
+                        tools "HR management systems (e.g., Workday), RACI matrices"
+                        expected_outcome "Documented confirmation that testers report to a separate governance structure
+                            +b from developers."
+                    {
+                        step 2
+                        action "Conduct conflict-of-interest declarations for tester teams, verifying no
+                            +b participation in requirement development."
+                        tools "Compliance platforms (e.g., SureCloud), signed affidavits"
+                        expected_outcome "Signed declarations filed for all testers with zero conflicts identified."
+                    {
+                        step 3
+                        action "Validate test environment isolation by checking that tester systems cannot
+                            +b access development code repositories."
+                        tools "Network segmentation logs (e.g., Cisco ISE), GitLab audit trails"
+                        expected_outcome "Audit report showing no unauthorized access between testing and development
+                            +b environments."
+            {
+                code "SR-5"
+                subCode "b"
+                title "ICS Protocol Security Validation Procedure"
+                description "Details the process for testers to verify security requirements for industrial
+                    +b protocols (e.g., PROFINET with PN Security) in Breton Spa machines, addressing
+                    +b IEC 62443-4-1 KA2."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy protocol-specific test harnesses (e.g., PROFINET traffic generators) to
+                            +b validate encryption and authentication requirements."
+                        tools "Wireshark with ICS plugins, PROFINET test suites"
+                        expected_outcome "Traffic analysis reports confirming cryptographic protections meet SL-2/SL-3
+                            +b requirements."
+                    {
+                        step 2
+                        action "Execute fuzz testing against protocol implementations to identify unhandled
+                            +b exceptions or vulnerabilities."
+                        tools "Peach Fuzzer configured for OPC UA, Modbus TCP test cases"
+                        expected_outcome "Report documenting protocol robustness with no critical vulnerabilities (CVSS
+                            +b ≥7.0) detected."
+                    {
+                        step 3
+                        action "Verify protocol-specific security controls (e.g., CIP Security role-based
+                            +b access) against requirement specifications."
+                        tools "EtherNet/IP configuration tools, access control test scripts"
+                        expected_outcome "Validation matrix showing 100% requirement coverage for protocol security
+                            +b features."
+            {
+                code "SR-5"
+                subCode "b"
+                title "Threat-Informed Test Case Development Procedure"
+                description "Guides testers in creating and updating test cases based on ICS threat
+                    +b intelligence for Breton Spa systems, implementing IEC 62443-4-1 KA3."
+                [ steps
+                    {
+                        step 1
+                        action "Subscribe to and review CISA ICS-CERT advisories and MITRE ATT&CK for ICS
+                            +b matrix for emerging threats."
+                        tools "Threat intelligence platforms (e.g., Anomali), ATT&CK Navigator"
+                        expected_outcome "Monthly threat briefing document highlighting relevant threats to CNC and stone
+                            +b cutting systems."
+                    {
+                        step 2
+                        action "Map new threats to existing security requirements, identifying gaps in test
+                            +b coverage."
+                        tools "Traceability matrices (e.g., in Jama Connect), threat modeling tools"
+                        expected_outcome "Gap analysis report with prioritized updates needed for test cases."
+                    {
+                        step 3
+                        action "Develop and validate new test scenarios (e.g., ransomware propagation via OPC
+                            +b UA) and integrate into regression suites."
+                        tools "ICS attack simulators (e.g., Dragos), test management systems"
+                        expected_outcome "Updated test repository with version-controlled cases covering latest threat
+                            +b TTPs."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-5"
+        subCode "c) customer advocate (such as sales, marketing, product management or customer
+            +b support); and"
+        [ policies
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Customer Feedback Integration Policy"
+                description "This policy mandates the systematic collection and analysis of customer
+                    +b feedback to ensure security requirements align with operational realities. It
+                    +b references IEC 62443-4-1 by requiring documented processes for integrating
+                    +b customer input without compromising security robustness. Customer advocates
+                    +b (e.g., sales, support) must submit structured feedback via designated portals
+                    +b quarterly."
+                enforcement "Enforced through automated tracking in JIRA, with compliance verified during
+                    +b bi-annual audits. Non-compliance triggers escalation to the security governance
+                    +b committee."
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Cross-Departmental Security Alignment Policy"
+                description "Requires collaboration between engineering, sales, and customer support to
+                    +b harmonize security requirements. Aligns with IEC 62443-4-1's emphasis on
+                    +b multidisciplinary reviews (SR-5). Uses RACI matrices to define roles, with
+                    +b sales teams trained via Siemens-style playbooks to communicate security
+                    +b trade-offs."
+                enforcement "Monitored through Confluence documentation logs. Departments must attest to
+                    +b participation in requirement reviews during monthly governance meetings."
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Threat Model Adherence Policy"
+                description "Ensures customer-advocated requirements undergo MITRE ICS threat model reviews
+                    +b to prevent deviation from risk assumptions (IEC 62443-4-1 SR-2 linkage).
+                    +b Mandates Dragos-style case study analysis for high-criticality applications
+                    +b like CNC machining centers."
+                enforcement "Verified using the Microsoft Threat Modeling Tool. Automated checks flag
+                    +b requirements lacking threat model alignment in the DevSecOps pipeline."
+        [ procedures
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Customer Security Requirement Review Procedure"
+                description "Structured process for incorporating customer advocate feedback into security
+                    +b requirements while maintaining IEC 62443-4-1 verifiability standards. Focuses
+                    +b on Breton's CNC and stone cutting machines' operational constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Collect feedback via Schneider Electric-style customer portal, categorizing
+                            +b inputs by criticality (e.g., 'High' for metalworking applications)."
+                        tools "Salesforce Service Cloud with IEC 62443-4-1 tagging modules"
+                        expected_outcome "Logged feedback with metadata (customer type, affected machine protocol,
+                            +b criticality level)."
+                    {
+                        step 2
+                        action "Conduct threat model reassessment using STRIDE methodology for requirements
+                            +b influenced by feedback, prioritizing PROFINET and OPC UA security impacts."
+                        tools "Microsoft Threat Modeling Tool integrated with Rockwell Automation
+                            +b exception-tracking"
+                        expected_outcome "Updated threat model diagrams showing new attack vectors from customer use
+                            +b cases."
+                    {
+                        step 3
+                        action "Document exceptions in GE Digital-style verification framework, ensuring
+                            +b testability of modified requirements (e.g., MFA for remote access to polishing
+                            +b machines)."
+                        tools "JIRA with ICS Security Verification add-on"
+                        expected_outcome "Traceable requirement updates with test cases covering customer-requested
+                            +b changes."
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Sales Team Security Briefing Procedure"
+                description "Standardizes security competency for customer-facing teams per IEC 62443-4-1
+                    +b KA2. Tailored for Breton's composite material processing lines and their CIP
+                    +b Security protocol constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Quarterly training on security feature trade-offs (e.g., explaining TLS latency
+                            +b impacts on EtherCAT secure profiles)."
+                        tools "Siemens Sales Playbook e-learning modules"
+                        expected_outcome "90%+ pass rate on post-training assessments about CR3/CR5 requirements."
+                    {
+                        step 2
+                        action "Simulate customer negotiations with pre-approved requirement modification
+                            +b boundaries (e.g., maximum 15% relaxation of audit logging frequency)."
+                        tools "ABB Security Governance Playbook scenario templates"
+                        expected_outcome "Documented negotiation outcomes within permissible deviation thresholds."
+                    {
+                        step 3
+                        action "Update product security datasheets with customer-validated configurations
+                            +b (e.g., SL2 vs SL3 trade-offs for stone cutting machines)."
+                        tools "PAS Global ICS Documentation Manager"
+                        expected_outcome "Version-controlled datasheets reflecting current customer-accepted security
+                            +b postures."
+            {
+                code "SR-5"
+                subCode "c)"
+                title "Legacy System Customer Exception Handling"
+                description "Implements IEC 62443-4-1 compensating controls for customer-requested legacy
+                    +b protocol support (e.g., Modbus TCP without TLS in older polishing machines)."
+                [ steps
+                    {
+                        step 1
+                        action "Perform NIST 800-30 risk assessment for the legacy configuration, focusing on
+                            +b dust-induced hardware failures in stone processing environments."
+                        tools "Dragos Legacy Risk Calculator with Breton-specific dust parameters"
+                        expected_outcome "Quantified risk score exceeding SL1 thresholds triggers compensating control
+                            +b requirements."
+                    {
+                        step 2
+                        action "Deploy network segmentation using Tofino firewalls to isolate legacy Modbus
+                            +b traffic, aligning with CR5 (Restricted Data Flow)."
+                        tools "Cisco Industrial Network Director with OT zone templates"
+                        expected_outcome "Traffic flow diagrams showing legacy protocols confined to Zone 0."
+                    {
+                        step 3
+                        action "Customer sign-off on exception documentation, including scheduled upgrade
+                            +b milestones to phase out legacy support."
+                        tools "Rockwell Automation Exception Tracking System"
+                        expected_outcome "Legally binding exception records with sunset clauses for audit compliance."
+        last_updated "2023-10-15"

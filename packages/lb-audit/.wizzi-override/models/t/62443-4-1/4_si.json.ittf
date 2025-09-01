@@ -1,0 +1,54 @@
+$group
+    {
+        code "SI"
+        name "Practice 4 – Secure implementation"
+        purpose "The processes specified by this practice are used to ensure that the product features are implemented securely."
+        applicability "Requirements in this practice apply to all hardware and software components in the product with the 
+            +b exception of externally provided components. 
+            +b For externally provided components, requirement 5.11 applies instead."
+        [ requirements
+            {
+                clause "8.3"
+                code "SI-1"
+                name "Security implementation review"
+                page 32
+                requirement "A process shall be employed to ensure that implementation reviews are performed for identifying, characterizing and 
+                    +b tracking to closure security-related issues associated with the implementation of the secure design including:
+                    +b a) identification of security requirements (see Clause 6) that were not adequately addressed by the implementation;
+                    +b b) identification of secure coding standards (see 8.4) that were not followed (for example, use of banned functions or 
+                    +b failure to apply principle of least privilege);
+                    +b c) Static Code Analysis (SCA) for source code to determine security coding errors such as buffer overflows, null pointer dereferencing, 
+                    +b etc. using the secure coding standard for the supported programming language. SCA shall be done using a tool if one is available for the language used. 
+                    +b In addition, static code analysis shall be done on all source code changes including new source code.
+                    +b d) review of the implementation and its traceability to the security capabilities defined to support the security design (see Clause 7); and
+                    +b e) examination of threats and their ability to exploit implementation interfaces, trust boundaries and assets (see 7.2 and 7.3)."
+                rationale "This process is required to ensure that the implementation properly addresses (implements) the secure design and its 
+                    +b associated security requirements and follows implementation best practices.
+                    +b Having this process means that the product supplier conducts a comprehensive set of security reviews of the implementation and 
+                    +b its design. Different types of reviews will typically be used to address different objectives. For example, manual 
+                    +b reviews are typically conducted against the implementation design to verify that requirements are being met and that 
+                    +b the implementation will adequately protect against threats expected to be present. In addition, manual source code reviews may be used 
+                    +b to examine source code for adherence to best practices (see 8.4), and automated static source code analysis may be used to identify 
+                    +b anomalies, including security vulnerabilities in the code as well as non-conformities with given programming rules."
+                [ notes
+                    "Requirements allocation, including security requirements, is part of typical design processes."
+            {
+                clause "8.4"
+                code "SI-2"
+                name "Secure coding standards"
+                page 32
+                requirement "The implementation processes shall incorporate security coding standards that are periodically reviewed and 
+                    +b updated and include at a minimum:
+                    +b a) avoidance of potentially exploitable implementation constructs – implementation design patterns that are known to have security weaknesses;
+                    +b b) avoidance of banned functions and coding constructs/design patterns – software functions and design patterns that shou ld not be used because they have known security weaknesses;
+                    +b c) automated tool use and settings (for example, for static analysis tools);
+                    +b d) secure coding practices;
+                    +b e) validation of all inputs that cross trust boundary.
+                    +b f) error handling."
+                rationale "This process is required to ensure that guidance is provided to developers to help them avoid 
+                    +b common pitfalls during implementation that could lead to later security issues.
+                    +b Having this process means that the product supplier has a list of security best practices that it maintains and follows during 
+                    +b the implementation of a product. These best practices should be based on commonly accepted security best practices in industry 
+                    +b for the type of product being developed. It is completely up to the supplier to determine which practices they consider to be most 
+                    +b appropriate for their design and coding standard. These practices are kept current as a result of both changes in the industry and 
+                    +b the application of lessons learned by the product supplier."

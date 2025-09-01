@@ -1,0 +1,242 @@
+$group
+    {
+        practice "7"
+        code "SUM-5"
+        subCode "a) The potential impact of the vulnerability;"
+        [ policies
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "Risk-Based Vulnerability Prioritization Policy"
+                description "This policy mandates the use of a structured risk assessment framework, such as
+                    +b CVSS adapted for ICS environments, to evaluate and prioritize vulnerabilities
+                    +b based on their potential impact on operational continuity, safety, and
+                    +b security. Aligns with IEC 62443-4-1's requirement for impact assessment
+                    +b (SUM-5a) to ensure critical patches are deployed within defined SLAs."
+                enforcement "Quarterly audits of vulnerability assessment records by internal security
+                    +b teams; automated tracking via SIEM tools (e.g., Splunk ICS) to verify patch
+                    +b prioritization aligns with CVSS scores."
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "Patch Testing and Validation Policy"
+                description "Requires all security patches to undergo testing in an isolated ICS sandbox
+                    +b environment that mirrors production systems (e.g., Siemens Process Simulation
+                    +b Software) before deployment. Ensures compatibility with Breton Spa's CNC and
+                    +b stone-cutting machines, addressing IEC 62443-4-1's emphasis on preventing
+                    +b operational disruptions (KA2)."
+                enforcement "Pre-deployment checklists signed by engineering leads; automated validation
+                    +b logs from test environments (e.g., Jenkins pipelines for ICS patch testing)."
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "Vendor Patch SLA Compliance Policy"
+                description "Defines contractual obligations for ICS vendors (e.g., Rockwell Automation,
+                    +b Honeywell) to deliver patches within agreed timeframes (e.g., ≤7 days for
+                    +b critical vulnerabilities). Supports IEC 62443-4-1's vendor coordination aspect
+                    +b (KA3) and ensures alignment with Breton Spa's SL 3 security profile."
+                enforcement "Vendor performance reviews biannually; integration of vendor patch
+                    +b notifications into Breton Spa's ITSM system (e.g., ServiceNow) for tracking."
+        [ procedures
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "Vulnerability Impact Assessment Procedure"
+                description "Step-by-step process to evaluate vulnerabilities in Breton Spa's CNC and
+                    +b stone-cutting machines using ICS-adapted CVSS and STRIDE methodologies, as
+                    +b required by IEC 62443-4-1 SUM-5a."
+                [ steps
+                    {
+                        step 1
+                        action "Collect vulnerability data from scanners (e.g., Qualys ICS) and vendor
+                            +b advisories."
+                        tools "Qualys ICS, CISA ICS-CERT alerts"
+                        expected_outcome "List of unpatched vulnerabilities with CVE IDs and affected systems (e.g., OPC
+                            +b UA endpoints in CNC machines)."
+                    {
+                        step 2
+                        action "Score vulnerabilities using CVSS v3.1, adjusting environmental metrics for ICS
+                            +b impact (e.g., operational downtime risk)."
+                        tools "NIST ICS-specific CVSS calculator, Breton Spa's risk matrix"
+                        expected_outcome "Prioritized vulnerability list with scores (e.g., CVSS ≥9.0 flagged as
+                            +b critical)."
+                    {
+                        step 3
+                        action "Document assessment results in the Patch Management System (PMS) with
+                            +b recommended patch timelines."
+                        tools "ServiceNow PMS module, ISA/IEC 62443-2-1 templates"
+                        expected_outcome "Auditable record of impact assessments for compliance (IEC 62443-4-1 KA1)."
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "ICS Patch Testing Procedure"
+                description "Validates patches in a sandbox environment replicating Breton Spa's industrial
+                    +b networks (PROFINET, OPC UA) to prevent disruptions, per IEC 62443-4-1 KA2."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy patch to isolated testbed with cloned CNC machine configurations (e.g.,
+                            +b Siemens NX for CNC simulation)."
+                        tools "Siemens Process Simulation Software, VMware ESXi for ICS environments"
+                        expected_outcome "Patch installed without errors in testbed."
+                    {
+                        step 2
+                        action "Execute functional tests (e.g., G-code processing, axis movement) and security
+                            +b tests (e.g., OPC UA traffic analysis with Wireshark)."
+                        tools "Wireshark with ICS plugins, Breton Spa's CNC test scripts"
+                        expected_outcome "No performance degradation or protocol incompatibilities detected."
+                    {
+                        step 3
+                        action "Generate test report and obtain approval from the Change Advisory Board (CAB)."
+                        tools "Jira Service Management, ISA/IEC 62443-4-1 test templates"
+                        expected_outcome "Signed test report archived for compliance audits."
+            {
+                code "SUM-5"
+                subCode "a)"
+                title "Emergency Patch Deployment Procedure"
+                description "Expedited process for critical patches (e.g., ransomware mitigations) on Breton
+                    +b Spa's polishing machines, adhering to IEC 62443-4-1's timely response
+                    +b requirement (CR6)."
+                [ steps
+                    {
+                        step 1
+                        action "Activate emergency change ticket in ITSM, bypassing standard CAB review for
+                            +b critical vulnerabilities (CVSS ≥9.0)."
+                        tools "ServiceNow Emergency Change Module, CISA ICS-CERT criticality ratings"
+                        expected_outcome "Ticket logged with 'Emergency' priority and 4-hour response SLA."
+                    {
+                        step 2
+                        action "Deploy patch via secure channels (e.g., TLS-encrypted OPC UA) during
+                            +b pre-approved maintenance windows."
+                        tools "Rockwell Automation Patch Manager, OPC UA Secure Client"
+                        expected_outcome "Patch applied to target systems with cryptographic verification logs."
+                    {
+                        step 3
+                        action "Monitor systems via SCADA alerts (e.g., Ignition HMI) for 24 hours
+                            +b post-deployment."
+                        tools "Ignition SCADA, Splunk ICS monitoring dashboards"
+                        expected_outcome "No anomalies detected; incident closure report generated."
+        last_updated "2023-10-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 2089"
+    {
+        practice "7"
+        code "SUM-5"
+        subCode "c) Whether published exploits exist for the vulnerability;"
+        [ policies
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "Exploit-Based Patch Prioritization Policy"
+                description "This policy mandates the prioritization of security patches for vulnerabilities
+                    +b with published exploits, as per IEC 62443-4-1 SUM-5(c). It requires continuous
+                    +b monitoring of exploit databases (e.g., CVE, ExploitDB) and ICS-CERT advisories
+                    +b to identify active threats. Patches for vulnerabilities with known exploits
+                    +b must be deployed within 7 days for SL-3 systems, 14 days for SL-2, and 30 days
+                    +b for SL-1, following qualification in a mirrored ICS environment."
+                enforcement "Enforced via monthly vulnerability scans (Tenable.ot), patch deployment logs
+                    +b reviewed by the Security Team, and non-compliance reported to the ICS Security
+                    +b Governance Board."
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "Compensating Controls Policy for Unpatchable Systems"
+                description "For legacy ICS components (e.g., Windows XP-based HMIs) where patches cannot be
+                    +b applied, this policy requires deployment of compensating controls (e.g.,
+                    +b network segmentation, Snort IDS rules blocking exploit traffic) within 48 hours
+                    +b of exploit publication. Aligns with IEC 62443-4-1 SUM-5(c) by mitigating risks
+                    +b when patches are unavailable."
+                enforcement "Validated through quarterly ICS network architecture reviews (using Claroty or
+                    +b Nozomi Networks) and IDS rule audits. Exceptions require CISO approval."
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "Vendor Patch SLA Compliance Policy"
+                description "Requires contractual SLAs with ICS vendors (e.g., Siemens, Rockwell) specifying
+                    +b maximum response times for critical vulnerabilities with exploits (e.g., 72
+                    +b hours for CVSS ≥9.0). Includes penalties for non-compliance and alternative
+                    +b sourcing options. Supports IEC 62443-4-1 SUM-5(c) by ensuring timely patch
+                    +b availability."
+                enforcement "Monitored through vendor security bulletins (Siemens ProductCERT) and tracked
+                    +b in the ICS Asset Management System. Vendor performance reviewed biannually."
+        [ procedures
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "Exploit Verification and Patch Prioritization Procedure"
+                description "Defines the process to verify exploit availability and prioritize patches for
+                    +b Breton Spa's CNC machines and stone cutters, referencing CVE databases and
+                    +b ICS-CERT."
+                [ steps
+                    {
+                        step 1
+                        action "Query CVE databases (NVD, ExploitDB) using ICS component fingerprints (e.g.,
+                            +b 'Siemens SIMATIC S7-1500 PLC v2.9')."
+                        tools "Tenable.ot, NVD API"
+                        expected_outcome "List of vulnerabilities with 'Exploit Available' flag for active ICS
+                            +b components."
+                    {
+                        step 2
+                        action "Cross-reference with ICS-CERT advisories to confirm exploit weaponization
+                            +b (e.g., 'Exploited in wild by XENOTIME')."
+                        tools "CISA ICS-CERT RSS feed, MITRE ATT&CK for ICS"
+                        expected_outcome "Validated exploit status with threat actor context."
+                    {
+                        step 3
+                        action "Assign priority score (1-3) based on CVSS, exploit maturity, and machine
+                            +b criticality (e.g., 'CNC Machining Centers' = Priority 1)."
+                        tools "Custom scoring matrix (CVSS + ISA/IEC 62443 SL)"
+                        expected_outcome "Prioritized patch queue with SL-3 systems at the top."
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "ICS Patch Qualification Procedure"
+                description "Step-by-step process to test and validate patches for Breton's industrial
+                    +b machines before deployment, ensuring protocol compatibility (e.g., PROFINET
+                    +b with PN Security)."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy patch in sandbox environment replicating production (e.g., identical CNC
+                            +b controller, OPC UA configuration)."
+                        tools "VMware vSphere with ICS emulation (Siemens PLCSIM Advanced)"
+                        expected_outcome "Patch installed without service interruption in test environment."
+                    {
+                        step 2
+                        action "Execute protocol-specific tests (e.g., verify PROFINET PN Security handshake
+                            +b post-patch)."
+                        tools "Wireshark with ICS dissectors, PROFINET tester"
+                        expected_outcome "All industrial protocols function within specifications."
+                    {
+                        step 3
+                        action "Validate control logic integrity by running machining test patterns (e.g., ISO
+                            +b 10791-7 for CNC)."
+                        tools "CAM software (Siemens NX), precision measurement tools"
+                        expected_outcome "Post-patch machining accuracy within ±0.01mm tolerance."
+            {
+                code "SUM-5"
+                subCode "c)"
+                title "Emergency Patch Deployment Procedure"
+                description "Expedited process for deploying critical patches to Breton's polishing machines
+                    +b when exploits are actively exploited, minimizing production impact."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate maintenance window with production team (max 4 hours downtime for SL-3
+                            +b systems)."
+                        tools "SAP Plant Maintenance module, MES integration"
+                        expected_outcome "Approved downtime slot with backup systems activated."
+                    {
+                        step 2
+                        action "Deploy patches via secure channel (e.g., signed packages over OPC UA Secure
+                            +b Conversation)."
+                        tools "Siemens SINEC PNI, HashiCorp Vault for signing"
+                        expected_outcome "Verified patch binaries installed on target devices."
+                    {
+                        step 3
+                        action "Verify patch effectiveness by checking exploit mitigation (e.g.,
+                            +b 'CVE-2025-1234' RCE blocked)."
+                        tools "Metasploit Pro (authorized testing), ICS-specific YARA rules"
+                        expected_outcome "Vulnerability scan confirms exploit path is patched."
+        last_updated "2023-10-15"

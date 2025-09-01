@@ -1,0 +1,353 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        subCode "g) externally accessible physical ports including debug ports;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Physical Port Disablement Policy"
+                description "This policy mandates the disablement of all unused physical and debug ports on
+                    +b industrial control systems (ICS) to mitigate unauthorized access risks. It
+                    +b aligns with IEC 62443-4-1 requirements for secure configurations and threat
+                    +b modeling. Applicable to all Breton Spa CNC machines, stone cutting machines,
+                    +b and polishing machines, this policy ensures that only authorized ports remain
+                    +b active, documented in the device's secure configuration baseline."
+                enforcement "Enforced through automated configuration management tools (e.g., Rockwell
+                    +b Automation's FactoryTalk) and quarterly physical audits using tamper-evident
+                    +b seals. Non-compliance triggers security incident response procedures."
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Debug Port Access Control Policy"
+                description "Implements role-based access control (RBAC) for debug ports, requiring
+                    +b multi-factor authentication (MFA) and justification for access. Complies with
+                    +b IEC 62443-4-1's least privilege principle (CR1: Identification and
+                    +b Authentication Control). Covers all Breton Spa devices with debug capabilities,
+                    +b including CNC machining centers and composite material processing lines."
+                enforcement "Monitored via centralized logging (e.g., Siemens SINEMA Remote Connect)
+                    +b integrated with SIEM systems. Access attempts are audited monthly, with
+                    +b violations reported to the security operations center (SOC)."
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Physical Port Threat Modeling Policy"
+                description "Requires threat models to explicitly address risks of externally accessible
+                    +b ports (e.g., USB-based malware injection) during product development. Follows
+                    +b IEC 62443-4-1's STRIDE methodology and ICS-specific threat scenarios. Applies
+                    +b to all new Breton Spa product versions, including those with OPC UA and
+                    +b PROFINET interfaces."
+                enforcement "Validated through design-phase security reviews using Microsoft Threat Modeling
+                    +b Tool. Penetration testing (e.g., CANBus Triple for port exploitation) verifies
+                    +b mitigations before production release."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Port Inventory Documentation Procedure"
+                description "Documents all physical ports per device, including functionality (e.g., USB for
+                    +b firmware updates) and security status (enabled/disabled). Supports IEC
+                    +b 62443-4-1's KA1 (Port Inventory Documentation) requirement for Breton Spa's
+                    +b industrial machines."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all physical ports (USB, Ethernet, serial, debug) on target device
+                            +b using hardware manuals and physical inspection."
+                        tools "Belden Hirschmann Tofino port scanner, device manuals"
+                        expected_outcome "Comprehensive list of ports with locations and default states."
+                    {
+                        step 2
+                        action "Classify ports by criticality (e.g., debug ports as high-risk, USB as medium)
+                            +b based on threat model outputs."
+                        tools "Microsoft Threat Modeling Tool, Breton Spa's risk assessment matrix"
+                        expected_outcome "Risk-rated port inventory with justification for classifications."
+                    {
+                        step 3
+                        action "Update asset management system (e.g., Honeywell Forge) with port details and
+                            +b link to device's secure configuration baseline."
+                        tools "Honeywell Forge Asset Manager, IEC 62443-4-1 template"
+                        expected_outcome "Port data integrated into CMDB, accessible for audits and incident response."
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Debug Port Securing Procedure"
+                description "Implements technical controls for debug ports on Breton Spa CNC and polishing
+                    +b machines, complying with IEC 62443-4-1 CR3 (System Integrity)."
+                [ steps
+                    {
+                        step 1
+                        action "Physically disable debug ports via jumpers/dip switches where possible;
+                            +b document exceptions requiring operational access."
+                        tools "Device hardware guides, tamper-evident seals"
+                        expected_outcome "Disabled ports with visible seals; exception log maintained."
+                    {
+                        step 2
+                        action "Configure RBAC in device firmware (e.g., Rockwell Studio 5000 Logix Designer)
+                            +b to restrict debug port access to authorized roles."
+                        tools "Rockwell Studio 5000, ABB Ability Security Configurator"
+                        expected_outcome "Debug access limited to users with 'Maintenance Engineer' role."
+                    {
+                        step 3
+                        action "Integrate port access logs with SIEM (e.g., Splunk ICS) using OPC UA alarms for
+                            +b unauthorized attempts."
+                        tools "Splunk ICS, OPC UA server configuration"
+                        expected_outcome "Real-time alerts for debug port access violations."
+            {
+                code "SR-2"
+                subCode "g)"
+                title "Port Security Verification Procedure"
+                description "Validates physical port security controls through testing, meeting IEC
+                    +b 62443-4-1's KA4 (Port Security Verification) for Breton Spa's SL3 devices."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct penetration testing using ICS-specific tools (e.g., CANBus Triple) to
+                            +b simulate port exploitation attempts."
+                        tools "CANBus Triple, Claroty Team82 test suite"
+                        expected_outcome "Report of vulnerabilities (e.g., unauthenticated debug port access)."
+                    {
+                        step 2
+                        action "Verify tamper-evident seals on critical ports via physical inspection,
+                            +b documenting seal integrity."
+                        tools "Seal inspection checklist, digital camera for evidence"
+                        expected_outcome "Seal integrity report with photographic evidence."
+                    {
+                        step 3
+                        action "Cross-check test results against threat model (STRIDE output) to confirm all
+                            +b identified risks are mitigated."
+                        tools "Microsoft Threat Modeling Tool reports, NIST IR 8183 Vol.2"
+                        expected_outcome "Gap analysis showing 100% threat coverage or justification for residual risks."
+        last_updated "2023-11-20"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "h) circuit board connections such as Joint Test Action Group (JTAG) connections
+            +b or debug headers which might be used to attack the hardware;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "h"
+                title "JTAG Interface Security Policy"
+                description "This policy mandates the secure handling of JTAG and debug headers in all
+                    +b hardware components, ensuring they are either disabled in production or
+                    +b protected with authentication mechanisms. It aligns with IEC 62443-4-1
+                    +b requirements for hardware security by addressing potential attack vectors
+                    +b through physical interfaces."
+                enforcement "Regular hardware audits and automated firmware checks to verify JTAG
+                    +b disablement or secure authentication settings."
+            {
+                code "SR-2"
+                subCode "h"
+                title "Physical Tamper Protection Policy"
+                description "This policy requires the implementation of physical security measures for all
+                    +b circuit board connections, including epoxy encapsulation and tamper-evident
+                    +b seals, to prevent unauthorized access to debug interfaces. It supports IEC
+                    +b 62443-4-1's focus on mitigating hardware-level threats."
+                enforcement "Physical inspections during manufacturing and maintenance, supported by tamper
+                    +b detection logs and alerts."
+            {
+                code "SR-2"
+                subCode "h"
+                title "Secure Debug Authentication Policy"
+                description "This policy enforces the use of cryptographic authentication for any debug
+                    +b access, ensuring only authorized personnel can use JTAG or other debug
+                    +b interfaces. It complies with IEC 62443-4-1's secure access control
+                    +b requirements."
+                enforcement "Periodic reviews of authentication logs and penetration testing to validate the
+                    +b effectiveness of debug access controls."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "h"
+                title "JTAG Threat Modeling Procedure"
+                description "This procedure outlines the steps to identify and document all JTAG and debug
+                    +b interfaces in hardware designs, ensuring they are included in the threat model
+                    +b with appropriate mitigations. It aligns with IEC 62443-4-1's requirement for
+                    +b comprehensive threat modeling."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all JTAG and debug interfaces in the hardware design."
+                        tools "Hardware design documents, schematics, and component datasheets."
+                        expected_outcome "Complete list of all debug interfaces with their locations and access
+                            +b requirements."
+                    {
+                        step 2
+                        action "Assess each interface for potential security risks using STRIDE methodology."
+                        tools "Microsoft Threat Modeling Tool or ICS-specific threat modeling plugins."
+                        expected_outcome "Documented threats associated with each debug interface."
+                    {
+                        step 3
+                        action "Define and implement mitigations for identified threats, such as disabling JTAG
+                            +b in production or adding authentication."
+                        tools "Firmware configuration tools, secure boot settings, and cryptographic
+                            +b libraries."
+                        expected_outcome "Mitigations applied and documented in the threat model report."
+            {
+                code "SR-2"
+                subCode "h"
+                title "Debug Interface Disablement Procedure"
+                description "This procedure details the steps to securely disable JTAG and debug interfaces
+                    +b in production firmware, preventing unauthorized access. It supports IEC
+                    +b 62443-4-1's emphasis on system integrity."
+                [ steps
+                    {
+                        step 1
+                        action "Configure secure boot settings to disable debug access."
+                        tools "Manufacturer-specific configuration tools (e.g., ARM CoreSight Secure Debug)."
+                        expected_outcome "Debug interfaces are disabled in the firmware configuration."
+                    {
+                        step 2
+                        action "Program fuse bits to permanently disable JTAG access."
+                        tools "Production programming tools (e.g., TI Secure Production Programming)."
+                        expected_outcome "JTAG interfaces are permanently disabled in hardware."
+                    {
+                        step 3
+                        action "Verify disablement through hardware testing and firmware checks."
+                        tools "JTAG test equipment and firmware verification tools."
+                        expected_outcome "Confirmation that debug interfaces are non-functional in production."
+            {
+                code "SR-2"
+                subCode "h"
+                title "Physical Security Implementation Procedure"
+                description "This procedure describes the steps to apply physical security measures to
+                    +b protect JTAG and debug interfaces from tampering. It aligns with IEC
+                    +b 62443-4-1's requirements for physical security controls."
+                [ steps
+                    {
+                        step 1
+                        action "Apply epoxy encapsulation to critical debug interfaces."
+                        tools "Epoxy dispensing equipment and tamper-evident seals."
+                        expected_outcome "Debug interfaces are physically inaccessible without visible tampering."
+                    {
+                        step 2
+                        action "Install tamper switches to detect unauthorized access attempts."
+                        tools "Tamper detection sensors and monitoring software."
+                        expected_outcome "Tamper events are logged and alerts are generated for investigation."
+                    {
+                        step 3
+                        action "Obfuscate test points and debug headers to deter casual inspection."
+                        tools "PCB design software and physical masking techniques."
+                        expected_outcome "Debug interfaces are not easily identifiable or accessible."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "k) mitigations and/or dispositions for each threat;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Threat Mitigation Policy"
+                description "This policy mandates the documentation and implementation of mitigations for
+                    +b each identified threat in the threat model, as per IEC 62443-4-1 requirements.
+                    +b It ensures that all threats are addressed with appropriate countermeasures,
+                    +b such as network segmentation for legacy systems or role-based access controls
+                    +b for unauthorized access risks. The policy aligns with IEC 62443-4-1's
+                    +b systematic risk reduction approach."
+                enforcement "Regular internal audits and automated threat modeling tools (e.g., Microsoft
+                    +b Threat Modeling Tool) are used to verify compliance. Non-compliance triggers a
+                    +b remediation process documented in the security team's workflow."
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Risk Disposition Documentation Policy"
+                description "This policy requires clear documentation of accepted risks (e.g., unpatched
+                    +b legacy systems) with justifications, ensuring auditability per IEC 62443-4-1.
+                    +b It includes a standardized template for risk registers and mandates approval
+                    +b from the security governance committee for all dispositions."
+                enforcement "Quarterly reviews of the risk registry by the security team, with evidence of
+                    +b stakeholder approvals. Automated alerts flag undocumented risks in the
+                    +b DevSecOps pipeline."
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Threat Intelligence Integration Policy"
+                description "This policy enforces the integration of vendor-specific threat intelligence
+                    +b (e.g., Siemens CERT advisories) into threat models to enhance accuracy for
+                    +b proprietary ICS components. It mandates subscriptions to ICS-CERT feeds and
+                    +b regular updates to threat libraries."
+                enforcement "Automated tools (e.g., IriusRisk) validate the inclusion of vendor threats in
+                    +b models. Manual checks during design reviews ensure alignment with current
+                    +b advisories."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Threat Mitigation Mapping Procedure"
+                description "This procedure outlines the steps to map mitigations to identified threats
+                    +b using a structured framework (e.g., STRIDE). It ensures traceability and
+                    +b accountability, complying with IEC 62443-4-1's requirement for systematic risk
+                    +b reduction."
+                [ steps
+                    {
+                        step 1
+                        action "Identify threats using STRIDE categories (Spoofing, Tampering, etc.) for the
+                            +b current product scope."
+                        tools "Microsoft Threat Modeling Tool, OWASP Threat Dragon"
+                        expected_outcome "A comprehensive list of threats with STRIDE classifications."
+                    {
+                        step 2
+                        action "Assign mitigations (e.g., encryption for Data Confidentiality, network
+                            +b segmentation for Restricted Data Flow) to each threat."
+                        tools "ICS-specific threat libraries (e.g., Siemens' guidelines), NIST 800-30"
+                        expected_outcome "A threat-mitigation matrix with explicit countermeasures."
+                    {
+                        step 3
+                        action "Document mitigations in the centralized security repository and obtain
+                            +b stakeholder approvals."
+                        tools "Azure DevOps Threat Modeling Extension, Confluence"
+                        expected_outcome "Approved threat model with mitigations, ready for implementation."
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Risk Disposition Review Procedure"
+                description "This procedure defines the process for documenting and approving risk
+                    +b dispositions (e.g., deferred patches) to meet IEC 62443-4-1's auditability
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Assess the risk impact using CVSS for ICS or vendor-specific risk matrices
+                            +b (e.g., Schneider Electric)."
+                        tools "NIST ICS Risk Assessment Guidelines, Honeywell Risk Registry Template"
+                        expected_outcome "A risk score and justification for disposition (Accept, Mitigate, Transfer)."
+                    {
+                        step 2
+                        action "Record the disposition in the risk registry, including compensating controls
+                            +b (if applicable)."
+                        tools "Honeywell ICS Risk Registry Template, Jira"
+                        expected_outcome "A completed risk entry with owner, expiration date, and approval evidence."
+                    {
+                        step 3
+                        action "Present high-risk dispositions to the security governance committee for final
+                            +b approval."
+                        tools "Confluence, Microsoft Teams"
+                        expected_outcome "Committee-approved dispositions with documented rationale."
+            {
+                code "SR-2"
+                subCode "k)"
+                title "Threat Model Update Procedure"
+                description "This procedure ensures threat models are updated based on new intelligence or
+                    +b incidents, per IEC 62443-4-1's continuous improvement mandate."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor ICS-CERT advisories and vendor bulletins (e.g., Siemens CERT) for new
+                            +b threats."
+                        tools "CISA Automated Indicator Sharing (AIS), Siemens CERT Portal"
+                        expected_outcome "A list of new threats relevant to the product scope."
+                    {
+                        step 2
+                        action "Re-run threat modeling tools (e.g., IriusRisk) with updated threat libraries."
+                        tools "IriusRisk, Microsoft Threat Modeling Tool"
+                        expected_outcome "An updated threat model with new threats and mitigations."
+                    {
+                        step 3
+                        action "Validate updates with OT operators via tabletop exercises (e.g., ransomware
+                            +b simulations)."
+                        tools "SANS ICS Security Training Materials, Breach and Attack Simulation (BAS) Tools"
+                        expected_outcome "A validated, operationally feasible updated threat model."
+        last_updated "2023-10-15"

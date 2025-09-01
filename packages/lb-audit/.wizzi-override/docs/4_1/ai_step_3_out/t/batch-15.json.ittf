@@ -1,0 +1,614 @@
+$group
+    {
+        practice "4"
+        code "SI-2"
+        subCode "a)"
+        name "Secure coding standards"
+        description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: a) avoidance of
+            +b potentially exploitable implementation constructs – implementation design
+            +b patterns that are known to have security weaknesses;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate security weaknesses in implementation constructs that
+                    +b could be exploited."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage,
+                            +b Reproducibility, Exploitability, Affected Users, and Discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Threat models tailored for Industrial Control Systems, focusing on operational
+                            +b technology (OT) environments."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models using STRIDE methodology."
+                    {
+                        name "NIST 800-30 adapted for SCADA systems"
+                        purpose "A framework for conducting risk assessments specific to SCADA and ICS
+                            +b environments."
+                { case_study
+                    example "A case study of a risk assessment for a Distributed Control System (DCS) in a
+                        +b power plant, identifying vulnerabilities in coding constructs and mitigating
+                        +b them through secure coding standards."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure coding standards and identify gaps in
+                    +b implementation."
+                [ audit_checklist
+                    "Verify that secure coding standards are documented and up-to-date."
+                    "Check for the presence of known exploitable constructs in the codebase."
+                    "Review the process for periodic updates to coding standards."
+                    "Ensure that developers are trained on secure coding practices."
+                [ metrics
+                    {
+                        kpi "Percentage of scoped requirements implemented"
+                        target "100% compliance with documented secure coding standards."
+                    {
+                        kpi "Number of vulnerabilities identified per code review"
+                        target "Reduction over time, trending towards zero."
+                compliance_procedure "Documentation and review of compliance evidence should include code review
+                    +b reports, training records, and updates to coding standards. Evidence should be
+                    +b reviewed quarterly."
+            { training_and_competency_requirements
+                why "To ensure that developers and security personnel are knowledgeable about secure
+                    +b coding practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 certifications"
+                        description "Certifications that provide training on IEC 62443 standards, including secure
+                            +b coding practices."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification focused on ICS security, including secure coding for industrial
+                            +b systems."
+                competency_assessment "Annual competency reviews should be conducted to assess developers'
+                    +b understanding and application of secure coding standards. Reviews should
+                    +b include practical coding exercises and theoretical knowledge tests."
+            { tooling_and_automation_support
+                why "To automate the detection of insecure coding constructs and integrate security
+                    +b into the development pipeline."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Static code analysis tool to identify security vulnerabilities and coding
+                            +b standards violations."
+                    {
+                        name "Checkmarx"
+                        purpose "SAST (Static Application Security Testing) tool to detect vulnerabilities in
+                            +b source code."
+                automation_strategy "Integrate static code analysis tools into the CI/CD pipeline to automatically
+                    +b scan for insecure coding constructs. Use DevSecOps practices to ensure
+                    +b continuous security validation."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not meet modern secure coding standards and require special
+                    +b considerations."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems in segmented networks to limit exposure to potential
+                            +b exploits."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional security measures, such as intrusion detection systems, to
+                            +b mitigate risks from insecure legacy code."
+                example_policy "A policy for legacy system integration might include a risk assessment to
+                    +b identify critical vulnerabilities, a plan for phased updates, and the use of
+                    +b compensating controls where updates are not feasible."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for implementing secure coding standards."
+                { governance_model
+                    name "RACI matrix for ICS security policy execution"
+                    [ roles
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement secure coding standards and participate in code reviews."
+                        {
+                            role "Security Team"
+                            responsibility "Define and update secure coding standards, conduct audits."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and ensure compliance with standards."
+                conflict_resolution "Conflicts between engineering and security priorities should be resolved
+                    +b through a structured process, such as a security review board, which evaluates
+                    +b risks and approves exceptions if necessary."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned from security
+                    +b incidents."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Regularly review sources such as CISA alerts for new ICS vulnerabilities."
+                    {
+                        step "Review audit findings"
+                        description "Incorporate findings from audits and incidents into updates to coding
+                            +b standards."
+                    {
+                        step "Update training programs"
+                        description "Ensure training materials reflect the latest secure coding practices and threat
+                            +b intelligence."
+                lessons_learned "After a security incident, conduct a post-mortem to identify root causes and
+                    +b update coding standards to prevent similar vulnerabilities in the future."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-25"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "b)"
+        name "Secure coding standards"
+        description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: b) avoidance of
+            +b banned functions and coding constructs/design patterns – software functions and
+            +b design patterns that should not be used because they have known security
+            +b weaknesses;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Identifying banned functions and coding constructs helps mitigate
+                    +b vulnerabilities that could be exploited in ICS environments."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to banned functions (e.g., buffer
+                            +b overflows from unsafe string functions)."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on ICS-specific risks, such as insecure legacy code patterns in PLC
+                            +b programming."
+                [ tools
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Risk assessment framework tailored for ICS to evaluate the impact of banned
+                            +b functions."
+                    {
+                        name "Checkmarx"
+                        purpose "Static code analysis tool to detect banned functions in source code."
+                { case_study
+                    example "A power plant DCS upgrade identified unsafe 'strcpy' usage via static analysis,
+                        +b leading to refactoring with 'strncpy'."
+            { audit_and_compliance_verification
+                why "Ensures adherence to secure coding standards and tracks remediation of banned
+                    +b functions."
+                [ audit_checklist
+                    "Verify banned functions list is documented and updated"
+                    "Review static analysis reports for banned function usage"
+                    "Check code review logs for flagged constructs"
+                [ metrics
+                    {
+                        kpi "Percentage of code scanned for banned functions"
+                        target "100%"
+                    {
+                        kpi "Remediation rate of flagged constructs"
+                        target "≥95% within sprint cycle"
+                compliance_procedure "Document evidence via: 1) Static analysis tool reports, 2) Code review minutes,
+                    +b 3) Training records on secure coding."
+            { training_and_competency_requirements
+                why "Developers must recognize and replace insecure patterns in ICS software."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure coding for ICS (e.g., module CSMS-3A)."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional training includes ICS secure
+                            +b coding."
+                competency_assessment "Annual code review simulations testing identification of banned functions
+                    +b (e.g., MITRE CWE Top 25)."
+            { tooling_and_automation_support
+                why "Automation ensures consistent enforcement of coding standards."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Integrates with CI/CD to block commits containing banned functions."
+                    {
+                        name "Git Hooks"
+                        purpose "Pre-commit checks for banned patterns."
+                automation_strategy "Embed static analysis in DevSecOps pipeline (SM-6/SM-7) with fail-gates for
+                    +b banned functions."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS codebases often contain deprecated insecure functions."
+                [ strategies
+                    {
+                        approach "Compensating controls"
+                        description "Network segmentation (SM-3) to isolate systems with unavoidable legacy code."
+                    {
+                        approach "Wrapper functions"
+                        description "Replace banned functions with secure wrappers during refactoring."
+                example_policy "Legacy Integration Policy SI-2.1: Banned functions in legacy systems must be
+                    +b documented and risk-accepted with compensating controls."
+            { stakeholder_collaboration_and_governance
+                why "Enforcement requires alignment between security, engineering, and management."
+                { governance_model
+                    name "RACI for Secure Coding"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Maintain banned functions list"
+                        {
+                            role "Engineering Lead"
+                            responsibility "Enforce standards in code reviews"
+                conflict_resolution "Security-chaired review board resolves disputes (e.g., exceptions for legacy
+                    +b compatibility)."
+            { continuous_improvement_and_updates
+                why "New vulnerabilities may require updates to banned functions lists."
+                [ update_process
+                    {
+                        step "Monitor CVE/CWE databases"
+                        description "Track newly identified insecure patterns (e.g., CWE-676)."
+                    {
+                        step "Quarterly review"
+                        description "Update standards based on threat intelligence (CISA alerts)."
+                lessons_learned "After the 2021 Codecov breach, added CI/CD tool credential checks to banned
+                    +b patterns list."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-20"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "c) automated tool use and settings (for example, for static analysis tools);"
+        name "Secure coding standards"
+        description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: c) automated
+            +b tool use and settings (for example, for static analysis tools);"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify potential vulnerabilities in the code that could be exploited by
+                    +b attackers."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that identifies Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, and Elevation of Privilege threats."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates potential threats based on Damage,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30"
+                        purpose "A framework for conducting risk assessments, adapted for ICS environments to
+                            +b evaluate coding vulnerabilities."
+                { case_study
+                    example "A case study of a DCS in a power plant where static analysis tools identified
+                        +b critical vulnerabilities in the control logic before deployment."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure coding standards and identify gaps in
+                    +b implementation."
+                [ audit_checklist
+                    "Verify that static analysis tools are configured according to secure coding standards."
+                    "Check that tool settings are periodically reviewed and updated."
+                    "Ensure that findings from static analysis are documented and addressed."
+                [ metrics
+                    {
+                        kpi "Percentage of code scanned by static analysis tools"
+                        target "100%"
+                    {
+                        kpi "Number of critical vulnerabilities identified and remediated"
+                        target "Zero critical vulnerabilities in production code"
+                compliance_procedure "Document the configuration and use of static analysis tools, review findings,
+                    +b and maintain records of remediation actions."
+            { training_and_competency_requirements
+                why "To ensure that developers and security personnel are proficient in using static
+                    +b analysis tools and understanding their outputs."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications that provide training on secure coding practices and tool usage
+                            +b for ICS environments."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification covering secure
+                            +b coding and tool usage in ICS."
+                competency_assessment "Annual reviews of developer competency in using static analysis tools and
+                    +b applying secure coding standards."
+            { tooling_and_automation_support
+                why "To integrate static analysis tools into the development pipeline for continuous
+                    +b security assessment."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Static code analysis tool for identifying security vulnerabilities and code
+                            +b smells."
+                    {
+                        name "Coverity"
+                        purpose "Static analysis tool for detecting security defects in code."
+                automation_strategy "Integrate static analysis tools into the CI/CD pipeline to automatically scan
+                    +b code upon each commit and block builds with critical vulnerabilities."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern static analysis tools or secure coding
+                    +b standards."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to potential vulnerabilities
+                            +b identified in the code."
+                    {
+                        approach "Compensating controls"
+                        description "Implement additional monitoring and logging to detect and respond to potential
+                            +b exploits."
+                example_policy "A policy for legacy systems that mandates network segmentation and enhanced
+                    +b monitoring when static analysis tools cannot be applied."
+            { stakeholder_collaboration_and_governance
+                why "Effective implementation requires coordination between development, security,
+                    +b and management teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Development Team"
+                            responsibility "Implement and configure static analysis tools."
+                        {
+                            role "Security Team"
+                            responsibility "Review findings from static analysis and recommend remediation."
+                        {
+                            role "Management"
+                            responsibility "Ensure resources are allocated for tool implementation and training."
+                conflict_resolution "A documented process for resolving disagreements between teams, such as
+                    +b prioritizing vulnerability fixes versus feature development."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and improve the effectiveness of static analysis
+                    +b tools."
+                [ update_process
+                    {
+                        step "Review tool settings"
+                        description "Periodically review and update static analysis tool settings to reflect new
+                            +b threats and coding standards."
+                    {
+                        step "Incorporate threat intelligence"
+                        description "Update tools and processes based on CISA alerts and other threat intelligence
+                            +b sources."
+                lessons_learned "Document and apply lessons from security incidents to refine static analysis
+                    +b tool usage and secure coding practices."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "d) secure coding practices;"
+        name "Secure coding standards"
+        description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: d) secure
+            +b coding practices;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To identify and mitigate potential vulnerabilities introduced during the coding
+                    +b phase."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that categorizes threats into Spoofing,
+                            +b Tampering, Repudiation, Information Disclosure, Denial of Service, and
+                            +b Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "To create and analyze threat models for software applications."
+                    {
+                        name "OWASP Dependency-Check"
+                        purpose "To identify project dependencies and check for known vulnerabilities."
+                { case_study
+                    example "A case study involving a SCADA system where STRIDE was used to identify
+                        +b tampering risks in the code, leading to the implementation of input validation
+                        +b and integrity checks."
+            { audit_and_compliance_verification
+                why "To ensure adherence to secure coding standards and identify gaps in
+                    +b implementation."
+                [ audit_checklist
+                    "Verify that secure coding standards are documented and up-to-date."
+                    "Check for the use of static code analysis tools in the development pipeline."
+                    "Review code samples for compliance with secure coding practices."
+                [ metrics
+                    {
+                        kpi "Percentage of code reviewed for security compliance"
+                        target "100%"
+                    {
+                        kpi "Number of critical vulnerabilities identified per 1000 lines of code"
+                        target "<1"
+                compliance_procedure "Documentation of code reviews, static analysis reports, and remediation actions
+                    +b taken to address identified vulnerabilities."
+            { training_and_competency_requirements
+                why "To ensure developers have the necessary skills to implement secure coding
+                    +b practices."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Certifications focused on industrial automation and control systems security."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "A certification that covers securing critical infrastructure and industrial
+                            +b control systems."
+                competency_assessment "Annual reviews of developer competencies through practical coding exercises and
+                    +b theoretical assessments on secure coding practices."
+            { tooling_and_automation_support
+                why "To integrate security into the development lifecycle efficiently."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Continuous inspection of code quality and security."
+                    {
+                        name "Checkmarx"
+                        purpose "Static application security testing (SAST) to identify vulnerabilities in the
+                            +b code."
+                automation_strategy "Integration of SAST tools into the CI/CD pipeline to automatically scan code
+                    +b for vulnerabilities upon each commit."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern secure coding practices, requiring
+                    +b alternative approaches."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit exposure to potential threats."
+                    {
+                        approach "Wrapper Applications"
+                        description "Develop secure wrapper applications to mediate interactions with legacy code."
+                example_policy "A policy outlining the use of compensating controls, such as network
+                    +b segmentation and strict access controls, for legacy systems that cannot be
+                    +b updated to meet current secure coding standards."
+            { stakeholder_collaboration_and_governance
+                why "Effective implementation of secure coding standards requires coordination
+                    +b across multiple teams."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Development Team"
+                            responsibility "Implement secure coding standards in daily work."
+                        {
+                            role "Security Team"
+                            responsibility "Define and update secure coding standards."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and enforce compliance."
+                conflict_resolution "A documented process for resolving disputes between development and security
+                    +b teams, including escalation paths and mediation by senior management."
+            { continuous_improvement_and_updates
+                why "To adapt to evolving threats and incorporate lessons learned from past
+                    +b incidents."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review sources such as CISA alerts for new vulnerabilities affecting
+                            +b coding practices."
+                    {
+                        step "Review and Update Standards"
+                        description "Periodically revise secure coding standards based on new threats and
+                            +b technological advancements."
+                lessons_learned "Incorporating findings from post-incident reviews to update secure coding
+                    +b practices, such as adding checks for newly discovered vulnerability patterns."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "4"
+        code "SI-2"
+        subCode "e) validation of all inputs that cross trust boundary."
+        name "Secure coding standards"
+        description "The implementation processes shall incorporate security coding standards that
+            +b are periodically reviewed and updated and include at a minimum: e) validation
+            +b of all inputs that cross trust boundary."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "Input validation is critical to prevent injection attacks and other security
+                    +b vulnerabilities that can compromise ICS components."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats related to input validation, such as
+                            +b spoofing, tampering, and elevation of privilege."
+                    {
+                        name "DREAD"
+                        description "Helps assess the risk level of input validation vulnerabilities by evaluating
+                            +b damage potential, reproducibility, exploitability, affected users, and
+                            +b discoverability."
+                    {
+                        name "ICS-specific threat models"
+                        description "Focuses on unique ICS threats, such as unauthorized command injection via
+                            +b unvalidated inputs in control systems."
+                [ tools
+                    {
+                        name "NIST 800-30 (adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments tailored to ICS
+                            +b environments, including input validation risks."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Assists in identifying and mitigating threats related to input validation in
+                            +b software design."
+                { case_study
+                    example "A power plant's DCS was compromised due to unvalidated inputs in a legacy HMI,
+                        +b allowing command injection. Post-incident analysis led to stricter input
+                        +b validation policies."
+            { audit_and_compliance_verification
+                why "Ensuring compliance with input validation standards mitigates risks and aligns
+                    +b with IEC 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify that all inputs crossing trust boundaries are validated."
+                    "Check for documented secure coding standards addressing input validation."
+                    "Review historical incidents related to input validation failures."
+                [ metrics
+                    {
+                        kpi "Percentage of input validation requirements implemented"
+                        target "100%"
+                    {
+                        kpi "Number of input validation-related vulnerabilities detected in code reviews"
+                        target "0"
+                compliance_procedure "Document evidence of input validation implementation, including code snippets,
+                    +b test results, and review logs. Conduct periodic audits to verify adherence."
+            { training_and_competency_requirements
+                why "Engineers must understand secure coding practices to implement effective input
+                    +b validation."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure coding standards, including input validation, for ICS
+                            +b environments."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides training on ICS-specific secure coding practices."
+                competency_assessment "Annual reviews of engineers' secure coding skills, including input validation,
+                    +b through practical tests and code reviews."
+            { tooling_and_automation_support
+                why "Automated tools can enforce input validation standards and reduce human error."
+                [ tools
+                    {
+                        name "SonarQube"
+                        purpose "Static code analysis to detect missing input validation."
+                    {
+                        name "OWASP ZAP"
+                        purpose "Dynamic application security testing for input validation vulnerabilities."
+                automation_strategy "Integrate static and dynamic analysis tools into the CI/CD pipeline to
+                    +b automatically flag input validation issues before deployment."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components may lack modern input validation capabilities."
+                [ strategies
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure to unvalidated inputs."
+                    {
+                        approach "Protocol gateways"
+                        description "Use gateways to validate inputs before they reach legacy systems."
+                example_policy "Legacy systems must be placed in a segmented network zone, and all inputs must
+                    +b pass through a validation gateway before reaching the legacy component."
+            { stakeholder_collaboration_and_governance
+                why "Effective input validation requires collaboration between security,
+                    +b engineering, and management teams."
+                { governance_model
+                    name "RACI Matrix for Input Validation"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Define input validation requirements and review compliance."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement and test input validation controls."
+                        {
+                            role "Management"
+                            responsibility "Allocate resources and prioritize input validation tasks."
+                conflict_resolution "Disputes over input validation implementation are escalated to a
+                    +b cross-functional security review board for resolution."
+            { continuous_improvement_and_updates
+                why "Emerging threats and new vulnerabilities necessitate updates to input
+                    +b validation practices."
+                [ update_process
+                    {
+                        step "Monitor threat intelligence"
+                        description "Track ICS-specific vulnerabilities related to input validation (e.g., CISA
+                            +b alerts)."
+                    {
+                        step "Review incidents"
+                        description "Analyze input validation failures to identify gaps in current practices."
+                    {
+                        step "Update standards"
+                        description "Revise secure coding standards based on new threats and lessons learned."
+                lessons_learned "After a SQL injection attack via unvalidated inputs in an ICS database, the
+                    +b organization updated its input validation standards to include stricter
+                    +b parameterized queries."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"

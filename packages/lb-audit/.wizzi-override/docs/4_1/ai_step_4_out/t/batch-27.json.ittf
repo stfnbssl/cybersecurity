@@ -1,0 +1,265 @@
+$group
+    {
+        practice "6"
+        code "DM-3"
+        subCode "d) identifying the root causes of the issue; and"
+        [ policies
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Deterministic Logging Policy for Critical ICS Components"
+                description "Mandates the implementation of deterministic logging mechanisms for all
+                    +b critical ICS components to facilitate accurate root cause analysis (RCA).
+                    +b Aligns with IEC 62443-4-1 requirements for system integrity (CR3) and timely
+                    +b response to events (CR6). Requires logging of security-relevant events with
+                    +b timestamps, source identification, and event categorization in protected
+                    +b buffers to prevent tampering."
+                enforcement "Quarterly audits using automated log verification tools (e.g., Siemens TIA
+                    +b Portal Log Analyzer) and manual review of log retention compliance.
+                    +b Non-conformance triggers corrective action plans with 30-day resolution
+                    +b timelines."
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Forensic Readiness Policy for Embedded Devices"
+                description "Requires hardware-assisted forensic capabilities (JTAG/SWD interfaces) on all
+                    +b programmable logic controllers (PLCs) and embedded devices to enable chip-level
+                    +b diagnostics during RCA. Complies with IEC 62443-4-1 system integrity controls
+                    +b (CR3) and supply chain security requirements. Includes secure storage of debug
+                    +b access credentials and tamper-evident sealing of physical interfaces."
+                enforcement "Annual penetration testing with simulated forensic investigations. Verification
+                    +b of debug interface disablement in production environments via configuration
+                    +b audits. Honeywell Experion PKS forensic toolkit used for validation."
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Protocol Behavior Baseline Policy"
+                description "Establishes required baselines for industrial protocol behavior (OPC UA,
+                    +b PROFINET, EtherNet/IP) to detect anomalies during RCA. Implements IEC 62443-4-1
+                    +b data confidentiality (CR4) and restricted data flow (CR5) controls through
+                    +b protocol-specific whitelisting. Includes cryptographic verification of protocol
+                    +b stack implementations against vendor-certified versions."
+                enforcement "Continuous monitoring using protocol analyzers (Wireshark Industrial Plugins).
+                    +b Monthly comparison of observed traffic patterns against stored baselines.
+                    +b Rockwell Automation Protocol Conformance Toolkit used for validation."
+        [ procedures
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Fault Tree Analysis (FTA) for ICS Security Incidents"
+                description "Standardized process for conducting FTA on security incidents involving Breton
+                    +b Spa equipment, following ISA/IEC 62443 methodology. Focuses on identifying
+                    +b causal chains in multi-component industrial systems."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate FTA workspace in Siemens Polarion with incident details, including
+                            +b affected machine type (e.g., CNC Machining Center) and protocol involvement
+                            +b (e.g., OPC UA Basic256Sha256)."
+                        tools "Siemens Polarion FTA Module, Breton Spa Machine Configuration Database"
+                        expected_outcome "Structured incident record with all relevant technical and operational context."
+                    {
+                        step 2
+                        action "Construct fault tree using ISA/IEC 62443-4-1 template, mapping from top-level
+                            +b event (e.g., unauthorized parameter change) to potential root causes (firmware
+                            +b vulnerability, compromised HMI, etc.)."
+                        tools "PTC Windchill FTA Software, IEC 62443-4-1 FTA Templates"
+                        expected_outcome "Visual fault tree diagram with probability-weighted branches, highlighting most
+                            +b likely root causes."
+                    {
+                        step 3
+                        action "Validate hypotheses through forensic data collection from affected devices (PLC
+                            +b memory dumps, network captures) using vendor-approved tools (e.g., Schneider
+                            +b Electric Modicon M580 Debug Suite)."
+                        tools "Vendor-Specific Debug Tools, Wireshark with Industrial Protocol Dissectors"
+                        expected_outcome "Forensic evidence confirming or refuting hypothesized root causes, documented
+                            +b in the FTA report."
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Secure Firmware Integrity Verification Procedure"
+                description "Step-by-step process for verifying firmware integrity during RCA of suspected
+                    +b compromised devices, ensuring compliance with IEC 62443-4-1 system integrity
+                    +b requirements (CR3)."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate affected device (e.g., Polishing Machine PLC) and extract firmware
+                            +b using authenticated vendor tools (Breton Spa Firmware Extraction Toolkit)."
+                        tools "Vendor-Specific Firmware Extraction Tools, Write-Blocked Forensic Workstation"
+                        expected_outcome "Forensically sound firmware image copy with chain-of-custody documentation."
+                    {
+                        step 2
+                        action "Verify cryptographic signatures against Breton Spa's firmware signing key
+                            +b repository and check version against SBOM records."
+                        tools "OpenSSL for Signature Verification, Breton Spa SBOM Database"
+                        expected_outcome "Confirmation of firmware authenticity or detection of unauthorized
+                            +b modifications."
+                    {
+                        step 3
+                        action "Compare critical memory sections (e.g., security parameter storage areas)
+                            +b against known-good configurations from identical unaffected devices."
+                        tools "Hex Comparison Tools (Beyond Compare), Breton Spa Golden Image Repository"
+                        expected_outcome "Identification of modified memory regions indicating potential root causes of
+                            +b compromise."
+            {
+                code "DM-3"
+                subCode "d)"
+                title "Industrial Protocol Anomaly Detection Procedure"
+                description "Methodology for analyzing protocol-level anomalies during RCA of network
+                    +b security incidents, addressing IEC 62443-4-1 requirements for data
+                    +b confidentiality (CR4) and restricted data flow (CR5)."
+                [ steps
+                    {
+                        step 1
+                        action "Capture network traffic from affected segment (e.g., Composite Material
+                            +b Processing Line) using taps or SPAN ports, focusing on suspected protocols
+                            +b (PROFINET PN Security)."
+                        tools "Network Taps, Wireshark with PROFINET Dissector, Breton Spa Protocol Profile
+                            +b Templates"
+                        expected_outcome "PCAP file containing relevant protocol exchanges with precise timestamps."
+                    {
+                        step 2
+                        action "Reconstruct protocol sessions using vendor-specific tools (e.g., Siemens
+                            +b PROFINET Analyzer) and compare against protocol state machines defined in IEC
+                            +b 62443-4-1 annexes."
+                        tools "Vendor Protocol Analysis Suites, IEC 62443-4-1 Protocol Compliance Checklists"
+                        expected_outcome "Identification of deviations from standard protocol behavior (e.g.,
+                            +b unauthorized command sequences)."
+                    {
+                        step 3
+                        action "Correlate anomalies with device logs and process historian data to determine
+                            +b operational impact and root cause (e.g., malicious command injection vs.
+                            +b configuration error)."
+                        tools "Siemens XHQ Operational Intelligence, Breton Spa Process Historian"
+                        expected_outcome "Root cause classification report linking protocol anomalies to security events
+                            +b with confidence scoring."
+        last_updated "2023-11-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 2512"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "a) fixing the issue through one or more of the following:"
+        [ policies
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Vulnerability Management Policy"
+                description "This policy mandates the systematic identification, assessment, and mitigation
+                    +b of vulnerabilities in ICS components, including legacy systems. It aligns with
+                    +b IEC 62443-4-1's requirement for a structured process to address
+                    +b security-related issues. The policy includes regular scanning, risk assessment,
+                    +b and prioritization of fixes based on impact and exploit likelihood."
+                enforcement "Enforced through automated vulnerability scanning tools (e.g., Nessus, Qualys),
+                    +b scheduled audits, and documented risk assessments reviewed quarterly by the
+                    +b security team."
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Patch Management Policy"
+                description "This policy defines the process for deploying patches in ICS environments,
+                    +b ensuring minimal disruption to operations. It includes testing patches in a
+                    +b sandbox environment, scheduling deployments during maintenance windows, and
+                    +b maintaining rollback plans. The policy complies with IEC 62443-4-1's emphasis
+                    +b on systematic issue resolution."
+                enforcement "Enforced through patch management tools (e.g., WSUS for OT systems), change
+                    +b control boards, and post-patch verification audits."
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Residual Risk Acceptance Policy"
+                description "This policy establishes criteria for accepting residual risk after applying
+                    +b mitigations, as required by IEC 62443-4-1. It defines risk thresholds (e.g., SL
+                    +b 1-3) and requires documented justification for any deviations. The policy
+                    +b ensures transparency in risk decisions and aligns with the standard's
+                    +b risk-based approach."
+                enforcement "Enforced through risk assessment documentation, management sign-off for
+                    +b residual risk acceptance, and annual reviews by the governance committee."
+        [ procedures
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Vulnerability Assessment Procedure"
+                description "This procedure outlines the steps for identifying and assessing vulnerabilities
+                    +b in ICS components, including CNC machines and stone cutting systems. It
+                    +b integrates threat modeling (e.g., STRIDE) and risk assessment (e.g., DREAD) to
+                    +b prioritize issues."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct asset inventory using tools like Lansweeper or OT-specific asset
+                            +b managers."
+                        tools "Lansweeper, Claroty, Nozomi Networks"
+                        expected_outcome "Complete inventory of ICS assets with details on firmware versions and
+                            +b protocols."
+                    {
+                        step 2
+                        action "Perform vulnerability scans using ICS-aware tools (e.g., Tenable.ot) with
+                            +b credentialed checks."
+                        tools "Tenable.ot, Qualys ICS Module"
+                        expected_outcome "Report of vulnerabilities categorized by severity (CVSS scores) and affected
+                            +b assets."
+                    {
+                        step 3
+                        action "Assess operational impact using threat modeling for CNC/profinet systems."
+                        tools "Microsoft Threat Modeling Tool, ICS-specific templates"
+                        expected_outcome "Risk matrix with vulnerabilities prioritized by exploitability and operational
+                            +b impact."
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Patch Deployment Procedure"
+                description "This procedure details the secure deployment of patches for Breton Spa's
+                    +b machines, including testing and validation steps to prevent disruptions to
+                    +b high-precision operations."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate patch in test environment replicating production (e.g., CNC controller
+                            +b with same firmware)."
+                        tools "Virtualized testbed (e.g., Siemens PLCSIM), Stone cutting machine simulator"
+                        expected_outcome "Verified patch compatibility without affecting machining accuracy or safety
+                            +b interlocks."
+                    {
+                        step 2
+                        action "Deploy to production during scheduled maintenance windows using OT-approved
+                            +b tools."
+                        tools "Siemens Xcelerator, Rockwell FactoryTalk"
+                        expected_outcome "Patched systems with validated operational parameters (e.g., axis calibration
+                            +b logs)."
+                    {
+                        step 3
+                        action "Monitor post-patch performance for 72 hours, checking for anomalies in
+                            +b machining tolerances."
+                        tools "OSIsoft PI System, Custom CNC monitoring scripts"
+                        expected_outcome "Confirmation of stable operations with no deviation from specified tolerances."
+            {
+                code "DM-4"
+                subCode "a)"
+                title "Legacy System Mitigation Procedure"
+                description "This procedure addresses security issues in legacy components (e.g., older
+                    +b polishing machine controllers) that cannot be patched, implementing
+                    +b compensating controls per IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Segment legacy devices into isolated VLANs with firewall rules restricting
+                            +b protocol access."
+                        tools "Cisco Industrial Ethernet switches, Tofino firewalls"
+                        expected_outcome "Network diagrams showing legacy systems in separate zones with controlled
+                            +b access points."
+                    {
+                        step 2
+                        action "Deploy protocol-specific intrusion detection for PROFINET/Modbus traffic to
+                            +b legacy systems."
+                        tools "Darktrace Industrial, Dragos Platform"
+                        expected_outcome "Alerts generated for anomalous traffic patterns targeting legacy devices."
+                    {
+                        step 3
+                        action "Document residual risk and obtain management sign-off with annual review
+                            +b requirement."
+                        tools "GRC platforms (e.g., ServiceNow GRC), Custom risk registers"
+                        expected_outcome "Approved risk acceptance forms with compensating controls and review schedule."
+        last_updated "2023-11-15"

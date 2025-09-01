@@ -1,0 +1,58 @@
+ittf
+
+    $
+        var ctx = {};
+        var checkListItems = {};
+        function cleanName(name) {
+            var retval = name.indexOf(' ') > -1 ? '"' + name + '"' : name;
+            return _.replace(retval,'(',"$"+"{'('}");
+        }
+        function add(type, key, value) {
+            var x = ctx[type];
+            if (!_.isObject(x)) {
+                ctx[type] = {}
+                x = ctx[type];
+            }
+            var y = x[key];
+            if (!_.isObject(y)) {
+                x[key] = { items: [] }
+                y = x[key];
+            }
+            // y.items.push(value);
+            y.items.push(value.IDD);
+        }
+
+    $foreach dc in wzCtx.Data.classifiers
+        $
+            ctx[dc.name] = {};
+
+    $foreach item in lbvsa
+        $
+            checkListItems[item.IDD] = item;
+
+        $foreach dc in wzCtx.Data.classifiers
+            $if item[dc.property] != '-'
+                $
+                    add(dc.name, item[dc.property], item);
+
+    $file .wizzi-override/docs/lbvsa/views/classifier.html.ittf
+        html
+            head
+                @title classifier
+            body
+                $foreach dc in wzCtx.Data.classifiers
+                    h2 ${dc.label}
+                    $foreach type in Object.keys(ctx[dc.name])
+                        h4 ${type}
+
+                $foreach dc in wzCtx.Data.classifiers
+                    $foreach type in Object.keys(ctx[dc.name])
+                        h4 ${type} (${dc.name})
+                        $if true
+                            $foreach item in ctx[dc.name][type].items
+                                $
+                                    var itemObj = checkListItems[item]
+                                p ${itemObj.IDD} ${itemObj['Descrizione requisito']}
+                                $if _.isNotEmpty(itemObj['Ulteriori note'])
+                                    p Ulteriori note: ${itemObj['Ulteriori note']}
+                h2 Conteggi

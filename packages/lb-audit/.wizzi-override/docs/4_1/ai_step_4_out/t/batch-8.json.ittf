@@ -1,0 +1,361 @@
+$group
+    {
+        practice "2"
+        code "SR-2"
+        subCode "a) correct flow of categorized information throughout the system;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "a"
+                title "Data Flow Mapping Policy"
+                description "This policy mandates the comprehensive documentation of all information
+                    +b pathways between ICS components, including protocols and interfaces, to
+                    +b identify unauthorized data exfiltration points. It aligns with IEC 62443-4-1
+                    +b requirements for threat modeling and data flow analysis."
+                enforcement "Regular audits using automated tools like Microsoft Threat Modeling Tool and
+                    +b manual reviews by cross-functional teams to ensure all data flows are
+                    +b documented and secured."
+            {
+                code "SR-2"
+                subCode "a"
+                title "Information Categorization Policy"
+                description "This policy requires the classification of data by criticality (e.g.,
+                    +b safety-related vs. operational) to apply appropriate security controls. It
+                    +b ensures alignment with ISA/IEC 62443 zoning requirements and mitigates risks
+                    +b associated with misclassified data."
+                enforcement "Periodic reviews of data classification schemes and validation against
+                    +b real-world attack scenarios to ensure consistency and accuracy."
+            {
+                code "SR-2"
+                subCode "a"
+                title "Threat Identification and Mitigation Policy"
+                description "This policy enforces the systematic enumeration of potential threats to each
+                    +b data flow using industry-standard methodologies (e.g., attack trees, MITRE
+                    +b ATT&CK for ICS) and the implementation of corresponding mitigation strategies."
+                enforcement "Use of threat modeling tools like IriusRisk and OWASP Threat Dragon, coupled
+                    +b with annual competency assessments for personnel involved in threat modeling."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "a"
+                title "Data Flow Mapping Procedure"
+                description "This procedure outlines the steps to comprehensively document all information
+                    +b pathways between ICS components, including protocols and interfaces, to
+                    +b identify unauthorized data exfiltration points."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all ICS components and their communication interfaces."
+                        tools "Network scanning tools (e.g., Wireshark, Nmap), system architecture diagrams."
+                        expected_outcome "A complete inventory of ICS components and their communication interfaces."
+                    {
+                        step 2
+                        action "Document all data flows between components, including protocols and security
+                            +b mechanisms."
+                        tools "Microsoft Threat Modeling Tool, IriusRisk."
+                        expected_outcome "Detailed data flow diagrams showing all communication paths and security
+                            +b controls."
+                    {
+                        step 3
+                        action "Validate data flow diagrams with cross-functional teams (security, OT,
+                            +b engineering)."
+                        tools "Review meetings, threat modeling tools."
+                        expected_outcome "Validated and approved data flow diagrams ready for threat analysis."
+            {
+                code "SR-2"
+                subCode "a"
+                title "Information Categorization Procedure"
+                description "This procedure details the process for classifying data by criticality to apply
+                    +b appropriate security controls, ensuring alignment with ISA/IEC 62443 zoning
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Define data categories based on criticality (e.g., safety-related, operational,
+                            +b non-critical)."
+                        tools "Data classification templates, industry standards (e.g., NIST SP 800-82)."
+                        expected_outcome "A standardized data classification scheme."
+                    {
+                        step 2
+                        action "Apply classification labels to all data flows identified in the data flow
+                            +b mapping procedure."
+                        tools "Threat modeling tools, documentation systems."
+                        expected_outcome "All data flows categorized according to the defined scheme."
+                    {
+                        step 3
+                        action "Review and validate classifications with stakeholders to ensure consistency and
+                            +b accuracy."
+                        tools "Review meetings, validation checklists."
+                        expected_outcome "Validated and approved data categorizations."
+            {
+                code "SR-2"
+                subCode "a"
+                title "Threat Identification and Mitigation Procedure"
+                description "This procedure describes the systematic enumeration of potential threats to
+                    +b each data flow and the implementation of corresponding mitigation strategies."
+                [ steps
+                    {
+                        step 1
+                        action "Use the STRIDE framework to identify potential threats for each data flow."
+                        tools "Microsoft Threat Modeling Tool, MITRE ATT&CK for ICS."
+                        expected_outcome "A list of potential threats categorized by STRIDE dimensions."
+                    {
+                        step 2
+                        action "Assess the risk of each identified threat using the DREAD methodology."
+                        tools "Risk assessment templates, threat modeling tools."
+                        expected_outcome "Prioritized list of threats based on risk assessment."
+                    {
+                        step 3
+                        action "Develop and implement mitigation strategies for high-risk threats."
+                        tools "Security control libraries (e.g., NIST SP 800-82), engineering teams."
+                        expected_outcome "Implemented security controls mitigating identified high-risk threats."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "b) trust boundaries;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Trust Boundary Documentation Policy"
+                description "This policy mandates the documentation of all trust boundaries within the ICS
+                    +b architecture, including interfaces between IT and OT networks, as per IEC
+                    +b 62443-4-1 SR-2(b). Documentation must include network diagrams, data flow
+                    +b diagrams, and asset ownership details to ensure comprehensive threat modeling
+                    +b and security control implementation."
+                enforcement "Regular audits will be conducted to verify the accuracy and completeness of
+                    +b trust boundary documentation. Non-compliance will trigger corrective actions,
+                    +b including mandatory updates to the threat model."
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Boundary Control Implementation Policy"
+                description "This policy requires the implementation of appropriate security controls (e.g.,
+                    +b firewalls, IDS, encryption) at all identified trust boundaries, in alignment
+                    +b with IEC 62443-4-1 SR-2(b). Controls must be validated through testing and
+                    +b audits to ensure they effectively mitigate identified threats."
+                enforcement "Security controls will be tested annually or after significant system changes.
+                    +b Penetration testing and vulnerability assessments will be used to validate
+                    +b control effectiveness. Findings will be documented and addressed promptly."
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Dynamic Boundary Management Policy"
+                description "This policy ensures that trust boundaries are reviewed and updated during
+                    +b system modifications, such as cloud migrations or network reconfigurations, to
+                    +b maintain compliance with IEC 62443-4-1 SR-2(b). Updates must reflect changes in
+                    +b the threat landscape and system architecture."
+                enforcement "A change management process will be enforced to review and update trust
+                    +b boundaries during system modifications. Regular reviews will be conducted to
+                    +b ensure ongoing compliance with the policy."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Trust Boundary Identification Procedure"
+                description "This procedure outlines the steps to identify and document trust boundaries
+                    +b within the ICS architecture, ensuring compliance with IEC 62443-4-1 SR-2(b).
+                    +b The process involves collaboration between security and engineering teams to
+                    +b accurately map all interfaces between different security domains."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct a system architecture review to identify all interfaces between IT and
+                            +b OT networks."
+                        tools "Microsoft Threat Modeling Tool, network diagrams"
+                        expected_outcome "A comprehensive list of trust boundaries, including network interfaces, data
+                            +b flows, and asset ownership."
+                    {
+                        step 2
+                        action "Document each trust boundary in a threat model, including details of data flows
+                            +b and security controls."
+                        tools "Threat Dragon, OWASP Threat Modeling Toolkit"
+                        expected_outcome "A detailed threat model with documented trust boundaries and associated
+                            +b security controls."
+                    {
+                        step 3
+                        action "Validate the identified trust boundaries through stakeholder review and
+                            +b penetration testing."
+                        tools "Penetration testing tools (e.g., Metasploit, Nmap), stakeholder feedback"
+                        expected_outcome "Verified trust boundaries with confirmed security controls and mitigation
+                            +b strategies."
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Boundary Control Implementation Procedure"
+                description "This procedure details the steps to implement and validate security controls at
+                    +b identified trust boundaries, as required by IEC 62443-4-1 SR-2(b). The process
+                    +b ensures that controls are effective in mitigating threats and are consistently
+                    +b applied across all boundaries."
+                [ steps
+                    {
+                        step 1
+                        action "Select appropriate security controls (e.g., firewalls, IDS, encryption) for
+                            +b each trust boundary based on the threat model."
+                        tools "NIST SP 800-82, IEC 62443-4-1 guidelines"
+                        expected_outcome "A list of recommended security controls for each trust boundary."
+                    {
+                        step 2
+                        action "Deploy the selected controls and configure them according to best practices and
+                            +b organizational policies."
+                        tools "Firewall configuration tools, IDS/IPS systems"
+                        expected_outcome "Fully configured security controls at each trust boundary."
+                    {
+                        step 3
+                        action "Test the effectiveness of the controls through penetration testing and
+                            +b vulnerability assessments."
+                        tools "Penetration testing tools (e.g., Metasploit, Nessus), vulnerability scanners"
+                        expected_outcome "Validation of control effectiveness and identification of any gaps or
+                            +b weaknesses."
+            {
+                code "SR-2"
+                subCode "b) trust boundaries;"
+                title "Trust Boundary Review and Update Procedure"
+                description "This procedure ensures that trust boundaries are regularly reviewed and updated
+                    +b to reflect changes in the system architecture or threat landscape, maintaining
+                    +b compliance with IEC 62443-4-1 SR-2(b). The process includes periodic reviews
+                    +b and updates based on new threats or system modifications."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor threat intelligence sources for new ICS vulnerabilities and threats
+                            +b that may impact trust boundaries."
+                        tools "Threat intelligence platforms (e.g., MITRE ATT&CK, Dragos)"
+                        expected_outcome "Identification of new threats or vulnerabilities relevant to existing trust
+                            +b boundaries."
+                    {
+                        step 2
+                        action "Review the current threat model and trust boundaries to assess the impact of
+                            +b new threats or system changes."
+                        tools "Microsoft Threat Modeling Tool, OWASP Threat Modeling Toolkit"
+                        expected_outcome "An updated threat model reflecting new threats or changes to the system
+                            +b architecture."
+                    {
+                        step 3
+                        action "Update security controls and documentation to address identified changes or new
+                            +b threats."
+                        tools "Change management systems, documentation tools"
+                        expected_outcome "Updated security controls and documentation, ensuring continued compliance with
+                            +b IEC 62443-4-1 SR-2(b)."
+        last_updated "2023-10-15"
+    {
+        practice "2"
+        code "SR-2"
+        subCode "c) processes;"
+        [ policies
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "Structured Threat Modeling Policy"
+                description "This policy mandates the use of structured threat modeling methodologies, such
+                    +b as STRIDE, during the development lifecycle of ICS products. It ensures
+                    +b systematic identification and mitigation of security risks in processes,
+                    +b aligning with IEC 62443-4-1 requirements for threat modeling."
+                enforcement "Regular audits will verify the application of threat modeling methodologies.
+                    +b Compliance will be tracked through documented threat models and mitigation
+                    +b strategies, with non-compliance addressed via corrective action plans."
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "Cross-Functional Collaboration Policy"
+                description "This policy requires the involvement of OT and IT teams in threat modeling
+                    +b sessions to ensure comprehensive coverage of security risks in ICS processes.
+                    +b It aligns with IEC 62443-4-1's emphasis on collaborative security practices."
+                enforcement "Participation logs and meeting minutes will be reviewed during audits.
+                    +b Enforcement includes mandatory attendance for designated team members and
+                    +b integration of feedback into threat models."
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "Threat Model Documentation and Review Policy"
+                description "This policy enforces standardized documentation of threat models and regular
+                    +b reviews to reflect changes in the ICS environment. It supports IEC 62443-4-1's
+                    +b requirement for traceability and continuous improvement in security practices."
+                enforcement "Documentation will be audited quarterly. Automated tools will flag outdated
+                    +b models, and management will review update compliance during security governance
+                    +b meetings."
+        [ procedures
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "STRIDE Threat Modeling Procedure"
+                description "This procedure outlines the steps to apply the STRIDE methodology for threat
+                    +b modeling in ICS processes, ensuring systematic identification of spoofing,
+                    +b tampering, repudiation, information disclosure, denial of service, and
+                    +b elevation of privilege risks."
+                [ steps
+                    {
+                        step 1
+                        action "Define the scope of the ICS process to be modeled, including all components and
+                            +b communication protocols."
+                        tools "Microsoft Threat Modeling Tool, Network diagrams"
+                        expected_outcome "A clearly defined scope document with identified components and interfaces."
+                    {
+                        step 2
+                        action "Identify potential threats using the STRIDE categories for each component and
+                            +b interface."
+                        tools "STRIDE checklist, Threat Dragon"
+                        expected_outcome "A comprehensive list of threats categorized by STRIDE, documented in a threat
+                            +b model report."
+                    {
+                        step 3
+                        action "Develop mitigation strategies for each identified threat and document them in
+                            +b the threat model."
+                        tools "IEC 62443-4-1 mitigation guidelines, Risk assessment templates"
+                        expected_outcome "A threat model report with documented mitigation strategies for all identified
+                            +b threats."
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "Cross-Functional Threat Modeling Session Procedure"
+                description "This procedure details how to conduct collaborative threat modeling sessions
+                    +b with OT and IT teams to ensure comprehensive risk identification in ICS
+                    +b processes, as required by IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Schedule a threat modeling session with representatives from OT, IT, and
+                            +b security teams."
+                        tools "Scheduling software, Participant list"
+                        expected_outcome "A scheduled session with confirmed attendance from all required stakeholders."
+                    {
+                        step 2
+                        action "Facilitate the session using a structured methodology (e.g., STRIDE) to
+                            +b identify threats collaboratively."
+                        tools "Whiteboarding tools, STRIDE templates"
+                        expected_outcome "A collaboratively developed list of threats and potential impacts."
+                    {
+                        step 3
+                        action "Document the session outcomes, including identified threats, mitigation
+                            +b strategies, and action items."
+                        tools "Threat modeling documentation templates, Meeting minutes software"
+                        expected_outcome "A finalized threat model document with assigned action items for mitigation."
+            {
+                code "SR-2"
+                subCode "c) processes;"
+                title "Threat Model Review and Update Procedure"
+                description "This procedure ensures that threat models are regularly reviewed and updated to
+                    +b reflect changes in the ICS environment, maintaining compliance with IEC
+                    +b 62443-4-1's continuous improvement requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Monitor threat intelligence sources for new vulnerabilities and attack vectors
+                            +b relevant to the ICS process."
+                        tools "CISA alerts, ICS-CERT reports, Threat intelligence platforms"
+                        expected_outcome "A log of relevant new threats and vulnerabilities identified."
+                    {
+                        step 2
+                        action "Review the existing threat model against the new intelligence and identify
+                            +b necessary updates."
+                        tools "Threat modeling tools, Change tracking systems"
+                        expected_outcome "A list of required updates to the threat model based on new intelligence."
+                    {
+                        step 3
+                        action "Update the threat model and mitigation strategies, and communicate changes to
+                            +b relevant stakeholders."
+                        tools "Document management systems, Communication platforms"
+                        expected_outcome "An updated threat model document with communicated changes and revised
+                            +b mitigation strategies."
+        last_updated "2023-10-15"

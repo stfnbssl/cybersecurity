@@ -1,0 +1,28 @@
+$group
+    $params &options
+
+    call ${options.practice}
+        description ${options.code} - ${options.name} - ${options.subCode}
+        ai/call_header( &options )
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                ${'\\'}n sei esperto dello standard ISA/IEC 62443,
+                ${'\\'}n in particolare del volume 62443-4-1.
+        message 
+            role user
+            content Popola un database JSON con dati utili per analizzare i processi dello IEC 62443-4-1.
+                ${'\\'}n Usa il JSON della practice fornito per popolare i campi `practice`, `code` e `subCode`,
+                ${'\\'}b omettendo tutti gli altri dati come explanation, context, challenges, best_practices, key_aspects, name, description, details e standard_compliance. 
+                ${'\\'}n Aggiungi le seguenti proprietà: 
+                ai/4_1_policies( step )
+                $*
+                ${'\\'}n - Un array di policies con almeno tre policy pertinenti, ciascuna con code, subCode (coerenti con la practice), 
+                ${'\\'}n title (un titolo chiaro e conciso), description (dettagliata, con contesto applicativo e riferimento a IEC 62443-4-1), 
+                ${'\\'}n e enforcement (meccanismi per garantire conformità, come audit o strumenti).
+                ${'\\'}n - Un array di procedures con almeno tre procedure pertinenti, ciascuna con code, subCode (coerenti con la practice), 
+                ${'\\'}n title (un titolo chiaro e conciso), description (spiegazione del processo), e steps (un array di almeno tre step dettagliati, numerati, 
+                ${'\\'}n con azioni specifiche, strumenti consigliati e risultati attesi).
+                *$
+                ${'\\'}n Segui queste linee guida:
+                ${'\\'}n - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza 
+                ${'\\'}n - Assicurati che tutte le informazioni siano coerenti con la norma IEC 62443-4-1. 
+                ai/schema_data_return( &options, step )

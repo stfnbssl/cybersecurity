@@ -1,0 +1,247 @@
+$group
+    {
+        id "FSA-NDR 1.13 RE(1)"
+        check_description "The network device shall provide the capability to deny access requests via
+            +b untrusted networks unless explicitly approved by an assigned role."
+        requirement_id "IEC 62443-4-2: NDR 1.13 RE(1)"
+        title "Explicit Access Request Approval"
+        description "This requirement mandates that all access requests to network resources must be
+            +b explicitly approved to ensure that only authorized personnel have access to
+            +b critical systems and data. It emphasizes the need for a controlled and
+            +b documented process for granting access."
+        [ key_aspects
+            {
+                aspect "Access Control"
+                details "Ensures that access to network resources is restricted to authorized personnel
+                    +b following an explicit approval process."
+            {
+                aspect "Approval Process"
+                details "A documented process must be in place to review and approve access requests.
+                    +b This process should involve evaluating the necessity and legitimacy of the
+                    +b request."
+            {
+                aspect "Audit and Accountability"
+                details "The approval process should be auditable, allowing for tracking and reviewing
+                    +b access requests and approvals to ensure compliance and accountability."
+            {
+                aspect "Authorization Management"
+                details "Establishes a clear protocol for managing authorizations, including roles,
+                    +b responsibilities, and access rights associated with network resources."
+        [ related_standards
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 1.1 – Human user identification and authentication"
+                details "Focuses on ensuring that all human users are uniquely identified and
+                    +b authenticated to prevent unauthorized access."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.9.1.2 – Access to networks and network services"
+                details "Establishes the control that access to networks and network services should be
+                    +b appropriately controlled to prevent unauthorized access."
+            {
+                standard "NIST SP 800-53"
+                reference "AC-2 – Account Management"
+                details "Provides guidelines on managing information system accounts, including
+                    +b approving access and monitoring account activity."
+            {
+                standard "CIS Controls"
+                reference "Control 4 – Controlled Use of Administrative Privileges"
+                details "Advises on the control and monitoring of the use of administrative privileges
+                    +b to reduce risks associated with elevated access."
+    {
+        id "FSA-CR 1.14A"
+        check_description "For components that utilize symmetric keys, the component shall provide the
+            +b capability to establish the mutual trust using the symmetric key."
+        requirement_id "IEC 62443-4-2: CR 1.14(a)"
+        title "Strength of Symmetric Key-Based Authentication - Establish Trust"
+        description "This requirement focuses on the strength and reliability of symmetric key-based
+            +b authentication mechanisms used within industrial control systems. The goal is
+            +b to establish a high level of trust in the authentication process to protect
+            +b against unauthorized access and ensure the integrity of data and operations
+            +b within the system."
+        [ key_aspects
+            {
+                aspect "Symmetric Key Strength"
+                details "The requirement emphasizes the need for strong symmetric keys, which should be
+                    +b of sufficient length and complexity to resist brute-force attacks. Typically,
+                    +b keys should be at least 128 bits in length for adequate security."
+            {
+                aspect "Key Management"
+                details "Effective key management practices must be in place to ensure the secure
+                    +b generation, distribution, storage, and eventual disposal of symmetric keys.
+                    +b This includes using secure channels for key exchange and regularly updating
+                    +b keys to mitigate the risk of compromise."
+            {
+                aspect "Authentication Mechanisms"
+                details "Authentication mechanisms should be robust and capable of verifying the
+                    +b identity of entities attempting to access the system. This involves using
+                    +b cryptographic techniques that rely on symmetric keys for authentication,
+                    +b ensuring that entities are who they claim to be."
+            {
+                aspect "Mitigating Unauthorized Access"
+                details "By establishing strong symmetric key-based authentication, the system can
+                    +b effectively prevent unauthorized access to sensitive areas or functions,
+                    +b thereby maintaining the confidentiality, integrity, and availability of the
+                    +b system."
+        [ related_standards
+            {
+                standard "NIST SP 800-57 Part 1"
+                details "This standard provides guidelines for key management, including the strength
+                    +b and lifespan of cryptographic keys, which are relevant to the selection and
+                    +b management of symmetric keys in IEC 62443-4-2."
+            {
+                standard "ISO/IEC 19790"
+                details "This standard specifies security requirements for cryptographic modules,
+                    +b supporting the implementation of secure cryptographic mechanisms, including
+                    +b symmetric key algorithms, which align with the needs of IEC 62443-4-2."
+            {
+                standard "NIST SP 800-63B"
+                details "It provides digital identity guidelines, focusing on authentication and
+                    +b lifecycle management. It helps in understanding practices related to
+                    +b authentication strength using cryptographic keys."
+            {
+                standard "FIPS 140-3"
+                details "The Federal Information Processing Standard (FIPS) 140-3 provides security
+                    +b requirements for cryptographic modules, including requirements for symmetric
+                    +b key cryptography, relevant to ensuring compliance with IEC 62443-4-2."
+    {
+        id "FSA-CR 1.14B"
+        check_description "For components that utilize symmetric keys, the component shall provide the
+            +b capability to store securely the shared secret (the authentication is valid as
+            +b long as the shared secret remains secret)."
+        requirement_id "IEC 62443-4-2: CR 1.14(b)"
+        title "Strength of Symmetric Key-Based Authentication - Secure Storage for Shared
+            +b Secret"
+        description "This requirement focuses on ensuring that symmetric keys used for
+            +b authentication purposes are securely stored. Symmetric keys, being sensitive
+            +b information, must be protected against unauthorized access and tampering to
+            +b maintain the integrity and confidentiality of the authentication process."
+        [ key_aspects
+            {
+                aspect "Secure Storage"
+                details "The requirement mandates the use of secure storage mechanisms for symmetric
+                    +b keys to prevent unauthorized access and ensure their integrity. This includes
+                    +b using hardware security modules (HSMs), secure enclaves, or other cryptographic
+                    +b storage solutions that provide physical and logical protections."
+            {
+                aspect "Access Control"
+                details "Strict access control measures should be implemented to limit who can access or
+                    +b modify the symmetric keys. This includes role-based access controls,
+                    +b authentication mechanisms, and audit logging to track access attempts."
+            {
+                aspect "Key Management"
+                details "Effective key management practices should be in place, including key rotation,
+                    +b expiration, and revocation processes to ensure keys remain secure over their
+                    +b lifecycle."
+            {
+                aspect "Cryptographic Best Practices"
+                details "Adopt industry best practices for cryptography, such as using recommended key
+                    +b lengths and algorithms, to enhance the security of symmetric key-based
+                    +b authentication."
+        [ related_standards
+            {
+                standard "NIST SP 800-57 Part 1"
+                reference "NIST Special Publication 800-57 Part 1 provides guidelines for key management,
+                    +b including recommendations for secure key storage and handling practices."
+            {
+                standard "ISO/IEC 19790"
+                reference "ISO/IEC 19790 specifies security requirements for cryptographic modules,
+                    +b including secure key storage and management, which are relevant for protecting
+                    +b symmetric keys."
+            {
+                standard "FIPS 140-2"
+                reference "Federal Information Processing Standards (FIPS) 140-2 outlines security
+                    +b requirements for cryptographic modules, providing criteria for secure storage
+                    +b of cryptographic keys."
+            {
+                standard "IEC 62443-3-3: SR 1.14"
+                reference "This standard addresses similar requirements at a system level, focusing on the
+                    +b secure management of keys and credentials within industrial automation and
+                    +b control systems."
+    {
+        id "FSA-CR 1.14C"
+        check_description "For components that utilize symmetric keys, the component shall provide the
+            +b capability to restrict access to the shared secret."
+        requirement_id "IEC 62443-4-2: CR 1.14(c)"
+        title "Strength of Symmetric Key-based Authentication - Restrict Access to Shared
+            +b Secret"
+        description "This requirement emphasizes the importance of restricting access to the shared
+            +b secret used in symmetric key-based authentication mechanisms. Ensuring the
+            +b confidentiality and integrity of the shared secret is critical to maintaining
+            +b the security of the communication channels and preventing unauthorized access."
+        { key_aspects
+            confidentiality "The shared secret must be kept confidential to prevent unauthorized access or
+                +b disclosure."
+            "access control" "Implement strict access control measures to limit access to the shared secret
+                +b only to authorized entities."
+            storage "Securely store the shared secret using cryptographic techniques to prevent
+                +b unauthorized retrieval."
+            transmission "Ensure the shared secret is transmitted securely, using encrypted channels to
+                +b prevent interception."
+        { related_standards
+            { "ISO/IEC 27002"
+                section "9.4.1"
+                title "Information Access Restriction"
+                description "This section covers the control of access to information and the implementation
+                    +b of security measures to protect sensitive information such as shared secrets."
+            { "NIST SP 800-57 Part 1"
+                section "5.3.2"
+                title "Cryptographic Key Management"
+                description "This document provides guidelines on key management, including the generation,
+                    +b distribution, storage, and destruction of cryptographic keys."
+            { "FIPS PUB 140-3"
+                section "5.3"
+                title "Cryptographic Module Authentication"
+                description "This standard specifies requirements for cryptographic modules, including the
+                    +b protection of symmetric keys and authentication mechanisms."
+            { "IEC 62351-8"
+                section "4"
+                title "Role-Based Access Control"
+                description "This standard provides guidelines for access control in power systems,
+                    +b emphasizing the importance of restricting access to critical information."
+    {
+        id "FSA-CR 1.14D"
+        check_description "For components that utilize symmetric keys, the component shall provide the
+            +b capability to ensure that the algorithms and keys used for the symmetric key
+            +b authentication comply with CR 4.3 – Use of cryptography Subclause 8.5."
+        requirement_id "IEC 62443-4-2: CR 1.14(d)"
+        title "Use of Cryptography"
+        description "This requirement focuses on the implementation and use of cryptographic methods
+            +b to protect data integrity, confidentiality, and authenticity within Industrial
+            +b Automation and Control Systems (IACS) components. It emphasizes the necessity
+            +b for strong cryptographic techniques to guard against unauthorized access and
+            +b data breaches."
+        { key_aspects
+            cryptographic_algorithms "Selection of secure and standardized cryptographic algorithms that are
+                +b resistant to known vulnerabilities."
+            data_protection "Ensuring that both data-at-rest and data-in-transit are encrypted using
+                +b appropriate cryptographic methods."
+            key_management "Establishing robust key management protocols to handle cryptographic keys
+                +b securely throughout their lifecycle."
+            compliance "Adhering to recognized cryptographic standards and guidelines to ensure
+                +b compliance and interoperability."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "Annex A.10 - Cryptography"
+                description "This section of ISO/IEC 27001 outlines the importance of cryptographic controls
+                    +b in protecting information and requires organizations to have a policy on the
+                    +b use of cryptographic controls for information protection."
+            {
+                standard "NIST SP 800-53"
+                reference "SC-12 - Cryptographic Key Establishment and Management"
+                description "This control provides guidelines for the secure establishment and management of
+                    +b cryptographic keys to protect information against unauthorized disclosure and
+                    +b modification."
+            {
+                standard "NIST SP 800-57"
+                reference "Recommendation for Key Management"
+                description "This publication offers comprehensive guidance on key management, including key
+                    +b generation, distribution, storage, use, and retirement, ensuring the security
+                    +b lifecycle of cryptographic keys."
+            {
+                standard "FIPS 140-3"
+                reference "Security Requirements for Cryptographic Modules"
+                description "FIPS 140-3 specifies the security requirements for cryptographic modules used
+                    +b within a security system to protect sensitive information, ensuring that the
+                    +b modules are implemented securely."

@@ -1,0 +1,36 @@
+txt 
+    ===== 
+    search product supplier of location Veneto region, Italy
+    ----- 
+    Trova un elenco di aziende con sede e fatturato annuo specificati nei dati di input JSON qui sotto.
+    Le aziende devono essere fornitori di prodotti o integratori di sistemi coinvolti nella produzione o integrazione di macchine con sistemi di automazione e controllo industriale (IACS) a cui si applicano i requisiti di cybersicurezza IEC 62443-3-3.
+    La risposta deve essere in formato JSON, conforme allo schema fornito, e includere:  name: Il nome completo dell'azienda.
+    sales_eur: Fatturato annuo in euro (specificare cifre esatte se disponibili; se non disponibili, indicare “Sconosciuto” e giustificare l'assunzione di >€100M in base alla rilevanza nel settore o alla scala aziendale).
+    description: Una breve descrizione delle attività dell'azienda, con focus sul loro ruolo nella produzione o integrazione di macchine con sistemi di automazione.
+    machine_types: Un elenco dei tipi di macchine prodotte o integrate, rilevanti per IACS (es. macchine CNC, sistemi controllati da PLC, apparecchiature abilitate IoT).
+    iec_62443: Un'analisi dettagliata di come lo standard IEC 62443-3-3 si applica alle macchine o ai sistemi dell'azienda,
+    facendo riferimento ai sette requisiti fondamentali (FR1–FR7) e spiegando le esigenze di cybersicurezza (es. protezione dei controlli in rete, integrità dei dati, garanzia della disponibilità del sistema).
+    contact_details: Un oggetto contenente:  address: Indirizzo fisico completo.
+    phone: Numero di telefono di contatto principale.
+    email: Email di contatto principale (se non disponibile, indicare “Non disponibile”).
+    website: URL del sito web dell'azienda (se non disponibile, indicare “Non disponibile”).
+    source: Le fonti dei dati (es. sito web aziendale, rapporti finanziari, elenchi aziendali).
+    Segui queste linee guida:  Includi esclusivamente aziende con sede nella località specificata.
+    Se le cifre esatte del fatturato non sono disponibili, giustifica l'assunzione in base alla leadership di mercato, presenza globale o scala industriale.
+    Assicurati che i tipi di macchine siano specifici del portfolio aziendale e rilevanti per IACS che richiedono conformità a IEC 62443-3-3 (es. sistemi con PLC, SCADA o integrazione IoT).
+    Fornisci un'analisi dettagliata di IEC 62443-3-3, spiegando come i requisiti dello standard (es. controllo di identificazione e autenticazione, integrità del sistema, flusso di dati ristretto) si applicano alle operazioni dell'azienda.
+    Ottieni i dettagli di contatto da fonti affidabili (es. siti web aziendali, Registro delle Imprese Italiano, Crunchbase o elenchi aziendali come Listcompany.org). Se i contatti specifici non sono disponibili, fornisci i dettagli della sede legale o indica “Non disponibile”.
+    Valuta criticamente le fonti per garantire accuratezza ed evita dati speculativi.
+    Se meno di 10 aziende soddisfano i criteri, spiega la limitazione e includi quante più aziende qualificate possibile.
+    - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+    - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+    - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+    Popola questo JSON schema:
+    <database_json_schema> 
+    {"$schema":"http://json-schema.org/draft-07/schema#","type":"array","description":"JSON schema for List of Product Suppliers of a certail location extracted with ai search","items":{"type":"object","properties":{"name":{"type":"string"},"sales_eur":{"type":"string"},"description":{"type":"string"},"machine_types":{"type":"array","items":{"type":"string"}},"iec_62443":{"type":"object","properties":{"relevance":{"type":"string"},"requirements":{"type":"array","items":{"type":"string"}}},"required":["relevance","requirements"]},"contact_details":{"type":"object","properties":{"address":{"type":"string"},"phone":{"type":"string"},"email":{"type":"string"},"website":{"type":"string"}},"required":["address","phone","email","website"]},"source":{"type":"string"}},"required":["name","machine_types","iec_62443_relevance","contact_details"]},"note_su_json_risultante":{"type":"object","description":"Notes on the resulting JSON structure and implementation details","properties":{"description":{"type":"string","description":"General description of the notes section","example":"Notes on the resulting JSON structure and implementation details"},"notes":{"type":"array","description":"List of specific notes on the JSON and implementations","items":{"type":"object","properties":{"note_id":{"type":"string","description":"Unique identifier for the note","example":"N1"},"description":{"type":"string","description":"Detailed description of the note","example":"The implementations were tailored to Breton Spa’s machine types..."}},"required":["note_id","description"]}}},"required":["description","notes"]},"required":["items"]} 
+    </database_json_schema> 
+    Popola lo schema con i seguenti dati di input
+    <input_json_data> 
+    {"location":"Veneto region, Italy","sales":">50 million euros","number_of_firms_to_extract":10} 
+    </input_json_data> 
+    Ritorna il JSON risultante.

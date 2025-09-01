@@ -1,0 +1,361 @@
+$group
+    {
+        practice "3"
+        code "SD-4"
+        subCode "b) using proven secure components/designs where possible;"
+        [ policies
+            {
+                code "SD-4"
+                subCode "b"
+                title "Secure Component Procurement Policy"
+                description "This policy mandates the procurement of components certified under recognized
+                    +b security standards such as ISA/IEC 62443-4-2. It ensures that all components
+                    +b integrated into Breton Spa's industrial control systems (ICS) meet baseline
+                    +b security requirements, reducing vulnerabilities and enhancing system
+                    +b resilience. The policy aligns with IEC 62443-4-1 by emphasizing the use of
+                    +b proven secure components."
+                enforcement "Compliance is enforced through vendor audits, component security assessments,
+                    +b and regular reviews by the security team. Non-compliant components are flagged
+                    +b during procurement and require approval from the security review board."
+            {
+                code "SD-4"
+                subCode "b"
+                title "Secure Design Pattern Implementation Policy"
+                description "This policy requires the adoption of secure-by-design architectures, such as
+                    +b zero-trust networks and defense-in-depth strategies, in all Breton Spa ICS
+                    +b designs. It ensures that systems are resilient to attacks by minimizing single
+                    +b points of failure and segmenting critical functions. The policy is aligned with
+                    +b IEC 62443-4-1's focus on secure design practices."
+                enforcement "Enforcement is achieved through design reviews, threat modeling sessions, and
+                    +b automated security testing tools integrated into the development lifecycle.
+                    +b Deviations from secure design patterns must be documented and justified."
+            {
+                code "SD-4"
+                subCode "b"
+                title "Legacy System Security Policy"
+                description "This policy outlines compensatory measures for legacy systems that cannot meet
+                    +b modern security standards, such as network segmentation and secure gateway
+                    +b deployment. It ensures that legacy components do not introduce unacceptable
+                    +b risks to Breton Spa's ICS environments, in line with IEC 62443-4-1's emphasis
+                    +b on secure integration."
+                enforcement "Compliance is monitored through annual risk assessments and audits of legacy
+                    +b system configurations. Compensatory controls must be documented and reviewed by
+                    +b the security team."
+        [ procedures
+            {
+                code "SD-4"
+                subCode "b"
+                title "Secure Component Selection Procedure"
+                description "This procedure details the steps for selecting and validating secure components
+                    +b for Breton Spa's ICS, ensuring compliance with IEC 62443-4-1. It includes
+                    +b vendor assessments, certification checks, and security feature evaluations."
+                [ steps
+                    {
+                        step 1
+                        action "Identify component requirements and security criteria based on the system's
+                            +b Security Level (SL)."
+                        tools "ISA/IEC 62443-4-2 certification checklist, vendor security documentation."
+                        expected_outcome "A list of security requirements for the component, aligned with the target SL."
+                    {
+                        step 2
+                        action "Evaluate potential components against the security criteria, prioritizing
+                            +b certified products."
+                        tools "Vendor-provided security assessment reports, third-party certification
+                            +b databases (e.g., ISA Secure)."
+                        expected_outcome "A shortlist of components that meet the security requirements."
+                    {
+                        step 3
+                        action "Conduct a risk assessment for the selected component, identifying any residual
+                            +b risks and compensatory controls."
+                        tools "Risk assessment templates (e.g., NIST 800-30), threat modeling tools (e.g.,
+                            +b Microsoft Threat Modeling Tool)."
+                        expected_outcome "A risk assessment report with mitigation strategies for the component."
+            {
+                code "SD-4"
+                subCode "b"
+                title "Secure Design Review Procedure"
+                description "This procedure outlines the process for reviewing and validating secure design
+                    +b practices in Breton Spa's ICS projects, ensuring adherence to IEC 62443-4-1. It
+                    +b includes threat modeling, design pattern validation, and security testing."
+                [ steps
+                    {
+                        step 1
+                        action "Perform threat modeling for the system design using methodologies like STRIDE."
+                        tools "Microsoft Threat Modeling Tool, ICS-specific threat models."
+                        expected_outcome "A threat model identifying potential vulnerabilities in the design."
+                    {
+                        step 2
+                        action "Validate the use of secure design patterns (e.g., zero-trust, defense-in-depth)
+                            +b in the architecture."
+                        tools "Design documentation, architecture review checklists."
+                        expected_outcome "A report confirming the implementation of secure design patterns."
+                    {
+                        step 3
+                        action "Conduct security testing on the design, including static and dynamic analysis."
+                        tools "SAST tools (e.g., Checkmarx), DAST tools (e.g., OWASP ZAP)."
+                        expected_outcome "A security testing report with identified vulnerabilities and remediation
+                            +b recommendations."
+            {
+                code "SD-4"
+                subCode "b"
+                title "Legacy System Integration Procedure"
+                description "This procedure defines the steps for securely integrating legacy systems into
+                    +b Breton Spa's ICS, ensuring compliance with IEC 62443-4-1. It includes risk
+                    +b assessment, network segmentation, and compensatory control implementation."
+                [ steps
+                    {
+                        step 1
+                        action "Document the legacy system's capabilities and limitations, including
+                            +b unsupported security features."
+                        tools "System documentation, vendor manuals."
+                        expected_outcome "A detailed inventory of the legacy system's security posture."
+                    {
+                        step 2
+                        action "Assess the risks posed by the legacy system and identify compensatory controls
+                            +b (e.g., network segmentation, secure gateways)."
+                        tools "Risk assessment templates, network segmentation guidelines."
+                        expected_outcome "A risk assessment report with recommended compensatory controls."
+                    {
+                        step 3
+                        action "Implement and validate the compensatory controls, ensuring they mitigate the
+                            +b identified risks."
+                        tools "Network configuration tools (e.g., Cisco Firepower), secure gateway solutions
+                            +b (e.g., Moxa EDR-G9010)."
+                        expected_outcome "A secure integration of the legacy system with documented controls."
+        last_updated "2023-11-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "d) using secure design patterns;"
+        [ policies
+            {
+                code "SD-4"
+                subCode "d)"
+                title "Secure Communication Pattern Implementation"
+                description "This policy mandates the use of encrypted communication patterns for all field
+                    +b device communications, as per IEC 62443-4-1 SD-4 subCode d. It applies to all
+                    +b Breton Spa machines supporting protocols like OPC UA, PROFINET, and
+                    +b EtherNet/IP, ensuring data confidentiality and integrity. The policy aligns
+                    +b with the secure design principle of defense-in-depth by implementing
+                    +b protocol-level security."
+                enforcement "Quarterly protocol configuration audits using Wireshark with industrial
+                    +b protocol dissectors to verify encryption. Automated checks via SCADA security
+                    +b modules for TLS handshake validation."
+            {
+                code "SD-4"
+                subCode "d)"
+                title "Hardware-Based Secure Boot Enforcement"
+                description "Requires TPM-based secure boot patterns for all control system components in
+                    +b Breton Spa's CNC and polishing machines, fulfilling IEC 62443-4-1 CR3 (System
+                    +b Integrity). Covers PLCs, RTUs, and HMI devices to prevent unauthorized firmware
+                    +b execution. Includes exception handling for legacy devices with compensating
+                    +b controls."
+                enforcement "Pre-production hardware integrity checks using TPM validation tools. Runtime
+                    +b monitoring via centralized logging of boot events with SIEM correlation rules
+                    +b for anomalies."
+            {
+                code "SD-4"
+                subCode "d)"
+                title "Purdue Model Segmentation Compliance"
+                description "Enforces network segmentation patterns following Purdue Model levels 0-3 across
+                    +b all Breton Spa product lines, implementing IEC 62443-4-1 CR5 (Restricted Data
+                    +b Flow). Defines zone conduit requirements for OPC UA and PROFINET traffic
+                    +b between cell/area zones and manufacturing operations."
+                enforcement "Annual network topology reviews using industrial network mapping tools (e.g.,
+                    +b Claroty). Continuous monitoring via industrial IDS/IPS with zone policy
+                    +b violation alerts."
+        [ procedures
+            {
+                code "SD-4"
+                subCode "d)"
+                title "OPC UA Secure Channel Establishment"
+                description "Procedure for implementing OPC UA secure communication patterns on Breton Spa
+                    +b machines, addressing SD-4 subCode d requirements for encrypted data exchange
+                    +b between PLCs and SCADA systems."
+                [ steps
+                    {
+                        step 1
+                        action "Generate X.509 certificates for all endpoints using Breton Spa's PKI
+                            +b infrastructure"
+                        tools "OpenSSL with industrial certificate templates"
+                        expected_outcome "Unique device certificates issued with 2-year validity period"
+                    {
+                        step 2
+                        action "Configure OPC UA stacks to enforce Basic256Sha256 security policy"
+                        tools "UA Expert configuration tool"
+                        expected_outcome "All endpoints reject unencrypted connections and weak algorithms"
+                    {
+                        step 3
+                        action "Implement session timeout of 15 minutes with certificate revalidation"
+                        tools "OPC UA server configuration files"
+                        expected_outcome "Session security logs show periodic reauthentication events"
+            {
+                code "SD-4"
+                subCode "d)"
+                title "Secure Boot Pattern Deployment"
+                description "Step-by-step process for applying hardware-rooted secure boot patterns to
+                    +b Breton Spa's control systems, ensuring compliance with IEC 62443-4-1 system
+                    +b integrity requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Initialize TPM 2.0 chips on all target devices with Breton Spa's endorsement
+                            +b key"
+                        tools "TPM initialization toolkit (e.g., tpm2-tools)"
+                        expected_outcome "TPM status shows valid EK and SRK established"
+                    {
+                        step 2
+                        action "Sign all firmware images using Breton Spa's signing service with RSA-2048 keys"
+                        tools "Automated build system with HSM integration"
+                        expected_outcome ".signed_fw file extension with valid cryptographic signature"
+                    {
+                        step 3
+                        action "Configure bootloaders to verify signatures before execution"
+                        tools "U-Boot with secure boot patches"
+                        expected_outcome "Boot logs show signature validation process"
+            {
+                code "SD-4"
+                subCode "d)"
+                title "Defense-in-Depth Network Zoning"
+                description "Procedure for implementing network segmentation patterns in Breton Spa's
+                    +b industrial environments per IEC 62443-4-1 secure design requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Classify all devices into Purdue Model levels (0-3) based on function"
+                        tools "Asset inventory database with classification fields"
+                        expected_outcome "Network diagram showing color-coded device classification"
+                    {
+                        step 2
+                        action "Configure industrial firewalls between zones with protocol-specific rules"
+                        tools "Cisco IE switches or equivalent with ACL capabilities"
+                        expected_outcome "Traffic flow logs show only permitted inter-zone communications"
+                    {
+                        step 3
+                        action "Implement PROFINET context filtering for cross-zone communications"
+                        tools "PROFINET-aware firewall (e.g., Siemens SCALANCE)"
+                        expected_outcome "Cyclical redundancy check (CRC) validation logs for all PROFINET frames"
+        last_updated "2023-10-15"
+    {
+        practice "3"
+        code "SD-4"
+        subCode "e) attack surface reduction;"
+        [ policies
+            {
+                code "SD-4"
+                subCode "e)"
+                title "Network Segmentation Policy for ICS Components"
+                description "This policy mandates the implementation of network segmentation to isolate
+                    +b critical ICS zones, reducing exposure to potential threats. It aligns with IEC
+                    +b 62443-4-1 SD-4's requirement for attack surface reduction by minimizing
+                    +b unnecessary network access points. The policy applies to all Breton Spa CNC
+                    +b Machining Centers and Stone Cutting Machines, ensuring VLAN separation between
+                    +b HMI networks and enterprise IT."
+                enforcement "Regular network audits using tools like Claroty or Nozomi to verify
+                    +b segmentation integrity. Non-compliance triggers remediation workflows
+                    +b documented in Breton Spa's ICS Security Handbook."
+            {
+                code "SD-4"
+                subCode "e)"
+                title "Physical Port Lockdown Policy"
+                description "Requires disabling unused physical interfaces (USB, serial) on all ICS devices
+                    +b per IEC 62443-4-1 SD-4's attack surface reduction principles. Specifically
+                    +b targets Breton Spa's Polishing Machines and Composite Material Processing Lines
+                    +b where unauthorized peripheral access could compromise precision control
+                    +b systems. References Rockwell Automation's hardened device checklist for
+                    +b implementation standards."
+                enforcement "Quarterly physical inspections combined with device configuration audits using
+                    +b MDM solutions. Violations are logged in the central security information and
+                    +b event management (SIEM) system for corrective action."
+            {
+                code "SD-4"
+                subCode "e)"
+                title "Industrial Protocol Whitelisting Policy"
+                description "Enforces strict protocol filtering controls on all supported industrial
+                    +b networks (PROFINET, EtherNet/IP, etc.) as per IEC 62443-4-1 SD-4 subCode e.
+                    +b Mandates deep packet inspection (DPI) to block non-essential protocols at
+                    +b Breton Spa's perimeter firewalls and field devices. Particularly critical for
+                    +b Metalworking for Precision Parts applications where protocol manipulation could
+                    +b cause tolerance deviations."
+                enforcement "Automated monitoring via Cisco Cyber Vision or equivalent DPI tools. Protocol
+                    +b violations generate immediate alerts to the SOC with escalation procedures
+                    +b defined in Breton Spa's Incident Response Plan."
+        [ procedures
+            {
+                code "SD-4"
+                subCode "e)"
+                title "ICS Service Hardening Procedure"
+                description "Step-by-step process for identifying and disabling unnecessary services across
+                    +b Breton Spa's industrial devices to comply with IEC 62443-4-1 SD-4 attack
+                    +b surface reduction requirements. Covers all machine types from CNC Centers to
+                    +b Composite Lines."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct service enumeration using ICS-aware scanners (Claroty Continuous Threat
+                            +b Detection)"
+                        tools "Claroty CTD, Nmap with ICS NSE scripts"
+                        expected_outcome "Comprehensive inventory of enabled services per device, including protocol
+                            +b versions (e.g., SNMPv1 vs v3)"
+                    {
+                        step 2
+                        action "Cross-reference services with operational requirements from production teams"
+                        tools "Breton Spa's Device Service Registry (DSR) database"
+                        expected_outcome "Approved services list signed off by both security and operations leads"
+                    {
+                        step 3
+                        action "Implement service disablement via device-specific methods (PLC programming,
+                            +b switch CLI)"
+                        tools "TIA Portal for Siemens PLCs, PuTTY for network devices"
+                        expected_outcome "Verification via rescan showing only approved services active, documented in
+                            +b change management system"
+            {
+                code "SD-4"
+                subCode "e)"
+                title "Legacy System Attack Surface Mitigation Procedure"
+                description "Defines compensating controls for legacy ICS components that cannot meet modern
+                    +b security standards, fulfilling IEC 62443-4-1 SD-4's requirement for
+                    +b comprehensive attack surface management. Applies particularly to older PLC
+                    +b models in Breton Spa's stone processing lines."
+                [ steps
+                    {
+                        step 1
+                        action "Create network isolation zones using industrial firewalls (Tofino Xenon)"
+                        tools "Tofino Security Appliance, network topology diagrams"
+                        expected_outcome "Legacy devices placed in dedicated VLANs with restricted communication paths"
+                    {
+                        step 2
+                        action "Implement protocol gateways for legacy-to-modern protocol conversion"
+                        tools "Hilscher netTAP gateways, protocol conversion rulesets"
+                        expected_outcome "Elimination of insecure legacy protocols (e.g., Modbus RTU) from main network
+                            +b segments"
+                    {
+                        step 3
+                        action "Deploy out-of-band monitoring for legacy systems using passive taps"
+                        tools "Nozomi Networks Guardian, SPAN port configurations"
+                        expected_outcome "Continuous anomaly detection without impacting legacy device operation"
+            {
+                code "SD-4"
+                subCode "e)"
+                title "Secure Remote Access Implementation Procedure"
+                description "Details the secure configuration of remote maintenance access points for Breton
+                    +b Spa equipment, reducing attack surface while maintaining operational
+                    +b requirements per IEC 62443-4-1 SD-4. Covers all machines with Secure Remote
+                    +b Access feature."
+                [ steps
+                    {
+                        step 1
+                        action "Configure jump hosts with MFA in the DMZ for all remote connections"
+                        tools "Duo Security for MFA, Bastion host configurations"
+                        expected_outcome "Elimination of direct device access from external networks"
+                    {
+                        step 2
+                        action "Implement session recording and command logging for all remote activities"
+                        tools "CyberArk Core Privileged Access Management, session logs"
+                        expected_outcome "Auditable records of all remote maintenance actions with technician attribution"
+                    {
+                        step 3
+                        action "Establish time-bound access windows aligned with maintenance schedules"
+                        tools "Breton Spa's Maintenance Planning System, firewall rule scheduler"
+                        expected_outcome "Automatic termination of remote access outside approved time periods"
+        last_updated "2023-10-15"

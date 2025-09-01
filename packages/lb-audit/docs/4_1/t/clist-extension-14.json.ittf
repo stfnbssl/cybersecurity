@@ -1,0 +1,248 @@
+$group
+    {
+        practice "4"
+        code "SI-1"
+        name "Security implementation review"
+        sub "a) identification of security requirements that were not adequately addressed
+            +b by the implementation;"
+        check_description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: a)
+            +b identification of security requirements that were not adequately addressed by
+            +b the implementation;"
+        requirement_id "SI-1.a"
+        title "Identification of Unaddressed Security Requirements in Implementation"
+        description "This requirement focuses on evaluating the implementation of a system to
+            +b identify any security requirements that have not been adequately addressed. The
+            +b goal is to ensure that the implementation aligns with predefined security
+            +b requirements, mitigating potential vulnerabilities and enhancing the overall
+            +b security posture of the industrial control system."
+        [ key_aspects
+            "Conduct a thorough review of the implemented system against the predefined security requirements."
+            "Identify any gaps where the implementation does not meet the specified security requirements."
+            "Document and analyze the potential risks associated with unaddressed security requirements."
+            "Develop a plan to address the identified gaps, ensuring that all security requirements are adequately met."
+        { related_standards
+            { "ISO/IEC 27001"
+                title "Information Security Management Systems"
+                [ references
+                    "A.12.1.1 - Documented operating procedures"
+                    "A.18.2.2 - Compliance with security policies and standards"
+                description "ISO/IEC 27001 provides a framework for establishing, implementing, maintaining,
+                    +b and continually improving an information security management system. It
+                    +b emphasizes the importance of reviewing and ensuring compliance with security
+                    +b policies and standards."
+            { "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                [ references
+                    "CA-2 - Security Assessments"
+                    "SA-11 - Developer Security Testing and Evaluation"
+                description "NIST SP 800-53 outlines a set of controls for federal information systems,
+                    +b emphasizing security assessments and developer security testing to ensure
+                    +b adequate security implementation and compliance."
+            { "IEC 62443-3-3"
+                title "System Security Requirements and Security Levels"
+                [ references
+                    "SR 3.1 - Security Requirement Specification"
+                    "SR 3.2 - Security Functional Requirements"
+                description "IEC 62443-3-3 provides detailed system security requirements and guidance on
+                    +b achieving different security levels, which are essential for ensuring that
+                    +b implementations meet security expectations."
+    {
+        practice "4"
+        code "SI-1"
+        name "Security implementation review"
+        sub "b) identification of secure coding standards that were not followed;"
+        check_description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: b)
+            +b identification of secure coding standards that were not followed;"
+        requirement_id "SI-1-b"
+        title "Identification of Secure Coding Standards Not Followed"
+        description "This requirement emphasizes the necessity of identifying instances where secure
+            +b coding standards have not been adhered to during the software development
+            +b lifecycle. It is crucial to ensure that all security measures are implemented
+            +b consistently to safeguard industrial control systems."
+        [ key_aspects
+            "Conducting a comprehensive review of the codebase to pinpoint deviations from established secure coding guidelines."
+            "Utilizing automated tools and manual code reviews to effectively identify non-compliance with secure coding practices."
+            "Documenting instances of non-compliance and assessing their potential impact on system security."
+            "Implementing corrective actions to align the code with secure coding standards and mitigate identified risks."
+        [ related_standards
+            {
+                standard "ISO/IEC 27034-1:2011"
+                description "This standard provides guidelines for ensuring that application security is an
+                    +b integral part of the software development process. It emphasizes the importance
+                    +b of adhering to secure coding practices to minimize vulnerabilities."
+            {
+                standard "OWASP Secure Coding Practices Quick Reference Guide"
+                description "This guide offers a set of secure coding practices that focus on common
+                    +b software security issues. It provides practical advice on avoiding common
+                    +b vulnerabilities through proper coding techniques."
+            {
+                standard "NIST SP 800-53 Revision 5"
+                description "This publication from the National Institute of Standards and Technology
+                    +b includes controls related to software development and outlines requirements for
+                    +b secure coding and vulnerability management."
+            {
+                standard "CERT Secure Coding Standards"
+                description "These standards provide a comprehensive set of rules for secure coding across
+                    +b various programming languages, helping developers avoid common coding errors
+                    +b that could lead to security vulnerabilities."
+    {
+        practice "4"
+        code "SI-1"
+        name "Security implementation review"
+        sub "c) Static Code Analysis (SCA) for source code to determine security coding
+            +b errors such as buffer overflows, null pointer dereferencing, etc. using the
+            +b secure coding standard for the supported programming language. SCA shall be
+            +b done using a tool if one is available for the language used. In addition,
+            +b static code analysis shall be done on all source code changes including new
+            +b source code."
+        check_description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: c) Static
+            +b Code Analysis (SCA) for source code to determine security coding errors such as
+            +b buffer overflows, null pointer dereferencing, etc. using the secure coding
+            +b standard for the supported programming language. SCA shall be done using a tool
+            +b if one is available for the language used. In addition, static code analysis
+            +b shall be done on all source code changes including new source code."
+        requirement_id "SI-1-c"
+        title "Static Code Analysis for Security"
+        description "This requirement mandates conducting static code analysis (SCA) on source code
+            +b to identify security coding errors such as buffer overflows and null pointer
+            +b dereferencing. The analysis should adhere to a secure coding standard
+            +b corresponding to the programming language used. The use of an automated tool
+            +b for SCA is required if available, and the analysis must be applied to all new
+            +b and modified source code."
+        { key_aspects
+            purpose "To identify and mitigate potential security vulnerabilities in the source code."
+            scope "All source code, including new and modified code."
+            methods "Utilization of static code analysis tools to automate the detection of security
+                +b issues."
+            "secure coding standards" "Adherence to recognized secure coding standards for the specific programming
+                +b language used (e.g., CERT C, MISRA C for C/C++)."
+            automation "Emphasis on using available tools to ensure comprehensive and efficient
+                +b analysis."
+        { related_standards
+            "ISO/IEC 27034-1" "This standard provides guidelines on application security and emphasizes secure
+                +b software development processes, including the use of static analysis tools."
+            "OWASP ASVS ${'('}Application Security Verification Standard)" "While not a direct match, ASVS includes requirements for verifying application
+                +b security, which can complement SCA practices."
+            "CERT Secure Coding Standards" "These are language-specific guidelines (e.g., CERT C, CERT Java) that provide
+                +b best practices for avoiding security vulnerabilities in code."
+            "MISRA C" "A set of software development guidelines for the C programming language, widely
+                +b used in safety-critical industries, focusing on writing secure and portable
+                +b code."
+    {
+        practice "4"
+        code "SI-1"
+        name "Security implementation review"
+        sub "d) review of the implementation and its traceability to the security
+            +b capabilities defined to support the security design; and"
+        check_description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: d) review of
+            +b the implementation and its traceability to the security capabilities defined to
+            +b support the security design; and"
+        requirement_id "IEC 62443-4-1:SI-1:d"
+        title "Security Implementation Review - Traceability to Security Capabilities"
+        description "This requirement emphasizes the need for a comprehensive review of the security
+            +b implementation to ensure it accurately reflects the security capabilities
+            +b defined during the design phase. The review should establish clear traceability
+            +b between the implemented security measures and the initially defined security
+            +b capabilities, ensuring that all security objectives are met."
+        [ key_aspects
+            "Traceability: Establish a clear linkage between security capabilities defined in the design phase and their implementation, ensuring that every security requirement is addressed."
+            "Verification: Ensure that the implemented security measures satisfy the design requirements and objectives."
+            "Documentation: Maintain detailed records and documentation that demonstrate the traceability and effectiveness of the security implementation."
+            "Consistency: Ensure that the security measures implemented are consistent with the design specifications and cover all identified security capabilities."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27001:2013"
+                title "Information Security Management Systems"
+                [ related_topics
+                    {
+                        control_id "A.12.1.2"
+                        title "Change Management"
+                        description "Ensures that changes to the organization, business processes, information
+                            +b processing facilities, and systems that affect information security are
+                            +b controlled."
+                    {
+                        control_id "A.18.2.3"
+                        title "Technical Compliance Review"
+                        description "Regular review of the organization’s compliance with applicable security
+                            +b policies and standards."
+            {
+                standard_id "NIST SP 800-53"
+                title "Security and Privacy Controls for Federal Information Systems and Organizations"
+                [ related_topics
+                    {
+                        control_id "CA-2"
+                        title "Security Assessments"
+                        description "Conducts assessments of the security controls to determine their effectiveness
+                            +b in meeting security requirements."
+                    {
+                        control_id "SA-11"
+                        title "Developer Security Testing and Evaluation"
+                        description "Requires the developer to create a traceability matrix to ensure that every
+                            +b security requirement is implemented."
+    {
+        practice "4"
+        code "SI-1"
+        name "Security implementation review"
+        sub "e) examination of threats and their ability to exploit implementation
+            +b interfaces, trust boundaries and assets."
+        check_description "A process shall be employed to ensure that implementation reviews are performed
+            +b for identifying, characterizing and tracking to closure security-related issues
+            +b associated with the implementation of the secure design including: e)
+            +b examination of threats and their ability to exploit implementation interfaces,
+            +b trust boundaries and assets."
+        requirement_id "IEC 62443-4-1:SI-1-e"
+        title "Examination of Threats and Their Ability to Exploit Implementation Interfaces,
+            +b Trust Boundaries, and Assets"
+        description "This requirement involves a thorough review of potential threats targeting the
+            +b implementation interfaces, trust boundaries, and assets within an industrial
+            +b control system. The focus is to identify how threats may leverage these
+            +b elements to compromise the system's security, ensuring that vulnerabilities are
+            +b addressed during the secure implementation phase."
+        [ key_aspects
+            {
+                aspect "Implementation Interfaces"
+                details "Analyzing the interfaces between different components within the system to
+                    +b ensure they do not introduce vulnerabilities that could be exploited by
+                    +b external or internal threats."
+            {
+                aspect "Trust Boundaries"
+                details "Identifying and securing the boundaries between trusted and untrusted
+                    +b components or networks to prevent unauthorized access and data breaches."
+            {
+                aspect "Assets"
+                details "Assessing the value and criticality of assets to understand the potential
+                    +b impact of threats and prioritize security measures accordingly."
+            {
+                aspect "Threat Analysis"
+                details "Conducting a comprehensive threat analysis that considers the most likely and
+                    +b impactful threat vectors targeting the implementation interfaces, trust
+                    +b boundaries, and assets."
+        [ related_standards
+            {
+                standard "NIST SP 800-53"
+                reference "CA-8 - Penetration Testing"
+                details "Mandates penetration testing to identify weaknesses in the system's security
+                    +b posture, relevant to understanding how threats could exploit vulnerabilities."
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.6.1 - Control of Technical Vulnerabilities"
+                details "Addresses the management of technical vulnerabilities to ensure that threats
+                    +b are identified and mitigated effectively."
+            {
+                standard "OWASP ASVS"
+                reference "V12 - Business Logic Verification Requirements"
+                details "Focuses on the verification of business logic and interfaces, ensuring they are
+                    +b not susceptible to manipulation by threats."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 3.1 - Communication Integrity"
+                details "Ensures the integrity of communications across interfaces, which is crucial in
+                    +b mitigating the risk of exploitation by threats."

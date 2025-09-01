@@ -1,0 +1,63 @@
+ittf
+
+    $
+        var step_name = 'product_supplier.step_1';
+        var x_options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.product_supplier_ai_step_1, null, null),
+        }        
+        // var provider = 'chatGPT';
+        // var provider = 'deepSeek';
+        var provider = 'grok';
+        var maxNumInBatch = 2;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $foreach aiItem in wzCtx.root_prompts.product_supplier_search.items
+        $ _.log('----> ', step_name, 'aiItem.location', aiItem.location);
+        $if count > maxNumInBatch
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [aiItem]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(aiItem);
+                count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/product_supplier/ai_step_1_in/batch-${batch.id}.ai.ittf
+    
+            ai ${step_name}
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                    $
+                        var options = {
+                            provider: provider,
+                            id: batchItem.location,
+                            inputJSON: batchItem,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_options.step_1_JSONSchema,
+                            product_supplier_JSON: null, // not used
+                        }
+                    ia-step-1-item(&options)
+
+    $file .wizzi-override/docs/product_supplier/ai_step_1_out/index.json.ittf
+        {
+            [ items
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

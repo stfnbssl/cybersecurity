@@ -1,0 +1,1275 @@
+{
+    $*
+    1 Scope
+    This part of IEC 62443 speci fies process requirements for the secure development of products used in industrial automation and control systems. it defines a secure development life-cycle (SDL) for the purpose of developing and maintain ing secure products. this life-cycle includes security requirements definition, secure design, secure implementation (including coding guidelines), verification and validation, defect management, patch management and product end -of- life. These requirements can be applied to new or existing processes for developing, maintain ing and reti ring hardware, software or firmware for new or existing products. These requirements apply to the developer and maintainer of the product, but not to the integrator or user of the product. A summary list of the requirements in this document can be found in Annex B.
+    2 Normative references
+    The following documents are referred to in the text in such a way that some or all of their content consti tu tes requirements of this document. For dated references, only the ed iti on ci ted applies. For undated references, the latest ed ition of the referenced document (including any amendments) applies.
+    IEC 62443-2-4: 201 5, Security for industrial automation and control systems – Part 2-4: Security program requirements for IACS service providers
+    IEC 62443-2-4: 201 5/AMD1:201 7
+    3 Terms, definitions, abbreviated terms, acronyms and conventions
+    3. 1 Terms and definitions
+    For the purposes of this document, the terms and definitions g i ven in I EC TR 62443-1 -2 2 and the following apply.
+    I SO and I EC main ta interm inolog ical databases for use in standard ization at the following addresses:
+    •
+    I EC E lectroped ia: avai lab le at h ttp: //www.electroped ia.org /
+    •
+    I SO On l ine browsing p latform: available at h ttp: //www. iso. org/obp
+    3. 1. 1 abuse case
+    test case used to perform negative operations of a use case
+    Note 1 to entry: Abuse case tests are s imu lated attacks often based on the threat model. An abuse case is a type of complete interaction between a system and one or more actors where the results of the interaction are in ten ti onally intended to be harmfu l to the system, one of the actors or one of the stakeholders in the system.
+    ___________
+    2 Under consideration.
+    – 1 2 – IEC 62443-4-1: 201 8 © I EC 201 8
+    3. 1.2 access control <protection> protection of system resources against unauthorized access
+    3. 1.3 access control <process> process by which use of system resources is regu lated according to a security policy and is permitted by only authorized users according to that policy
+    Note 1 to entry: Access control includes identification and authenti cation requirements specified in other parts of the IEC 62443 series.
+    3. 1.4 admin istrator
+    user who has been authorized to manage security policies/capabilities for a product or system
+    3. 1.5 asset physical or logical object owned by or under the custodial duties of an organization, having either a perceived or actual value to the organization
+    Note 1 to entry: in this specific case, an asset is an object that is part of an I ACS.
+    3. 1.6 asset owner
+    individual or organization responsible for one or more I ACSs
+    3. 1.7 attack surface physical and functional interfaces of a system that can be accessed and, therefore, potentially exploited by an attacker
+    3. 1.8 audit log even t l og that requires a higher level of integrity protection than provided by typical event l ogs
+    Note 1 to entry: Aud it l ogs are used to protect aga inst cl a ims that repud i ate responsibility for an action.
+    3. 1.9 authentication
+    provis ion of assurance that a cla imed characteristi c of an i denti ty is correct
+    Note 1 to entry: Not all credential s used to authenti cate an i denti ty are created equally. The trustworth iness of the credenti al is d eterm ined by the confi gu red authen ti cation mechanism. Hardware or software-based mechanisms can force users to prove their identi ty before accessing data on a d evice. A typical example is proving the i d en ti ty of a user usually th rough an i d en ti ty provi der.
+    Note 2 to entry: authen ti cation includes verifying human u sers as well as non -human users such as devices or processes.
+    3. 1. 1 0 automation solution control system and any complementary hardware and software components that have been install ed and configured to operate in an I ACS
+    Note 1 to entry: Au tomation Solu ti on is used as a proper noun in this part of the IEC 62443 series.
+    Note 2 to entry: The difference between the control system and the Automation Sol u ti on is that the control system is i ncorporated in to the Automation Solu ti on design (for example, a specific number of workstations, control l ers and devices in a specific confi guration), which is then implemented. The resulting confi gu ration is referred to as the Au tomation Solu ti on.
+    IEC 62443-4-1: 201 8 © I EC 201 8 – 1 3 –
+    Note 3 to entry: The Au tomation Sol u ti on can be comprised of components from multiple suppliers including the product supplier of the control system.
+    3. 1. 1 1 banned function software method that is no longer recommended to be used in software because more secure versions exist with less propensity for misuse
+    Note 1 to entry: Banned functions are sometimes call ed banned methods or banned Appl i cation Programming interfaces (API s).
+    3. 1. 1 2 best practices guidelines for securely design ing, developing, testing, main ta in ing or reti ring products that the supplier has determined are commonl y recommended by both the security and industrial automation commun ities
+    EXAMPLE Least privilege, economy of mechanism and l east common mechanism.
+    3. 1. 1 3 component
+    one of the parts that make up a product or system
+    Note 1 to entry: A component may be hardware or software and may be subd ivi ded in to other components.
+    3. 1. 1 4 configuration management discipl ine of identifying the components of an evolving system for the purposes of control l ing changes to those components and maintain ing conti nu ity and traceability throughou t the life-cycle
+    3. 1. 1 5 defense in depth approach to defend the system against any particular attack using several independent methods
+    Note 1 to entry: Defense in d epth impl i es layers of security and detecti on, even on single systems, and provi des the following features:
+    •
+    i s based on the i dea that any one layer of protecti on, may and probably will be defeated;
+    •
+    a ttackers are faced with breaking through or bypassing each layer without being detected;
+    •
+    a fl aw in one layer can be mitigated by capabilities in other layers;
+    •
+    system security becomes a set of layers within the overall network security; and
+    •
+    each layer shou ld be au tonomous and not re l y on the same functional ity nor have the same failure modes as the other layers.
+    3. 1. 1 6 dependent component
+    component external to the product on which the product depends
+    EXAMPLE J ava run time environment or a d ri ver
+    Note 1 to entry: this includes both hardware and software.
+    3. 1. 1 7 deprecated function
+    software method that is supported but whose use is no longer recommended
+    Note 1 to entry: Methods are generally deprecated before becom ing obsol ete (del eted from the set of functions provi ded by the supplier of the function). Deprecated functions are sometimes call ed deprecated methods or deprecated API s.
+    – 1 4 – IEC 62443-4-1: 201 8 © I EC 201 8
+    3. 1. 1 8 externally provided component component included in a product that is developed by an external organization and is not developed specifically for one supplier
+    Note 1 to entry: Examples include pu rchased software and open source software.
+    3. 1. 1 9 fuzz testing process of creating mal formed or unexpected data or call sequences to be consumed by the en ti ty under test to verify that they are hand led appropriate l y
+    3. 1.20 industrial automation and control system collection of personnel, hardware, software, procedures and policies involved in the operation of the industrial process and that can affect or in fl uence its safe, secure and re l iable operation
+    Note 1 to entry: The I ACS can include components that are not install ed at the asset owner’ s site.
+    Note 2 to entry: The defi n iti on of I ACS was taken from in IEC 62443-3-3 [1 0] and is illustrated in F i gu re 2.
+    3. 1.21 patch management area of systems management that involves acquiring, testing and install ing software patches (code changes) to a product
+    Note 1 to entry: See I EC TR 62443-2-3 [7] for additional in formation.
+    Note 2 to entry: Patch management also applies to the process of keeping included 3 rd party libraries current
+    before releasing a product.
+    3. 1.22 product system, subsystem or component that is manufactured, developed or refi ned for use by other products
+    Note 1 to entry: The processes required by the practi ces defi ned in this document apply iterati vely to all levels of product design (for example, from the system level to the component level).
+    3. 1.23 product security context security provided to the product by the environment (asset owner deployment) in which the product is intended to be used
+    Note 1 to entry: The security provided to the product by its intended environment can effecti ve ly restri ct the threats that are appl i cable to the product.
+    3. 1.24 product supplier
+    manufacturer of hardware and /or software product
+    Note 1 to entry: The product supplier includes the en ti ty responsi ble for d eveloping and maintain ing a product which can include more than j u st the manufacturer (for example, integrator).
+    3. 1.25 product users users of the hardware and /or software product including asset owners, integrators and maintenance personnel, vendors of other components or products that reuse or contain this product
+    IEC 62443-4-1: 201 8 © I EC 201 8 – 1 5 –
+    3. 1.26 record document s tating results ach ieved or providing evidence of activiti es performed
+    Note 1 to entry: The term artefact is often used to have the same mean ing.
+    3. 1.27 regression change to a system component that has adversel y affected functional ity, re l i ability or performance or has introduced additional defects
+    3. 1.28 root cause in itiating cause of either a cond ition or a causal chain that leads to an ou tcome or effect of interest
+    Note 1 to entry: These weaknesses often result from m isappl i cation of best practi ces.
+    3. 1.29 security defect design or implementation deficiency that can be exploited to comprom ise an asset or resource
+    3. 1.30 security advisor
+    organizational role to guide team in the process of the SDL (security Development life-cycle)
+    Note 1 to entry: Security advisor may be part of the project team or may be consultant to the team to provi de guidance and assi stance where required.
+    3. 1.31 security i ncident security comprom ise that is of some significance to the asset owner or fa i led attempt to comprom ise the system whose result could have been of some sign i fi cance to the asset owner
+    Note 1 to entry: The term “near m iss” is sometimes used to descri be an event that could have been an i ncident under s l i gh tl y different ci rcumstances.
+    3. 1.32 security-related issue characteristic of the design or implementation of the product that can potentially affect the security of the product
+    3. 1.33 security verification and validation testing testing performed to assess the overall security of a component, product or system when used in its intended product security context and to determine if a component, product or system satisfies the product security requirements and satisfies its designed security purpose
+    Note 1 to entry: Security verification testing suppl ements security validation testing with additional testing focused on the product security context and defense in d epth strategy.
+    3. 1.34 system integrator person or company that specializes in bring ing together component subsystems in to a whole and ensuring that those subsystems perform in accordance with project specifications
+    3. 1.35 third party supplier
+    organization independent of the product supplier organization
+    – 1 6 – IEC 62443-4-1: 201 8 © I EC 201 8
+    3. 1.36 threat circumstance or event with the potential to adversel y affect operations (including m iss ion, functions, image or reputation), assets, control systems or individuals via unauthorized access, destruction, disclosure, modification of data and /or den ial of service
+    3. 1.37 threat modelling
+    security design analysis technique that identifies potential security issues
+    Note 1 to entry: Th reat models are often synonymous with attack trees and are used by software and hardware architects to identify and mitigate potential security issues earl y, when they are re l ati vely easy and cost-effecti ve to resol ve.
+    3. 1.38 trust boundary element of a threat model that depicts a boundary where authentication is required or a change in trust level occurs (higher to l ower or vi ce versa)
+    Note 1 to entry: Trust boundary en forcement mechanisms for product users typically include authenti cation (for example, challenge/response, passwords, b iometri cs or d i g ita l signatures) and associated authorization (for example, access control ru l es).
+    Note 2 to entry: Trust boundary enforcement mechanisms for data typi cally include source authen ti cation (for example, message authenti cation codes and d i g ita l signatures) and /or conten t validation.
+    3. 1.39 un it testing
+    verification that an individual u n it of computer software or hardware performs as intended
+    Note 1 to entry: Au tomated verification, or testing, is generally performed by computer test software.
+    Note 2 to entry: What consti tu tes a un it of sou rce code is a design decis ion. A un it is often designed as the smal l est testable part of an appl i cation. it may include one or more computer prog ram modu les and may also include associated contro l data, usage procedu res and operating procedu res. in procedural prog ramm ing, a un it could be an en ti re modu l e, but is more common ly an i nd i vi dual function or procedure. in object-orien ted programming, a un it is often an en ti re interface, such as a cl ass, but could be an in d i vi dual method.
+    3. 1.40 user person, organization enti ty, or automated process that accesses a system, whether authorized to do so or not
+    3. 1.41 zone collection of en ti ti es that represents parti tion ing of a System under Consideration on the bas is their functional, logical and physical (including l ocation) relationsh ip
+    Note 1 to entry: Zones are often created on the bas is of common security requirements, critical ity (e. g., h i gh fi nancia l, heal th, safety, or environmental impact), functional ity, logical or physical (including l ocation) relationsh i p
+    3.2 Abbreviated terms and acronyms
+    The following abbreviated terms and acronyms are used in this document.
+    ACL Access control list
+    CMMI Capability maturi ty model integration
+    CMMI -DEV Capability maturi ty model integration for development
+    CMU Carneg ie Mel l on Un ivers ity
+    COTS Commercial off the shelf
+    CVSS Common vulnerability scoring system
+    IEC 62443-4-1: 201 8 © I EC 201 8 – 1 7 –
+    DM Defect management
+    e. g. exempl i g ratia
+    FDIS F inal Draft international Standard
+    HTTP Hypertext transfer protocol
+    IACS I ndustrial automation and control system(s)
+    I EC international E lectrotechnical Commission
+    I SA international Society of Automation
+    I SO international Organization for Standard ization
+    M IN M in imum
+    OWASP Open Web application security Project
+    SL-C Capability security Level
+    SCA Static code analysis
+    SD Secure design
+    SDL security development life-cycle
+    SDLA Secure Development life-Cycle Assessment
+    SEI Software Eng ineering I nsti tu te
+    SG security guidelines
+    SI Secure implementation
+    SM security management
+    SR security requirements
+    STRIDE Spoofing, Tampering, Repud iation, in formation disclosure, Den ia l of service, E levation of privilege
+    SVV security verification and validation
+    TCP Transm ission control protocol
+    TCP/I P Transm ission control protocol /I n ternet protocol
+    TR Techn ical report
+    USB Un iversal seria l bus
+    3.3 Conventions
+    Requirements defined in this document generally beg in with the phrase “A process shall be employed… ”. this term inology is used to speci fy that the required processes have to be part of the product suppliers documented product development life-cycle processes. The practice of these requirements is dependent on the product supplier having product development projects that require the use of these processes.
+    According to 5. 5, products requiring the use of these processes shall be identified.
+    4 General principles
+    4.1 Concepts
+    The primary goal of these requirements is to provide a framework to address a secure by design, defense in depth approach to design ing, build ing, maintain ing and reti ring products used in industrial automation and control products and systems. application of the framework is intended to provide confidence that the component, product or system has security commensurate with its expected level of risk throughou t the product’s life-cycle. whi le the concept of security levels is not discussed in this document, complying with this document
+    – 1 8 – IEC 62443-4-1: 201 8 © I EC 201 8
+    will he lp ensure that the security capabilities implemented in the product (see IEC 62443-4-2 3 [1 1 ]) will be implemented correctl y and that any known security vulnerabilities in the product are e l im inated or mitigated. Therefore, compliance with this document supports meeting the overall capability security level (SL-C) of the product.
+    The secondary goal of these requirements is to align the development process with the e levated security needs of product users of I ndustrial Automation and Control Systems (for example, providers of IEC 62443-2-4 capabilities such as integrators and maintenance con tractors). this means that the process needs to generate items such as well -documented security configurations and patch management policies and procedures, as well as providing clear and succinct commun ications about security vulnerabilities uncovered in the product.
+    NOTE 1 For I ACS, IEC 62443-3-2 4 [9] descri bes requirements for determining the expected level of risk associated with the system ’s zones and condu its.
+    Figure 3 illustrates how secure by design principles in this document con tribu te to a defense in depth strategy for the product. The security management practice is shown on the ou termost ci rcle because it is applied throughout al l the other practices to ensure that the practices are being followed and managed. The other practices, shown on the second ci rcle are applied throughou t the development life-cycle, often in an iterative pattern. These practices each con tribute to the overall defense in depth strategy which is shown as the cen ter of the ci rcle because it represents the key result of following the security development life-cycle. The defect management and security update management provide verifi ed repai rs to the secure implementation, and fall under the category of overall security management in the d iagram.
+    Figure 3 – Defence in depth strategy is a key ph i losophy of the secure product life-cycle
+    A key concept used th roughou t this document is the use of threat modelling. design and implementation reviews to refine work products improve the security posture of a product. Reviews of any work product (for example, requirements, design records, implemented
+    ___________
+    3 Under preparation. stage at the time of publ i cation: I EC/CDV 62443-4-2: 201 7.
+    4 Under preparation. stage at the time of publ i cation: I EC/CDV 62443-3-2: 201 7.
+    IEC
+    IEC 62443-4-1: 201 8 © I EC 201 8 – 1 9 –
+    modu les and verification/validation testing) through any means (for example, manual, automated or a combination) are used to discover security-related issues in the product. An impact analysis of each discovered issue assesses its security severity based on its potential comprom ise (for example, availability, integrity and confidential ity) and its associated losses (for example, control of the process, view of the process and in te l lectual property). Then, the resolution process determines the most appropriate course of action based on the issue’s severity and the su itability of various response options.
+    4.2 Maturi ty model
+    There is a range of methods by which a product supplier could comply with the requirements specified in this document. The maturi ty model sets benchmarks for meeting these requirements.
+    These benchmarks are defined by maturi ty levels as shown in Table 1. The maturi ty levels are based on the Capability Maturi ty Model integration (CMMI) for Development (CMMI -DEV) model [42]. Table 1 shows the relationsh ip to the CMMI -DEV in the description column.
+    Maturi ty levels provide more details on how thorough l y a supplier has met these requirements. Therefore, these levels can be used by system integrators and asset owners to assess the level of ri gor used to develop products.
+    The purpose of the maturi ty levels described in this subclause is to provide an organization a benchmark to defi ne their read iness to use their processes and procedures to design and implement a secure product. Us ing these benchmarks, it is possible that an organization will discover that it is not ready to implement all requirements to the same level of maturi ty.
+    When design ing, and implementing a secure product according to this document (see IEC 62443-4-2 and IEC 62443-3-3), all applicable requirements as defined by SM-5 in this document shall be followed and used in the development lifecycle of that product regard less of the maturi ty level of the organization. SM-5 provides for case-by-case exceptions for applicability of requirements.
+    NOTE 1 I ndustry g roups/sectors identify/sel ect those maturi ty levels that best meet their in d ivi dual needs.
+    NOTE 2 it is intended that over time and for a specific requirement, a product supplier’ s development capabilities will evolve to h i gher levels as it gai ns profi ciency in meeting the requirement. The rate of evol u ti on will often vary for each requirement. For example, a product supplier m ight reach Level 4 for Practi ce 6 months or years before they reach Leve l 4 for Practi ce 5.
+    NOTE 3 These maturi ty levels have been defi ned as a way for organ i zations to measure and report their compliance to this document. this model will allow organ i zations to evol ve to h i gher (more mature) levels of capabilities for their processes.
+    NOTE 4 Measu rement driven conti nuous improvement is vital for improving the maturi ty level of a product supplier for each practi ce in this document. in addition, s i nce best practi ces for secure product deve lopment are evolving, product suppliers need to seek ou t and implement new best practi ces.
+    – 20 – IEC 62443-4-1: 201 8 © I EC 201 8
+    Table 1 – Maturi ty levels
+    Level CMMI -DEV IEC 62443-4-1 IEC 62443-4-1 Description
+    1 in iti a l in iti a l Product suppliers typically perform product devel opment in an ad -hoc and often undocumented (or not fully documented) manner. As a result, consistency across projects and repeatability of processes may not be poss ible.
+    2 Managed Managed At this level, the product supplier has the capability to manage the development of a product according to wri tten pol i cies (including objecti ves). The product supplier also has evidence to show that personnel who will perform the process have the expertise, are trained and /or follow wri tten procedu res to perform it.
+    However, at this level, the organization does not have experience developing products to all of the wri tten pol i cies. this wou l d be the case when the organ i zation has updated its procedures to conform to this document, but has not yet pu t all of the procedu res in to actual practi ce, yet.
+    The development d i scip line refl ected by maturi ty level 2 helps to ensure that devel opment practi ces are repeatable, even d uring times of stress. When these practi ces are in place, their execution will be performed and managed according to their documented p l ans.
+    NOTE At this level, the CMMI and IEC 62443-4-1 maturi ty models are fundamentally the same, with the excepti on that IEC 62443-4-1 recogn i zes that there may be a significant d elay between defi n ing /formal i zing a process and executing (practi cing) it. Therefore, the execution related aspects of the CMMI -DEV Level 2 are deferred to Level 3.
+    3 Defi ned Defi ned (Practi ced)
+    The performance of a level 3 product supplier can be shown to be repeatable across the supplier’ s organ i zation. The processes have been practi ced, and evidence exi sts to demonstrate that this has occurred.
+    NOTE At this level, the CMMI and IEC 62443-4-1 maturi ty models are fundamentally the same, with the excepti on that the execution re l ated aspects of the CMMI -DEV level 2 are included here. Therefore, a process at level 3 is a level 2 process that the supplier has practi ced for at l east one product.
+    4 Quanti tatively Managed
+    Improving At this level, Part 4-1 combines CMMI -DEV levels 4 and 5. U s ing su itable process metri cs, product suppliers control the effecti veness and performance of the product and demonstrate conti nuous improvement in these areas. 5 Optim izing
+    *$0
+    [ practices
+        {
+            name "Security management"
+            page 20
+            purpose "The purpose of the security management practice is to ensure that the security-related activities are adequately planned, documented and executed 
+                +b throughout the product’s life-cycle.
+                +b If care is not taken in planning and supporting the activities related to security, then those activities can be rendered ineffective due to inadequate resources, 
+                +b insufficient time or process inefficiencies. Similarly, misalignment of the product’s security needs with related organizational processes such as 
+                +b configuration management, in formation technology policies and procedures and supply chain management can jeopardize the effectiveness of 
+                +b the secure product development life-cycle."
+            page 21
+            [ requirements
+                {
+                    clause "5.2"
+                    code "SM-1"
+                    name "Development process"
+                    page 21
+                    requirement "A general product development/maintenance/support process shall be documented and enforced that is consistent and integrated with 
+                        +b commonly accepted product development processes that include, but are not limited to:
+                        +b a) configuration management with change controls and audit logging;
+                        +b b) product description and requirements definition with requirements traceability;
+                        +b c) software or hardware design and implementation practices, such as modular design;
+                        +b d) repeatable testing verification and validation process;
+                        +b e) review and approval of all development process records; and
+                        +b f) life-cycle support."
+                    rationale "This process is required to ensure that the product supplier has well-defined and proven product development processes in place 
+                        +b that can be extended to support the requirements specified by this document. The required processes defined by this document assume 
+                        +b the existence of a mature product development life-cycle. Secure product development life-cycles cannot be effective without these processes 
+                        +b and rely upon them being in place. Examples of commonly accepted product development processes include ISO 9001 [13] and ISO/IEC 27034 [34] compliant processes.
+                        +b Having this process means that the product supplier uses techniques during the product development life-cycle that support, as a minimum, 
+                        +b configuration management, requirements definition, design, implementation and testing.
+                {
+                    clause "5.4"
+                    code "SM-2"
+                    name "Identification of responsibilities"
+                    page 21
+                    requirement "A process shall be employed that identifies the organizational roles and personnel responsible 
+                        +b for each of the processes required by this document."
+                    rationale "This process is required to ensure that responsibilities are assigned to elements of the product supplier's organization 
+                        +b for performing and completing the processes required by this document.
+                        +b Having this process means that the product supplier's development, maintenance and product support processes 
+                        +b required by this document each identify the organizational roles and personnel that are responsible 
+                        +b for performing and completing them. The organization and personnel can be within the developer’s organization or external to it."
+                    [ notes
+                        "A responsible, accoun table, consulted and in formed (RACI) matrix is an example of a tool that could be used to meet this requirement."
+                {
+                    clause "5.5"
+                    code "SM-3"
+                    name "Identification of applicability"
+                    requirement "A process shall be employed for identifying products (or parts of products) to which this document applies."
+                    page 21
+                    rationale "This process is required to ensure that the processes in scope as part of this document are applied to 
+                        +b the appropriate products as needed and that the correct level of detail is applied.
+                        +b Having this process means that the product supplier has criteria for identifying which of its products are to be developed, 
+                        +b maintained and supported using the processes required by this document. It is envisioned that a product supplier 
+                        +b may apply this specification to selected products based on a number of factors, including the marketplace 
+                        +b for which a product is intended and whether or not the product requires security to be built in to the product and fully evaluated. 
+                        +b As an example, certain products or components may not have a security context or provide anonymous access and 
+                        +b therefore may not require security to be built in to the product. An organization may also base the criteria on 
+                        +b the particular features being developed to enhance a product for target markets as long as the common features 
+                        +b for all markets remain subject to this standard. Organizations may also use criteria such as applicable 
+                        +b security requirements or security risk.
+                        +b These requirements may be applied to externally provided components or custom developed components from third party suppliers. 
+                        +b See 5.11 and 5.12 for more details."
+                {
+                    clause "5.6"
+                    code "SM-4"
+                    name "Security expertise"
+                    page 22
+                    requirement "A process shall be employed for identifying and providing security training and assessment programs to ensure 
+                        +b that personnel assigned to the organizational roles and duties specified in 5.4, have demonstrated 
+                        +b security expertise appropriate for those processes."
+                    rationale "This process is required to ensure that personnel involved in security-related processes have adequate expertise 
+                        +b for the specific tasks to which they are assigned. Expertise can have been gained by training, experience, 
+                        +b seminars, conferences, certifications, etc. this includes technical expertise in defense in depth strategies and 
+                        +b related security techniques, and also in the practices, including best practices, required to develop and mainta in the product.
+                        +b Having this process means that personnel assigned to security-related processes have evidence that shows 
+                        +b their relevant qualifications. This includes knowledge not only of security, but also for the use of 
+                        +b any security-related standards (for example, coding standards), techniques (for example, best practices), 
+                        +b and tools (for example, static analysis tools). While security awareness training is vital for everyone involved 
+                        +b in the secure product life-cycle, it is generally insufficient for personnel involved in security requirements analysis, 
+                        +b design reviews, etc. The security training is role-specific and can vary in formality from informal to formal. 
+                        +b Similarly, the personnel assigned to security-related processes have experience (for example, past projects and number of years) 
+                        +b that matches the specific security tasks and their specific role."
+                {
+                    clause "5.7"
+                    code "SM-5"
+                    name "Process scoping"
+                    page 22
+                    requirement "A process, that includes justification by documented security analysis, shall be employed to identify the parts of 
+                        +b this document that are applicable to a selected product development project. Justification for scoping the 
+                        +b level of compliance of a project to this document shall be subject to review and approval by personnel 
+                        +b with the appropriate security expertise (see 5. 6)."
+                    rationale "Examples include:
+                        +b a) The product does not include software therefore process requirements applicable to software are out of scope.
+                        +b b) The threat model indicates that the product does not have any external interfaces or sources of 
+                        +b untrusted input (for example, a product with no external connections that can only be accessed in a room 
+                        +b with high physical security). In this case, for example, the requirement for fuzz testing external interfaces would not apply."
+                {
+                    clause "5.8"
+                    code "SM-6"
+                    name "File integrity"
+                    page 23
+                    requirement "A process shall be employed to provide an integrity verification mechanism for all scripts, executables and 
+                        +b other important files included in a product."
+                    rationale "This process is required to ensure that product users can verify that executables, scripts, and other important 
+                        +b files received from the supplier have not been altered. Common methods of meeting this requirement include 
+                        +b cryptographic hashes and digital signatures (which also provide proof of origin)."
+                {
+                    clause "5.9"
+                    code "SM-7"
+                    name "Development environment security"
+                    page 23
+                    requirement "A process that includes procedural and technical controls shall be employed for protecting the product 
+                        +b during development, production and delivery. This includes protecting the product or product update (patch) 
+                        +b during design, implementation, testing and release."
+                    rationale "This process is required to ensure that the product has not been altered or disclosed in any way during 
+                        +b the development process, unless allowed by policy. Loss of integrity of any aspect of the development environment (e. g., 
+                        +b the product design and implementation, code signing in frastructure, and software build environment) can negatively affect 
+                        +b fielded versions of the product without the knowledge of the organization or its customers. For example, 
+                        +b the ability of an attacker to insert an infection in the binary code of a product could lead to that infection 
+                        +b being distributed as part of the released product.
+                        +b Having this process means that the product supplier has mechanisms in place to protect the integrity of design documents, 
+                        +b the product implementation (for example, code and user manuals), configuration settings and private keys 
+                        +b used for signing software images. For example, application of ISO/IEC 27001 [20] and ISO/IEC 27002 [19] policies 
+                        +b and controls can reduce the likelihood of unauthorized access to source code or corruption of source code. 
+                        +b They can also reduce the likelihood of unauthorized disclosure of product designs and test results that 
+                        +b could be used to compromise fielded versions of the product. Items to specially safeguard include 
+                        +b authenticators (e. g., passwords, access control lists, code signing certificates and exploit records collected 
+                        +b during defect management)."
+                {
+                    clause "5.10"
+                    code "SM-8"
+                    name "Controls for private keys"
+                    page 23
+                    requirement "The supplier shall have procedural and technical controls in place to protect private keys used for 
+                        +b code signing from unauthorized access or modification."
+                    rationale "Private keys are the root of trust, so they require extra protection to ensure that they are not stolen or modified."
+                {
+                    clause "5.11"
+                    code "SM-9"
+                    name "Security requirements for externally provided components"
+                    page 23
+                    requirement "A process shall be employed to identify and manage the security risks of all externally provided components 
+                        +b used within the product."
+                    rationale "This process is required to ensure that supply chain security is addressed for equivalent security practices, 
+                        +b latest security updates, security deployment guides and the supplier’s ability to respond if a vulnerability is discovered. 
+                        +b Supply chain security applies to components which are included within the product and are provided external to the development team 
+                        +b responsible for a given product, but do not meet the definition described in 5.12. The security provided by such third-party 
+                        +b components is directly related to their role in the product's secure design and defense in depth strategy (see Clause 7).
+                        +b Having this process means that the product supplier is able to identify when one or more of the following characteristics apply 
+                        +b to the use of third-party components in the product:
+                        +b a) the degree to which the component aligns with the product’s security context (see Clause 6) and defense in depth 
+                        +b strategy (see Clause 7);
+                        +b b) the degree of rigor applied to the component’s implementation (see Clause 8);
+                        +b c) the degree of security verification and validation performed on the component by the product supplier or the component supplier (see Clause 9);
+                        +b d) how to receive and/or monitor notifications about security-related issues from the component supplier (see Clause 10) and patches (see Clause 11); and
+                        +b e) the sufficiency of security documentation for the component (see Clause 12).
+                        +b f) the degree that the software is currently supported by the supplier or open source community.
+                        +b Examples of work items that would satisfy some elements of this requirement include:
+                        +b – identifying known vulnerabilities in specific versions of open source software components and updating the version of the open source components to the version that fixes the vulnerability;
+                        +b – evaluating the compliance of vendors of commercial off the shelf (COTS) components to this document or a similar SDL standard; and
+                        +b – employing compensating mechanisms for known vulnerabilities on COTS or open source components (such as static code analysis).
+                        +b It is recommended that there be an inventory of components from third party suppliers in order to facilitate defect management (see Clause 6).
+                        +b For related supply chain requirements, see ISO/IEC 27036-3 [21 ]."
+                {
+                    clause "5.12"
+                    code "SM-10"
+                    name "Custom developed components from third-party suppliers"
+                    page 24
+                    requirement "A process shall be employed to ensure that product development life-cycle processes for components from a third-party 
+                        +b supplier conform to the requirements used in this document when they meet the following criteria:
+                        +b a) the components are developed specifically for a single supplier for a specific purpose; and
+                        +b b) the components can have an impact on security."
+                    rationale "This requirement applies when a supplier subcontracts a third-party to specifically develop a component for them which 
+                        +b can have security implications. Threat modelling is usually used to determine which components will have security implications."
+                {
+                    clause "5.13"
+                    code "SM-11"
+                    name "Assessing and addressing security-related issues"
+                    page 24
+                    requirement "A process shall be employed for verifying that a product or a patch is not released until its security-related issues 
+                        +b have been addressed and tracked to closure (see 10.5). This includes issues associated with:
+                        +b a) requirements (see Clause 6);
+                        +b b) secure by design (see Clause 7);
+                        +b c) implementation (see Clause 8);
+                        +b d) verification/validation (see Clause 9); and
+                        +b e) defect management (see Clause 10).
+                    rationale "This process is required to ensure that the product is not released with security-related issues that 
+                        +b have been discovered and whose resolution is not complete and whose severity as defined by a vulnerability scoring system, 
+                        +b such as the Common vulnerability Scoring System (CVSS), is calculated as above the residual risk acceptable 
+                        +b within the product security context.
+                        +b Having this process means that any security-related issue identified during the development and support of a product is 
+                        +b documented and addressed to allow the effective security of the product to be determined prior to product release. 
+                        +b This would include issues found in all phases such as design review, code review, verification and validation testing, 
+                        +b use of static analysis tools, etc."
+                {
+                    clause "5.14"
+                    code "SM-12"
+                    name "Process verification"
+                    page 24
+                    requirement "A process shall be employed for verifying that, prior to product release, all applicable security-related processes 
+                        +b required by this specification (see 5.7)  have been completed with records documenting the completion of each process."
+                    rationale "This process is required to ensure that key security practices are being executed."
+                {
+                    clause "5.15"
+                    code "SM-13"
+                    name "Continuous improvement"
+                    page 25
+                    requirement "A process shall be employed for continuously improving the SDL. This process shall include the analysis of security defects 
+                        +b in component/subsystem/system technologies that escape to the field."
+                    rationale "This process is required to ensure that product suppliers improve the rigor of their SDL over time. 
+                        +b New security threats are constantly being identified and exploited by attackers so it is important product suppliers 
+                        +b help compensate for this by continuously improving their SDL.
+                        +b Continuous improvement is a well-established and proven method of improving product quality. Since product security issues 
+                        +b are a type of quality issue, conti nuous improvement methodologies are applicable to an SDL. 
+                        +b See Annex A for potential metrics related to SDL effectiveness and improvement.
+                        +b Having this process means that the supplier has a procedure in place to review the process and security defects that escape to 
+                        +b the field on a periodic basis and that this procedure includes making improvements to the process as a result of these reviews.
+                        +b Some examples of activities that would help improve a product supplier’s SDL are included in Table 2. Ultimately it is up to 
+                        +b suppliers to implement their own means of continuously improving their SDL.
+                        +b Table 2 – Example SDL continuous improvement activities
+                        +b Activity SDL / security benefits
+                        +b Use a known security vulnerability database to help improve the threat model. For example, if the threat model indicates that the product uses the TLS protocol for transport security, review known vulnerabilities in TLS implementations and ensure these are mitigated in the design.
+                        +b Improves the threat model by keeping it current with actual security issues observed in the field.
+                        +b Attend external security / SDL conferences or participate in industry SDL groups such as OWASP
+                        +b Helps a product supplier stay current with emerging threats and SDL best practices.
+                        +b Conduct internal SDL conferences or sessions for sharing of SDL expertise and best practi ces within the product supplier’s organization.
+                        +b Improve the overall SDL expertise of the product supplier’ s employees and hel p them stay current with emerg ing security threats and SDL best practi ces.
+                        +b Perform SDL root cause analysis for security vulnerabilities found externally in a supplier’ s product and identify p l us implement correcti ve action. Al l SDL practi ces shou ld be in scope for this analysis.
+                        +b Root cause analysis and corrective action is a well-established method for improving product quality. Since security issues are quality issues it works well for an SDL too.
+                        +b Combine manual penetration testing with automated tool base testing or use multiple similar security testing tools for SVV-3 vulnerability testing.
+                        +b Improves test coverage relative to using a single automated tool. This becomes especially valuable after the existing automated tool stops finding new vulnerabilities.
+                        +b Create fuzzing tools for any protocols for which tools are not available.
+                        +b Help avoid the scenario where an attacker develops its own fuzzing tool and uses it to find and exploit security vulnerabilities in a product.
+                        +b Train and use dedicated security testing experts for SVV-3 vulnerability testing.
+                        +b Since security vulnerability requires extensive and constantly growing expertise, developing and using dedicated experts will improve security test coverage."
+        {
+            name "Specification of security requirements"
+            purpose "The processes specified by this practice are used to document the security capabilities that are required for a product 
+                +b along with the expected product security context. Security capabilities can include such items as authentication, 
+                +b authorization, encryption, auditing and other security capabilities a product needs to include. The product security context 
+                +b can include items such as physical security level, protection of external interfaces via a firewall, etc. 
+                +b See [10] for more information on security capability requirements.
+                +b These security requirements can be defined at the product-level or they may supplement product-level requirements."
+            page 26
+            [ requirements
+                {
+                    clause "6.2"
+                    code "SR-1"
+                    name "Product security context"
+                    page 24
+                    requirement "A process shall be employed to ensure that the intended product security context is documented."
+                    rationale "This process is required to ensure that the minimum requirements of the environment and the assumptions about that environment are documented in order to ach ieve the security level for which the product was designed. The purpose of defin ing this in formation is so that both the developers of the product and the product users have the same understand ing about how the product is intended to be used. this will he lp the developers make appropriate design decis ions and the users to use the product as it was intended. security context could include:
+                        +b a) l ocation in the network;
+                        +b b) physical or cyber security provided by the environment where the product will be deployed;
+                        +b c) isolation (from a network perspective); and
+                        +b d) if known, potential impact to the environment (for example, loss of life, injury, loss of production, etc.).
+                        +b For example, it is important to document whether physical security is required. If no physical security is expected to be present, then that 
+                        +b may add a number of related requirements such as not allowing push button configuration on the product. 
+                        +b Another example is if the product is expected to be protected by a user supplied firewall that connects it to the plant network, 
+                        +b the product would typically not require a firewall of its own. Documenting these external security features for the product (its security context) 
+                        +b allows developers to design a defense in depth strategy that complements this security context and testers to validate and verify 
+                        +b the security of a product in an environment similar to how it shou ld be deployed.
+                        +b Having this process means that the deployment environment in which the product is intended to be used is correctly represented 
+                        +b in all processes involved in the development and testing of this product and are documented."
+                {
+                    clause "6.3"
+                    code "SR-2"
+                    name "Threat model"
+                    page 24
+                    requirement "A process shall be employed to ensure that all products shall have a threat model specific to the current development scope of the product 
+                        +b with the following characteristics (where applicable):
+                        +b a) correct flow of categorized information throughout the system;
+                        +b b) trust boundaries;
+                        +b c) processes;
+                        +b d) data stores;
+                        +b e) interacting external entities;
+                        +b f) internal and external communication protocols implemented in the product;
+                        +b g) externally accessible physical ports including debug ports;
+                        +b h) circuit board connections such as Joint Test Action Group (JTAG) connections or debug headers which might be used to attack the hardware;
+                        +b i) potential attack vectors including attacks on the hardware, if applicable;
+                        +b j) potential threats and their severity as defined by a vulnerability scoring system (for example, CVSS);
+                        +b k) mitigations and/or dispositions for each threat;
+                        +b l) security-related issues identified; and
+                        +b m) external dependencies in the form of d rivers or third-party applications (code that is not developed by the supplier) that are linked in to the application.
+                        +b The threat model shall be reviewed and verified by the development team to ensure that it is correct and understood.
+                        +b The threat model shall be reviewed periodically (at least once a year) for released products and updated if required in response to 
+                        +b the emergence of new threats to the product even if the design does not change.
+                        +b Any issues identified in the threat model shall be addressed as defined in 10.4 and 10.5.
+                    rationale "This process is required to ensure that security threats for the product are identified, validated, documented, 
+                        +b addressed and tested by the product's project team according to the defense in depth strategy.
+                        +b Having this process means that a threat model for the product is defined and maintained throughout the product life-cycle (for example, 
+                        +b as a result of changing threats or updates to the defense in depth strategy) that identifies and describes threats that can occur within 
+                        +b the product security context, and against which product is expected to defend itself.
+                        +b External dependencies are external components or systems that the product depends upon for security. As an example, a product 
+                        +b could depend on power for physical security. Or a product could depend on the session management of a web server to be secure. In these examples, 
+                        +b failure of the external dependency could lead to a security vulnerability in the product, so mitigations need to be put in place to minimize 
+                        +b the chances of such failures. So for the power example, the mitigation could be the installation of an un interruptable power supply (UPS). 
+                        +b In the example of a web server, security should be considered when choosing a web server, and if a secure web server cannot be found, 
+                        +b then other compensating measures need to be considered.
+                        +b Third-party code is an external dependency that can present significant challenges in determining where the threats can occur. 
+                        +b If deeply embedded there might not be access to/from this code that crosses a trust boundary. If there is access to the 
+                        +b trust boundary, a deeper inspection of the third-party code can be needed."
+                {
+                    clause "6.4"
+                    code "SR-3"
+                    name "Product security requirements"
+                    page 28
+                    requirement "A process shall be employed for ensuring that security requirements are documented for the product/feature under development 
+                        +b including requirements for security capabilities related to installation, operation, maintenance and decommissioning."
+                    rationale "This process is required to ensure that security requirements specific to the product are defined. This includes 
+                        +b both technical security requirements (for example, password complexity) and business-oriented security requirements (for example, 
+                        +b sensitive data, user authorizations and separation of duties).
+                        +b Having this process means that the product supplier defines and documents all product security requirements that apply to the 
+                        +b life-cycle of the product, including:
+                        +b a) security privileges required to install, operate, and maintain the product;
+                        +b b) security options, including removal of default passwords, used to install, configure, operate and mainta in the product; and
+                        +b c) security considerations/actions associated with removing the product from use (for example, removing sensi ti ve data).
+                    [ notes
+                        "For different capability security levels (SL-C 1 through SL-C 4), IEC 62443-3-3 and IEC 62443-4-2 [11] define the security capability 
+                            +b requirements for control systems and components, respectively. These security capabilities are then included as product security 
+                            +b requirements for products that are to include these capabilities."
+                {
+                    clause "6.5"
+                    code "SR-4"
+                    name "Product security requirements content"
+                    page 29
+                    requirement "A process shall be employed for ensuring that security requirements include the following in formation:
+                        +b a) the scope and boundaries of the component or system, in general terms in both a physical and a log ical way; and
+                        +b b) the required capability security level (SL-C) of the product.
+                    rationale "If the product is targeted to meet a certain security capability level, it is important to document this as 
+                        +b a requirement because it implies that certain security capabilities need to be included in the product. Note that capability 
+                        +b security levels and required security capabilities for products are defined in IEC 62443-4-2 [11] and IEC 62443-3-3 [10].
+                {
+                    clause "6.6"
+                    code "SR-5"
+                    name "Security requirements review"
+                    page 29
+                    requirement "A process shall be employed to ensure that security requirements are reviewed, updated as necessary and approved 
+                        +b to ensure clarity, validity, alignment with the threat model (discussed in 6. 3), and their ability to be verified. Each of the 
+                        +b following representative disciplines shall participate in this process. Personnel may be assigned to more than one discipline 
+                        +b except for testers, who shall remain independent:
+                        +b a) architects/developers (those who will implement the requirements);
+                        +b b) testers (those who will validate that the requirements have been met);
+                        +b c) customer advocate (such as sales, marketing, product management or customer support); and
+                        +b d) security advisor.
+                    rationale "This process is required to ensure that security requirements are valid, understood and testable (or otherwise verifiable).
+                        +b Having this process means that the product supplier conducts reviews of all security requirements and revises/deletes those 
+                        +b that are invalid or that are untestable/unverifiable.
+        {
+            name "Secure by design"
+            purpose "The processes specified by this practice are used to ensure that the product is secure by design including defense in depth. 
+                +b Defense in depth provides one or more layers of security to thwart security threats. Each layer of the defense in depth strategy 
+                +b is designed to protect the assets from attack in the case that all other layers have been compromised.
+                +b The processes required by this practice are required to be applied to all stages of product design, from conceptual design to detailed design, 
+                +b and to all levels of product design from the overall architecture to the design of individual components.
+            page 30
+            [ requirements
+                {
+                    clause "7.2"
+                    code "SD-1"
+                    name "Secure design principles"
+                    page 30
+                    requirement "A process shall be employed for developing and documenting a secure design that identifies and characterizes 
+                        +b each interface of the product, including physical and logical interfaces, to include:
+                        +b a) an indication of whether the interface is externally accessible (by other products), or internally accessible (by other components of the product), or both;
+                        +b b) security implications of the product security context (see Clause 6) on the external interface;
+                        +b c) potential users of the interface and the assets that can be accessed through it (directly or indirectly);
+                        +b d) a determination of whether access to the interface crosses a trust boundary;
+                        +b e) security considerations, assumptions and/or constraints associated with the use of the interface within the product security context, including applicable threats;
+                        +b f) the security roles, privileges/rights and access control permissions needed to use the interface and to access the assets defined in c) above;
+                        +b g) the security capabilities and/or compensating mechanisms used to safeguard the interface and the assets defined in c) above, including input validation as well as output and error handling;
+                        +b h) the use of third-party products to implement the interface and their security capabilities;
+                        +b i) documentation that describes how to use the interface if it is externally accessible; and
+                        +b j) description of how the design mitigates the threats identified in the threat model.
+                    rationale "This process is required to ensure that security for access to assets is comprehensively addressed from the 
+                        +b perspective of external and internal interfaces of the product through which attacks can be mounted.
+                        +b Having this process means that interfaces of the product are identified and characterized by the interactions that 
+                        +b take place over them (for example, data and control flows), the security mechanisms designed to protect them and the assets 
+                        +b that can be compromised if not adequately protected. Interfaces include physical and wireless connections to networks (for example, 
+                        +b Ethernet) and devices (for example, keyboards, monitors and USB/compact disc [CD]/digital versatile disc [DVD] media). 
+                        +b Logical interfaces support data control flows (for example, application messaging) between product components and include 
+                        +b mechanisms such as application programming interfaces (for example, structured queryl anguage [SQL]) and communications 
+                        +b protocols (for example, the transmission control protocol [TCP]). Protection mechanisms include general hardening 
+                        +b capabilities (for example, security policy settings), user access controls (for example, account management), and security event 
+                        +b detection and reporting, among others.
+                        +b Viewing interfaces within the setting provided by the product security context allows the secure design to focus on the specific 
+                        +b environment in which the product is expected to operate, including both protections offered by the product security context and 
+                        +b vulnerabilities resulting from it (for example, where it can be open to attack). For an internal component of the design, 
+                        +b the concept of the product security context is extended to include the security context provided by surround ing product components. For example, 
+                        +b the product security context of an application program running on a workstation that is part of an industrial control system product includes 
+                        +b the network(s) to which the workstation connects and the software environment of the workstation in which the application runs.
+                        +b Identifying threats, users, assets and trust boundaries associated withinterfaces specifies who is expected to use the interfaces, 
+                        +b and indicates where threats and unknown subjects potentially can ga in access to the interface and the assets that can be accessed 
+                        +b through it. This allows the reduction of the number of interfaces where possible and to provide the appropriate safeguards for the 
+                        +b remaining interfaces and the assets that can be accessed through them. Identifying trust boundaries also supports future definition of zones and 
+                        +b conduits (see IEC 62443-3-2 [9]), and thus is a primary component in the definition of the security architecture of the product. Sample data assets (resources) include:
+                        +b a) databases and database tables;
+                        +b b) configuration files;
+                        +b c) cryptographic key stores;
+                        +b d) access control lists (ACLs);
+                        +b e) registry keys;
+                        +b f) web pages (static and dynamic);
+                        +b g) audit logs;
+                        +b h) network sockets / network media;
+                        +b i) inter-process communications (IPC), services and remote procedure call (RPC) resources;
+                        +b j) any other files and directories; and
+                        +b k) any other memory resource.
+                        +b Based on analysis of the product security requirements, the product security context and trust boundary considerations, the design can be 
+                        +b developed for interfaces that include the definition of user roles, privileges and authorization/access permissions required to use 
+                        +b the interfaces as well as specific security capabilities (for example, authentication, encryption and logging) that provide 
+                        +b additional safeguards. As part of the design of the defense in depth strategy, the expected use of compensating mechanisms and third-party hardware or software components 
+                        +b will aid in the assessment of the adequacy of the defense in depth strategy (see 7. 4).
+                        +b Finally, preparing documentation for the use of externally accessible interfaces (for example, by users and third-parties) reduces 
+                        +b the potential for accidental misuse.
+                {
+                    clause "7.3"
+                    code "SD-2"
+                    name "Defense in depth design"
+                    page 31
+                    requirement "A process shall be employed to implement multiple layers of defense using a risk based approach based on the threat model. This process 
+                        +b shall be employed for assign ing responsibilities to each layer of defense."
+                    [ notes
+                        "Each layer provides additional defense mechanisms."
+                        "It is possible for any layer to be compromised; therefore, secure design principles (see 7. 2) are applied to each layer."
+                        "The objective is to reduce the attack surface of the subsequent layers."
+                    rationale "For example, the TCP/IP s tack could check for i nvalid packets, an HTTP server could authenticate input and then another 
+                        +b layer could validate that the input and audit logs are produced for administrative changes. Each layer provides an additional 
+                        +b "defense mechanism, has a responsibility and provides attack surface reduction for the next layer. Each layer assumes that the 
+                        +b "layer in front of it can be compromised."
+                {
+                    clause "7.4"
+                    code "SD-3"
+                    name "Security design review"
+                    page 32
+                    requirement "A process shall be employed for conducting design reviews to identify, characterize and track to closure security-related 
+                        +b issues associated with each significant revision of the secure design including but not limited to:
+                        +b a) security requirements (see Clause 6) that were not adequately addressed by the design;
+                        +b b) threats and their ability to exploit product interfaces, trust boundaries, and assets (see 7.2); and
+                        +b c) identification of secure design practices (see 7.5) that were not followed (for example, failure to apply principle of least privilege)."
+                    rationale "This process is required to ensure that the secure design addresses the requirements and threats (see Clause 6) defined for 
+                        +b the product, and that design best practices have been followed (see 7.5). All discovered security-related issues are to be 
+                        +b documented and tracked through the processes defined by 7.4 and 10.5."
+                        +b Having this process means that each version of the design is reviewed to determine:
+                        +b a) whether any product security requirements have not been adequately addressed by the defense in depth strategy; and
+                        +b b) whether there are threat vectors (paths for threats to follow) that bypass the defense in depth strategy or that are otherwise capable of breaching the defense in depth strategy.
+                        In either case, the threat model is to be updated to reflect security-related issues discovered as a result of the review process."
+                    [ notes
+                        "Requirements allocation, including security requirements, is part of typical design processes."
+                        "Characterizing threats and their ability to exploit interfaces is often referred to as threat modelling."
+
+                {
+                    clause "7.5"
+                    code "SD-4"
+                    name "Secure design best practices"
+                    page 32
+                    requirement "A process shall be employed to ensure that secure design best practices are documented and applied to the design process. 
+                        +b These practices shall be periodically reviewed and updated. Secure design practices include but are not limited to:
+                        +b a) least privilege (granting only the privileges to users/software necessary to perform intended operations);
+                        +b b) using proven secure components/designs where possible;
+                        +b c) economy of mechanism (striving for simple designs);
+                        +b d) using secure design patterns;
+                        +b e) attack surface reduction;
+                        +b f) documenting all trust boundaries as part of the design; and
+                        +b g) removing debug ports, headers and traces from circuit boards used during development from production hardware or 
+                        +b documenting their presence and the need to protect them from unauthorized access.
+                    rationale "This process is required to ensure that guidance is provided to developers to help them avoid common pitfalls 
+                        +b during design that could lead to later security issues.
+                        +b Having this process means that the product supplier has a list of security best practices that is maintained and followed 
+                        +b during the development of the secure design for the product. These best practices should be based commonly accepted security 
+                        +b best practices in industry for the type of product being developed. It is completely up to the supplier to determine which 
+                        +b practices they consider to be most appropriate for their design practices. These practices are kept current as a result of 
+                        +b both changes in the industry and the application of lessons learned by the product supplier.
+                        +b Note that these practices apply to both hardware and software design."
+        {
+            name "Practice 4 – Secure implementation"
+            purpose "The processes specified by this practice are used to ensure that the product features are implemented securely."
+            applicability "Requirements in this practice apply to all hardware and software components in the product with the 
+                +b exception of externally provided components. 
+                +b For externally provided components, requirement 5.11 applies instead."
+            [ requirements
+                {
+                    clause "8.3"
+                    code "SI-1"
+                    name "Security implementation review"
+                    page 32
+                    requirement "A process shall be employed to ensure that implementation reviews are performed for identifying, characterizing and 
+                        +b tracking to closure security-related issues associated with the implementation of the secure design including:
+                        +b a) identification of security requirements (see Clause 6) that were not adequately addressed by the implementation;
+                        +b b) identification of secure coding standards (see 8. 4) that were not followed (for example, use of banned functions or 
+                        +b failure to apply principle of l east privilege);
+                        +b c) Static Code Analysis (SCA) for source code to determine security coding errors such as buffer overflows, null po inter dereferencing, 
+                        +b etc. using the secure coding standard for the supported programming language. SCA shall be done using a tool if one is available for the language used. 
+                        +b In addition, static code analysis shall be done on all source code changes includ ing new source code.
+                        +b d) review of the implementation and its traceability to the security capabilities defined to support the security design (see Clause 7); and
+                        +b e) examination of threats and their ability to exploit implementation interfaces, trust boundaries and assets (see 7. 2 and 7. 3).
+                    rationale "This process is required to ensure that the implementation properly addresses (implements) the secure design and its 
+                        +b associated security requirements and follows implementation best practices.
+                        +b Having this process means that the product supplier conducts a comprehensive set of security reviews of the implementation and 
+                        +b its design. Different types of reviews will typically be used to address different objectives. For example, manual 
+                        +b reviews are typically conducted against the implementation design to verify that requirements are being met and that 
+                        +b the implementation will adequately protect against threats expected to be present. In addition, manual source code reviews may be used 
+                        +b to examine source code for adherence to best practices (see 8. 4), and automated static source code analysis may be used to identify 
+                        +b anomalies, including security vulnerabilities in the code as well as non-conformities with given programming rules."
+                    [ notes
+                        "Requirements allocation, including security requirements, is part of typical design processes."
+                {
+                    clause "8.4"
+                    code "SI-2"
+                    name "Secure coding standards"
+                    page 32
+                    requirement "The implementation processes shall incorporate security coding standards that are periodically reviewed and 
+                        +b updated and include at a minimum:
+                        +b a) avoidance of potentially exploitable implementation constructs – implementation design patterns that are known to have security weaknesses;
+                        +b b) avoidance of banned functions and coding constructs/design patterns – software functions and design patterns that shou ld not be used because they have known security weaknesses;
+                        +b c) automated tool use and settings (for example, for static analysis tools);
+                        +b d) secure coding practices;
+                        +b e) validation of all inputs that cross trust boundary.
+                        +b f) error handling.
+                    rationale "This process is required to ensure that guidance is provided to developers to help them avoid 
+                        +b common pitfalls during implementation that could lead to later security issues.
+                        +b Having this process means that the product supplier has a list of security best practices that it maintains and follows during 
+                        +b the implementation of a product. These best practices should be based on commonly accepted security best practices in industry 
+                        +b for the type of product being developed. It is completely up to the supplier to determine which practices they consider to be most 
+                        +b appropriate for their design and coding standard. These practices are kept current as a result of both changes in the industry and 
+                        +b the application of lessons learned by the product supplier."
+        {
+            name "Practice 5 – Security verification and validation testing"
+            purpose "The processes specified by this practice are used to document the security testing required to ensure that all 
+                +b the security requirements have been met for the product and that security of the product is maintained when it is used 
+                +b in its product security context and configured to employ its defense in depth strategy.
+                +b Security testing can be performed at various times by various personnel during the SDL based on the type of testing and 
+                +b the development model used by the vendor. For example, fuzz testing could be performed during software development by 
+                +b the software development team and later in the cycle by a test team.
+                +b Issues uncovered by testing will be addressed as per “Practice 6 – Security defect management”.
+            [ requirements
+                {
+                    clause "9.1"
+                    code "SVV-1"
+                    name "Security requirements testing"
+                    page 32
+                    requirement "A process shall be employed for verifying that the product security functions meet the security requirements and 
+                        +b that the product handles error scenarios and invalid input correctly. Types of testing shall include:
+                        +b a) functional testing of security requirements;
+                        +b b) performance and scalability testing; and
+                        +b c) boundary/edge condition, stress and malformed or unexpected input tests not specifically targeted at security.
+                    rationale "This process is required to ensure that the product meets the security requirements defined for it (see Clause 6).
+                        +b Having this process means that the product supplier verifies through testing that the product meets its 
+                        +b documented security requirements.
+                        +b Examples of the types of functionality in scope for security requirements include:
+                        +b a) general security capabilities (features);
+                        +b b) API (application programming interface);
+                        +b c) permission delegation;
+                        +b d) anti-tampering and integrity functionality;
+                        +b e) signed image verification; and
+                        +b f) secure storage of secrets.
+                {
+                    clause "9.3"
+                    code "SVV-2"
+                    name "Threat mitigation testing"
+                    page 32
+                    requirement "A process shall be employed for testing the effectiveness of the mitigation for the threats identified and validated in 
+                        +b the threat model. Activities shall include:
+                        +b a) creating and executing plans to ensure that each mitigation implemented to address a specific threat has been adequately 
+                        +b tested to ensure that the mitigation works as designed; and
+                        +b b) creating and executing plans for attempting to thwart each mitigation."
+                    rationale "The effectiveness of mitigations to threats identified by the threat model are tested as part of this practice. 
+                        +b Examples of threat mitigation testing include attempts to thwart mitigations identified using the spoofing, tampering, 
+                        +b repudiation, information disclosure, denial of service and e levation of privilege (STRIDE). 
+                        +b For example, if STRIDE identified authentication as a mitigation for spoofing threat mitigation tests would focus on 
+                        +b bypassing authentication.
+                        +b If a layered defense strategy is used as a mitigation, then the effectiveness of each layer would be tested. For example, 
+                        +b if the product employs the combination of authentication, authorization and audit logs as a layered defense strategy to 
+                        +b thwart tampering, then each layer will be tested for its contribution to this mitigation strategy.
+                        +b this process is required to ensure that the product’s defense in depth and threat mitigation strategies and capabilities are effecti ve."
+                {
+                    clause "9.4"
+                    code "SVV-3"
+                    name "Vulnerability testing"
+                    page 32
+                    requirement "A process shall be employed for performing tests that focus on identifying and characterizing potential 
+                        +b security vulnerabilities in the product. Known vulnerability testing shall be based upon, at a minimum, recent contents 
+                        +b of an established, industry-recognized, public source for known vulnerabilities. Testing shall include:
+                        +b a) abuse case or mal formed or unexpected input testing focused on uncovering security issues. This shall include manual or automated abuse case 
+                        +b testing and specialized types of abuse case testing on all external interfaces and protocols for which tools exist. 
+                        +b Examples include fuzz testing and network traffic load testing and capacity testing;
+                        +b b) attack surface analysis to determine all avenues of ingress and egress to and from the system, common vulnerabilities including but not limited to 
+                        +b weak ACLs, exposed ports and services running with elevated privileges;
+                        +b c) black box known vulnerability scanning focused on detecting known vulnerabilities in the product hardware, host or software components. 
+                        +b For example, this could be a network based known vulnerability scan;
+                        +b d) for compiled software, software composition analysis on all binary executable files, including embedded firmware, delivered by the supplier 
+                        +b to be installed for a product. this analysis shall detect the following types of problems at a minimum:
+                        +b 1) known vulnerabilities in the product software components;
+                        +b 2) linking to vulnerable libraries;
+                        +b 3) security ru le violations; and
+                        +b 4) compiler settings that can lead to vulnerabilities;
+                        +b e) dynamic runtime resource management testing that detects flaws not visible under static code analysis, including but not limited to 
+                        +b denial of service conditions due to failing to release run time handles, memory leaks and accesses made to shared memory without authentication. 
+                        +b This testing shall be applied if such tools are available.
+                    rationale "Void."
+                {
+                    clause "9.5"
+                    code "SVV-4"
+                    name "Penetration testing"
+                    page 32
+                    requirement "A process shall be employed to identify and characterize security-related issues via tests that focus on discovering 
+                        +b and exploiting security vulnerabilities in the product."
+                    rationale "Penetration testing focuses specifically on compromising the confidentiality, integrity or availability of the product. 
+                        +b It can involve defeating multiple aspects of the defense in depth design. For example, 
+                        +b bypassing authentication to access the product, 
+                        +b using elevation of privilege to gain administrative access and then compromising confidentiality by breaking encryption. 
+                        +b As this example shows, penetration testing involves approaching testing like an attacker and often involves 
+                        +b exploiting chained vulnerabilities in a product.
+                        +b This process is required to ensure that efforts have been taken to discover security-related issues in the product or 
+                        +b product documentation that could allow the product to be exploited.
+                        +b Having this process means that the product supplier attempts to breach the security of the product through penetration testing. 
+                        +b Penetration testing consists of confirm ing that vulnerabilities in any product capability or the defense in depth strategy 
+                        +b can be exploited and used to compromise security of the product. It requires in depth knowledge of the type of product being tested 
+                        +b along with security testing tools and techniques. Penetration testing can involve the use of manual techniques, test tools or 
+                        +b combinations of the two."
+                {
+                    clause "9.6"
+                    code "SVV-5"
+                    name "Independence of testers"
+                    page 32
+                    requirement "A process shall be employed to ensure that individuals performing testing are independent from the developers 
+                        +b who designed and implemented the product according to Table 3.
+                        +b Table 3 – Required level of independence of testers from developers
+                        +b Test type | Reference | Level of independence
+                        +b Security requirements testing | SVV-1 – security requirements testing | Independent department
+                        +b Threat mitigation testing | SVV-2 – Threat mitigation testing | Independent department
+                        +b Abuse case testing | SVV-3 – vulnerability testing | Independent person
+                        +b Static code analysis | SI-1 – Security implementation review | None
+                        +b Attack surface analysis | SVV-3 – vulnerability testing | Independent person
+                        +b Known vulnerability scanning | SVV-3 – vulnerability testing | Independent person
+                        +b Software composition analysis | SVV-3 – vulnerability testing | None
+                        +b Penetration testing | SVV-4 – Penetration testing | Independent department or organization
+                        +b The levels of independence are defined as follows:
+                        +b None – no independence required. Developer can perform the testing.
+                        +b Independent person – the person who performs the testing cannot be one of the developers of the product.
+                        +b Independent department – the person who performs the testing cannot report to the same fi rst line manager as any developers of the product. Al ternatively, they could be a member of a qua l ity assurance (QA) department.
+                        +b Independent organization – the person who performs the testing cannot be part of the same organization as any developers of the product. An organization can be a separate l egal en ti ty, a d i vi s ion of a company or a departmen t of a company that reports to a different executive such as a vice president or s im i lar level.
+                    rationale "An independent tester can often find out more, other and different defects than a tester working within 
+                        +b a programming team – or a tester who is by profession a programmer. Such a tester brings a different set of assumptions 
+                        +b to testing and to reviews, which often helps in exposing the hidden defects and problems. In addition, an independent tester 
+                        +b who reports to senior management can report his results honestly and without any concern for reprisal that might result from 
+                        +b pointing out problems in co-workers’ or, worse yet, the manager’s work.
+                        +b Add itional security defects can often be found when a tester’s black-box level knowledge of the product is 
+                        +b supplemented with whi te-box level knowledge of a developer acting as an advisor to the tester.
+        {
+            name "Practice 6 – Management of security-related issues"
+            purpose "The processes specified by this practice are used for handling security-related issues of a product that has been configured 
+                +b to employ its defense in depth strategy (see Clause 7) within the product security context (see Clause 6).
+            [ requirements
+                {
+                    clause "10.2"
+                    code "DM-1"
+                    name "Receiving notifications of security-related issues"
+                    page 32
+                    requirement "A process shall exist for receiving and tracking to closure security-related issues in the product reported 
+                        +b by internal and external sources including at a minimum:
+                        +b a) security verification and validation testers;
+                        +b b) suppliers of third-party components used in the product;
+                        +b c) product developers and testers; and
+                        +b d) product users includ ing integrators, asset owners, and maintenance personnel."
+                    rationale "This process is required to ensure that security-related issues/defects discovered by any organization within 
+                        +b the product supplier or external organizations (for example, product users and security researchers) can be reported to 
+                        +b the product supplier and tracked to closure.
+                        +b Having this process means that the product supplier defined instructions for reporting security-related 
+                        +b issues (see ISO/IEC 30111[23]) to it. For reports from external entities, the product supplier will have incident 
+                        +b response processes such as those identified in ISO/IEC 291 47 [22] for receiving vulnerability reports about supported 
+                        +b products and interacting with the entity that reported the issue.
+                        +b Guidelines for reporting security-related issues are to be readily accessible to each of the potential internal and 
+                        +b external sources of these reports. Awareness training, product documentation and support websites are all potential 
+                        +b ways to communicate this information. These guidelines include:
+                        +b a) in formation needed to facilitate validation;
+                        +b b) how to protect the confidential ity of and access to the in formation being reported;
+                        +b c) the degree of communications with the enti ty that reported the security-related issue;
+                        +b d) timelines for reporting internally d i scovered security-related issues in released products; and
+                        +b e) a strategy for handling third-party component vulnerabilities discovered internally."
+                    [ notes 
+                        "External security verification and validation testers in cl ude researchers."
+                {
+                    clause "10.3"
+                    code "DM-2"
+                    name "Reviewing security-related issues"
+                    page 32
+                    requirement "A process shall exist for ensuring that reported security-related issues are investigated in a timely manner to determine their:
+                        +b a) applicability to the product;
+                        +b b) verifiability; and
+                        +b c) threats that trigger the issue.
+                    [ notes
+                        "Timeliness is driven by market forces."
+                    rationale "This process is required to ensure that security-related issues reported to the product supplier are examined to 
+                        +b determine that they are applicable to the product, are verifiable, and that the cause of the issue (such as the threat(s)) is understood.
+                        +b Having this process means that the product supplier verifies all security issues reported to it. Perceived security-related issues can be unsubstan tiated or not applicable to the product, so there needs to be a process to verify and exam ine reported vulnerabilities (see ISO/IEC 301 1 1).
+                        +b For security-related issues in components maintained by the product developer, this process can involve such activities as attempting to reproduce the reported vulnerability or examining the third-party embedded source code’s usage within the product. For security-related issues in components maintained by a third-party, this process can be as stra igh tforward as comparing the version of the third-party binary with the versions to which the patch applies.
+                {
+                    clause "10.4"
+                    code "DM-3"
+                    name "Assessing security-related issues"
+                    page 32
+                    requirement "A process shall be employed for analysing security-related issues in the product to include:
+                        +b a) assessing their impact with respect to:
+                        +b 1) the actual security context in which they were discovered;
+                        +b 2) the product’s security context (see Clause 6); and
+                        +b 3) the product’s defense in depth strategy (see Clause 7);
+                        +b b) severity as defined by a vulnerability scoring system (for example, CVSS);
+                        +b c) identifying al l other products/product versions contain ing the security-related issue (i f any);
+                        +b d) identifying the root causes of the issue; and
+                        +b e) identifying related security issues.
+                        +b For root cause analysis, a methodical approach such as that described in IEC 62740 [25] may be employed.
+                    rationale "This process is required to ensure that the potential impact of security-related design issues is examined and 
+                        +b understood to support decis ions related to how they will be addressed.
+                        +b Having this process means that the product supplier assesses the potential impact and severity of each security-related issue, 
+                        +b determines whether the issues exist in other products or versions (for example, by using the same or similar components) and identifies 
+                        +b the root causes of the issue. Completing such an assessment provides the basis for determining how to address the issue (see 1 0. 5), 
+                        +b and which development life-cycle processes, such as redesign activi ti es and threat model updates, may be involved in the resolution.
+                        +b Verifiable security-related issues can vary widely in their security impact and their distribution within the product, 
+                        +b so there needs to be a process for characterizing each issue so that an appropriate resolution can be determined.
+                        +b It is recommended that the process identify conditions that would exit the security defect management process such as duplicate, 
+                        +b non-security, and third-party security-related issues (see ISO/IEC 301 1 1). The impact assessment should also take into 
+                        +b consideration additional factors such as the scope of affected product users, the potential for collateral damage, 
+                        +b the availability of exploits and (for control systems) the potential impact to essential functions (see IEC 62443-3-3).
+                        +b The impact assessment may be as simple as a qualitative rating (for example, low, medium and high), a more quantitative method 
+                        +b based on likelihood and consequence or a standardized method such as the CVSS. A security-related issue that is associated with a 
+                        +b widely used design pattern or implementation method can be symptomatic of a larger problem. 
+                        +b In such a situation, the impact assessment associated with the vulnerability should address the combined impact of all instances 
+                        +b rather than dealing with each instance in isolation."
+                    [ notes
+                        "Risk assessments can be used in this evaluation of security-related issues."
+                {
+                    clause "10.5"
+                    code "DM-4"
+                    name "Addressing security-related issues"
+                    page 32
+                    requirement "A process shall be employed for addressing security-related issues and determining whether to report them based on the 
+                        +b results of the impact assessment (see 1 0. 4). The supplier shall establish an acceptable level of residual risk that shall 
+                        +b be applied when determining an appropriate way to address each issue. Options include one or more of the following:
+                        +b a) fixing the issue through one or more of the following:
+                        +b 1) defense in depth strategy or design change;
+                        +b 2) addition of one or more security requirements and /or capabilities;
+                        +b 3) use of compensating mechanisms; and/or
+                        +b 4) disabling or removing features;
+                        +b b) creating a remediation p lan to fix the problem;
+                        +b c) deferring the problem for future resolution (reapply this requirement at some time in the future) and speci fying the reason(s) and associated risk(s);
+                        +b d) not fixing the problem if the residual risk is below the establ ished acceptable level of residual risk.
+                        +b In all cases, the following shall be done as well:
+                        +b a) in form other processes of the issue or related issue(s), including processes for other products/product revisions; and
+                        +b b) in form third parties if problems found in included third-party source code.
+                        +b When security-related issues are resolved recommendations to prevent similar errors from occurring in the future shall be evaluated.
+                        +b This process shall include a periodic review of open security-related issues to ensure that issues are being addressed appropriately. 
+                        +b This periodic review shall at a minimum occur during each release or iteration cycle.
+                    rationale "This process is required to ensure that a determination is made for how to handle (address) each security-related issue and 
+                        +b that no security-related issue is inadvertently overlooked or ignored.
+                        +b Having this process means that the product supplier reviews the potential residual risk of each security-related issue 
+                        +b and makes a justifiable decision for how to handle (address) it.
+                        +b Residual risk can be determined using many different methods. An example would be to start with CVSS score, but then add other security controls and countermeasures 
+                        +b not accounted for in CVSS such as whether the issue is applicable to the product’s security context.
+                        +b The process for deciding upon and implementing a resolution to a security-related issue needs to address these 
+                        +b considerations (see ISO/IEC 301 1 1) because of their potential impact:
+                        +b a) a proposed resolution can violate a premise of the secure design that other aspects of the product rely upon;
+                        +b b) a proposed resolution can be unnecessary because of a m ismatch between the reporting entity’ s security context and the product security context;
+                        +b c) a proposed resolution can only partially reduce the impact of the security-related issue, may take an unacceptably long time to implement because of its complexi ty, or may be so unusable that it is likely to be disabled; and
+                        +b d) a proposed resolution can introduce side-effects that are unacceptable.
+                        +b Timeliness for determining and implementing a resolution based on the impact of the security-related issue will typically align 
+                        +b with market forces and may drive establishment of clear interfaces to related organizational processes (for example, legal, 
+                        +b customer service and public relations) to avoid unnecessary delays."
+                    [ notes
+                        "When the resolution decision is to fix the security-related issue in the product implementation, the timing of the release of the fix can result in a patch (see Clause 12) or the fix can be deferred until the next release."
+                {
+                    clause "10.6"
+                    code "DM-5"
+                    name "Disclosing security-related issues"
+                    page 32
+                    requirement "A process shall be employed for informing product users about reportable security-related issues (see 1 0. 5) in 
+                        +b supported products in a timely manner with content that includes but is not limited to the following in formation:
+                        +b a) issue description, vulnerability score as per CVSS or a s im i lar system for ranking vulnerabilities, and affected product version(s); and
+                        +b b) description of the resolution.
+                        +b The strategy for handling third-party component vulnerabilities discovered by the product developer should take in to account the possibility 
+                        +b of premature public disclosure by the third-party component supplier.                        
+                    rationale "This process is required to ensure that product users are in formed of resolved security-related issues that have been 
+                        +b designated as reportable. Reportable resolutions are typically those that are related to released products and whose issue severity 
+                        +b is deemed high enough to report by the product supplier. Product users need this in formation to make in formed security assessments 
+                        +b about their operations, and service providers use this in formation to handle vulnerabilities as part of their event management capability (see IEC 62443-2-4).
+                        +b Having this process means that the product supplier has procedures for determining which security issues are reportable, 
+                        +b and reporting resolutions for reportable issues to the users of the product. The disclosure process will typically include provisions for informational alerts in addition to vulnerability notices. 
+                        +b For example, in formational alerts can be used to notify product users of compensating mechanisms in response to current cybersecurity activity 
+                        +b or to inform product users that the product is not susceptible to a highly publicized vulnerability. See IEC 291 47 [22] for in formation regarding 
+                        +b content of notifications.
+                    [ notes
+                        "The description of the resolution can include references to installation of patches (see Clause 12)."
+                        "Timeliness is driven by market forces."
+                {
+                    clause "10.7"
+                    code "DM-6"
+                    name "Periodic review of security defect management practice"
+                    page 32
+                    requirement "A process shall be employed for conducting periodic reviews of the security-related issue management process. 
+                        +b Periodic reviews of the process shall, at a minimum, examine security-related issues managed through the process since the 
+                        +b last periodic review to determine if the management process was complete, efficient, and led to the resolution of each security-related issue. 
+                        +b Periodic reviews of the security-related issue management process shall be conducted at least annually.
+                    rationale "This process is required for continuous improvement of the issue management practice."
+        {
+            name "Practice 7 – Security update management"
+            purpose "The processes specified by this practice are used to ensure that security updates associated with the product are tested for regressions 
+                +b and made avai lable to product users in a timely manner.
+                {
+                    clause "11.2"
+                    code "SUM-1"
+                    name "Security update qualification"
+                    page 32
+                    requirement "A process shall be employed for verifying that
+                        +b 1) security updates created by the product developer address the intended security vulnerabilities;
+                        +b 2) security updates do not introduce regressions, including but not limited to patches created by:
+                        +b a) the product developer;
+                        +b b) suppliers of components used in the product; and
+                        +b c) suppliers of components or platforms on which the product depends.
+                        +b The process should include a confirmation that update is not contradicting other operational, safety or legal constraints.
+                    rationale "This process is required to ensure that patches applicable to the product are evaluated to ensure that they 
+                        +b do not adversely affect operation of the product.
+                        +b Having this process means that qualification of patches (typically via testing) is performed to verify that patches applicable 
+                        +b to the product do not directly or indirectly (for example, via side effects) compromise the product’s operation or 
+                        +b defense in depth strategy (see Clause 7). Documentation about this process may be used by the service provider to address 
+                        +b the patch management requirements of IEC 62443-2-4."
+                {
+                    clause "11.3"
+                    code "SUM-2"
+                    name "Security update documentation"
+                    page 32
+                    requirement "A process shall be employed to ensure that documentation about product security updates is made available to 
+                        +b product users that includes but is not limited to:
+                        +b a) the product version number(s) to which the security patch applies;
+                        +b b) instructions on how to apply approved patches manually and via an automated process;
+                        +b c) description of any impacts that applying the patch to the product can have, including reboot;
+                        +b d) instructions on how to verify that an approved patch has been applied; and
+                        +b e) risks of not applying the patch and mediations that can be used for patches that are not approved or deployed by the asset owner.
+                    rationale "This process is required to ensure that security patches are documented to allow approved patches to be installed and 
+                        +b non-approved patches to be remediated.
+                        +b Having this process means that the product supplier provides or otherwise makes documentation available that identifies and 
+                        +b describes applicable security patches, how to install approved patches, how to determine patch status (whether a patch 
+                        +b has been applied) of components and how to mediate non-approved patches. See the patch management requirements of IEC 62443-2-4 
+                        +b for more in formation.
+                {
+                    clause "11.4"
+                    code "SUM-3"
+                    name "Dependent component or operating system security update documentation"
+                    page 32
+                    requirement "A process shall be employed to ensure that documentation about dependent component or operating system security updates is 
+                        +b made available to product users that includes but is not limited to:
+                        +b a) stating whether the product is compatib le with the dependent component or operating system security update; and
+                        +b b) for security updates that are unapproved by the product vendor, the mitigations that can be used in lieu of not applying the update.
+                    rationale "End users are hesitant to install software in an IACS that might upset operations. As a result, vendors need 
+                        +b to provide in formation to the users about whether a particular security update of the operating system is compatible with the product."
+                {
+                    clause "11.5"
+                    code "SUM-4"
+                    name "Security update delivery"
+                    page 32
+                    requirement "A process shall be employed to ensure that security updates for all supported products and product versions 
+                        +b are made available to product users in a manner that facilitates verification that the security patch is authentic."
+                    rationale "This process is required to ensure that product users can obtain applicable security patches for the product 
+                        +b in a timely manner and to reduce the possibility that the security patches are fraudulent (see Clause 1 1).
+                        +b Having this process means that the product supplier provides a mechanism or technique that allows product users 
+                        +b to verify the authenticity of patches. Concurrent release of patches for all supported versions can reduce the 
+                        +b time window between awareness of the vulnerability and the availability of patches."
+                {
+                    clause "11.6"
+                    code "SUM-5"
+                    name "Timely delivery of security patches"
+                    page 32
+                    requirement "A process shall be employed to define a policy that specifies the timeframes for delivering and qualifying (see 11.2) 
+                        +b security updates to product users and to ensure that this policy is followed. At a minimum, this policy shall 
+                        +b consider the following factors:
+                        +b a) the potential impact of the vulnerability;
+                        +b b) public knowledge of the vulnerability;
+                        +b c) whether published exploits exist for the vulnerability;
+                        +b d) the volume of deployed products that are affected; and
+                        +b e) the availability of an effective mitigation in lieu of the patch.
+                    rationale "Security updates typically have target release timing which is based on the factors listed in this requirement. For example, 
+                        +b some companies classify patches as required to be addressed within 30 days, 60 days or 90 days or longer of being found.
+
+        {
+            name "Practice 8 – Security guidelines"
+            purpose "The processes specified by this practice are used to provide user documentation that describes how to integrate, configure, and maintain 
+                +b the defense in depth strategy of the product in accordance with its product security context (see Clause 6). IEC 62443-2-4 defines 
+                +b complementary hardening requirements for the use of this documentation by IACS service providers.
+                +b Applying and maintaining the defense in depth strategy for a specific installation will typically address the following:
+                +b a) policies and procedures associated with the product security context, as defined in Clause 6;
+                +b b) architectural considerations, such as firewall placement and use of compensating mechanisms including security measures, as defined in Clause 7;
+                +b c) configuring security settings/options, such as configuring firewall rules, delegation, certificate management, and managing user accounts (for example, setting their privileges/permissions); and
+                +b d) use of tools to assist in thehardening.
+            [ notes
+                "Patching is not included in this list, but is addressed in Clause 11."
+                "The remainder of Clause 12 defines requirements for development processes used to produce and maintain this documentation."
+                "Supporting these requirements means that the product supplier has identifiable processes for creating, maintaining and delivering documentation that describes how to harden the product."
+            [ requirements
+                {
+                    clause "12.2"
+                    code "SG-1"
+                    name "Product defense in depth"
+                    page 32
+                    requirement "A process shall exist to create product user documentation that describes the security defense in depth strategy for the product 
+                        +b to support installation, operation and maintenance that includes:
+                        +b a) security capabilities implemented by the product and their role in the defense in depth strategy;
+                        +b b) threats addressed by the defense in depth strategy; and
+                        +b c) product user mitigation strategies for known security risks associated with the product, including risks associated with l egacy code.
+                    rationale "This process is required to ensure that documentation for the defense in depth strategy is produced to support 
+                        +b hardening of the product at the customer site. Such documentation is required by IEC 62443-2-4, that defines security requirements 
+                        +b for IACS installation and maintenance service providers.
+                        +b Having this process means that the product supplier documents various aspects of the defense in depth strategy necessary 
+                        +b to harden the product during installation and keep it hardened during its lifetime of use. Aspects of the defense in depth strategy to be 
+                        +b documented include the residual threats that are expected to be present and capable of attacking the product, 
+                        +b the security capabilities of the product to safeguard it against these threats and any compensating security controls/mitigations 
+                        +b that can be used with the product to further protect the product.
+                {
+                    clause "12.3"
+                    code "SG-2"
+                    name "Defense in depth measures expected in the environment"
+                    page 32
+                    requirement "A process shall be employed to create product user documentation that describes the security defense in depth measures 
+                        +b expected to be provided by the external environment in which the product is to be used (see Clause 6).
+                    [ notes
+                        "These measures can also come from 10.5."
+                    rationale "This process is required to ensure that documentation for the defense in depth strategy is produced to support 
+                        +b hardening of the product at the customer site. Such documentation is required by IEC 62443-2-4, that defines security 
+                        +b requirements for IACS installation and maintenance service providers.
+                        +b Having this process means that the product supplier documents various aspects of the defense in depth strategy necessary to 
+                        +b harden the product during installation and keep it hardened during its lifetime of use.
+                {
+                    clause "12.4"
+                    code "SG-3"
+                    name "Security hardening guidelines"
+                    page 32
+                    requirement "A process shall be employed to create product user documentation that includes guidelines for hardening the 
+                        +b product when installing and maintaining the product. The guidelines shall include, but are not limited to, instructions,
+                        +b rationale and recommendations for the following:
+                        +b a) integration of the product, including third-party components, with its product security context (see Clause 6);
+                        +b b) integration of the product’s application programming interfaces/protocols with user applications;
+                        +b c) applying and main ta in ing the product’s defense in depth strategy (see Clause 7);
+                        +b d) configuration and use of security options/capabilities in support of l ocal security policies, and for each security option /capability:
+                        +b 1) its con tribution to the product’s defense in depth strategy (see Clause 7);
+                        +b 2) descriptions of configurable and default values that include how each affects security a long with any potential impact each has on work practices; and                        
+                        +b 3) setting/changing /deleting its value;
+                        +b e) instructions and recommendations for the use of all security-related tools and u ti l iti es that support administration, monitoring, i nciden t handling and evaluation of the security of the product;
+                        +b f) instructions and recommendations for periodic security maintenance activi ti es;
+                        +b g) instructions for reporting security i ncidents for the product to the product supplier; and
+                        +b h) description of the security best practices for maintenance and administration of the product.
+                    rationale "This process is required to ensure that instructions that describe how to harden the product and keep it hardened are documented. 
+                        +b Such documentation is required by IEC 62443-2-4 that defines security requirements for IACS installation and maintenance service providers.
+                        +b Having this process means that the product supplier creates user documentation that provides directions for hardening the product 
+                        +b during installation and for keeping it hardened during the lifetime of the product use. This requirement recognizes that the security policies 
+                        +b and requirements for customer sites are often different, and as a result, instructions for securely integrating the product in to the customer site, 
+                        +b configuring it appropriately and maintaining its security are necessary.
+                {
+                    clause "12.5"
+                    code "SG-4"
+                    name "Secure disposal guidelines"
+                    page 32
+                    requirement "A process shall be employed to create product user documentation that includes guidelines for removing 
+                        +b the product from use. The guidelines shall include, but is not limited to, instructions and recommendations for the following:
+                        +b a) removing the product from its intended environment (see Clause 6);
+                        +b b) including recommendations for removing references and configuration data stored within the environment;
+                        +b c) secure removal of data stored in the product; and
+                        +b d) secure disposal of the product to prevent potential disclosure of data con tained in the product that could not be removed as described in c) above.
+                    rationale "This process is required to ensure that instructions that describe how to securely take the product out of 
+                        +b use (decommission it) are documented. Such documentation is required by IEC 62443-2-4, that defines security requirements 
+                        +b for IACS installation and maintenance service providers.
+                        +b Having this process means that the product supplier creates user documentation that provides directions for sanitizing the product of sensitive, 
+                        +b confidential and/or proprietary data and software.
+                {
+                    clause "12.6"
+                    code "SG-5"
+                    name "Secure operation guidelines"
+                    page 32
+                    requirement "A process shall be employed to create product user documentation that describes:
+                        +b a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and
+                        +b b) assumptions regard ing the behaviour of the user/administrator and their relationsh ip to the secure operation of the product.
+                    rationale "This process is required to ensure that instructions that describe the secure use of the product during its operation 
+                        +b and administration are included in the security guidelines.
+                        +b Having this process means that the product supplier creates user/administrator documentation that provides instructions 
+                        +b for using the product securely. In general, this represents a set of best practices for the secure use of the product. 
+                        +b For example, this could include guidelines for certificate management, password management and other authentication mechanisms.
+                {
+                    clause "12.7"
+                    code "SG-6"
+                    name "Account management guidelines"
+                    page 32
+                    requirement "A process shall be employed to create product user documentation that defines user account requirements and 
+                        +b recommendations associated with the use of the product that includes, but is not limited to:
+                        +b a) user account permissions (access control) and privileges (user rights) needed to use the product, including, but not limited to operating system accounts, control system accounts and data base accounts; and
+                        +b b) default accounts used by the product (for example, service accounts) and instructions for changing default account names and passwords.
+                    rationale "This process is required to ensure that requirements for the user accounts necessary to use the product are defined and documented.
+                        +b Having this process means that the product supplier creates documentation that defines accounts and their settings, 
+                        +b including default accounts, that are needed to use the product.
+                {
+                    clause "12.8"
+                    code "SG-7"
+                    name "Documentation review"
+                    page 32
+                    requirement "A process shall be employed to identify, characterize and track to closure errors and omissions in all user manuals 
+                        +b including the security guidelines to include:
+                        +b a) coverage of the product’s security capabilities;
+                        +b b) integration of the product with its intended environment (see Clause 6); and
+                        +b c) assurance that all d ocumented practices are secure.
+                    rationale "This process is required to ensure that the security-related documentation for the product is accurate and complete and 
+                        +b that non-secure practices are not documented in other user documentation.
+                        +b Having this process means that the product's security-related documentation is reviewed to determine whether any 
+                        +b product security capabilities have not been correctly or adequately addressed, and whether the documentation adequately 
+                        +b describes how the product's defense in depth strategy is to be integrated with the product security context; 
+                        +b and if discrepancies are found, that a process exists for addressing them.
+
+
+
+
+Annex B (informative)
+Table of requirements
+Table B. 1 summarizes the requirements in order to g ive an overview of this document.
+Table B. 1 – Summary of al l requirements
+
+SM-1: Development process
+SM-2: Identification of responsibilities
+SM-3: Identification of applicability
+SM-4: Security expertise
+SM-5: Process scoping
+SM-6: File integrity
+SM-7: Development environment security
+SM-8: Controls for private keys
+SM-9: Security requirements for externally provided components
+SM-10: Custom developed components from third-party
+SM-11: Assessing and addressing security-related issues
+SM-12: Process verification
+SM-13: Continuous improvement
+
+SR-1: Product security context
+SR-2: Threat model
+SR-3: Product security requirements
+SR-4: Product security requirements content
+SR-5: Security requirements review
+
+SD-1: Secure design principles
+SD-2: Defense in depth design
+SD-3: Security design review
+SD-4: Secure design best practices
+
+SI-1: Security implementation review
+SI-2: Secure coding standards
+
+SVV-1: security requirements testing
+SVV-2: Threat mitigation testing
+SVV-3: vulnerability testing
+SVV-4: Penetration testing
+SVV-5: Independence of testers
+
+DM-1: Receiving notifications of security-related issues
+DM-2: Reviewing security-related issues
+DM-3: Assessing security-related issues
+DM-4: Addressing security-related issues
+DM-5: Disclosing security-related issues
+DM-6: Periodic revi ew of security defect management practi ce
+
+SUM-1: Security update qualification
+SUM-2: Security update documentation
+SUM-3: Dependent component or operating system security update documentation
+SUM-4: Security update delivery
+SUM-5: Timely delivery of security patches
+
+SG-1: Product defense in depth
+SG-2: Defense in depth measures expected in the environment
+SG-3: security hardening gu i delines
+SG-4: Secure d i sposal guidelines
+SG-5: Secure operation guidelines
+SG-6: Account management guidelines
+SG-7: Documentation review

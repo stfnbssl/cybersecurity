@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "requirements": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the requirement (e.g., SR 3.8)",
+            "example": "SR 3.8"
+          },
+          "name": {
+            "type": "string",
+            "description": "Human-readable name of the requirement",
+            "example": "Session Integrity"
+          },
+          "implementations": {
+            "type": "array",
+            "description": "Examples of implementation for the requirement or enhancements",
+            "items": {
+              "type": "object",
+              "properties": {
+                "context": {
+                  "type": "string",
+                  "description": "Context or use case for the implementation",
+                  "example": "SCADA system for a water treatment plant"
+                },
+                "description": {
+                  "type": "string",
+                  "description": "Detailed description of the implementation",
+                  "example": "Deploy TLS 1.3 to secure all session-based communications..."
+                },
+                "tools": {
+                  "type": "array",
+                  "description": "Tools used in the implementation",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string",
+                        "example": "OpenSSL"
+                      },
+                      "purpose": {
+                        "type": "string",
+                        "example": "For implementing TLS 1.3 and managing session tickets"
+                      }
+                    },
+                    "required": ["name", "purpose"]
+                  }
+                },
+                "challenges_addressed": {
+                  "type": "array",
+                  "description": "Challenges addressed by the implementation",
+                  "items": {
+                    "type": "string",
+                    "example": "Mitigates MITM attacks"
+                  }
+                },
+                "applies_to": {
+                  "type": "string",
+                  "description": "Specifies if the implementation applies to the main requirement or a specific RE",
+                  "example": "SR 3.8"
+                }
+              },
+              "required": ["context", "description", "applies_to"]
+            }
+          }
+       },
+        "required": ["id", "name", "implementations"]
+      }
+    }
+  },
+  "required": ["requirements"]
+}

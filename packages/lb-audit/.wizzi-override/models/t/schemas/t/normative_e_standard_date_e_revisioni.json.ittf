@@ -1,0 +1,37 @@
+$group
+    { normative_e_standard_date_e_revisioni
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Normative e standard - date"
+        description "Date significative, entrata in vigore e revisioni, di normative e standard"
+        type "object"
+        { properties
+            { metadati
+                type "object"
+                { properties
+                    { data_estrazione
+                        type "string"
+                        format "date"
+                [ required
+                    "data_estrazione" 
+            array_of_objects( entrata_in_vigore )
+                $append properties
+                    string( evento )
+                    date( data )
+                    number( giorni_trascorsi )
+                    number( giorni_mancanti )
+                    related_links( )
+                $append object
+                    [ required
+                        "evento"
+                        "data"
+            array_of_objects( revisioni )
+                $append properties
+                    string( evento )
+                    date( data )
+                    number( giorni_trascorsi )
+                    number( giorni_mancanti )
+                    related_links( )
+                $append object
+                    [ required
+                        "evento"
+                        "data"

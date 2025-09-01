@@ -1,0 +1,90 @@
+ittf
+
+    $*
+        AI merge of ai_4_1_step_2_out and ai_4_1_step_3_out int ia_4_1_step_2_3
+        model ai_4_1_step_2_out in /docs/4_1/ia_step_2_out/index.json.ittf
+        model ai_4_1_step_3_out in /docs/4_1/ia_step_3_out/index.json.ittf
+        AI extension of ia_4_1_step_2_3
+        Adds 'policies' and 'procedures'
+    *$
+
+    $
+        var product_supplier = wzCtx.Config.ai.product_supplier.name;
+        var x_4_1_options = {
+            product_supplier_JSON: _.stringify(wzCtx.product_supplier.instances[product_supplier], null, null),
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.x_4_1_process_ai_step_2, null, null),
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.x_4_1_process_ai_step_3, null, null),
+            step_4_JSONSchema: _.stringify(wzCtx.schemas.x_4_1_process_ai_step_4, null, null),
+        }        
+        var ia_4_1_step_2_3 = [];
+
+    $foreach item_2 in ai_4_1_step_2_out.practices
+        $foreach item_3 in ai_4_1_step_3_out.practices
+            $if item_2.practice == item_3.practice && item_2.code == item_3.code && item_2.subCode == item_3.subCode
+                $
+                    _.log('-->', item_2.practice, item_2.code, item_2.subCode)
+                    ia_4_1_step_2_3.push(
+                        Object.assign({}, item_2, item_3)
+                    );
+
+    $ _.log('items -->', ia_4_1_step_2_3.length);
+    $ _.log('items[0] -->', _.stringify(ia_4_1_step_2_3[0], null, 2));
+
+    $
+        // var provider = 'chatGPT';
+        var provider = 'deepSeek';
+        // var provider = 'grok';
+        var product_context = '{"product_context":{"manufacturer":"Breton Spa","machine_types":[{"type":"CNC Machining Centers","description":"High-precision CNC machines for stone and metalworking, featuring multi-axis control for complex geometries.","supported_protocols":["OPC UA with Basic256Sha256","PROFINET with PN Security","EtherNet/IP with CIP Security","Modbus TCP with TLS"]},{"type":"Stone Cutting Machines","description":"Automated saws for cutting granite and marble with high-speed, water-cooled blades.","supported_protocols":["OPC UA with Basic256Sha256","PROFINET with PN Security","MQTT with TLS","EtherCAT with Secure Profile"]},{"type":"Polishing Machines","description":"Machines for surface finishing of stone, equipped with automated abrasive tools and precision sensors.","supported_protocols":["OPC UA with Basic256Sha256","PROFINET with PN Security","EtherNet/IP with CIP Security","S7comm with Secure Authentication"]},{"type":"Composite Material Processing Lines","description":"Integrated systems for cutting, shaping, and curing composite materials for aerospace and automotive.","supported_protocols":["OPC UA with Basic256Sha256","PROFINET with PN Security","MQTT with TLS","CANopen with Secure Extensions"]}],"applications":[{"name":"Natural Stone Processing","criticality":"High","description":"Cutting and polishing marble and granite for construction, requiring high precision to avoid material waste."},{"name":"Metalworking for Precision Parts","criticality":"High","description":"Machining metal components for industrial equipment, critical for maintaining tight tolerances."},{"name":"Composite Material Fabrication","criticality":"Medium","description":"Producing lightweight composite parts for aerospace, ensuring structural integrity and quality."},{"name":"Surface Finishing for Decorative Stone","criticality":"Low","description":"Polishing stone surfaces for aesthetic applications, with minimal operational impact if disrupted."}],"key_features":[{"feature":"High-Precision CNC Control Systems","description":"PLC-based systems with sub-millimeter accuracy for complex machining tasks.","security_support":["CR1: Identification and Authentication Control","CR3: System Integrity"]},{"feature":"Secure Remote Access","description":"Enables remote diagnostics and updates via encrypted channels for maintenance.","security_support":["CR4: Data Confidentiality","CR5: Restricted Data Flow"]},{"feature":"Firmware Signing","description":"Ensures only verified firmware is loaded, preventing unauthorized modifications.","security_support":["CR3: System Integrity","CR6: Timely Response to Events"]},{"feature":"Network Segmentation Support","description":"Integrates with OT network zones to isolate critical control functions.","security_support":["CR5: Restricted Data Flow","CR7: Resource Availability"]},{"feature":"Incident Logging","description":"Records security events for analysis, ensuring traceability of unauthorized access.","security_support":["CR6: Timely Response to Events","CR3: System Integrity"]}],"operational_environment":{"description":"Industrial facilities for stone, composite, and metal processing with high dust and noise levels.","conditions":{"temperature_range":"5-40°C","dust_level":"High (stone processing environments)","network_type":"Segmented industrial networks with DMZ for IT-OT integration"}},"industry_4_0_compliance":true,"security_profile":{"supported_sl":["SL 1","SL 2","SL 3"],"certifications":["IEC 62443-4-2","IEC 62443-4-1"],"common_threats":["Ransomware targeting control systems, disrupting production and causing downtime.","MitM attacks on industrial protocols, compromising data integrity.","Data manipulation in HMI interfaces, leading to incorrect process parameters."]},"product_version":{"current_version":"2025.1","last_updated":"2025-06-01"}}}';
+        var practice_ia_step_4_json_schema = '{"$schema":"http://json-schema.org/draft-07/schema#","type":"object","description":"Generalized JSON schema for IEC 62443-4-1 practices","required":["practice","code","subCode","name","description","details","standard_compliance","last_updated"],"properties":{"practice":{"type":"string","description":"Numeric identifier of the practice within IEC 62443-4-1","pattern":"^[0-9]+$"},"code":{"type":"string","description":"Alphanumeric code for the practice (e.g., SG-7, SM-5)","pattern":"^[A-Z]{2}-[0-9]+$"},"subCode":{"type":"string"},"policies":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string"},"subCode":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"enforcement":{"type":"string"}}}},"procedures":{"type":"array","items":{"type":"object","properties":{"code":{"type":"string"},"subCode":{"type":"string"},"title":{"type":"string"},"description":{"type":"string"},"steps":{"type":"array","items":{"type":"object","properties":{"step":{"type":"integer"},"action":{"type":"string"},"tools":{"type":"string"},"expected_outcome":{"type":"string"}}}}}},"last_updated":{"type":"string","description":"Date of last update in YYYY-MM-DD format","pattern":"^[0-9]{4}-[0-9]{2}-[0-9]{2}$"}},"additionalProperties":false}';
+        var maxNumInBatch = 2;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $foreach prItem in ia_4_1_step_2_3
+        $if count > maxNumInBatch
+            $
+                batches.push(currentBatch);
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [prItem]
+                }
+                count = 1;
+
+        $else
+            $
+                currentBatch.items.push(prItem);
+                count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);
+
+    $foreach batch in batches
+        $ _.log('$file .wizzi-override/docs/4_1/ai_step_4_in/batch-${' + batch.id + '}.ai.ittf')
+        $file .wizzi-override/docs/4_1/ai_step_4_in/batch-${batch.id}.ai.ittf
+            ai lab
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $
+                        var batchItemJSONString = _.stringify(batchItem, null, null)
+                        var options = {
+                            practice: batchItem.practice,
+                            code: batchItem.code,
+                            name: batchItem.name,
+                            subCode: batchItem.subCode,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_4_1_options.step_4_JSONSchema,
+                            product_supplier_JSON: x_4_1_options.product_supplier_JSON,
+                            provider: provider,
+                        }
+                    ia_step_4_item(&options)
+
+    $file .wizzi-override/docs/4_1/ai_step_4_out/index.json.ittf
+        {
+            [ practices
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

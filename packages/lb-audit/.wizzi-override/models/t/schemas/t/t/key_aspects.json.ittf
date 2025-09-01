@@ -1,0 +1,36 @@
+$group
+    $params kind
+    { key_aspects
+        type "array"
+        description "Key aspects for the ${kind}"
+        { items
+            type "object"
+            { properties
+                { id
+                    type "string"
+                { title
+                    type "string"
+                { description
+                    type "string"
+                { related_links
+                    type "array"
+                    { items
+                        type "object"
+                        { properties
+                            { title
+                                type "string"
+                            { url
+                                type "string"
+                            { description
+                                type "string"
+                        [ required
+                            "title" 
+                            "url" 
+                            "description" 
+                        additionalProperties false
+            [ required
+                "id" 
+                "title" 
+                "description" 
+                "related_links" 
+            additionalProperties false

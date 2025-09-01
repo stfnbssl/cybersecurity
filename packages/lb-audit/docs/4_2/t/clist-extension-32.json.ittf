@@ -1,0 +1,233 @@
+$group
+    {
+        id "FSA-CR 7.3 RE(1) (PART)"
+        check_description "Components shall provide the capability to validate the integrity of backed up
+            +b information prior to the initiation of a restore of that information."
+        requirement_id "IEC 62443-4-2: CR 7.3 RE(1)"
+        title "Backup Integrity Verification"
+        description "This requirement focuses on ensuring the integrity of backups made for
+            +b industrial automation and control systems. The main goal is to verify that
+            +b backups have not been tampered with and remain unaltered from the time of their
+            +b creation. This verification is essential to ensure that, in the event of data
+            +b loss, restoration from backups can be trusted to be accurate and reliable."
+        [ key_aspects
+            {
+                aspect "Integrity Check"
+                detail "Backups should include mechanisms for integrity checks, such as checksums or
+                    +b hash functions, to verify that the data has not been altered or corrupted."
+            {
+                aspect "Verification Process"
+                detail "Regular verification processes should be established to ensure that the
+                    +b integrity of backups is maintained over time. This may involve automated tools
+                    +b or manual procedures to check backup files."
+            {
+                aspect "Tamper Evidence"
+                detail "Backup systems should provide evidence if any unauthorized changes were made to
+                    +b the backup files. This could be achieved through logging or alerting
+                    +b mechanisms."
+        [ related_standards
+            {
+                standard_id "ISO/IEC 27040"
+                title "Storage Security"
+                description "ISO/IEC 27040 provides guidelines for secure storage, including the protection
+                    +b and integrity of stored data, which is closely related to ensuring the
+                    +b integrity of backups."
+            {
+                standard_id "NIST SP 800-34"
+                title "Contingency Planning Guide for Federal Information Systems"
+                description "This guide outlines the importance of backup integrity and restoration
+                    +b processes as part of contingency planning, highlighting the need for verified
+                    +b and reliable backups in the event of disruptions."
+            {
+                standard_id "NIST SP 800-53"
+                title "Security and Privacy Controls for Information Systems and Organizations"
+                description "This standard includes controls related to maintaining the integrity of
+                    +b information, which can be applied to backup processes to ensure data remains
+                    +b unaltered and trustworthy."
+    {
+        id "FSA-CR 7.4"
+        check_description "Components shall provide the capability to be recovered and reconstituted to a
+            +b known secure state after a disruption or failure."
+        requirement_id "IEC 62443-4-2: CR 7.4"
+        title "Control System Recovery and Reconstitution"
+        description "This requirement focuses on ensuring that industrial control systems (ICS) can
+            +b recover and reconstitute after a disruption or failure. The aim is to minimize
+            +b downtime and ensure that systems can return to a secure and operational state
+            +b in a timely manner."
+        [ key_aspects
+            {
+                aspect "Recovery Planning"
+                details "Develop and maintain a recovery plan that outlines specific steps and
+                    +b procedures to restore control system functions following an incident."
+            {
+                aspect "Backup and Restore Capabilities"
+                details "Implement mechanisms to regularly back up critical system data and
+                    +b configurations, ensuring they are secure and can be restored when necessary."
+            {
+                aspect "Testing and Validation"
+                details "Regularly test recovery procedures to validate their effectiveness and update
+                    +b them to address any identified gaps or inefficiencies."
+            {
+                aspect "Minimal Downtime"
+                details "Design recovery processes that aim to minimize the operational downtime and
+                    +b ensure a quick return to normal or degraded operations if full recovery is not
+                    +b immediately possible."
+        [ related_standards
+            {
+                standard "NIST SP 800-82"
+                reference "Guide to Industrial Control Systems (ICS) Security"
+                details "NIST SP 800-82 provides guidelines for securing Industrial Control Systems
+                    +b (ICS), including considerations for recovery and continuity of operations."
+            {
+                standard "ISO/IEC 27031"
+                reference "Guidelines for Information and Communication Technology Readiness for Business
+                    +b Continuity"
+                details "This standard offers guidelines for ICT readiness to ensure business
+                    +b continuity, including recovery and reconstitution processes applicable to
+                    +b control systems."
+            {
+                standard "NIST SP 800-34"
+                reference "Contingency Planning Guide for Federal Information Systems"
+                details "This guide provides comprehensive instructions on developing contingency plans
+                    +b for federal information systems, which can be adapted for ICS recovery and
+                    +b reconstitution."
+            {
+                standard "ISO 22301"
+                reference "Business Continuity Management Systems - Requirements"
+                details "ISO 22301 outlines the requirements for a management system to protect against,
+                    +b reduce the likelihood of, and ensure recovery from disruptive incidents."
+    {
+        id "FSA-CR 7.5"
+        check_description "There is no component level requirement associated with IEC 62443?3?3 SR 7.5."
+        requirement_id "IEC 62443-4-2: CR 7.5"
+        title "Emergency Power"
+        description "The requirement CR 7.5 under IEC 62443-4-2 focuses on ensuring that components
+            +b critical to industrial automation and control systems (IACS) can maintain
+            +b operation or safely shut down in the event of a power failure. This is
+            +b essential to prevent potential safety hazards, data loss, or system
+            +b malfunctions during power disruptions."
+        [ key_aspects
+            {
+                aspect "Availability"
+                details "Ensure that essential functions of the IACS components remain available during
+                    +b a power outage, either through backup power systems or by safely shutting down
+                    +b the system."
+            {
+                aspect "Reliability"
+                details "Implement reliable emergency power systems such as Uninterruptible Power
+                    +b Supplies (UPS) or generators to provide continuous power to critical
+                    +b components."
+            {
+                aspect "Safety"
+                details "Facilitate safe shutdown procedures to avoid system malfunctions or physical
+                    +b harm during a power loss."
+            {
+                aspect "Testing and Maintenance"
+                details "Regularly test and maintain emergency power systems to ensure they function
+                    +b correctly when needed."
+        [ related_standards
+            {
+                standard "IEC 62040-1"
+                title "Uninterruptible power systems (UPS) - Part 1: General and safety requirements
+                    +b for UPS"
+                relation "Provides safety requirements and general specifications for UPS systems, which
+                    +b are often used to provide emergency power to IACS components."
+            {
+                standard "IEEE 446-1995"
+                title "IEEE Recommended Practice for Emergency and Standby Power Systems for
+                    +b Industrial and Commercial Applications"
+                relation "Offers guidelines for the design and implementation of emergency and standby
+                    +b power systems, supporting CR 7.5's focus on maintaining power during outages."
+            {
+                standard "NFPA 110"
+                title "Standard for Emergency and Standby Power Systems"
+                relation "Defines performance requirements for emergency and standby power systems,
+                    +b ensuring their reliability and availability in critical situations."
+            {
+                standard "IEC 61131-2"
+                title "Programmable controllers - Part 2: Equipment requirements and tests"
+                relation "Covers environmental and electrical requirements for programmable controllers,
+                    +b including aspects related to power supply and reliability under various
+                    +b conditions."
+    {
+        id "FSA-CR 7.6"
+        check_description "Components shall provide the capability to be configured according to
+            +b recommended network and security configurations as described in guidelines
+            +b provided by the control system supplier. The component shall provide an
+            +b interface to the currently deployed network and security configuration
+            +b settings."
+        requirement_id "IEC 62443-4-2: CR 7.6"
+        title "Network and Security Configuration Settings"
+        description "This requirement focuses on ensuring that network and security configuration
+            +b settings of a component are managed in a secure manner. This includes
+            +b establishing, maintaining, and verifying the configuration settings to ensure
+            +b they meet security requirements and do not provide unnecessary exposure to
+            +b vulnerabilities."
+        { key_aspects
+            secure_configuration "Components must be configured with security in mind, ensuring that default
+                +b settings are replaced with more secure alternatives where possible."
+            "configuration management" "There should be processes in place to manage changes to the configuration
+                +b settings, including proper documentation and approval mechanisms."
+            verification "Regular verification of the configuration settings should be conducted to
+                +b ensure compliance with security policies and standards."
+            "least privilege" "Configuration should adhere to the principle of least privilege, ensuring only
+                +b necessary services and ports are enabled."
+        { related_standards
+            { "ISO/IEC 27001"
+                reference "A.12.1.2"
+                description "Control of operational software, emphasizing the importance of maintaining
+                    +b secure configuration settings."
+            { "NIST SP 800-53"
+                reference "CM-6"
+                description "Configuration settings, detailing the need for establishing secure baseline
+                    +b configurations for information systems."
+            { "CIS Controls"
+                reference "Control 5"
+                description "Secure Configuration for Hardware and Software on Mobile Devices, Laptops,
+                    +b Workstations, and Servers, focusing on the importance of secure configurations."
+    {
+        id "FSA-CR 7.6 RE(1)"
+        check_description "Components shall provide the capability to generate a report listing the
+            +b currently deployed security settings in a machine-readable format."
+        requirement_id "IEC 62443-4-2: CR 7.6 RE(1)"
+        title "Machine-readable reporting of current security settings"
+        description "This requirement mandates that components within an industrial automation and
+            +b control system (IACS) must be capable of generating reports on their current
+            +b security settings in a machine-readable format. This capability facilitates
+            +b automated security management and auditing processes by enabling systems to
+            +b efficiently communicate their security configurations to other systems or
+            +b tools."
+        { key_aspects
+            machine_readability "The report must be able to be easily parsed by other systems, allowing for
+                +b automation in security monitoring and management."
+            completeness "The report should cover all relevant security settings, providing a
+                +b comprehensive view of the component's current security posture."
+            interoperability "The format used for machine-readable reporting should be compatible with
+                +b existing security management tools and standards to ensure seamless
+                +b integration."
+            automation "The ability to automatically generate and update reports reduces the need for
+                +b manual intervention and helps in maintaining up-to-date security status."
+        [ related_standards
+            {
+                standard "ISO/IEC 27001"
+                reference "A.12.4 - Logging and Monitoring"
+                description "This section emphasizes the importance of logging and monitoring activities,
+                    +b including maintaining logs in a format that can be analyzed. It aligns with the
+                    +b need for machine-readable outputs in security settings."
+            {
+                standard "NIST SP 800-53"
+                reference "SI-4 - Information System Monitoring"
+                description "This control requires monitoring and reporting capabilities in information
+                    +b systems, supporting the need for machine-readable and interoperable reporting
+                    +b formats."
+            {
+                standard "ISO/IEC 19770-2"
+                reference "Software Identification Tag"
+                description "This standard provides a framework for identifying software components, similar
+                    +b to how machine-readable security reports should identify and document security
+                    +b settings."
+            {
+                standard "IEC 62443-3-3"
+                reference "SR 7.6 - Application Security Requirements"
+                description "Provides overarching security requirements for systems, including those related
+                    +b to maintaining and reporting security configurations effectively."

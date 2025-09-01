@@ -1,0 +1,245 @@
+$group
+    {
+        practice "4"
+        code "SI-1"
+        subCode "c)"
+        [ policies
+            {
+                code "SI-1"
+                subCode "c)"
+                title "Static Code Analysis Tool Selection and Configuration"
+                description "This policy mandates the selection and configuration of Static Code Analysis
+                    +b (SCA) tools that support the programming languages used in ICS environments
+                    +b (e.g., C/C++, Python, ladder logic). The tools must be configured to adhere to
+                    +b secure coding standards such as MISRA C or CERT C, as specified in IEC
+                    +b 62443-4-1. The policy ensures that SCA tools are integrated into the
+                    +b development environment to automate vulnerability detection."
+                enforcement "Compliance is enforced through regular audits of SCA tool configurations and
+                    +b integration checks. Developers must provide evidence of SCA tool usage and
+                    +b configuration during code reviews. Non-compliance results in blocked code
+                    +b commits until SCA requirements are met."
+            {
+                code "SI-1"
+                subCode "c)"
+                title "SCA Integration in CI/CD Pipelines"
+                description "This policy requires the integration of SCA tools into Continuous
+                    +b Integration/Continuous Deployment (CI/CD) pipelines for ICS software. All code
+                    +b changes, including patches and new source code, must undergo SCA before
+                    +b deployment. The policy aligns with IEC 62443-4-1's requirement for change-based
+                    +b SCA to ensure new vulnerabilities are not introduced during updates."
+                enforcement "Enforcement is automated through version control hooks (e.g., GitHub Actions,
+                    +b GitLab CI) that block commits with unresolved high-severity SCA findings.
+                    +b Security teams monitor pipeline logs to verify SCA execution and compliance."
+            {
+                code "SI-1"
+                subCode "c)"
+                title "SCA Findings Triage and Remediation"
+                description "This policy establishes a process for triaging and remediating SCA findings
+                    +b based on ICS risk. Findings must be prioritized by severity and exploitability,
+                    +b with critical vulnerabilities (e.g., buffer overflows, SQL injection) addressed
+                    +b before deployment. The policy references IEC 62443-4-1's vulnerability triage
+                    +b key aspect (KA4) and NIST SP 800-82 Rev. 2 guidelines."
+                enforcement "Remediation timelines are tracked via ticketing systems (e.g., Jira). Audits
+                    +b verify that critical findings are resolved within 7 days. Unresolved findings
+                    +b are escalated to the security governance committee."
+        [ procedures
+            {
+                code "SI-1"
+                subCode "c)"
+                title "Performing Static Code Analysis for ICS Source Code"
+                description "This procedure outlines the steps to conduct SCA on ICS source code, ensuring
+                    +b compliance with IEC 62443-4-1. It covers tool selection, scan execution, and
+                    +b results interpretation for languages like C/C++ and ladder logic."
+                [ steps
+                    {
+                        step 1
+                        action "Select an SCA tool (e.g., Coverity, Klocwork) that supports the target
+                            +b programming language and ICS-specific rule sets (e.g., MISRA C)."
+                        tools "Coverity, Klocwork, SonarQube"
+                        expected_outcome "SCA tool is configured with appropriate rule sets for ICS security
+                            +b requirements."
+                    {
+                        step 2
+                        action "Execute the SCA tool on the source code, including all changed and new code
+                            +b segments."
+                        tools "Integrated Development Environment (IDE) plugins, CLI tools"
+                        expected_outcome "SCA report generated with identified vulnerabilities and coding errors."
+                    {
+                        step 3
+                        action "Review the SCA report, prioritizing findings by severity (e.g., critical buffer
+                            +b overflows before style issues)."
+                        tools "SCA tool dashboard, Jira for tracking"
+                        expected_outcome "Prioritized list of vulnerabilities with assigned remediation owners."
+            {
+                code "SI-1"
+                subCode "c)"
+                title "Integrating SCA into CI/CD Pipelines"
+                description "This procedure details the integration of SCA tools into CI/CD pipelines for
+                    +b automated code scanning, as required by IEC 62443-4-1. It ensures all code
+                    +b changes are analyzed before deployment."
+                [ steps
+                    {
+                        step 1
+                        action "Configure the CI/CD system (e.g., Jenkins, GitHub Actions) to trigger SCA scans
+                            +b upon code commit or pull request."
+                        tools "Jenkins, GitHub Actions, GitLab CI"
+                        expected_outcome "SCA scans are automatically initiated for all code changes."
+                    {
+                        step 2
+                        action "Set up pipeline rules to block builds if critical SCA findings are detected."
+                        tools "Pipeline configuration files (e.g., Jenkinsfile, .github/workflows)"
+                        expected_outcome "Builds with unresolved critical vulnerabilities are automatically halted."
+                    {
+                        step 3
+                        action "Archive SCA reports in a centralized system (e.g., SonarQube server) for
+                            +b historical tracking and compliance audits."
+                        tools "SonarQube, Artifactory"
+                        expected_outcome "SCA reports are stored and accessible for compliance verification."
+            {
+                code "SI-1"
+                subCode "c)"
+                title "Remediating SCA Findings for Legacy ICS Code"
+                description "This procedure addresses the remediation of SCA findings in legacy ICS
+                    +b codebases where modern SCA tools may not be fully supported. It aligns with IEC
+                    +b 62443-4-1's handling of legacy systems."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct manual code reviews for legacy code segments not supported by SCA
+                            +b tools, focusing on high-risk areas (e.g., control logic, network
+                            +b communication)."
+                        tools "Code review checklists, Secure coding standards (CERT C)"
+                        expected_outcome "Manual review report identifying vulnerabilities in legacy code."
+                    {
+                        step 2
+                        action "Apply network segmentation to isolate legacy systems with unresolved
+                            +b vulnerabilities, limiting potential impact."
+                        tools "Industrial firewalls, VLAN configuration tools"
+                        expected_outcome "Legacy systems are segmented to reduce attack surface."
+                    {
+                        step 3
+                        action "Document unresolved legacy code vulnerabilities and mitigation measures in the
+                            +b risk register."
+                        tools "Risk management software (e.g., RSA Archer, GRC tools)"
+                        expected_outcome "Risk register updated with legacy code vulnerabilities and accepted risks."
+        last_updated "2023-11-15"
+    {
+        practice "4"
+        code "SI-1"
+        subCode "d) review of the implementation and its traceability to the security
+            +b capabilities defined to support the security design; and"
+        [ policies
+            {
+                code "SI-1"
+                subCode "d"
+                title "Traceability Matrix Policy"
+                description "This policy mandates the creation and maintenance of a traceability matrix that
+                    +b links each security capability defined in the security design to specific
+                    +b implementation artifacts (e.g., code, configurations, network rules). The
+                    +b matrix must be reviewed and updated during each security implementation review
+                    +b cycle to ensure alignment with IEC 62443-4-1 requirements."
+                enforcement "Regular audits using automated tools (e.g., RTM tools) and manual reviews by
+                    +b the security team. Non-compliance will trigger corrective actions documented in
+                    +b the deviation log."
+            {
+                code "SI-1"
+                subCode "d"
+                title "Peer Review Policy"
+                description "All security implementations must undergo peer reviews by cross-functional
+                    +b teams (security, engineering, operations) to validate alignment with the
+                    +b security design. Reviews must follow a structured checklist derived from IEC
+                    +b 62443-4-1 and document findings in a centralized issue-tracking system."
+                enforcement "Mandatory participation in peer reviews for all engineering teams. Enforcement
+                    +b via project management tools (e.g., Jira) that block deployment until reviews
+                    +b are completed."
+            {
+                code "SI-1"
+                subCode "d"
+                title "Deviation Documentation Policy"
+                description "Any deviations from the security design must be documented with a risk
+                    +b assessment and compensating controls. Deviations require approval from the
+                    +b security governance board and must be referenced in the traceability matrix."
+                enforcement "Automated checks in CI/CD pipelines flag untracked deviations. Quarterly audits
+                    +b verify deviation documentation completeness."
+        [ procedures
+            {
+                code "SI-1"
+                subCode "d"
+                title "Traceability Matrix Creation"
+                description "Procedure to develop and maintain a traceability matrix for security
+                    +b capabilities in Breton Spa's CNC and stone cutting machines, ensuring
+                    +b compliance with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Identify all security capabilities from the design documents (e.g., CR1:
+                            +b Identification and Authentication Control)."
+                        tools "Design documents, IEC 62443-4-1 reference guide"
+                        expected_outcome "List of security capabilities with unique identifiers."
+                    {
+                        step 2
+                        action "Map each capability to implementation artifacts (e.g., OPC UA configuration
+                            +b files, firewall rules)."
+                        tools "RTM tool (e.g., Jama Connect), configuration management database"
+                        expected_outcome "Populated traceability matrix with bidirectional links."
+                    {
+                        step 3
+                        action "Validate mappings through automated checks (e.g., scripted verification of
+                            +b firewall rules against network segmentation requirements)."
+                        tools "Custom Python scripts, Nessus for configuration scanning"
+                        expected_outcome "Validation report confirming 100% traceability or identifying gaps."
+            {
+                code "SI-1"
+                subCode "d"
+                title "Security Implementation Peer Review"
+                description "Structured peer review process for security implementations in Breton Spa's
+                    +b polishing machines and composite material lines."
+                [ steps
+                    {
+                        step 1
+                        action "Prepare review package: implementation artifacts, design documents, and
+                            +b traceability matrix."
+                        tools "Confluence, SharePoint"
+                        expected_outcome "Complete review package accessible to all stakeholders."
+                    {
+                        step 2
+                        action "Conduct review session using a checklist derived from IEC 62443-4-1 (e.g.,
+                            +b verify firmware signing for CR3: System Integrity)."
+                        tools "Checklist template, threat modeling tools (e.g., Microsoft Threat Modeling
+                            +b Tool)"
+                        expected_outcome "Documented findings with severity ratings."
+                    {
+                        step 3
+                        action "Track and resolve findings in the issue management system, updating the
+                            +b traceability matrix as needed."
+                        tools "Jira, traceability matrix tool"
+                        expected_outcome "Closed issues with evidence of remediation in the next audit cycle."
+            {
+                code "SI-1"
+                subCode "d"
+                title "Deviation Risk Assessment"
+                description "Procedure to assess and document deviations from the security design in legacy
+                    +b systems (e.g., unsupported TLS versions in older Breton machines)."
+                [ steps
+                    {
+                        step 1
+                        action "Identify deviation (e.g., legacy SCADA system cannot support Basic256Sha256
+                            +b encryption)."
+                        tools "Inventory management system, vulnerability scanners"
+                        expected_outcome "Deviation report with technical details."
+                    {
+                        step 2
+                        action "Perform risk assessment using NIST SP 800-30 adapted for ICS (e.g., evaluate
+                            +b impact of weaker encryption)."
+                        tools "Risk assessment templates, threat intelligence feeds"
+                        expected_outcome "Risk score and recommended compensating controls (e.g., network segmentation)."
+                    {
+                        step 3
+                        action "Document deviation and compensating controls in the traceability matrix with
+                            +b governance board approval."
+                        tools "GRC platform, traceability matrix"
+                        expected_outcome "Approved deviation record with sunset plan for legacy system."
+        last_updated "2023-11-15"
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 2078"

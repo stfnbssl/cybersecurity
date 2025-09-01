@@ -1,0 +1,332 @@
+$group
+    {
+        [ requirements
+            {
+                id "SR 6.1"
+                name "Audit log accessibility"
+                description "The control system shall provide the capability for authorized humans and/or
+                    +b tools to access audit logs on a read-only basis."
+                rationale "The control system generates audit records about events occurring in the system
+                    +b (see 6.10, SR 2.8 – Auditable events). Access to these audit logs is necessary
+                    +b to support filtering audit logs, identifying and removing information that is
+                    +b redundant, reviewing and reporting activity during after-the-fact
+                    +b investigations of security incidents. This access should not alter the original
+                    +b audit records. In general, audit reduction and report generation should be
+                    +b performed on a separate information system. Manual access to the audit records
+                    +b (such as screen views or printouts) is sufficient for meeting the base
+                    +b requirement, but is insufficient for higher SLs. Programmatic access is
+                    +b commonly used to provide the audit log information to analysis mechanisms such
+                    +b as SIEM. See relevant SRs in Clauses 5, 6 and 9 regarding the creation of,
+                    +b protection of and access to audit logs."
+                page 60
+                standard "IEC 62443-3-3"
+                category "Audit and Accountability"
+                [ enhancements
+                    {
+                        id "SR 6.1 RE 1"
+                        name "Programmatic access to audit logs"
+                        description "The control system shall provide programmatic access to audit records using an
+                            +b application programming interface (API)."
+                        [ notes
+                explanation "SR 6.1 focuses on ensuring that audit logs, which are critical for monitoring
+                    +b and investigating security events in a control system, are accessible to
+                    +b authorized personnel or tools in a read-only mode. This prevents tampering with
+                    +b the logs while allowing necessary analysis. The base requirement supports
+                    +b manual access (e.g., viewing logs on a screen or printing them), but for higher
+                    +b security levels, programmatic access via APIs is required to integrate with
+                    +b advanced security tools like Security Information and Event Management (SIEM)
+                    +b systems."
+                context "This requirement is applicable in industrial control system (ICS) environments
+                    +b where audit logs are essential for forensic analysis, compliance with
+                    +b regulatory requirements, and operational security monitoring. It is
+                    +b particularly relevant in industries such as energy, manufacturing, and critical
+                    +b infrastructure where unauthorized access or tampering with logs could conceal
+                    +b malicious activities or system failures. The context also includes integration
+                    +b with other IEC 62443 requirements related to audit log generation and
+                    +b protection."
+                [ challenges
+                    "Ensuring read-only access without compromising system performance or introducing vulnerabilities through access mechanisms."
+                    "Implementing secure programmatic access (APIs) that prevent unauthorized data exfiltration or manipulation at higher security levels."
+                    "Balancing the need for log accessibility with the protection of sensitive data contained within logs, especially in multi-tenant or shared systems."
+                    "Managing large volumes of audit data in resource-constrained ICS environments, which may not have the storage or processing capacity for extensive logging and access mechanisms."
+                    "Ensuring compatibility of audit log formats and access methods with external analysis tools like SIEM systems."
+                [ best_practices
+                    "Implement strict access controls (e.g., role-based access control - RBAC) to ensure only authorized users or tools can access audit logs."
+                    "Use secure protocols (e.g., TLS) for programmatic access to protect data in transit when logs are accessed via APIs."
+                    "Maintain separation of duties by ensuring that log access and log generation roles are assigned to different teams or systems to prevent tampering."
+                    "Regularly test audit log access mechanisms for vulnerabilities, such as insufficient authentication or authorization controls."
+                    "Integrate audit log access with a centralized SIEM system for real-time monitoring and alerting on suspicious access patterns."
+                    "Document and audit all access to logs to create a secondary record of who accessed the data and when, enhancing accountability."
+                    "Store audit logs on a separate, secure system to reduce the risk of tampering and improve performance of the primary control system."
+                [ security_levels
+                    {
+                        level "SL-C (TRE, control system) 1"
+                        applicability "SR 6.1"
+                    {
+                        level "SL-C (TRE, control system) 2"
+                        applicability "SR 6.1"
+                    {
+                        level "SL-C (TRE, control system) 3"
+                        applicability "SR 6.1 (1)"
+                    {
+                        level "SL-C (TRE, control system) 4"
+                        applicability "SR 6.1 (1)"
+                { compliance
+                    status "Not Started"
+                    last_audit "1970-01-01T00:00:00Z"
+                    [ testing_requirements
+                        "Verify that only authorized users/tools can access audit logs in read-only mode."
+                        "Test programmatic access (API) for secure data transmission and proper authentication/authorization at SL-C 3 and 4."
+                        "Conduct penetration testing to ensure no unauthorized access paths to audit logs exist."
+                        "Validate that accessing logs does not impact control system performance or availability."
+                    responsible_team "Security Engineering"
+                { metadata
+                    version "1.0.0"
+                    created_at "2023-10-05T12:00:00Z"
+                    updated_at "2023-10-05T12:00:00Z"
+                    author "Security Team"
+    {
+        [ requirements
+            {
+                id "SR 6.1"
+                name "Audit log accessibility"
+                [ implementations
+                    {
+                        context "CNC machining centers in natural stone processing facilities at Breton Spa"
+                        description "Implement a secure web-based dashboard for authorized personnel to access audit
+                            +b logs of CNC machining centers on a read-only basis. The dashboard is hosted on
+                            +b a separate server within the industrial network and retrieves logs from the
+                            +b control system using encrypted communication channels. Access is restricted via
+                            +b role-based access control (RBAC) to ensure only authorized users can view logs
+                            +b without modifying them."
+                        [ tools
+                            {
+                                name "Apache HTTP Server"
+                                purpose "Hosting the secure web-based dashboard for log access"
+                            {
+                                name "OpenSSL"
+                                purpose "Encrypting communication between the dashboard and control system"
+                        [ challenges_addressed
+                            "Preventing unauthorized access to sensitive audit logs"
+                            "Ensuring logs remain unaltered during viewing"
+                            "Providing user-friendly access in an industrial environment"
+                        applies_to "SR 6.1"
+                    {
+                        context "Stone cutting machines with networked control interfaces at Breton Spa"
+                        description "Deploy a secure file transfer mechanism to periodically copy audit logs from
+                            +b stone cutting machines to a dedicated log analysis server. Logs are transferred
+                            +b using SFTP with strong authentication to ensure read-only access for review by
+                            +b security personnel. The original logs on the control system are protected from
+                            +b modification through file system permissions."
+                        [ tools
+                            {
+                                name "OpenSSH"
+                                purpose "Implementing SFTP for secure log transfer"
+                            {
+                                name "Linux File Permissions"
+                                purpose "Restricting write access to logs on the control system"
+                        [ challenges_addressed
+                            "Mitigating risk of log tampering during transfer"
+                            "Ensuring secure off-system log review in compliance with separation principles"
+                        applies_to "SR 6.1"
+                    {
+                        context "Polishing machines in automated production lines at Breton Spa"
+                        description "Set up a read-only terminal interface on the polishing machine control system
+                            +b for on-site technicians to view audit logs directly. The terminal enforces
+                            +b read-only access through a restricted shell environment, preventing any
+                            +b modifications to the logs. Logs are displayed with timestamps and event details
+                            +b for quick incident analysis without requiring external tools."
+                        [ tools
+                            {
+                                name "Bash Restricted Shell (rbash)"
+                                purpose "Providing a read-only terminal environment for log access"
+                            {
+                                name "Syslog Viewer"
+                                purpose "Displaying formatted audit logs in the terminal"
+                        [ challenges_addressed
+                            "Allowing immediate on-site log access without network dependency"
+                            "Preventing accidental or intentional log modifications by technicians"
+                        applies_to "SR 6.1"
+                    {
+                        context "Composite material processing lines with Industry 4.0 compliance at Breton Spa"
+                        description "Develop a RESTful API integrated into the control system of composite material
+                            +b processing lines to allow programmatic access to audit logs. The API is secured
+                            +b with OAuth 2.0 for authentication and authorization, ensuring only trusted
+                            +b applications (e.g., SIEM systems) can retrieve logs. Logs are formatted in JSON
+                            +b for easy parsing by external analysis tools."
+                        [ tools
+                            {
+                                name "Node.js"
+                                purpose "Building the RESTful API for log access"
+                            {
+                                name "OAuth 2.0 Framework"
+                                purpose "Securing API access with token-based authentication"
+                        [ challenges_addressed
+                            "Enabling automated log retrieval for real-time monitoring"
+                            "Securing programmatic access against unauthorized applications"
+                        applies_to "SR 6.1 RE 1"
+                    {
+                        context "Metalworking CNC systems with real-time monitoring at Breton Spa"
+                        description "Implement a gRPC-based API for high-performance programmatic access to audit
+                            +b logs from metalworking CNC systems. The API uses mutual TLS (mTLS) for secure
+                            +b communication between the control system and external analysis tools, ensuring
+                            +b logs are accessible only to authenticated and authorized clients. This supports
+                            +b integration with Industry 4.0-compliant monitoring platforms."
+                        [ tools
+                            {
+                                name "gRPC Framework"
+                                purpose "Creating a high-performance API for log access"
+                            {
+                                name "OpenSSL"
+                                purpose "Implementing mTLS for secure API communication"
+                        [ challenges_addressed
+                            "Supporting high-speed log access for real-time analysis"
+                            "Protecting log data during transmission over networked interfaces"
+                        applies_to "SR 6.1 RE 1"
+    {
+        [ requirements
+            {
+                id "SR 6.2"
+                name "Continuous Monitoring"
+                description "The control system shall provide the capability to continuously monitor all
+                    +b security mechanism performance using commonly accepted security industry
+                    +b practices and recommendations to detect, characterize and report security
+                    +b breaches in a timely manner."
+                rationale "Control system monitoring capability can be achieved through a variety of tools
+                    +b and techniques (for example, IDS, IPS, malicious code protection mechanisms and
+                    +b network monitoring mechanisms). As attacks become more sophisticated, these
+                    +b monitoring tools and techniques will need to become more sophisticated as well,
+                    +b including for example behavior-based IDS/IPS. Monitoring devices should be
+                    +b strategically deployed within the control system (for example, at selected
+                    +b perimeter locations and near server farms supporting critical applications) to
+                    +b collect essential information. Monitoring mechanisms may also be deployed at ad
+                    +b hoc locations within the control system to track specific transactions.
+                    +b Monitoring should include appropriate reporting mechanisms to allow for a
+                    +b timely response to events. To keep the reporting focused and the amount of
+                    +b reported information to a level that can be processed by the recipients,
+                    +b mechanisms such as SIEM are commonly applied to correlate individual events
+                    +b into aggregate reports which establish a larger context in which the raw events
+                    +b occurred. Additionally, these mechanisms can be used to track the effect of
+                    +b security changes to the control system (see 6.10, SR 2.8 – Auditable events).
+                    +b Having forensic tools pre-installed can facilitate incident analysis."
+                page 60
+                standard "IEC 62443-3-3"
+                category "Monitoring and Logging"
+                [ enhancements
+                explanation "SR 6.2 focuses on the necessity of continuous monitoring within a control
+                    +b system to ensure that security mechanisms are performing as expected. This
+                    +b requirement emphasizes the detection, characterization, and timely reporting of
+                    +b security breaches. Continuous monitoring is critical in industrial environments
+                    +b where downtime or breaches can lead to significant safety and operational
+                    +b risks. It involves deploying tools like Intrusion Detection Systems (IDS),
+                    +b Intrusion Prevention Systems (IPS), and Security Information and Event
+                    +b Management (SIEM) systems to provide real-time insights into the system's
+                    +b security posture."
+                context "This requirement applies to control systems in industrial environments where
+                    +b operational technology (OT) intersects with information technology (IT).
+                    +b Continuous monitoring is essential in environments with high availability
+                    +b requirements, such as manufacturing plants, energy grids, and critical
+                    +b infrastructure. It ensures that any deviation from normal operation or
+                    +b potential security incident is quickly identified and addressed. The context
+                    +b includes the integration of monitoring tools at key points within the network
+                    +b architecture, such as at perimeters and near critical assets, to maximize
+                    +b visibility and response capabilities."
+                [ challenges
+                    "Integrating monitoring tools into legacy control systems that were not designed with cybersecurity in mind."
+                    "Managing the volume of data generated by continuous monitoring, which can overwhelm systems and personnel if not properly filtered or correlated."
+                    "Ensuring timely response to detected incidents in environments where operational priorities may conflict with security actions."
+                    "Balancing the need for monitoring with system performance, as monitoring tools can introduce latency or resource constraints in resource-limited industrial devices."
+                    "Addressing the evolving nature of threats, requiring constant updates to monitoring tools and techniques to detect sophisticated attacks like Advanced Persistent Threats (APTs)."
+                [ best_practices
+                    "Deploy a layered monitoring architecture with tools like IDS/IPS at network perimeters and critical asset locations to ensure comprehensive coverage."
+                    "Utilize SIEM systems to correlate and aggregate events, reducing noise and providing actionable insights through contextual analysis."
+                    "Implement behavior-based monitoring to detect anomalies that signature-based tools might miss, especially for zero-day attacks."
+                    "Regularly update monitoring tools and threat intelligence feeds to adapt to new attack vectors and techniques."
+                    "Establish clear incident response protocols linked to monitoring alerts to ensure timely mitigation of detected threats."
+                    "Conduct periodic reviews and audits of monitoring logs to identify gaps in coverage or areas for improvement."
+                    "Pre-install forensic tools to enable detailed post-incident analysis without disrupting system operations."
+                [ security_levels
+                    {
+                        level "SL-C (TRE, control system) 1"
+                        applicability "Not Selected"
+                    {
+                        level "SL-C (TRE, control system) 2"
+                        applicability "SR 6.2"
+                    {
+                        level "SL-C (TRE, control system) 3"
+                        applicability "SR 6.2"
+                    {
+                        level "SL-C (TRE, control system) 4"
+                        applicability "SR 6.2"
+                { compliance
+                    status "Not Started"
+                    last_audit "2023-10-01T00:00:00Z"
+                    [ testing_requirements
+                        "Verify the deployment and functionality of monitoring tools across critical network segments."
+                        "Test the system's ability to detect and report simulated security breaches within defined response times."
+                        "Validate the integration of SIEM or similar systems for event correlation and reporting."
+                        "Conduct periodic penetration testing to assess the effectiveness of monitoring mechanisms against real-world threats."
+                    responsible_team "Security Engineering"
+                { metadata
+                    version "1.0.0"
+                    created_at "2023-10-05T12:30:00Z"
+                    updated_at "2023-10-05T12:30:00Z"
+                    author "Security Team"
+    {
+        $schema "http://json-schema.org/draft-07/schema#"
+        [ requirements
+            {
+                id "SR 6.2"
+                name "Continuous monitoring"
+                [ implementations
+                    {
+                        context "CNC machining centers in industrial manufacturing facilities for stone and
+                            +b composite materials"
+                        description "Deployment of an Intrusion Detection System (IDS) integrated with the CNC
+                            +b control systems to monitor network traffic for anomalous activities. The IDS is
+                            +b configured to detect unauthorized access attempts or unusual data patterns that
+                            +b could indicate a cyberattack on the high-precision control systems."
+                        [ tools
+                            {
+                                name "Snort"
+                                purpose "Open-source IDS for real-time traffic analysis and packet logging"
+                            {
+                                name "Wireshark"
+                                purpose "Network protocol analyzer for detailed packet inspection and troubleshooting"
+                        [ challenges_addressed
+                            "Detecting unauthorized access to networked control interfaces"
+                            "Identifying potential data exfiltration from real-time monitoring sensors"
+                            "Mitigating risks of sophisticated attacks on automated production lines"
+                        applies_to "SR 6.2"
+                    {
+                        context "Stone cutting machines with networked control interfaces for remote operation"
+                        description "Implementation of a Security Information and Event Management (SIEM) system to
+                            +b aggregate and correlate logs from various security mechanisms across the stone
+                            +b cutting machines. The SIEM provides real-time alerts and dashboards to identify
+                            +b potential security breaches or performance issues in security mechanisms."
+                        [ tools
+                            {
+                                name "Splunk"
+                                purpose "SIEM solution for log aggregation, correlation, and real-time alerting"
+                        [ challenges_addressed
+                            "Managing large volumes of security event data from distributed machines"
+                            "Reducing response time to potential security incidents through centralized monitoring"
+                            "Ensuring timely detection of breaches in remote operation interfaces"
+                        applies_to "SR 6.2"
+                    {
+                        context "Polishing machines in automated production lines with integrated sensor systems"
+                        description "Installation of behavior-based monitoring tools to continuously analyze the
+                            +b performance of security mechanisms protecting the polishing machines. These
+                            +b tools use machine learning to detect deviations from normal operational
+                            +b patterns, such as unusual sensor data or unexpected tool changer activities,
+                            +b and generate alerts for further investigation."
+                        [ tools
+                            {
+                                name "Darktrace"
+                                purpose "AI-based threat detection for identifying anomalous behavior in industrial
+                                    +b networks"
+                        [ challenges_addressed
+                            "Detecting insider threats or subtle attacks that bypass traditional signature-based systems"
+                            "Monitoring real-time sensor data for potential tampering or manipulation"
+                            "Adapting to evolving attack techniques in Industry 4.0 environments"
+                        applies_to "SR 6.2"

@@ -1,0 +1,235 @@
+{
+  "machine": {
+    "name": "A00385",
+    "use_case": "Linea con Spezzatura, Lievitazione, Forni, Raffreddamento, Scarrellatore, Smodellatura"
+  },
+  "context": {},
+  "zones": [
+    {
+      "name": "NET10_GestioneImpianto_192.168.10.0/24"
+    },
+    {
+      "name": "NET20_PLCMaster_192.168.20.0/24"
+    },
+    {
+      "name": "NET30_Spezzatrice_Lievitazione_192.168.30.0/24"
+    },
+    {
+      "name": "NET40_Forni_192.168.40.0/24"
+    },
+    {
+      "name": "NET50_Raffreddamento_192.168.50.0/24"
+    },
+    {
+      "name": "NET60_Scarrellatore_192.168.60.0/24"
+    },
+    {
+      "name": "NET70_Smodellatura_192.168.70.0/24"
+    },
+    {
+      "name": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "name": "NET214_SwitchInterno_192.168.214.0/24"
+    },
+    {
+      "name": "NET254_Programmazione_192.168.254.0/24"
+    },
+    {
+      "name": "ReteCliente_Perimetro"
+    }
+  ],
+  "conduits": [
+    {
+      "from": "NET20_PLCMaster_192.168.20.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET30_Spezzatrice_Lievitazione_192.168.30.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET40_Forni_192.168.40.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET50_Raffreddamento_192.168.50.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET60_Scarrellatore_192.168.60.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET70_Smodellatura_192.168.70.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET20_PLCMaster_192.168.20.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET30_Spezzatrice_Lievitazione_192.168.30.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET40_Forni_192.168.40.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET50_Raffreddamento_192.168.50.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET60_Scarrellatore_192.168.60.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "NET214_SwitchInterno_192.168.214.0/24",
+      "to": "NET70_Smodellatura_192.168.70.0/24",
+      "direction": "bidirectional"
+    },
+    {
+      "from": "ReteCliente_Perimetro",
+      "to": "NET10_GestioneImpianto_192.168.10.0/24",
+      "direction": "bidirectional"
+    }
+  ],
+  "remote_access": {
+    "exists": true,
+    "method": "VPN tramite WatchGuard T25 con profili (innova admin, innova, proxaut)",
+    "vendors": [
+      "WatchGuard"
+    ]
+  },
+  "components": [
+    {
+      "id": "PLC_NET10",
+      "type": "embedded",
+      "zone": "NET10_GestioneImpianto_192.168.10.0/24"
+    },
+    {
+      "id": "PC_Supervisore_192.168.10.2",
+      "type": "host",
+      "zone": "NET10_GestioneImpianto_192.168.10.0/24"
+    },
+    {
+      "id": "SwitchMaster_QE100",
+      "type": "network",
+      "zone": "NET10_GestioneImpianto_192.168.10.0/24"
+    },
+    {
+      "id": "FW_WatchGuard_T25",
+      "type": "network",
+      "vendor": "WatchGuard",
+      "model": "T25",
+      "zone": "ReteCliente_Perimetro"
+    },
+    {
+      "id": "PLC_Master_192.168.20.1",
+      "type": "embedded",
+      "zone": "NET20_PLCMaster_192.168.20.0/24"
+    },
+    {
+      "id": "PLC_Spezzatrice_Lievitazione_192.168.30.1",
+      "type": "embedded",
+      "zone": "NET30_Spezzatrice_Lievitazione_192.168.30.0/24"
+    },
+    {
+      "id": "PLC_Forni_192.168.40.1",
+      "type": "embedded",
+      "zone": "NET40_Forni_192.168.40.0/24"
+    },
+    {
+      "id": "PLC_Raffreddamento_192.168.50.1",
+      "type": "embedded",
+      "zone": "NET50_Raffreddamento_192.168.50.0/24"
+    },
+    {
+      "id": "PLC_Scarrellatore_192.168.60.1",
+      "type": "embedded",
+      "zone": "NET60_Scarrellatore_192.168.60.0/24"
+    },
+    {
+      "id": "PLC_Smodellatura_192.168.70.1",
+      "type": "embedded",
+      "zone": "NET70_Smodellatura_192.168.70.0/24"
+    },
+    {
+      "id": "S800_RitornoTeglie_192.168.70.100",
+      "type": "embedded",
+      "zone": "NET70_Smodellatura_192.168.70.0/24"
+    },
+    {
+      "id": "PC_ProxAut_192.168.90.1",
+      "type": "host",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AP1_192.168.90.11",
+      "type": "network",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AP2_192.168.90.12",
+      "type": "network",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AP3_192.168.90.13",
+      "type": "network",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AP4_192.168.90.14",
+      "type": "network",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AGV1_192.168.90.31",
+      "type": "embedded",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AGV2_192.168.90.32",
+      "type": "embedded",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "AGV3_192.168.90.33",
+      "type": "embedded",
+      "zone": "NET90_ProxAut_192.168.90.0/24"
+    },
+    {
+      "id": "Switch_Interno_192.168.214.0",
+      "type": "network",
+      "zone": "NET214_SwitchInterno_192.168.214.0/24"
+    },
+    {
+      "id": "PC_Programmatore_192.168.254.X",
+      "type": "host",
+      "zone": "NET254_Programmazione_192.168.254.0/24"
+    },
+    {
+      "id": "PC_BAULI",
+      "type": "host",
+      "zone": "ReteCliente_Perimetro"
+    }
+  ]
+}

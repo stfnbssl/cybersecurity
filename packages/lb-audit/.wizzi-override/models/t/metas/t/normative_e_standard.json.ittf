@@ -1,0 +1,159 @@
+$group
+    {
+        name "normative_e_standard"
+        [ steps
+            {
+                name "1"
+                sourceItemsVar "wzCtx.root_prompts.normative_e_standard_extraction_1.items"
+                sourceItemsKey "title"
+                outschema "promo_relate_a_norme"
+                [ injsons
+                    {
+                        name "attivita"
+                        sourceVar "wzCtx.root_prompts.attività_progetto_cybersecurity_in_corso"
+                    {
+                        name "normative_analizzate"
+                        sourceVar "wzCtx.root_prompts.normative_e_standard"
+                [ inschemas
+                [ systemLines
+                    "Sei un esperto di cybersecurity in contesto OT/ICS"
+                    "Riconosci la grande importanza della digitalizzazione nelle imprese"
+                    "e quanto la cybersecurity è fondamentale per una digitalizzazione affidabile"
+                    "Sei consapevole dei costi della applicazione di standardi di sicurezza come IEC 62443,"
+                    "IEC 2700, Nis2, CRA e Registro Macchine e di quanto è importante"
+                    "per le imprese trovare soluzioni efficaci e anche economiche"
+                    "Hai una grande fiducia che il lavoro concettuale e di analisi svolto da chi ha redatto"
+                    "standard e norme è di grande valore e sia la strada giusta da seguire,"
+                    "il problema è come rendere economiche le realizzazioni"
+                    "Sei impegnato con una attività di pubblicista ad elaborare e proporre idee"
+                    "e possibili soluzioni documentandoti, anche on line, e pubblicando articoli"
+                    "su blog e riviste"
+                [ userLines
+                    "Utilizzando il JSON integrato fornito, genera un contenuto promozionale in formato JSON 
+                        +b per i servizi di Logbot relativi a una specifica normativa o standard di cybersecurity 
+                        +b (es. [NORMATIVA_SPECIFICA]). 
+                        +b Il contenuto deve essere allineato allo stile di comunicazione di Logbot: 
+                        +b professionale, tecnico ma accessibile, con enfasi su innovazione, semplicità, 
+                        +b conformità normativa e risultati concreti." 
+                    "Segui queste istruzioni:"
+                    "1. **Dati di Input**:"
+                    "   - Usa il JSON integrato che contiene:"
+                    "   - Un array `attivita` con codici univoci, nome, categoria, dato, riferimento_documento, 
+                        +b utilizzo_in_offerte, offerta_collegata, scadenze e normative_collegate."
+                    "   - Un array `normative_analizzate` con nome, descrizione, rilevanza_per_logbot 
+                        +b (contesto, applicazioni, allineamento_temi_logbot), collegamento_attivita, 
+                        +b mercato_nordamericano e link_significativi."
+                    "   - Filtra le informazioni relative alla normativa specificata ([NORMATIVA_SPECIFICA], 
+                        +b es. IEC 62443, NEC-2023) o a tutte le normative, se non specificato."
+                    "2. **Contenuto da Generare**:"
+                    "   - **Formato di Output**: JSON conforme allo schema fornito."
+                    "   - **Struttura JSON**:"
+                    "     - `normativa`: Nome della normativa (es. 'NEC-2023 (NFPA 70)')."
+                    "     - `metadata`: Oggetto con:"
+                    "       - `data_generazione`: Data e ora in formato ISO 8601 (es. '2025-08-15T08:35:00+02:00')."
+                    "       - `lingua`: Lingua del contenuto (es. 'inglese', 'italiano')."
+                    "       - `target`: Destinatari (es. 'produttori manifatturieri nordamericani')."
+                    "       - `formato`: Formato del contenuto (es. 'slide', 'post LinkedIn')."
+                    "       - `lunghezza_approssimativa`: Lunghezza stimata (es. '100-150 parole')."
+                    "     - `contenuto`:"
+                    "       - `titolo`: Titolo accattivante che collega la normativa ai servizi di Logbot."
+                    "       - `introduzione`: Breve descrizione della normativa e della sua importanza, basata su `normative_analizzate.descrizione` e `rilevanza_per_logbot.contesto`."
+                    "       - `benefici`: Array di 3-5 benefici specifici, tratti da `rilevanza_per_logbot.applicazioni` e `allineamento_temi_logbot`."
+                    "       - `attivita_correlate`: Array di 1-3 attività (con codici univoci) da `collegamento_attivita`, con descrizione del collegamento."
+                    "       - `mercato_nordamericano`: Paragrafo basato su `mercato_nordamericano`, obbligatorio se rilevante, altrimenti vuoto."
+                    "       - `call_to_action`: Invito diretto con un link significativo da `link_significativi`."
+                    "   - **Tono e Stile**: Professionale, tecnico ma chiaro, con enfasi su innovazione (es. AI, IoT), semplicità (es. plug-and-play), conformità e risultati concreti (es. riduzione costi, continuità operativa)."
+                    "   - **Lunghezza**: [LUNGHEZZA] (es. 100-150 parole per una slide, 300-500 parole per un articolo)."
+                    "3. **Parametri Personalizzabili**:"
+                    "   - **Normativa**: [NORMATIVA_SPECIFICA] o “tutte” per un contenuto generale."
+                    "   - **Formato**: Specifica il formato (es. slide, post LinkedIn, articolo tecnico, brochure)."
+                    "   - **Target**: [TARGET] (es. produttori manifatturieri, system integrator, clienti nordamericani)."
+                    "   - **Lingua**: [LINGUA] (es. inglese per mercato USA, italiano per mercato europeo)."
+                    "Utilizzando il JSON integrato di seguito fornito, estrai dati utili 
+                        +b popolando il JSON Schema anch'esso fornito di seguito
+                        +b estraendo in base ai Parametri Personalizzabili indicati nel JSON 
+                        +b `input_json_data` anch'esso fornito di seguito."
+                    "Genera un JSON con un database di articoli principali,"
+                    "con dettagli utili per gli auditor."
+            {
+                name "2"
+                sourceItemsVar "wzCtx.root_prompts.normative_checks.items"
+                sourceItemsKey "title"
+                outschema "normative_checks"
+                [ injsons
+                [ inschemas
+                [ systemLines
+                    "Sei un esperto di cybersecurity in contesto OT/ICS"
+                    "e conosci le principali normative di riferimento"
+                [ userLines
+                    "Genera un JSON con un database di articoli per la normativa di cybersecurity"
+                    "che ti verrà indicata nell'`input_json_data` fornito che conterrà anche i"
+                    "link significativi alle norme di riferimento e altre fonti autorevoli."
+                    "Il contenuto deve essere conforme allo schema JSON fornito e "
+                    "orientato agli auditor, con un tono tecnico, chiaro e pratico, "
+                    "in linea con lo stile di Logbot: professionale, tecnico ma accessibile. "
+                    "Segui queste istruzioni:"
+                    "1. **Contenuto da Generare**:"
+                    "   - **Formato di Output**: JSON conforme allo schema fornito, con un array `database_articoli`, dove ogni oggetto contiene:"
+                    "     - `normativa`: Nome della normativa (es. 'NIS2')."
+                    "     - `articolo_sezione`: Identificatore dell’articolo o sezione (es. 'Articolo 21')."
+                    "     - `descrizione`: Sintesi del contenuto e del requisito (es. 'Richiede l’implementazione di misure di gestione del rischio')."
+                    "     - `controlli_audit`: Array di 1-5 azioni specifiche per verificare la conformità (es. 'Verifica delle policy di sicurezza')."
+                    "     - `link_risorse`: Array di URL al testo ufficiale o guida pertinente."
+                    "3. **Parametri forniti nell'`input_json_data`**:"
+                    "     - `normativa`: Nome della normativa (es. 'NIS2')."
+                    "     - `link_risorse`: Array di URL al testo ufficiale o guida pertinente."
+            {
+                name "3"
+                sourceItemsVar "wzCtx.root_prompts.normative_e_standard.items"
+                sourceItemsKey "nome"
+                outschema "normative_e_standard_date_e_revisioni"
+                [ injsons
+                [ inschemas
+                [ systemLines
+                    "Sei un esperto di cybersecurity in contesto OT/ICS"
+                    "e conosci le principali normative di riferimento"
+                [ userLines
+                    "Produci un JSON con date significative che riguardano normative e standard"
+                    "descritte nel JSON fornito nel tag <input_json_data>."
+                    "Il contenuto deve essere conforme allo schema JSON fornito e "
+                    "orientato agli auditor, con un tono tecnico, chiaro e pratico."
+                    "Segui queste istruzioni:"
+                    "1. **Contenuto da Generare**:"
+                    "  - `metadati` con la data di estrazione corrente"
+                    "  - `entrata_in_vigore`: Array con eventi significativi per l'entrata in vigore"
+                    "  - `revisioni`: Array con eventi significativi per la modifica del contenuto"
+                    "  - `related_links`: Array di link, opzionale, ad informazioni significative per l'elenco"
+                    "  Gli eventi debbono riportare:"
+                    "  - `evento`: descrizione"
+                    "  - `data`: data dell'evento"
+                    "  - `giorni_trascorsi`: giorni trascorsi dall'evento se già avvenuto"
+                    "  - `giorni_mancanti`: giorni mancanti dall'evento se accadrà in futuro"                  
+                    "  - `related_links`: Array di link, opzionale, ad informazioni significative per l'elenco"          
+
+            {
+                name "4"
+                sourceItemsVar "wzCtx.root_prompts.normative_e_standard.items"
+                sourceItemsKey "nome"
+                outschema "normative_attuazione_e_strumenti"
+                [ filters
+                    {
+                        property "tipo"
+                        oper "equal"
+                        value "normativa"
+                [ injsons
+                [ inschemas
+                [ systemLines
+                    "Sei un esperto di cybersecurity in contesto OT/ICS"
+                    "e conosci le principali normative di riferimento"
+                [ userLines
+                    "Produci un JSON con informazioni significative che riguardano normative e standard"
+                    "descritte nel JSON fornito nel tag <input_json_data>."
+                    "Il contenuto deve essere conforme allo schema JSON fornito e "
+                    "orientato agli auditor, con un tono tecnico, chiaro e pratico."
+                    "Segui queste istruzioni:"
+                    "1. **Contenuto da Generare**:"
+                    "  - `attuazione`: un Array con almeno 5 item di con informazioni su provvedimenti attuativi"
+                    "  - `interpretazioni`: Array con con almeno 5 item di interpretazione delle norme espresse da esperti in cybersecurity"
+                    "  - `strumenti_opensource`: Array con con almeno 5 item di informazioni su strumenti open source disponibili per l'implementazione da parte delle imprese"
+                    "  - `offerte`: Array con con almeno 5 item di informazioni su significative offerte commerciale e strumenti a pagamento per l'implementazione da parte delle imprese"

@@ -1,0 +1,464 @@
+$group
+    {
+        manufacturer "Breton S.p.A."
+        [ machine_types
+            {
+                type "CNC Stone Cutting Machines"
+                description "High-precision CNC machines for cutting and shaping natural stone like marble
+                    +b and granite, with advanced servo motors for accuracy."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherNet/IP (with CIP Security)"
+                    "Modbus TCP (with TLS)"
+            {
+                type "Automated Composite Material Lines"
+                description "Fully automated production lines for composite materials, integrating robotics
+                    +b for material handling and curing processes."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherCAT (with Safety over EtherCAT)"
+                    "SERCOS III (with security extensions)"
+            {
+                type "PLC-Controlled Processing Systems"
+                description "PLC-driven systems for stone polishing and finishing, ensuring consistent
+                    +b quality through real-time control and monitoring."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "DeviceNet (with security layers)"
+                    "CANopen (with security profiles)"
+            {
+                type "CNC Engraving Machines"
+                description "Specialized CNC machines for intricate engraving on stone surfaces, offering
+                    +b high-resolution detailing with automated tool changes."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherNet/IP (with CIP Security)"
+                    "Modbus TCP (with TLS)"
+        [ applications
+            {
+                name "Natural Stone Processing"
+                criticality "High"
+                description "Cutting and shaping marble/granite for construction. Downtime or errors can
+                    +b halt major projects, causing significant financial loss."
+            {
+                name "Composite Material Production"
+                criticality "High"
+                description "Manufacturing composites for aerospace and automotive. Precision and uptime are
+                    +b critical to meet stringent industry standards."
+            {
+                name "Stone Surface Finishing"
+                criticality "Medium"
+                description "Polishing and texturing stone surfaces for aesthetic value. Interruptions
+                    +b impact delivery schedules but not safety-critical processes."
+            {
+                name "Architectural Engraving"
+                criticality "Low"
+                description "Custom engraving for decorative stone elements. Disruptions cause delays in
+                    +b non-critical aesthetic applications with minimal operational impact."
+        [ key_features
+            {
+                feature "High-Precision CNC Control"
+                description "Advanced PLC-based systems ensuring sub-millimeter precision in stone cutting
+                    +b and engraving via real-time feedback loops."
+                [ security_support
+                    "Firmware Signing"
+                    "Secure Boot"
+            {
+                feature "Real-Time Data Monitoring"
+                description "Continuous monitoring of machine parameters like spindle speed and tool wear,
+                    +b streamed securely to central systems."
+                [ security_support
+                    "Data Encryption"
+                    "Secure Communication (TLS)"
+            {
+                feature "Remote Diagnostics"
+                description "Enables remote troubleshooting and firmware updates through encrypted channels,
+                    +b minimizing downtime in production environments."
+                [ security_support
+                    "Authentication (CR1)"
+                    "Encrypted Updates"
+            {
+                feature "Integrated HMI Interface"
+                description "User-friendly HMI for machine operation, supporting role-based access to
+                    +b prevent unauthorized configuration changes."
+                [ security_support
+                    "Role-Based Access Control (CR1)"
+                    "Audit Logging"
+            {
+                feature "Automated Tool Management"
+                description "Automated tool selection and replacement based on wear detection, with secure
+                    +b data exchange to prevent tampering."
+                [ security_support
+                    "System Integrity (CR3)"
+                    "Secure Data Flow"
+        { operational_environment
+            description "Industrial facilities for stone and composite processing, often in harsh
+                +b conditions with high dust and variable temperatures."
+            { conditions
+                temperature_range "5-40°C"
+                dust_level "High (stone processing environments)"
+                network_type "Segmented OT networks with DMZ for external access"
+        industry_4_0_compliance true
+        { security_profile
+            [ supported_sl
+                "SL 1"
+                "SL 2"
+                "SL 3"
+            [ certifications
+                "IEC 62443-4-2 (in progress)"
+                "ISO 27001 (aligned)"
+            [ common_threats
+                "Ransomware targeting control systems, disrupting production"
+                "Man-in-the-Middle attacks on industrial protocols, altering commands"
+                "HMI data manipulation, leading to incorrect operator decisions"
+        { product_version
+            current_version "2023.2"
+            last_updated "2023-10-15"
+        [ assumptions_justifications
+            {
+                assumption "Machines support advanced automation for stone and composite processing."
+                justification "Based on Breton’s market leadership in CNC machinery and alignment with ISO
+                    +b 23125 for machine tool standards."
+            {
+                assumption "Secure protocols like OPC UA are implemented for data exchange."
+                justification "IEC 62443-4-2 emphasizes secure communication (CR2), and OPC UA is widely
+                    +b adopted in ICS for security features."
+            {
+                assumption "Machines operate in high-dust industrial environments requiring robust design."
+                justification "Stone processing generates dust, necessitating IP-rated enclosures per IEC
+                    +b 60529 for equipment protection."
+            {
+                assumption "Cybersecurity features include secure boot and firmware signing."
+                justification "IEC 62443-4-2 CR3 (System Integrity) requires protection against unauthorized
+                    +b code, standard in modern ICS."
+            {
+                assumption "Network architecture uses zoned segmentation per IEC 62443-3-3."
+                justification "Zoning mitigates risk propagation in OT environments, a best practice under
+                    +b NIST 800-82 and IEC standards."
+        { note_su_json_risultante
+            description "Notes on the resulting JSON structure and implementation details"
+            [ notes
+                {
+                    note_id "N1"
+                    description "The JSON was tailored to Breton S.p.A.’s focus on CNC stone processing and
+                        +b composites, emphasizing secure protocols like OPC UA."
+                {
+                    note_id "N2"
+                    description "Cybersecurity features align with IEC 62443-4-2 CR1-CR3, reflecting practical
+                        +b OT security needs in industrial environments."
+    {
+        manufacturer "Cannon S.p.A."
+        [ machine_types
+            {
+                type "Polyurethane Dosing Machines"
+                description "High-precision machines for dosing polyurethane components in industrial
+                    +b applications, featuring advanced PLC control for accurate mixing ratios."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherNet/IP (with CIP Security)"
+                    "Modbus TCP (with TLS)"
+            {
+                type "Thermoforming Equipment"
+                description "Automated systems for shaping plastic and composite materials using heat and
+                    +b pressure, integrated with networked control for process monitoring."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherCAT (with Safety over EtherCAT)"
+                    "SERCOS III (with security extensions)"
+            {
+                type "Automated Mixing Systems"
+                description "PLC-driven systems for consistent mixing of polyurethane chemicals, designed
+                    +b for high throughput in industrial production environments."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherNet/IP (with CIP Security)"
+                    "CC-Link IE (with security features)"
+            {
+                type "Polyurethane Injection Systems"
+                description "Specialized equipment for injecting polyurethane into molds, optimized for
+                    +b precision and repeatability with real-time control interfaces."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "DeviceNet (with security layering)"
+                    "Modbus TCP (with TLS)"
+        [ applications
+            {
+                name "Automotive Component Manufacturing"
+                criticality "High"
+                description "Used for producing polyurethane-based automotive parts. Disruptions can halt
+                    +b assembly lines, causing significant financial losses and delays."
+            {
+                name "Insulation Panel Production"
+                criticality "Medium"
+                description "Supports manufacturing of insulation materials for construction. Interruptions
+                    +b impact project timelines but are less critical than automotive applications."
+            {
+                name "Furniture Foam Processing"
+                criticality "Medium"
+                description "Facilitates production of foam for furniture. Downtime affects production
+                    +b schedules but has moderate operational impact compared to automotive."
+            {
+                name "Packaging Material Fabrication"
+                criticality "Low"
+                description "Used in creating protective packaging. Downtime has minimal impact on broader
+                    +b operations, as alternatives are often available."
+        [ key_features
+            {
+                feature "Advanced PLC Control Systems"
+                description "Integrated PLCs for precise control of dosing and mixing, supporting real-time
+                    +b adjustments and diagnostics in production."
+                [ security_support
+                    "Firmware Signing"
+                    "Role-Based Access Control (RBAC)"
+            {
+                feature "Networked HMI Interfaces"
+                description "Touchscreen HMIs for operator interaction, providing real-time data
+                    +b visualization and control over machine parameters."
+                [ security_support
+                    "Authentication (CR1 - IEC 62443-4-2)"
+                    "Encrypted Communication (TLS)"
+            {
+                feature "Remote Diagnostics Capability"
+                description "Enables remote monitoring and troubleshooting of machine issues to minimize
+                    +b downtime and improve maintenance efficiency."
+                [ security_support
+                    "VPN Access"
+                    "Data Confidentiality (CR4 - IEC 62443-4-2)"
+            {
+                feature "Secure Firmware Updates"
+                description "Supports over-the-air updates with cryptographic verification to ensure only
+                    +b authorized firmware is installed."
+                [ security_support
+                    "Digital Signatures"
+                    "System Integrity (CR3 - IEC 62443-4-2)"
+            {
+                feature "Data Logging for Compliance"
+                description "Records operational data for traceability and regulatory compliance, ensuring
+                    +b audit trails for production processes."
+                [ security_support
+                    "Encrypted Storage"
+                    "Restricted Data Flow (CR5 - IEC 62443-4-2)"
+        { operational_environment
+            description "Industrial facilities for polyurethane processing and thermoforming, often
+                +b located in controlled manufacturing plants with high material throughput."
+            { conditions
+                temperature_range "10-35°C"
+                dust_level "Moderate (due to material handling and processing)"
+                network_type "Segmented OT networks with DMZ for IT-OT integration"
+        industry_4_0_compliance true
+        { security_profile
+            [ supported_sl
+                "SL 1"
+                "SL 2"
+                "SL 3"
+            [ certifications
+                "IEC 62443-4-2 (in progress)"
+                "ISO 27001 (targeted)"
+            [ common_threats
+                "Ransomware targeting control systems, disrupting production and demanding payment for restoration."
+                "Man-in-the-Middle (MitM) attacks on industrial protocols, altering dosing parameters or machine settings."
+                "HMI data manipulation, leading to incorrect operator decisions and potential safety hazards."
+        { product_version
+            current_version "2023.2.1"
+            last_updated "2023-10-15"
+        [ assumptions_justifications
+            {
+                assumption "Machines integrate advanced PLCs for automation and control."
+                justification "Based on Cannon’s focus on precision processing and alignment with ISO 23125
+                    +b for machine tool safety and control."
+            {
+                assumption "Support for secure protocols like OPC UA with Basic256Sha256."
+                justification "Reflects industry shift to secure communication as per IEC 62443-4-2 (CR4 -
+                    +b Data Confidentiality) for networked ICS."
+            {
+                assumption "Operational environment includes segmented OT networks."
+                justification "Aligns with IEC 62443-3-3 zone and conduit model to minimize attack surfaces in
+                    +b industrial settings."
+            {
+                assumption "Machines support remote diagnostics and updates."
+                justification "Consistent with Industry 4.0 trends and NIST 800-82 guidelines for secure
+                    +b remote access in OT environments."
+            {
+                assumption "Firmware integrity is protected via digital signatures."
+                justification "Ensures compliance with IEC 62443-4-2 (CR3 - System Integrity) to prevent
+                    +b unauthorized software modifications."
+        { note_su_json_risultante
+            description "Notes on the resulting JSON structure and implementation details for Cannon
+                +b S.p.A. context."
+            [ notes
+                {
+                    note_id "N1"
+                    description "The JSON was tailored to Cannon S.p.A.’s focus on polyurethane processing,
+                        +b emphasizing secure protocols and OT segmentation."
+                {
+                    note_id "N2"
+                    description "Protocol selections like OPC UA and PROFINET were justified based on IEC
+                        +b 62443-4-2 relevance for secure ICS communication."
+                {
+                    note_id "N3"
+                    description "Assumptions were derived from industry standards (ISO, NIST) and Cannon’s
+                        +b market positioning in industrial automation."
+    {
+        manufacturer "SCM Group S.p.A."
+        [ machine_types
+            {
+                type "CNC Woodworking Centers"
+                description "High-precision CNC machines for cutting, milling, and drilling wood with
+                    +b advanced automation for mass production."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherCAT (with secure profiles)"
+                    "Modbus TCP (with TLS)"
+            {
+                type "Automated Panel Saws"
+                description "Automated saws for precise panel cutting in furniture production, integrated
+                    +b with IoT for real-time monitoring."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherNet/IP (with CIP Security)"
+                    "S7 Protocol (with secure authentication)"
+            {
+                type "IoT-Enabled Production Systems"
+                description "Integrated systems for smart factory operations, enabling data-driven
+                    +b woodworking processes and remote diagnostics."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "MQTT (with TLS encryption)"
+                    "PROFINET (PN Security)"
+                    "HTTP/2 (with secure APIs)"
+            {
+                type "Edgebanding Machines"
+                description "Specialized machines for applying edge banding to wood panels, featuring
+                    +b networked control for efficiency."
+                [ supported_protocols
+                    "OPC UA (Security Policy Basic256Sha256)"
+                    "PROFINET (PN Security)"
+                    "EtherCAT (with secure profiles)"
+                    "Modbus TCP (with TLS)"
+        [ applications
+            {
+                name "Furniture Manufacturing"
+                criticality "High"
+                description "Critical for producing high-volume furniture components. Downtime or cyber
+                    +b incidents can halt production lines, causing significant financial loss."
+            {
+                name "Custom Woodworking"
+                criticality "Medium"
+                description "Supports bespoke wood designs for niche markets. Interruptions impact delivery
+                    +b schedules but with less severe operational consequences."
+            {
+                name "Panel Processing"
+                criticality "High"
+                description "Essential for cutting and shaping panels in industrial settings. Breaches can
+                    +b compromise precision and safety, affecting output quality."
+            {
+                name "Smart Factory Integration"
+                criticality "Medium"
+                description "Enables IoT-driven monitoring and optimization. Cyber threats may disrupt data
+                    +b flows but rarely halt core operations directly."
+        [ key_features
+            {
+                feature "Advanced CNC Control Systems"
+                description "PLC-based systems ensuring sub-millimeter precision in wood processing with
+                    +b real-time feedback loops."
+                [ security_support
+                    "Firmware Signing"
+                    "Secure Boot"
+            {
+                feature "IoT Connectivity Modules"
+                description "Enables remote monitoring and diagnostics via secure cloud integration for
+                    +b predictive maintenance."
+                [ security_support
+                    "End-to-End Encryption"
+                    "Authentication (CR1 IEC 62443-4-2)"
+            {
+                feature "Operator HMI Interfaces"
+                description "Touchscreen interfaces for machine control, supporting role-based access to
+                    +b prevent unauthorized operations."
+                [ security_support
+                    "Role-Based Access Control (CR1)"
+                    "Audit Logging"
+            {
+                feature "Data Logging and Analytics"
+                description "Records operational data for process optimization, secured against tampering to
+                    +b ensure integrity."
+                [ security_support
+                    "Data Integrity Checks (CR3)"
+                    "Encryption"
+            {
+                feature "Remote Firmware Updates"
+                description "Supports secure over-the-air updates to patch vulnerabilities and improve
+                    +b machine functionality."
+                [ security_support
+                    "Digital Signatures (CR3)"
+                    "Secure Communication Channels"
+        { operational_environment
+            description "Industrial facilities for woodworking and automated production, often in
+                +b large-scale factories with networked systems."
+            { conditions
+                temperature_range "10-35°C"
+                dust_level "High (wood dust prevalent in processing areas)"
+                network_type "Segmented OT networks with DMZ for IoT connectivity"
+        industry_4_0_compliance true
+        { security_profile
+            [ supported_sl
+                "SL 1"
+                "SL 2"
+                "SL 3"
+            [ certifications
+                "IEC 62443-4-2 (Component Requirements)"
+                "ISO 27001 (partial alignment)"
+            [ common_threats
+                "Ransomware targeting control systems, disrupting production and demanding payment for recovery."
+                "Man-in-the-Middle (MitM) attacks on industrial protocols, altering commands or stealing data."
+                "HMI manipulation, where attackers exploit interfaces to issue malicious commands or falsify data."
+        { product_version
+            current_version "2023.2.1"
+            last_updated "2023-10-15"
+        [ assumptions_justifications
+            {
+                assumption "Machines support advanced automation for woodworking with IoT integration."
+                justification "Based on SCM Group’s focus on smart factory solutions and alignment with
+                    +b Industry 4.0 standards (ISO 23125)."
+            {
+                assumption "Secure protocols like OPC UA and PROFINET are implemented for communication."
+                justification "These protocols meet IEC 62443-4-2 requirements for secure data exchange in ICS
+                    +b environments (CR4, CR5)."
+            {
+                assumption "High dust levels in operational environments necessitate robust hardware."
+                justification "Woodworking generates significant dust, requiring IP-rated enclosures per
+                    +b industrial standards (IEC 60529)."
+            {
+                assumption "Cybersecurity features include encryption and secure boot mechanisms."
+                justification "Essential for protecting against threats in networked OT systems, as per IEC
+                    +b 62443-4-2 (CR3, CR1)."
+            {
+                assumption "Segmented networks are used to isolate OT from IT and external connectivity."
+                justification "Aligns with IEC 62443-3-3 zone and conduit model to minimize attack surfaces in
+                    +b industrial setups."
+        { note_su_json_risultante
+            description "Notes on the resulting JSON structure and implementation details for SCM Group
+                +b S.p.A. machinery context."
+            [ notes
+                {
+                    note_id "N1"
+                    description "The JSON was tailored to SCM Group’s woodworking machinery focus, emphasizing
+                        +b IoT and CNC systems for cybersecurity relevance."
+                {
+                    note_id "N2"
+                    description "Protocol selections prioritize secure options like OPC UA with Basic256Sha256,
+                        +b aligning with IEC 62443-4-2 requirements."
+                {
+                    note_id "N3"
+                    description "Environmental conditions reflect typical woodworking facilities, influencing
+                        +b physical and network security assumptions."

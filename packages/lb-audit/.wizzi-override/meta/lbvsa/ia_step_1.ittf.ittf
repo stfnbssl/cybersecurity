@@ -1,0 +1,109 @@
+ittf
+
+    $*
+        AI extension of wzCtx.Data.classifiers and lbvsa
+        model lbvsa in /.wizzi-override/models/LB Vendor Security Assesment.json
+        Adds 'key_aspects' and 'related_standards'
+    *$
+
+    $
+        var checklist_explanation_json_schema = '{"$schema":"http://json-schema.org/draft-07/schema#","type":"json_schema","json_schema":{"name":"checklist_explanation","schema":{"type":"object","properties":{"detailed_explanation":{"type":"string"},"glossary":{"type":"array","items":{"type":"object","properties":{"term":{"type":"string"},"definition":{"type":"string"},"link":{"type":"string"}},"required":["term","definition","link"],"additionalProperties":false}},"related_links":{"type":"array","items":{"type":"object","properties":{"title":{"type":"string"},"url":{"type":"string"}},"required":["title","url"],"additionalProperties":false}}},"required":["detailed_explanation","glossary","related_links"],"additionalProperties":false},"strict":true}}';
+        var ctx = {};
+        function cleanName(name) {
+            var retval = name.indexOf(' ') > -1 ? '"' + name + '"' : name;
+            return _.replace(retval,'(',"$"+"{'('}");
+        }
+        function splitTextIntoSegments(text, maxLength) {
+            const words = text.split(' ');
+            const segments = [];
+            let currentSegment = '';
+            for (var i=0; i<words.length; i++) {
+                var word = words[i];
+                if ((currentSegment + word).length + 1 > maxLength) { 
+                    segments.push(currentSegment.trim());
+                    currentSegment = '';
+                }
+                currentSegment += word + ' ';
+            }            
+            if (currentSegment.trim()) {
+                segments.push(currentSegment.trim());
+            }
+            return segments;
+        }        
+
+    $foreach dc in wzCtx.Data.classifiers
+        $
+            ctx[dc.name] = {};
+
+    $
+        function add(type, key, value) {
+            var x = ctx[type];
+            if (!_.isObject(x)) {
+                ctx[type] = {}
+                x = ctx[type];
+            }
+            var y = x[key];
+            if (!_.isObject(y)) {
+                x[key] = { items: [] }
+                y = x[key];
+            }
+            // y.items.push(value);
+            y.items.push(value.IDD);
+        }
+
+    $foreach item in lbvsa
+        $foreach dc in wzCtx.Data.classifiers
+            $if item[dc.property] != '-'
+                $
+                    add(dc.name, item[dc.property], item);
+
+    $function toSplittedString
+        $param name
+        $param text
+        $
+            var lines = splitTextIntoSegments(text, 80);
+            lines[0] = '"' + lines[0];
+            lines[lines.length-1] = lines[lines.length-1] + '"';
+
+        ${''+cleanName(name)} ${lines[0]}
+            $ var j = 1
+
+            $while j < lines.length
+                +b ${lines[j]}
+                $ j++
+
+   
+    $file .wizzi-override/docs/lbvsa/ai_step_1_in/index.ai.ittf
+        ai lab
+            api-url http://localhost:3000
+
+            $ var count = 0
+
+            $foreach item in lbvsa
+                $if count < 3
+                    $
+                        var options = {
+                            name: 'clist-item-' + item.IDD,
+                            description: 'clist extension of item ' + item.IDD,
+                            cl_def: {
+                                idd: item.IDD,
+                                area: item.Ambito,
+                                category: item.Categoria,
+                                description: item['Descrizione requisito'],
+                                note: item['Ulteriori note']
+                            },
+                            checklist_explanation_json_schema: checklist_explanation_json_schema,
+                            provider: 'deepSeek',
+                        }
+
+                    $foreach dc in wzCtx.Data.classifiers
+                        $if dc.isSpecification
+                            $if _.isNotEmpty(item[dc.property]) && item[dc.property] != '-'
+                                $
+                                    options.cl_def[''+cleanName(dc.property)] = item[dc.property];
+
+                    $ options.cl_defJSONString = _.stringify(options.cl_def, null, null)
+                    
+                    ia_step_2_item(&options)
+                    
+                    $ count++

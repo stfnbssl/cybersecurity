@@ -1,0 +1,132 @@
+$group
+    {
+        code "SG"
+        name "Practice 8 – Security guidelines"
+        purpose "The processes specified by this practice are used to provide user documentation that describes how to integrate, configure, and maintain 
+            +b the defense in depth strategy of the product in accordance with its product security context (see Clause 6). IEC 62443-2-4 defines 
+            +b complementary hardening requirements for the use of this documentation by IACS service providers.
+            +b Applying and maintaining the defense in depth strategy for a specific installation will typically address the following:
+            +b a) policies and procedures associated with the product security context, as defined in Clause 6;
+            +b b) architectural considerations, such as firewall placement and use of compensating mechanisms including security measures, as defined in Clause 7;
+            +b c) configuring security settings/options, such as configuring firewall rules, delegation, certificate management, and managing user accounts (for example, setting their privileges/permissions); and
+            +b d) use of tools to assist in thehardening."
+        [ notes
+            "Patching is not included in this list, but is addressed in Clause 11."
+            "The remainder of Clause 12 defines requirements for development processes used to produce and maintain this documentation."
+            "Supporting these requirements means that the product supplier has identifiable processes for creating, maintaining and delivering documentation that describes how to harden the product."
+        [ requirements
+            {
+                clause "12.2"
+                code "SG-1"
+                name "Product defense in depth"
+                page 32
+                requirement "A process shall exist to create product user documentation that describes the security defense in depth strategy for the product 
+                    +b to support installation, operation and maintenance that includes:
+                    +b a) security capabilities implemented by the product and their role in the defense in depth strategy;
+                    +b b) threats addressed by the defense in depth strategy; and
+                    +b c) product user mitigation strategies for known security risks associated with the product, including risks associated with l egacy code."
+                rationale "This process is required to ensure that documentation for the defense in depth strategy is produced to support 
+                    +b hardening of the product at the customer site. Such documentation is required by IEC 62443-2-4, that defines security requirements 
+                    +b for IACS installation and maintenance service providers.
+                    +b Having this process means that the product supplier documents various aspects of the defense in depth strategy necessary 
+                    +b to harden the product during installation and keep it hardened during its lifetime of use. Aspects of the defense in depth strategy to be 
+                    +b documented include the residual threats that are expected to be present and capable of attacking the product, 
+                    +b the security capabilities of the product to safeguard it against these threats and any compensating security controls/mitigations 
+                    +b that can be used with the product to further protect the product."
+            {
+                clause "12.3"
+                code "SG-2"
+                name "Defense in depth measures expected in the environment"
+                page 32
+                requirement "A process shall be employed to create product user documentation that describes the security defense in depth measures 
+                    +b expected to be provided by the external environment in which the product is to be used (see Clause 6)."
+                [ notes
+                    "These measures can also come from 10.5."
+                rationale "This process is required to ensure that documentation for the defense in depth strategy is produced to support 
+                    +b hardening of the product at the customer site. Such documentation is required by IEC 62443-2-4, that defines security 
+                    +b requirements for IACS installation and maintenance service providers.
+                    +b Having this process means that the product supplier documents various aspects of the defense in depth strategy necessary to 
+                    +b harden the product during installation and keep it hardened during its lifetime of use."
+            {
+                clause "12.4"
+                code "SG-3"
+                name "Security hardening guidelines"
+                page 32
+                requirement "A process shall be employed to create product user documentation that includes guidelines for hardening the 
+                    +b product when installing and maintaining the product. The guidelines shall include, but are not limited to, instructions,
+                    +b rationale and recommendations for the following:
+                    +b a) integration of the product, including third-party components, with its product security context (see Clause 6);
+                    +b b) integration of the product’s application programming interfaces/protocols with user applications;
+                    +b c) applying and main ta in ing the product’s defense in depth strategy (see Clause 7);
+                    +b d) configuration and use of security options/capabilities in support of l ocal security policies, and for each security option /capability:
+                    +b 1) its con tribution to the product’s defense in depth strategy (see Clause 7);
+                    +b 2) descriptions of configurable and default values that include how each affects security a long with any potential impact each has on work practices; and                        
+                    +b 3) setting/changing /deleting its value;
+                    +b e) instructions and recommendations for the use of all security-related tools and u ti l iti es that support administration, monitoring, i nciden t handling and evaluation of the security of the product;
+                    +b f) instructions and recommendations for periodic security maintenance activi ti es;
+                    +b g) instructions for reporting security i ncidents for the product to the product supplier; and
+                    +b h) description of the security best practices for maintenance and administration of the product."
+                rationale "This process is required to ensure that instructions that describe how to harden the product and keep it hardened are documented. 
+                    +b Such documentation is required by IEC 62443-2-4 that defines security requirements for IACS installation and maintenance service providers.
+                    +b Having this process means that the product supplier creates user documentation that provides directions for hardening the product 
+                    +b during installation and for keeping it hardened during the lifetime of the product use. This requirement recognizes that the security policies 
+                    +b and requirements for customer sites are often different, and as a result, instructions for securely integrating the product in to the customer site, 
+                    +b configuring it appropriately and maintaining its security are necessary."
+            {
+                clause "12.5"
+                code "SG-4"
+                name "Secure disposal guidelines"
+                page 32
+                requirement "A process shall be employed to create product user documentation that includes guidelines for removing 
+                    +b the product from use. The guidelines shall include, but is not limited to, instructions and recommendations for the following:
+                    +b a) removing the product from its intended environment (see Clause 6);
+                    +b b) including recommendations for removing references and configuration data stored within the environment;
+                    +b c) secure removal of data stored in the product; and
+                    +b d) secure disposal of the product to prevent potential disclosure of data con tained in the product that could not be removed as described in c) above."
+                rationale "This process is required to ensure that instructions that describe how to securely take the product out of 
+                    +b use (decommission it) are documented. Such documentation is required by IEC 62443-2-4, that defines security requirements 
+                    +b for IACS installation and maintenance service providers.
+                    +b Having this process means that the product supplier creates user documentation that provides directions for sanitizing the product of sensitive, 
+                    +b confidential and/or proprietary data and software."
+            {
+                clause "12.6"
+                code "SG-5"
+                name "Secure operation guidelines"
+                page 32
+                requirement "A process shall be employed to create product user documentation that describes:
+                    +b a) responsibilities and actions necessary for users, including administrators, to securely operate the product; and
+                    +b b) assumptions regard ing the behaviour of the user/administrator and their relationsh ip to the secure operation of the product."
+                rationale "This process is required to ensure that instructions that describe the secure use of the product during its operation 
+                    +b and administration are included in the security guidelines.
+                    +b Having this process means that the product supplier creates user/administrator documentation that provides instructions 
+                    +b for using the product securely. In general, this represents a set of best practices for the secure use of the product. 
+                    +b For example, this could include guidelines for certificate management, password management and other authentication mechanisms."
+            {
+                clause "12.7"
+                code "SG-6"
+                name "Account management guidelines"
+                page 32
+                requirement "A process shall be employed to create product user documentation that defines user account requirements and 
+                    +b recommendations associated with the use of the product that includes, but is not limited to:
+                    +b a) user account permissions (access control) and privileges (user rights) needed to use the product, including, but not limited to operating system accounts, control system accounts and data base accounts; and
+                    +b b) default accounts used by the product (for example, service accounts) and instructions for changing default account names and passwords."
+                rationale "This process is required to ensure that requirements for the user accounts necessary to use the product are defined and documented.
+                    +b Having this process means that the product supplier creates documentation that defines accounts and their settings, 
+                    +b including default accounts, that are needed to use the product."
+            {
+                clause "12.8"
+                code "SG-7"
+                name "Documentation review"
+                page 32
+                requirement "A process shall be employed to identify, characterize and track to closure errors and omissions in all user manuals 
+                    +b including the security guidelines to include:
+                    +b a) coverage of the product’s security capabilities;
+                    +b b) integration of the product with its intended environment (see Clause 6); and
+                    +b c) assurance that all d ocumented practices are secure."
+                rationale "This process is required to ensure that the security-related documentation for the product is accurate and complete and 
+                    +b that non-secure practices are not documented in other user documentation.
+                    +b Having this process means that the product's security-related documentation is reviewed to determine whether any 
+                    +b product security capabilities have not been correctly or adequately addressed, and whether the documentation adequately 
+                    +b describes how the product's defense in depth strategy is to be integrated with the product security context; 
+                    +b and if discrepancies are found, that a process exists for addressing them."
+

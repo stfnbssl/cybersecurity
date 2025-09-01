@@ -1,0 +1,82 @@
+html 
+    head 
+        @style 
+            css 
+                < body
+                    font-family Arial, sans-serif
+                    line-height 1.6
+                . summary-container
+                    width 50%
+                    margin 0 auto
+                    text-align center
+                    padding 20px
+                . summary-list
+                    list-style none
+                    padding 0
+                . summary-list li
+                    margin 10px 0
+                    font-size 18px
+                . content-section
+                    width 50%
+                    margin 20px auto
+                    padding 20px
+                . back-button
+                    display inline-block
+                    margin-top 20px
+                    padding 10px 20px
+                    background-color #f0f0f0
+                    text-decoration none
+                    color #333
+                    border-radius 5px
+                < h1
+                    color #2c3e50
+                < h3
+                    color #34495e
+    body 
+        $
+            var requirements = audit_controls.requirements_62443_4_1;
+
+        . summary-container
+            h1 Summary of Contents
+            ul 
+                class summary-list
+                $foreach r in requirements
+                    li 
+                        a ${r.code} - ${r.name}
+                            href #${r.code}
+        $foreach r in requirements
+            . content-section
+                id ${r.code}
+                h1 ${r.code} - ${r.name}
+                div ${r.requirement}
+                div ${r.rationale}
+                $foreach sr in r.subcontrols
+                    h3 ${sr.title}
+                    div ${sr.value}
+                    div ${sr.control}
+                $if _.isArray(r.nistSP800218) && r.nistSP800218.length > 0
+                    $foreach item800218 in r.nistSP800218
+                        h3 SP.800-218 ${item800218.practice}
+                        div ${item800218.tasks}
+                        $if _.isArray(item800218.examples) && item800218.examples.length > 0
+                            h5 examples
+                            $foreach example in item800218.examples
+                                div ${example}
+                        $if _.isArray(item800218.owaspSammPractices) && item800218.owaspSammPractices.length > 0
+                            h5 SAMM
+                            $foreach sammPractice in item800218.owaspSammPractices
+                                h6 ${sammPractice.code}
+                                $if _.isArray(sammPractice.controls) && sammPractice.controls.length > 0
+                                    $foreach control in sammPractice.controls
+                                        h6 ${control.code}
+                                        div ${control.control}
+                                        div ${control.description}
+                                        div ${control.definition}
+                                        div ${control.action}
+                                        div ${control.SCADAExample}
+                                        div ${control.evidenceRequired}
+                                        div ${control.usefulTools}
+                                        div ${control.detailedInstructions}
+                a Back to Summary
+                    href #
+                    class back-button

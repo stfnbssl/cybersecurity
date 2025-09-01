@@ -1,0 +1,188 @@
+ai lab
+    api-url http://localhost:3000
+    call clist-item-14.4.2
+        description clist extension of item 14.4.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.4.2","area":"Operation Technology addendum","category":"Patch management per i sistemi di controllo industriale","description":"E' presente e viene fornita la documentazione necessaria a descrivere il processo di patching manuale o da remoto e sono previsti rapporti sullo stato di completamento delle attività di patching?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.
+    call clist-item-14.4.3
+        description clist extension of item 14.4.3
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.4.3","area":"Operation Technology addendum","category":"Patch management per i sistemi di controllo industriale","description":"Il processo di aggiornamento dei dispositivi che supportano l'installazione di software/firmware attraverso la rete garantisce l'autenticità e l'integrità del software/firmware?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.
+    call clist-item-14.5.1
+        description clist extension of item 14.5.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.5.1","area":"Operation Technology addendum","category":"Backup dei sistemi di controllo industriale","description":"Il sistema di controllo consente di eseguire backup a livello utente e di sistema (i.e. file di backup disponibili nei singoli dispositivi), senza interrompere il normale funzionamento durante l'esecuzione?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.
+    call clist-item-14.5.2
+        description clist extension of item 14.5.2
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.5.2","area":"Operation Technology addendum","category":"Backup dei sistemi di controllo industriale","description":"Il sistema di controllo è in grado di recuperare la propria operatività a seguito del ripristino dai backup eseguiti?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.
+    call clist-item-14.5.3
+        description clist extension of item 14.5.3
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.5.3","area":"Operation Technology addendum","category":"Backup dei sistemi di controllo industriale","description":"I sistemi di controllo eseguono backup automatici secondo una frequenza configurabile?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.
+    call clist-item-14.6.1
+        description clist extension of item 14.6.1
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192
+        temperature 0.7
+        message 
+            role system
+            content Sei un esperto in cybersecurity industriale contesto OT / ICS,
+                \ed assisti gli auditor nel produrre checklist.
+        message 
+            role user
+            content Ho necessità di popolare un database JSON con dati utili per supportare l'uso di una check list.
+                \n Sotto riporto il JSON schema del database e il JSON di un item della check list.
+                \n Popola lo schema con l'idd fornito nel JSON originale e aggiungi:
+                \n 1) la proprieta `asset_owner` come da schema con la valutazione motivata che il controllo è rilevante per una verifica di un IACS gestito da un asset owner.
+                \n 2) la proprieta `ssdl` come da schema con la valutazione motivata che il controllo è rilevante per una verifica del Secure Software Development Lifecycle
+                \n 3) la proprieta `system_integration` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un IACS System o macchina
+                \n 4) la proprieta `component_production` come da schema con la valutazione motivata che il controllo è rilevante per la verifica di un componente prodotto
+                \n - Se il JSON originale manca di dettagli, deduci informazioni plausibili basandoti sulla norma.
+                \n - Verifica che il JSON risultante sia conforme allo schema e privo di errori.
+                \n - Se hai note significative sul JSON risultante puoi popolare la proprietà `note_su_json_risultante`.
+                \n Popola questo JSON schema:
+                \n <database_json_schema> 
+                \n {"$schema":"http://json-schema.org/draft-07/schema#","title":"Schema per check list Carel Logbot Vendor Assessment","description":"Schema JSON per raccogliere classificazioni degli item della checklist.","type":"object","properties":{"IDD":{"type":"string"},"area":{"type":"string"},"category":{"type":"string"},"description":{"type":"string"},"asset_owner":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"ssdl":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"system_integration":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}},"component_production":{"type":"object","properties":{"isRelevant":{"type":"boolean"},"motivation":{"type":"string"}}}},"required":["ssdl","system_integration","component_production"],"additionalProperties":false} 
+                \n </database_json_schema> 
+                \n Popola lo schema con i seguenti dati di input
+                \n <input_json_data> 
+                \n {"idd":"14.6.1","area":"Operation Technology addendum","category":"Audit trail nei sistemi di controllo industriale","description":"I sistemi di controllo prevedono la possibilità di conservare e gestire gli audit log generati dalle macchine? Tali log sono segnalati e analizzabili attraverso apposite interfacce?","note":""} 
+                \n </input_json_data> 
+                \n Ritorna il JSON risultante.

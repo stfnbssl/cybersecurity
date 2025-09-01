@@ -1,0 +1,80 @@
+ittf 
+    $ 
+        var step_name = 'articles.step_1';
+        var x_options = {
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.article_themes, null, null),
+        } 
+        // var provider = 'chatGPT';
+        // provider = 'grok';
+        var provider = 'deepSeek';
+        var maxNumInBatch = 5;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        } 
+        var count = 0;
+    $foreach aiItem in wzCtx.root_prompts.article_idea.items
+        $ _.log('----> ', step_name, 'aiItem.title', aiItem.title);
+        $if count > maxNumInBatch
+            $ 
+                batches.push(currentBatch); 
+                currentBatch = {
+                    id: currentBatch.id + 1,
+                    items: [aiItem]
+                } 
+                count = 1;
+        $else 
+            $ 
+                currentBatch.items.push(aiItem); 
+                count++; 
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);
+    $ _.log('----> batches.length', batches.length);
+    $foreach batch in batches
+        $file .wizzi-override/docs/articles/ai_step_1_in/batch-${batch.id}.ai.ittf
+            ai ${step_name}
+                api-url http://localhost:3000
+                $foreach batchItem in batch.items
+                    $ 
+                        var filterOk = true;
+                    $if filterOk
+                        $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                        $ 
+                            var options = {
+                                provider: provider,
+                                id: batchItem.title,
+                                inputJSON: batchItem,
+                                inputJSONString: batchItemJSONString,
+                                JSONSchema: x_options.step_1_JSONSchema,
+                                product_supplier_JSON: null, // not used
+                            } 
+                        call ${options.id}
+                            description articles - ${options.id}
+                            message 
+                                role system
+                                content 
+                                    ${''}\n Sei un esperto di cybersecurity in contesto OT/ICS
+                                    ${''}\n Riconosci la grande importanza della digitalizzazione nelle imprese
+                                    ${''}\n e quanto la cybersecurity è fondamentale per una digitalizzazione affidabile
+                                    ${''}\n Sei consapevole dei costi della applicazione di standardi di sicurezza come IEC 62443,
+                                    ${''}\n IEC 2700, Nis2, CRA e Registro Macchine e di quanto è importante
+                                    ${''}\n per le imprese trovare soluzioni efficaci e anche economiche
+                                    ${''}\n Hai una grande fiducia che il lavoro concettuale e di analisi svolto da chi ha redatto
+                                    ${''}\n standard e norme è di grande valore e sia la strada giusta da seguire,
+                                    ${''}\n il problema è come rendere economiche le realizzazioni
+                                    ${''}\n Sei impegnato con una attività di pubblicista ad elaborare e proporre idee
+                                    ${''}\n e possibili soluzioni documentandoti, anche on line, e pubblicando articoli
+                                    ${''}\n su blog e riviste
+                            message 
+                                role user
+                                content 
+                                    ${''}\n In base al titolo e alle poche righe che descrivono il concept dell'articolo
+                                    ${''}\n che ti fornisco nel tag <input_json_data> proponi temi di approfondimento
+                                    ${''}\n popolando in risposta lo schema JSON fornito
+                                    ai/schema_data_return( &options, step )
+    ${'$'}file .wizzi-override/docs/articles/ai_step_1_out/index.json.ittf
+        { 
+            [ items
+                $foreach batch in batches
+                    ${'$'}include batch-${batch.id}

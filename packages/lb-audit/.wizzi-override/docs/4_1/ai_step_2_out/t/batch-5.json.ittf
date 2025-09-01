@@ -1,0 +1,1024 @@
+$group
+    {
+        practice "2"
+        code "SR-5"
+        subCode "a) architects/developers (those who will implement the requirements);"
+        explanation "The requirement mandates a structured process to review and validate security
+            +b requirements, ensuring they are clear, aligned with the threat model, and
+            +b verifiable. Architects and developers must actively participate in this
+            +b process."
+        context "This practice is critical in ICS environments where security requirements must
+            +b address unique operational and safety constraints. It ensures that security
+            +b measures are feasible and effective against identified threats."
+        [ challenges
+            "Lack of clear communication between security teams and developers can lead to misinterpretation of requirements. Example: A developer might overlook a critical security constraint in a PLC configuration."
+            "Evolving threat landscapes may render initial requirements obsolete. Example: A new ICS-specific malware emerges, requiring updates to the threat model and security requirements."
+            "Balancing security with operational efficiency is challenging. Example: Implementing stringent authentication might delay critical processes in a manufacturing plant."
+            "Ensuring all stakeholders (e.g., engineers, IT, management) are aligned. Example: A security requirement might conflict with legacy system capabilities, causing disputes."
+            "Verification of requirements can be resource-intensive. Example: Testing a new firewall rule in a live ICS environment without disrupting operations."
+        [ best_practices
+            {
+                description "Conduct regular cross-functional workshops to align security requirements with
+                    +b operational needs. Example: Siemens' guide on collaborative security design for
+                    +b ICS provides practical steps for such workshops."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-security/industrial-security/security-lifecycle.html"
+                url_description "Siemens' guide on integrating security into the ICS lifecycle, relevant for
+                    +b SR-5."
+            {
+                description "Use threat modeling tools like Microsoft Threat Modeling Tool to visualize and
+                    +b validate requirements. Example: A water treatment plant used this tool to
+                    +b identify gaps in access control requirements."
+                url "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool"
+                url_description "Microsoft's tool for threat modeling, applicable to ICS security requirements."
+            {
+                description "Document requirements in a traceable format (e.g., using JIRA or DOORS).
+                    +b Example: A power grid operator traced security requirements from design to
+                    +b testing, ensuring consistency."
+                url "https://www.ibm.com/products/doors"
+                url_description "IBM DOORS for requirement management, useful for SR-5 compliance."
+            {
+                description "Leverage vendor-specific security guidelines (e.g., Rockwell Automation's
+                    +b Secure Development Lifecycle) to inform requirements. Example: A factory
+                    +b adopted Rockwell's guidelines to harden HMI configurations."
+                url "
+                    +b https://www.rockwellautomation.com/en-us/company/about-us/sustainability/cybersecurity.html"
+                url_description "Rockwell's cybersecurity resources, including secure development practices."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Threat Model Alignment"
+                description "Ensures security requirements are derived from and consistent with the threat
+                    +b model. Critical for addressing ICS-specific threats like unauthorized access to
+                    +b SCADA systems."
+                [ related_links
+                    {
+                        title "ISA/IEC 62443-3-2 Threat Modeling Guide"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards/isa-iec-62443-3-2"
+                        description "ISA's guide on threat modeling for ICS, aligned with SR-5."
+                    {
+                        title "NIST SP 800-82 ICS Security Guide"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-2/final"
+                        description "NIST's ICS security guidelines, including threat modeling."
+            {
+                id "KA2"
+                title "Requirement Traceability"
+                description "Maintains a clear link between requirements, design, and testing. Essential for
+                    +b verifying that security controls are implemented as intended in ICS components."
+                [ related_links
+                    {
+                        title "Siemens ICS Security Whitepaper"
+                        url "
+                            +b https://assets.new.siemens.com/siemens/assets/api/uuid:9d6e3b3e-9a4a-4a8f-bb7a-9e9e9e9e9e9e/ics-security-whitepaper.pdf"
+                        description "Siemens' approach to traceable security requirements."
+                    {
+                        title "Honeywell Secure Development Lifecycle"
+                        url "
+                            +b https://www.honeywellprocess.com/library/support/whitepapers/cybersecurity/secure-development-lifecycle.pdf"
+                        description "Honeywell's methodology for traceable ICS security."
+            {
+                id "KA3"
+                title "Stakeholder Collaboration"
+                description "Facilitates input from all relevant disciplines (e.g., OT, IT, safety) to
+                    +b ensure requirements are feasible and comprehensive. Example: A joint review by
+                    +b engineers and cybersecurity teams."
+                [ related_links
+                    {
+                        title "Schneider Electric ICS Collaboration Guide"
+                        url "https://www.se.com/ww/en/work/solutions/cybersecurity/"
+                        description "Schneider's guide on cross-functional ICS security."
+                    {
+                        title "ISA-99 Collaborative Practices"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-99-standards-committee"
+                        description "ISA's standards for ICS stakeholder collaboration."
+            {
+                id "KA4"
+                title "Verification Planning"
+                description "Defines methods to test requirements (e.g., penetration testing, code review).
+                    +b Example: A gas pipeline operator used automated tools to verify firewall rules."
+                [ related_links
+                    {
+                        title "Rockwell Automation Testing Framework"
+                        url "https://www.rockwellautomation.com/en-us/products/security.html"
+                        description "Rockwell's framework for verifying ICS security."
+                    {
+                        title "ICS-CERT Testing Guidelines"
+                        url "
+                            +b https://www.cisa.gov/resources-tools/services/industrial-control-systems-cybersecurity"
+                        description "ICS-CERT's practical testing recommendations."
+    {
+        practice "2"
+        code "SR-5"
+        subCode "b) testers (those who will validate that the requirements have been met);"
+        explanation "The requirement mandates an independent review process for security
+            +b requirements by testers to ensure clarity, validity, and alignment with the
+            +b threat model. Testers must remain independent to avoid conflicts of interest."
+        context "In industrial control systems (ICS), security requirements must be verifiable
+            +b and aligned with operational threats. Independent testers ensure unbiased
+            +b validation of these requirements."
+        [ challenges
+            "Ensuring tester independence: Testers must not be involved in requirement development to avoid bias. Example: A vendor uses the same team for development and testing, leading to overlooked vulnerabilities."
+            "Lack of ICS-specific expertise: Testers may lack knowledge of industrial protocols. Example: A tester unfamiliar with Modbus misses a critical security flaw in communication."
+            "Dynamic threat landscape: Requirements may become outdated quickly. Example: A new ICS ransomware variant emerges, rendering existing test cases ineffective."
+            "Resource constraints: Limited testing personnel can delay validation. Example: A small team struggles to test all security requirements before deployment."
+            "Documentation gaps: Incomplete requirement documentation hampers testing. Example: Testers cannot verify a requirement due to ambiguous wording."
+        [ best_practices
+            {
+                description "Establish a dedicated testing team separate from development to ensure
+                    +b independence. Example: A power plant assigns a third-party team to validate
+                    +b security requirements."
+                url "https://www.sans.org/white-papers/36067/"
+                url_description "SANS paper on ICS testing independence."
+            {
+                description "Train testers on ICS-specific protocols and threats. Example: A tester
+                    +b undergoes training on PROFINET security before validating requirements."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                url_description "ISA standards for ICS security training."
+            {
+                description "Use automated tools to supplement manual testing. Example: A tester employs a
+                    +b SCADA vulnerability scanner to validate requirements."
+                url "
+                    +b https://www.trellix.com/en-us/assets/white-papers/wp-industrial-control-systems.pdf"
+                url_description "Trellix guide on ICS testing tools."
+            {
+                description "Regularly update test cases to reflect new threats. Example: A tester
+                    +b incorporates Stuxnet-like scenarios into test cases."
+                url "https://www.cisa.gov/resources-tools/services/shields-ready"
+                url_description "CISA's threat-informed testing resources."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Tester Independence"
+                description "Ensuring testers are independent from requirement development prevents
+                    +b conflicts of interest and biases, critical for objective validation in ICS
+                    +b environments."
+                [ related_links
+                    {
+                        title "NIST SP 800-82 ICS Security Guide"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST guidelines on ICS security testing independence."
+                    {
+                        title "Siemens ICS Security Testing"
+                        url "
+                            +b https://www.siemens.com/global/en/products/services/cert/security-services/industrial-security-services.html"
+                        description "Siemens' approach to independent ICS security testing."
+            {
+                id "KA2"
+                title "ICS-Specific Testing Expertise"
+                description "Testers must understand industrial protocols and threats to effectively
+                    +b validate security requirements in ICS environments."
+                [ related_links
+                    {
+                        title "Rockwell Automation ICS Security"
+                        url "https://www.rockwellautomation.com/en-us/capabilities/cybersecurity.html"
+                        description "Rockwell's resources on ICS security testing."
+                    {
+                        title "ICS-CERT Advisories"
+                        url "https://www.cisa.gov/resources-tools/services/ics-cert-advisories"
+                        description "Latest ICS threats for tester awareness."
+            {
+                id "KA3"
+                title "Dynamic Test Case Management"
+                description "Regular updates to test cases ensure they remain relevant to evolving ICS
+                    +b threats and technologies."
+                [ related_links
+                    {
+                        title "MITRE ATT&CK for ICS"
+                        url "https://attack.mitre.org/matrices/ics/"
+                        description "Framework for updating ICS test cases."
+                    {
+                        title "Honeywell ICS Threat Intelligence"
+                        url "
+                            +b https://www.honeywellprocess.com/library/marketing/whitepapers/Cyber-Security-Threat-Intelligence-WP.pdf"
+                        description "Honeywell's approach to threat-informed testing."
+            {
+                id "KA4"
+                title "Comprehensive Documentation"
+                description "Clear, detailed requirement documentation enables thorough testing and
+                    +b validation in ICS environments."
+                [ related_links
+                    {
+                        title "Schneider Electric ICS Security"
+                        url "https://www.se.com/ww/en/work/solutions/cybersecurity/"
+                        description "Schneider's ICS security documentation practices."
+                    {
+                        title "ISA-62443 Documentation Standards"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA standards for ICS security documentation."
+    {
+        practice "2"
+        code "SR-5"
+        subCode "c) customer advocate (such as sales, marketing, product management or customer
+            +b support); and"
+        explanation "The requirement ensures security requirements are reviewed by customer
+            +b advocates to align with real-world needs and threat models, enhancing clarity
+            +b and verifiability."
+        context "In industrial systems, customer advocates provide critical insights into
+            +b operational constraints and security expectations, ensuring requirements are
+            +b practical and relevant."
+        [ challenges
+            "Balancing security requirements with customer usability demands. Example: A customer may resist multi-factor authentication (MFA) due to operational delays."
+            "Ensuring customer advocates understand technical security constraints. Example: Marketing teams may prioritize features over security hardening."
+            "Aligning threat models with customer risk perceptions. Example: Customers may underestimate risks like supply chain attacks."
+            "Managing conflicting priorities between departments. Example: Sales may push for faster releases, bypassing security reviews."
+            "Documenting and tracking requirement changes. Example: Ad-hoc customer feedback may lead to unverified requirement updates."
+        [ best_practices
+            {
+                description "Involve customer support teams early to document real-world security pain
+                    +b points. Example: A case study where Honeywell integrated support feedback to
+                    +b refine ICS firewall rules."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/publications/cybersecurity-best-practices.pdf"
+                url_description "Honeywell’s guide on leveraging customer feedback for ICS security."
+            {
+                description "Train sales teams on security trade-offs. Example: Siemens provides sales
+                    +b playbooks to explain security features to customers."
+                url "
+                    +b https://www.siemens.com/global/en/products/automation/industry-software/automation-software/process-safety/security.html"
+                url_description "Siemens’ resource on communicating security to non-technical stakeholders."
+            {
+                description "Use structured feedback loops (e.g., surveys) to align requirements. Example:
+                    +b Schneider Electric’s customer portal for security requirement prioritization."
+                url "https://www.se.com/ww/en/work/support/cybersecurity/"
+                url_description "Schneider’s platform for customer-driven security updates."
+            {
+                description "Document customer-driven exceptions with risk assessments. Example: Rockwell
+                    +b Automation’s exception-tracking system for ICS deployments."
+                url "https://www.rockwellautomation.com/en-us/products/security.html"
+                url_description "Rockwell’s approach to managing security exceptions in ICS."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Customer Feedback Integration"
+                description "Mechanisms to systematically capture and analyze customer input, ensuring
+                    +b security requirements reflect operational realities without compromising
+                    +b robustness."
+                [ related_links
+                    {
+                        title "ISA-99 Customer-Centric Security Design"
+                        url "https://www.isa.org/standards-and-publications/isa-standards/isa-99-standards"
+                        description "ISA’s framework for integrating customer needs into ICS security."
+                    {
+                        title "Yokogawa Security Feedback Process"
+                        url "https://www.yokogawa.com/solutions/products-platforms/control-system/security/"
+                        description "Yokogawa’s method for aligning security with customer workflows."
+            {
+                id "KA2"
+                title "Cross-Departmental Collaboration"
+                description "Structured workflows to harmonize inputs from sales, support, and engineering
+                    +b teams, avoiding siloed security decisions."
+                [ related_links
+                    {
+                        title "Cisco ICS Security Collaboration Guide"
+                        url "https://www.cisco.com/c/en/us/solutions/industries/industrial-iot/security.html"
+                        description "Cisco’s approach to inter-departmental security alignment."
+                    {
+                        title "ABB Security Governance Playbook"
+                        url "https://new.abb.com/control-systems/cyber-security"
+                        description "ABB’s playbook for collaborative security requirement reviews."
+            {
+                id "KA3"
+                title "Threat Model Alignment"
+                description "Regular reviews to ensure customer-advocated requirements do not deviate from
+                    +b the threat model’s risk assumptions."
+                [ related_links
+                    {
+                        title "MITRE ICS Threat Modeling Guide"
+                        url "https://www.mitre.org/publications/technical-papers/ics-threat-modeling"
+                        description "MITRE’s methodology for ICS threat model adherence."
+                    {
+                        title "Dragos Customer-Centric Threat Modeling"
+                        url "https://www.dragos.com/resources/"
+                        description "Dragos’ case studies on balancing customer needs with threats."
+            {
+                id "KA4"
+                title "Verifiability Assurance"
+                description "Processes to validate that customer-influenced requirements remain testable,
+                    +b avoiding vague or subjective criteria."
+                [ related_links
+                    {
+                        title "GE Digital Security Testing Framework"
+                        url "https://www.ge.com/digital/documentation/cybersecurity"
+                        description "GE’s framework for verifiable security requirements."
+                    {
+                        title "PAS Global ICS Verification Tools"
+                        url "https://pas.com/solutions/cybersecurity/"
+                        description "Tools to ensure requirements are measurable post-customer input."
+    {
+        practice "2"
+        code "SR-5"
+        subCode "d) security advisor"
+        explanation "The security advisor ensures that security requirements are reviewed, updated,
+            +b and aligned with the threat model, maintaining clarity and verifiability."
+        context "In industrial control systems (ICS), the security advisor plays a critical role
+            +b in bridging technical and operational security needs, ensuring compliance with
+            +b IEC 62443-4-1."
+        [ challenges
+            "Lack of specialized security expertise in ICS environments can lead to gaps in threat model alignment. Example: A manufacturing plant lacks a dedicated security advisor, resulting in unaddressed vulnerabilities in legacy PLCs."
+            "Dynamic threat landscapes require continuous updates to security requirements. Example: A new ransomware variant targets ICS, but outdated requirements fail to address it."
+            "Interdisciplinary coordination is complex. Example: IT and OT teams disagree on firewall rules, delaying security updates."
+            "Verification of security requirements is often overlooked. Example: A vendor claims compliance but lacks testable evidence."
+            "Resource constraints limit thorough reviews. Example: A small utility company cannot afford a full-time security advisor, leading to ad-hoc reviews."
+        [ best_practices
+            {
+                description "Assign a dedicated security advisor with ICS expertise to oversee requirement
+                    +b reviews. Example: A chemical plant hires a certified ICS security advisor to
+                    +b validate requirements against IEC 62443."
+                url "
+                    +b https://www.siemens.com/global/en/products/automation/industry-security/industrial-security-services.html"
+                url_description "Siemens Industrial Security Services guide for ICS security roles."
+            {
+                description "Conduct regular threat model reviews to update security requirements. Example:
+                    +b A power grid operator updates requirements biannually after threat assessments."
+                url "https://www.honeywellprocess.com/library/support/technical-notes/tn223.pdf"
+                url_description "Honeywell technical note on ICS threat modeling."
+            {
+                description "Use automated tools to track requirement changes and approvals. Example: A
+                    +b SCADA vendor integrates a requirements management tool to log all updates."
+                url "
+                    +b https://www.rockwellautomation.com/en-us/products/software/security-software.html"
+                url_description "Rockwell Automation’s security software for requirement tracking."
+            {
+                description "Ensure independent testing by segregating tester roles. Example: A third-party
+                    +b auditor verifies security requirements for a water treatment system."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                url_description "ISA 62443 standards for independent ICS testing."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Threat Model Alignment"
+                description "Ensures security requirements reflect current threats. Critical for IEC
+                    +b 62443-4-1 compliance, as it links requirements to the threat model (SR-2)."
+                [ related_links
+                    {
+                        title "ICS Threat Modeling Guide"
+                        url "
+                            +b https://www.cisa.gov/sites/default/files/publications/ICS_Threat_Modeling_Guide.pdf"
+                        description "CISA’s guide to aligning ICS security with threat models."
+                    {
+                        title "Siemens ICS Security Whitepaper"
+                        url "
+                            +b https://www.siemens.com/global/en/products/automation/industry-security/whitepapers.html"
+                        description "Siemens’ approach to threat-aware requirements."
+            {
+                id "KA2"
+                title "Interdisciplinary Collaboration"
+                description "Facilitates input from IT, OT, and security teams to ensure comprehensive
+                    +b requirements. Avoids silos in ICS environments."
+                [ related_links
+                    {
+                        title "NIST SP 800-82 Rev. 3"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST guidelines for IT/OT collaboration in ICS."
+                    {
+                        title "Schneider Electric ICS Security"
+                        url "https://www.se.com/ww/en/work/solutions/cybersecurity/"
+                        description "Schneider’s framework for cross-team security reviews."
+            {
+                id "KA3"
+                title "Verification Processes"
+                description "Defines methods to test requirements, ensuring they are measurable and
+                    +b enforceable. Key for IEC 62443-4-1’s verification clause."
+                [ related_links
+                    {
+                        title "ISA-62443-4-1 Verification Guide"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA’s verification standards for ICS requirements."
+                    {
+                        title "Rockwell Automation Testing"
+                        url "
+                            +b https://www.rockwellautomation.com/en-us/products/software/security-software.html"
+                        description "Rockwell’s tools for requirement verification."
+            {
+                id "KA4"
+                title "Documentation Standards"
+                description "Maintains clear records of requirement changes, approvals, and rationales.
+                    +b Supports auditability and compliance."
+                [ related_links
+                    {
+                        title "Cisco ICS Documentation Best Practices"
+                        url "
+                            +b https://www.cisco.com/c/en/us/solutions/industries/manufacturing/industrial-security.html"
+                        description "Cisco’s ICS documentation guidelines."
+                    {
+                        title "Honeywell Security Playbook"
+                        url "https://www.honeywellprocess.com/library/support/technical-notes/tn223.pdf"
+                        description "Honeywell’s template for security requirement documentation."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "a"
+        explanation "The requirement mandates documenting whether product interfaces are externally
+            +b or internally accessible to ensure secure design by identifying potential
+            +b attack vectors."
+        context "In industrial control systems (ICS), distinguishing between internal and
+            +b external interfaces is critical for threat modeling and security zoning."
+        [ challenges
+            "Identifying all physical and logical interfaces in complex ICS environments (e.g., PLCs with both serial and Ethernet ports)."
+            "Dynamic environments where interfaces may change (e.g., modular systems with hot-swappable components)."
+            "Legacy systems with undocumented interfaces (e.g., proprietary protocols in older SCADA systems)."
+            "False assumptions about interface accessibility (e.g., assuming a backplane bus is internal when it’s exposed via a maintenance port)."
+            "Integration with third-party devices where interface documentation is lacking (e.g., vendor-provided RTUs with hidden APIs)."
+        [ best_practices
+            {
+                description "Use automated tools to scan and document interfaces (e.g., Siemens’ STEP 7 TIA
+                    +b Portal for PLC interface mapping)."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-software/automation-software/tia-portal.html"
+                url_description "Siemens’ guide on interface documentation in TIA Portal, aligned with SD-1."
+            {
+                description "Label physical interfaces with accessibility tags (e.g., ‘INTERNAL ONLY’ on
+                    +b backplane connectors in a Rockwell ControlLogix chassis)."
+                url "
+                    +b https://www.rockwellautomation.com/en-us/products/hardware/allen-bradley/controllogix.html"
+                url_description "Rockwell’s hardware design guidelines for secure interface labeling."
+            {
+                description "Implement whitelisting for logical interfaces (e.g., Honeywell Experion’s
+                    +b Secure Media Manager for USB ports)."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/technical-documents/Experion%20Security%20Configuration.pdf"
+                url_description "Honeywell’s technical note on interface access control in Experion PKS."
+            {
+                description "Conduct penetration testing to validate interface assumptions (e.g., testing
+                    +b OPC UA server exposure in a Schneider Electric EcoStruxure system)."
+                url "https://www.se.com/ww/en/work/support/cybersecurity/cybersecurity-guides.jsp"
+                url_description "Schneider’s penetration testing guide for ICS interfaces."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Interface Inventory Documentation"
+                description "Maintain a comprehensive inventory of all interfaces, including type
+                    +b (physical/logical), protocol, and accessibility. Critical for IEC 62443-4-1
+                    +b compliance as it forms the basis for security zoning."
+                [ related_links
+                    {
+                        title "CISCO Industrial IoT Interface Cataloging"
+                        url "
+                            +b https://www.cisco.com/c/en/us/solutions/industries/manufacturing/industrial-iot-security.html"
+                        description "Cisco’s methodology for documenting ICS interfaces in IIoT environments."
+                    {
+                        title "ISA-TR62443-1-4 Interface Classification"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                        description "ISA technical report on interface classification for industrial systems."
+            {
+                id "KA2"
+                title "Accessibility Flagging"
+                description "Explicitly tag interfaces as external/internal in design documents. Enables
+                    +b proper security controls (e.g., firewalls for external interfaces, integrity
+                    +b checks for internal)."
+                [ related_links
+                    {
+                        title "ABB Ability™ System 800xA Interface Tagging"
+                        url "https://new.abb.com/control-systems/system-800xa"
+                        description "ABB’s approach to interface tagging in DCS environments."
+                    {
+                        title "NIST IR 8183 ICS Interface Security"
+                        url "https://nvlpubs.nist.gov/nistpubs/ir/2021/NIST.IR.8183.pdf"
+                        description "NIST guidelines for interface security categorization."
+            {
+                id "KA3"
+                title "Legacy Interface Analysis"
+                description "Special procedures for undocumented legacy interfaces (e.g., protocol reverse
+                    +b engineering). Mitigates blind spots in older ICS installations."
+                [ related_links
+                    {
+                        title "GE Proficy Historian Legacy Interface Guide"
+                        url "https://www.ge.com/digital/documentation/proficy"
+                        description "GE’s documentation on securing legacy OPC Classic interfaces."
+                    {
+                        title "Dragos Legacy ICS Protocol Analysis"
+                        url "https://www.dragos.com/resource/legacy-ics-protocols/"
+                        description "Case study on analyzing undocumented industrial protocols."
+            {
+                id "KA4"
+                title "Dynamic Interface Monitoring"
+                description "Implement runtime monitoring for interface changes (e.g., USB device insertion
+                    +b alerts in Yokogawa CENTUM VP). Essential for maintaining SD-1 compliance in
+                    +b modular systems."
+                [ related_links
+                    {
+                        title "Yokogawa Security Gateway Technical Note"
+                        url "https://web-material3.yokogawa.com/YSGW01_TE_1_0.pdf"
+                        description "Yokogawa’s solution for real-time interface monitoring."
+                    {
+                        title "Belden Tofino Interface Lockdown"
+                        url "https://www.belden.com/hubfs/resources/brochures/belden-tofino-brochure.pdf"
+                        description "Hardware-enforced interface control for critical systems."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "b) security implications of the product security context (see Clause 6,
+            +b Practice 2 – Specification of security requirements) on the external interface;"
+        explanation "The requirement mandates a process to analyze and document how the product's
+            +b security context affects external interfaces, ensuring secure integration with
+            +b industrial environments."
+        context "This applies to ICS products where external interfaces (e.g., HMIs, network
+            +b ports) must align with security requirements to prevent unauthorized access or
+            +b exploitation."
+        [ challenges
+            "Identifying all external interfaces in complex ICS architectures (e.g., legacy PLCs with undocumented serial ports)."
+            "Assessing security risks of third-party components (e.g., a vulnerable OPC UA library in an HMI)."
+            "Balancing security controls with operational requirements (e.g., latency-sensitive protocols like PROFINET)."
+            "Managing interface security across product lifecycle (e.g., firmware updates altering firewall rules)."
+            "Ensuring consistency in security documentation (e.g., discrepancies between datasheets and API manuals)."
+        [ best_practices
+            {
+                description "Conduct threat modeling for all interfaces using tools like Microsoft Threat
+                    +b Modeling Tool. Example: Modeling attack paths on a Modbus TCP interface in a
+                    +b SCADA system."
+                url "https://www.microsoft.com/en-us/securityengineering/sdl/threatmodeling"
+                url_description "Microsoft's guide to interface threat modeling, relevant to SD-1(b)."
+            {
+                description "Implement hardware-enforced interface isolation (e.g., using TPM-secured
+                    +b network controllers in RTUs)."
+                url "
+                    +b https://www.intel.com/content/www/us/en/security-hardware/trusted-execution-technology.html"
+                url_description "Intel's TPM implementation guide for hardware security."
+            {
+                description "Document interface security properties in machine-readable formats (e.g., IEC
+                    +b 61131-3 function block security metadata)."
+                url "https://www.plcopen.org/technical-activities/security"
+                url_description "PLCopen's security guidelines for industrial automation interfaces."
+            {
+                description "Validate interface security through penetration testing (e.g., fuzzing
+                    +b proprietary industrial protocols like EtherCAT)."
+                url "https://www.sans.org/white-papers/36687/"
+                url_description "SANS whitepaper on ICS protocol security testing."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Interface Threat Modeling"
+                description "Systematic identification of attack vectors on external interfaces through
+                    +b methodologies like STRIDE. Critical for addressing SD-1(b) by mapping security
+                    +b context to interface risks."
+                [ related_links
+                    {
+                        title "OWASP Threat Modeling Guide"
+                        url "https://owasp.org/www-community/Threat_Modeling"
+                        description "Framework for modeling threats to industrial interfaces."
+                    {
+                        title "Siemens ICS Security Whitepaper"
+                        url "
+                            +b https://new.siemens.com/global/en/products/automation/topic-areas/industrial-security/whitepapers.html"
+                        description "Case studies on interface threat modeling for PLCs."
+            {
+                id "KA2"
+                title "Security Context Mapping"
+                description "Explicit linkage between product security requirements (Clause 6) and interface
+                    +b controls. Ensures traceability from security policies to implementation."
+                [ related_links
+                    {
+                        title "ISA/IEC 62443-3-3 Implementation Guide"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                        description "Guidance on mapping SRs to technical controls."
+                    {
+                        title "Rockwell Automation Security Blueprint"
+                        url "https://www.rockwellautomation.com/en-us/capabilities/cybersecurity.html"
+                        description "Example of security context documentation for ICS interfaces."
+            {
+                id "KA3"
+                title "Interface Security Properties"
+                description "Documentation of cryptographic capabilities, authentication methods, and access
+                    +b control mechanisms for each interface. Required for SD-1(b) compliance
+                    +b verification."
+                [ related_links
+                    {
+                        title "NIST IR 8183 Vol.2"
+                        url "https://nvlpubs.nist.gov/nistpubs/ir/2021/NIST.IR.8183v2.pdf"
+                        description "ICS interface security property catalog."
+                    {
+                        title "Honeywell Secure Interface Design"
+                        url "https://www.honeywellprocess.com/library/support/Pages/cybersecurity.aspx"
+                        description "Vendor-specific interface security documentation examples."
+            {
+                id "KA4"
+                title "Lifecycle Management"
+                description "Processes to maintain interface security through updates and configuration
+                    +b changes. Addresses SD-1(b) requirement for continuous security context
+                    +b alignment."
+                [ related_links
+                    {
+                        title "ICS Patch Management Guide"
+                        url "https://www.cisa.gov/resources-tools/services/shield"
+                        description "CISA's guidance for secure interface updates."
+                    {
+                        title "ABB Security Lifecycle Whitepaper"
+                        url "https://new.abb.com/control-systems/seg/cyber-security"
+                        description "Vendor approach to interface security maintenance."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "c) potential users of the interface and the assets that can be accessed through
+            +b it (directly or indirectly);"
+        explanation "The requirement mandates a process to identify and document all interfaces
+            +b (physical and logical) of a product, focusing on potential users and accessible
+            +b assets. This ensures comprehensive security by understanding all access points."
+        context "In industrial control systems (ICS), interfaces are critical for operations but
+            +b can be exploited if not secured. This requirement addresses the need to map all
+            +b interfaces and their access vectors to mitigate risks."
+        [ challenges
+            "Identifying all potential users, including indirect ones (e.g., maintenance personnel, third-party vendors). Example: A contractor accessing a PLC via a forgotten backdoor."
+            "Mapping all assets accessible through interfaces, including indirect assets (e.g., a compromised HMI granting access to SCADA). Example: A breached HMI exposing critical process data."
+            "Dynamic environments where interfaces change frequently (e.g., temporary network connections). Example: A field device added during maintenance without security review."
+            "Legacy systems with undocumented interfaces. Example: An old RTU with an unknown serial port used for diagnostics."
+            "Balancing usability and security when restricting interface access. Example: Operators needing quick access during emergencies but risking misuse."
+        [ best_practices
+            {
+                description "Conduct regular interface audits to identify all physical and logical access
+                    +b points. Example: Using network scanning tools to detect open ports on ICS
+                    +b devices."
+                url "
+                    +b https://www.siemens.com/content/dam/internet/siemens-com/global/market-specific-solutions/industrial-security/whitepapers/siemens-industrial-security-whitepaper-en.pdf"
+                url_description "Siemens whitepaper on ICS interface security, aligning with SD-1 requirements."
+            {
+                description "Implement role-based access control (RBAC) for all interfaces. Example:
+                    +b Restricting HMI access to authorized operators only."
+                url "https://www.honeywellprocess.com/library/support/technical-notes/tn223.pdf"
+                url_description "Honeywell technical note on RBAC implementation in ICS."
+            {
+                description "Document all interfaces and their access paths in a centralized repository.
+                    +b Example: Maintaining a network diagram with all ICS interfaces."
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-62443-standards"
+                url_description "ISA standards for ICS interface documentation."
+            {
+                description "Use network segmentation to isolate critical interfaces. Example: Placing HMIs
+                    +b on a separate VLAN from field devices."
+                url "
+                    +b https://www.cisco.com/c/en/us/solutions/industries/manufacturing/industrial-security.html"
+                url_description "Cisco guide on network segmentation for ICS security."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Interface Inventory Management"
+                description "Maintaining an up-to-date inventory of all interfaces ensures visibility and
+                    +b control over access points. This is critical for compliance with SD-1, subCode
+                    +b c, as it directly addresses the identification of potential users and assets."
+                [ related_links
+                    {
+                        title "Rockwell Automation Interface Security Guide"
+                        url "
+                            +b https://www.rockwellautomation.com/resources/downloads/rockwellautomation/pdf/support/security/security-guide.pdf"
+                        description "Guide on managing ICS interfaces securely, aligned with SD-1."
+                    {
+                        title "Schneider Electric ICS Security Best Practices"
+                        url "https://www.se.com/ww/en/work/support/cybersecurity/security-best-practices.jsp"
+                        description "Schneider's best practices for securing ICS interfaces."
+            {
+                id "KA2"
+                title "User Access Profiling"
+                description "Profiling potential users of each interface helps in implementing precise
+                    +b access controls. This aligns with SD-1, subCode c, by characterizing users and
+                    +b their access levels."
+                [ related_links
+                    {
+                        title "ABB ICS Access Control Guidelines"
+                        url "https://new.abb.com/control-systems/security"
+                        description "ABB's guidelines for ICS access control, relevant to SD-1."
+                    {
+                        title "NIST SP 800-82 Rev. 3"
+                        url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf"
+                        description "NIST guidelines on ICS security, including user profiling."
+            {
+                id "KA3"
+                title "Asset Mapping"
+                description "Mapping assets accessible through interfaces ensures no critical component is
+                    +b overlooked. This supports SD-1, subCode c, by identifying direct and indirect
+                    +b asset access."
+                [ related_links
+                    {
+                        title "Siemens Asset Management for ICS"
+                        url "
+                            +b https://www.siemens.com/global/en/products/automation/industry-software/plant-software/process-control-optimization/asset-management.html"
+                        description "Siemens' approach to ICS asset management, aligned with SD-1."
+                    {
+                        title "ISA-95 Asset Modeling Standards"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-standards-committees/isa95"
+                        description "ISA standards for asset modeling in ICS."
+            {
+                id "KA4"
+                title "Legacy Interface Documentation"
+                description "Documenting legacy interfaces is essential for comprehensive security. This
+                    +b addresses SD-1, subCode c, by ensuring no interface is left uncharacterized."
+                [ related_links
+                    {
+                        title "Honeywell Legacy System Security"
+                        url "https://www.honeywellprocess.com/library/support/technical-notes/tn224.pdf"
+                        description "Honeywell's guide on securing legacy ICS interfaces."
+                    {
+                        title "GE Digital Legacy Interface Management"
+                        url "https://www.ge.com/digital/documentation/industrial-internet-security"
+                        description "GE's approach to managing legacy interfaces in ICS."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "d) a determination of whether access to the interface crosses a trust boundary;"
+        explanation "This requirement ensures that all interfaces (physical and logical) are
+            +b analyzed to determine if they cross trust boundaries, which is critical for
+            +b identifying potential security risks in ICS environments."
+        context "In industrial control systems, interfaces often connect different security
+            +b zones. Identifying trust boundaries helps in applying appropriate security
+            +b controls to prevent unauthorized access or data leakage."
+        [ challenges
+            "Identifying all interfaces in complex ICS architectures, especially legacy systems with undocumented connections."
+            "Example: A PLC in a manufacturing plant has undocumented serial ports used for maintenance, crossing a trust boundary."
+            "Determining trust boundaries in hybrid environments where IT and OT networks intersect."
+            "Example: A SCADA system connected to a corporate network via a firewall, but with insufficient segmentation."
+            "Lack of standardized documentation for interfaces in multi-vendor environments."
+            "Example: Different vendors use proprietary protocols, making boundary analysis difficult."
+            "Dynamic environments where interfaces change frequently due to reconfigurations or updates."
+            "Example: A temporary VPN connection for remote support that remains active unintentionally."
+            "Balancing security with operational requirements, such as real-time data access across boundaries."
+            "Example: A historian server needs data from control systems but must not expose sensitive control commands."
+        [ best_practices
+            {
+                description "Conduct a thorough inventory of all interfaces, including physical ports and
+                    +b network connections, using automated tools where possible."
+                url "https://www.siemens.com/industrial-security"
+                url_description "Siemens guide on ICS interface inventory and trust boundary analysis."
+            {
+                description "Use network segmentation to enforce trust boundaries, such as VLANs or
+                    +b firewalls, and document the segmentation rationale."
+                url "
+                    +b https://www.cisco.com/c/en/us/solutions/industries/manufacturing/industrial-security.html"
+                url_description "Cisco's approach to network segmentation in industrial environments."
+            {
+                description "Implement role-based access control (RBAC) for interfaces crossing trust
+                    +b boundaries to limit exposure."
+                url "
+                    +b https://www.honeywellprocess.com/library/support/technical-notes/secure-remote-access.pdf"
+                url_description "Honeywell's technical note on secure remote access and RBAC."
+            {
+                description "Regularly audit interface configurations and access logs to detect unauthorized
+                    +b boundary crossings."
+                url "
+                    +b https://www.schneider-electric.com/en/work/solutions/system/files/solution-files/cybersecurity-guide.pdf"
+                url_description "Schneider Electric's guide on ICS interface auditing and monitoring."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Interface Inventory Documentation"
+                description "Maintaining a comprehensive inventory of all interfaces is essential for
+                    +b identifying trust boundaries. This includes physical ports, network
+                    +b connections, and wireless interfaces, documented with their security zones."
+                [ related_links
+                    {
+                        title "Rockwell Automation Interface Security Guide"
+                        url "https://www.rockwellautomation.com/en-us/solutions/cybersecurity.html"
+                        description "Rockwell's guide on documenting and securing ICS interfaces."
+                    {
+                        title "ISA Technical Report on ICS Interface Management"
+                        url "https://www.isa.org/standards-and-publications/isa-standards"
+                        description "ISA's technical report on best practices for interface management in ICS."
+            {
+                id "KA2"
+                title "Trust Boundary Mapping"
+                description "Mapping interfaces to trust boundaries involves analyzing data flows and access
+                    +b controls. This helps in applying appropriate security measures, such as
+                    +b encryption or authentication, at boundary crossings."
+                [ related_links
+                    {
+                        title "Yokogawa Trust Boundary Analysis Whitepaper"
+                        url "https://www.yokogawa.com/solutions/products-platforms/control-system/security/"
+                        description "Yokogawa's whitepaper on trust boundary analysis in ICS."
+                    {
+                        title "ABB Industrial Security Reference Architecture"
+                        url "https://new.abb.com/control-systems/security"
+                        description "ABB's reference architecture for mapping trust boundaries in ICS."
+            {
+                id "KA3"
+                title "Access Control Enforcement"
+                description "Enforcing strict access controls at trust boundaries prevents unauthorized
+                    +b access. This includes authentication, authorization, and accounting (AAA)
+                    +b mechanisms for all boundary-crossing interfaces."
+                [ related_links
+                    {
+                        title "Siemens Industrial Security Best Practices"
+                        url "https://www.siemens.com/industrial-security"
+                        description "Siemens' best practices for access control at ICS trust boundaries."
+                    {
+                        title "NIST SP 800-82 Rev. 3 ICS Security Guide"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final"
+                        description "NIST's guidelines on access control for ICS trust boundaries."
+            {
+                id "KA4"
+                title "Dynamic Interface Monitoring"
+                description "Continuous monitoring of interfaces is critical to detect changes or
+                    +b unauthorized boundary crossings. This includes real-time logging and alerting
+                    +b for suspicious activities."
+                [ related_links
+                    {
+                        title "Schneider Electric ICS Monitoring Guide"
+                        url "https://www.se.com/ww/en/work/solutions/cybersecurity/"
+                        description "Schneider's guide on monitoring ICS interfaces for security."
+                    {
+                        title "Honeywell Industrial Cybersecurity Solutions"
+                        url "
+                            +b https://www.honeywellprocess.com/en-US/explore/products/industrial-cybersecurity/Pages/default.aspx"
+                        description "Honeywell's solutions for dynamic interface monitoring in ICS."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "e)"
+        explanation "The requirement mandates documenting security considerations, assumptions, and
+            +b constraints for all product interfaces, including threats, to ensure secure
+            +b design."
+        context "This applies to ICS products where interfaces (physical/logical) must be
+            +b analyzed for vulnerabilities and threats to maintain system integrity."
+        [ challenges
+            "Identifying all interfaces in complex ICS environments (e.g., legacy PLCs with undocumented serial ports)."
+            "Assessing threats for proprietary protocols (e.g., Modbus variants lacking encryption)."
+            "Balancing security constraints with operational requirements (e.g., real-time control vs. authentication delays)."
+            "Documenting assumptions for third-party integrations (e.g., cloud APIs with unclear security postures)."
+            "Updating threat models for evolving attack vectors (e.g., ransomware targeting OPC UA)."
+        [ best_practices
+            {
+                description "Use threat modeling tools like Microsoft Threat Modeling Tool for interface
+                    +b analysis. Example: Modeling a power plant’s HMI-to-RTU communication for MITM
+                    +b risks."
+                url "https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool"
+                url_description "Microsoft’s guide on threat modeling for industrial interfaces."
+            {
+                description "Implement protocol-specific safeguards (e.g., DNP3 Secure Authentication for
+                    +b SCADA). Example: Hardening a water treatment plant’s DNP3 links."
+                url "https://www.dnp.org/Portals/0/About/DNP3_Security_Protocol.pdf"
+                url_description "DNP Users Group’s security protocol for ICS interfaces."
+            {
+                description "Conduct regular interface audits using tools like Wireshark. Example: Detecting
+                    +b unauthorized PROFINET traffic in automotive manufacturing."
+                url "https://www.wireshark.org/docs/wsug_html_chunked/ChAdvIndustrialProtocols.html"
+                url_description "Wireshark’s ICS protocol analysis documentation."
+            {
+                description "Enforce least-privilege access controls for APIs. Example: Restricting REST API
+                    +b permissions in a wind farm’s condition monitoring system."
+                url "
+                    +b https://www.siemens.com/global/en/products/energy/energy-automation-and-smart-grid/whitepapers/api-security.html"
+                url_description "Siemens’ whitepaper on API security for energy systems."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Interface Threat Modeling"
+                description "Systematic identification of threats (e.g., spoofing, tampering) for each
+                    +b interface, aligned with IEC 62443-3-3’s risk assessment requirements."
+                [ related_links
+                    {
+                        title "Rockwell Automation Threat Modeling Guide"
+                        url "
+                            +b https://literature.rockwellautomation.com/idc/groups/literature/documents/wp/enet-wp001_-en-p.pdf"
+                        description "Practical threat modeling for industrial control interfaces."
+                    {
+                        title "ISA/IEC 62443-3-3 Technical Report"
+                        url "
+                            +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards/isa-iec-62443-3-3"
+                        description "Standardized risk assessment methodology for ICS interfaces."
+            {
+                id "KA2"
+                title "Protocol Security Analysis"
+                description "Evaluation of inherent security properties in ICS protocols (e.g., CIP Security
+                    +b for EtherNet/IP), including encryption and authentication capabilities."
+                [ related_links
+                    {
+                        title "ODVA CIP Security Specification"
+                        url "https://www.odva.org/technology-standards/cip-safety-and-security/"
+                        description "Technical specifications for securing EtherNet/IP interfaces."
+                    {
+                        title "Honeywell Industrial Cybersecurity Protocols"
+                        url "
+                            +b https://www.honeywellprocess.com/library/support/technical-notes/Documents/TN-230.pdf"
+                        description "Guidance on securing PROFIBUS and other fieldbus protocols."
+            {
+                id "KA3"
+                title "Assumption Documentation"
+                description "Explicit recording of security assumptions (e.g., "VLAN segmentation is
+                    +b maintained") to prevent misconfigurations in multi-vendor environments."
+                [ related_links
+                    {
+                        title "Schneider Electric Secure Architecture Guidelines"
+                        url "https://download.schneider-electric.com/files?p_Doc_Ref=SPD_SSP-001"
+                        description "Template for documenting security assumptions in ICS designs."
+                    {
+                        title "NIST SP 800-82 Rev.3 ICS Security"
+                        url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-3/final"
+                        description "NIST guidelines for ICS security assumption management."
+            {
+                id "KA4"
+                title "Constraint Enforcement"
+                description "Technical controls (e.g., firewalls, MAC policies) to enforce documented
+                    +b constraints (e.g., "No direct Internet access for HMIs")."
+                [ related_links
+                    {
+                        title "Cisco Industrial Firewall Deployment Guide"
+                        url "
+                            +b https://www.cisco.com/c/en/us/solutions/enterprise/design-zone-industrial/industrial-firewall-deployment-guide.html"
+                        description "Practical firewall configurations for interface constraints."
+                    {
+                        title "Yokogawa Security Hardening Manual"
+                        url "https://web-material3.yokogawa.com/YS-IL-001E.pdf"
+                        description "Vendor-specific guidance on enforcing ICS interface constraints."
+    {
+        practice "3"
+        code "SD-1"
+        subCode "f)"
+        explanation "The requirement mandates documenting security roles, privileges, and access
+            +b control permissions for all product interfaces to ensure secure access to
+            +b assets."
+        context "This is critical in ICS environments where unauthorized access can lead to
+            +b operational disruptions or safety incidents. Proper documentation ensures
+            +b accountability and traceability."
+        [ challenges
+            "Defining granular roles and permissions without hindering operational efficiency. Example: Balancing operator access with security in a SCADA system."
+            "Ensuring consistency across multiple interfaces (e.g., HMIs, APIs). Example: A PLC with web and serial interfaces requiring unified access policies."
+            "Managing legacy systems with limited role-based access control (RBAC) support. Example: Older RTUs with fixed user levels."
+            "Auditing and maintaining permissions over time. Example: Revoking access for deprecated roles in a DCS."
+            "Integrating third-party devices with disparate security models. Example: A vendor-specific HMI with custom permission schemes."
+        [ best_practices
+            {
+                description "Implement role-based access control (RBAC) aligned with operational needs.
+                    +b Example: Assign 'Operator' and 'Maintenance' roles with least privilege. Link:
+                    +b Siemens RBAC guide for ICS."
+                url "
+                    +b https://new.siemens.com/global/en/products/automation/industry-software/automation-software/tia-portal/security.html"
+                url_description "Siemens' guide on RBAC implementation in TIA Portal, relevant to SD-1(f)."
+            {
+                description "Document all permissions in a centralized matrix. Example: A spreadsheet
+                    +b mapping roles to assets. Link: Rockwell Automation's access control whitepaper."
+                url "https://www.rockwellautomation.com/en-us/resources/white-papers.html"
+                url_description "Rockwell's whitepaper on access control documentation for industrial systems."
+            {
+                description "Conduct periodic access reviews. Example: Quarterly audits of user privileges
+                    +b in a gas pipeline SCADA. Link: ISA technical report on ICS access audits."
+                url "https://www.isa.org/standards-and-publications/isa-standards"
+                url_description "ISA's standards for access control audits in critical infrastructure."
+            {
+                description "Use vendor-agnostic templates for permission documentation. Example: NAMUR NE
+                    +b 153 template for cross-vendor RBAC. Link: NAMUR recommendation sheet."
+                url "https://www.namur.net/en/"
+                url_description "NAMUR's standardized approach to access control in process automation."
+        [ key_aspects
+            {
+                id "KA1"
+                title "Role Definition Methodology"
+                description "Establishes a systematic approach to defining roles based on job functions,
+                    +b ensuring alignment with IEC 62443-4-1's principle of least privilege. Critical
+                    +b for SD-1(f) compliance."
+                [ related_links
+                    {
+                        title "ABB Role Design Handbook"
+                        url "https://global.abb/group/en/technology/cyber-security"
+                        description "ABB's methodology for designing roles in industrial control systems."
+                    {
+                        title "NIST IR 8183 Vol.2"
+                        url "https://nvlpubs.nist.gov/nistpubs/ir/2021/NIST.IR.8183v2.pdf"
+                        description "NIST's framework for ICS role categorization."
+            {
+                id "KA2"
+                title "Permission Inheritance Rules"
+                description "Documents how permissions propagate across hierarchical systems (e.g.,
+                    +b plant-wide vs. unit-level access). Addresses interface-specific requirements in
+                    +b SD-1(f)."
+                [ related_links
+                    {
+                        title "Honeywell Experion Permission Hierarchy"
+                        url "https://www.honeywellprocess.com/library/support/Pages/technical-documents.aspx"
+                        description "Honeywell's implementation guide for permission inheritance."
+                    {
+                        title "ISA-99 Permission Flow Diagrams"
+                        url "https://www.isa.org/standards-and-publications"
+                        description "ISA's standardized notation for permission structures."
+            {
+                id "KA3"
+                title "Interface-Specific Permission Mapping"
+                description "Explicitly links each physical/logical interface to required permissions,
+                    +b fulfilling SD-1(f)'s documentation requirement for all access points."
+                [ related_links
+                    {
+                        title "Schneider Electric EcoStruxure Access Matrix"
+                        url "https://www.se.com/ww/en/work/support/cybersecurity/"
+                        description "Schneider's template for interface permission documentation."
+                    {
+                        title "Yokogawa CSO Handbook"
+                        url "https://www.yokogawa.com/solutions/products-platforms/control-system/centum-vp/"
+                        description "Yokogawa's control system security operations guide."
+            {
+                id "KA4"
+                title "Privilege Escalation Protocols"
+                description "Documents controlled processes for temporary privilege elevation (e.g., during
+                    +b maintenance), addressing SD-1(f)'s rights management requirements."
+                [ related_links
+                    {
+                        title "GE Digital Privilege Delegation"
+                        url "https://www.ge.com/digital/documentation"
+                        description "GE's procedure for time-bound privilege escalation."
+                    {
+                        title "Exida Secure Access Procedures"
+                        url "https://www.exida.com/Education/White-Papers"
+                        description "Exida's whitepaper on secure privilege management."

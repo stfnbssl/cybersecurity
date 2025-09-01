@@ -1,0 +1,657 @@
+[
+  {
+    "id": "product-sdlc-gate-review-62443-4-1",
+    "team": "Prodotto",
+    "name": "Secure SDLC Gate Review (IEC 62443-4-1)",
+    "description": "Valuta un gate SDLC rispetto alle practice di IEC 62443-4-1 e mappa eventuali gap.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile",
+      "artifacts_list",
+      "policies",
+      "gate_name"
+    ],
+    "prompt": "Sei un revisore di sicurezza prodotto per ICS/OT. Valuta gli artefatti SDLC forniti contro IEC 62443-4-1 (Practice PRG, SDL, RM, TST, SEC, DEF, VUL, PCH).\nInput:\n– Profilo prodotto: {{product_profile}}\n– Artefatti: {{artifacts_list}}\n– Politiche/processi: {{policies}}\nRegole:\n1) Rispondi con SOLO JSON valido. 2) Se un’evidenza manca, imposta status:\"fail\" e compila action_required. 3) Non inventare controlli: se non mappabile, usa maps_to_controls: [].\nOutput atteso: come in output_template.",
+    "output_template": {
+      "gate": "{{gate_name}}",
+      "summary": {
+        "pass": 0,
+        "fail": 0,
+        "warn": 0
+      },
+      "findings": [
+        {
+          "practice": "62443-4-1:VUL",
+          "requirement": "Vulnerability management defined",
+          "evidence_refs": [
+            "{{doc_or_link}}"
+          ],
+          "status": "pass|fail|warn",
+          "severity": "low|medium|high",
+          "action_required": "...",
+          "owner": "{{role}}",
+          "due_date": "YYYY-MM-DD",
+          "maps_to_controls": [
+            {
+              "framework": "IEC 62443-3-3",
+              "control": "SR 7.6"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "IEC62443-4-1",
+      "SDLC",
+      "review"
+    ]
+  },
+  {
+    "id": "product-threat-model-ics-zones",
+    "team": "Prodotto",
+    "name": "Threat Model ICS/OT (zone & conduits)",
+    "description": "Costruisce un threat model per sistemi ICS/OT usando zone & conduits e STRIDE adattato.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "architecture_text"
+    ],
+    "prompt": "Costruisci un threat model per sistemi ICS/OT usando zone & conduits.\nInput: descrizione architettura: {{architecture_text}}\nMetodo: STRIDE adattato OT + zone/conduits (IEC 62443).\nRegole: SOLO JSON. Se un dato non è noto usa \"unknown\".\nOutput atteso: come in output_template.",
+    "output_template": {
+      "assets": [
+        {
+          "name": "{{asset}}",
+          "type": "PLC|HMI|SCADA|switch|server",
+          "criticality": "H|M|L"
+        }
+      ],
+      "zones": [
+        {
+          "name": "{{zone}}",
+          "assets": [
+            "..."
+          ],
+          "sl_target": "SL-T1..4"
+        }
+      ],
+      "conduits": [
+        {
+          "from": "{{zoneA}}",
+          "to": "{{zoneB}}",
+          "protocols": [
+            "{{proto}}"
+          ]
+        }
+      ],
+      "threats": [
+        {
+          "id": "T-###",
+          "stride": "S|T|R|I|D|E",
+          "asset_or_conduit": "{{ref}}",
+          "description": "...",
+          "likelihood": "H|M|L",
+          "impact": "H|M|L",
+          "risk": "H|M|L",
+          "mitigations": [
+            {
+              "control": "IEC 62443-3-3 SR 1.1",
+              "note": "..."
+            }
+          ]
+        }
+      ],
+      "open_questions": [
+        "..."
+      ]
+    },
+    "tags": [
+      "threat-model",
+      "IEC62443-3-3"
+    ]
+  },
+  {
+    "id": "product-security-requirements-backlog",
+    "team": "Prodotto",
+    "name": "Requisiti di sicurezza → backlog (user stories)",
+    "description": "Genera requisiti verificabili e testabili con user stories e criteri di accettazione.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile",
+      "feature_set"
+    ],
+    "prompt": "Dato il profilo prodotto {{product_profile}} e il set di funzionalità {{feature_set}}, genera requisiti di sicurezza e user stories con criteri di accettazione e test.\nRegole: SOLO JSON. Non duplicare requisiti.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "requirements": [
+        {
+          "title": "Hardening credenziali",
+          "rationale": "...",
+          "user_story": "Come ... voglio ... così che ...",
+          "acceptance_criteria": [
+            "..."
+          ],
+          "tests": [
+            "unit|integration|pen"
+          ],
+          "maps_to_controls": [
+            {
+              "framework": "IEC 62443-3-3",
+              "control": "SR 1.2"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "requirements",
+      "backlog",
+      "stories"
+    ]
+  },
+  {
+    "id": "product-sbom-vex-risk-sweep",
+    "team": "Prodotto",
+    "name": "SBOM/VEX Risk Sweep",
+    "description": "Prioritizza patch da SBOM (CycloneDX/SPDX) usando informazioni VEX fornite.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "sbom_excerpt",
+      "vex_data"
+    ],
+    "prompt": "Analizza SBOM {{sbom_excerpt}} e VEX {{vex_data}}. Non usare database esterni. Se un CVE non è nel VEX, imposta exploitability:\"unknown\".\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "components": [
+        {
+          "name": "{{lib}}",
+          "version": "x.y.z",
+          "cves": [
+            {
+              "id": "CVE-YYYY-XXXX",
+              "cvss": 7.5,
+              "exploitability": "not_affected|affected|unknown",
+              "rationale": "...",
+              "priority": "P0|P1|P2|P3",
+              "action": "patch|mitigate|accept"
+            }
+          ]
+        }
+      ],
+      "summary": {
+        "P0": 0,
+        "P1": 0,
+        "P2": 0,
+        "P3": 0
+      }
+    },
+    "tags": [
+      "SBOM",
+      "VEX",
+      "vulnerability-management"
+    ]
+  },
+  {
+    "id": "product-ota-secure-update-checklist",
+    "team": "Prodotto",
+    "name": "OTA/Secure Update Checklist",
+    "description": "Verifica progettazione aggiornamenti sicuri.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile"
+    ],
+    "prompt": "Valuta il design OTA/aggiornamenti per {{product_profile}}.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "areas": [
+        {
+          "topic": "code_signing",
+          "status": "ok|gap",
+          "note": "..."
+        },
+        {
+          "topic": "rollback_protection",
+          "status": "ok|gap",
+          "note": "..."
+        },
+        {
+          "topic": "A/B_partition",
+          "status": "ok|gap",
+          "note": "..."
+        },
+        {
+          "topic": "secure_boot",
+          "status": "ok|gap",
+          "note": "..."
+        },
+        {
+          "topic": "update_authN/Z",
+          "status": "ok|gap",
+          "note": "..."
+        },
+        {
+          "topic": "release_notes_SBOM",
+          "status": "ok|gap",
+          "note": "..."
+        }
+      ],
+      "overall": "pass|fail|warn"
+    },
+    "tags": [
+      "OTA",
+      "updates",
+      "secure-boot"
+    ]
+  },
+  {
+    "id": "compliance-applicability-conformity-path",
+    "team": "Compliance",
+    "name": "Applicabilità & percorso di conformità (CE/RED/CRA)",
+    "description": "Stabilisce atti applicabili, percorso di conformità e prove richieste.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile",
+      "markets"
+    ],
+    "prompt": "Sei un “regulatory triager”. Con i dati prodotto {{product_profile}} e mercati {{markets}}, stabilisci quali atti (es. RED, EMC, LVD, CRA, Machinery se safety) sono applicabili, lo schema di conformità (autovalutazione, organismo notificato), le prove e le norme armonizzate pertinenti.\nRegole: SOLO JSON. Se un dato è incerto, usa \"unknown\".\nOutput atteso: come in output_template.",
+    "output_template": {
+      "applicability": [
+        {
+          "act": "RED|EMC|LVD|CRA|Machinery",
+          "applicable": true,
+          "triggers": [
+            "radio",
+            "elementi_digitali",
+            "safety_function"
+          ],
+          "conformity_path": "CE:self-assessment|third-party|type-approval",
+          "harmonised_standards": [
+            "{{EN/ETSI}}"
+          ],
+          "evidence": [
+            "test_report_RF",
+            "DoC",
+            "tech_file",
+            "security_by_design_evidence"
+          ],
+          "notes": "..."
+        }
+      ],
+      "unknowns": [
+        "..."
+      ]
+    },
+    "tags": [
+      "RED",
+      "CRA",
+      "CE",
+      "harmonised-standards"
+    ]
+  },
+  {
+    "id": "compliance-extractor-legal-text",
+    "team": "Compliance",
+    "name": "Estrattore obblighi da testo normativo",
+    "description": "Trasforma testo legale in requisiti verificabili con citazioni.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "legal_text"
+    ],
+    "prompt": "Estrai SOLO obblighi verificabili dal seguente testo: {{legal_text}}. Se non trovi attore o data, usa null.\nRegole: SOLO JSON. Mantieni riferimenti ad articoli/annessi.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "requirements": [
+        {
+          "id": "{{norma}}-ArtX-parY",
+          "actor": "manufacturer|integrator|importer|distributor|null",
+          "obligation": "...",
+          "evidence": [
+            "..."
+          ],
+          "applies_from": "YYYY-MM-DD|null",
+          "reference": {
+            "document": "{{id}}",
+            "article": "X",
+            "annex": "...",
+            "url": "{{link}}"
+          },
+          "maps_to_controls": [
+            {
+              "framework": "IEC 62443-3-3",
+              "control": "SR x.x"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "legal",
+      "extraction",
+      "obligations"
+    ]
+  },
+  {
+    "id": "compliance-technical-file-red-builder",
+    "team": "Compliance",
+    "name": "Fascicolo Tecnico (RED) — Builder",
+    "description": "Genera ToC del fascicolo tecnico, lacune e skeleton della DoC.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile",
+      "evidence_list",
+      "standards",
+      "org",
+      "model"
+    ],
+    "prompt": "Genera il Fascicolo Tecnico RED per {{product_profile}} con elenco prove {{evidence_list}} e norme {{standards}}. Indica le lacune e proponi campi per la EU DoC.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "toc": [
+        "General description",
+        "Design drawings",
+        "Risk assessment",
+        "Test reports (EMC/RF/Safety)",
+        "Cybersecurity (RED 3(3)(d)(e)(f))",
+        "User instructions",
+        "EU DoC",
+        "Labeling"
+      ],
+      "gaps": [
+        {
+          "item": "Test RF EN 300 328",
+          "status": "missing",
+          "owner": "{{role}}",
+          "due": "YYYY-MM-DD"
+        }
+      ],
+      "doc_templates": {
+        "eu_doc": {
+          "fields": [
+            "manufacturer",
+            "model",
+            "directives_regulations",
+            "standards",
+            "signature"
+          ],
+          "prefill": {
+            "manufacturer": "{{org}}",
+            "model": "{{model}}"
+          }
+        }
+      }
+    },
+    "tags": [
+      "technical-file",
+      "RED",
+      "DoC"
+    ]
+  },
+  {
+    "id": "compliance-cra-art14-playbook",
+    "team": "Compliance",
+    "name": "CRA — Playbook di notifica (Art. 14)",
+    "description": "Crea scaffolding per early-warning, report 72h e report finale.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "incident_summary"
+    ],
+    "prompt": "Crea i tre artefatti di notifica CRA per l’incidente: {{incident_summary}}. Non inventare date: se assenti usa null.\nRegole: SOLO JSON. Mantieni i campi richiesti chiari.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "early_warning": {
+        "within_hours": 24,
+        "fields": {
+          "time_discovery": "YYYY-MM-DDTHH:mmZ|null",
+          "impact": "...",
+          "mitigations": "..."
+        }
+      },
+      "report_72h": {
+        "fields": {
+          "indicators": "...",
+          "affected_products": [
+            "..."
+          ],
+          "CVE": [
+            "..."
+          ],
+          "temporary_measures": "..."
+        }
+      },
+      "final_report": {
+        "fields": {
+          "root_cause": "...",
+          "permanent_fix": "...",
+          "lessons_learned": "..."
+        }
+      }
+    },
+    "tags": [
+      "CRA",
+      "incident-reporting",
+      "Art14"
+    ]
+  },
+  {
+    "id": "compliance-label-manual-checker",
+    "team": "Compliance",
+    "name": "Etichettatura & Istruzioni — Checker",
+    "description": "Convalida label (marcature) e manuale (safety+cyber by default).",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "product_profile"
+    ],
+    "prompt": "Verifica label (marcatura CE, info importatore, WEEE, radio) e manuale (sicurezza, privacy/cyber by default) per {{product_profile}}.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "label_checks": [
+        {
+          "check": "CE mark size/visibility",
+          "status": "ok|gap",
+          "note": "..."
+        }
+      ],
+      "manual_checks": [
+        {
+          "check": "Default credentials policy",
+          "status": "ok|gap",
+          "note": "..."
+        }
+      ],
+      "missing": [
+        "..."
+      ]
+    },
+    "tags": [
+      "label",
+      "manual",
+      "compliance"
+    ]
+  },
+  {
+    "id": "delivery-ot-architecture-gap-check",
+    "team": "Delivery",
+    "name": "OT Architecture Gap Check (IEC 62443-3-3)",
+    "description": "Mappa l'as-built ai requisiti SR e propone SL-T e remediation.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "as_built_text"
+    ],
+    "prompt": "Analizza l’architettura OT descritta in {{as_built_text}}. Mappa controlli implementati vs IEC 62443-3-3, proponi SL-T ragionevoli e gap.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "zones": [
+        {
+          "name": "{{zone}}",
+          "sl_target": "SL-T2",
+          "implemented_controls": [
+            "SR 1.1",
+            "SR 3.2"
+          ]
+        }
+      ],
+      "gaps": [
+        {
+          "zone": "{{zone}}",
+          "control": "SR 2.1",
+          "risk": "H|M|L",
+          "remediation": "..."
+        }
+      ],
+      "assumptions": [
+        "..."
+      ]
+    },
+    "tags": [
+      "IEC62443-3-3",
+      "architecture",
+      "gap-analysis"
+    ]
+  },
+  {
+    "id": "delivery-commissioning-hardening-checklist",
+    "team": "Delivery",
+    "name": "Commissioning Hardening Checklist",
+    "description": "Baseline di hardening per messa in servizio dei dispositivi OT.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "inventory"
+    ],
+    "prompt": "Genera una checklist di hardening per i dispositivi {{inventory}} in un impianto ICS/OT.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "devices": [
+        {
+          "type": "PLC|HMI|switch",
+          "model": "{{model}}",
+          "baseline": [
+            {
+              "item": "change_default_passwords",
+              "status": "todo|done"
+            },
+            {
+              "item": "disable_unused_services",
+              "status": "todo|done"
+            },
+            {
+              "item": "time_sync_secure",
+              "status": "todo|done"
+            },
+            {
+              "item": "logging_remote",
+              "status": "todo|done"
+            }
+          ]
+        }
+      ]
+    },
+    "tags": [
+      "hardening",
+      "commissioning",
+      "checklist"
+    ]
+  },
+  {
+    "id": "delivery-patch-backup-plan-builder",
+    "team": "Delivery",
+    "name": "Patch & Backup Plan Builder",
+    "description": "Crea un piano trimestrale di patching e backup testabile.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "inventory",
+      "windows"
+    ],
+    "prompt": "Con inventario {{inventory}} e finestre manutenzione {{windows}}, crea un piano patch/backup testabile.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "schedule": [
+        {
+          "quarter": "Q{{n}}",
+          "assets": [
+            "{{device}}"
+          ],
+          "patch_window": "{{YYYY-MM-DD}}",
+          "rollback_plan": "...",
+          "backup_before_patch": true
+        }
+      ],
+      "exceptions": [
+        {
+          "asset": "{{device}}",
+          "reason": "safety validation pending"
+        }
+      ]
+    },
+    "tags": [
+      "patching",
+      "backup",
+      "maintenance"
+    ]
+  },
+  {
+    "id": "delivery-acceptance-test-procedure",
+    "team": "Delivery",
+    "name": "Acceptance Test Procedure (ATP)",
+    "description": "Genera ATP per autenticazione, segmentazione, logging, backup/restore.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "project_name"
+    ],
+    "prompt": "Genera un’ATP per il progetto {{project_name}} focalizzata su autenticazione, segmentazione, logging, backup/restore.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "tests": [
+        {
+          "id": "ATP-{{id}}",
+          "objective": "AuthN on PLC",
+          "steps": [
+            "..."
+          ],
+          "expected_result": "...",
+          "evidence": "screenshot|logs",
+          "acceptance": "pass criteria"
+        }
+      ]
+    },
+    "tags": [
+      "ATP",
+      "acceptance",
+      "testing"
+    ]
+  },
+  {
+    "id": "delivery-site-handover-pack",
+    "team": "Delivery",
+    "name": "Site Handover Pack",
+    "description": "Verifica completezza pacchetto di consegna e prove di conformità.",
+    "language": "it",
+    "version": "2025-08-19",
+    "input_vars": [
+      "site_name"
+    ],
+    "prompt": "Verifica la completezza della documentazione di consegna per {{site_name}}.\nRegole: SOLO JSON.\nOutput atteso: come in output_template.",
+    "output_template": {
+      "required_docs": [
+        "as-built diagrams",
+        "hardening checklist",
+        "asset register",
+        "backup/restore SOP",
+        "ATP results",
+        "user/access list"
+      ],
+      "missing": [
+        {
+          "doc": "asset register",
+          "owner": "{{role}}",
+          "due": "YYYY-MM-DD"
+        }
+      ]
+    },
+    "tags": [
+      "handover",
+      "documentation",
+      "delivery"
+    ]
+  }
+]

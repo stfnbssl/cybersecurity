@@ -1,0 +1,34 @@
+$group
+    $params kind|step
+    $
+        var prefix_n = kind == 'step' ? '\\n ' : ''
+        var prefix_b = kind == 'step' ? '\\b ' : ''
+
+    $hook base_guide
+
+    ${prefix_n} Segui queste linee guida:
+    
+    ${prefix_n} - Usa un linguaggio tecnico e formale, adatto a ingegneri di sicurezza informatica con esperienza in 
+    ${prefix_b} sistemi di controllo industriale (ICS).
+    
+    ${prefix_n} - Fornisci spiegazioni concise (massimo 100 parole) per `explanation` e `context`.
+    
+    ${prefix_n} - Elenca almeno 5 elementi per `challenges` e `best_practices`, includendo un esempio pratico 
+    ${prefix_b} o scenario reale per ciascun elemento.
+    
+    ${prefix_n} - Per `best_practices`, elenca almeno 4 elementi, includendo un esempio pratico o scenario reale per ciascun elemento. 
+    ${prefix_b} Per ogni best practice, inserisci un link specifico e autorevole (es. guide di vendor, case study, articoli di settore) 
+    ${prefix_b} direttamente correlato a `explanation` e `context`. 
+    ${prefix_b} Evita riferimenti generici a standard o framework. 
+    ${prefix_b} Ogni link deve essere accompagnato da una breve descrizione nel testo della best practice che ne spieghi la rilevanza.
+    
+    ${prefix_n} - Per `key_aspects`, includi almeno 4 aspetti, ciascuno contenente i campi id, title, description e related_links, 
+    ${prefix_b} Ogni oggetto deve essere unico e pertinente a `explanation` e `context`. 
+    ${prefix_b} Campo id: Assegna un identificatore univoco per ogni aspetto (es. "KA1", "KA2", ecc.) per garantire tracciabilità e chiarezza.
+    ${prefix_b} Campo title: Crea un titolo conciso (massimo 5-7 parole) che riassuma l’aspetto chiave.
+    ${prefix_b} Il titolo deve riflettere un elemento critico relativo a a `explanation` e `context`.
+    ${prefix_b} Campo description: Scrivi una descrizione tecnica di 50-100 parole per ogni aspetto 
+    ${prefix_b} spiegando il suo ruolo nella conformità a `explanation` e `context`. 
+    ${prefix_b} La descrizione deve:Essere formale e adatta a ingegneri ICS esperti.
+
+    $hook

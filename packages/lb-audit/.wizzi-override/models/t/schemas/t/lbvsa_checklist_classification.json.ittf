@@ -1,0 +1,32 @@
+$group
+    { lbvsa_checklist_classification
+        $schema "http://json-schema.org/draft-07/schema#"
+        title "Schema per check list Carel Logbot Vendor Assessment"
+        description "Schema JSON per raccogliere classificazioni degli item della checklist."
+        type "object"
+        { properties
+            string( IDD )
+            string( area )
+            string( category )
+            string( description )
+            object( asset_owner )
+                $append properties
+                    boolean( isRelevant )
+                    string( motivation )
+            object( ssdl )
+                $append properties
+                    boolean( isRelevant )
+                    string( motivation )
+            object( system_integration )
+                $append properties
+                    boolean( isRelevant )
+                    string( motivation )
+            object( component_production )
+                $append properties
+                    boolean( isRelevant )
+                    string( motivation )
+        [ required
+            "ssdl" 
+            "system_integration"
+            "component_production"
+        additionalProperties false

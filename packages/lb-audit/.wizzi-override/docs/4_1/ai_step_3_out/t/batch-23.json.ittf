@@ -1,0 +1,647 @@
+$group
+    {
+        practice "6"
+        code "DM-4"
+        subCode "d)"
+        name "Addressing security-related issues"
+        description "A process shall be employed for addressing security-related issues and
+            +b determining whether to report them based on the results of the impact
+            +b assessment. The supplier shall establish an acceptable level of residual risk
+            +b that shall be applied when determining appropriate way to address each issue.
+            +b Options include one or more of the following: d) not fixing the problem if the
+            +b residual risk is below the established acceptable level of residual risk."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security-related issues are properly assessed and addressed
+                    +b based on their residual risk."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "A threat modeling methodology that helps identify potential threats in the
+                            +b system by categorizing them into Spoofing, Tampering, Repudiation, Information
+                            +b Disclosure, Denial of Service, and Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "A risk assessment model that evaluates threats based on Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30"
+                        purpose "A risk assessment framework adapted for ICS environments to evaluate and manage
+                            +b risks."
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "A tool to create and analyze threat models using the STRIDE methodology."
+                { case_study
+                    example "A power plant used STRIDE to identify tampering risks in their DCS, leading to
+                        +b the implementation of additional integrity checks."
+            { audit_and_compliance_verification
+                why "To verify that the process for addressing security-related issues is compliant
+                    +b with IEC 62443-4-1."
+                [ audit_checklist
+                    "Verify that an acceptable level of residual risk is documented and applied."
+                    "Check that security-related issues are assessed and addressed according to the established process."
+                    "Review records of resolved and unresolved issues to ensure compliance with the residual risk threshold."
+                [ metrics
+                    {
+                        kpi "Percentage of security-related issues addressed within the acceptable residual
+                            +b risk level."
+                        target "100% compliance with the residual risk threshold."
+                compliance_procedure "Document the assessment and decision-making process for each security-related
+                    +b issue, including justification for not fixing issues below the residual risk
+                    +b threshold."
+            { training_and_competency_requirements
+                why "To ensure personnel are competent in assessing and addressing security-related
+                    +b issues."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Certification covering fundamental concepts of ICS security, including risk
+                            +b assessment and management."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Certification focused on securing industrial control systems, including risk
+                            +b management practices."
+                competency_assessment "Annual reviews of personnel competency in risk assessment and issue resolution,
+                    +b including practical evaluations."
+            { tooling_and_automation_support
+                why "To streamline the process of assessing and addressing security-related issues."
+                [ tools
+                    {
+                        name "Risk Assessment Software (e.g., RiskLens)"
+                        purpose "Automates the calculation of residual risk and supports decision-making."
+                    {
+                        name "SIEM (Security Information and Event Management)"
+                        purpose "Monitors and alerts on security-related issues in real-time."
+                automation_strategy "Integrate risk assessment tools with DevSecOps pipelines to automatically flag
+                    +b issues that require manual review based on residual risk thresholds."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not meet modern security standards, requiring alternative
+                    +b approaches."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit the potential impact of security-related
+                            +b issues."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional monitoring and logging to detect and respond to issues in
+                            +b legacy systems."
+                example_policy "Legacy systems must be documented, and their residual risk must be reassessed
+                    +b annually. Compensating controls must be implemented if the residual risk
+                    +b exceeds the acceptable threshold."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between security, engineering, and management is
+                    +b essential for addressing security-related issues."
+                { governance_model
+                    name "RACI Matrix"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Assess and report security-related issues."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement fixes or workarounds for issues."
+                        {
+                            role "Management"
+                            responsibility "Approve decisions on unresolved issues based on residual risk."
+                conflict_resolution "A cross-functional committee reviews and resolves conflicts between security
+                    +b and engineering priorities, with escalation to senior management if necessary."
+            { continuous_improvement_and_updates
+                why "To adapt the process based on new threats, incidents, and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review CISA alerts and other sources for new ICS vulnerabilities."
+                    {
+                        step "Review Incidents"
+                        description "Analyze security incidents to identify gaps in the issue resolution process."
+                    {
+                        step "Update Policies"
+                        description "Revise the acceptable residual risk level and issue resolution process based on
+                            +b new findings."
+                lessons_learned "After a security incident involving an unresolved issue, the residual risk
+                    +b threshold was adjusted, and additional monitoring was implemented for similar
+                    +b issues."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "e.a)"
+        name "Addressing security-related issues"
+        description "A process shall be employed for addressing security-related issues and
+            +b determining whether to report them based on the results of the impact
+            +b assessment. The supplier shall establish an acceptable level of residual risk
+            +b that shall be applied when determining appropriate way to address each issue.
+            +b Options include one or more of the following: e.a) inform other processes of
+            +b the issue or related issue(s), including processes for other products/product
+            +b revisions;"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure security-related issues are identified, assessed, and mitigated
+                    +b effectively across all relevant processes and product revisions."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to classify security threats into categories (Spoofing, Tampering,
+                            +b Repudiation, Information Disclosure, Denial of Service, Elevation of Privilege)
+                            +b to systematically assess risks."
+                    {
+                        name "DREAD"
+                        description "Provides a quantitative risk assessment model (Damage, Reproducibility,
+                            +b Exploitability, Affected Users, Discoverability) to prioritize security issues."
+                [ tools
+                    {
+                        name "Microsoft Threat Modeling Tool"
+                        purpose "Facilitates the application of STRIDE methodology to identify and mitigate
+                            +b potential security threats during the design phase."
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments tailored to Industrial
+                            +b Control Systems (ICS), including impact assessment and risk determination."
+                { case_study
+                    example "A Distributed Control System (DCS) in a power plant identified a vulnerability
+                        +b in its communication protocol. Using STRIDE, the team classified the threat as
+                        +b 'Tampering' and 'Information Disclosure'. The impact assessment led to
+                        +b informing all product revisions and implementing encrypted communications as a
+                        +b mitigation."
+            { audit_and_compliance_verification
+                why "To verify that security-related issues are properly addressed and communicated
+                    +b across all relevant processes and product revisions."
+                [ audit_checklist
+                    "Verify the existence of a documented process for addressing security-related issues."
+                    "Check records of impact assessments for identified security issues."
+                    "Review communication logs to ensure issues were reported to relevant processes and product revisions."
+                    "Assess the establishment and application of acceptable residual risk levels."
+                [ metrics
+                    {
+                        kpi "Percentage of security issues reported to relevant processes"
+                        target "100%"
+                    {
+                        kpi "Time taken to communicate security issues to relevant teams"
+                        target "Within 48 hours of identification"
+                compliance_procedure "Document the process for addressing security-related issues, including impact
+                    +b assessment criteria, reporting mechanisms, and residual risk acceptance levels.
+                    +b Maintain records of all identified issues, their assessments, and actions
+                    +b taken."
+            { training_and_competency_requirements
+                why "To ensure personnel are competent in identifying, assessing, and communicating
+                    +b security-related issues effectively."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Fundamentals Specialist"
+                        description "Covers fundamental principles of ICS security, including risk assessment and
+                            +b issue management."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Provides comprehensive training on ICS security practices, including threat
+                            +b modeling and risk management."
+                competency_assessment "Annual reviews of personnel competency in security issue management, including
+                    +b mock drills on identifying and reporting security issues."
+            { tooling_and_automation_support
+                why "To streamline the process of identifying, assessing, and communicating
+                    +b security-related issues."
+                [ tools
+                    {
+                        name "JIRA with Security Plugins"
+                        purpose "Tracks security issues, assigns them to relevant teams, and ensures timely
+                            +b communication and resolution."
+                    {
+                        name "SIEM (Security Information and Event Management)"
+                        purpose "Automates the detection and reporting of security incidents across the product
+                            +b lifecycle."
+                automation_strategy "Integrate issue tracking tools with DevSecOps pipelines to automatically flag
+                    +b and route security issues to relevant teams and processes. Use automated alerts
+                    +b for high-risk issues."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern security practices, requiring alternative
+                    +b strategies to address security issues."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit the impact of security issues and prevent
+                            +b lateral movement."
+                    {
+                        approach "Compensating Controls"
+                        description "Implement additional security measures (e.g., firewalls, intrusion detection
+                            +b systems) to mitigate vulnerabilities in legacy systems."
+                example_policy "Legacy systems must be documented with their known security issues.
+                    +b Compensating controls must be implemented and reviewed annually. Any new
+                    +b security issues identified must be reported to all affected product revisions."
+            { stakeholder_collaboration_and_governance
+                why "Effective collaboration between engineering, security, and management teams is
+                    +b essential for addressing security issues comprehensively."
+                { governance_model
+                    name "RACI Matrix for Security Issue Management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and assess security issues, recommend mitigations."
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement mitigations and communicate issues to relevant product revisions."
+                        {
+                            role "Management"
+                            responsibility "Approve residual risk levels and ensure resources are allocated for issue
+                                +b resolution."
+                conflict_resolution "Establish a cross-functional committee to resolve conflicts between security
+                    +b and engineering priorities, with escalation paths to senior management if
+                    +b necessary."
+            { continuous_improvement_and_updates
+                why "To adapt the security issue management process based on new threats, audit
+                    +b findings, and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review CISA alerts and other ICS security advisories for new
+                            +b vulnerabilities and threats."
+                    {
+                        step "Review Audit Findings"
+                        description "Incorporate findings from internal and external audits into the security issue
+                            +b management process."
+                    {
+                        step "Update Policies"
+                        description "Revise policies and procedures based on new threat intelligence and lessons
+                            +b learned from incidents."
+                lessons_learned "After a security incident in a legacy PLC system, the company updated its
+                    +b policy to include mandatory network segmentation for all legacy devices and
+                    +b quarterly reviews of compensating controls."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-4"
+        subCode "e.b)"
+        name "Addressing security-related issues"
+        description "A process shall be employed for addressing security-related issues and
+            +b determining whether to report them based on the results of the impact
+            +b assessment. The supplier shall establish an acceptable level of residual risk
+            +b that shall be applied when determining appropriate way to address each issue.
+            +b Options include one or more of the following: e.b) Inform third parties if
+            +b problems found in included third-party source code"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure security issues in third-party source code are identified and
+                    +b addressed appropriately, minimizing potential risks to ICS."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to classify security threats in third-party components by analyzing
+                            +b Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service,
+                            +b and Elevation of Privilege."
+                    {
+                        name "DREAD"
+                        description "Helps prioritize risks in third-party code by evaluating Damage potential,
+                            +b Reproducibility, Exploitability, Affected users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a structured approach for risk assessment, tailored to identify
+                            +b vulnerabilities in third-party ICS components."
+                    {
+                        name "OWASP Dependency-Check"
+                        purpose "Scans third-party dependencies for known vulnerabilities."
+                { case_study
+                    example "A power plant's DCS integrator identified a vulnerable third-party library
+                        +b using OWASP Dependency-Check, leading to timely notification and mitigation
+                        +b before deployment."
+            { audit_and_compliance_verification
+                why "To verify that third-party security issues are properly reported and residual
+                    +b risks are within acceptable thresholds."
+                [ audit_checklist
+                    "Verify documented process for reporting third-party issues"
+                    "Check evidence of impact assessments for identified issues"
+                    "Review records of communications with third parties"
+                [ metrics
+                    {
+                        kpi "Percentage of third-party issues reported within SLA"
+                        target "≥95%"
+                    {
+                        kpi "Residual risk acceptance rate"
+                        target "<5% of critical issues"
+                compliance_procedure "Document each security issue found in third-party code, perform impact
+                    +b assessment, record risk acceptance decisions, and maintain evidence of
+                    +b notifications sent to third parties."
+            { training_and_competency_requirements
+                why "To ensure staff can properly identify, assess, and report third-party security
+                    +b issues in ICS components."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure development practices including third-party component management."
+                    {
+                        name "GICSP"
+                        description "Provides knowledge on ICS security including supply chain risks."
+                competency_assessment "Annual reviews of engineers' ability to identify and properly handle
+                    +b third-party security issues, including mock scenario testing."
+            { tooling_and_automation_support
+                why "To automate detection and reporting of third-party security issues in the
+                    +b development pipeline."
+                [ tools
+                    {
+                        name "Black Duck"
+                        purpose "Automated open source component analysis and vulnerability detection."
+                    {
+                        name "Sonatype Nexus IQ"
+                        purpose "Identifies vulnerabilities in third-party dependencies during builds."
+                automation_strategy "Integrate software composition analysis tools into CI/CD pipeline to
+                    +b automatically flag vulnerable third-party components and generate reports for
+                    +b affected vendors."
+            { handling_legacy_systems_and_constraints
+                why "Legacy ICS components often contain outdated third-party code that can't be
+                    +b easily updated."
+                [ strategies
+                    {
+                        approach "Compensating Controls"
+                        description "Implement network segmentation and strict access controls for systems running
+                            +b legacy third-party code."
+                    {
+                        approach "Wrapper Interfaces"
+                        description "Create secure wrapper interfaces around legacy third-party components to limit
+                            +b exposure."
+                example_policy "When legacy third-party components cannot be updated, document the risk
+                    +b acceptance and implement compensating controls including network segmentation
+                    +b (SM-3) and enhanced monitoring."
+            { stakeholder_collaboration_and_governance
+                why "Effective handling of third-party security issues requires coordination between
+                    +b security, legal, and engineering teams."
+                { governance_model
+                    name "RACI Matrix for Third-Party Issue Management"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and assess vulnerabilities"
+                        {
+                            role "Legal Team"
+                            responsibility "Review disclosure requirements"
+                        {
+                            role "Engineering Team"
+                            responsibility "Implement mitigations"
+                conflict_resolution "Monthly cross-functional reviews to align on risk acceptance thresholds and
+                    +b disclosure procedures, with escalation path to CISO for unresolved disputes."
+            { continuous_improvement_and_updates
+                why "Third-party risk landscape evolves constantly requiring regular process
+                    +b updates."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Subscribe to ICS-CERT alerts and vendor security bulletins about third-party
+                            +b components."
+                    {
+                        step "Quarterly Process Review"
+                        description "Assess effectiveness of third-party issue handling procedures based on recent
+                            +b incidents."
+                lessons_learned "After a major third-party vulnerability (e.g., Log4j), update processes to
+                    +b include faster escalation paths for critical vulnerabilities and maintain an
+                    +b updated software bill of materials (SBOM)."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-15"
+    {
+        practice "6"
+        code "DM-5"
+        subCode "a) issue description, vulnerability score as per CVSS or a similar system for
+            +b ranking vulnerabilities, and affected product version(s); and"
+        name "Disclosing security-related issues"
+        description "A process shall be employed for informing product users about reportable
+            +b security-related issues in supported products in a timely manner with content
+            +b that includes but is not limited to the following information: a) issue
+            +b description, vulnerability score as per CVSS or a similar system for ranking
+            +b vulnerabilities, and affected product version(s); and"
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure vulnerabilities are properly assessed and communicated to
+                    +b stakeholders in a structured manner."
+                [ methodologies
+                    {
+                        name "CVSS"
+                        description "Common Vulnerability Scoring System for ranking vulnerabilities based on
+                            +b severity."
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats in the system."
+                [ tools
+                    {
+                        name "NIST National Vulnerability Database (NVD)"
+                        purpose "Provides CVSS scores for known vulnerabilities."
+                    {
+                        name "Qualys Vulnerability Management"
+                        purpose "Helps in identifying and scoring vulnerabilities in the system."
+                { case_study
+                    example "A power plant's DCS was found to have a critical vulnerability (CVSS score
+                        +b 9.8). The issue was disclosed to users within 48 hours, including mitigation
+                        +b steps and affected versions."
+            { audit_and_compliance_verification
+                why "To verify that the disclosure process is followed correctly and timely."
+                [ audit_checklist
+                    "Check if all vulnerabilities are scored using CVSS or similar."
+                    "Verify that disclosures include affected versions and descriptions."
+                    "Ensure disclosures are made within the agreed SLA."
+                [ metrics
+                    {
+                        kpi "Time to disclosure"
+                        target "≤ 72 hours from vulnerability confirmation"
+                    {
+                        kpi "Percentage of vulnerabilities disclosed with CVSS scores"
+                        target "100%"
+                compliance_procedure "Document each step of the vulnerability disclosure process, including scoring,
+                    +b approval, and communication, and review quarterly."
+            { training_and_competency_requirements
+                why "To ensure staff are competent in vulnerability assessment and disclosure
+                    +b processes."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Covers secure development and vulnerability management."
+                    {
+                        name "GICSP"
+                        description "Global Industrial Cyber Security Professional certification."
+                competency_assessment "Annual review of staff competency in CVSS scoring and vulnerability disclosure
+                    +b procedures."
+            { tooling_and_automation_support
+                why "To automate vulnerability scoring and disclosure processes for efficiency."
+                [ tools
+                    {
+                        name "Tenable.io"
+                        purpose "Automates vulnerability scanning and scoring."
+                    {
+                        name "Jira Service Management"
+                        purpose "Tracks and automates disclosure workflows."
+                automation_strategy "Integrate vulnerability scanners with ticketing systems to auto-generate
+                    +b disclosures based on CVSS scores."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may not support modern scoring or disclosure methods."
+                [ strategies
+                    {
+                        approach "Manual scoring and disclosure"
+                        description "For systems where automation is not feasible, use manual processes with
+                            +b documented checks."
+                    {
+                        approach "Network segmentation"
+                        description "Isolate legacy systems to limit exposure while disclosures are prepared."
+                example_policy "Legacy systems must be documented in a register, and vulnerabilities must be
+                    +b manually scored and disclosed within 96 hours."
+            { stakeholder_collaboration_and_governance
+                why "Effective disclosure requires coordination between security, engineering, and
+                    +b management."
+                { governance_model
+                    name "RACI Matrix for Vulnerability Disclosure"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Assess and score vulnerabilities."
+                        {
+                            role "Engineering Team"
+                            responsibility "Provide technical details and patches."
+                        {
+                            role "Management"
+                            responsibility "Approve disclosures."
+                conflict_resolution "Escalate to the Cybersecurity Governance Board if there are disputes on
+                    +b disclosure timing or content."
+            { continuous_improvement_and_updates
+                why "To adapt to new threats and improve disclosure processes."
+                [ update_process
+                    {
+                        step "Review CISA alerts"
+                        description "Monthly review of ICS vulnerability alerts to update scoring and disclosure
+                            +b practices."
+                    {
+                        step "Post-incident reviews"
+                        description "After each disclosure, review the process for improvements."
+                lessons_learned "After a delayed disclosure in 2022, the process was updated to include
+                    +b automated alerts for high-severity vulnerabilities."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-11-20"
+    {
+        practice "6"
+        code "DM-5"
+        subCode "b) description of the resolution."
+        name "Disclosing security-related issues"
+        description "A process shall be employed for informing product users about reportable
+            +b security-related issues in supported products in a timely manner with content
+            +b that includes but is not limited to the following information: b) description
+            +b of the resolution."
+        { details
+            { risk_assessment_and_threat_modeling
+                why "To ensure that security-related issues are identified, assessed, and resolved
+                    +b in a structured manner, minimizing potential impacts on ICS environments."
+                [ methodologies
+                    {
+                        name "STRIDE"
+                        description "Used to identify potential threats (Spoofing, Tampering, Repudiation,
+                            +b Information Disclosure, Denial of Service, Elevation of Privilege) in the
+                            +b disclosure process."
+                    {
+                        name "DREAD"
+                        description "Helps in assessing the risk level of identified security issues based on
+                            +b Damage, Reproducibility, Exploitability, Affected Users, and Discoverability."
+                [ tools
+                    {
+                        name "NIST 800-30 (Adapted for ICS)"
+                        purpose "Provides a framework for conducting risk assessments specific to ICS, including
+                            +b vulnerability identification and impact analysis."
+                    {
+                        name "ICS-specific Threat Modeling Tools"
+                        purpose "Tools like Microsoft Threat Modeling Tool adapted for ICS to model and analyze
+                            +b threats in the disclosure process."
+                { case_study
+                    example "A power plant's DCS vendor identified a critical vulnerability in their
+                        +b software. Using STRIDE, they modeled the threat, assessed the risk with DREAD,
+                        +b and followed NIST 800-30 to prioritize and resolve the issue. The resolution
+                        +b was documented and disclosed to users within 30 days."
+            { audit_and_compliance_verification
+                why "To verify that the disclosure process is consistently followed and meets IEC
+                    +b 62443-4-1 requirements."
+                [ audit_checklist
+                    "Verify the existence of a documented process for disclosing security-related issues."
+                    "Check if the resolution descriptions are included in disclosures."
+                    "Review timeliness of past disclosures."
+                    "Ensure that disclosures are communicated to all affected users."
+                [ metrics
+                    {
+                        kpi "Percentage of disclosures including resolution descriptions"
+                        target "100%"
+                    {
+                        kpi "Average time from issue identification to disclosure"
+                        target "≤30 days"
+                compliance_procedure "Auditors should review documentation of past disclosures, interview personnel
+                    +b responsible for the process, and verify that the process aligns with IEC
+                    +b 62443-4-1 requirements. Evidence includes disclosure logs, communication
+                    +b records, and resolution documentation."
+            { training_and_competency_requirements
+                why "To ensure personnel are competent in identifying, assessing, and disclosing
+                    +b security-related issues."
+                [ training_programs
+                    {
+                        name "ISA/IEC 62443 Cybersecurity Certifications"
+                        description "Provides foundational knowledge on ICS security standards, including disclosure
+                            +b processes."
+                    {
+                        name "GICSP (Global Industrial Cyber Security Professional)"
+                        description "Covers ICS security practices, including vulnerability disclosure and
+                            +b resolution."
+                competency_assessment "Annual reviews of personnel competency, including mock disclosure exercises and
+                    +b knowledge tests on IEC 62443-4-1 requirements."
+            { tooling_and_automation_support
+                why "To streamline the disclosure process and ensure consistency."
+                [ tools
+                    {
+                        name "Vulnerability Management Systems"
+                        purpose "Automates tracking and disclosure of security issues."
+                    {
+                        name "DevSecOps Pipelines"
+                        purpose "Integrates security issue tracking and disclosure into the development
+                            +b lifecycle."
+                automation_strategy "Integrate vulnerability scanners with issue tracking systems to automatically
+                    +b generate disclosures when new vulnerabilities are resolved. Use templates for
+                    +b consistent resolution descriptions."
+            { handling_legacy_systems_and_constraints
+                why "Legacy systems may lack modern disclosure mechanisms, requiring alternative
+                    +b approaches."
+                [ strategies
+                    {
+                        approach "Network Segmentation"
+                        description "Isolate legacy systems to limit the impact of undisclosed vulnerabilities."
+                    {
+                        approach "Manual Disclosure Processes"
+                        description "Implement manual processes for legacy systems where automation is not feasible."
+                example_policy "For legacy systems, disclosures must be communicated via direct customer
+                    +b notifications if automated systems are unavailable. Compensating controls like
+                    +b network segmentation must be documented."
+            { stakeholder_collaboration_and_governance
+                why "Effective disclosure requires coordination between security, engineering, and
+                    +b management teams."
+                { governance_model
+                    name "RACI Matrix for Disclosure Process"
+                    [ roles
+                        {
+                            role "Security Team"
+                            responsibility "Identify and assess security issues."
+                        {
+                            role "Engineering Team"
+                            responsibility "Develop and document resolutions."
+                        {
+                            role "Management"
+                            responsibility "Approve disclosures and allocate resources."
+                conflict_resolution "Conflicts between teams (e.g., engineering wanting more time vs. security
+                    +b pushing for quick disclosure) are resolved by a governance committee reviewing
+                    +b risk assessments and business impact."
+            { continuous_improvement_and_updates
+                why "To adapt the disclosure process based on new threats and lessons learned."
+                [ update_process
+                    {
+                        step "Monitor Threat Intelligence"
+                        description "Regularly review CISA alerts and ICS-CERT advisories for new vulnerabilities
+                            +b affecting the product."
+                    {
+                        step "Review Audit Findings"
+                        description "Incorporate findings from internal and external audits into the disclosure
+                            +b process."
+                    {
+                        step "Update Documentation"
+                        description "Revise disclosure procedures and templates based on feedback and incidents."
+                lessons_learned "After a delayed disclosure led to exploitation in a customer's system, the
+                    +b company implemented a 30-day SLA for disclosures and added automated alerts for
+                    +b high-risk vulnerabilities."
+        standard_compliance "IEC 62443-4-1"
+        last_updated "2023-10-15"

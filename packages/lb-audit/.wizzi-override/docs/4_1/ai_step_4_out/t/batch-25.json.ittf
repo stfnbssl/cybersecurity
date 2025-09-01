@@ -1,0 +1,225 @@
+$group
+    {
+        ERROR_MESSAGE "Error parsing ai apicall: Expected ',' or '}' after property value in JSON at
+            +b position 1989"
+    {
+        practice "6"
+        code "DM-2"
+        subCode "b) verifiability; and"
+        [ policies
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Automated Triage Policy for Security Issues"
+                description "This policy mandates the use of automated tools, such as SIEM systems, for the
+                    +b initial triage of reported security issues to filter false positives and
+                    +b prioritize genuine threats. It aligns with IEC 62443-4-1 by ensuring efficient
+                    +b resource allocation and timely verification of security issues. Reference: IEC
+                    +b 62443-4-1 DM-2."
+                enforcement "Regular audits of SIEM configurations and alert logs to ensure compliance.
+                    +b Automated reports on triage effectiveness will be reviewed quarterly."
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Severity Classification and Response Policy"
+                description "This policy establishes a standardized framework for classifying the severity
+                    +b of security issues and defines clear response timelines based on risk. It
+                    +b supports IEC 62443-4-1 DM-2 by ensuring critical vulnerabilities are verified
+                    +b within specified timeframes. Reference: IEC 62443-4-1 DM-2."
+                enforcement "Monthly reviews of issue classification and response times. Non-compliance will
+                    +b trigger corrective action plans."
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Cross-Functional Verification Team Policy"
+                description "This policy requires the formation of cross-functional teams comprising IT and
+                    +b OT personnel to enhance the accuracy of security issue verification. It aligns
+                    +b with IEC 62443-4-1 DM-2 by leveraging diverse expertise for complex
+                    +b investigations. Reference: IEC 62443-4-1 DM-2."
+                enforcement "Annual competency assessments of team members and quarterly reviews of team
+                    +b performance metrics."
+        [ procedures
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Automated Triage Procedure"
+                description "This procedure outlines the steps for using SIEM systems to triage reported
+                    +b security issues, ensuring false positives are filtered and genuine threats are
+                    +b prioritized."
+                [ steps
+                    {
+                        step 1
+                        action "Configure SIEM system to ingest logs from all relevant ICS components."
+                        tools "SIEM system (e.g., Splunk, IBM QRadar)"
+                        expected_outcome "All security events are logged and visible in the SIEM dashboard."
+                    {
+                        step 2
+                        action "Define correlation rules to identify potential security issues."
+                        tools "SIEM rule editor"
+                        expected_outcome "Automated alerts are generated for suspicious activities."
+                    {
+                        step 3
+                        action "Review and prioritize alerts based on predefined severity thresholds."
+                        tools "SIEM alert management console"
+                        expected_outcome "High-priority issues are escalated for further investigation."
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Severity Classification Procedure"
+                description "This procedure details the process for classifying the severity of security
+                    +b issues and defining appropriate response timelines."
+                [ steps
+                    {
+                        step 1
+                        action "Assess the potential impact of the reported issue using the DREAD methodology."
+                        tools "DREAD assessment template"
+                        expected_outcome "Issue is assigned a severity score (Low, Medium, High, Critical)."
+                    {
+                        step 2
+                        action "Determine the appropriate response timeline based on the severity score."
+                        tools "Severity response matrix"
+                        expected_outcome "Response timeline is documented and communicated to relevant teams."
+                    {
+                        step 3
+                        action "Update the issue tracking system with the severity classification and response
+                            +b timeline."
+                        tools "Issue tracking system (e.g., JIRA)"
+                        expected_outcome "Issue is tracked and managed according to its severity."
+            {
+                code "DM-2"
+                subCode "b) verifiability; and"
+                title "Cross-Functional Verification Procedure"
+                description "This procedure describes the steps for forming and operating cross-functional
+                    +b teams to verify complex security issues."
+                [ steps
+                    {
+                        step 1
+                        action "Identify the required expertise for the issue (e.g., IT security, OT
+                            +b operations)."
+                        tools "Skills matrix"
+                        expected_outcome "Team composition is defined based on issue complexity."
+                    {
+                        step 2
+                        action "Convene the team and assign roles and responsibilities using a RACI matrix."
+                        tools "RACI matrix template"
+                        expected_outcome "Clear accountability for each aspect of the verification process."
+                    {
+                        step 3
+                        action "Conduct the verification and document findings in the issue tracking system."
+                        tools "Issue tracking system, collaborative tools (e.g., Microsoft Teams)"
+                        expected_outcome "Comprehensive verification report is generated and stored."
+        last_updated "2023-10-15"
+    {
+        practice "6"
+        code "DM-2"
+        subCode "c) threats that trigger the issue."
+        [ policies
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Threat Intelligence Integration Policy"
+                description "This policy mandates the integration of threat intelligence platforms (TIPs)
+                    +b with ICS monitoring tools to correlate security issues with known threats, as
+                    +b per IEC 62443-4-1 requirements. It ensures real-time threat data is available
+                    +b for timely investigation and mitigation."
+                enforcement "Regular audits of threat intelligence feeds and automated alerts from SIEM
+                    +b systems to ensure continuous integration and correlation of threat data."
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Anomaly Detection and Response Policy"
+                description "This policy requires the implementation of machine learning-based anomaly
+                    +b detection systems to identify unusual patterns that may trigger security
+                    +b issues, in compliance with IEC 62443-4-1. It focuses on detecting deviations
+                    +b from normal operational behavior in ICS environments."
+                enforcement "Periodic reviews of anomaly detection logs and automated response mechanisms to
+                    +b ensure timely identification and mitigation of threats."
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Secure Logging and Forensic Analysis Policy"
+                description "This policy enforces the deployment of secure logging solutions with
+                    +b tamper-proof storage for forensic analysis of security-related issues, aligning
+                    +b with IEC 62443-4-1 standards. It ensures detailed records of system states
+                    +b preceding security issues are maintained."
+                enforcement "Regular audits of logging systems and forensic analysis tools to verify the
+                    +b integrity and availability of logs for incident investigation."
+        [ procedures
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Threat-Attack Vector Mapping Procedure"
+                description "This procedure outlines the steps to document and link identified threats to
+                    +b specific attack vectors, enabling targeted countermeasures as per IEC 62443-4-1
+                    +b SG-3 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Collect threat intelligence data from integrated TIPs and SIEM systems."
+                        tools "SIEM, Threat Intelligence Platforms"
+                        expected_outcome "Comprehensive list of known threats relevant to the ICS environment."
+                    {
+                        step 2
+                        action "Map each threat to specific attack vectors using frameworks like MITRE ATT&CK
+                            +b for ICS."
+                        tools "MITRE ATT&CK for ICS Matrix"
+                        expected_outcome "Detailed documentation linking threats to attack vectors."
+                    {
+                        step 3
+                        action "Develop and implement targeted countermeasures for each identified attack
+                            +b vector."
+                        tools "Security Policy Management Tools"
+                        expected_outcome "Effective mitigation strategies tailored to specific threats and attack
+                            +b vectors."
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Trigger Condition Analysis Procedure"
+                description "This procedure details the process for analyzing system states preceding
+                    +b security issues to identify trigger conditions, ensuring reproducibility and
+                    +b mitigation of threats in compliance with IEC 62443-4-1."
+                [ steps
+                    {
+                        step 1
+                        action "Collect and review system logs and audit trails from the time preceding the
+                            +b security issue."
+                        tools "Secure Logging Solutions, Forensic Analysis Tools"
+                        expected_outcome "Detailed records of system states and events leading up to the security issue."
+                    {
+                        step 2
+                        action "Identify and document specific conditions or events that triggered the security
+                            +b issue."
+                        tools "Incident Investigation Tools"
+                        expected_outcome "Clear understanding of the trigger conditions for the security issue."
+                    {
+                        step 3
+                        action "Develop and implement measures to prevent recurrence of the identified trigger
+                            +b conditions."
+                        tools "Security Policy Management Tools"
+                        expected_outcome "Mitigation strategies to address and prevent trigger conditions."
+            {
+                code "DM-2"
+                subCode "c)"
+                title "Compensating Controls Implementation Procedure"
+                description "This procedure outlines the steps to maintain and apply compensating controls
+                    +b for threats awaiting permanent patches, ensuring interim protection as per IEC
+                    +b 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Identify threats that require interim mitigation due to lack of permanent
+                            +b patches."
+                        tools "Threat Intelligence Platforms, Vulnerability Scanners"
+                        expected_outcome "List of threats requiring compensating controls."
+                    {
+                        step 2
+                        action "Select and document appropriate compensating controls (e.g., network
+                            +b segmentation, enhanced monitoring)."
+                        tools "Security Policy Management Tools"
+                        expected_outcome "Documented compensating controls for identified threats."
+                    {
+                        step 3
+                        action "Implement and monitor the effectiveness of the compensating controls."
+                        tools "SIEM, Network Monitoring Tools"
+                        expected_outcome "Effective interim protection against identified threats."
+        last_updated "2023-10-15"

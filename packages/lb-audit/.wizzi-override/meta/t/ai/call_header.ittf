@@ -1,0 +1,17 @@
+$group
+    $params &options, kind|step
+    $
+        var prefix = kind == 'step' ? '\\n ' : ''
+
+    $if options.provider == 'deepSeek'
+        llm_service deepSeek
+        llm_model deepseek-chat
+        max_tokens 8192 $$ max for DeepSeek
+    $elif options.provider == 'grok'
+        llm_service grok
+        llm_model grok-3
+        max_tokens 8192 $$ to equal DeepSeek
+    temperature 0.7
+    message
+        role system
+        $hook

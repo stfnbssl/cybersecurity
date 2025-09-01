@@ -1,0 +1,259 @@
+$group
+    {
+        idd "1.3.2"
+        area "Governance"
+        category "Gestione dei rischi"
+        description "Viene mantenuta traccia in modo strutturato di un registro dei rischi cyber con
+            +b evidenza della strategia di risposta?"
+        note "undefined"
+        NIS2 "Art. 21, par. 2, comma f"
+        "NIST CSF" "ID.RA-4"
+        detailed_explanation "Un registro strutturato dei rischi cyber è uno strumento fondamentale per la
+            +b gestione proattiva della sicurezza informatica in ambito OT. Deve contenere:
+            +b identificazione chiara dei rischi, valutazione della probabilità e impatto,
+            +b priorità, strategie di mitigazione (accettazione, trasferimento, mitigazione o
+            +b evitamento), responsabili e scadenze. La tracciabilità permette di monitorare
+            +b l'evoluzione dei rischi nel tempo e l'efficacia delle contromisure
+            +b implementate. In contesto OT è cruciale considerare rischi che potrebbero
+            +b impattare sicurezza fisica, continuità operativa e sicurezza delle persone."
+        [ glossary
+            {
+                term "Registro dei rischi"
+                definition "Documento che cataloga sistematicamente i rischi identificati, la loro
+                    +b valutazione e le strategie di gestione."
+                link "
+                    +b https://www.isaca.org/resources/isaca-journal/issues/2016/volume-3/cybersecurity-risk-registers"
+            {
+                term "Strategia di risposta al rischio"
+                definition "Approccio scelto per affrontare un rischio specifico (mitigazione,
+                    +b accettazione, trasferimento o evitamento)."
+                link "
+                    +b https://www.nist.gov/system/files/documents/2017/05/09/risk_management_framework_overview.pdf"
+            {
+                term "Valutazione del rischio OT"
+                definition "Processo specifico per identificare e valutare rischi in ambienti Operational
+                    +b Technology, considerando impatti fisici e operativi."
+                link "
+                    +b https://www.cisa.gov/sites/default/files/publications/Defining_Industrial_Control_Systems_Cybersecurity_Risk_2022.pdf"
+        [ related_links
+            {
+                title "NIST Guide to Industrial Control Systems (ICS) Security"
+                url "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r2.pdf"
+            {
+                title "ENISA Good Practices for ICS Security"
+                url "
+                    +b https://www.enisa.europa.eu/publications/good-practices-for-security-of-smart-grids"
+            {
+                title "ISA/IEC 62443 Standards for Industrial Automation and Control Systems Security"
+                url "
+                    +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+            {
+                title "CISA Cyber Risk Scoring for OT Assets"
+                url "
+                    +b https://www.cisa.gov/resources-tools/services/critical-infrastructure-cyber-risk-scoring"
+    {
+        idd "2.1.1"
+        area "Continuità operativa"
+        category "People"
+        description "La continuità dell'erogazione dei servizi di fornitura è garantita anche in
+            +b situazioni di emergenza (p.e. indisponibilità del personale, guasti tecnici)?"
+        note "undefined"
+        NIS2 "Art. 21, par. 2, comma c"
+        { checklist_explanation
+            detailed_explanation "Questo item verifica l'esistenza di piani e procedure per garantire la
+                +b continuità operativa dei servizi critici anche durante situazioni di emergenza
+                +b che potrebbero coinvolgere sia risorse umane (es. assenze improvvise, pandemie)
+                +b che tecniche (guasti hardware, interruzioni di servizio). La resilienza
+                +b organizzativa in contesti OT richiede specifiche strategie di backup del
+                +b personale, formazione incrociata, procedure documentate e sistemi ridondanti
+                +b per mitigare i rischi di interruzione dei servizi essenziali."
+            [ glossary
+                {
+                    term "Continuità operativa"
+                    definition "Capacità di un'organizzazione di mantenere la fornitura di prodotti e servizi a
+                        +b livelli accettabili in seguito a un incidente disruptive"
+                    link "https://www.ready.gov/business-continuity-plan"
+                {
+                    term "Resilienza organizzativa"
+                    definition "Capacità di un'organizzazione di anticipare, prepararsi, rispondere e adattarsi
+                        +b a cambiamenti incrementali e disruption per sopravvivere e prosperare"
+                    link "https://www.iso.org/standard/50053.html"
+                {
+                    term "Ridondanza"
+                    definition "Duplicazione di componenti critiche o funzioni di un sistema con l'intento di
+                        +b aumentare l'affidabilità del sistema"
+                    link "https://www.techtarget.com/searchdisasterrecovery/definition/redundancy"
+            [ related_links
+                {
+                    title "NIST Guide for Cybersecurity Incident Recovery"
+                    url "https://csrc.nist.gov/publications/detail/sp/800-184/final"
+                {
+                    title "ENISA Good Practices for Incident Response Plans in OT"
+                    url "
+                        +b https://www.enisa.europa.eu/publications/good-practices-for-incident-response-plans-in-ot"
+                {
+                    title "ISA/IEC 62443-2-1: Security for Industrial Automation and Control Systems -
+                        +b Establishing an Industrial Automation and Control Systems Security Program"
+                    url "
+                        +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards/isa-iec-62443-2-1"
+                {
+                    title "Business Continuity Planning for Industrial Control Systems"
+                    url "
+                        +b https://www.cisa.gov/sites/default/files/publications/BCP%20for%20ICS%20-%20Final.pdf"
+    {
+        idd "2.1.2"
+        area "Continuità operativa"
+        category "People"
+        description "In caso di indisponibilità delle persone chiave per l'erogazione dei servizi di
+            +b fornitura, è stato individuato un elenco di specialisti qualificati a supporto
+            +b e sono definiti piani di "call-up" per il contatto tempestivo di queste figure?"
+        note "undefined"
+        NIS2 "Art. 21, par. 2, comma c"
+        { checklist_explanation
+            detailed_explanation "Questa voce della checklist verifica l'esistenza di un piano di continuità
+                +b operativa che includa la gestione dell'indisponibilità del personale chiave. In
+                +b particolare, richiede che: 1) sia mantenuto un elenco aggiornato di specialisti
+                +b qualificati che possano sostituire le figure chiave in caso di emergenza; 2)
+                +b siano definiti procedure di 'call-up' (attivazione) chiare per contattare
+                +b tempestivamente queste figure di riserva. Questo è cruciale in ambienti OT dove
+                +b l'indisponibilità di personale specializzato può compromettere la sicurezza e
+                +b la continuità operativa di sistemi critici."
+            [ glossary
+                {
+                    term "Call-up plan"
+                    definition "Un documento che specifica le procedure e i contatti da attivare in caso di
+                        +b emergenza o indisponibilità del personale chiave."
+                    link "https://www.ready.gov/business-continuity-plan"
+                {
+                    term "Specialisti qualificati"
+                    definition "Personale tecnico con competenze specifiche necessarie per gestire e mantenere
+                        +b sistemi OT, spesso certificato su tecnologie particolari."
+                    link "https://www.isa.org/certification-certificates/certification-programs"
+                {
+                    term "Continuità operativa"
+                    definition "La capacità di un'organizzazione di mantenere le operazioni essenziali durante
+                        +b e dopo un incidente o un'interruzione."
+                    link "https://www.nist.gov/topics/business-continuity"
+            [ related_links
+                {
+                    title "NIST Guide for Industrial Control Systems (ICS) Security"
+                    url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-2/final"
+                {
+                    title "ISA/IEC 62443 Standards for Industrial Automation and Control Systems Security"
+                    url "
+                        +b https://www.isa.org/standards-and-publications/isa-standards/isa-iec-62443-series-of-standards"
+                {
+                    title "Business Continuity Planning for Industrial Control Systems"
+                    url "https://www.cisa.gov/resources-tools/resources/ics-recommended-practices"
+                {
+                    title "ENISA Good Practices for Incident Response Plans in OT environments"
+                    url "https://www.enisa.europa.eu/publications/incident-response-plans-good-practices"
+    {
+        idd "2.1.3"
+        area "Continuità operativa"
+        category "People"
+        description "Il personale a supporto dell'erogazione dei servizi di fornitura è distribuito
+            +b su sedi diversificate e/o sono presenti procedure per gestire la distribuzione
+            +b del personale in siti alternativi in situazioni di crisi o emergenza (p.e.
+            +b ri-distribuzione del personale, remote working)?"
+        note "undefined"
+        NIS2 "Art. 21, par. 2, comma c"
+        { checklist_explanation
+            detailed_explanation "Questa misura valuta la capacità organizzativa di mantenere la continuità
+                +b operativa attraverso una distribuzione geografica del personale critico o
+                +b mediante piani di contingenza che prevedono la ridistribuzione del personale o
+                +b il lavoro da remoto in caso di emergenza. La diversificazione geografica e le
+                +b procedure di emergenza sono essenziali per mitigare rischi come disastri
+                +b naturali, pandemie o attacchi fisici che potrebbero compromettere la
+                +b disponibilità del personale in una singola locazione. Le procedure dovrebbero
+                +b includere: criteri per attivazione, modalità di comunicazione, infrastrutture
+                +b IT di supporto, formazione del personale e test periodici del piano."
+            [ glossary
+                {
+                    term "Continuità operativa"
+                    definition "Capacità di un'organizzazione di mantenere le operazioni essenziali durante e
+                        +b dopo un'interruzione o un disastro."
+                    link "https://www.ready.gov/business-continuity-plan"
+                {
+                    term "Piano di contingenza"
+                    definition "Documento che descrive le procedure da seguire in caso di eventi imprevisti o
+                        +b emergenze per minimizzare l'impatto sulle operazioni."
+                    link "https://www.techtarget.com/searchdisasterrecovery/definition/contingency-plan"
+                {
+                    term "Remote working"
+                    definition "Modalità di lavoro che permette ai dipendenti di svolgere le proprie mansioni
+                        +b da ubicazioni remote attraverso l'uso di tecnologie IT."
+                    link "
+                        +b https://www.oecd.org/coronavirus/policy-responses/teleworking-in-the-covid-19-pandemic-trends-and-prospects-72a416b6/"
+                {
+                    term "Siti alternativi"
+                    definition "Ubicazioni fisiche secondarie predisposte per garantire la continuità operativa
+                        +b in caso di indisponibilità della sede primaria."
+                    link "
+                        +b https://www.fema.gov/emergency-managers/national-preparedness/continuity/resources"
+            [ related_links
+                {
+                    title "NIST Special Publication 800-34 Rev. 1 - Contingency Planning Guide"
+                    url "https://csrc.nist.gov/publications/detail/sp/800-34/rev-1/final"
+                {
+                    title "ENISA Good Practices for Incident Response and Crisis Management"
+                    url "https://www.enisa.europa.eu/publications/crisis-management-good-practices"
+                {
+                    title "Business Continuity Institute (BCI) Good Practice Guidelines"
+                    url "https://www.thebci.org/knowledge/gpg.html"
+                {
+                    title "OECD Policy Framework for Digital Security in Critical Activities"
+                    url "
+                        +b https://www.oecd.org/digital/oecd-recommendation-on-digital-security-of-critical-activities.htm"
+                {
+                    title "FEMA Continuity Resource Toolkit"
+                    url "
+                        +b https://www.fema.gov/emergency-managers/national-preparedness/continuity/toolkit"
+    {
+        idd "2.2.1"
+        detailed_explanation "Questa voce della checklist verifica che le strutture fisiche
+            +b dell'organizzazione siano protette da rischi ambientali attraverso adeguate
+            +b misure di sicurezza fisica e manutenzione preventiva. Include la valutazione di
+            +b elementi come sistemi anti-allagamento, protezione da fulmini, controllo
+            +b climatico, strutture antisismiche e piani di emergenza documentati per disastri
+            +b naturali. La continuità operativa in ambito OT richiede particolare attenzione
+            +b alla protezione fisica poiché molti sistemi industriali non possono essere
+            +b facilmente spostati o replicati in caso di danno."
+        [ glossary
+            {
+                term "Presidi di sicurezza"
+                definition "Dispositivi o sistemi fisici installati per prevenire o mitigare danni a
+                    +b persone, strutture o apparecchiature"
+                link "https://www.osha.gov/safety-management"
+            {
+                term "Manutenzione periodica"
+                definition "Interventi programmati per verificare e mantenere l'efficienza di impianti e
+                    +b strutture"
+                link "https://www.ifma.org/know-base/preventive-maintenance"
+            {
+                term "Piani di emergenza"
+                definition "Documenti che descrivono procedure e responsabilità per rispondere a situazioni
+                    +b di crisi"
+                link "https://www.ready.gov/business/implementation/emergency"
+            {
+                term "Disastri ambientali"
+                definition "Eventi naturali estremi che possono danneggiare infrastrutture (es. alluvioni,
+                    +b terremoti, uragani)"
+                link "https://www.fema.gov/disaster/about"
+        [ related_links
+            {
+                title "FEMA Guidelines for Industrial Facilities Protection"
+                url "https://www.fema.gov/emergency-managers/risk-management"
+            {
+                title "ASIS Physical Security Standards for Critical Infrastructure"
+                url "https://www.asisonline.org/standards-guidelines/"
+            {
+                title "NIST SP 800-82 Guide to Industrial Control Systems Security"
+                url "https://csrc.nist.gov/publications/detail/sp/800-82/rev-2/final"
+            {
+                title "ENISA Good Practices for Physical Security of OT Environments"
+                url "https://www.enisa.europa.eu/publications/good-practices-for-physical-security"
+            {
+                title "NFPA 1600 Standard on Continuity, Emergency, and Crisis Management"
+                url "
+                    +b https://www.nfpa.org/codes-and-standards/all-codes-and-standards/list-of-codes-and-standards/detail?code=1600"

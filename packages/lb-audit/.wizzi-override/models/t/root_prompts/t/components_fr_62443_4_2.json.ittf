@@ -1,0 +1,477 @@
+$group
+    { components_fr_62443_4_2
+        [ foundational_requirements
+            {
+                id "IAC"
+                name "Identification and Authentication Control"
+            {
+                id "UC"
+                name "Use Control"
+            {
+                id "SI"
+                name "System Integrity"
+            {
+                id "DC"
+                name "Data Confidentiality"
+            {
+                id "RDF"
+                name "Restricted Data Flow" 
+            {
+                id "TRE"
+                name "Timely Response to Events"
+            {
+                id "RA"
+                name "Resource Availability"
+        [ types
+            {
+                name "Software_Applications"
+                [ items
+                    { 
+                        name "SCADA System"
+                        description "Supervisory Control and Data Acquisition software for monitoring and controlling industrial processes."
+                        [ features
+                            "IAC: Supports multi-factor authentication for user access." 
+                            "UC: Role-based access control to limit user permissions." 
+                            "SI: Digital signatures for software updates to ensure integrity." 
+                            "DC: Encryption of data at rest using AES-256." 
+                            "RDF: Configurable data flow restrictions to specific network zones." 
+                            "TRE: Real-time event logging with timestamped alerts." 
+                            "RA: Redundant processing capabilities to ensure availability." 
+                    { 
+                        name "HMI Software"
+                        description "Human-Machine Interface software for operator interaction with control systems."
+                        [ features
+                            "IAC: Unique user IDs with password policies." 
+                            "UC: Session timeout mechanisms to prevent unauthorized access." 
+                            "SI: Checksums for verifying software integrity during updates." 
+                            "DC: Secure communication protocols (e.g., TLS 1.3)." 
+                            "RDF: Whitelisting of allowed data sources." 
+                            "TRE: Audit trails for user actions." 
+                            "RA: Failover mechanisms to maintain uptime." 
+                    { 
+                        name "Antivirus Software"
+                        description "Security software to detect and mitigate malware on IACS systems."
+                        [ features
+                            "IAC: Authentication for administrative updates." 
+                            "UC: Restricted access to configuration settings." 
+                            "SI: Regular signature updates with integrity checks." 
+                            "DC: Encrypted storage of malware scan logs." 
+                            "RDF: Isolation of scan data from external networks." 
+                            "TRE: Immediate alerts for detected threats." 
+                            "RA: Low-resource mode to minimize system impact." 
+                    { 
+                        name "Data Historian"
+                        description "Software for collecting and storing time-series data from industrial processes."
+                        [ features
+                            "IAC: LDAP integration for centralized authentication." 
+                            "UC: Granular access control for data queries." 
+                            "SI: Data integrity verification using hash functions." 
+                            "DC: Encrypted data storage and transmission." 
+                            "RDF: Data export restricted to authorized endpoints." 
+                            "TRE: Event logging for data access attempts." 
+                            "RA: High-availability database clustering." 
+                    { 
+                        name "MES Application"
+                        description "Manufacturing Execution System software for managing production processes."
+                        [ features
+                            "IAC: Single sign-on (SSO) support." 
+                            "UC: Role-based permissions for production workflows." 
+                            "SI: Secure update mechanisms with version control." 
+                            "DC: Encrypted communication with ERP systems." 
+                            "RDF: Network segmentation for production data." 
+                            "TRE: Real-time monitoring of system events." 
+                            "RA: Load balancing for high availability." 
+                    { 
+                        name "Engineering Workstation Software"
+                        description "Software for configuring and programming industrial control systems."
+                        [ features
+                            "IAC: Strong password policies and biometric authentication." 
+                            "UC: Restricted access to configuration tools." 
+                            "SI: File integrity monitoring for project files." 
+                            "DC: Encrypted project file storage." 
+                            "RDF: Data transfer limited to trusted devices." 
+                            "TRE: Logging of configuration changes." 
+                            "RA: Backup and restore functionality." 
+                    { 
+                        name "Alarm Management Software"
+                        description "Software for managing and prioritizing alarms in industrial systems."
+                        [ features
+                            "IAC: User authentication via secure tokens." 
+                            "UC: Role-based alarm suppression controls." 
+                            "SI: Integrity checks for alarm configurations." 
+                            "DC: Encrypted alarm notifications." 
+                            "RDF: Restricted alarm data to control room networks." 
+                            "TRE: Real-time alarm logging and escalation." 
+                            "RA: Redundant alarm servers for reliability." 
+                    { 
+                        name "Asset Management Software"
+                        description "Software for tracking and managing IACS assets."
+                        [ features
+                            "IAC: Authentication via smart cards." 
+                            "UC: Limited access to asset modification functions." 
+                            "SI: Tamper detection for asset database." 
+                            "DC: Encrypted asset data storage." 
+                            "RDF: Restricted data sharing with external systems." 
+                            "TRE: Audit logs for asset changes." 
+                            "RA: Cloud-based redundancy for data access." 
+                    { 
+                        name "Batch Control Software"
+                        description "Software for managing batch production processes in industries like pharmaceuticals."
+                        [ features
+                            "IAC: User authentication with audit trails." 
+                            "UC: Access restrictions for batch recipes." 
+                            "SI: Integrity checks for recipe data." 
+                            "DC: Encrypted batch data transmission." 
+                            "RDF: Data flow restricted to production network." 
+                            "TRE: Event logging for batch operations." 
+                            "RA: High-availability servers for continuous operation." 
+                    { 
+                        name "Simulation Software"
+                        description "Software for simulating industrial processes for testing and training."
+                        [ features
+                            "IAC: Secure user authentication for simulation access." 
+                            "UC: Role-based access to simulation models." 
+                            "SI: Integrity verification for simulation data." 
+                            "DC: Encrypted storage of simulation results." 
+                            "RDF: Restricted data export to external systems." 
+                            "TRE: Logging of simulation events."
+                            "RA: Scalable processing for large simulations."
+            {
+                name "Embedded_Devices"
+                [ items
+                    { 
+                        name "Programmable Logic Controller (PLC)"
+                        description "A device for controlling industrial processes based on programmed logic."
+                        [ features
+                            "IAC: Hardware-based authentication for configuration access." 
+                            "UC: Role-based access for programming interfaces." 
+                            "SI: Firmware integrity checks using digital signatures." 
+                            "DC: Encrypted communication with HMI (e.g., OPC UA)." 
+                            "RDF: Network access restricted to control network." 
+                            "TRE: Event logging for control actions." 
+                            "RA: Redundant power supplies for availability." 
+                    { 
+                        name "Distributed Control System (DCS)"
+                        description "A system for controlling complex, distributed industrial processes."
+                        [ features
+                            "IAC: Secure authentication for operator access." 
+                            "UC: Limited access to control parameters." 
+                            "SI: Firmware signing to prevent tampering." 
+                            "DC: Encrypted data exchange between nodes." 
+                            "RDF: Zone-based network restrictions." 
+                            "TRE: Real-time event logging for diagnostics." 
+                            "RA: Hot-swappable modules for continuous operation." 
+                    { 
+                        name "Intelligent Electronic Device (IED)"
+                        description "A device for monitoring and controlling electrical systems in substations."
+                        [ features
+                            "IAC: Authentication via secure protocols (e.g., IEC 61850)." 
+                            "UC: Restricted access to protection settings." 
+                            "SI: Secure boot to ensure firmware integrity." 
+                            "DC: Encrypted data transmission to SCADA." 
+                            "RDF: Whitelisting for network communications." 
+                            "TRE: Timestamped event logs for faults." 
+                            "RA: Battery backup for power outages." 
+                    { 
+                        name "Remote Terminal Unit (RTU)"
+                        description "A device for remote monitoring and control of field equipment."
+                        [ features
+                            "IAC: Authentication for remote access." 
+                            "UC: Restricted configuration changes." 
+                            "SI: Firmware integrity verification." 
+                            "DC: Encrypted telemetry data." 
+                            "RDF: Data flow restricted to SCADA systems." 
+                            "TRE: Event logging for remote operations." 
+                            "RA: Low-power mode for resource efficiency." 
+                    { 
+                        name "Sensor Node"
+                        description "A device for collecting environmental or process data in industrial settings."
+                        [ features
+                            "IAC: Device authentication via certificates." 
+                            "UC: Limited access to sensor configuration." 
+                            "SI: Tamper detection for physical security." 
+                            "DC: Encrypted data transmission to gateway." 
+                            "RDF: Restricted data to specific controllers." 
+                            "TRE: Event logging for sensor anomalies." 
+                            "RA: Energy-efficient design for longevity." 
+                    { 
+                        name "Actuator"
+                        description "A device for executing physical actions based on control signals."
+                        [ features
+                            "IAC: Secure authentication for control commands." 
+                            "UC: Restricted access to actuation parameters." 
+                            "SI: Integrity checks for control firmware." 
+                            "DC: Encrypted command signals." 
+                            "RDF: Limited network access to control systems." 
+                            "TRE: Logging of actuation events." 
+                            "RA: Fail-safe mechanisms for reliability." 
+                    { 
+                        name "Industrial Gateway"
+                        description "A device for connecting legacy devices to modern networks."
+                        [ features
+                            "IAC: Authentication for gateway configuration." 
+                            "UC: Role-based access for protocol settings." 
+                            "SI: Secure firmware updates." 
+                            "DC: Encrypted data bridging between protocols." 
+                            "RDF: Network segmentation support." 
+                            "TRE: Logging of data translation events." 
+                            "RA: Redundant network interfaces." 
+                    { 
+                        name "Motor Controller"
+                        description "A device for controlling electric motors in industrial applications."
+                        [ features
+                            "IAC: Authentication for control access." 
+                            "UC: Restricted access to motor parameters." 
+                            "SI: Firmware integrity checks." 
+                            "DC: Encrypted communication with PLC." 
+                            "RDF: Data restricted to control network." 
+                            "TRE: Event logging for motor operations." 
+                            "RA: Overload protection for reliability." 
+                    { 
+                        name "Safety Relay"
+                        description "A device for ensuring safe operation of machinery."
+                        [ features
+                            "IAC: Hardware-based authentication for configuration." 
+                            "UC: Limited access to safety settings." 
+                            "SI: Tamper-proof firmware." 
+                            "DC: Encrypted safety signals." 
+                            "RDF: Restricted communication to safety systems." 
+                            "TRE: Logging of safety events." 
+                            "RA: Redundant circuits for availability." 
+                    { 
+                        name "Edge Computing Device"
+                        description "A device for processing data at the edge of industrial networks."
+                        [ features
+                            "IAC: Secure authentication for data access." 
+                            "UC: Role-based access to edge applications." 
+                            "SI: Secure boot and firmware validation." 
+                            "DC: Encrypted data processing and storage." 
+                            "RDF: Data flow restricted to cloud or control systems." 
+                            "TRE: Real-time logging of edge events." 
+                            "RA: High-availability processing cores." 
+            {
+                name "Host_Devices"
+                [ items
+                    { 
+                        name "Engineering Workstation"
+                        description "A computer used for configuring and programming IACS components."
+                        [ features
+                            "IAC: Multi-factor authentication for user login." 
+                            "UC: Role-based access to configuration tools." 
+                            "SI: File integrity monitoring for project files." 
+                            "DC: Encrypted storage of configuration data." 
+                            "RDF: Network restrictions to control systems." 
+                            "TRE: Audit logs for configuration changes." 
+                            "RA: Redundant storage for data recovery." 
+                    { 
+                        name "Operator Console"
+                        description "A computer for real-time monitoring and control of industrial processes."
+                        [ features
+                            "IAC: Secure login with biometric options." 
+                            "UC: Restricted access to control functions." 
+                            "SI: System integrity checks for OS updates." 
+                            "DC: Encrypted communication with SCADA." 
+                            "RDF: Data flow limited to control network." 
+                            "TRE: Real-time event logging for operator actions." 
+                            "RA: Uninterruptible power supply (UPS) integration." 
+                    { 
+                        name "Data Historian Server"
+                        description "A server for storing and analyzing historical process data."
+                        [ features
+                            "IAC: LDAP-based authentication." 
+                            "UC: Granular access control for data queries." 
+                            "SI: Database integrity verification." 
+                            "DC: Encrypted data storage and transmission." 
+                            "RDF: Restricted data access to authorized users." 
+                            "TRE: Logging of data access events." 
+                            "RA: High-availability server clustering." 
+                    { 
+                        name "Application Server"
+                        description "A server hosting industrial applications like MES or SCADA."
+                        [ features
+                            "IAC: Single sign-on (SSO) for user access." 
+                            "UC: Role-based access to application functions." 
+                            "SI: Secure application updates with integrity checks." 
+                            "DC: Encrypted data exchange with clients." 
+                            "RDF: Network segmentation for application traffic." 
+                            "TRE: Event logging for application activities." 
+                            "RA: Load balancing for high availability." 
+                    { 
+                        name "Backup Server"
+                        description "A server for storing backups of IACS configurations and data."
+                        [ features
+                            "IAC: Authentication for backup access." 
+                            "UC: Restricted access to backup restoration." 
+                            "SI: Integrity checks for backup files." 
+                            "DC: Encrypted backup storage." 
+                            "RDF: Data flow restricted to backup network." 
+                            "TRE: Logging of backup and restore operations." 
+                            "RA: Redundant storage arrays." 
+                    { 
+                        name "Domain Controller"
+                        description "A server for managing network authentication and policies."
+                        [ features
+                            "IAC: Strong authentication for domain access." 
+                            "UC: Role-based access for network policies." 
+                            "SI: Integrity checks for domain configurations." 
+                            "DC: Encrypted LDAP communications." 
+                            "RDF: Restricted access to control network." 
+                            "TRE: Logging of authentication attempts." 
+                            "RA: High-availability domain replication." 
+                    { 
+                        name "HMI Server"
+                        description "A server hosting HMI applications for operator interfaces."
+                        [ features
+                            "IAC: Secure user authentication for HMI access." 
+                            "UC: Restricted access to HMI controls." 
+                            "SI: Integrity checks for HMI software." 
+                            "DC: Encrypted HMI data transmission." 
+                            "RDF: Data flow restricted to operator consoles." 
+                            "TRE: Logging of HMI interactions." 
+                            "RA: Redundant server setup for uptime." 
+                    { 
+                        name "Patch Management Server"
+                        description "A server for managing software updates in IACS environments."
+                        [ features
+                            "IAC: Authentication for update deployment." 
+                            "UC: Restricted access to patch management tools." 
+                            "SI: Integrity verification for patch files." 
+                            "DC: Encrypted patch distribution." 
+                            "RDF: Updates restricted to trusted devices." 
+                            "TRE: Logging of patch deployment events." 
+                            "RA: High-availability update distribution." 
+                    { 
+                        name "Security Monitoring Server"
+                        description "A server for monitoring security events in IACS networks."
+                        [ features
+                            "IAC: Authentication for monitoring access." 
+                            "UC: Role-based access to security logs." 
+                            "SI: Integrity checks for monitoring software." 
+                            "DC: Encrypted storage of security logs." 
+                            "RDF: Restricted access to monitoring data." 
+                            "TRE: Real-time event logging and alerts." 
+                            "RA: Redundant servers for continuous monitoring." 
+                    { 
+                        name "Virtualization Host"
+                        description "A server hosting virtual machines for IACS applications."
+                        [ features
+                            "IAC: Authentication for VM management." 
+                            "UC: Restricted access to virtualization controls." 
+                            "SI: Integrity checks for VM images." 
+                            "DC: Encrypted VM data storage." 
+                            "RDF: Network isolation for VMs." 
+                            "TRE: Logging of VM activities." 
+                            "RA: High-availability hypervisor clustering." 
+            {
+                name "Network_Devices"
+                [ items
+                    { 
+                        name "Industrial Firewall"
+                        description "A device for securing network traffic in industrial environments."
+                        [ features
+                            "IAC: Authentication for configuration access." 
+                            "UC: Role-based access for firewall rules." 
+                            "SI: Firmware integrity verification." 
+                            "DC: Encrypted management interfaces (e.g., HTTPS)." 
+                            "RDF: Deep packet inspection for traffic control." 
+                            "TRE: Logging of network events." 
+                            "RA: Redundant failover capabilities." 
+                    { 
+                        name "Managed Switch"
+                        description "A network switch for managing industrial network traffic."
+                        [ features
+                            "IAC: Secure authentication for switch management." 
+                            "UC: Restricted access to VLAN configurations." 
+                            "SI: Secure boot for switch firmware." 
+                            "DC: Encrypted management protocols (e.g., SNMPv3)." 
+                            "RDF: Port-based access control lists (ACLs)." 
+                            "TRE: Logging of network port activities." 
+                            "RA: Redundant power supplies." 
+                    { 
+                        name "Router"
+                        description "A device for routing traffic between industrial network segments."
+                        [ features
+                            "IAC: Authentication for routing configuration." 
+                            "UC: Role-based access to routing tables." 
+                            "SI: Firmware integrity checks." 
+                            "DC: Encrypted routing protocols (e.g., IPsec)." 
+                            "RDF: Traffic filtering based on IP addresses." 
+                            "TRE: Logging of routing events." 
+                            "RA: High-availability routing protocols." 
+                    { 
+                        name "Wireless Access Point"
+                        description "A device for providing wireless connectivity in industrial settings."
+                        [ features
+                            "IAC: Authentication for wireless access." 
+                            "UC: Restricted access to wireless configurations." 
+                            "SI: Secure firmware updates." 
+                            "DC: WPA3 encryption for wireless traffic." 
+                            "RDF: SSID-based network segmentation." 
+                            "TRE: Logging of wireless connections." 
+                            "RA: Redundant access points for coverage." 
+                    { 
+                        name "VPN Concentrator"
+                        description "A device for securing remote access to industrial networks."
+                        [ features
+                            "IAC: Multi-factor authentication for VPN access." 
+                            "UC: Restricted access to VPN policies." 
+                            "SI: Integrity checks for VPN firmware." 
+                            "DC: Encrypted VPN tunnels (e.g., IPsec)." 
+                            "RDF: Restricted access to specific network zones." 
+                            "TRE: Logging of VPN connections." 
+                            "RA: Load balancing for multiple VPN sessions." 
+                    { 
+                        name "Network Intrusion Detection System (NIDS)"
+                        description "A device for monitoring network traffic for security threats."
+                        [ features
+                            "IAC: Authentication for NIDS management." 
+                            "UC: Restricted access to detection rules." 
+                            "SI: Integrity checks for detection signatures." 
+                            "DC: Encrypted storage of network logs." 
+                            "RDF: Restricted data to monitoring servers." 
+                            "TRE: Real-time alerts for detected threats." 
+                            "RA: High-availability monitoring." 
+                    { 
+                        name "Load Balancer"
+                        description "A device for distributing network traffic across servers."
+                        [ features
+                            "IAC: Authentication for load balancer configuration." 
+                            "UC: Restricted access to balancing policies." 
+                            "SI: Secure firmware updates." 
+                            "DC: Encrypted management interfaces." 
+                            "RDF: Traffic restricted to authorized servers." 
+                            "TRE: Logging of traffic distribution events." 
+                            "RA: Redundant load balancers for availability." 
+                    { 
+                        name "Network Gateway"
+                        description "A device for connecting different network protocols in industrial systems."
+                        [ features
+                            "IAC: Authentication for gateway configuration." 
+                            "UC: Restricted access to protocol translation." 
+                            "SI: Firmware integrity verification." 
+                            "DC: Encrypted data bridging." 
+                            "RDF: Restricted data to specific protocols." 
+                            "TRE: Logging of protocol translation events." 
+                            "RA: Redundant network interfaces." 
+                    { 
+                        name "Time Synchronization Server"
+                        description "A device for synchronizing clocks across industrial networks."
+                        [ features
+                            "IAC: Authentication for time server access." 
+                            "UC: Restricted access to time settings." 
+                            "SI: Integrity checks for time protocols." 
+                            "DC: Encrypted NTP communications." 
+                            "RDF: Restricted time data to control network." 
+                            "TRE: Logging of time synchronization events." 
+                            "RA: Redundant time servers." 
+                    { 
+                        name "Network Analyzer"
+                        description "A device for analyzing network traffic in industrial environments."
+                        [ features
+                            "IAC: Authentication for analyzer access." 
+                            "UC: Restricted access to analysis tools." 
+                            "SI: Integrity checks for analyzer software." 
+                            "DC: Encrypted storage of traffic data." 
+                            "RDF: Restricted data to monitoring systems." 
+                            "TRE: Logging of network analysis events." 
+                            "RA: High-availability analysis processing." 

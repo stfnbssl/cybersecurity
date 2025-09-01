@@ -1,0 +1,341 @@
+$group
+    {
+        practice "7"
+        code "SUM-2"
+        subCode "c) description of any impacts that applying the patch to the product, including
+            +b reboot;"
+        [ policies
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Patch Impact Documentation Policy"
+                description "This policy mandates the comprehensive documentation of all impacts associated
+                    +b with security patches, including system reboots, performance degradation, and
+                    +b compatibility issues. It aligns with IEC 62443-4-1 SUM-2 requirements to ensure
+                    +b users can plan and mitigate disruptions in industrial control systems (ICS).
+                    +b Documentation must include temporal impact analysis and reboot dependency
+                    +b mapping."
+                enforcement "Regular audits of patch documentation, automated logging via CMDB integration,
+                    +b and compliance checks during internal security reviews."
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Staged Patch Rollout Policy"
+                description "Requires phased deployment of security patches to minimize operational
+                    +b disruptions. Initial patches must be applied to non-critical systems or test
+                    +b environments to validate impact documentation accuracy. This policy supports
+                    +b IEC 62443-4-1's availability requirements by reducing unplanned downtime risks."
+                enforcement "Patch deployment logs reviewed quarterly, with verification of staged rollout
+                    +b sequences. Non-compliance triggers incident response procedures."
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Legacy System Patch Exception Policy"
+                description "Defines compensating controls (e.g., network segmentation, enhanced monitoring)
+                    +b for legacy ICS components where patches cannot be applied. Documents
+                    +b alternative security measures in compliance with IEC 62443-4-1 SUM-2 when
+                    +b direct patching is infeasible."
+                enforcement "Annual review of legacy system inventories and compensating control
+                    +b effectiveness. Enforcement via network access control lists and SIEM alert
+                    +b configurations."
+        [ procedures
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Patch Impact Assessment Procedure"
+                description "Standardized process for evaluating and documenting security update impacts on
+                    +b Breton Spa's CNC and stone cutting machines. Incorporates FMEA workshops and
+                    +b vendor-provided impact matrices per IEC 62443-4-1 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Conduct pre-patch Failure Mode and Effects Analysis (FMEA) workshop with
+                            +b cross-functional team (security, engineering, operations)."
+                        tools "exida FMEA templates, vendor impact matrices (e.g., Siemens SIMATIC PCS 7
+                            +b tables)."
+                        expected_outcome "Identified critical failure modes (e.g., OPC UA communication loss post-patch)
+                            +b with severity ratings."
+                    {
+                        step 2
+                        action "Execute patch in isolated test environment mirroring production (e.g.,
+                            +b duplicate CNC control system)."
+                        tools "VMware vSphere for ICS emulation, Wireshark for protocol analysis."
+                        expected_outcome "Measured reboot times and validated patch compatibility with PROFINET PN
+                            +b Security configurations."
+                    {
+                        step 3
+                        action "Generate impact documentation using standardized taxonomy
+                            +b (functional/performance/compatibility)."
+                        tools "ServiceNow ICS plugin, ABB impact category framework."
+                        expected_outcome "IEC 62443-4-1 compliant report detailing reboot sequences, downtime estimates
+                            +b (e.g., '15-minute controller reset'), and dependency maps."
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Emergency Patch Communication Procedure"
+                description "Protocol for notifying stakeholders of critical patch impacts within 4 hours of
+                    +b vendor release, including plant managers and maintenance teams. Ensures
+                    +b alignment with IEC 62443-4-1's timely response requirements (CR6)."
+                [ steps
+                    {
+                        step 1
+                        action "Activate incident response team to validate patch criticality using CISA
+                            +b ICS-CERT advisories."
+                        tools "CISA ICS-CERT feeds, Dragos Platform threat intelligence."
+                        expected_outcome "Triaged patch urgency (e.g., 'Critical' for Modbus TCP TLS vulnerabilities)."
+                    {
+                        step 2
+                        action "Prepare executive summary with operational impact projections (downtime,
+                            +b production loss estimates)."
+                        tools "Schneider EcoStruxure Timing Calculator, Honeywell reboot guides."
+                        expected_outcome "Approved communication package with reboot schedules optimized for
+                            +b low-production periods."
+                    {
+                        step 3
+                        action "Distribute notifications via multiple channels (SCADA HMI alerts, email, SMS)."
+                        tools "Rockwell FactoryTalk Alarms, PagerDuty integration."
+                        expected_outcome "100% receipt confirmation from designated personnel within SLA (2 hours)."
+            {
+                code "SUM-2"
+                subCode "c"
+                title "Patch Rollback Execution Procedure"
+                description "Step-by-step process for reverting patches causing unexpected disruptions in
+                    +b Breton Spa's polishing machines. Includes validation of system integrity
+                    +b post-rollback per IEC 62443-4-1 CR3 requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Initiate controlled shutdown of affected systems following ISA-88 batch control
+                            +b standards."
+                        tools "Siemens SIMATIC S7-1500 PLCs, Yokogawa CENTUM VP DCS."
+                        expected_outcome "Graceful termination of active polishing sequences without material damage."
+                    {
+                        step 2
+                        action "Restore pre-patch firmware using cryptographically signed backups."
+                        tools "HashiCorp Vault for key management, ABB Ability™ System 800xA version control."
+                        expected_outcome "Verified firmware integrity via digital signatures (SHA-384 with RSA-PSS)."
+                    {
+                        step 3
+                        action "Validate system functionality against baseline performance metrics."
+                        tools "OSIsoft PI System for historical data comparison, Wurldtech Achilles test
+                            +b suites."
+                        expected_outcome "Confirmed restoration of OPC UA Basic256Sha256 communication at pre-patch
+                            +b throughput levels."
+        last_updated "2023-11-20"
+    {
+        practice "7"
+        code "SUM-2"
+        subCode "d) instructions on how to verify that an approved patch has been applied; and"
+        [ policies
+            {
+                code "SUM-2"
+                subCode "d"
+                title "Automated Patch Verification Policy"
+                description "This policy mandates the use of automated tools to verify the application of
+                    +b security patches across all ICS components. It aligns with IEC 62443-4-1 SUM-2d
+                    +b by ensuring traceability and reducing human error in patch verification.
+                    +b Applicable to Breton Spa's CNC Machining Centers and other high-criticality
+                    +b systems."
+                enforcement "Monthly audits using SIEM logs and automated verification reports.
+                    +b Non-compliance triggers remediation workflows in the asset management system."
+            {
+                code "SUM-2"
+                subCode "d"
+                title "Vendor-Specific Validation Policy"
+                description "Requires documentation and adherence to manufacturer-recommended patch
+                    +b verification methods for each ICS component type. Supports IEC 62443-4-1 SUM-2d
+                    +b compliance by addressing protocol heterogeneity (e.g., OPC UA, PROFINET) in
+                    +b Breton's product line."
+                enforcement "Pre-deployment checklists validated by the security team. Random spot-checks
+                    +b using protocol analyzers like Wireshark with ICS dissectors."
+            {
+                code "SUM-2"
+                subCode "d"
+                title "Forensic Verification Policy"
+                description "Mandates immutable logging of all patch verification activities to support
+                    +b post-incident analysis and IEC 62443-4-1 audits. Critical for Breton's SL-3
+                    +b systems handling natural stone processing operations."
+                enforcement "Syslog forwarding to centralized SIEM with 90-day retention. Quarterly review
+                    +b by the cybersecurity governance committee."
+        [ procedures
+            {
+                code "SUM-2"
+                subCode "d"
+                title "OPC UA Patch Verification Procedure"
+                description "Step-by-step process to validate security patches on Breton machines using OPC
+                    +b UA with Basic256Sha256. Complies with IEC 62443-4-1 SUM-2d for systems like CNC
+                    +b Machining Centers."
+                [ steps
+                    {
+                        step 1
+                        action "Execute GetEndpoint service call to verify security policy version"
+                        tools "UA Expert client with audit logging enabled"
+                        expected_outcome "Endpoint metadata shows patched security policy version (e.g., Basic256Sha256)"
+                    {
+                        step 2
+                        action "Validate server certificate thumbprint against patch manifest"
+                        tools "OpenSSL CLI for thumbprint extraction"
+                        expected_outcome "Certificate thumbprint matches vendor-provided patch documentation"
+                    {
+                        step 3
+                        action "Verify secure channel renewal with new cryptographic parameters"
+                        tools "OPC UA packet analyzer (e.g., Prosys OPC UA Analyzer)"
+                        expected_outcome "Successful channel establishment using updated security parameters per patch
+                            +b requirements"
+            {
+                code "SUM-2"
+                subCode "d"
+                title "PROFINET PN Security Patch Verification"
+                description "Procedure to confirm patch application on PROFINET-enabled Breton stone cutting
+                    +b machines, meeting IEC 62443-4-1 SUM-2d requirements for industrial network
+                    +b security."
+                [ steps
+                    {
+                        step 1
+                        action "Check PN Security version via DCP Identify service"
+                        tools "Wireshark with PROFINET dissector"
+                        expected_outcome "DCP response shows updated security version number per patch notes"
+                    {
+                        step 2
+                        action "Verify successful encrypted communication with IO devices"
+                        tools "PROFINET controller diagnostics interface"
+                        expected_outcome "All cyclic communication shows encrypted status in controller logs"
+                    {
+                        step 3
+                        action "Validate device certificates against patch baseline"
+                        tools "Siemens PRONETA or equivalent PN Security tools"
+                        expected_outcome "Device certificates chain to updated CA specified in security patch"
+            {
+                code "SUM-2"
+                subCode "d"
+                title "Firmware Checksum Verification Process"
+                description "Methodology for validating firmware patches on Breton polishing machines
+                    +b through cryptographic hashing, fulfilling IEC 62443-4-1 SUM-2d integrity
+                    +b verification requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Extract current firmware image via maintenance interface"
+                        tools "Vendor-specific engineering tools (e.g., Breton Maintenance Suite)"
+                        expected_outcome "Firmware binary successfully extracted to verification workstation"
+                    {
+                        step 2
+                        action "Generate SHA-256 hash of extracted firmware"
+                        tools "OpenSSL or PowerShell Get-FileHash"
+                        expected_outcome "Hash value computed without errors"
+                    {
+                        step 3
+                        action "Compare against signed hash in patch manifest"
+                        tools "GPG for signature verification of manifest"
+                        expected_outcome "Hash matches signed value from vendor with valid PGP signature"
+        last_updated "2023-10-15"
+    {
+        practice "7"
+        code "SUM-4"
+        subCode "undefined"
+        [ policies
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Cryptographic Verification of Security Updates"
+                description "Ensures all security updates are digitally signed using X.509 certificates to
+                    +b verify authenticity and integrity, as mandated by IEC 62443-4-1 SUM-4. This
+                    +b policy applies to all Breton Spa CNC and stone cutting machines, supporting
+                    +b protocols like OPC UA and PROFINET with cryptographic capabilities."
+                enforcement "Automated verification via PLC firmware loaders with signature validation;
+                    +b quarterly audits of update logs by the security team."
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Patch Deployment SLA Compliance"
+                description "Defines vendor obligations to deliver critical patches within 72 hours for SL3
+                    +b systems (e.g., CNC Machining Centers), aligning with IEC 62443-4-1's
+                    +b reliability requirements. Covers firmware updates for high-precision control
+                    +b systems and secure remote access features."
+                enforcement "Contractual penalties for non-compliance; automated tracking via Breton's patch
+                    +b management dashboard with escalation alerts."
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Staged Update Rollout Protocol"
+                description "Requires testing updates in a segmented staging environment mirroring
+                    +b production (e.g., composite material processing lines) before deployment, per
+                    +b IEC 62443-4-1's KA2 (Patch Compatibility Testing). Includes rollback procedures
+                    +b for failed updates."
+                enforcement "Mandatory approval chains in FactoryTalk updater; pre-deployment checklists
+                    +b signed by OT and security leads."
+        [ procedures
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Secure Update Verification for Air-Gapped Systems"
+                description "Procedure for manually validating updates in isolated networks (e.g., nuclear
+                    +b plant scenarios), ensuring compliance with SUM-4's cryptographic verification
+                    +b requirements despite connectivity constraints."
+                [ steps
+                    {
+                        step 1
+                        action "Transfer update package to secure USB media using a dedicated signing
+                            +b workstation with HSM."
+                        tools "Yubico HSM, IEC 62443-4-2 compliant USB drives"
+                        expected_outcome "Cryptographically signed update package with audit trail in SIEM."
+                    {
+                        step 2
+                        action "Verify signature on target system using offline certificate chain (stored in
+                            +b TPM)."
+                        tools "TPM-based verification tooling, Breton Secure Loader"
+                        expected_outcome "System displays valid signature confirmation before installation."
+                    {
+                        step 3
+                        action "Document verification in asset management system with dual-person confirmation."
+                        tools "SAP EAM with ICS module, biometric logins"
+                        expected_outcome "Immutable record with timestamps and verifier identities for audit."
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Emergency Patch Deployment for Critical Vulnerabilities"
+                description "Expedited process for deploying urgent patches (e.g., ransomware mitigations)
+                    +b to high-criticality systems like metalworking CNC centers, following IEC
+                    +b 62443-4-1's timely response requirements (CR6)."
+                [ steps
+                    {
+                        step 1
+                        action "Activate emergency change control board with OT/IT/Security representation."
+                        tools "Microsoft Teams Secure Room, PAM-controlled access"
+                        expected_outcome "Risk-accepted deployment plan signed within 4 hours."
+                    {
+                        step 2
+                        action "Deploy to 5% of fleet via secure OTA channels with real-time monitoring."
+                        tools "Rockwell FactoryTalk, Splunk ICS monitoring"
+                        expected_outcome "Anomaly detection alerts within 30 minutes if patch causes instability."
+                    {
+                        step 3
+                        action "Full rollout with parallel rollback packages on standby."
+                        tools "Emerson DeltaV rollback modules, checksum validators"
+                        expected_outcome "100% deployment within SLA with zero production loss incidents."
+            {
+                code "SUM-4"
+                subCode "undefined"
+                title "Legacy System Patching for Unsupported Protocols"
+                description "Procedure for manually updating devices using insecure protocols (e.g., Modbus
+                    +b TCP without TLS), addressing IEC 62443-4-1's legacy system constraints while
+                    +b maintaining SUM-4 compliance."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate target system in VLAN 99 with firewall rules limiting access to patch
+                            +b server."
+                        tools "Cisco Industrial Ethernet, Tofino firewall"
+                        expected_outcome "Temporary network segmentation diagram approved by CISO."
+                    {
+                        step 2
+                        action "Transfer update via serial connection using authenticated Kermit protocol."
+                        tools "Digi SecureLinx serial consoles, SHA-256 checksum tools"
+                        expected_outcome "Transfer log showing complete file copy with verified hash."
+                    {
+                        step 3
+                        action "Revalidate system integrity post-update using ICS-specific checks (e.g., PLC
+                            +b code checksums)."
+                        tools "Wurldtech Achilles tester, custom CRC validators"
+                        expected_outcome "Verification report showing no unauthorized code modifications."
+        last_updated "2023-10-15"

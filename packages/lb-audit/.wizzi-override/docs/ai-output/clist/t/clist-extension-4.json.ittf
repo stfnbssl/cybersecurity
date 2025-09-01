@@ -1,0 +1,549 @@
+$group
+    {
+        idd "2.14.2"
+        area "Continuità operativa"
+        category "Digital - Protezione dei backup"
+        NIS2 "Art. 21, par. 2, comma c"
+        ISA_n_62443_n_${'('}2-4) "SP.12.01"
+        ISO_n_27001 "A.5.30"
+        "NIST CSF" "RC.RP-03"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "I dati di backup sono crittografati at-rest / on-transit?"
+        detailed_explanation "La crittografia dei dati di backup è una misura di sicurezza fondamentale per
+            +b proteggere le informazioni sensibili da accessi non autorizzati. 'At-rest' si
+            +b riferisce ai dati che sono memorizzati su dischi o altri supporti di
+            +b archiviazione. La crittografia assicura che anche se qualcuno accede
+            +b fisicamente o logicamente agli storage, i dati rimangano illeggibili senza le
+            +b chiavi di decrittazione appropriate. 'On-transit' si riferisce ai dati che
+            +b vengono trasferiti attraverso reti, come quando si effettuano backup su cloud o
+            +b si inviano dati tra diversi siti. La crittografia in transito protegge i dati
+            +b da intercettazioni durante il trasferimento. L'implementazione di queste misure
+            +b è essenziale per garantire che i backup siano sicuri e che i dati possano
+            +b essere ripristinati in modo sicuro in caso di incidenti."
+        { glossary
+            { Crittografia
+                definition "Il processo di convertire dati leggibili in un formato codificato, in modo che
+                    +b solo chi possiede la chiave di decrittazione possa leggerli."
+                link "https://it.wikipedia.org/wiki/Crittografia"
+            { At-rest
+                definition "Riferisce ai dati che sono memorizzati su supporti fisici, come dischi fissi o
+                    +b SSD."
+                link "https://www.techtarget.com/searchsecurity/definition/data-at-rest"
+            { On-transit
+                definition "Riferisce ai dati che vengono trasmessi attraverso una rete o tra dispositivi."
+                link "https://www.cloudflare.com/en-gb/learning/ssl/why-is-encryption-important/"
+        { standards_and_best_practices
+            { NIS2
+                reference "Art. 21, par. 2, comma c"
+                link "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016L1148"
+            { "ISA 62443"
+                reference "SP.12.01"
+                link "https://www.isa.org/isa99"
+            { "ISO 27001"
+                reference "A.5.30"
+                link "https://www.iso.org/isoiec-27001-information-security.html"
+            { "NIST CSF"
+                reference "RC.RP-03"
+                link "https://www.nist.gov/cyberframework"
+            { EuCRA
+                reference "Allegato I.1"
+                link "https://ec.europa.eu/home-affairs/what-we-do/policies/cybercrime/ecra_en"
+            { "Exe. Ord. on Improving the Nation’s Cybersecurity"
+                reference "Sec. 4 lect. e"
+                link "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "2.14.3"
+        area "Continuità operativa"
+        category "Digital - Protezione dei backup"
+        NIS2 "Art. 21, par. 2, comma c"
+        ISA_n_62443_n_${'('}2-4) "SP.12.01"
+        ISO_n_27001 "A.5.30"
+        "NIST CSF" "RC.RP-03"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "L'integrità dei backup è garantita da tecniche di immutabilità dei dati di
+            +b backup?"
+        detailed_explanation "L'integrità dei backup è cruciale per garantire che i dati possano essere
+            +b recuperati in caso di perdita o compromissione. L'immutabilità dei dati di
+            +b backup assicura che una volta creati, i backup non possano essere alterati o
+            +b cancellati. Questo è fondamentale per prevenire attacchi come il ransomware,
+            +b che potrebbe tentare di cancellare o modificare i backup per impedire il
+            +b ripristino dei dati. Implementare tecniche di immutabilità significa utilizzare
+            +b meccanismi come WORM (Write Once, Read Many) che consentono di scrivere i dati
+            +b una sola volta e di leggerli molte volte, senza possibilità di modifica. Altre
+            +b tecniche includono la crittografia e la creazione di copie di backup in
+            +b ambienti separati e protetti. Queste pratiche aumentano la resilienza dei
+            +b sistemi informatici e garantiscono che i dati di backup rimangano affidabili e
+            +b intatti nel tempo."
+        [ glossary
+            {
+                term "Integrità dei dati"
+                definition "L'integrità dei dati si riferisce alla precisione e coerenza dei dati nel
+                    +b tempo. È una preoccupazione critica nella progettazione, implementazione e
+                    +b utilizzo di qualsiasi sistema che memorizza, elabora o recupera dati."
+                link "https://en.wikipedia.org/wiki/Data_integrity"
+            {
+                term "Immutabilità dei dati"
+                definition "L'immutabilità dei dati si riferisce alla capacità di un record di dati di
+                    +b rimanere invariato dopo la sua creazione. Questo è spesso usato nei sistemi di
+                    +b backup per garantire che i dati archiviati non possano essere modificati o
+                    +b cancellati."
+                link "https://www.techopedia.com/definition/29956/data-immutability"
+            {
+                term "WORM (Write Once, Read Many)"
+                definition "WORM è una tecnologia di archiviazione dei dati che consente ai dati di essere
+                    +b scritti una volta e letti molte volte, ma non modificati o cancellati, fornendo
+                    +b un livello di sicurezza contro la manomissione dei dati."
+                link "https://en.wikipedia.org/wiki/Write_once_read_many"
+            {
+                term "Ransomware"
+                definition "Il ransomware è un tipo di malware che limita l'accesso al sistema informatico
+                    +b che infetta e richiede un riscatto pagato al creatore del malware per rimuovere
+                    +b la restrizione."
+                link "https://en.wikipedia.org/wiki/Ransomware"
+        [ related_links
+            {
+                title "NIS2 Directive"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A52020PC0823"
+            {
+                title "ISA/IEC 62443"
+                url "https://www.isa.org/standards-and-publications/isa-62443-series"
+            {
+                title "ISO/IEC 27001"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "2.15.1"
+        area "Continuità operativa"
+        category "Terze parti"
+        NIS2 "Art. 21, par. 2, comma c"
+        ISO_n_27001 "A.5.30"
+        EuCRA "Allegato I.1"
+        "Exe. Ord. on Improving the Nation’s Cybersecurity" "Sec. 4 lect. e"
+        description "I contratti stipulati con i fornitori di servizi ritenuti critici per i
+            +b processi di business contengono clausole volte a garantire la continuità
+            +b operativa dei servizi erogati dalla terza parte?"
+        detailed_explanation "La continuità operativa è un aspetto cruciale per le organizzazioni che
+            +b dipendono da fornitori esterni per servizi critici. Questi contratti devono
+            +b includere clausole specifiche che assicurano che, anche in caso di interruzioni
+            +b o disastri, i servizi forniti dai partner terzi continuino senza interruzioni
+            +b significative. Questo può includere piani di disaster recovery, accordi sui
+            +b livelli di servizio (SLA) che prevedono tempi di ripristino definiti e misure
+            +b di mitigazione del rischio. La mancanza di tali clausole può portare a
+            +b significative interruzioni operative, con potenziali danni finanziari e
+            +b reputazionali per l'organizzazione."
+        [ glossary
+            {
+                term "Continuità operativa"
+                definition "La capacità di un'organizzazione di continuare a funzionare durante e dopo un
+                    +b evento di interruzione."
+                link "https://it.wikipedia.org/wiki/Continuit%C3%A0_operativa"
+            {
+                term "Disaster Recovery"
+                definition "Un insieme di politiche e procedure per il recupero o il mantenimento della
+                    +b tecnologia e dei sistemi infrastrutturali critici a seguito di un disastro
+                    +b naturale o causato dall'uomo."
+                link "https://it.wikipedia.org/wiki/Disaster_recovery"
+            {
+                term "SLA (Service Level Agreement)"
+                definition "Un contratto tra un fornitore di servizi e un cliente che definisce il livello
+                    +b di servizio atteso durante la durata del contratto."
+                link "https://en.wikipedia.org/wiki/Service-level_agreement"
+        [ related_links
+            {
+                title "ISO/IEC 27001:2013 - Information security management"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIS2 Directive - The Directive on security of network and information systems"
+                url "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX%3A32016L1148"
+            {
+                title "Executive Order on Improving the Nation’s Cybersecurity"
+                url "
+                    +b https://www.whitehouse.gov/briefing-room/statements-releases/2021/05/12/executive-order-on-improving-the-nations-cybersecurity/"
+    {
+        idd "3.1.1"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "Le responsabilità in merito alle tematiche di Data Protection sono individuate
+            +b e documentate?"
+        detailed_explanation "La verifica delle responsabilità in tema di Data Protection è cruciale per
+            +b garantire che un'organizzazione non solo adempia ai requisiti legali come il
+            +b GDPR, ma anche per mantenere un livello di sicurezza dati efficace. Le
+            +b responsabilità devono essere chiaramente individuate e documentate per
+            +b assicurare che tutti i membri dell'organizzazione siano consapevoli dei propri
+            +b ruoli e compiti specifici riguardanti la protezione dei dati. Ciò include la
+            +b designazione di un Data Protection Officer (DPO) quando necessario, la
+            +b definizione di chi è responsabile per la gestione dei dati personali, e
+            +b l'assicurazione che ci siano processi chiari per la gestione delle violazioni
+            +b di dati. Documentare queste responsabilità aiuta a creare trasparenza, facilità
+            +b di gestione e capacità di risposta rapide in caso di incidenti."
+        [ glossary
+            {
+                term "GDPR"
+                definition "Il Regolamento Generale sulla Protezione dei Dati è una legge dell'Unione
+                    +b Europea che disciplina la protezione dei dati personali e la privacy nell'UE e
+                    +b nello Spazio Economico Europeo."
+                link "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016R0679"
+            {
+                term "Data Protection Officer (DPO)"
+                definition "Un responsabile della protezione dei dati che un'azienda deve nominare in base
+                    +b al GDPR quando si effettuano trattamenti su larga scala di categorie
+                    +b particolari di dati o di dati relativi a condanne penali e reati."
+                link "https://gdpr-info.eu/issues/data-protection-officer/"
+            {
+                term "ISO 27001"
+                definition "Uno standard internazionale per la gestione della sicurezza delle informazioni
+                    +b che aiuta le organizzazioni a mantenere le loro informazioni sicure."
+                link "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                term "NIST Cybersecurity Framework (CSF)"
+                definition "Un framework sviluppato dal National Institute of Standards and Technology per
+                    +b migliorare la sicurezza informatica delle infrastrutture critiche."
+                link "https://www.nist.gov/cyberframework"
+        [ related_links
+            {
+                title "GDPR Text"
+                url "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX%3A32016R0679"
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "3.1.2"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "I responsabili di sistema sono nominati mediante apposito atto di nomina in
+            +b accordo con il Provv. Garante 2008?"
+        detailed_explanation "L'item riguarda la nomina ufficiale dei responsabili di sistema, un aspetto
+            +b cruciale per garantire che le attività di trattamento dei dati personali siano
+            +b gestite in conformità con le normative vigenti. Secondo il Provvedimento del
+            +b Garante per la protezione dei dati personali del 2008, è necessario che i
+            +b responsabili di sistema siano formalmente nominati attraverso un atto di
+            +b nomina. Questo processo assicura che le persone che gestiscono sistemi di
+            +b trattamento dei dati abbiano la chiara autorità e responsabilità per le risorse
+            +b e le attività relative al trattamento dei dati personali. La nomina formale è
+            +b un requisito chiave per la responsabilità e la tracciabilità, contribuendo a
+            +b garantire che le operazioni di trattamento siano effettuate in modo sicuro e in
+            +b linea con il GDPR e altre normative applicabili. Senza una nomina formale,
+            +b potrebbe esserci una mancanza di responsabilità chiara, aumentando il rischio
+            +b di violazioni dei dati e delle normative sulla privacy."
+        [ glossary
+            {
+                term "GDPR"
+                definition "Il Regolamento Generale sulla Protezione dei Dati è una legge dell'Unione
+                    +b Europea sulla protezione dei dati e della privacy per tutti gli individui
+                    +b all'interno dell'UE e dello Spazio Economico Europeo."
+                link "https://gdpr-info.eu/"
+            {
+                term "Provv. Garante 2008"
+                definition "Il Provvedimento del Garante per la protezione dei dati personali del 2008
+                    +b fornisce linee guida specifiche per la nomina e i compiti dei responsabili di
+                    +b sistema."
+                link "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/1482111"
+            {
+                term "Atto di Nomina"
+                definition "Un documento formale che designa un individuo come responsabile di un
+                    +b particolare sistema o processo, specificando le sue responsabilità e autorità."
+                link "
+                    +b https://www.garanteprivacy.it/web/guest/home/docweb/-/docweb-display/docweb/1482111#1"
+            {
+                term "Responsabili di Sistema"
+                definition "Persone autorizzate a gestire e controllare sistemi di trattamento dei dati
+                    +b personali all'interno di un'organizzazione."
+                link "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/1482111#2"
+        [ related_links
+            {
+                title "GDPR - Artt. 5-11"
+                url "https://gdpr-info.eu/art-5-gdpr/"
+            {
+                title "ISO/IEC 27001:2013 - A.5.31"
+                url "https://www.iso.org/obp/ui/#iso:std:iso-iec:27001:ed-2:v1:en"
+            {
+                title "NIST Cybersecurity Framework (CSF) - ID.GV-3"
+                url "https://www.nist.gov/cyberframework/framework"
+    {
+        idd "3.1.3"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        ISA_n_62443_n_${'('}2-4) "SP.03.10"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "Sono definite ed attuate logiche di retention dei dati in accordo con i
+            +b requisiti normativi applicabili di riferimento?"
+        detailed_explanation "La logica di retention dei dati si riferisce alla gestione del ciclo di vita
+            +b dei dati personali, determinando per quanto tempo tali dati devono essere
+            +b conservati prima di essere cancellati o anonimizzati. Le organizzazioni devono
+            +b definire e implementare politiche di retention che siano allineate ai requisiti
+            +b normativi pertinenti, come il GDPR, che stabilisce che i dati personali devono
+            +b essere conservati solo per il tempo necessario a soddisfare le finalità per le
+            +b quali sono stati raccolti. Una corretta gestione della data retention aiuta a
+            +b minimizzare i rischi associati alla conservazione eccessiva dei dati, riducendo
+            +b l'esposizione a potenziali violazioni dei dati e consentendo alle
+            +b organizzazioni di rispettare le normative sulla protezione dei dati. È
+            +b importante che le organizzazioni integrino queste pratiche nelle proprie
+            +b politiche di governance dei dati, assicurandosi che i processi siano
+            +b documentati e regolarmente revisionati per conformità continua."
+        [ glossary
+            {
+                term "Retention dei dati"
+                definition "La pratica di mantenere i dati per un determinato periodo di tempo per
+                    +b conformarsi alle normative legali o aziendali."
+                link "https://en.wikipedia.org/wiki/Data_retention"
+            {
+                term "GDPR"
+                definition "Il Regolamento Generale sulla Protezione dei Dati dell'Unione Europea, che
+                    +b disciplina come le aziende e altre organizzazioni devono gestire i dati
+                    +b personali."
+                link "https://gdpr-info.eu/"
+            {
+                term "Anonimizzazione"
+                definition "Processo di rimozione o modifica delle informazioni personali dai dati in modo
+                    +b tale che l'individuo non possa più essere identificato direttamente o
+                    +b indirettamente."
+                link "https://en.wikipedia.org/wiki/Data_anonymization"
+        [ related_links
+            {
+                title "General Data Protection Regulation (GDPR)"
+                url "https://eur-lex.europa.eu/eli/reg/2016/679/oj"
+            {
+                title "ISO/IEC 27001:2013 - Information Security Management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "3.1.4"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "Sono adottate tecniche volte a garantire la confidenzialità del dato personale
+            +b (p.e. pseudonimizzazione / tokenizzazione)?"
+        detailed_explanation "L'adozione di tecniche come la pseudonimizzazione e la tokenizzazione è
+            +b fondamentale per garantire la confidenzialità dei dati personali. La
+            +b pseudonimizzazione consiste nel sostituire le informazioni identificative nei
+            +b set di dati con identificatori artificiali, riducendo il rischio di esposizione
+            +b dei dati in caso di accesso non autorizzato. La tokenizzazione, invece,
+            +b sostituisce i dati sensibili con simboli univoci (token), che non hanno valore
+            +b esterno o significato intrinseco. Entrambe le tecniche aiutano a minimizzare
+            +b l'accesso ai dati personali reali e sono conformi ai requisiti del GDPR, che
+            +b richiedono l'adozione di misure tecniche e organizzative adeguate per
+            +b proteggere i dati personali. Queste tecniche sono parte delle misure
+            +b raccomandate per mitigare i rischi associati alla gestione dei dati personali,
+            +b migliorando la sicurezza delle informazioni e riducendo l'impatto di potenziali
+            +b violazioni dei dati."
+        [ glossary
+            {
+                term "Pseudonimizzazione"
+                definition "Processo che sostituisce le informazioni identificative nei set di dati con
+                    +b identificatori artificiali, riducendo l'associazione diretta con l'identità di
+                    +b un individuo."
+                link "https://gdpr-info.eu/issues/pseudonymisation/"
+            {
+                term "Tokenizzazione"
+                definition "Tecnica di sicurezza che sostituisce i dati sensibili con simboli univoci non
+                    +b significativi, chiamati token, che non possono essere usati per dedurre i dati
+                    +b originali senza un sistema di tokenizzazione."
+                link "https://www.nist.gov/system/files/documents/2017/06/01/tokenization.pdf"
+            {
+                term "GDPR"
+                definition "Regolamento generale sulla protezione dei dati dell'Unione Europea, che
+                    +b stabilisce regole rigide per la protezione dei dati personali."
+                link "https://eugdpr.org/"
+            {
+                term "Confidenzialità"
+                definition "Proprietà che limita l'accesso alle informazioni solo alle persone autorizzate."
+                link "https://csrc.nist.gov/glossary/term/confidentiality"
+        [ related_links
+            {
+                title "General Data Protection Regulation (GDPR)"
+                url "https://gdpr-info.eu/"
+            {
+                title "ISO/IEC 27001:2013"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "3.1.5"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "Durante le attività di test, sono utilizzati dati personali reali appartenenti
+            +b a persone fisiche?"
+        detailed_explanation "L'uso di dati personali reali durante le attività di test pone rischi
+            +b significativi per la privacy e la sicurezza delle informazioni. È essenziale
+            +b garantire che i dati utilizzati per i test siano anonimi o pseudonimizzati per
+            +b proteggere l'identità delle persone fisiche coinvolte. Il Regolamento generale
+            +b sulla protezione dei dati (GDPR) richiede che i dati personali siano trattati
+            +b in modo da garantire un'adeguata sicurezza e riservatezza, incluso il divieto
+            +b dell'uso di dati reali se non strettamente necessario e giustificato. Le
+            +b organizzazioni devono adottare misure tecniche e organizzative per prevenire
+            +b accessi non autorizzati o trattamenti illeciti dei dati personali. Inoltre,
+            +b l'uso di dati reali nei test potrebbe comportare la necessità di ottenere il
+            +b consenso delle persone interessate o di effettuare valutazioni d'impatto sulla
+            +b protezione dei dati (DPIA)."
+        [ glossary
+            {
+                term "Dati personali"
+                definition "Qualsiasi informazione riguardante una persona fisica identificata o
+                    +b identificabile. Una persona fisica identificabile è una persona che può essere
+                    +b identificata, direttamente o indirettamente, mediante riferimento a un
+                    +b identificatore come un nome, un numero di identificazione, dati relativi
+                    +b all'ubicazione, un identificatore online o a uno o più elementi caratteristici
+                    +b dell'identità fisica, fisiologica, genetica, psichica, economica, culturale o
+                    +b sociale di tale persona fisica."
+                link "https://gdpr-info.eu/art-4-gdpr/"
+            {
+                term "Anonimizzazione"
+                definition "Processo di trasformazione dei dati personali in modo tale che la persona a cui
+                    +b si riferiscono non sia più identificabile."
+                link "
+                    +b https://www.enisa.europa.eu/publications/pseudonymisation-techniques-and-best-practices"
+            {
+                term "Pseudonimizzazione"
+                definition "Il trattamento dei dati personali in modo tale che i dati non possano più
+                    +b essere attribuiti a una persona specifica senza l'uso di informazioni
+                    +b aggiuntive, a condizione che tali informazioni aggiuntive siano conservate
+                    +b separatamente e siano soggette a misure tecniche e organizzative per garantire
+                    +b che i dati personali non siano attribuiti a una persona fisica identificata o
+                    +b identificabile."
+                link "https://gdpr-info.eu/art-4-gdpr/"
+        [ related_links
+            {
+                title "Regolamento generale sulla protezione dei dati (GDPR)"
+                url "https://gdpr-info.eu/"
+            {
+                title "ISO/IEC 27001:2013 - Information security management systems"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+    {
+        idd "3.1.6"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "I dati personali sono trattati all'interno dell'Unione Europea? Se all'esterno,
+            +b specificare in quale Paese."
+        detailed_explanation "Il trattamento dei dati personali all'interno dell'Unione Europea (UE) è
+            +b regolato dal Regolamento Generale sulla Protezione dei Dati (GDPR), che
+            +b stabilisce norme rigorose sulla gestione e la protezione dei dati personali dei
+            +b cittadini dell'UE. Una delle principali preoccupazioni del GDPR è assicurare
+            +b che i dati personali siano trattati in maniera conforme, indipendentemente dal
+            +b fatto che il trattamento avvenga all'interno o all'esterno dell'UE. Quando i
+            +b dati personali vengono trasferiti o trattati al di fuori dell'UE, devono essere
+            +b messe in atto garanzie adeguate per proteggere i dati in linea con gli standard
+            +b europei. La localizzazione del trattamento dei dati è fondamentale per
+            +b determinare quali leggi e regolamenti si applicano e per garantire la
+            +b protezione dei dati in caso di trasferimento internazionale."
+        [ glossary
+            {
+                term "GDPR"
+                definition "Il Regolamento Generale sulla Protezione dei Dati è una normativa dell'UE che
+                    +b disciplina la protezione dei dati personali e la privacy nell'Unione Europea. È
+                    +b entrato in vigore il 25 maggio 2018."
+                link "https://eur-lex.europa.eu/legal-content/IT/TXT/?uri=CELEX:32016R0679"
+            {
+                term "Trattamento dei dati personali"
+                definition "Qualsiasi operazione o insieme di operazioni compiute con o senza l'ausilio di
+                    +b processi automatizzati e applicate a dati personali o insiemi di dati
+                    +b personali, come la raccolta, la registrazione, l'organizzazione, la
+                    +b strutturazione, la conservazione, l'adattamento o la modifica, l'estrazione, la
+                    +b consultazione, l'uso, la comunicazione mediante trasmissione, diffusione o
+                    +b qualsiasi altra forma di messa a disposizione, il raffronto o
+                    +b l'interconnessione, la limitazione, la cancellazione o la distruzione."
+                link "https://gdpr-info.eu/art-4-gdpr/"
+            {
+                term "Unione Europea (UE)"
+                definition "Un'unione politica ed economica composta da 27 Stati membri situati
+                    +b principalmente in Europa. L'UE ha sviluppato un mercato unico interno
+                    +b attraverso un sistema standardizzato di leggi che si applicano in tutti gli
+                    +b Stati membri."
+                link "https://europa.eu/european-union/about-eu/eu-in-brief_it"
+        [ related_links
+            {
+                title "GDPR - Guida all'applicazione del regolamento europeo in materia di protezione
+                    +b dei dati personali"
+                url "https://www.garanteprivacy.it/regolamentoue"
+            {
+                title "ISO/IEC 27001 - Information security management"
+                url "https://www.iso.org/isoiec-27001-information-security.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"
+            {
+                title "Linee guida del Garante per il trasferimento dei dati personali verso paesi
+                    +b terzi"
+                url "https://www.garanteprivacy.it/home/docweb/-/docweb-display/docweb/4560799"
+    {
+        idd "3.1.7"
+        area "Legal & Compliance"
+        category "GDPR & Data Protection"
+        GDPR "Artt. 5-11"
+        ISO_n_27001 "A.5.31"
+        "NIST CSF" "ID.GV-3"
+        description "Sono definite ed attuate procedure di privacy by design nell'ambito dei
+            +b processi di sviluppo dei sistemi o servizi?"
+        detailed_explanation "La privacy by design è un approccio fondamentale alla protezione dei dati
+            +b personali che prevede l'integrazione delle considerazioni sulla privacy fin
+            +b dalle prime fasi di progettazione dei sistemi, applicazioni o servizi. Questo
+            +b significa che le organizzazioni devono valutare e implementare misure di
+            +b protezione della privacy durante l'intero ciclo di vita del sistema o servizio,
+            +b piuttosto che come un'aggiunta finale. L'obiettivo è prevenire le violazioni
+            +b della privacy e garantire che la protezione dei dati sia automatica e non
+            +b dipenda dall'intervento dell'utente finale. Le procedure di privacy by design
+            +b devono essere documentate e implementate in modo coerente nei processi di
+            +b sviluppo per rispettare le normative come il GDPR, che richiede esplicitamente
+            +b questo approccio nei suoi articoli 5-11. Inoltre, le organizzazioni devono
+            +b formare il personale coinvolto nello sviluppo per assicurare che comprenda e
+            +b applichi questi principi nel loro lavoro quotidiano."
+        [ glossary
+            {
+                term "Privacy by Design"
+                definition "Un approccio alla privacy che prevede l'incorporazione di misure di protezione
+                    +b dei dati nelle fasi iniziali di progettazione di sistemi, processi e prodotti."
+                link "https://gdpr-info.eu/issues/privacy-by-design/"
+            {
+                term "GDPR"
+                definition "Il Regolamento Generale sulla Protezione dei Dati dell'Unione Europea, che
+                    +b stabilisce le linee guida per la raccolta e il trattamento delle informazioni
+                    +b personali dei cittadini dell'UE."
+                link "https://gdpr-info.eu/"
+            {
+                term "Ciclo di Vita del Software"
+                definition "Il processo di sviluppo del software che comprende più fasi, tra cui
+                    +b pianificazione, progettazione, implementazione, testing, e manutenzione."
+                link "https://www.ibm.com/topics/software-development-life-cycle"
+        [ related_links
+            {
+                title "GDPR - Official Text"
+                url "https://gdpr-info.eu/"
+            {
+                title "ISO/IEC 27001:2013 - Information security management systems"
+                url "https://www.iso.org/standard/54534.html"
+            {
+                title "NIST Cybersecurity Framework"
+                url "https://www.nist.gov/cyberframework"

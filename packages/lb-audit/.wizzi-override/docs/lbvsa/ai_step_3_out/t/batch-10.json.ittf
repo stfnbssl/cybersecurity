@@ -1,0 +1,180 @@
+$group
+    {
+        IDD "5.2.1"
+        area "Asset management"
+        category "Information protection"
+        description "Sono definite, adottate e distribuite ai dipendenti le regole per il corretto
+            +b utilizzo dei sistemi informativi aziendali?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire che il personale utilizzi correttamente i sistemi
+                +b IACS per prevenire incidenti operativi o violazioni di sicurezza. Policy chiare
+                +b sono fondamentali per la governance."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda policy operative, non direttamente lo sviluppo software.
+                +b Tuttavia, team di sviluppo dovrebbero comunque seguire regole aziendali
+                +b generali."
+        { system_integration
+            isRelevant true
+            motivation "Gli integratori di sistema devono assicurarsi che il personale coinvolto nel
+                +b commissioning e manutenzione segua procedure standardizzate per la sicurezza
+                +b operativa."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono definire policy per l'uso sicuro degli
+                +b strumenti di sviluppo e testing, specialmente in ambienti connessi a linee
+                +b produttive."
+        note_su_json_risultante "La valutazione SSDL è stata marcata come non rilevante poiché l'item si
+            +b focalizza su policy operative piuttosto che su processi di sviluppo. Tuttavia,
+            +b potrebbe avere implicazioni indirette per team DevOps."
+    {
+        IDD "5.2.2"
+        area "Asset management"
+        category "Information protection"
+        description "Sono definite ed adottate policy di classificazione dei dati e delle
+            +b informazioni?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner necessita di policy di classificazione dei dati per garantire la
+                +b protezione delle informazioni critiche nell'IACS, identificare i dati sensibili
+                +b e applicare controlli di sicurezza appropriati."
+        { ssdl
+            isRelevant false
+            motivation "La classificazione dei dati è un requisito operativo più che di sviluppo
+                +b software. Sebbene possa influenzare la gestione dei dati sensibili nel codice,
+                +b non è direttamente correlata al Secure SDLC."
+        { system_integration
+            isRelevant true
+            motivation "La classificazione dei dati è essenziale per garantire che i sistemi integrati
+                +b gestiscano correttamente le informazioni sensibili e applicano i controlli di
+                +b sicurezza appropriati durante lo scambio di dati."
+        { component_production
+            isRelevant false
+            motivation "La classificazione dei dati riguarda principalmente la gestione delle
+                +b informazioni nel contesto operativo, non la produzione fisica di componenti
+                +b hardware."
+        note_su_json_risultante "Le valutazioni sono basate sull'ipotesi che la classificazione dei dati sia
+            +b principalmente rilevante per la gestione operativa (asset owner) e
+            +b l'integrazione di sistemi, mentre ha minore rilevanza per SSDL e produzione di
+            +b componenti."
+    {
+        IDD "5.2.3"
+        area "Asset management"
+        category "Information protection"
+        description "Sono previste pratiche di cancellazione sicura dei dati in fase di dismissione
+            +b degli asset (p.e. purging, degaussing)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della gestione del ciclo di vita degli asset,
+                +b inclusa la dismissione sicura per prevenire fughe di dati sensibili o proprietà
+                +b intellettuale. La cancellazione sicura è critica per conformità (es. GDPR) e
+                +b sicurezza."
+        { ssdl
+            isRelevant false
+            motivation "La cancellazione sicura degli asset fisici non è direttamente correlata al
+                +b Secure Software Development Lifecycle, sebbene principi simili possano
+                +b applicarsi alla gestione sicura dei dati nei sistemi software."
+        { system_integration
+            isRelevant true
+            motivation "Gli integratori di sistema devono garantire che i componenti dismessi non
+                +b contengano dati residui. Questo è particolarmente rilevante per IACS dove i
+                +b dispositivi possono memorizzare dati operativi sensibili."
+        { component_production
+            isRelevant true
+            motivation "I produttori di componenti devono fornire linee guida per la dismissione sicura
+                +b dei loro prodotti, specialmente se contengono memoria non volatile o dati di
+                +b configurazione sensibili."
+        note_su_json_risultante "Le valutazioni di rilevanza si basano sull'interpretazione della norma IEC
+            +b 62443 e best practice per la sicurezza industriale. La cancellazione sicura è
+            +b considerata più critica per contesti fisici (asset owner/system integration)
+            +b che per il SDLC."
+    {
+        IDD "5.2.4"
+        area "Asset management"
+        category "Information protection"
+        description "Sono adottati presidi di sicurezza al fine di assicurare l'utilizzo sicuro di
+            +b supporti / storage portatili (p.e. chiusura porte USB, cifratura supporti)?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la protezione fisica e logica dei supporti di
+                +b storage per prevenire intrusioni o perdite di dati nell'IACS. Il controllo di
+                +b porte USB e la cifratura sono misure fondamentali per la sicurezza operativa."
+        { ssdl
+            isRelevant false
+            motivation "Questo controllo riguarda misure operative e fisiche piuttosto che fasi dello
+                +b sviluppo software. Non è direttamente applicabile al Secure Software
+                +b Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "L'integrità di un sistema IACS/macchina dipende anche dalla protezione contro
+                +b l'uso non autorizzato di dispositivi di storage. Il controllo è rilevante per
+                +b prevenire l'introduzione di malware o l'esfiltrazione di dati."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware/software generalmente non richiede
+                +b direttamente questo tipo di controlli, che sono più orientati all'ambiente
+                +b operativo."
+        note_su_json_risultante "La valutazione di rilevanza per SSDL e component_production è negativa in
+            +b quanto l'item si focalizza su controlli operativi piuttosto che di processo. Le
+            +b motivazioni riflettono l'applicabilità primaria a runtime piuttosto che a fasi
+            +b di sviluppo/produzione."
+    {
+        IDD "5.2.5"
+        area "Asset management"
+        category "Information protection"
+        description "Sono adottate soluzioni tecnologiche di Data Loss Prevention?"
+        { asset_owner
+            isRelevant true
+            motivation "Le soluzioni DLP sono critiche per l'asset owner per prevenire la fuga di dati
+                +b sensibili o proprietà intellettuali dall'IACS, specialmente in ambienti
+                +b condivisi o multi-tenant."
+        { ssdl
+            isRelevant false
+            motivation "Le soluzioni DLP sono tipicamente implementate a livello di infrastruttura e
+                +b non direttamente correlate alle fasi di sviluppo software, sebbene possano
+                +b proteggere il codice sorgente durante il trasferimento."
+        { system_integration
+            isRelevant true
+            motivation "L'integrità dei dati è fondamentale nei sistemi IACS. Le soluzioni DLP
+                +b prevengono la perdita di dati critici di configurazione, parametri operativi o
+                +b log durante l'integrazione di sistema."
+        { component_production
+            isRelevant false
+            motivation "Le soluzioni DLP sono generalmente applicate a livello di sistema o rete
+                +b piuttosto che su singoli componenti hardware/software in produzione."
+        note_su_json_risultante "La valutazione assume che le soluzioni DLP si riferiscano a strumenti di
+            +b rete/sistema. Se invece includessero protezioni a livello di singolo componente
+            +b (es. firmware), component_production potrebbe diventare rilevante."
+    {
+        IDD "6.1.1"
+        area "Supplier relationships security"
+        category "Analisi preliminare"
+        description "Esiste un processo definito e formalizzato di secure supply chain management
+            +b che prevede l'esecuzione di analisi preliminari dei fornitori in relazione a
+            +b requisiti di sicurezza?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve verificare che i fornitori rispettino i requisiti di
+                +b sicurezza nella supply chain per garantire l'integrità del proprio IACS. Un
+                +b processo strutturato di valutazione dei fornitori è fondamentale per mitigare
+                +b rischi esterni."
+        { ssdl
+            isRelevant true
+            motivation "Il secure supply chain management è parte integrante del SSDL, poiché
+                +b garantisce che componenti software/hardware provenienti da terze parti
+                +b soddisfino standard di sicurezza prima dell'integrazione nello sviluppo."
+        { system_integration
+            isRelevant true
+            motivation "La verifica dei fornitori è cruciale per l'integrazione di sistemi/macchine
+                +b IACS, in quanto componenti non sicuri possono compromettere l'intero sistema.
+                +b Il controllo assicura che solo fornitori qualificati siano coinvolti."
+        { component_production
+            isRelevant true
+            motivation "Un produttore di componenti deve dimostrare di avere processi per valutare i
+                +b propri sub-fornitori, in quanto la sicurezza del componente finale dipende
+                +b anche dalla catena di approvvigionamento."
+        note_su_json_risultante "Le valutazioni sono state estese a tutti i contesti richiesti in quanto il
+            +b controllo riguarda un processo trasversale (supply chain security). La
+            +b rilevanza per l'asset owner è stata motivata con focus su IACS, mentre per il
+            +b SSDL è stato enfatizzato l'aspetto software."

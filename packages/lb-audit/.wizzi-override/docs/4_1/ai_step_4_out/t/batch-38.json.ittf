@@ -1,0 +1,367 @@
+$group
+    {
+        practice "8"
+        code "SG-3"
+        subCode "g) instructions for reporting security incidents for the product to the product
+            +b supplier; and"
+        [ policies
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Automated Incident Reporting Policy"
+                description "Mandates the use of automated tools for reporting security incidents to the
+                    +b product supplier, ensuring timely and structured communication. This policy
+                    +b aligns with IEC 62443-4-1 by formalizing the incident reporting workflow and
+                    +b ensuring traceability. Applicable to all Breton Spa CNC and stone cutting
+                    +b machines."
+                enforcement "Regular audits of incident reports to verify compliance with automated
+                    +b reporting requirements. Use of vendor-specific portals (e.g., Siemens,
+                    +b Rockwell) for incident submission."
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Incident Metadata Standardization Policy"
+                description "Defines mandatory metadata fields (e.g., timestamps, system logs, impact
+                    +b assessments) for all incident reports. Ensures actionable data is provided to
+                    +b the supplier, as required by IEC 62443-4-1. Critical for high-precision CNC
+                    +b control systems and secure remote access features."
+                enforcement "Validation checks during incident submission via automated tools. Non-compliant
+                    +b reports are flagged for correction before submission."
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Vendor SLA Compliance Policy"
+                description "Establishes SLAs for vendor acknowledgment and response to reported incidents,
+                    +b with a maximum 2-hour window for critical vulnerabilities. Aligns with IEC
+                    +b 62443-4-1's emphasis on timely response (CR6). Applicable to all Breton Spa
+                    +b products with SL 2/3 security profiles."
+                enforcement "Monitoring of vendor response times via incident tracking systems. Escalation
+                    +b procedures for SLA breaches."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Incident Reporting Workflow"
+                description "Step-by-step process for detecting, documenting, and reporting security
+                    +b incidents to Breton Spa's product suppliers, following IEC 62443-4-1
+                    +b requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Detect and classify the incident using Breton Spa's SIEM (e.g., Splunk for
+                            +b ICS)."
+                        tools "Splunk ICS, NIST SP 800-82r3 logging guidelines"
+                        expected_outcome "Incident is logged with preliminary classification (e.g., ransomware, MitM
+                            +b attack)."
+                    {
+                        step 2
+                        action "Complete the standardized incident template (IEC 62443-2-1 Annex B format) with
+                            +b all required metadata."
+                        tools "Schneider Electric's incident template, GE Digital Metadata Handbook"
+                        expected_outcome "Report contains timestamps, affected systems, protocol details (e.g., OPC UA,
+                            +b PROFINET), and impact assessment."
+                    {
+                        step 3
+                        action "Submit via encrypted channel to vendor portal (e.g., ABB Secure Portal) and
+                            +b confirm SLA acknowledgment."
+                        tools "PGP email, vendor-specific portals"
+                        expected_outcome "Incident ticket is created in vendor system with tracking ID and SLA timer
+                            +b initiated."
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Drill Execution for Incident Reporting"
+                description "Quarterly simulation of incident reporting procedures to maintain readiness, as
+                    +b recommended by IEC 62443-4-1 best practices."
+                [ steps
+                    {
+                        step 1
+                        action "Simulate a protocol-specific attack (e.g., PROFINET PN Security bypass) on a
+                            +b test CNC machine."
+                        tools "Honeywell CERT Drill scenarios, MITRE ICS framework"
+                        expected_outcome "Operators detect simulated attack via HMI alerts and SIEM correlations."
+                    {
+                        step 2
+                        action "Document the incident using Breton Spa's template with mock impact assessment."
+                        tools "Schneider Electric's template, NERC CIP whitepaper"
+                        expected_outcome "Completed drill report with all required fields (including false data for
+                            +b training purposes)."
+                    {
+                        step 3
+                        action "Submit drill report to training portal and debrief with cross-functional team."
+                        tools "Breton Spa's training portal, RACI matrix"
+                        expected_outcome "Identified gaps in reporting procedures addressed via updated guidelines."
+            {
+                code "SG-3"
+                subCode "g)"
+                title "Legacy System Incident Handling"
+                description "Special procedure for reporting incidents involving legacy Breton Spa systems
+                    +b (e.g., pre-2020 polishing machines) where automated tools are unavailable."
+                [ steps
+                    {
+                        step 1
+                        action "Manually collect logs from legacy PLCs using Breton Spa's diagnostic toolkit
+                            +b (version-limited)."
+                        tools "Legacy diagnostic tools, Wireshark for air-gapped traffic capture"
+                        expected_outcome "Raw log files extracted from affected devices."
+                    {
+                        step 2
+                        action "Transfer logs via secure USB to reporting workstation in DMZ, then submit via
+                            +b vendor portal."
+                        tools "Encrypted USB drives, DMZ workstations"
+                        expected_outcome "Incident report is created with attached legacy system logs."
+                    {
+                        step 3
+                        action "Document compensating controls applied (e.g., network segmentation
+                            +b adjustments)."
+                        tools "Network segmentation diagrams, NIST SP 800-82r3"
+                        expected_outcome "Report includes mitigation actions taken for legacy system vulnerabilities."
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-3"
+        subCode "h) description of the security best practices for maintenance and
+            +b administration of the product."
+        [ policies
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Role-Based Access Control (RBAC) for Maintenance Personnel"
+                description "Implement RBAC to restrict administrative access based on roles, ensuring only
+                    +b authorized personnel can perform specific maintenance tasks. This aligns with
+                    +b IEC 62443-4-1's requirement for secure administration practices. Example:
+                    +b Assign 'Maintenance Technician' role with limited privileges to prevent
+                    +b unauthorized configuration changes in CNC machines."
+                enforcement "Annual access control audits using tools like OpenSCAP to verify RBAC
+                    +b compliance. Non-conformities trigger automated alerts in SIEM systems."
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Secure Remote Maintenance Protocol Enforcement"
+                description "Mandate TLS 1.2+ or IPsec for all remote maintenance sessions on industrial
+                    +b equipment, as per IEC 62443-4-1's secure communication requirements. Applies to
+                    +b Breton's CNC machines supporting OPC UA/PROFINET with cryptographic profiles."
+                enforcement "Network monitoring tools (e.g., Wireshark ICS plugins) detect unencrypted
+                    +b traffic. Automated firewall rules block non-compliant connections."
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Patch Management Policy for Industrial Controllers"
+                description "Require monthly vulnerability assessments and quarterly patching cycles for
+                    +b PLCs and HMIs, referencing IEC 62443-4-1's system integrity controls (CR3).
+                    +b Includes testing patches on isolated systems before deployment to Breton's
+                    +b stone cutting machines."
+                enforcement "Automated patch tracking via ICS-aware vulnerability scanners (e.g.,
+                    +b Tenable.ot). Compliance reported to CISO dashboard with SL3 targets."
+        [ procedures
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Security Hardening Documentation Update Process"
+                description "Procedure for revising maintenance guidelines per IEC 62443-4-1's continuous
+                    +b improvement requirements, incorporating new threats like ransomware targeting
+                    +b Breton's polishing machines."
+                [ steps
+                    {
+                        step 1
+                        action "Collect threat intelligence from CISA ICS-CERT and vendor bulletins specific to
+                            +b CNC protocols (OPC UA/PROFINET)."
+                        tools "Threat intelligence platforms (e.g., MISP), ICS protocol analyzers"
+                        expected_outcome "List of relevant CVEs and attack vectors affecting Breton equipment"
+                    {
+                        step 2
+                        action "Conduct risk assessment using NIST SP 800-30 methodology for stone cutting
+                            +b machine maintenance interfaces."
+                        tools "Risk assessment templates, DREAD scoring matrix"
+                        expected_outcome "Prioritized risks with mitigation strategies (e.g., multi-factor authentication
+                            +b for remote access)"
+                    {
+                        step 3
+                        action "Update hardening documentation with new controls (e.g., firmware signing
+                            +b requirements for composite material processing lines)."
+                        tools "XML-based documentation systems with version control (e.g., DocuSecure ICS)"
+                        expected_outcome "Revision-controlled PDF/manual with updated SL3-compliant procedures"
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Maintenance Access Authorization Workflow"
+                description "Implements IEC 62443-4-1's KA1 (RBAC) for granting temporary access to Breton's
+                    +b metalworking CNC systems during emergency repairs."
+                [ steps
+                    {
+                        step 1
+                        action "Maintenance supervisor submits access request via ticketing system with
+                            +b justification and duration."
+                        tools "ServiceNow ICS module with customized fields for equipment IDs"
+                        expected_outcome "Digitally signed request ticket with audit trail"
+                    {
+                        step 2
+                        action "Security team verifies request against RBAC matrix and current threat level
+                            +b (SL2/SL3)."
+                        tools "IAM systems integrated with SIEM (e.g., Azure AD for Industrial Systems)"
+                        expected_outcome "Approval/denial decision with technical rationale"
+                    {
+                        step 3
+                        action "Issue time-bound credentials with protocol restrictions (e.g., PROFINET access
+                            +b only)."
+                        tools "PAM solutions (e.g., CyberArk for ICS), OPC UA certificate authorities"
+                        expected_outcome "JIT (Just-In-Time) access active for specified 4-hour window"
+            {
+                code "SG-3"
+                subCode "h)"
+                title "Secure Firmware Update Execution"
+                description "Procedure for applying signed firmware updates to Breton's machining centers
+                    +b while maintaining IEC 62443-4-1 CR3 (System Integrity) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Verify firmware signature using manufacturer-provided keys on air-gapped
+                            +b validation station."
+                        tools "Hardware security modules (HSMs), OpenSCAP ICS profiles"
+                        expected_outcome "Cryptographic validation report showing authentic firmware"
+                    {
+                        step 2
+                        action "Deploy update via secure serial connection or isolated network segment with
+                            +b checksum verification."
+                        tools "ICS-specific flash tools, RS-232/TTL adapters with tamper-evident seals"
+                        expected_outcome "Firmware version confirmed on HMI with matching hash"
+                    {
+                        step 3
+                        action "Conduct functional safety test (e.g., axis movement calibration) and log
+                            +b results in CMMS."
+                        tools "Computerized Maintenance Management Systems (e.g., SAP PM), laser alignment
+                            +b tools"
+                        expected_outcome "Operational verification report signed by technician and QA"
+        last_updated "2023-10-15"
+    {
+        practice "8"
+        code "SG-4"
+        subCode "a) removing the product from its intended environment;"
+        [ policies
+            {
+                code "SG-4"
+                subCode "a"
+                title "Secure Product Removal Policy"
+                description "This policy defines the procedures for safely removing industrial control
+                    +b system (ICS) products from their operational environment without causing
+                    +b disruptions or security vulnerabilities. It aligns with IEC 62443-4-1
+                    +b requirements for secure disposal, ensuring that all dependencies are identified
+                    +b and mitigated before removal. The policy covers hardware disconnection, data
+                    +b sanitization, and network isolation."
+                enforcement "Compliance is enforced through quarterly audits of disposal logs, automated
+                    +b verification tools for data sanitization, and mandatory training for personnel
+                    +b involved in decommissioning."
+            {
+                code "SG-4"
+                subCode "a"
+                title "Data Sanitization and Destruction Policy"
+                description "This policy mandates the use of certified data destruction tools (e.g.,
+                    +b Blancco) to permanently erase sensitive information from storage media in ICS
+                    +b devices being decommissioned. It references NIST SP 800-88 for media
+                    +b sanitization standards and requires verification reports for audit trails. The
+                    +b policy applies to all Breton Spa machines with persistent storage, including
+                    +b HMIs and PLCs."
+                enforcement "Enforced through automated logging of sanitization processes, random media
+                    +b forensics checks, and integration with asset management systems to flag
+                    +b non-compliant devices."
+            {
+                code "SG-4"
+                subCode "a"
+                title "Physical Disposal Chain-of-Custody Policy"
+                description "This policy establishes protocols for the physical disposal of ICS hardware to
+                    +b prevent unauthorized retrieval or tampering. It includes procedures for secure
+                    +b transport to recycling facilities, documented destruction (e.g., crushing of
+                    +b storage media), and serial number tracking. The policy aligns with IEC
+                    +b 62443-4-1's requirements for asset lifecycle management and CISA ICS physical
+                    +b security guidelines."
+                enforcement "Enforced via tamper-evident disposal bags, GPS-tracked transport vehicles, and
+                    +b third-party audits of recycling partners."
+        [ procedures
+            {
+                code "SG-4"
+                subCode "a"
+                title "Dependency Mapping and Isolation Procedure"
+                description "This procedure ensures safe removal of ICS products by identifying and
+                    +b mitigating dependencies with other systems. It applies to Breton Spa's CNC
+                    +b machines and stone cutting systems where PLCs may be part of larger control
+                    +b loops."
+                [ steps
+                    {
+                        step 1
+                        action "Generate a dependency map using network scanning tools (e.g., Wireshark with
+                            +b ICS plugins) to identify all communication partners of the target device."
+                        tools "Wireshark ICS Profile, Nmap with NSE scripts for industrial protocols"
+                        expected_outcome "Documented list of systems interacting with the device, including protocol
+                            +b types and frequency."
+                    {
+                        step 2
+                        action "Simulate removal by logically isolating the device (e.g., VLAN segmentation)
+                            +b while monitoring for system alerts or process deviations."
+                        tools "Network segmentation tools (Cisco Industrial Ethernet Switches), SIEM for alert
+                            +b monitoring"
+                        expected_outcome "Confirmation of no operational impact during a 72-hour test period, logged in
+                            +b the disposal report."
+                    {
+                        step 3
+                        action "Update control system documentation to reflect the planned removal, including
+                            +b modifications to SCADA tag databases and HMI screens."
+                        tools "Version-controlled documentation systems (e.g., Git for ICS configurations),
+                            +b Siemens TIA Portal"
+                        expected_outcome "Approved change requests and updated system diagrams stored in the
+                            +b configuration management database (CMDB)."
+            {
+                code "SG-4"
+                subCode "a"
+                title "Secure Data Erasure Procedure for HMI Storage"
+                description "Step-by-step process for wiping sensitive data from human-machine interfaces
+                    +b (HMIs) in Breton Spa polishing machines, compliant with IEC 62443-4-1 CR3
+                    +b (System Integrity) requirements."
+                [ steps
+                    {
+                        step 1
+                        action "Create a forensic backup of the HMI storage using write-blocker hardware to
+                            +b preserve evidence for compliance audits."
+                        tools "Tableau TX1 write blocker, FTK Imager"
+                        expected_outcome "Verified bit-for-bit copy stored in the secure disposal archive with
+                            +b cryptographic hash."
+                    {
+                        step 2
+                        action "Execute 3-pass DoD 5220.22-M erasure using Blancco Industrial Edition, with
+                            +b verification of non-recoverable data."
+                        tools "Blancco Industrial Edition with ICS-specific drive support"
+                        expected_outcome "Automated certificate of erasure including drive serial number and verification
+                            +b metrics."
+                    {
+                        step 3
+                        action "Physically destroy SSDs using industrial shredders if cryptographic erasure is
+                            +b not supported (e.g., older HMI models)."
+                        tools "SEM Model 0101 SSD shredder, chain-of-custody documentation"
+                        expected_outcome "Particle size ≤2mm with photographic evidence stored in the asset disposal log."
+            {
+                code "SG-4"
+                subCode "a"
+                title "Regulatory Documentation and Audit Trail Procedure"
+                description "Process for maintaining IEC 62443-4-1 compliant records of secure disposal
+                    +b activities across Breton Spa's product lines, including CNC machining centers
+                    +b and composite material processing systems."
+                [ steps
+                    {
+                        step 1
+                        action "Complete the disposal form (DSF-62443) with device details, including serial
+                            +b numbers, sanitization method, and responsible personnel."
+                        tools "IEC 62443-4-1 compliant documentation system (e.g., Siemens Teamcenter for ICS)"
+                        expected_outcome "Digitally signed disposal form with all mandatory fields populated."
+                    {
+                        step 2
+                        action "Attach supporting evidence (erasure certificates, network isolation reports) to
+                            +b the disposal record in the asset management system."
+                        tools "IBM Maximo for ICS asset tracking, Adobe Sign for digital signatures"
+                        expected_outcome "Fully indexed disposal package with searchable metadata for audit purposes."
+                    {
+                        step 3
+                        action "Submit the disposal package to the central archive and update the certificate
+                            +b of destruction (CoD) registry for regulatory reporting."
+                        tools "SAP EHS for environmental compliance, Blockchain-based CoD ledger"
+                        expected_outcome "Immutable disposal record accessible for NERC CIP or ISO 27001 audits with
+                            +b verified timestamps."
+        last_updated "2023-11-15"

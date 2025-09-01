@@ -1,0 +1,376 @@
+$group
+    {
+        practice "5"
+        code "SVV-3"
+        subCode "b) attack surface."
+        [ policies
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Attack Surface Analysis Policy"
+                description "This policy mandates regular attack surface analysis for all ICS components,
+                    +b using ICS-specific tools like Claroty or Nozomi Networks. The analysis must map
+                    +b all communication paths, network interfaces, and physical access points to
+                    +b identify potential vulnerabilities. The policy aligns with IEC 62443-4-1 SVV-3b
+                    +b by ensuring comprehensive coverage of the attack surface."
+                enforcement "Enforcement is achieved through quarterly audits using automated tools and
+                    +b manual reviews. Non-compliance triggers remediation actions documented in the
+                    +b vulnerability management process."
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Vulnerability Disclosure Program Policy"
+                description "This policy establishes a structured vulnerability disclosure program with
+                    +b equipment vendors to ensure timely patching of identified vulnerabilities. It
+                    +b requires coordination with vendors like Rockwell Automation and Siemens for
+                    +b coordinated patching efforts. The policy supports IEC 62443-4-1 SVV-3b by
+                    +b addressing vulnerabilities in the attack surface through vendor collaboration."
+                enforcement "Enforcement includes tracking vendor response times and documenting all
+                    +b disclosed vulnerabilities. Non-compliance may result in escalation to senior
+                    +b management or alternative mitigation strategies."
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Protocol Vulnerability Assessment Policy"
+                description "This policy requires specialized testing of industrial protocols (e.g.,
+                    +b PROFINET, MODBUS TCP) for implementation flaws. It mandates the use of
+                    +b protocol-specific fuzz testing tools to identify buffer overflows and other
+                    +b vulnerabilities. The policy aligns with IEC 62443-4-1 SVV-3b by targeting
+                    +b ICS-specific communication vulnerabilities."
+                enforcement "Enforcement is verified through documented test results and peer reviews.
+                    +b Non-compliance results in re-testing and potential isolation of non-compliant
+                    +b components."
+        [ procedures
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Attack Surface Mapping Procedure"
+                description "This procedure outlines the steps for systematically identifying and
+                    +b documenting all potential attack vectors in ICS components, including network
+                    +b interfaces, APIs, and physical access points. It ensures compliance with IEC
+                    +b 62443-4-1 SVV-3b by providing a structured approach to attack surface analysis."
+                [ steps
+                    {
+                        step 1
+                        action "Inventory all ICS components and their communication paths."
+                        tools "Claroty Continuous Threat Detection, Nozomi Networks Guardian"
+                        expected_outcome "Comprehensive list of all components and their interconnections."
+                    {
+                        step 2
+                        action "Identify and document all network interfaces and protocols in use."
+                        tools "Wireshark, Nmap"
+                        expected_outcome "Detailed map of network interfaces and protocols, including any legacy or
+                            +b undocumented interfaces."
+                    {
+                        step 3
+                        action "Assess physical access points and potential tampering risks."
+                        tools "Physical security audits, access control logs"
+                        expected_outcome "List of physical access points and recommended security measures."
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Protocol Fuzz Testing Procedure"
+                description "This procedure details the steps for conducting protocol-specific fuzz testing
+                    +b to identify vulnerabilities in industrial communication protocols. It ensures
+                    +b compliance with IEC 62443-4-1 SVV-3b by targeting ICS-specific communication
+                    +b flaws."
+                [ steps
+                    {
+                        step 1
+                        action "Select target protocols (e.g., MODBUS TCP, PROFINET) and configure fuzz testing
+                            +b tools."
+                        tools "Peach Fuzzer, Defensics"
+                        expected_outcome "Configured fuzz testing environment ready for execution."
+                    {
+                        step 2
+                        action "Execute fuzz tests and monitor for anomalies or crashes."
+                        tools "Peach Fuzzer, Wireshark"
+                        expected_outcome "Logs of test executions and identified anomalies."
+                    {
+                        step 3
+                        action "Analyze results and document vulnerabilities for remediation."
+                        tools "Vulnerability management system (e.g., Tenable.io)"
+                        expected_outcome "Documented vulnerabilities with severity ratings and recommended fixes."
+            {
+                code "SVV-3"
+                subCode "b) attack surface."
+                title "Vulnerability Prioritization and Remediation Procedure"
+                description "This procedure outlines the steps for prioritizing and remediating
+                    +b vulnerabilities identified during attack surface analysis. It aligns with IEC
+                    +b 62443-4-1 SVV-3b by ensuring a risk-based approach to vulnerability management."
+                [ steps
+                    {
+                        step 1
+                        action "Assess vulnerabilities using ICS-specific risk scoring (e.g., CVSS for ICS)."
+                        tools "ICS-CERT advisories, Schneider Electric CVSS Guide"
+                        expected_outcome "Prioritized list of vulnerabilities based on impact and exploitability."
+                    {
+                        step 2
+                        action "Develop remediation plans, including patches, workarounds, or compensating
+                            +b controls."
+                        tools "Vendor patches, network segmentation tools"
+                        expected_outcome "Documented remediation plans for each critical/high-severity vulnerability."
+                    {
+                        step 3
+                        action "Implement and verify remediation actions."
+                        tools "Patch management systems, vulnerability scanners"
+                        expected_outcome "Verified fixes with no remaining critical vulnerabilities."
+        last_updated "2023-10-15"
+    {
+        practice "5"
+        code "SVV-4"
+        subCode "undefined"
+        [ policies
+            {
+                code "SVV-4"
+                subCode "P1"
+                title "ICS Penetration Testing Policy"
+                description "This policy mandates regular penetration testing of all ICS components to
+                    +b identify and mitigate vulnerabilities. Testing must align with IEC 62443-4-1
+                    +b requirements, focusing on high-impact systems and using ICS-specific tools.
+                    +b Tests must be scheduled during non-operational hours or in isolated
+                    +b environments to prevent disruptions."
+                enforcement "Compliance is enforced through annual audits, review of test reports by the
+                    +b security team, and mandatory remediation of critical vulnerabilities within 90
+                    +b days. Tools like Metasploit and Nmap are used for testing, and findings are
+                    +b documented in a centralized security management system."
+            {
+                code "SVV-4"
+                subCode "P2"
+                title "Risk-Based Test Prioritization Policy"
+                description "This policy ensures that penetration testing efforts are prioritized based on
+                    +b risk assessments, focusing on systems with the highest operational impact
+                    +b (e.g., safety controllers, CNC machining centers). Testing scenarios must
+                    +b reflect real-world ICS attack vectors, such as protocol manipulation and
+                    +b firmware exploits."
+                enforcement "Enforcement involves regular risk assessments using methodologies like STRIDE,
+                    +b documented prioritization criteria, and validation by the security governance
+                    +b committee. Findings are mapped to IEC 62443-4-1 requirements, and remediation
+                    +b progress is tracked via a vulnerability management platform."
+            {
+                code "SVV-4"
+                subCode "P3"
+                title "Non-Disruptive Testing Policy"
+                description "This policy requires the use of passive monitoring or virtualized environments
+                    +b for penetration testing to minimize operational impact. Testing methods must
+                    +b avoid disrupting critical processes, and any potential risks must be mitigated
+                    +b through pre-test approvals and contingency plans."
+                enforcement "Enforcement includes pre-test reviews by operational teams, use of tools like
+                    +b ICSpector for passive testing, and post-test validation of system integrity.
+                    +b Violations are reported to the security governance committee, and repeat
+                    +b offenders may face restrictions on testing privileges."
+        [ procedures
+            {
+                code "SVV-4"
+                subCode "PR1"
+                title "Penetration Testing Execution Procedure"
+                description "This procedure outlines the steps for conducting penetration tests on ICS
+                    +b components, ensuring alignment with IEC 62443-4-1. It covers planning,
+                    +b execution, and reporting phases, with a focus on ICS-specific vulnerabilities."
+                [ steps
+                    {
+                        step 1
+                        action "Define the scope of the penetration test, including target systems (e.g., CNC
+                            +b control systems, OPC UA servers) and testing methods (e.g., active, passive)."
+                        tools "Risk assessment tools, ICS network diagrams"
+                        expected_outcome "A documented test scope approved by the security governance committee."
+                    {
+                        step 2
+                        action "Conduct the penetration test using ICS-specific tools (e.g., GRFICS, Metasploit
+                            +b modules for industrial protocols). Focus on high-risk attack vectors like
+                            +b protocol fuzzing and firmware exploits."
+                        tools "GRFICS, Metasploit, Nmap"
+                        expected_outcome "A detailed report of identified vulnerabilities, including severity ratings and
+                            +b potential impacts."
+                    {
+                        step 3
+                        action "Validate remediation efforts by re-testing fixed vulnerabilities and
+                            +b documenting the results. Ensure all findings are mapped to IEC 62443-4-1
+                            +b requirements."
+                        tools "Vulnerability management platform, retesting tools"
+                        expected_outcome "A final report confirming remediation effectiveness, submitted for compliance
+                            +b auditing."
+            {
+                code "SVV-4"
+                subCode "PR2"
+                title "Legacy System Testing Procedure"
+                description "This procedure addresses the unique challenges of penetration testing legacy
+                    +b ICS components, which may lack modern security features. It includes
+                    +b compensating controls and segmented testing approaches."
+                [ steps
+                    {
+                        step 1
+                        action "Isolate legacy systems in a segmented network to limit exposure during testing.
+                            +b Use firewalls or VLANs to enforce segmentation."
+                        tools "Network segmentation tools, firewall configurations"
+                        expected_outcome "A secure testing environment with minimal risk to operational systems."
+                    {
+                        step 2
+                        action "Perform targeted tests on legacy systems, focusing on known vulnerabilities
+                            +b (e.g., unpatched firmware, weak authentication). Use passive monitoring tools
+                            +b to avoid disruptions."
+                        tools "ICSpector, Wireshark with ICS protocol dissectors"
+                        expected_outcome "A list of vulnerabilities specific to legacy systems, with recommended
+                            +b compensating controls."
+                    {
+                        step 3
+                        action "Implement compensating controls (e.g., intrusion detection systems, network
+                            +b monitoring) and document their effectiveness in mitigating identified risks."
+                        tools "IDS/IPS solutions, SIEM platforms"
+                        expected_outcome "A risk mitigation plan for legacy systems, approved by the security team."
+            {
+                code "SVV-4"
+                subCode "PR3"
+                title "Red-Team Exercise Procedure"
+                description "This procedure defines the steps for conducting red-team exercises to simulate
+                    +b advanced persistent threats (APTs) against ICS environments. Exercises must
+                    +b mimic real-world attack scenarios and include post-exercise debriefs."
+                [ steps
+                    {
+                        step 1
+                        action "Develop realistic attack scenarios based on threat intelligence (e.g., supply
+                            +b chain attacks, HMI compromises). Align scenarios with MITRE ATT&CK for ICS."
+                        tools "Threat intelligence feeds, MITRE ATT&CK framework"
+                        expected_outcome "A set of approved attack scenarios, including objectives and success criteria."
+                    {
+                        step 2
+                        action "Execute the red-team exercise, simulating APT tactics like lateral movement and
+                            +b privilege escalation. Monitor system responses and detection capabilities."
+                        tools "Cobalt Strike, ICS-specific attack tools"
+                        expected_outcome "A timeline of attack actions, including detected and undetected steps."
+                    {
+                        step 3
+                        action "Conduct a debrief session to analyze exercise outcomes, identify gaps in
+                            +b defenses, and update security policies. Document lessons learned for continuous
+                            +b improvement."
+                        tools "Incident response playbooks, debrief templates"
+                        expected_outcome "A lessons learned report with actionable recommendations for enhancing ICS
+                            +b security."
+        last_updated "2023-10-15"
+    {
+        practice "5"
+        code "SVV-5"
+        subCode "undefined"
+        [ policies
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "Organizational Separation of Testing and Development"
+                description "This policy mandates the structural separation of security testing teams from
+                    +b development teams to ensure unbiased validation of security controls, as
+                    +b required by IEC 62443-4-1 SVV-5. Testers must report to a different
+                    +b organizational unit than developers, with no overlapping responsibilities or
+                    +b reporting lines. This separation is critical in ICS environments to prevent
+                    +b conflicts of interest and ensure thorough vulnerability identification."
+                enforcement "Regular audits by the Quality Assurance department to verify organizational
+                    +b separation. Use of access control systems to restrict developer access to
+                    +b testing environments. Annual reviews of reporting structures by the CISO."
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "ICS-Specific Testing Protocol Compliance"
+                description "This policy requires all security testing activities to adhere to ICS-specific
+                    +b protocols and methodologies, ensuring that tests do not disrupt operational
+                    +b technology (OT) environments. Testing must account for ICS constraints, such as
+                    +b availability requirements, and use passive monitoring techniques where active
+                    +b scanning is prohibited. This aligns with IEC 62443-4-1 SVV-5's emphasis on
+                    +b appropriate testing methodologies for industrial systems."
+                enforcement "Mandatory use of protocol-aware testing tools (e.g., Wireshark ICS plugins).
+                    +b Pre-test approval process involving operations teams to validate methodology.
+                    +b Automated tool configurations checked against ICS protocol whitelists."
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "Vendor Testing Access Agreements"
+                description "This policy mandates that all vendor contracts include clauses granting
+                    +b independent testers access to necessary APIs, documentation, and system
+                    +b interfaces for security validation, as per IEC 62443-4-1 SVV-5 requirements.
+                    +b Vendors must not impose restrictions that limit test coverage, and any such
+                    +b restrictions must be documented as accepted risks."
+                enforcement "Procurement team reviews all contracts for compliance with testing access
+                    +b clauses. Non-compliant vendors are subject to penalty clauses. Annual vendor
+                    +b audits to verify API access availability."
+        [ procedures
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "Independent Security Test Planning"
+                description "Procedure for creating test plans that ensure independence from development
+                    +b influence, covering all security controls relevant to ICS environments. Test
+                    +b cases must be derived from threat models and risk assessments without developer
+                    +b input."
+                [ steps
+                    {
+                        step 1
+                        action "Review system architecture and IEC 62443-4-1 security requirements without
+                            +b consulting development team."
+                        tools "Architecture diagrams, IEC 62443-4-1 documentation"
+                        expected_outcome "List of security controls to be tested, mapped to SVV-5 independence criteria."
+                    {
+                        step 2
+                        action "Develop test cases based on ICS-specific threat models (e.g., STRIDE for OT
+                            +b systems)."
+                        tools "Microsoft Threat Modeling Tool, ICS protocol documentation"
+                        expected_outcome "Test cases covering all threat categories with explicit independence from
+                            +b developer-created test data."
+                    {
+                        step 3
+                        action "Validate test plan with operations team to ensure compatibility with production
+                            +b constraints."
+                        tools "Test management system (e.g., JIRA), OT network diagrams"
+                        expected_outcome "Approved test plan documenting all independence safeguards and operational
+                            +b constraints."
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "Isolated Test Environment Setup"
+                description "Procedure for creating and maintaining test environments that replicate
+                    +b production ICS systems without connectivity risks, ensuring independence from
+                    +b development infrastructure."
+                [ steps
+                    {
+                        step 1
+                        action "Deploy virtualized PLCs and HMI systems mirroring production versions but on
+                            +b isolated networks."
+                        tools "VMware vSphere, ICS device emulators"
+                        expected_outcome "Functional test environment with identical firmware versions to production."
+                    {
+                        step 2
+                        action "Configure traffic mirroring from production to test environment using one-way
+                            +b data diodes."
+                        tools "Owl Perimeter Defense System, Network TAPs"
+                        expected_outcome "Realistic traffic patterns in test environment without production connectivity
+                            +b risks."
+                    {
+                        step 3
+                        action "Implement access controls restricting developer access to test environment."
+                        tools "Active Directory, Network segmentation firewalls"
+                        expected_outcome "Access logs showing only authorized testers and no developers accessed the
+                            +b environment."
+            {
+                code "SVV-5"
+                subCode "undefined"
+                title "ICS Vulnerability Reporting Protocol"
+                description "Procedure for documenting and escalating vulnerabilities found during
+                    +b independent testing, ensuring findings are not influenced by development teams."
+                [ steps
+                    {
+                        step 1
+                        action "Record all vulnerabilities in a centralized system with metadata proving tester
+                            +b independence (e.g., timestamps, tester credentials)."
+                        tools "ICS-specific vulnerability management system (e.g., Nozomi Networks Guardian)"
+                        expected_outcome "Vulnerability reports with complete chain of custody showing no developer
+                            +b involvement."
+                    {
+                        step 2
+                        action "Validate critical findings with a separate red team before developer
+                            +b notification."
+                        tools "Secure collaboration platforms (e.g., Mattermost with E2E encryption)"
+                        expected_outcome "Secondary confirmation of vulnerabilities without developer knowledge."
+                    {
+                        step 3
+                        action "Present findings to management and development teams separately, with testers
+                            +b attending both sessions to ensure accurate communication."
+                        tools "Presentation software, Secure video conferencing"
+                        expected_outcome "Documented evidence of independent reporting to both management and developers."
+        last_updated "2023-10-01"

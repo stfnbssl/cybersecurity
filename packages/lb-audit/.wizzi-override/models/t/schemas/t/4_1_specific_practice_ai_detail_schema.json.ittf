@@ -1,0 +1,150 @@
+$group
+    { x_4_1_specific_practice_ai_detail
+        $schema "http://json-schema.org/draft-07/schema#"
+        type "object"
+        description "JSON schema for IEC 62443-4-1 specific practice detailed ai extension"
+        { properties
+            { Practice
+                type "object"
+                { properties
+                    { Name
+                        type "string"
+                        description "Nome della pratica specifica secondo IEC 62443-4-1."
+                    { Description
+                        type "string"
+                        description "Descrizione della pratica e del suo scopo."
+                    { Objective
+                        type "string"
+                        description "Obiettivo principale della pratica."
+                    { IEC62443References
+                        type "array"
+                        { items
+                            type "string"
+                        description "Riferimenti alle sezioni rilevanti dello standard IEC 62443."
+                    { KeyActivities
+                        type "array"
+                        { items
+                            type "string"
+                        description "Attività principali per implementare la pratica."
+                    { Benefits
+                        type "array"
+                        { items
+                            type "string"
+                        description "Vantaggi derivanti dall'applicazione della pratica."
+                    { LifecyclePhases
+                        type "array"
+                        { items
+                            type "string"
+                        description "Fasi del ciclo di vita del prodotto in cui la pratica è applicabile."
+                [ required
+                    "Name" 
+                    "Description" 
+                    "Objective" 
+                    "IEC62443References" 
+                    "KeyActivities" 
+                    "Benefits" 
+                    "LifecyclePhases" 
+            { Context
+                type "object"
+                { properties
+                    { Manufacturer
+                        type "string"
+                    { MachineTypes
+                        type "array"
+                        { items
+                            type "object"
+                            { properties
+                                { Type
+                                    type "string"
+                                { SupportedProtocols
+                                    type "array"
+                                    { items
+                                        type "string"
+                    { Applications
+                        type "array"
+                        { items
+                            type "object"
+                            { properties
+                                { Name
+                                    type "string"
+                                { Criticality
+                                    type "string"
+                    { OperationalEnvironment
+                        type "string"
+                description "Contesto operativo in cui la pratica viene applicata."
+            { GuidanceDetails
+                type "object"
+                { properties
+                    { ImplementationGuidance
+                        type "array"
+                        { items
+                            type "string"
+                        description "Linee guida dettagliate per l'implementazione della pratica."
+                    { ToolsAndTechniques
+                        type "array"
+                        { items
+                            type "string"
+                        description "Strumenti e tecniche consigliati per eseguire la pratica."
+                    { Challenges
+                        type "array"
+                        { items
+                            type "string"
+                        description "Sfide comuni, incluse quelle specifiche per sistemi legacy."
+                    { MitigationStrategies
+                        type "array"
+                        { items
+                            type "string"
+                        description "Strategie per superare le sfide identificate."
+                [ required
+                    "ImplementationGuidance" 
+                    "ToolsAndTechniques" 
+                    "Challenges" 
+                    "MitigationStrategies" 
+            { AuthoritativeSources
+                type "array"
+                { items
+                    type "object"
+                    { properties
+                        { SourceName
+                            type "string"
+                        { Description
+                            type "string"
+                        { URL
+                            type "string"
+                    [ required
+                        "SourceName" 
+                        "Description" 
+                        "URL" 
+                description "Fonti autorevoli per approfondimenti sulla pratica."
+            { Examples
+                type "array"
+                { items
+                    type "string"
+                description "Esempi pratici di applicazione della pratica in contesti ICS."
+            { ReportTemplate
+                type "object"
+                { properties
+                    { Title
+                        type "string"
+                    { Sections
+                        type "array"
+                        { items
+                            type "object"
+                            { properties
+                                { SectionName
+                                    type "string"
+                                { Description
+                                    type "string"
+                                { Content
+                                    type "array"
+                                    { items
+                                        type "string"
+                description "Template per il report generato dalla pratica."
+        note_su_json_risultante() 
+        [ required
+            "Practice" 
+            "Context" 
+            "GuidanceDetails" 
+            "AuthoritativeSources" 
+            "Examples" 
+            "ReportTemplate" 

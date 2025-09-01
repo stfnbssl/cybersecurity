@@ -1,0 +1,20 @@
+$group
+    $params kind
+    { best_practices
+        type "array"
+        description "Best practices for the ${kind}"
+        { items
+            type "object"
+            { properties
+                { description
+                    type "string"
+                    example "..."
+                { url
+                    type "string"
+                    example "https://example.com"
+                { url_description
+                    type "string"
+                    example "Description of the resource"
+            [ required
+                "description" 
+            additionalProperties false

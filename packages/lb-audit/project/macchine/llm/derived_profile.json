@@ -1,0 +1,229 @@
+{
+  "name": "Linea Demo X — Audit Profile (SL2)",
+  "version": "0.1.0",
+  "machine_ref": {
+    "name": "Linea Demo X",
+    "site": "Plant A",
+    "use_case": "Taglio pietra"
+  },
+  "rules": {
+    "scope": {
+      "role": [
+        "AssetOwner"
+      ],
+      "env": [
+        "OT"
+      ],
+      "lifecycle": [
+        "Operation",
+        "Maintenance"
+      ]
+    },
+    "targets": {
+      "sl": 2,
+      "jurisdiction": "EU",
+      "essential_service": false
+    },
+    "conditions": {
+      "personal_data": true,
+      "safety_critical": true
+    },
+    "language": "it"
+  },
+  "controls": [
+    {
+      "canonical_id": "LB-AC-001",
+      "required": true,
+      "param_values": {
+        "mfa_required": true,
+        "session_recording_required": true
+      }
+    },
+    {
+      "canonical_id": "LB-AC-002",
+      "required": true,
+      "param_values": {
+        "entitlement_review_days": 90
+      }
+    },
+    {
+      "canonical_id": "LB-AC-003",
+      "required": true,
+      "param_values": {
+        "pam_required": true
+      }
+    },
+    {
+      "canonical_id": "LB-AC-004",
+      "required": true,
+      "param_values": {
+        "secret_rotation_days": 60
+      }
+    },
+    {
+      "canonical_id": "LB-AC-005",
+      "required": true,
+      "param_values": {
+        "session_timeout_minutes": 15
+      }
+    },
+    {
+      "canonical_id": "LB-NW-001",
+      "required": true,
+      "param_values": {
+        "rule_review_days": 90
+      }
+    },
+    {
+      "canonical_id": "LB-NW-002",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-NW-003",
+      "required": true,
+      "param_values": {
+        "ot_protocols_allowlisted": [
+          "Modbus",
+          "Profinet",
+          "DNP3"
+        ]
+      }
+    },
+    {
+      "canonical_id": "LB-NW-004",
+      "required": true,
+      "param_values": {
+        "unidirectional_required": true
+      }
+    },
+    {
+      "canonical_id": "LB-NW-005",
+      "required": true,
+      "param_values": {
+        "recertification_days": 180
+      }
+    },
+    {
+      "canonical_id": "LB-PM-001",
+      "required": true,
+      "param_values": {
+        "scan_frequency_days": 30
+      }
+    },
+    {
+      "canonical_id": "LB-PM-002",
+      "required": true,
+      "param_values": {
+        "patch_window_days": 30
+      }
+    },
+    {
+      "canonical_id": "LB-PM-003",
+      "required": true,
+      "param_values": {
+        "unpatchable_register": true
+      }
+    },
+    {
+      "canonical_id": "LB-PM-004",
+      "required": true,
+      "param_values": {
+        "advisory_review_days": 7
+      }
+    },
+    {
+      "canonical_id": "LB-LM-001",
+      "required": true,
+      "param_values": {
+        "log_retention_days": 180
+      }
+    },
+    {
+      "canonical_id": "LB-LM-002",
+      "required": true,
+      "param_values": {
+        "ntp_stratum_max": 3
+      }
+    },
+    {
+      "canonical_id": "LB-LM-003",
+      "required": true,
+      "param_values": {
+        "ids_enabled": true
+      }
+    },
+    {
+      "canonical_id": "LB-LM-004",
+      "required": true,
+      "param_values": {
+        "writable_window_hours": 0
+      }
+    },
+    {
+      "canonical_id": "LB-IR-001",
+      "required": true,
+      "param_values": {
+        "rto_hours": 4
+      }
+    },
+    {
+      "canonical_id": "LB-IR-002",
+      "required": true,
+      "param_values": {
+        "session_record_retention_days": 90
+      }
+    },
+    {
+      "canonical_id": "LB-IR-003",
+      "required": true,
+      "param_values": {
+        "exercise_frequency_days": 180
+      }
+    },
+    {
+      "canonical_id": "LB-BC-001",
+      "required": true,
+      "param_values": {
+        "backup_frequency_days": 7
+      }
+    },
+    {
+      "canonical_id": "LB-BC-002",
+      "required": true,
+      "param_values": {
+        "restore_test_frequency_days": 90
+      }
+    },
+    {
+      "canonical_id": "LB-BC-003",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-PRIV-001",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-PRIV-002",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-SAF-001",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-SAF-002",
+      "required": true,
+      "param_values": {}
+    },
+    {
+      "canonical_id": "LB-PHYS-001",
+      "required": true,
+      "param_values": {}
+    }
+  ]
+}

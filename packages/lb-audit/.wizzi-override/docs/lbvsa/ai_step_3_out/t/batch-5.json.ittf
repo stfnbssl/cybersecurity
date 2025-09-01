@@ -1,0 +1,175 @@
+$group
+    {
+        IDD "2.12.1"
+        area "Continuità operativa"
+        category "Digital - Disaster Recovery"
+        description "I sistemi sono inclusi all'interno di un piano aggiornato di Disaster Recovery?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa dei sistemi IACS sotto
+                +b la sua gestione. Un piano di Disaster Recovery aggiornato è essenziale per
+                +b garantire la resilienza degli asset critici."
+        { ssdl
+            isRelevant false
+            motivation "Il Disaster Recovery riguarda principalmente l'operatività dei sistemi in
+                +b produzione più che il processo di sviluppo software. Tuttavia, potrebbe essere
+                +b indirettamente rilevante per ambienti di sviluppo/test critici."
+        { system_integration
+            isRelevant true
+            motivation "La verifica di un sistema IACS integrato o macchina deve includere la
+                +b valutazione dei piani di Disaster Recovery per garantire la continuità
+                +b operativa dell'intero sistema."
+        { component_production
+            isRelevant false
+            motivation "Il Disaster Recovery è tipicamente un aspetto sistemico più che di singolo
+                +b componente. Tuttavia, potrebbe essere rilevante per componenti critici con
+                +b funzionalità autonome."
+        note_su_json_risultante "La valutazione di rilevanza per 'component_production' è stata impostata come
+            +b false poiché il Disaster Recovery è generalmente applicato a sistemi completi.
+            +b Tuttavia, per componenti particolarmente critici potrebbe essere considerato
+            +b rilevante in casi specifici."
+    {
+        IDD "2.12.2"
+        area "Continuità operativa"
+        category "Digital - Disaster Recovery"
+        description "Sono previsti siti dedicati alle attività di Disaster Recovery ubicati a
+            +b distanza adeguata dai datacenter primari?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa dei sistemi IACS. La
+                +b presenza di siti di Disaster Recovery è critica per ridurre il downtime in caso
+                +b di incidenti e mantenere la disponibilità del sistema."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda l'infrastruttura operativa piuttosto che il processo di
+                +b sviluppo software. Non è direttamente applicabile alle fasi del Secure Software
+                +b Development Lifecycle."
+        { system_integration
+            isRelevant true
+            motivation "Un sistema integrato IACS o una macchina devono essere progettati con
+                +b ridondanza geografica per garantire la continuità operativa. La verifica dei
+                +b siti DR è rilevante per valutare la resilienza del sistema."
+        { component_production
+            isRelevant false
+            motivation "Il controllo è focalizzato sull'infrastruttura operativa e non sulle
+                +b caratteristiche intrinseche di un componente prodotto. Non è direttamente
+                +b applicabile alla fase di produzione di componenti."
+        note_su_json_risultante "Le valutazioni sono basate sull'interpretazione della norma IEC 62443 e sulle
+            +b best practice per IACS. La rilevanza per l'asset owner e system integration è
+            +b alta data la natura critica della continuità operativa."
+    {
+        IDD "2.13.1"
+        area "Continuità operativa"
+        category "Digital - Backup execution"
+        description "Sono definiti processi e controlli per la verifica dell'esito dei backup?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa dei sistemi IACS. La
+                +b verifica dell'esito dei backup è cruciale per garantire il ripristino in caso
+                +b di incidenti, minimizzando i tempi di fermo."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo è focalizzato sull'operatività e non direttamente sulle fasi di
+                +b sviluppo del software. La verifica dei backup rientra nella gestione operativa
+                +b più che nel ciclo di vita dello sviluppo."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati richiedono backup verificati per garantire la
+                +b continuità operativa. La mancata verifica potrebbe compromettere l'intero
+                +b sistema in caso di ripristino."
+        { component_production
+            isRelevant false
+            motivation "La produzione di componenti hardware/software tipicamente non include la
+                +b gestione diretta dei backup operativi, che è responsabilità dell'integratore di
+                +b sistema o dell'asset owner."
+        note_su_json_risultante "Le valutazioni di rilevanza si basano sull'assunto che il controllo riguardi
+            +b backup operativi (non dati di sviluppo). Se il contesto include backup di
+            +b codice/configurazioni durante la produzione di componenti,
+            +b 'component_production.isRelevant' potrebbe essere rivisto."
+    {
+        IDD "2.13.2"
+        area "Continuità operativa"
+        category "Digital - Backup execution"
+        description "Le copie fisiche di backup sono mantenute in locali distinti ed opportunamente
+            +b protetti da quelli dei sistemi di produzione?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner è responsabile della continuità operativa e della protezione dei
+                +b dati critici. Backup fisici in location separate sono essenziali per garantire
+                +b il ripristino in caso di incidenti fisici (es. incendio, alluvione) che
+                +b potrebbero compromettere sia i sistemi di produzione che i backup se collocati
+                +b nello stesso luogo."
+        { ssdl
+            isRelevant false
+            motivation "Questa voce riguarda la gestione operativa dei backup, non direttamente il
+                +b processo di sviluppo software. Non è pertinente alle fasi di design,
+                +b implementazione o testing del SDLC."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi integrati IACS/macchine richiedono politiche di backup robuste. La
+                +b separazione fisica dei backup è una best practice per mitigare rischi sistemici
+                +b e garantire la ripristinabilità in caso di guasti o attacchi che compromettano
+                +b l'intera location produttiva."
+        { component_production
+            isRelevant false
+            motivation "La domanda si riferisce alla gestione operativa dei backup di sistemi, non alla
+                +b produzione di componenti hardware/software. Non è direttamente applicabile ai
+                +b controlli di qualità o sicurezza durante la manifattura di singoli componenti."
+        note_su_json_risultante "Le valutazioni di rilevanza sono basate sull'interpretazione della norma IEC
+            +b 62443 e best practice ICS. La voce è particolarmente critica per asset owner e
+            +b system integrator, mentre risulta marginale per SDLC e produzione componenti."
+    {
+        IDD "2.13.3"
+        area "Continuità operativa"
+        category "Digital - Backup execution"
+        description "L'infrastruttura di backup è segregata rispetto alla rete di produzione?"
+        { asset_owner
+            isRelevant true
+            motivation "La segregazione dei backup è fondamentale per un asset owner per garantire la
+                +b resilienza e il ripristino in caso di incidenti (es. ransomware). Previene la
+                +b compromissione simultanea di produzione e backup."
+        { ssdl
+            isRelevant false
+            motivation "La segregazione dei backup è una misura operativa/post-deployment, non
+                +b direttamente correlata alle fasi di sviluppo software."
+        { system_integration
+            isRelevant true
+            motivation "L'integrità dei backup è critica per sistemi IACS/macchine. La segregazione
+                +b riduce il rischio di compromissione cross-sistema durante incidenti."
+        { component_production
+            isRelevant false
+            motivation "La verifica riguarda l'infrastruttura operativa, non le caratteristiche
+                +b intrinseche di un componente prodotto."
+        note_su_json_risultante "Le valutazioni si basano sull'assunto che la segregazione fisica/logica dei
+            +b backup sia una best practice per la resilienza IACS (rif. IEC 62443-3-3: SR
+            +b 7.1)."
+    {
+        IDD "2.14.1"
+        area "Continuità operativa"
+        category "Digital - Protezione dei backup"
+        description "Sono previste attività periodiche di test sul restore dei dati di backup?"
+        { asset_owner
+            isRelevant true
+            motivation "L'asset owner deve garantire la continuità operativa del sistema IACS. Test
+                +b periodici di restore dei backup sono essenziali per verificare la capacità di
+                +b ripristino in caso di incidente, garantendo la resilienza del sistema."
+        { ssdl
+            isRelevant false
+            motivation "Il controllo riguarda la gestione operativa dei backup più che lo sviluppo del
+                +b software. Non è direttamente correlato alle fasi di progettazione, sviluppo o
+                +b testing del SDLC."
+        { system_integration
+            isRelevant true
+            motivation "I sistemi IACS integrati richiedono piani di disaster recovery. Verificare la
+                +b capacità di restore dei backup è critico per garantire la continuità operativa
+                +b dell'intero sistema integrato."
+        { component_production
+            isRelevant false
+            motivation "La verifica dei backup è un'attività a livello di sistema più che di singolo
+                +b componente prodotto. Non è generalmente rilevante per la produzione di singoli
+                +b componenti hardware/software."
+        note_su_json_risultante "Le valutazioni sono basate sull'importanza del controllo per la resilienza
+            +b operativa. Per l'asset owner e l'integrazione di sistema, il restore test è
+            +b cruciale per garantire la business continuity. La rilevanza è stata considerata
+            +b bassa per SSDL e component production in quanto non direttamente collegati alle
+            +b loro fasi principali."

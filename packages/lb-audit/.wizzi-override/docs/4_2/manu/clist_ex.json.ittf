@@ -1,0 +1,326 @@
+{
+    $*
+        ex 4_2_ex/clist_ex.json.ittf
+    *$
+    
+    $
+        var schemas = {
+            key_aspect: {}
+        }
+        function setProps(schema, obj) {
+            schemas[schema] = Object.assign({}, schemas[schema], obj)
+            schemas[schema][Object.keys(obj).join(';')] = true;
+        }
+
+    [ items
+        $foreach cl in 62443_4_2_extra_ex.items
+            {
+                id "${cl.id}"
+                gpt_requirement_id "${cl.requirement_id}"
+                gpt_title "${cl.title}"
+                carel_description "${cl.check_description}"
+                gpt_description "${cl.description}"
+                $if _.isArray(cl.key_aspects)
+                    [ key_aspects
+                        $foreach ka in cl.key_aspects
+                            $if _.isObject(ka)
+                                {
+                                    $
+                                        setProps('key_aspect', ka);
+
+                                    $if _.isNotEmpty(ka.aspect) && ka.aspect.trim().length > 0
+                                        id "${ka.aspect}"
+                                    $elif _.isNotEmpty(ka.aspect_id) && ka.aspect_id.trim().length > 0
+                                        id "${ka.aspect_id}"
+                                    $else
+                                        id null
+                                    $if _.isNotEmpty(ka.aspect_title) && ka.aspect_title.trim().length > 0
+                                        title "${ka.aspect_title}"
+                                    $elif _.isNotEmpty(ka.title) && ka.title.trim().length > 0
+                                        title "${ka.title}"
+                                    $else
+                                        title null
+                                    $if _.isNotEmpty(ka.aspect_description)
+                                        description "${ka.aspect_description}"
+                                    $elif _.isNotEmpty(ka.description)
+                                        description "${ka.description}"
+                                    $elif _.isNotEmpty(ka.details)
+                                        description "${ka.details}"
+                                    $elif _.isNotEmpty(ka.detail)
+                                        description "${ka.detail}"
+                                    $else
+                                        description null
+                                    all "${_.stringify(ka)}"
+                                    
+                                    $*
+                                        "aspect": true,
+                                        "details": true,
+                                        "aspect;details": true,
+                                        "description": true,
+                                        "aspect;description": true,
+                                        "aspect_id": true,
+                                        "aspect_title": true,
+                                        "aspect_description": true,
+                                        "aspect_id;aspect_title;aspect_description": true,
+                                        "title": true,
+                                        "aspect_id;title;details": true,
+                                        "detail": true,
+                                        "aspect;detail": true,
+                                        "aspect_detail": true,
+                                        "aspect_id;aspect_detail": true,
+                                        "aspect_id;aspect_description;details": true
+                                    *$
+                                    $$ object "${Object.keys(ka)}"
+                            $else
+                                {
+                                    id null
+                                    title null
+                                    description "${ka}"
+                                    all "${_.stringify(ka)}"
+                            
+                $elif _.isObject(cl.key_aspects)
+                    [ key_aspects
+                        $foreach k1 in Object.keys(cl.key_aspects)
+                            {
+                                id null
+                                title "${k1}"
+                                $if _.isObject(cl.key_aspects[k1])
+                                    description "${_.stringify(cl.key_aspects[k1])}"
+                                $else
+                                    description "${cl.key_aspects[k1]}"
+                                all "${_.stringify(cl.key_aspects[k1])}"
+                $else
+                    [ key_aspects+++
+                        {
+                            description "${cl.key_aspects}"
+                $if true
+                    $if _.isArray(cl.related_standards)
+                        [ related_standards
+                            $foreach ka in cl.related_standards
+                                $if _.isObject(ka)
+                                    {
+                                        $
+                                            setProps('related_standards', ka);
+
+
+                                        $if _.isNotEmpty(ka.standard) && ka.standard.trim().length > 0
+                                            standard "${ka.standard}"
+                                        $elif _.isNotEmpty(ka.standard_id) && ka.standard_id.trim().length > 0
+                                            standard "${ka.standard_id}"
+                                        $elif _.isNotEmpty(ka.standard_name) && ka.standard_name.trim().length > 0
+                                            standard "${ka.standard_name}"
+                                        $else
+                                            standard null
+                                        $if _.isNotEmpty(ka.reference) && ka.reference.trim().length > 0
+                                            reference "${ka.reference}"
+                                        $elif _.isNotEmpty(ka.specific_references) && ka.specific_references.trim().length > 0
+                                            reference "${ka.specific_references}"
+                                        $elif _.isNotEmpty(ka.reference_title) && ka.reference_title.trim().length > 0
+                                            reference "${ka.reference_title}"
+                                        $elif _.isNotEmpty(ka.section) && ka.section.trim().length > 0
+                                            reference "${ka.section}"
+                                        $elif _.isNotEmpty(ka.standard_title) && ka.standard_title.trim().length > 0
+                                            reference "${ka.standard_title}"
+                                        $elif _.isNotEmpty(ka.title) && ka.title.trim().length > 0
+                                            reference "${ka.title}"
+                                        $else
+                                            reference null
+                                        $if _.isNotEmpty(ka.description) && ka.description.trim().length > 0
+                                            description "${ka.description}"
+                                        $elif _.isNotEmpty(ka.details) && ka.details.trim().length > 0
+                                            description "${ka.details}"
+                                        $elif _.isNotEmpty(ka.detail) && ka.detail.trim().length > 0
+                                            description "${ka.detail}"
+                                        $elif _.isNotEmpty(ka.reference_details) && ka.reference_details.trim().length > 0
+                                            description "${ka.reference_details}"
+                                        $elif _.isNotEmpty(ka.reference_description) && ka.reference_description.trim().length > 0
+                                            description "${ka.reference_description}"
+                                        $elif _.isNotEmpty(ka.related_topics) && ka.related_topics.trim().length > 0
+                                            description "${ka.related_topics}"
+                                        $elif _.isNotEmpty(ka.relation) && ka.relation.trim().length > 0
+                                            description "${ka.relation}"
+                                        $elif _.isNotEmpty(ka.relevance) && ka.relevance.trim().length > 0
+                                            description "${ka.relevance}"
+                                        $elif _.isArray(ka.topics)
+                                            [ topics
+                                                $foreach rt in ka.topics
+                                                    {
+                                                        reference null
+                                                        title null
+                                                        description "${rt}"
+                                        $elif _.isArray(ka.related_topics)
+                                            [ topics
+                                                $foreach rt in ka.related_topics
+                                                    {
+                                                        $if _.isNotEmpty(rt.control_id) && rt.control_id.trim().length > 0
+                                                            reference "${rt.control_id}"
+                                                        $elif _.isNotEmpty(rt.topic_id) && rt.topic_id.trim().length > 0
+                                                            reference "${rt.topic_id}"
+                                                        $if _.isNotEmpty(rt.title) && rt.title.trim().length > 0
+                                                            title "${rt.title}"
+                                                        $elif _.isNotEmpty(rt.topic_title) && rt.topic_title.trim().length > 0
+                                                            title "${rt.topic_title}"
+                                                        $if _.isNotEmpty(rt.description) && rt.description.trim().length > 0
+                                                            description "${rt.description}"
+                                                        $elif _.isNotEmpty(rt.topic_description) && rt.topic_description.trim().length > 0
+                                                            description "${rt.topic_description}"
+                                        $elif _.isArray(ka.references)
+                                            [ topics
+                                                $foreach rt in ka.references
+                                                    {
+                                                        $if _.isNotEmpty(rt.control_id) && rt.control_id.trim().length > 0
+                                                            reference "${rt.control_id}"
+                                                        $elif _.isNotEmpty(rt.topic_id) && rt.topic_id.trim().length > 0
+                                                            reference "${rt.topic_id}"
+                                                        $if _.isNotEmpty(rt.title) && rt.title.trim().length > 0
+                                                            title "${rt.title}"
+                                                        $elif _.isNotEmpty(rt.topic_title) && rt.topic_title.trim().length > 0
+                                                            title "${rt.topic_title}"
+                                                        $if _.isNotEmpty(rt.description) && rt.description.trim().length > 0
+                                                            description "${rt.description}"
+                                                        $elif _.isNotEmpty(rt.topic_description) && rt.topic_description.trim().length > 0
+                                                            description "${rt.topic_description}"
+                                        $elif _.isArray(ka.relevant_sections)
+                                            [ topics
+                                                $foreach rt in ka.relevant_sections
+                                                    {
+                                                        $if _.isNotEmpty(rt.section) && rt.section.trim().length > 0
+                                                            reference "${rt.section}"
+                                                        $else
+                                                            reference null
+                                                        $if _.isNotEmpty(rt.title) && rt.title.trim().length > 0
+                                                            title "${rt.title}"
+                                                        $else
+                                                            title null
+                                                        $if _.isNotEmpty(rt.description) && rt.description.trim().length > 0
+                                                            description "${rt.description}"
+                                                        $else
+                                                            description null
+                                        $elif _.isArray(ka.relevant_clauses)
+                                            [ topics
+                                                $foreach rt in ka.relevant_clauses
+                                                    {
+                                                        $if _.isNotEmpty(rt.clause) && rt.clause.trim().length > 0
+                                                            reference "${rt.clause}"
+                                                        $else
+                                                            reference null
+                                                        $if _.isNotEmpty(rt.title) && rt.title.trim().length > 0
+                                                            title "${rt.title}"
+                                                        $else
+                                                            title null
+                                                        $if _.isNotEmpty(rt.description) && rt.description.trim().length > 0
+                                                            description "${rt.description}"
+                                                        $else
+                                                            description null
+                                        $else
+                                            description null
+                                        all "${_.stringify(ka)}"
+                                $else
+                                    "all ${_.stringify(ka)}"
+                    $elif _.isObject(cl.related_standards)
+                        [ related_standards
+                            $foreach k1 in Object.keys(cl.related_standards)
+                                {
+                                    $if _.isObject(cl.related_standards[k1])
+                                        $
+                                            var rt = cl.related_standards[k1];
+
+                                        $if _.isNotEmpty(rt.section) && rt.section.trim().length > 0
+                                            id "${k1} - ${rt.section}"
+                                        $elif _.isNotEmpty(rt.control) && rt.control.trim().length > 0
+                                            id "${k1} - ${rt.control}"
+                                        $elif _.isNotEmpty(rt.requirement) && rt.requirement.trim().length > 0
+                                            id "${k1} - ${rt.requirement}"
+                                        $else
+                                            id "${k1}"
+                                        $if _.isNotEmpty(rt.title) && rt.title.trim().length > 0
+                                            title "${rt.title}"
+                                        $if _.isNotEmpty(rt.description) && rt.description.trim().length > 0
+                                            description "${rt.description}"
+                                    $else
+                                        id null
+                                        title "${k1}"
+                                        description "${cl.related_standards[k1]}"
+                                    all "${_.stringify(cl.related_standards[k1])}"
+
+
+
+
+
+                                        $*
+    "name": true,
+    "aspect_id;name;details": true,
+    "standard_id": true,
+    "title": true,
+    "relevant_sections": true,
+    "standard_id;title;relevant_sections": true,
+    "standard": true,
+    "reference": true,
+    "standard;title;reference": true,
+    "standard;reference;details": true,
+    "relevance": true,
+    "standard;title;description;relevance": true,
+    "standard;reference;description": true,
+    "standard;reference": true,
+    "standard_id;title;description": true,
+    "relation": true,
+    "standard_id;title;relation": true,
+    "standard;title;relevance": true,
+    "standard;description": true,
+    "standard_name": true,
+    "standard_name;description": true,
+    "standard;details": true,
+    "standard;description;relevance": true,
+    "standard_title": true,
+    "standard_description": true,
+    "standard_id;standard_title;standard_description": true,
+    "reference_title": true,
+    "reference_description": true,
+    "standard_name;reference_title;reference_description": true,
+    "standard;title;details": true,
+    "standard;reference;relevance": true,
+    "standard;title;reference;description": true,
+    "standard;reference;detail": true,
+    "section": true,
+    "standard;section;description": true,
+    "standard_id;relevance": true,
+    "standard;relevance": true,
+    "standard;reference;relation": true,
+    "clause": true,
+    "standard;clause;description": true,
+    "control": true,
+    "standard;control;description": true,
+    "standard;section;reference": true,
+    "standard;title;description": true,
+    "standard_id;title;relevance": true,
+    "standard_id;title;reference": true,
+    "topics": true,
+    "standard;reference;topics": true,
+    "standard;title;relation": true                                        *$
+
+                    $else
+                        { related_standards***
+
+    $ _.log(Object.keys(schemas))
+
+    $foreach k1 in Object.keys(schemas)
+        schema "${k1} ${_.stringify(schemas[k1])}"
+        $foreach k2 in Object.keys(schemas[k1])
+            ${k2} true
+    $*
+
+
+        { key_aspects
+            product_description "Detailed documentation of the product's functionality, features, and intended
+                +b operating environment."
+            requirements_definition "Comprehensive identification and specification of both functional and security
+                +b requirements the product must meet."
+            "requirements traceability" "Establishment of a process to track each requirement throughout the development
+                +b lifecycle, ensuring that each requirement is implemented, tested, and verified."
+        { related_standards
+            { "ISO/IEC 15288:2015"
+                description "This standard provides a framework for the system life cycle processes, which
+                    +b includes requirements definition and traceability, ensuring that all
+                    +b requirements are addressed in system design and development."
+                [ specific_sections
+        *$

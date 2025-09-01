@@ -1,0 +1,61 @@
+ittf
+
+    $
+        var product_supplier = wzCtx.Config.ai.product_supplier.name;
+        var x_3_3_options = {
+            product_supplier_JSON: _.stringify(wzCtx.product_supplier.instances[product_supplier], null, null),
+            step_1_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_1, null, null),
+            step_2_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_2, null, null),
+            step_3_JSONSchema: _.stringify(wzCtx.schemas.x_3_3_system_requirement_ai_step_3, null, null),
+        }        
+        // var provider = 'chatGPT';
+        // var provider = 'deepSeek';
+        var provider = 'grok';
+        var maxNumInBatch = 2;
+        var batches = [];
+        var currentBatch = {
+            id: 1,
+            items: []
+        }
+        var count = 0;
+
+    $foreach fr in std_62443_3_3_json.foundational_requirements
+        $ _.log('----> fr.id', fr.id);
+        $foreach sr in fr.srs
+            $ _.log('----> sr.id', sr.id);
+            $if count > maxNumInBatch
+                $
+                    batches.push(currentBatch);
+                    currentBatch = {
+                        id: currentBatch.id + 1,
+                        items: [sr]
+                    }
+                    count = 1;
+
+            $else
+                $
+                    currentBatch.items.push(sr);
+                    count++;
+
+    $if currentBatch.items.length > 0
+        $ batches.push(currentBatch);;
+
+    $ _.log('----> batches.length', batches.length);
+
+    $foreach batch in batches
+        $file .wizzi-override/docs/3_3/ai_step_1_in/batch-${batch.id}.ai.ittf
+    
+            ai std_62443_3_3_step_1
+                api-url http://localhost:3000
+
+                $foreach batchItem in batch.items
+                    $ var batchItemJSONString = _.stringify(batchItem, null, null)
+                    $
+                        var options = {
+                            provider: provider,
+                            id: batchItem.id,
+                            inputJSONString: batchItemJSONString,
+                            JSONSchema: x_3_3_options.step_1_JSONSchema,
+                            product_supplier_JSON: null, // not used
+                        }
+                    ia-step-1-item(&options)
