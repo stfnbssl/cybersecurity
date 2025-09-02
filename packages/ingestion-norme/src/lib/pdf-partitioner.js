@@ -5,37 +5,22 @@ const fs = require('fs');
 const path = require('path');
 const { PDFDocument } = require('pdf-lib');
 
-function exitWithError(msg, code = 1) {
-  console.error(`[ERRORE] ${msg}`);
-  process.exit(code);
-}
+const {exitWithError, ensureDirSync, readTextSync, readJSONSync, writeJSONSync, writeFileSync,
+  isRegExp, parseRegExp, cleanHiddenUnicodeCharacters} = require('./utils');
 
-function ensureDirSync(filePathOrDir) {
-  const dir = fs.existsSync(filePathOrDir) && fs.lstatSync(filePathOrDir).isDirectory()
-    ? filePathOrDir
-    : path.dirname(filePathOrDir);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-}
-
-function readJSONSync(filePath) {
-  try {
-    const raw = fs.readFileSync(filePath, 'utf8');
-    return JSON.parse(raw);
-  } catch (err) {
-    exitWithError(`Impossibile leggere o parsare il JSON di configurazione: ${err.message}`);
-  }
-}
-
-function readTextSync(filePath) {
-  try {
-    let text = fs.readFileSync(filePath, 'utf8');
-    if (text.charCodeAt(0) === 0xFEFF) text = text.slice(1); // rimuove BOM iniziale
-    return text;
-  } catch (err) {
-    exitWithError(`Impossibile leggere il file di input: ${err.message}`);
-  }
+async function partitionPDFEveryPage(pdfConfig, item, originalPdf) {
+    for ( i=item.startPage; i <= item.endPage; i++) {
+        // Crea nuovo PDF
+        const newPdf = await PDFDocument.create();
+        // Copia le pagine specificate (converti da 1-based a 0-based)
+        const pageIndices = [i-1];
+        const copiedPages = await newPdf.copyPages(originalPdf, pageIndices);
+        copiedPages.forEach(page => newPdf.addPage(page));
+        const newPdfBytes = await newPdf.save();
+        ensureDirSync(item.output);
+        writeFileSync(item.output + '_' + (i-item.pageShift) + '.pdf', newPdfBytes);
+        console.log(`   ✅ Creato: ${item.output + '_' + (i-item.pageShift) + '.pdf'}`);        
+    }
 }
 
 async function partitionPDF(pdfConfig) {
@@ -70,28 +55,27 @@ async function partitionPDF(pdfConfig) {
                     return;
                 }
                 
-                // Crea nuovo PDF
-                const newPdf = await PDFDocument.create();
-                
-                // Copia le pagine specificate (converti da 1-based a 0-based)
-                const pageIndices = [];
-                for (let i = item.startPage - 1; i < item.endPage; i++) {
-                    pageIndices.push(i);
-                }
-                
-                const copiedPages = await newPdf.copyPages(originalPdf, pageIndices);
-                copiedPages.forEach(page => newPdf.addPage(page));
-                
-                // Crea la directory se non esiste
-                const outputDir = path.dirname(item.output);
-                if (!fs.existsSync(outputDir)) {
-                    fs.mkdirSync(outputDir, { recursive: true });
-                }
-                
-                // Salva il nuovo PDF
-                const newPdfBytes = await newPdf.save();
-                fs.writeFileSync(item.output, newPdfBytes);
-                
+                if (item.everyPage) {
+                    return partitionPDFEveryPage(pdfConfig, item, originalPdf);
+                } else {
+                    // Crea nuovo PDF
+                    const newPdf = await PDFDocument.create();
+                    // Copia le pagine specificate (converti da 1-based a 0-based)
+                    const pageIndices = [];
+                    for (let i = item.startPage - 1; i < item.endPage; i++) {
+                        pageIndices.push(i);
+                    }
+                    const copiedPages = await newPdf.copyPages(originalPdf, pageIndices);
+                    copiedPages.forEach(page => newPdf.addPage(page));
+                    // Crea la directory se non esiste
+                    const outputDir = path.dirname(item.output);
+                    if (!fs.existsSync(outputDir)) {
+                        fs.mkdirSync(outputDir, { recursive: true });
+                    }
+                    // Salva il nuovo PDF
+                    const newPdfBytes = await newPdf.save();
+                    fs.writeFileSync(item.output, newPdfBytes);
+                }                
                 console.log(`   ✅ Creato: ${item.output} (pagine ${item.startPage}-${item.endPage})`);
                 pdfProcessedRanges++;
             }

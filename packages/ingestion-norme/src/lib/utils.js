@@ -34,6 +34,20 @@ function readTextSync(filePath) {
   }
 }
 
+async function downloadFromUrlJSONSync(rawUrl) {
+    try {
+        const response = await fetch(rawUrl);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json(); // se è JSON
+        return data;
+        
+    } catch (error) {
+        console.error('Errore nel download:', error);
+    }
+}
+
 function writeJSONSync(filePath, document) {
   try {
     fs.writeFileSync(
@@ -246,6 +260,7 @@ module.exports = {
     ensureDirSync,
     readJSONSync,
     readTextSync,
+    downloadFromUrlJSONSync,
     isRegExp,
     parseRegExp,
     isSlashDelimitedRegex,

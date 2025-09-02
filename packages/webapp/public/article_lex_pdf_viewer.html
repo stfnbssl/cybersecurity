@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigatore PDF Articoli</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            background: #f5f5f5;
+            overflow: hidden;
+        }
+
+        .header {
+            background: #2c3e50;
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .url-input {
+            padding: 8px 12px;
+            border: 1px solid #34495e;
+            border-radius: 5px;
+            font-size: 14px;
+            min-width: 250px;
+            background: white;
+        }
+
+        .load-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        .load-button:hover {
+            background: #2980b9;
+        }
+
+        .load-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .container {
+            display: flex;
+            height: calc(100vh - 70px);
+            gap: 2px;
+            background: #ddd;
+        }
+
+        .panel {
+            background: white;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            min-width: 0;
+        }
+
+        .left-panel {
+            width: 350px;
+            min-width: 300px;
+            max-width: 500px;
+            resize: horizontal;
+            overflow: hidden;
+        }
+
+        .right-panel {
+            flex: 1;
+            position: relative;
+        }
+
+        .panel-header {
+            background: #34495e;
+            color: white;
+            padding: 12px 20px;
+            font-weight: 600;
+            font-size: 14px;
+            border-bottom: 1px solid #2c3e50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .panel-content {
+            flex: 1;
+            overflow: auto;
+            position: relative;
+        }
+
+        .articles-list {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+        }
+
+        .article-item {
+            border-bottom: 1px solid #ecf0f1;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .article-item:hover {
+            background: #f8f9fa;
+        }
+
+        .article-item.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .article-item.active:hover {
+            background: #2980b9;
+        }
+
+        .article-link {
+            display: block;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+        }
+
+        .article-number {
+            font-weight: 700;
+            font-size: 14px;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+
+        .article-item.active .article-number {
+            color: white;
+        }
+
+        .article-title {
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            margin-bottom: 8px;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #7f8c8d;
+            font-style: italic;
+        }
+
+        .article-item.active .page-info {
+            color: #ecf0f1;
+        }
+
+        .search-box {
+            padding: 15px 20px;
+            border-bottom: 1px solid #ecf0f1;
+            background: #f8f9fa;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            font-size: 14px;
+            background: white;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .pdf-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: #f8f9fa;
+        }
+
+        .pdf-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: white;
+        }
+
+        .no-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            color: #7f8c8d;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .no-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #34495e;
+        }
+
+        .pdf-navigation {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            background: rgba(52, 73, 94, 0.9);
+            padding: 10px 15px;
+            border-radius: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .nav-button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .nav-button:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .page-indicator {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            padding: 0 15px;
+        }
+
+        .current-page-info {
+            font-size: 12px;
+            color: #ecf0f1;
+            margin-left: 10px;
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #95a5a6;
+            margin-right: 8px;
+        }
+
+        .status-indicator.loaded {
+            background: #27ae60;
+        }
+
+        .status-indicator.loading {
+            background: #f39c12;
+            animation: pulse 1.5s infinite;
+        }
+
+        .status-indicator.error {
+            background: #e74c3c;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .article-count {
+            font-size: 12px;
+            color: #7f8c8d;
+        }
+
+        .loading-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            color: #34495e;
+            z-index: 50;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .left-panel {
+                width: 100%;
+                height: 250px;
+                resize: vertical;
+            }
+            
+            .url-input {
+                min-width: 200px;
+            }
+            
+            .controls {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .pdf-navigation {
+                bottom: 10px;
+                padding: 8px 12px;
+            }
+
+            .nav-button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+        }
+
+        /* Scrollbar personalizzata */
+        .panel-content::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .panel-content::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        .panel-content::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 3px;
+        }
+
+        .panel-content::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📄 Navigatore PDF Articoli</h1>
+        <div class="controls">
+            <input type="text" id="baseUrlInput" class="url-input" placeholder="Base URL (es: https://example.com/)" value="">
+            <button id="loadButton" class="load-button">📁 Carica Lista</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="panel left-panel">
+            <div class="panel-header">
+                📋 Lista Articoli
+                <div style="display: flex; align-items: center;">
+                    <div class="status-indicator" id="statusIndicator"></div>
+                    <span class="article-count" id="articleCount">28 articoli</span>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="🔍 Cerca articoli...">
+            </div>
+            <div class="panel-content">
+                <ul class="articles-list" id="articlesList"></ul>
+            </div>
+        </div>
+
+        <div class="panel right-panel">
+            <div class="panel-header">
+                📖 Documento PDF
+                <span class="current-page-info" id="currentPageInfo">Seleziona un articolo</span>
+            </div>
+            <div class="panel-content">
+                <div class="no-content" id="noContentMessage">
+                    <h3>👈 Seleziona un articolo</h3>
+                    <p>Clicca su un articolo nella lista a sinistra per visualizzare il PDF corrispondente.</p>
+                    <p><em>I PDF vanno dalla pagina 11 alla pagina 38</em></p>
+                </div>
+                <div class="pdf-container" id="pdfContainer" style="display: none;">
+                    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+                        ⏳ Caricamento PDF...
+                    </div>
+                    <iframe id="pdfFrame" class="pdf-frame" title="Documento PDF"></iframe>
+                    <div class="pdf-navigation">
+                        <button id="prevButton" class="nav-button">
+                            ◀ Precedente
+                        </button>
+                        <div class="page-indicator" id="pageIndicator">
+                            Pagina --
+                        </div>
+                        <button id="nextButton" class="nav-button">
+                            Successiva ▶
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        class PDFArticleNavigator {
+            constructor() {
+                this.baseUrl = '';
+                this.articles = [];
+                this.filteredArticles = [];
+                this.currentPage = null;
+                this.minPage = 11;
+                this.maxPage = 38;
+                
+                this.initializeElements();
+                this.setupEventListeners();
+                this.loadSampleArticles();
+            }
+
+            initializeElements() {
+                this.baseUrlInput = document.getElementById('baseUrlInput');
+                this.loadButton = document.getElementById('loadButton');
+                this.searchInput = document.getElementById('searchInput');
+                this.articlesList = document.getElementById('articlesList');
+                this.pdfFrame = document.getElementById('pdfFrame');
+                this.pdfContainer = document.getElementById('pdfContainer');
+                this.noContentMessage = document.getElementById('noContentMessage');
+                this.currentPageInfo = document.getElementById('currentPageInfo');
+                this.statusIndicator = document.getElementById('statusIndicator');
+                this.articleCount = document.getElementById('articleCount');
+                this.loadingOverlay = document.getElementById('loadingOverlay');
+                this.prevButton = document.getElementById('prevButton');
+                this.nextButton = document.getElementById('nextButton');
+                this.pageIndicator = document.getElementById('pageIndicator');
+            }
+
+            setupEventListeners() {
+                var self = this;
+                
+                // Carica base URL
+                this.loadButton.addEventListener('click', function() {
+                    self.setBaseUrl();
+                });
+
+                // Enter nell'input URL
+                this.baseUrlInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        self.setBaseUrl();
+                    }
+                });
+
+                // Ricerca articoli
+                this.searchInput.addEventListener('input', function() {
+                    self.filterArticles();
+                });
+
+                // Click su articoli
+                this.articlesList.addEventListener('click', function(e) {
+                    var articleItem = e.target.closest('.article-item');
+                    if (articleItem) {
+                        var pageNumber = parseInt(articleItem.dataset.pageNumber);
+                        self.selectPage(pageNumber);
+                    }
+                });
+
+                // Navigazione PDF
+                this.prevButton.addEventListener('click', function() {
+                    self.navigatePage(-1);
+                });
+
+                this.nextButton.addEventListener('click', function() {
+                    self.navigatePage(1);
+                });
+
+                // Caricamento iframe
+                this.pdfFrame.addEventListener('load', function() {
+                    self.hideLoading();
+                    self.updateStatus('loaded');
+                });
+
+                this.pdfFrame.addEventListener('error', function() {
+                    self.hideLoading();
+                    self.updateStatus('error');
+                });
+
+                // Keyboard shortcuts
+                document.addEventListener('keydown', function(e) {
+                    if (self.currentPage !== null) {
+                        if (e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            self.navigatePage(-1);
+                        } else if (e.key === 'ArrowRight') {
+                            e.preventDefault();
+                            self.navigatePage(1);
+                        }
+                    }
+                });
+            }
+
+            loadSampleArticles() {
+                // Genera articoli di esempio con pagine da 11 a 38
+                this.articles = [
+                    { articleNumber: 1, title: 'Introduzione e Ambito di Applicazione', pageNumber: 11 },
+                    { articleNumber: 2, title: 'Riferimenti Normativi e Definizioni', pageNumber: 12 },
+                    { articleNumber: 3, title: 'Termini e Definizioni Specifiche', pageNumber: 13 },
+                    { articleNumber: 4, title: 'Simboli e Abbreviazioni', pageNumber: 14 },
+                    { articleNumber: 5, title: 'Requisiti Generali di Sistema', pageNumber: 15 },
+                    { articleNumber: 6, title: 'Classificazione delle Aree Pericolose', pageNumber: 16 },
+                    { articleNumber: 7, title: 'Metodi di Protezione Ammessi', pageNumber: 17 },
+                    { articleNumber: 8, title: 'Equipaggiamenti Elettrici Zone 0', pageNumber: 18 },
+                    { articleNumber: 9, title: 'Equipaggiamenti Elettrici Zone 1', pageNumber: 19 },
+                    { articleNumber: 10, title: 'Equipaggiamenti Elettrici Zone 2', pageNumber: 20 },
+                    { articleNumber: 11, title: 'Marcature e Identificazioni', pageNumber: 21 },
+                    { articleNumber: 12, title: 'Documentazione Tecnica Richiesta', pageNumber: 22 },
+                    { articleNumber: 13, title: 'Installazione e Cablaggio', pageNumber: 23 },
+                    { articleNumber: 14, title: 'Sistemi di Messa a Terra', pageNumber: 24 },
+                    { articleNumber: 15, title: 'Protezione contro Sovratensioni', pageNumber: 25 },
+                    { articleNumber: 16, title: 'Sistemi di Rilevamento Gas', pageNumber: 26 },
+                    { articleNumber: 17, title: 'Ventilazione e Pressurizzazione', pageNumber: 27 },
+                    { articleNumber: 18, title: 'Manutenzione Preventiva', pageNumber: 28 },
+                    { articleNumber: 19, title: 'Controlli e Ispezioni Periodiche', pageNumber: 29 },
+                    { articleNumber: 20, title: 'Procedure di Emergenza', pageNumber: 30 },
+                    { articleNumber: 21, title: 'Formazione del Personale', pageNumber: 31 },
+                    { articleNumber: 22, title: 'Registri e Documentazione', pageNumber: 32 },
+                    { articleNumber: 23, title: 'Conformità e Certificazioni', pageNumber: 33 },
+                    { articleNumber: 24, title: 'Deroghe e Casi Speciali', pageNumber: 34 },
+                    { articleNumber: 25, title: 'Appendice A: Tabelle Tecniche', pageNumber: 35 },
+                    { articleNumber: 26, title: 'Appendice B: Esempi Applicativi', pageNumber: 36 },
+                    { articleNumber: 27, title: 'Appendice C: Bibliografia', pageNumber: 37 },
+                    { articleNumber: 28, title: 'Indice Analitico e Glossario', pageNumber: 38 }
+                ];
+                
+                this.filteredArticles = this.articles.slice();
+                this.renderArticles();
+                this.updateStatus('loaded');
+            }
+
+            setBaseUrl() {
+                this.baseUrl = this.baseUrlInput.value.trim();
+                if (this.baseUrl && !this.baseUrl.endsWith('/')) {
+                    this.baseUrl += '/';
+                }
+                
+                if (this.baseUrl) {
+                    this.updateStatus('loaded');
+                    console.log('Base URL impostato:', this.baseUrl);
+                } else {
+                    console.log('Base URL vuoto - usando solo nomi file');
+                }
+            }
+
+            renderArticles() {
+                var self = this;
+                this.articlesList.innerHTML = '';
+
+                if (this.filteredArticles.length === 0) {
+                    this.articlesList.innerHTML = 
+                        '<li class="no-content">' +
+                            '<h3>Nessun articolo trovato</h3>' +
+                            '<p>Prova a modificare i criteri di ricerca.</p>' +
+                        '</li>';
+                    return;
+                }
+
+                this.filteredArticles.forEach(function(article) {
+                    var li = document.createElement('li');
+                    li.className = 'article-item';
+                    li.dataset.pageNumber = article.pageNumber;
+                    
+                    li.innerHTML = 
+                        '<div class="article-link">' +
+                            '<div class="article-number">Articolo ' + article.articleNumber + '</div>' +
+                            '<div class="article-title">' + article.title + '</div>' +
+                            '<div class="page-info">📄 Pagina ' + article.pageNumber + ' • pdf/62443_3_2_' + article.pageNumber + '.pdf</div>' +
+                        '</div>';
+                    
+                    self.articlesList.appendChild(li);
+                });
+
+                this.updateArticleCount();
+            }
+
+            filterArticles() {
+                var searchTerm = this.searchInput.value.toLowerCase();
+                
+                this.filteredArticles = this.articles.filter(function(article) {
+                    return article.title.toLowerCase().includes(searchTerm) ||
+                           article.articleNumber.toString().includes(searchTerm) ||
+                           article.pageNumber.toString().includes(searchTerm);
+                });
+                
+                this.renderArticles();
+            }
+
+            selectPage(pageNumber) {
+                // Aggiorna selezione visuale
+                var previousSelected = this.articlesList.querySelector('.article-item.active');
+                if (previousSelected) {
+                    previousSelected.classList.remove('active');
+                }
+
+                var selectedItem = this.articlesList.querySelector('[data-page-number="' + pageNumber + '"]');
+                if (selectedItem) {
+                    selectedItem.classList.add('active');
+                    selectedItem.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+
+                // Carica PDF
+                this.loadPDF(pageNumber);
+            }
+
+            loadPDF(pageNumber) {
+                this.currentPage = pageNumber;
+                var filename = 'pdf/62443_3_2_' + pageNumber + '.pdf';
+                var fullUrl = this.baseUrl ? this.baseUrl + filename : filename;
+                
+                this.showLoading();
+                this.updateStatus('loading');
+                this.updateNavigationButtons();
+                this.updatePageIndicator();
+                this.updatePageInfo(filename);
+                
+                // Mostra container PDF
+                this.noContentMessage.style.display = 'none';
+                this.pdfContainer.style.display = 'block';
+                
+                // Carica PDF con cache busting
+                var timestamp = new Date().getTime();
+                this.pdfFrame.src = fullUrl + '?t=' + timestamp;
+                
+                console.log('Caricando PDF:', fullUrl);
+            }
+
+            navigatePage(direction) {
+                if (this.currentPage === null) return;
+                
+                var newPage = this.currentPage + direction;
+                if (newPage >= this.minPage && newPage <= this.maxPage) {
+                    this.selectPage(newPage);
+                }
+            }
+
+            updateNavigationButtons() {
+                this.prevButton.disabled = (this.currentPage <= this.minPage);
+                this.nextButton.disabled = (this.currentPage >= this.maxPage);
+            }
+
+            updatePageIndicator() {
+                if (this.currentPage !== null) {
+                    this.pageIndicator.textContent = 'Pagina ' + this.currentPage;
+                } else {
+                    this.pageIndicator.textContent = 'Pagina --';
+                }
+            }
+
+            updatePageInfo(filename) {
+                this.currentPageInfo.textContent = filename;
+            }
+
+            showLoading() {
+                this.loadingOverlay.style.display = 'flex';
+            }
+
+            hideLoading() {
+                this.loadingOverlay.style.display = 'none';
+            }
+
+            updateStatus(status) {
+                this.statusIndicator.className = 'status-indicator ' + status;
+            }
+
+            updateArticleCount() {
+                var count = this.filteredArticles.length;
+                var text = count === 1 ? '1 articolo' : count + ' articoli';
+                this.articleCount.textContent = text;
+            }
+        }
+
+        // Inizializza l'applicazione
+        document.addEventListener('DOMContentLoaded', function() {
+            new PDFArticleNavigator();
+        });
+    </script>
+</body>
+</html>

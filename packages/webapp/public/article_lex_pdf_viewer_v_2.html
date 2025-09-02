@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigatore PDF React - Componenti Separati</title>
+    
+    <!-- React e ReactDOM da CDN -->
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel per la trasformazione JSX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.5/babel.min.js"></script>
+    
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #root {
+            height: 100vh;
+        }
+        
+        /* Loading spinner per quando i componenti si stanno caricando */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            color: #7f8c8d;
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #ecf0f1;
+            border-top: 3px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <p>Caricamento componenti React...</p>
+        </div>
+    </div>
+
+    <!-- Componente ArticlesList con cache busting -->
+    <script type="text/babel" src="./components/ArticlesList.js" id="articles-script"></script>
+    
+    <!-- Componente PDFViewer con cache busting -->
+    <script type="text/babel" src="./components/PDFViewer.js" id="pdf-viewer-script"></script>
+    
+    <!-- Pulsante per ricaricare i componenti -->
+    <script>
+        // Funzione per ricaricare i componenti bypassando la cache
+        function reloadComponents() {
+            const timestamp = new Date().getTime();
+            
+            // Rimuovi i vecchi script
+            const oldArticlesScript = document.getElementById('articles-script');
+            const oldPdfScript = document.getElementById('pdf-viewer-script');
+            
+            if (oldArticlesScript) oldArticlesScript.remove();
+            if (oldPdfScript) oldPdfScript.remove();
+            
+            // Crea nuovi script con timestamp
+            const articlesScript = document.createElement('script');
+            articlesScript.type = 'text/babel';
+            articlesScript.id = 'articles-script';
+            articlesScript.src = `./components/ArticlesList.js?v=${timestamp}`;
+            
+            const pdfScript = document.createElement('script');
+            pdfScript.type = 'text/babel';
+            pdfScript.id = 'pdf-viewer-script';
+            pdfScript.src = `./components/PDFViewer.js?v=${timestamp}`;
+            
+            // Inserisci prima del main script
+            const mainScript = document.querySelector('script[type="text/babel"]:not([src])');
+            mainScript.parentNode.insertBefore(articlesScript, mainScript);
+            mainScript.parentNode.insertBefore(pdfScript, mainScript);
+            
+            // Ricarica Babel per processare i nuovi script
+            setTimeout(() => {
+                if (window.Babel) {
+                    window.Babel.registerPlugin('transform-react-jsx', window.Babel.availablePlugins['transform-react-jsx']);
+                    window.Babel.transformScriptTags();
+                }
+                
+                // Ricarica l'app dopo che i componenti sono stati caricati
+                setTimeout(() => {
+                    if (typeof ArticlesList !== 'undefined' && typeof PDFViewer !== 'undefined') {
+                        console.log('Componenti ricaricati con successo!');
+                        // Forza re-render dell'app
+                        window.location.reload();
+                    }
+                }, 500);
+            }, 100);
+            
+            console.log('Ricaricamento componenti in corso...');
+        }
+        
+        // Aggiungi shortcut da tastiera per ricaricare (Ctrl+R o F5)
+        document.addEventListener('keydown', function(e) {
+            if ((e.ctrlKey && e.key === 'r') || e.key === 'F5') {
+                if (e.shiftKey) { // Shift+Ctrl+R o Shift+F5 = ricarica componenti
+                    e.preventDefault();
+                    reloadComponents();
+                }
+            }
+        });
+    </script>
+    
+    <!-- Applicazione principale -->
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+        
+        // Dati articoli di esempio
+        const articlesData = [
+            { articleNumber: 1, title: 'Introduzione e Ambito di Applicazione', pageNumber: 11 },
+            { articleNumber: 2, title: 'Riferimenti Normativi e Definizioni', pageNumber: 12 },
+            { articleNumber: 3, title: 'Termini e Definizioni Specifiche', pageNumber: 13 },
+            { articleNumber: 4, title: 'Simboli e Abbreviazioni', pageNumber: 14 },
+            { articleNumber: 5, title: 'Requisiti Generali di Sistema', pageNumber: 15 },
+            { articleNumber: 6, title: 'Classificazione delle Aree Pericolose', pageNumber: 16 },
+            { articleNumber: 7, title: 'Metodi di Protezione Ammessi', pageNumber: 17 },
+            { articleNumber: 8, title: 'Equipaggiamenti Elettrici Zone 0', pageNumber: 18 },
+            { articleNumber: 9, title: 'Equipaggiamenti Elettrici Zone 1', pageNumber: 19 },
+            { articleNumber: 10, title: 'Equipaggiamenti Elettrici Zone 2', pageNumber: 20 },
+            { articleNumber: 11, title: 'Marcature e Identificazioni', pageNumber: 21 },
+            { articleNumber: 12, title: 'Documentazione Tecnica Richiesta', pageNumber: 22 },
+            { articleNumber: 13, title: 'Installazione e Cablaggio', pageNumber: 23 },
+            { articleNumber: 14, title: 'Sistemi di Messa a Terra', pageNumber: 24 },
+            { articleNumber: 15, title: 'Protezione contro Sovratensioni', pageNumber: 25 },
+            { articleNumber: 16, title: 'Sistemi di Rilevamento Gas', pageNumber: 26 },
+            { articleNumber: 17, title: 'Ventilazione e Pressurizzazione', pageNumber: 27 },
+            { articleNumber: 18, title: 'Manutenzione Preventiva', pageNumber: 28 },
+            { articleNumber: 19, title: 'Controlli e Ispezioni Periodiche', pageNumber: 29 },
+            { articleNumber: 20, title: 'Procedure di Emergenza', pageNumber: 30 },
+            { articleNumber: 21, title: 'Formazione del Personale', pageNumber: 31 },
+            { articleNumber: 22, title: 'Registri e Documentazione', pageNumber: 32 },
+            { articleNumber: 23, title: 'Conformità e Certificazioni', pageNumber: 33 },
+            { articleNumber: 24, title: 'Deroghe e Casi Speciali', pageNumber: 34 },
+            { articleNumber: 25, title: 'Appendice A: Tabelle Tecniche', pageNumber: 35 },
+            { articleNumber: 26, title: 'Appendice B: Esempi Applicativi', pageNumber: 36 },
+            { articleNumber: 27, title: 'Appendice C: Bibliografia', pageNumber: 37 },
+            { articleNumber: 28, title: 'Indice Analitico e Glossario', pageNumber: 38 }
+        ];
+
+        // Stili per l'applicazione principale
+        const appStyles = {
+            container: {
+                fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+                height: '100vh',
+                background: '#f5f5f5',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column'
+            },
+            header: {
+                background: '#2c3e50',
+                color: 'white',
+                padding: '15px 20px',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.1)'
+            },
+            headerTitle: {
+                fontSize: '1.5rem',
+                fontWeight: '600',
+                margin: 0
+            },
+            controls: {
+                display: 'flex',
+                gap: '15px',
+                alignItems: 'center'
+            },
+            urlInput: {
+                padding: '8px 12px',
+                border: '1px solid #34495e',
+                borderRadius: '5px',
+                fontSize: '14px',
+                minWidth: '250px',
+                background: 'white'
+            },
+            loadButton: {
+                background: '#3498db',
+                color: 'white',
+                border: 'none',
+                padding: '8px 16px',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                transition: 'background 0.3s'
+            },
+            mainContainer: {
+                display: 'flex',
+                height: 'calc(100vh - 70px)',
+                gap: '2px',
+                background: '#ddd'
+            }
+        };
+
+        // Componente principale dell'applicazione
+        const PDFNavigatorApp = () => {
+            const [baseUrl, setBaseUrl] = useState('');
+            const [baseUrlInput, setBaseUrlInput] = useState('');
+            const [currentPage, setCurrentPage] = useState(null);
+
+            const handleLoadBaseUrl = () => {
+                let url = baseUrlInput.trim();
+                if (url && !url.endsWith('/')) {
+                    url += '/';
+                }
+                setBaseUrl(url);
+                console.log('Base URL impostato:', url || 'nessun URL (solo filename)');
+            };
+
+            const handleArticleSelect = (pageNumber) => {
+                setCurrentPage(pageNumber);
+                console.log('Articolo selezionato - Pagina:', pageNumber);
+            };
+
+            const handlePageChange = (newPage) => {
+                setCurrentPage(newPage);
+                console.log('Navigazione pagina:', newPage);
+            };
+
+            // Controllo se i componenti sono caricati
+            if (typeof ArticlesList === 'undefined' || typeof PDFViewer === 'undefined') {
+                return (
+                    <div className="loading-container">
+                        <div className="loading-spinner"></div>
+                        <p>Caricamento componenti in corso...</p>
+                    </div>
+                );
+            }
+
+            return (
+                <div style={appStyles.container}>
+                    <div style={appStyles.header}>
+                        <h1 style={appStyles.headerTitle}>📄 Navigatore PDF Articoli - React</h1>
+                        <div style={appStyles.controls}>
+                            <input
+                                type="text"
+                                style={appStyles.urlInput}
+                                placeholder="Base URL (es: https://example.com/)"
+                                value={baseUrlInput}
+                                onChange={(e) => setBaseUrlInput(e.target.value)}
+                                onKeyPress={(e) => e.key === 'Enter' && handleLoadBaseUrl()}
+                            />
+                            <button
+                                style={appStyles.loadButton}
+                                onClick={handleLoadBaseUrl}
+                                onMouseOver={(e) => e.target.style.background = '#2980b9'}
+                                onMouseOut={(e) => e.target.style.background = '#3498db'}
+                            >
+                                📁 Carica Lista
+                            </button>
+                            <button
+                                style={{...appStyles.loadButton, background: '#e67e22'}}
+                                onClick={() => reloadComponents()}
+                                onMouseOver={(e) => e.target.style.background = '#d35400'}
+                                onMouseOut={(e) => e.target.style.background = '#e67e22'}
+                                title="Ricarica componenti (bypass cache)"
+                            >
+                                🔄 Ricarica
+                            </button>
+                        </div>
+                    </div>
+
+                    <div style={appStyles.mainContainer}>
+                        <ArticlesList
+                            articles={articlesData}
+                            currentPage={currentPage}
+                            onArticleSelect={handleArticleSelect}
+                            searchPlaceholder="🔍 Cerca articoli..."
+                            title="📋 Lista Articoli"
+                        />
+                        
+                        <PDFViewer
+                            baseUrl={baseUrl}
+                            currentPage={currentPage}
+                            minPage={11}
+                            maxPage={38}
+                            onPageChange={handlePageChange}
+                            title="📖 Documento PDF"
+                        />
+                    </div>
+                </div>
+            );
+        };
+
+        // Render dell'applicazione
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PDFNavigatorApp />);
+    </script>
+</body>
+</html>

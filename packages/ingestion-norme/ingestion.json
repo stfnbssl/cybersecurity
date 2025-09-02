@@ -3,7 +3,8 @@
         "metadata": {
             "framework_code": "EU-LEX-CRA:2024",
             "edition": "2024",
-            "jurisdiction": "EU"
+            "jurisdiction": "EU",
+            "CELEX": "32024R2847"
         },
         "step0": {
             "single": {
@@ -28,7 +29,13 @@
         "step2": {
             "inputJSONPath": "./extraction/eu_lex/cra_2024/step_2/articles.json",
             "outputJSONPath": "./extraction/eu_lex/cra_2024/step_3/chunks.json"
-        }        
+        },
+        "step10": {
+            "CELEX": "32024R2847",
+            "outputXHTMLFile_pre": "./extraction/eu_lex/cra_2024/step_11/ids_pre.xhtml",
+            "outputXHTMLFile_post": "./extraction/eu_lex/cra_2024/step_11/ids_post.xhtml",
+            "outputJSON_post": "./extraction/eu_lex/cra_2024/step_11/ids_post.json"
+        }
     },
     "eu_lex_nis2": {
         "metadata": {
@@ -442,6 +449,18 @@
         "step3": {
             "inputJSONPath": "./extraction/iec_62443_3_2_2020/step_3/requirements.json",
             "outputJSONPath": "./extraction/iec_62443_3_2_2020/step_4/chunks.json"
+        },
+        "step10": {
+            "source": "C:/My/lb/documenti/62443/BS EN IEC 62443-3-2-2020.pdf",
+            "ranges": [
+                {
+                    "startPage": 11,
+                    "endPage": 38,
+                    "output": "C:/My/wizzi/stfnbssl/cybersecurity/packages/webapp/public/pdf/62443_3_2",
+                    "everyPage": true,
+                    "pageShift": 5
+                }
+            ]
         }
     },
     "iec_62443_3_3": {
@@ -543,6 +562,10 @@
         "step2": {
             "inputJSONPath": "./extraction/nist_800_53_2020/step_2/blocks/5.json",
             "outputJSONPath": "./extraction/nist_800_53_2020/step_3/controls.json"
+        },
+        "step10": {
+            "inputJSONUrl": "https://raw.githubusercontent.com/stfnbssl/cybersecurity/main/packages/oscal-content/nist.gov/SP800-53/rev5/json/NIST_SP-800-53_rev5_catalog.json",
+            "outputJSONPath": "./extraction/nist_800_53_2020/step_11/oscal_controls.json"
         }
     }
 }

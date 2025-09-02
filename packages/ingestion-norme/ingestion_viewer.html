@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>OSCAL Catalog — Viewer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg:#0b0e12; --fg:#e7ecf3; --muted:#9aa4b2; --card:#11161d; --accent:#5aa7ff; --ring:#2a3350; }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;background:var(--bg);color:var(--fg);line-height:1.5}
+  header{position:sticky;top:0;background:linear-gradient(180deg,rgba(11,14,18,.95),rgba(11,14,18,.85));backdrop-filter: blur(6px);padding:16px 20px;border-bottom:1px solid var(--ring);z-index:10}
+  .wrap{display:grid;grid-template-columns:280px 1fr;gap:18px;padding:18px}
+  @media (max-width: 900px){ .wrap{grid-template-columns:1fr} aside{order:2} main{order:1} }
+  h1{margin:0 0 6px;font-size:22px}
+  .meta{display:flex;gap:16px;color:var(--muted);font-size:14px}
+  .searchbar{margin-top:12px;display:flex;gap:10px;align-items:center}
+  .searchbar input{flex:1;padding:10px 12px;border-radius:10px;border:1px solid var(--ring);background:#0f141b;color:var(--fg);outline:none}
+  .counter{font-size:13px;color:var(--muted)}
+  aside{position:sticky;top:86px;align-self:start;border:1px solid var(--ring);background:var(--card);border-radius:14px;padding:14px}
+  aside h3{margin:4px 0 8px;font-size:14px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  aside ul{list-style:none;padding:0;margin:0}
+  aside li{margin:6px 0}
+  aside a{color:var(--fg);text-decoration:none}
+  aside a:hover{color:var(--accent)}
+  section.group{margin-bottom:28px}
+  section.group h2{font-size:20px;margin:10px 0 12px;border-bottom:1px dashed var(--ring);padding-bottom:6px}
+  .gid{font-weight:400;color:var(--muted);font-size:14px;margin-left:8px}
+  article.control{border:1px solid var(--ring);background:var(--card);border-radius:14px;margin:10px 0;padding:6px 10px}
+  article.control details{padding:6px 2px}
+  article.control summary{display:flex;gap:12px;align-items:baseline;cursor:pointer;list-style:none}
+  article.control summary::-webkit-details-marker{display:none}
+  .cid{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:#0e1624;border:1px solid #18243a;padding:2px 6px;border-radius:8px;color:#b0c8ff}
+  .ctitle{font-weight:600}
+  .cgroup{margin-left:auto;color:var(--muted);font-size:13px}
+  .blk{margin:10px 0}
+  .blk.nested{border-top:1px dashed var(--ring);padding-top:8px}
+  .label{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+  blockquote{margin:0;padding:10px 12px;border-left:3px solid var(--accent);background:#0f141b;border-radius:6px}
+  .guidance{font-size:14.5px;color:#d8deea}
+  .dim{color:var(--muted)}
+  table.props{width:100%;border-collapse:collapse;font-size:14px}
+  table.props th, table.props td{border:1px dashed var(--ring);padding:6px 8px;text-align:left}
+  ul.params{padding-left:18px}
+  ul.params li{margin:6px 0}
+  ul.parts-list{padding-left:18px}
+  .subcontrols > article.control{margin-left:8px}
+  .depth-1{border-style:dashed}
+  .depth-2{opacity:.95}
+  .hidden{display:none !important}
+  footer{padding:30px;color:var(--muted);text-align:center}
+</style>
+</head>
+<body>
+  <header>
+    <h1>OSCAL Catalog — Viewer</h1>
+    <div class="meta"></div>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="Cerca per ID, titolo, gruppo, testo… (es. ac-2, audit, access control)" autocomplete="off" />
+      <span class="counter" id="counter"></span>
+    </div>
+  </header>
+  <div class="wrap">
+    <aside>
+      <h3>Gruppi</h3>
+      <ul></ul>
+    </aside>
+    <main id="content">
+      
+    </main>
+  </div>
+  <footer>
+    Generato localmente — nessun dato inviato all'esterno.
+  </footer>
+<script>
+  (function(){
+    const input = document.getElementById('q');
+    const cards = Array.from(document.querySelectorAll('article.control'));
+    const counter = document.getElementById('counter');
+
+    function updateCounter(shown, total){ counter.textContent = shown + ' / ' + total; }
+
+    function search(q){
+      const term = (q||'').trim().toLowerCase();
+      if (!term){
+        cards.forEach(el => el.classList.remove('hidden'));
+        updateCounter(cards.length, cards.length);
+        return;
+      }
+      let shown = 0;
+      for (const el of cards){
+        const idx = el.getAttribute('data-index') || '';
+        const match = idx.includes(term);
+        el.classList.toggle('hidden', !match);
+        if (match) shown++;
+      }
+      updateCounter(shown, cards.length);
+    }
+    input.addEventListener('input', () => search(input.value));
+    updateCounter(cards.length, cards.length);
+  })();
+</script>
+</body>
+</html>
